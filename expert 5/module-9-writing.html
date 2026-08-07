@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${TASK_CONFIG.title || 'IELTS Simulator'}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --app-font-size: 16px; }
+        body { font-family: "Inter", sans-serif; overscroll-behavior: none; background-color: #f8fafc; color: #334155; margin: 0; height: 100vh; display: flex; flex-direction: column; }
+        .app-header { flex-shrink: 0; }
+        .content-panes { flex-grow: 1; display: grid; grid-template-columns: 1fr 5px 1fr; overflow: hidden; height: calc(100vh - 70px); }
+        .pane { overflow-y: auto; padding: 1.5rem 2rem; font-size: var(--app-font-size); scroll-behavior: smooth; }
+        #left-pane { background-color: #ffffff; border-right: 1px solid #e2e8f0; }
+        #right-pane { background-color: #f8fafc; display: flex; flex-direction: column; }
+        .splitter { background-color: #cbd5e1; cursor: col-resize; z-index: 10; transition: background-color 0.2s; display: flex; align-items: center; justify-content: center; }
+        .splitter:hover, .splitter:active { background-color: #94a3b8; }
+        .prompt-instructions { font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; }
+        .prompt-text { font-family: "Merriweather", serif; line-height: 1.7; color: #334155; margin-bottom: 2rem; background-color: #f1f5f9; padding: 1rem 1.5rem; border-left: 4px solid #3b82f6; border-radius: 0 0.5rem 0.5rem 0; }
+        .writing-area { flex-grow: 1; width: 100%; resize: none; border: 2px solid #cbd5e1; border-radius: 0.5rem; padding: 1.5rem; font-family: "Merriweather", serif; font-size: 1rem; line-height: 1.8; color: #0f172a; transition: all 0.2s; background-color: #ffffff; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02); }
+        .writing-area:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+        .data-container { position: relative; width: 100%; margin-top: 1rem; background: white; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06); min-height: 400px; display: flex; flex-direction: column; }
+        .chart-wrapper { width: 100%; height: 400px; position: relative; }
+        .word-count-badge { transition: all 0.3s ease; }
+        .word-count-insufficient { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .word-count-sufficient { background-color: #dcfce3; color: #166534; border: 1px solid #86efac; }
+        @media (max-width: 768px) { .content-panes { grid-template-columns: 1fr; grid-template-rows: 1fr 5px 1fr; } .splitter { cursor: row-resize; } .data-container { min-height: 300px; } .chart-wrapper { height: 300px; } }
+    </style>
+</head>
+<body>
+<header class="app-header bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex justify-between items-center shadow-sm z-20">
+    <div class="flex items-center space-x-3">
+        <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg></div>
+        <h1 class="text-lg sm:text-xl font-bold text-slate-800 tracking-tight" id="header-title"></h1>
+    </div>
+    <div class="flex items-center space-x-4 sm:space-x-6">
+        <div class="flex items-center border-l border-slate-300 pl-4 sm:pl-6">
+            <input type="text" id="student-name" class="border border-slate-300 rounded px-3 py-1.5 text-sm w-32 sm:w-48 focus:outline-none focus:ring-2 focus:ring-blue-400 font-medium text-slate-700 placeholder-slate-400" placeholder="Enter full name">
+        </div>
+    </div>
+</header>
+<main id="content-panes" class="content-panes">
+    <div id="left-pane" class="pane"><div class="max-w-3xl mx-auto"><p id="prompt-instructions" class="prompt-instructions"></p><div id="prompt-text" class="prompt-text"></div><div id="data-container" class="data-container"></div></div></div>
+    <div id="splitter" class="splitter relative"><div class="w-1 h-8 sm:w-8 sm:h-1 bg-slate-400 rounded-full opacity-50 flex items-center justify-center"><svg class="w-4 h-4 text-slate-600 transform sm:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg></div></div>
+    <div id="right-pane" class="pane relative flex flex-col">
+        <textarea id="essay-input" class="writing-area" placeholder="Start writing your report here..."></textarea>
+        <div class="mt-4 flex flex-col sm:flex-row items-center justify-between bg-white p-3 sm:p-4 rounded-lg border border-slate-200 shadow-sm">
+            <div id="word-count-container" class="word-count-badge word-count-insufficient px-4 py-2 rounded-full font-bold text-sm mb-3 sm:mb-0 shadow-sm flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>Word Count: <span id="word-count-number" class="ml-1 text-base">0</span><span class="text-xs ml-1 opacity-75">/ 150</span></div>
+            <button id="submit-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-md transition-colors shadow-md inline-flex items-center justify-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg><span>Submit Report</span></button>
+        </div>
+    </div>
+</main>
+<div id="custom-modal" class="fixed inset-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity opacity-0">
+    <div class="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md transform transition-transform scale-95" id="custom-modal-content">
+        <div class="flex items-center mb-4 pb-4 border-b border-slate-100"><div id="modal-icon" class="w-10 h-10 rounded-full flex items-center justify-center mr-3"></div><h3 id="modal-title" class="text-xl font-bold text-slate-800"></h3></div>
+        <p id="modal-message" class="text-slate-600 mb-6 leading-relaxed"></p>
+        <div class="flex justify-end space-x-3"><button id="modal-cancel-btn" class="hidden px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">Cancel</button><button id="modal-close-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-sm">Got it</button></div>
+    </div>
+</div>
+<script>
+const TASK_CONFIG = {
+    "title": "Module 9 Writing",
+    "instructions": "You should spend about 20 minutes on this task.",
+    "prompt": "The charts below show changes in the percentages of US adults owning different types of electronic device.",
+    "type": "pie",
+    "chartData": {
+        "labels": [
+            "Reading",
+            "Speaking"
+        ],
+        "datasets": [
+            {
+                "label": "(almost) every day",
+                "data": [
+                    57,
+                    0
+                ],
+                "backgroundColor": "#3b82f6",
+                "borderColor": "#3b82f6",
+                "borderWidth": 1
+            },
+            {
+                "label": "twice a week or more",
+                "data": [
+                    0
+                ],
+                "backgroundColor": "#f73b3b",
+                "borderColor": "#f73b3b",
+                "borderWidth": 1
+            },
+            {
+                "label": "once a week or less",
+                "data": [
+                    0
+                ],
+                "backgroundColor": "#3b82f6",
+                "borderColor": "#3b82f6",
+                "borderWidth": 1
+            },
+            {
+                "label": "(almost) never",
+                "data": [
+                    0
+                ],
+                "backgroundColor": "#3b82f6",
+                "borderColor": "#3b82f6",
+                "borderWidth": 1
+            }
+        ]
+    },
+    "chartOptions": {
+        "responsive": true,
+        "maintainAspectRatio": false,
+        "scales": {
+            "y": {
+                "axis": "y",
+                "beginAtZero": true,
+                "title": {
+                    "display": false
+                },
+                "type": "linear",
+                "ticks": {
+                    "minRotation": 0,
+                    "maxRotation": 50,
+                    "mirror": false,
+                    "textStrokeWidth": 0,
+                    "textStrokeColor": "",
+                    "padding": 3,
+                    "display": true,
+                    "autoSkip": true,
+                    "autoSkipPadding": 3,
+                    "labelOffset": 0,
+                    "minor": {},
+                    "major": {},
+                    "align": "center",
+                    "crossAlign": "near",
+                    "showLabelBackdrop": false,
+                    "backdropColor": "rgba(255, 255, 255, 0.75)",
+                    "backdropPadding": 2,
+                    "color": "#475569"
+                },
+                "display": true,
+                "offset": false,
+                "reverse": false,
+                "bounds": "ticks",
+                "clip": true,
+                "grace": 0,
+                "grid": {
+                    "display": true,
+                    "lineWidth": 1,
+                    "drawOnChartArea": true,
+                    "drawTicks": true,
+                    "tickLength": 8,
+                    "offset": false,
+                    "color": "rgba(0,0,0,0.1)"
+                },
+                "border": {
+                    "display": true,
+                    "dash": [],
+                    "dashOffset": 0,
+                    "width": 1,
+                    "color": "rgba(0,0,0,0.1)"
+                },
+                "id": "y",
+                "position": "left"
+            },
+            "x": {
+                "axis": "x",
+                "type": "category",
+                "offset": true,
+                "grid": {
+                    "offset": true,
+                    "display": true,
+                    "lineWidth": 1,
+                    "drawOnChartArea": true,
+                    "drawTicks": true,
+                    "tickLength": 8,
+                    "color": "rgba(0,0,0,0.1)"
+                },
+                "ticks": {
+                    "minRotation": 0,
+                    "maxRotation": 50,
+                    "mirror": false,
+                    "textStrokeWidth": 0,
+                    "textStrokeColor": "",
+                    "padding": 3,
+                    "display": true,
+                    "autoSkip": true,
+                    "autoSkipPadding": 3,
+                    "labelOffset": 0,
+                    "minor": {},
+                    "major": {},
+                    "align": "center",
+                    "crossAlign": "near",
+                    "showLabelBackdrop": false,
+                    "backdropColor": "rgba(255, 255, 255, 0.75)",
+                    "backdropPadding": 2,
+                    "color": "#475569"
+                },
+                "display": true,
+                "reverse": false,
+                "beginAtZero": false,
+                "bounds": "ticks",
+                "clip": true,
+                "grace": 0,
+                "border": {
+                    "display": true,
+                    "dash": [],
+                    "dashOffset": 0,
+                    "width": 1,
+                    "color": "rgba(0,0,0,0.1)"
+                },
+                "title": {
+                    "display": false,
+                    "text": "",
+                    "padding": {
+                        "top": 4,
+                        "bottom": 4
+                    },
+                    "color": "#475569"
+                },
+                "id": "x",
+                "position": "bottom"
+            }
+        },
+        "plugins": {
+            "legend": {
+                "position": "bottom"
+            },
+            "title": {
+                "display": true,
+                "text": "How often Japanese university students use English outside the classroom",
+                "font": {
+                    "size": 16,
+                    "family": "Inter",
+                    "weight": "bold"
+                },
+                "color": "#1e293b",
+                "padding": {
+                    "bottom": 20
+                }
+            }
+        }
+    },
+    "tableData": {
+        "title": "Average Annual Distance Travelled",
+        "subtitle": "By Mode of Travel (Miles)",
+        "headers": [
+            "Mode of Travel",
+            "1997",
+            "2007"
+        ],
+        "rows": [
+            [
+                "Walking",
+                "400",
+                "300"
+            ],
+            [
+                "Bicycle",
+                "100",
+                "80"
+            ],
+            [
+                "Car",
+                "3500",
+                "7100"
+            ],
+            [
+                "Bus",
+                "800",
+                "500"
+            ]
+        ]
+    },
+    "googleFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLScUaWXTLBJDz03Zd3Lq6s1scPS6TT4E6cPkttxmKpbGIj3aZw/viewform?usp=pp_url",
+    "formEntryNameId": "entry.601978424",
+    "formEntryEssayId": "entry.890000505",
+    "figures": [
+        {
+            "type": "bar",
+            "title": "Adult US ownership of electronic devices",
+            "yAxisTitle": "Percentage",
+            "labels": [
+                "2010"
+            ],
+            "datasets": [
+                {
+                    "label": "Games console",
+                    "data": [
+                        42
+                    ],
+                    "color": "#2563eb"
+                },
+                {
+                    "label": "Laptop",
+                    "data": [
+                        79
+                    ],
+                    "color": "#16a34a"
+                },
+                {
+                    "label": "Tablet",
+                    "data": [
+                        3
+                    ],
+                    "color": "#f59e0b"
+                },
+                {
+                    "label": "E-reader",
+                    "data": [
+                        4
+                    ],
+                    "color": "#7c3aed"
+                },
+                {
+                    "label": "Mobile phone",
+                    "data": [
+                        82
+                    ],
+                    "color": "#dc2626"
+                }
+            ],
+            "prefix": "",
+            "suffix": "%"
+        },
+        {
+            "type": "bar",
+            "title": "",
+            "yAxisTitle": "Percentage",
+            "labels": [
+                "2015"
+            ],
+            "datasets": [
+                {
+                    "label": "Games console",
+                    "data": [
+                        40
+                    ],
+                    "color": "#2563eb"
+                },
+                {
+                    "label": "Laptop",
+                    "data": [
+                        73
+                    ],
+                    "color": "#16a34a"
+                },
+                {
+                    "label": "Tablet",
+                    "data": [
+                        45
+                    ],
+                    "color": "#f59e0b"
+                },
+                {
+                    "label": "E-reader",
+                    "data": [
+                        19
+                    ],
+                    "color": "#7c3aed"
+                },
+                {
+                    "label": "Mobile phone",
+                    "data": [
+                        92
+                    ],
+                    "color": "#dc2626"
+                }
+            ],
+            "prefix": "",
+            "suffix": ""
+        }
+    ]
+};
+document.addEventListener("DOMContentLoaded", () => {
+    Chart.defaults.font.family = "Inter, sans-serif"; Chart.defaults.color = "#475569"; Chart.register(ChartDataLabels);
+    Chart.defaults.plugins.datalabels = { backgroundColor: "rgba(255, 255, 255, 0.85)", borderColor: "rgba(203, 213, 225, 0.8)", borderWidth: 1, borderRadius: 4, color: "#1e293b", font: { weight: "bold", size: 10 }, padding: { top: 3, bottom: 3, left: 5, right: 5 }, formatter: (value) => (typeof value === "number" ? value.toLocaleString() : value) };
+    const app = {
+        promptInstructions: document.getElementById("prompt-instructions"), promptText: document.getElementById("prompt-text"), headerTitle: document.getElementById("header-title"), dataContainer: document.getElementById("data-container"), essayInput: document.getElementById("essay-input"), wordCountNumber: document.getElementById("word-count-number"), wordCountContainer: document.getElementById("word-count-container"), submitBtn: document.getElementById("submit-btn"), studentName: document.getElementById("student-name"), splitter: document.getElementById("splitter"), contentPanes: document.getElementById("content-panes"),
+        modal: document.getElementById("custom-modal"), modalContent: document.getElementById("custom-modal-content"), modalTitle: document.getElementById("modal-title"), modalMessage: document.getElementById("modal-message"), modalIcon: document.getElementById("modal-icon"), modalCloseBtn: document.getElementById("modal-close-btn"), modalCancelBtn: document.getElementById("modal-cancel-btn"),
+        modalConfirmCallback: null, activeCharts: [],
+        init() {
+            this.loadConfig();
+            const saveKey = "ielts_essay_" + (TASK_CONFIG.title ? TASK_CONFIG.title.replace(/[^a-z0-9]/gi, "_").toLowerCase() : "default");
+            this.studentName.value = localStorage.getItem("ielts_student_name") || "";
+            this.essayInput.value = localStorage.getItem(saveKey) || "";
+            this.renderVisualization(); this.setupEventListeners(saveKey); this.initSplitter(); this.updateWordCount();
+        },
+        loadConfig() { document.title = TASK_CONFIG.title || "IELTS Writing Task 1"; this.headerTitle.textContent = TASK_CONFIG.title || "IELTS Writing Task 1"; this.promptInstructions.innerHTML = TASK_CONFIG.instructions; this.promptText.innerHTML = TASK_CONFIG.prompt; },
+        renderVisualization() {
+            this.dataContainer.innerHTML = ""; if (this.activeCharts && this.activeCharts.length > 0) { this.activeCharts.forEach(c => c.destroy()); } this.activeCharts = [];
+            const PIE_COLORS = ['#3b82f6', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#f43f5e', '#84cc16', '#a855f7', '#14b8a6'];
+            
+            (TASK_CONFIG.figures || []).forEach((fig, index) => {
+                const figContainer = document.createElement('div');
+                figContainer.className = 'w-full mb-10 pb-6 border-b border-slate-100 last:border-0 last:mb-0 last:pb-0';
+                
+                if (fig.type === 'table') {
+                    const wrapper = document.createElement('div'); wrapper.className = 'w-full max-w-4xl mx-auto overflow-x-auto border border-slate-300 rounded-lg shadow-sm';
+                    let tableHTML = `<table class="min-w-full divide-y divide-slate-300">`;
+                    if (fig.title) tableHTML += `<thead class="bg-indigo-50"><tr><th colspan="${fig.labels ? fig.labels.length : 1}" class="px-6 py-4 text-center text-sm font-bold text-slate-800">${fig.title}${fig.subtitle ? `<br><span class="text-xs font-normal text-slate-500">${fig.subtitle}</span>` : ''}</th></tr>`;
+                    else tableHTML += `<thead class="bg-indigo-50">`;
+                    
+                    if (fig.labels && fig.labels.length > 0) {
+                        tableHTML += `<tr>`;
+                        fig.labels.forEach((header, i) => { tableHTML += `<th scope="col" class="px-6 py-3 ${i === 0 ? 'text-left' : 'text-center'} text-sm font-bold text-slate-800 ${i < fig.labels.length - 1 ? 'border-r border-slate-300' : ''}">${header}</th>`; });
+                        tableHTML += `</tr>`;
+                    }
+                    tableHTML += `</thead><tbody class="bg-white divide-y divide-slate-300">`;
+                    
+                    if (fig.rows) {
+                        fig.rows.forEach(row => {
+                            tableHTML += `<tr>`;
+                            row.forEach((cell, i) => { tableHTML += `<td class="px-6 py-4 whitespace-nowrap ${i === 0 ? 'text-left font-bold text-slate-900' : 'text-center text-slate-700'} ${i < row.length - 1 ? 'border-r border-slate-300' : ''}">${cell}</td>`; });
+                            tableHTML += `</tr>`;
+                        });
+                    }
+                    tableHTML += `</tbody></table>`;
+                    wrapper.innerHTML = tableHTML;
+                    figContainer.appendChild(wrapper);
+                } else if (fig.type === 'pie' || fig.type === 'doughnut') {
+                    if (fig.title) {
+                        const titleEl = document.createElement('h3'); titleEl.className = 'text-center font-bold text-lg mb-6 text-slate-800'; titleEl.textContent = fig.title; figContainer.appendChild(titleEl);
+                    }
+                    const legendContainer = document.createElement('div'); legendContainer.className = 'flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 max-w-4xl mx-auto';
+                    (fig.labels || []).forEach((label, i) => {
+                        const color = PIE_COLORS[i % PIE_COLORS.length];
+                        legendContainer.innerHTML += `<div class="flex items-center"><span class="w-3 h-3 inline-block mr-2 rounded-sm" style="background-color:${color}"></span><span class="text-sm text-slate-700 font-medium">${label}</span></div>`;
+                    });
+                    figContainer.appendChild(legendContainer);
+                    
+                    const gridCols = Math.min(fig.datasets.length, 3);
+                    const gridContainer = document.createElement('div'); gridContainer.className = `grid grid-cols-1 md:grid-cols-${gridCols} gap-8 w-full`;
+                    
+                    fig.datasets.forEach(ds => {
+                        const col = document.createElement('div'); col.className = 'flex flex-col items-center';
+                        if (ds.label) { const sub = document.createElement('h4'); sub.className = 'font-semibold mb-3 text-center text-slate-700'; sub.textContent = ds.label; col.appendChild(sub); }
+                        const canvasWrapper = document.createElement('div'); canvasWrapper.className = 'w-full max-w-[350px] relative h-[250px]';
+                        const canvas = document.createElement('canvas'); canvasWrapper.appendChild(canvas); col.appendChild(canvasWrapper); gridContainer.appendChild(col);
+                        const chartOpts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (context) => { let lbl = context.dataset.label || context.label || ''; if (lbl) lbl += ': '; lbl += (fig.prefix || '') + (typeof context.raw === 'number' ? context.raw.toLocaleString() : context.raw) + (fig.suffix || ''); return lbl; } } }, datalabels: { formatter: (value) => (fig.prefix || '') + (typeof value === 'number' ? value.toLocaleString() : value) + (fig.suffix || '') } }, scales: { x: {display: false}, y: {display: false} } };
+                        this.activeCharts.push(new Chart(canvas, { type: fig.type, data: { labels: fig.labels, datasets: [{ data: ds.data, backgroundColor: PIE_COLORS, borderColor: '#ffffff', borderWidth: 2 }] }, options: chartOpts }));
+                    });
+                    figContainer.appendChild(gridContainer);
+                } else {
+                    const wrapper = document.createElement('div'); wrapper.className = 'chart-wrapper w-full h-[400px] relative'; const canvas = document.createElement('canvas'); wrapper.appendChild(canvas); figContainer.appendChild(wrapper);
+                    const chartOpts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, title: { display: !!fig.title, text: fig.title, font: {size: 16, family: 'Inter', weight: 'bold'}, color: '#1e293b', padding: { bottom: 20 } }, tooltip: { callbacks: { label: (context) => { let lbl = context.dataset.label || ''; if (lbl) lbl += ': '; lbl += (fig.prefix || '') + (typeof context.raw === 'number' ? context.raw.toLocaleString() : context.raw) + (fig.suffix || ''); return lbl; } } }, datalabels: { formatter: (value) => (fig.prefix || '') + (typeof value === 'number' ? value.toLocaleString() : value) + (fig.suffix || '') } }, scales: { y: { beginAtZero: true, title: { display: !!fig.yAxisTitle, text: fig.yAxisTitle, font: {weight:'bold'} }, ticks: { callback: (value) => (fig.prefix || '') + (typeof value === 'number' ? value.toLocaleString() : value) + (fig.suffix || '') } } } };
+                    const formattedDatasets = fig.datasets.map(ds => ({ ...ds, backgroundColor: ds.color || ds.backgroundColor, borderColor: ds.color || ds.borderColor, borderWidth: 1 }));
+                    this.activeCharts.push(new Chart(canvas, { type: fig.type, data: { labels: fig.labels, datasets: formattedDatasets }, options: chartOpts }));
+                }
+                this.dataContainer.appendChild(figContainer);
+            });
+        },
+        setupEventListeners(saveKey) {
+            this.essayInput.addEventListener("input", () => { this.updateWordCount(); localStorage.setItem(saveKey, this.essayInput.value); });
+            this.studentName.addEventListener("input", () => { localStorage.setItem("ielts_student_name", this.studentName.value); });
+            window.addEventListener("beforeunload", (e) => { if (this.essayInput.value.trim().length > 0) { e.preventDefault(); e.returnValue = ""; } });
+            this.submitBtn.addEventListener("click", () => this.handleSubmit());
+            this.modalCloseBtn.addEventListener("click", () => { this.closeModal(); if (this.modalConfirmCallback) { this.modalConfirmCallback(); this.modalConfirmCallback = null; } });
+            this.modalCancelBtn.addEventListener("click", () => { this.closeModal(); this.modalConfirmCallback = null; });
+        },
+        updateWordCount() {
+            const text = this.essayInput.value.trim(); const words = text === "" ? 0 : text.split(/\s+/).length; this.wordCountNumber.textContent = words;
+            if (words >= 150) { this.wordCountContainer.classList.remove("word-count-insufficient"); this.wordCountContainer.classList.add("word-count-sufficient"); } else { this.wordCountContainer.classList.remove("word-count-sufficient"); this.wordCountContainer.classList.add("word-count-insufficient"); }
+        },
+        handleSubmit() {
+            const name = this.studentName.value.trim(); const essay = this.essayInput.value.trim(); const words = essay === "" ? 0 : essay.split(/\s+/).length;
+            if (!name) { this.showModal("Missing Information", "Please enter your full name in the top right corner before submitting.", "error"); this.studentName.focus(); return; }
+            if (words < 50) { this.showModal("Report too short", "Your report is very short. Are you sure you want to submit it?", "warning", true, () => { this.processSubmission(name, essay); }); return; }
+            this.processSubmission(name, essay);
+        },
+        processSubmission(name, essay) {
+            if (!TASK_CONFIG.googleFormUrl) { this.showModal("Submission Setup Required", "The Google Form URL is not configured.", "info"); return; }
+            const baseUrl = TASK_CONFIG.googleFormUrl;
+            const separator = baseUrl.includes('?') ? '&' : '?';
+            const finalUrl = baseUrl + separator + TASK_CONFIG.formEntryNameId + "=" + encodeURIComponent(name) + "&" + TASK_CONFIG.formEntryEssayId + "=" + encodeURIComponent(essay);
+            const saveKey = "ielts_essay_" + (TASK_CONFIG.title ? TASK_CONFIG.title.replace(/[^a-z0-9]/gi, "_").toLowerCase() : "default");
+            
+            this.showModal("Ready to Submit", `If your form didn't open automatically, click the link below.<br><br><a href="${finalUrl}" target="_blank" class="inline-block mt-3 bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-blue-100 transition-colors border border-blue-200" onclick="localStorage.removeItem('${saveKey}'); document.getElementById('modal-close-btn').click();">👉 Open Google Form</a>`, "success");
+            try { let win = window.open(finalUrl, '_blank'); if (win) localStorage.removeItem(saveKey); } catch (e) {}
+        },
+        initSplitter() {
+            let isDragging = false; this.splitter.addEventListener("mousedown", (e) => { e.preventDefault(); isDragging = true; document.body.style.cursor = "col-resize"; this.splitter.classList.add("bg-slate-400"); });
+            document.addEventListener("mousemove", (e) => { if (!isDragging || window.innerWidth <= 768) return; e.preventDefault(); const cRect = this.contentPanes.getBoundingClientRect(); const nw = e.clientX - cRect.left; if (nw > 300 && nw < cRect.width - 300) { this.contentPanes.style.gridTemplateColumns = `${(nw / cRect.width) * 100}% 5px 1fr`; } });
+            document.addEventListener("mouseup", () => { if (isDragging) { isDragging = false; document.body.style.cursor = "default"; this.splitter.classList.remove("bg-slate-400"); if (this.activeCharts && this.activeCharts.length > 0) { this.activeCharts.forEach(c => c.resize()); } } });
+        },
+        showModal(title, message, type = "info", showCancel = false, confirmCallback = null) {
+            this.modalTitle.textContent = title; this.modalMessage.innerHTML = message; this.modalConfirmCallback = confirmCallback; this.modalIcon.className = "w-10 h-10 rounded-full flex items-center justify-center mr-3 "; this.modalCloseBtn.className = "px-4 py-2 text-white rounded-lg font-medium transition-colors shadow-sm ";
+            let svg = ""; if (type === "error") { this.modalIcon.classList.add("bg-red-100", "text-red-600"); this.modalCloseBtn.classList.add("bg-red-600", "hover:bg-red-700"); svg = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`; }
+            else if (type === "warning") { this.modalIcon.classList.add("bg-amber-100", "text-amber-600"); this.modalCloseBtn.classList.add("bg-amber-600", "hover:bg-amber-700"); svg = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`; }
+            else if (type === "success") { this.modalIcon.classList.add("bg-green-100", "text-green-600"); this.modalCloseBtn.classList.add("bg-green-600", "hover:bg-green-700"); svg = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`; }
+            else { this.modalIcon.classList.add("bg-blue-100", "text-blue-600"); this.modalCloseBtn.classList.add("bg-blue-600", "hover:bg-blue-700"); svg = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`; }
+            this.modalIcon.innerHTML = svg; if (showCancel) { this.modalCancelBtn.classList.remove("hidden"); this.modalCloseBtn.textContent = "Continue"; } else { this.modalCancelBtn.classList.add("hidden"); this.modalCloseBtn.textContent = "Got it"; }
+            this.modal.classList.remove("hidden"); setTimeout(() => { this.modal.classList.remove("opacity-0"); this.modalContent.classList.remove("scale-95"); this.modalContent.classList.add("scale-100"); }, 10);
+        },
+        closeModal() { this.modal.classList.add("opacity-0"); this.modalContent.classList.remove("scale-100"); this.modalContent.classList.add("scale-95"); setTimeout(() => { this.modal.classList.add("hidden"); }, 200); }
+    };
+    app.init();
+});
+</script>
+</body>
+</html>
