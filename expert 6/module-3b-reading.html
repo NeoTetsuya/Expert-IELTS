@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3b Reading — Emotional Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: left; /* Left flush as requested */
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+        }
+        .reading-passage h3 {
+            font-family: 'Merriweather', serif;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 1.8em;
+            text-align: center; /* Center aligned */
+            font-style: italic; /* Italicized as requested */
+            text-indent: 0;
+        }
+
+        .q-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 0.75rem;
+        }
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            text-align: center;
+            background-color: #f8fafc;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .inline-input {
+            display: inline-block;
+            margin: 0 4px;
+            width: 80px;
+            vertical-align: middle;
+        }
+        .inline-input-wide {
+            width: 130px;
+        }
+        
+        select.text-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+            background-size: 12px;
+            padding-right: 20px;
+            cursor: pointer;
+        }
+
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .progress-tracker {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">Reading Practice <span class="text-indigo-600 font-medium hidden md:inline">| Emotional Intelligence</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2 py-1 text-sm w-24 sm:w-40 focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your Name">
+            </div>
+            
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <div id="left-pane" class="pane relative">
+            <div class="reading-passage">
+                <h3>The Dark Side of Emotional Intelligence</h3>
+                
+                <p>Since the 1995 publication of Daniel Goleman’s bestseller, Emotional Intelligence, the idea has been used by government leaders and educators as the solution to a wide range of problems. If we can encourage emotional intelligence among school children, leaders and doctors, we’ll have more caring educational institutions, workplaces and better healthcare. As a result, emotional intelligence is now taught widely in secondary schools, business schools and medical schools.</p>
+                
+                <p>Since the book’s publication, social scientists have begun to document emotional intelligence with more reliable research <span class="vocab-word" data-word="methodologies">methodologies</span> and a more complex picture is emerging. Research led by University of Cambridge Professor Jochen Menges suggested that, when a leader gave an inspiring speech filled with emotion, the audience was less likely to challenge the message and remembered less of the content. Interestingly, though, audience members were so moved by the speech that they believed that they had remembered more of it.</p>
+                
+                <p>It is clear that leaders who master emotions can rob us of our capabilities to reason. In a study led by psychologist Stephane Cote of the University of Toronto, university employees filled out a survey about their <span class="vocab-word" data-word="manipulative">manipulative</span> tendencies, and took a test measuring their emotional intelligence. Then, Cote’s team studied how they interacted on the job. The employees who engaged in the most harmful behaviours were masters of manipulation with high emotional intelligence, using their emotional skills to <span class="vocab-word" data-word="demean">demean</span> and embarrass their peers for personal gain.</p>
+                
+                <p>Of course, people aren’t always using emotional intelligence for evil ends and emotional intelligence is certainly a skill that can be taught to others. In a study of emotions at the Body Shop, a research team led by Stanford professor Joanne Martin discovered that founder Anita Roddick used emotions to inspire her employees to fundraise for charity. As Roddick explained, ‘Whenever we wanted to persuade our staff to support a particular project we always tried to break their hearts.’ Roddick was often held up as an example of an emotionally intelligent leader.</p>
+                
+                <p>However, emotional intelligence may have hidden costs. Recently, psychologists from the University of Central Florida <span class="vocab-word" data-word="comprehensively">comprehensively</span> analysed every study that has ever examined the link between emotional intelligence and job performance. They found that in jobs that required extensive attention to emotions, higher emotional intelligence translated into better work. However, in jobs such as mechanics, scientists and accountants the results were reversed. Although more research is needed, one promising explanation is that these employees were paying attention to emotions when they should have been focusing on their tasks. If your job is to analyse data or repair cars, it can be quite distracting to read the facial expressions, vocal tones and body language of the people around you. In suggesting that emotional intelligence is necessary in the workplace, perhaps we’ve been misguided.</p>
+                
+                <p>Instead of assuming that emotional intelligence is always useful, we need to think more carefully about where and when it matters. In a recent study at a healthcare company, employees were asked to complete a test about managing and regulating emotions, and then managers were asked to evaluate how much time employees spent helping their colleagues and customers. The relationship between emotional intelligence and helping simply didn’t exist: helping is driven more by our motivations and values. However, emotional intelligence was significant when examining a different behaviour: challenging existing situations and speaking up with ideas and suggestions for improvement.</p>
+                
+                <p>Emotionally intelligent employees spoke up more often and more effectively. When colleagues were treated unjustly, they felt they had to speak up, but were able to keep their anger in check and reason with others. When they took risks, for example when <span class="vocab-word" data-word="advocating">advocating</span> for gender equality, emotional intelligence helped them keep their fear under control. When they brought ideas for innovation to senior leaders, their ability to express enthusiasm helped them avoid threatening leaders.</p>
+                
+                <p>There is now growing recognition that emotional intelligence – like any skill – can be used for good or evil. So if we’re going to teach emotional intelligence in schools and develop it at work, we need to consider the values that go along with it and where it’s actually useful.</p>
+            </div>
+        </div>
+
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-3xl mx-auto space-y-8 pb-10">
+                
+                <!-- Questions 1-6: YES / NO / NOT GIVEN -->
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1-6</span>
+                        <h4 class="font-bold text-gray-800">Yes / No / Not Given</h4>
+                    </div>
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Do the following statements agree with the views of the writer in the reading passage?<br>
+                        In boxes 1-6, select:<br>
+                        <strong>YES</strong> if the statement agrees with the views of the writer<br>
+                        <strong>NO</strong> if the statement contradicts the views of the writer<br>
+                        <strong>NOT GIVEN</strong> if it is impossible to say what the writer thinks about this
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="q-item flex items-center justify-between" id="container-q1">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">1</strong> Politicians have tried to use emotional intelligence as a tool for social change.</span>
+                            <select name="q1" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="YES">YES</option><option value="NO">NO</option><option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q2">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">2</strong> Schools and hospitals have seen an improvement in standards since 1995.</span>
+                            <select name="q2" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="YES">YES</option><option value="NO">NO</option><option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q3">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">3</strong> Menges’ study showed that people had better recall of facts if a speaker stirred strong feelings.</span>
+                            <select name="q3" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="YES">YES</option><option value="NO">NO</option><option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q4">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">4</strong> Emotionally intelligent people make colleagues feel silly more often than others.</span>
+                            <select name="q4" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="YES">YES</option><option value="NO">NO</option><option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q5">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">5</strong> People experience more job satisfaction after emotional awareness training.</span>
+                            <select name="q5" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="YES">YES</option><option value="NO">NO</option><option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q6">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">6</strong> Anita Roddick used emotional appeals for good causes.</span>
+                            <select name="q6" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="YES">YES</option><option value="NO">NO</option><option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions 7-13: Summary Completion -->
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 7-13</span>
+                        <h4 class="font-bold text-gray-800">Summary Completion</h4>
+                    </div>
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Complete the summary using the list of words <strong>A–L</strong> below.
+                    </p>
+                    
+                    <div class="options-grid text-gray-700 text-sm md:text-base">
+                        <div><strong>A</strong> researchers</div>
+                        <div><strong>B</strong> focus</div>
+                        <div><strong>C</strong> enthusiasm</div>
+                        <div><strong>D</strong> disrespect</div>
+                        <div><strong>E</strong> negative</div>
+                        <div><strong>F</strong> speeches</div>
+                        <div><strong>G</strong> situations</div>
+                        <div><strong>H</strong> no</div>
+                        <div><strong>I</strong> significant</div>
+                        <div><strong>J</strong> managers</div>
+                        <div><strong>K</strong> complaints</div>
+                        <div><strong>L</strong> decision</div>
+                    </div>
+                    
+                    <div class="q-item leading-[2.8rem] text-gray-800 mt-6">
+                        <span id="container-q7">In the University of Florida study, emotional intelligence had a more <strong class="text-indigo-600">7</strong> 
+                        <select name="q7" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        effect on people who worked in jobs such as accountancy and motor repairs than others.</span> 
+                        
+                        <span id="container-q8">They found that emotionally intelligent people made faces and gestures their main <strong class="text-indigo-600">8</strong> 
+                        <select name="q8" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        , which weakened other skills.</span> 
+                        
+                        <span id="container-q9">They concluded that emotional intelligence can matter in some <strong class="text-indigo-600">9</strong> 
+                        <select name="q9" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        .</span> 
+                        
+                        <span id="container-q10">For example, <strong class="text-indigo-600">10</strong> 
+                        <select name="q10" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        were asked questions about workers’ behaviour after a series of tests of emotional intelligence.</span> 
+                        
+                        <span id="container-q11">They observed <strong class="text-indigo-600">11</strong> 
+                        <select name="q11" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        difference between workers with high or low emotional intelligence when it came to helpfulness.</span> 
+                        
+                        <span id="container-q12">They found that workers with higher emotional intelligence felt more comfortable making <strong class="text-indigo-600">12</strong> 
+                        <select name="q12" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        than others.</span> 
+                        
+                        <span id="container-q13">Not only that, but their supervisors were more likely to listen because the <strong class="text-indigo-600">13</strong> 
+                        <select name="q13" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option><option value="J">J</option><option value="K">K</option><option value="L">L</option>
+                        </select>
+                        of emotionally intelligent people made their ideas easier to accept.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-wrap justify-center items-center gap-4 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="flex items-center flex-wrap justify-center w-full">
+            <span class="text-sm font-bold text-gray-700 mr-3 hidden sm:inline">Progress:</span>
+            <div class="progress-tracker flex flex-wrap gap-1">
+                <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+                <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+                <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+                <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+                <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+                <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+                <div class="w-2 progress-spacer block"></div>
+                <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+                <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+                <a href="#container-q9" class="progress-item" data-q="q9">9</a>
+                <a href="#container-q10" class="progress-item" data-q="q10">10</a>
+                <a href="#container-q11" class="progress-item" data-q="q11">11</a>
+                <a href="#container-q12" class="progress-item" data-q="q12">12</a>
+                <a href="#container-q13" class="progress-item" data-q="q13">13</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white mr-4 transition-all shadow-sm border border-indigo-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    const vocabulary = {
+        'methodologies': { meaning: 'A system of methods used in a particular area of study or activity.', phonetic: '/ˌmeθəˈdɒlədʒiz/' },
+        'manipulative': { meaning: 'Characterized by unscrupulous control of a situation or person.', phonetic: '/məˈnɪpjʊlətɪv/' },
+        'demean': { meaning: 'Cause a severe loss in the dignity of and respect for someone or something.', phonetic: '/dɪˈmiːn/' },
+        'comprehensively': { meaning: 'In a way that includes all or nearly all elements or aspects of something.', phonetic: '/ˌkɒmprɪˈhensɪvli/' },
+        'advocating': { meaning: 'Publicly recommend or support.', phonetic: '/ˈædvəkeɪtɪŋ/' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+            
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-indigo-600', 'bg-indigo-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            initProgressTracker() {
+                const inputs = document.querySelectorAll('.text-input');
+                const progressItems = document.querySelectorAll('.progress-item');
+
+                const updateProgress = () => {
+                    progressItems.forEach(item => {
+                        const qName = item.dataset.q;
+                        const input = document.querySelector(`[name="${qName}"]`);
+                        if (input && input.value.trim() !== '') {
+                            item.classList.add('answered');
+                        } else {
+                            item.classList.remove('answered');
+                        }
+                    });
+                };
+
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                    input.addEventListener('change', updateProgress);
+                });
+                updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-indigo-600', 'bg-indigo-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3a Reading — Education Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem; 
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.7em;
+            text-align: center;
+            text-indent: 0;
+            text-transform: uppercase;
+        }
+        
+        .q-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 0.75rem;
+        }
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            text-align: center;
+            background-color: #f8fafc;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .inline-input {
+            display: inline-block;
+            margin: 0 4px;
+            width: 80px;
+            vertical-align: middle;
+        }
+        
+        select.text-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+            background-size: 12px;
+            padding-right: 20px;
+            cursor: pointer;
+        }
+
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .progress-tracker {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .paragraph-label {
+            float: left;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-right: 0.5rem;
+            color: #1e40af;
+            text-indent: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">Reading Practice <span class="text-indigo-600 font-medium hidden md:inline">| Education Systems</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2 py-1 text-sm w-24 sm:w-40 focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your Name">
+            </div>
+            
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <div id="left-pane" class="pane relative">
+
+            <div id="passage-1" class="tab-content active reading-passage">
+                <h3>A Chinese approach to learning</h3>
+                <p>A recent experiment carried out by the BBC to bring Chinese teachers to the UK is a little <span class="vocab-word" data-word="unusual">unusual</span>. China is a country with a different culture and set of expectations of behaviour in class. It was perhaps only <span class="vocab-word" data-word="inevitable">inevitable</span> that the teachers would be shocked by the behaviour they found. The young people themselves admitted to behaving worse than they usually would. Coming from an educational culture where shame and social pressure are the main method of controlling the class, Chinese educators were never going to introduce their methods without protest. Why would anybody expect anything different?</p>
+                
+                <p><span class="paragraph-label">A</span> The reasons behind the experiment were obvious. Chinese students regularly come near the top in internationals comparison tests of students around the planet. They <span class="vocab-word" data-word="triumph">triumph</span> in Maths, Reading and Science, while in the UK, young people have been getting lower marks in recent years. Many in Britain have been wondering if it is time to adopt Chinese methods of education here.</p>
+                
+                <p><span class="paragraph-label">B</span> In the experiment five teachers were brought from China and put in a UK school. They taught a group of 50 students maths, reading, science and modern languages. The students in the study group, and another control group who received regular lessons, were tested at the end of the period and an analysis of the results was carried out. In addition, both teachers and students who participated in the experiment were given interviews with one of the researchers on how they felt about what happened.</p>
+                
+                <p><span class="paragraph-label">C</span> The biggest difference between the two cultures was the lack of discipline in British schools. One Chinese teacher pointed out, ‘In China we don’t need classroom management skills because everyone is disciplined by nature, by families, by society.’ Interestingly, students admitted that they found themselves behaving worse during the experiment than they normally would for their British teachers. Many pointed to the fact that the <span class="vocab-word" data-word="unfamiliarity">unfamiliarity</span> of the teacher made them feel less comfortable than they normally would. The ‘survive or die’ approach to education was so unfamiliar that many students reacted negatively to it.</p>
+                
+                <p><span class="paragraph-label">D</span> Another key issue was that of the role of <span class="vocab-word" data-word="creativity">creativity</span> in a classroom where discipline is king. While it was obvious that the British students would benefit from settling down and paying more attention to their lessons, it was also clear that the UK education system does, sometimes, encourage students to think outside of the box, be risk-takers, ask questions and challenge ideas. The Chinese teachers were uncomfortable with any attempt to ask questions, as it would stop the flow of the lesson they had planned in which there was no opportunity for free-thinking.</p>
+            </div>
+
+            <div id="passage-2" class="tab-content reading-passage">
+                <h3>Educational Conclusions</h3>
+                <p>All of this suggests that an <span class="vocab-word" data-word="obsession">obsession</span> with testing does not exist in the UK, which would be untrue. The purpose of the experiment was to see if British students would benefit from the Chinese approach. However, the message that the test result is the only thing that matters may not be getting through to students. One young person commented that ‘Their teaching methods did get results but we didn’t always feel we were learning much. They get results because we are in school for so long.’</p>
+                
+                <p>It is not just the contrast between Chinese and British education systems. In India, a far more <span class="vocab-word" data-word="radical">radical</span> approach is being taken. At the cutting edge of educational research is the idea that a little <span class="vocab-word" data-word="chaos">chaos</span> in the classroom is not necessarily a bad thing. Professor Sugata Mitra has introduced the ‘Classroom in the Cloud’ based on his ‘Hole in the Wall’ experiments, which have shown that students can teach themselves and each other through self-instruction. In fact, his research suggests that the presence of someone in charge is neither <span class="vocab-word" data-word="essential">essential</span> nor desirable. This minimally invasive education is a practical example of the argument that ‘the mind is not a pot to be filled, but a fire to be started’, but is yet to be tested.</p>
+                
+                <p>From the experiment we can draw two conclusions. Firstly, no one has the <span class="vocab-word" data-word="monopoly">monopoly</span> on what is right and wrong with teaching and learning (not even the Finns, currently the world’s leaders in education). Secondly, each country has an educational approach which is unique and reflects the values and expectations of its society, after decades, if not centuries, of experiment and practice. If nothing else, this experiment proves that point to be true.</p>
+            </div>
+        </div>
+
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-3xl mx-auto space-y-8 pb-10">
+                
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200" data-tab="passage-1">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1-4</span>
+                        <h4 class="font-bold text-gray-800">Matching Paragraphs</h4>
+                    </div>
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Each paragraph contains one idea. Read the first sentence of each paragraph and match the paragraphs (<strong>A–D</strong>) to the topics (<strong>1–4</strong>).<br>
+                        Select the correct letter in the dropdown boxes.
+                    </p>
+                    
+                    <div class="space-y-3">
+                        <div class="q-item flex items-center justify-between" id="container-q1">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">1</strong> the differences in discipline that they observed</span>
+                            <select name="q1" class="text-input w-16 text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q2">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">2</strong> a description of how they carried out the experiment</span>
+                            <select name="q2" class="text-input w-16 text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q3">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">3</strong> the different attitudes to creative thinking that they observed</span>
+                            <select name="q3" class="text-input w-16 text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between" id="container-q4">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">4</strong> the reasons for carrying out the experiment</span>
+                            <select name="q4" class="text-input w-16 text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200" data-tab="passage-1">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 5-9</span>
+                        <h4 class="font-bold text-gray-800">Gap Fill</h4>
+                    </div>
+                    <p class="mb-4 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Complete gaps <strong>2–6</strong>, using the words below.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-5 justify-center bg-gray-50 p-4 rounded-lg border border-gray-200 font-medium text-indigo-700">
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">admitted</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">behaved</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">control group</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">denied</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">educated</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">experiences</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">imagination</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">study group</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">instructors</span>
+                        <span class="bg-white px-3 py-1 border border-indigo-100 rounded shadow-sm">time</span>
+                    </div>
+                    
+                    <div class="q-item leading-[2.5rem] text-gray-800">
+                        <span id="container-q5">The BBC introduced an experiment to bring Chinese teachers to a British school because of the <strong class="text-indigo-600">1</strong> success of Chinese students in exams. The test results of students with the Chinese teachers were compared to the results of a <strong class="text-indigo-600">2</strong> 
+                        <input type="text" name="q5" class="text-input inline-input" style="width: 120px;">, </span>
+                        <span id="container-q6">and they were asked about their <strong class="text-indigo-600">3</strong> 
+                        <input type="text" name="q6" class="text-input inline-input" style="width: 120px;"> at the end of the experiment. </span>
+                        <span id="container-q7">Chinese teachers thought their students were better <strong class="text-indigo-600">4</strong> 
+                        <input type="text" name="q7" class="text-input inline-input" style="width: 120px;"> than the British children. </span>
+                        <span id="container-q8">However, the British children <strong class="text-indigo-600">5</strong> 
+                        <input type="text" name="q8" class="text-input inline-input" style="width: 120px;"> that they were particularly naughty because they felt uncomfortable. </span>
+                        <span id="container-q9">In addition, the class rules meant that the children felt unable to use their <strong class="text-indigo-600">6</strong> 
+                        <input type="text" name="q9" class="text-input inline-input" style="width: 120px;"> well.</span>
+                    </div>
+                </div>
+
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200" data-tab="passage-2" style="display: none;">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 10-14</span>
+                        <h4 class="font-bold text-gray-800">Summary Completion</h4>
+                    </div>
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Read about the conclusion of the experiment. Complete the summary using the list <strong>A–I</strong> below.<br>
+                        Select the correct letter in the dropdown boxes.
+                    </p>
+                    
+                    <div class="options-grid text-gray-700">
+                        <div><strong>A</strong> unnecessary</div>
+                        <div><strong>B</strong> technology</div>
+                        <div><strong>C</strong> styles</div>
+                        <div><strong>D</strong> hours</div>
+                        <div><strong>E</strong> interest</div>
+                        <div><strong>F</strong> environment</div>
+                        <div><strong>G</strong> teachers</div>
+                        <div><strong>H</strong> benefit</div>
+                        <div><strong>I</strong> classmates</div>
+                    </div>
+                    
+                    <div class="q-item leading-[2.5rem] text-gray-800">
+                        <span id="container-q10">The author believes the British have an excessive <strong class="text-indigo-600">1</strong> 
+                        <select name="q10" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option>
+                        </select>
+                        in student results.</span> 
+                        <span id="container-q11">Students felt that the positive results of Chinese educators was thanks to their teaching <strong class="text-indigo-600">2</strong> 
+                        <select name="q11" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option>
+                        </select>
+                        more than anything else.</span> 
+                        <span id="container-q12">In India, some educational experts have seen a disorderly classroom as a <strong class="text-indigo-600">3</strong> 
+                        <select name="q12" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option>
+                        </select>
+                        .</span> 
+                        <span id="container-q13">In one project, researchers have tried removing <strong class="text-indigo-600">4</strong> 
+                        <select name="q13" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option>
+                        </select>
+                        from classrooms with some success.</span> 
+                        <span id="container-q14">The author concludes that education systems tend to be the result of the <strong class="text-indigo-600">5</strong> 
+                        <select name="q14" class="text-input inline-input">
+                            <option value=""></option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option><option value="I">I</option>
+                        </select>
+                        around them.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-col lg:flex-row justify-between items-center gap-4 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="footer-tabs flex space-x-2 w-full lg:w-auto overflow-x-auto pb-1 lg:pb-0">
+            <button class="tab-btn px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors active bg-indigo-50 text-indigo-700" data-target="passage-1">Part 1: The Experiment</button>
+            <button class="tab-btn px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors text-gray-600 hover:bg-gray-100" data-target="passage-2">Part 2: Conclusions</button>
+        </div>
+        
+        <div class="flex items-center flex-wrap justify-center lg:justify-end w-full lg:w-auto">
+            <span class="text-sm font-bold text-gray-700 mr-3 hidden sm:inline">Progress:</span>
+            <div class="progress-tracker flex flex-wrap gap-1">
+                <!-- Passage 1 Progress -->
+                <a href="#container-q1" class="progress-item" data-q="q1" data-tab="passage-1">1</a>
+                <a href="#container-q2" class="progress-item" data-q="q2" data-tab="passage-1">2</a>
+                <a href="#container-q3" class="progress-item" data-q="q3" data-tab="passage-1">3</a>
+                <a href="#container-q4" class="progress-item" data-q="q4" data-tab="passage-1">4</a>
+                <div class="w-2 progress-spacer" data-tab="passage-1"></div>
+                <a href="#container-q5" class="progress-item" data-q="q5" data-tab="passage-1">5</a>
+                <a href="#container-q6" class="progress-item" data-q="q6" data-tab="passage-1">6</a>
+                <a href="#container-q7" class="progress-item" data-q="q7" data-tab="passage-1">7</a>
+                <a href="#container-q8" class="progress-item" data-q="q8" data-tab="passage-1">8</a>
+                <a href="#container-q9" class="progress-item" data-q="q9" data-tab="passage-1">9</a>
+                
+                <!-- Passage 2 Progress -->
+                <a href="#container-q10" class="progress-item" data-q="q10" data-tab="passage-2" style="display: none;">10</a>
+                <a href="#container-q11" class="progress-item" data-q="q11" data-tab="passage-2" style="display: none;">11</a>
+                <a href="#container-q12" class="progress-item" data-q="q12" data-tab="passage-2" style="display: none;">12</a>
+                <a href="#container-q13" class="progress-item" data-q="q13" data-tab="passage-2" style="display: none;">13</a>
+                <a href="#container-q14" class="progress-item" data-q="q14" data-tab="passage-2" style="display: none;">14</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white mr-4 transition-all shadow-sm border border-indigo-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    const vocabulary = {
+        'unusual': { meaning: 'Not habitually or commonly occurring or done.', phonetic: '/ʌnˈjuːʒʊəl/' },
+        'inevitable': { meaning: 'Certain to happen; unavoidable.', phonetic: '/ɪnˈevɪtəbl/' },
+        'triumph': { meaning: 'Achieve a great victory or success.', phonetic: '/ˈtraɪʌmf/' },
+        'unfamiliarity': { meaning: 'The state of not being known or recognized.', phonetic: '/ˌʌnfəˌmɪliˈærəti/' },
+        'creativity': { meaning: 'The use of imagination or original ideas to create something; inventiveness.', phonetic: '/ˌkriːeɪˈtɪvəti/' },
+        'obsession': { meaning: 'The state in which a person\'s mind is completely filled with thoughts of one particular thing or person in a way that is not normal.', phonetic: '/əbˈseʃn/' },
+        'radical': { meaning: 'Concerning the most basic and important parts of something; thorough and complete. Also: new, different and likely to have a great effect.', phonetic: '/ˈrædɪkl/' },
+        'chaos': { meaning: 'A state of complete confusion and lack of order.', phonetic: '/ˈkeɪɒs/' },
+        'essential': { meaning: 'Completely necessary; extremely important in a particular situation or for a particular activity.', phonetic: '/ɪˈsenʃl/' },
+        'monopoly': { meaning: 'The exclusive possession or control of the supply of or trade in a commodity or service; the complete control of something.', phonetic: '/məˈnɒpəli/' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+                this.setupTabs();
+            },
+            
+            setupTabs() {
+                const tabBtns = document.querySelectorAll('.tab-btn');
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const targetId = e.currentTarget.dataset.target;
+                        
+                        // Update Passage Content (Left Pane)
+                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                        document.getElementById(targetId).classList.add('active');
+                        
+                        // Update Tab Buttons (Footer)
+                        document.querySelectorAll('.tab-btn').forEach(b => {
+                            b.classList.remove('active', 'bg-indigo-50', 'text-indigo-700');
+                            b.classList.add('text-gray-600');
+                        });
+                        e.currentTarget.classList.add('active', 'bg-indigo-50', 'text-indigo-700');
+                        e.currentTarget.classList.remove('text-gray-600');
+
+                        // Filter Questions (Right Pane)
+                        document.querySelectorAll('.question-section').forEach(q => {
+                            if (q.dataset.tab === targetId) {
+                                q.style.display = 'block';
+                            } else {
+                                q.style.display = 'none';
+                            }
+                        });
+
+                        // Filter Progress Tracker Numbers (Footer)
+                        document.querySelectorAll('.progress-item, .progress-spacer').forEach(p => {
+                            if (p.dataset.tab === targetId) {
+                                p.style.display = p.classList.contains('progress-spacer') ? 'block' : 'flex';
+                            } else {
+                                p.style.display = 'none';
+                            }
+                        });
+
+                        this.leftPane.scrollTop = 0; // Scroll back to top on tab switch
+                        this.rightPane.scrollTop = 0;
+                    });
+                });
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-indigo-600', 'bg-indigo-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            initProgressTracker() {
+                const inputs = document.querySelectorAll('.text-input');
+                const progressItems = document.querySelectorAll('.progress-item');
+
+                const updateProgress = () => {
+                    progressItems.forEach(item => {
+                        const qName = item.dataset.q;
+                        const input = document.querySelector(`[name="${qName}"]`);
+                        if (input && input.value.trim() !== '') {
+                            item.classList.add('answered');
+                        } else {
+                            item.classList.remove('answered');
+                        }
+                    });
+                };
+
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                    input.addEventListener('change', updateProgress);
+                });
+                updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-indigo-600', 'bg-indigo-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

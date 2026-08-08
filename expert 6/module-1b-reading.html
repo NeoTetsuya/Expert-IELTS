@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1b Reading — Reading Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem; 
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.6em;
+            text-align: center;
+            text-indent: 0;
+            text-transform: uppercase;
+        }
+        .paragraph-label {
+            float: left;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-right: 0.5rem;
+            color: #1e40af;
+            text-indent: 0;
+            background: #e0e7ff;
+            padding: 0 8px;
+            border-radius: 4px;
+        }
+
+        .q-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 0.75rem;
+        }
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            text-align: center;
+            background-color: #f8fafc;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .inline-input {
+            display: inline-block;
+            margin: 0 4px;
+            width: 100px;
+            vertical-align: middle;
+        }
+        
+        select.text-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+            background-size: 12px;
+            padding-right: 20px;
+            cursor: pointer;
+        }
+
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .progress-tracker {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">Reading Practice <span class="text-indigo-600 font-medium hidden md:inline">| Reading Online</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2 py-1 text-sm w-24 sm:w-40 focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your Name">
+            </div>
+            
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Why reading online may be slowing your brain down</h3>
+                
+                <p><span class="paragraph-label">A</span> If the person reading this article were reading online, I would need to keep things brief. A lot of you would have left already. For every 150 ‘readers’ who open an article on the internet, one in three of them will leave within seconds. Of the 100 who stay, only 95 will be able to concentrate and look beyond the photograph and headline at the top. Even fewer will get to even the middle of the article. Put simply, only a very small number of people actually read articles on the web.</p>
+                
+                <p><span class="paragraph-label">B</span> Not being able to stay focused is a problem. Deeper levels of thinking and understanding may be something we are losing now much of our reading is going online. A. V. Kak found in one study that people were able to remember more information from an article that they read on paper, than a similar group who read the same article online. Imagine the effect of this on a medical student who only studies papers online. Surfing the internet may seem like an efficient way of reading, but getting the physical text out of the library means you’re less likely to forget.</p>
+                
+                <p><span class="paragraph-label">C</span> Even more <span class="vocab-word" data-word="dispiriting">dispiriting</span> is the way these poor understandings are being passed on to others. Evidence suggests that people are creating links to articles they have not fully read, and even adding comments before getting to the end. Josh Schartz, a data expert, studies the reading styles of people online. Data was not available on the exact moment when a person stopped reading and then left a recommendation. However, his research suggests that the overall number of comments and the number of people who scrolled down to the end of the article did not match. This suggests that there is a very loose relationship between reading to the end and commenting. Commenting without reading everything only creates more and more <span class="vocab-word" data-word="misinformation">misinformation</span>.</p>
+                
+                <p><span class="paragraph-label">D</span> Studies of the brain have suggested that we should be more concerned about this than we are. Michael Merzenich has long argued against the argument that the brain is formed in the early years of childhood, then remains stable. Many believed that, once damaged, parts of the brain would never recover again. In fact, the brain is constantly changing and re-organizing itself, losing the connections that it does not need. As people spend less time thinking for longer periods of time, their brains react by <span class="vocab-word" data-word="re-wiring">re-wiring</span>, deleting the bits associated with careful thought, making it much harder in the future to think hard about issues.</p>
+                
+                <p><span class="paragraph-label">E</span> Many have argued that this is nothing new. People have always started novels and not finished them. Even films, which require a relatively short commitment of only an hour or so of our time, are sometimes unable to keep our attention to the end. However, Alvin Toffler argued that the amount of free information that is thrown at us every day is different from anything that came before. We now have so much choice that many people refuse to waste their time on anything unless something is truly <span class="vocab-word" data-word="fascinating">fascinating</span>.</p>
+                
+                <p><span class="paragraph-label">F</span> The problem is even worse when you consider the kind of things we read online. Unfortunately, just as our bodies are programmed to want to eat fats and sugars, things which we know are not good for us, our brains prefer to read things that are shocking, such as gossiping, describing the embarrassment of others or just looking at attractive people. In other words, we read things we know we should not. Some experts have referred to this as ‘<span class="vocab-word" data-word="psychological obesity">psychological obesity</span>’.</p>
+
+                <p><span class="paragraph-label">G</span> Editors of <span class="vocab-word" data-word="respectable">respectable</span> newspapers are aware that this kind of content is popular, but they put important news stories on the front cover anyway. They know that unpleasant stories, such as the events in war-torn areas, or poverty, matter and people should know about things beyond their daily lives. Online news sites only recommend articles on things we have shown an interest in before. In other words, what Nicholas Negroponte called the ‘The Daily Me’, bringing personalized content, also means that you miss being introduced to new concepts. With modern online news providers, you could exist quite happily never knowing what is happening outside of your personal interests.</p>
+            </div>
+        </div>
+
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-3xl mx-auto space-y-8 pb-10">
+                
+                <!-- Section 1: Matching Headings -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1-6</span>
+                        <h4 class="font-bold text-gray-800">Matching Headings</h4>
+                    </div>
+                    <p class="mb-3 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Choose the correct heading for paragraphs <strong>B–G</strong> from the list of headings below.<br>
+                        Select the correct roman numeral (<strong>i–x</strong>) in the dropdown boxes.
+                    </p>
+                    <p class="mb-5 text-sm text-gray-500 font-medium px-4">
+                        <em>Example: Paragraph A = iv</em>
+                    </p>
+                    
+                    <div class="bg-blue-50 p-5 rounded-xl mb-6 border border-blue-100 shadow-inner">
+                        <h5 class="font-bold text-blue-900 mb-4 pb-2 border-b border-blue-200 text-center uppercase tracking-wider text-sm">List of Headings</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                            <ul class="space-y-3 text-blue-900 list-none pl-0">
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">i</strong> <span>Sharing half-understood ideas</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">ii</strong> <span>An old situation that’s now more intense</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">iii</strong> <span>Too much knowledge can be bad</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">iv</strong> <span>Statistics showing how people read</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">v</strong> <span>Pleasure in unhealthy content</span></li>
+                            </ul>
+                            <ul class="space-y-3 text-blue-900 list-none pl-0">
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">vi</strong> <span>Longer-lasting memories from books</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">vii</strong> <span>Increased capacity for critical thought</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">viii</strong> <span>Living in a world of your own</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">ix</strong> <span>Only reading the reviews</span></li>
+                                <li class="flex"><strong class="text-indigo-600 w-8 shrink-0">x</strong> <span>A biological response to habits</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="q-item flex items-center justify-between hover:border-indigo-200" id="container-q1">
+                            <span class="text-gray-800 font-medium"><strong class="text-indigo-600 mr-3 text-lg">1</strong> Paragraph B</span>
+                            <select name="q1" class="text-input w-20 text-center cursor-pointer bg-white">
+                                <option value=""></option>
+                                <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                                <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                                <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option><option value="x">x</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between hover:border-indigo-200" id="container-q2">
+                            <span class="text-gray-800 font-medium"><strong class="text-indigo-600 mr-3 text-lg">2</strong> Paragraph C</span>
+                            <select name="q2" class="text-input w-20 text-center cursor-pointer bg-white">
+                                <option value=""></option>
+                                <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                                <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                                <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option><option value="x">x</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between hover:border-indigo-200" id="container-q3">
+                            <span class="text-gray-800 font-medium"><strong class="text-indigo-600 mr-3 text-lg">3</strong> Paragraph D</span>
+                            <select name="q3" class="text-input w-20 text-center cursor-pointer bg-white">
+                                <option value=""></option>
+                                <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                                <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                                <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option><option value="x">x</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between hover:border-indigo-200" id="container-q4">
+                            <span class="text-gray-800 font-medium"><strong class="text-indigo-600 mr-3 text-lg">4</strong> Paragraph E</span>
+                            <select name="q4" class="text-input w-20 text-center cursor-pointer bg-white">
+                                <option value=""></option>
+                                <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                                <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                                <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option><option value="x">x</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between hover:border-indigo-200" id="container-q5">
+                            <span class="text-gray-800 font-medium"><strong class="text-indigo-600 mr-3 text-lg">5</strong> Paragraph F</span>
+                            <select name="q5" class="text-input w-20 text-center cursor-pointer bg-white">
+                                <option value=""></option>
+                                <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                                <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                                <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option><option value="x">x</option>
+                            </select>
+                        </div>
+                        <div class="q-item flex items-center justify-between hover:border-indigo-200" id="container-q6">
+                            <span class="text-gray-800 font-medium"><strong class="text-indigo-600 mr-3 text-lg">6</strong> Paragraph G</span>
+                            <select name="q6" class="text-input w-20 text-center cursor-pointer bg-white">
+                                <option value=""></option>
+                                <option value="i">i</option><option value="ii">ii</option><option value="iii">iii</option>
+                                <option value="iv">iv</option><option value="v">v</option><option value="vi">vi</option>
+                                <option value="vii">vii</option><option value="viii">viii</option><option value="ix">ix</option><option value="x">x</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Sentence Completion -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 7-10</span>
+                        <h4 class="font-bold text-gray-800">Sentence Completion</h4>
+                    </div>
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Complete the sentences below. Choose <strong>ONE WORD ONLY</strong> from the passage for each answer.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="q-item text-gray-800 leading-relaxed" id="container-q7">
+                            <strong class="text-indigo-600 mr-2 text-lg">7</strong> 
+                            Around a third of internet surfers stay on a page for <input type="text" name="q7" class="text-input inline-input"> .
+                        </div>
+                        
+                        <div class="q-item text-gray-800 leading-relaxed" id="container-q8">
+                            <strong class="text-indigo-600 mr-2 text-lg">8</strong> 
+                            According to Josh Schartz, the number of people who leave <input type="text" name="q8" class="text-input inline-input"> is greater than the number who finish reading.
+                        </div>
+                        
+                        <div class="q-item text-gray-800 leading-relaxed" id="container-q9">
+                            <strong class="text-indigo-600 mr-2 text-lg">9</strong> 
+                            Michael Merzenich found that brains still changed after the period of <input type="text" name="q9" class="text-input inline-input"> came to an end.
+                        </div>
+                        
+                        <div class="q-item text-gray-800 leading-relaxed" id="container-q10">
+                            <strong class="text-indigo-600 mr-2 text-lg">10</strong> 
+                            ‘Psychological obesity’ is the natural preference for shocking <input type="text" name="q10" class="text-input inline-input"> in articles.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-wrap justify-center items-center gap-2 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <span class="text-sm font-bold text-gray-700 mr-2 w-full text-center sm:w-auto">Progress:</span>
+        <div class="progress-tracker">
+            <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+            <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+            <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+            <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+            <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+            <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+            <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+            <a href="#container-q9" class="progress-item" data-q="q9">9</a>
+            <a href="#container-q10" class="progress-item" data-q="q10">10</a>
+        </div>
+    </footer>
+</div>
+
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white mr-4 transition-all shadow-sm border border-indigo-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    // Dictionary Data specific to this reading
+    const vocabulary = {
+        'dispiriting': { meaning: 'Causing someone to lose enthusiasm and hope; disheartening.', phonetic: '/dɪˈspɪrɪtɪŋ/' },
+        'misinformation': { meaning: 'False or inaccurate information, especially that which is deliberately intended to deceive.', phonetic: '/ˌmɪsɪnfəˈmeɪʃn/' },
+        're-wiring': { meaning: 'The process of changing the neural pathways or connections in the brain due to habits or environment.', phonetic: '/riːˈwaɪərɪŋ/' },
+        'fascinating': { meaning: 'Extremely interesting or attractive.', phonetic: '/ˈfæsɪneɪtɪŋ/' },
+        'psychological obesity': { meaning: 'A metaphor used by experts describing the habit of consuming unhealthy, shocking mental content instead of substantive information.', phonetic: '/ˌsaɪkəˈlɒdʒɪkl əʊˈbiːsəti/' },
+        'respectable': { meaning: 'Regarded by society to be good, proper, or correct; of some merit or importance.', phonetic: '/rɪˈspektəbl/' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-indigo-600', 'bg-indigo-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            initProgressTracker() {
+                const inputs = document.querySelectorAll('.text-input');
+                const progressItems = document.querySelectorAll('.progress-item');
+
+                const updateProgress = () => {
+                    progressItems.forEach(item => {
+                        const qName = item.dataset.q;
+                        const input = document.querySelector(`[name="${qName}"]`);
+                        if (input && input.value.trim() !== '') {
+                            item.classList.add('answered');
+                        } else {
+                            item.classList.remove('answered');
+                        }
+                    });
+                };
+
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                    input.addEventListener('change', updateProgress);
+                });
+                updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-indigo-600', 'bg-indigo-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>
