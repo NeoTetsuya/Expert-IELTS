@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: Adverbs and Adverbial Phrases (Page 32)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Violet-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.15), 0 10px 10px -5px rgba(124, 58, 237, 0.08);
+            border-color: #8b5cf6; /* Violet-500 */
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+            70% { border-color: rgba(139, 92, 246, 0); box-shadow: 0 0 0 8px rgba(139, 92, 246, 0); }
+            100% { border-color: rgba(139, 92, 246, 0); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #7c3aed; /* Violet-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-purple-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-purple-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Grammar Guide • Page 32
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Adverbs & Adverbial Phrases</h1>
+                <p class="mt-4 text-purple-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master how to describe <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">manner</span> (how), <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">frequency</span> (how often), <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">place</span> (where), and <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">time</span> (when)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-violet-600 border-b-4 border-violet-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-manner')">A. Adverbs of Manner</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-frequency')">B. Frequency & Time Phrases</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-place-time')">C. Place & Time Adverbials</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: ADVERBS OF MANNER -->
+            <div id="tab-manner" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-violet-100 p-4 rounded-2xl text-violet-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Adverbs of Manner</h3>
+                        <p class="text-lg text-slate-600 font-medium">Adverbs of manner tell us <strong>how</strong> we do something.</p>
+                    </div>
+                </div>
+
+                <!-- Manner Rules Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Rule 1: Regular -ly -->
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Regular Form: + ly</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">To form most adverbs of manner, add <strong>-ly</strong> to adjectives.</p>
+                        <div class="bg-violet-50 p-4 rounded-xl border border-violet-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I learn languages quite <strong class="text-violet-700 underline">easily</strong>." <span class="text-xs text-slate-500 block">(easy → easily)</span></p>
+                            <p class="text-slate-800 font-medium text-sm">✓ "She speaks very <strong class="text-violet-700 underline">slowly</strong> and <strong class="text-violet-700 underline">clearly</strong>."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2: Same as Adjective -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Same Form as Adjective</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Some adverbs are identical to their adjective forms (e.g. <em>fast</em>, <em>hard</em>).</p>
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I can't run very <strong class="text-purple-700 font-bold">fast</strong>." <span class="text-xs text-rose-500 font-bold block">✗ NOT "fastly"</span></p>
+                            <p class="text-slate-800 font-medium text-sm">✓ "My mother always works very <strong class="text-purple-700 font-bold">hard</strong>."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3: Irregular Form -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Irregular Adverbs</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Some adverbs do not follow standard patterns (e.g. <em>good → well</em>).</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I usually do <strong class="text-indigo-700 font-bold">well</strong> in exams."</p>
+                            <p class="text-slate-400 font-medium text-xs line-through">✗ "I usually do good in exams..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Adjective to Adverb Transformation Table -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold mb-4 text-violet-300 uppercase tracking-widest flex items-center gap-2">
+                        <span>⚡ Adjective to Adverb Formation Summary</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-violet-400 font-bold block mb-1">Standard (+ly)</span>
+                            <div class="text-slate-300">quick → <strong>quickly</strong></div>
+                            <div class="text-slate-300">clear → <strong>clearly</strong></div>
+                            <div class="text-slate-300">slow → <strong>slowly</strong></div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-amber-400 font-bold block mb-1">Same Form</span>
+                            <div class="text-slate-300">fast → <strong>fast</strong></div>
+                            <div class="text-slate-300">hard → <strong>hard</strong></div>
+                            <div class="text-slate-300">late → <strong>late</strong></div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-emerald-400 font-bold block mb-1">Irregular</span>
+                            <div class="text-slate-300">good → <strong class="text-emerald-300">well</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: ADVERBS & PHRASES OF FREQUENCY -->
+            <div id="tab-frequency" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-purple-100 p-4 rounded-2xl text-purple-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Frequency & Time Phrases</h3>
+                        <p class="text-lg text-slate-600 font-medium">To say <strong>how often</strong> something happens, we use two main structures.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Frequency Adverbs -->
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-violet-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Single-Word Adverbs</span>
+                                <span class="text-2xl">⏳</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Adverbs of Frequency</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Single words like <em>always, usually, sometimes, rarely, never</em>. Placed before main verbs or after <em>be</em>.
+                            </p>
+                        </div>
+                        <div class="bg-violet-50 p-4 rounded-xl border border-violet-100 space-y-2.5">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I <strong class="text-violet-700 font-bold">rarely</strong> visit my aunt and uncle."</p>
+                            <p class="text-slate-800 font-medium text-sm">✓ "He is <strong class="text-violet-700 font-bold">always</strong> polite and friendly."</p>
+                        </div>
+                    </div>
+
+                    <!-- Time Phrases -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Multi-Word Phrases</span>
+                                <span class="text-2xl">📅</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Time Phrases</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Phrases like <em>once/twice a week, every day/month, in the morning/evening</em>. Usually placed at the end or start.
+                            </p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2.5">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I speak to my mum on the phone <strong class="text-indigo-700 font-bold">every day</strong>."</p>
+                            <p class="text-slate-800 font-medium text-sm">✓ "<strong class="text-indigo-700 font-bold">Once a week</strong> I have dinner at my grandparents' house."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Adverb Phrase Switcher -->
+                <div class="bg-violet-50 border-2 border-violet-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-lg mb-2 text-center">Interactive Sentence Builder</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a frequency expression to see where it sits in a sentence!</p>
+
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <button onclick="selectFreqDemo('rarely', 'adverb')" id="btn-rarely" class="filter-pill selected px-4 py-2 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">rarely (Adverb)</button>
+                        <button onclick="selectFreqDemo('always', 'adverb')" id="btn-always" class="filter-pill px-4 py-2 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">always (Adverb)</button>
+                        <button onclick="selectFreqDemo('every day', 'phrase')" id="btn-everyday" class="filter-pill px-4 py-2 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">every day (Time Phrase)</button>
+                        <button onclick="selectFreqDemo('once a week', 'phrase')" id="btn-onceweek" class="filter-pill px-4 py-2 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">once a week (Time Phrase)</button>
+                    </div>
+
+                    <div id="freqContainer" class="space-y-3 bg-white p-6 rounded-xl border border-violet-200 shadow-inner text-center">
+                        <p id="freqDemoText" class="text-lg font-bold text-slate-800">"I <span class="bg-violet-100 text-violet-700 px-2 py-0.5 rounded font-extrabold">rarely</span> visit my aunt and uncle."</p>
+                        <p id="freqDemoNote" class="text-xs text-slate-500 font-medium">Position: Placed before the main verb 'visit'.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PLACE & TIME ADVERBIALS -->
+            <div id="tab-place-time" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-amber-100 p-4 rounded-2xl text-amber-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">C. Adverbial Phrases of Place and Time</h3>
+                        <p class="text-lg text-slate-600 font-medium">Expressing <strong>where</strong> (place/direction) and <strong>when / how long</strong> (time).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Place Adverbials -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="bg-amber-500 text-white font-bold p-2.5 rounded-xl text-lg">📍</span>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-xl">1. Adverbials of Place</h4>
+                                <span class="text-xs font-semibold text-amber-700">Shows location, direction, or distance</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-3 font-semibold">Examples: <em>here, there, abroad, past the bookshop, down the road</em></p>
+                        
+                        <div class="space-y-3 font-medium text-sm">
+                            <div class="bg-amber-50/80 p-3.5 rounded-xl border border-amber-200 text-slate-800">
+                                "My cousins live <strong class="text-amber-800 bg-amber-200/60 px-1.5 py-0.5 rounded">down the road</strong> from us."
+                            </div>
+                            <div class="bg-amber-50/80 p-3.5 rounded-xl border border-amber-200 text-slate-800">
+                                "I can't study <strong class="text-amber-800 bg-amber-200/60 px-1.5 py-0.5 rounded">here</strong> – it's too noisy."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Time Adverbials -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="bg-indigo-600 text-white font-bold p-2.5 rounded-xl text-lg">🕒</span>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-xl">2. Adverbials of Time</h4>
+                                <span class="text-xs font-semibold text-indigo-700">Says when something happens or duration</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-3 font-semibold">Examples: <em>today, later, at the moment, during the day, after the summer, from May to July</em></p>
+                        
+                        <div class="space-y-3 font-medium text-sm">
+                            <div class="bg-indigo-50/80 p-3.5 rounded-xl border border-indigo-200 text-slate-800">
+                                "My family always goes on holiday <strong class="text-indigo-800 bg-indigo-200/60 px-1.5 py-0.5 rounded">in June</strong>."
+                            </div>
+                            <div class="bg-indigo-50/80 p-3.5 rounded-xl border border-indigo-200 text-slate-800">
+                                "I have a part-time job <strong class="text-indigo-800 bg-indigo-200/60 px-1.5 py-0.5 rounded">at the weekend</strong>."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Word Order Tip Banner -->
+                <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg border border-slate-700">
+                    <h4 class="text-base font-bold mb-2 text-amber-300 uppercase tracking-wider flex items-center gap-2">
+                        <span>💡 Typical Word Order Rule: Place + Time</span>
+                    </h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        When both place and time adverbials appear at the end of a sentence, we usually put <strong>PLACE first</strong>, followed by <strong>TIME</strong>.<br>
+                        <span class="text-amber-200 font-semibold">Example:</span> "We arrived <u class="text-violet-300">at the station</u> (place) <u class="text-amber-300">at 5 o'clock</u> (time)."
+                    </p>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-violet-50 via-purple-50 to-amber-50 rounded-2xl p-8 border border-violet-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-violet-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-violet-700 font-medium">Select the correct option according to Page 32 grammar rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. She speaks French very <span class="inline-block w-28 border-b-2 border-slate-400"></span>.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Good is an adjective. The adverb form is well.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">good</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Good is an irregular adjective; its adverb form is <strong>well</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">well</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Goodly is not a standard English word.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">goodly</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. I can't run very <span class="inline-block w-28 border-b-2 border-slate-400"></span>.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>fast</strong> has the exact same form for adjective and adverb (not fastly).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">fast</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Fastly is incorrect; fast does not take -ly.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">fastly</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Faster is a comparative adjective/adverb.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">faster</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. <span class="inline-block w-28 border-b-2 border-slate-400"></span> I have dinner at my grandparents' house.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Multi-word time phrases like <strong>Once a week</strong> can sit at the beginning of a sentence.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Once a week</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Rare is an adjective; use rarely or time phrases like once a week.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Rare</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Always is a single-word frequency adverb, usually placed after subject or auxiliary.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Always</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. My cousins live <span class="inline-block w-28 border-b-2 border-slate-400"></span> from us. (Adverbial of Place)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>down the road</strong> is an adverbial phrase of place showing location/direction.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">down the road</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. In June is an adverbial of time.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">in June</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Twice a week is an expression of frequency.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">twice a week</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Adverbs & Adverbials</span>
+            <span>Page 32 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-violet-600', 'text-violet-600', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-violet-600', 'text-violet-600');
+            }
+        }
+
+        /* Interactive Frequency Builder Logic */
+        const freqData = {
+            'rarely': { text: '"I <span class=\'bg-violet-100 text-violet-700 px-2 py-0.5 rounded font-extrabold\'>rarely</span> visit my aunt and uncle."', note: 'Position: Single-word adverb placed before the main verb.' },
+            'always': { text: '"He is <span class=\'bg-violet-100 text-violet-700 px-2 py-0.5 rounded font-extrabold\'>always</span> polite and friendly."', note: 'Position: Single-word adverb placed after the verb to be.' },
+            'every day': { text: '"I speak to my mum on the phone <span class=\'bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-extrabold\'>every day</span>."', note: 'Position: Multi-word time phrase placed at the end of the sentence.' },
+            'once a week': { text: '"<span class=\'bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-extrabold\'>Once a week</span> I have dinner at my grandparents\' house."', note: 'Position: Time phrase placed at the beginning of the sentence for emphasis.' }
+        };
+
+        function selectFreqDemo(key, type) {
+            const buttons = document.querySelectorAll('.filter-pill');
+            buttons.forEach(b => {
+                b.classList.remove('selected', 'bg-violet-600', 'text-white');
+            });
+
+            event.currentTarget.classList.add('selected', 'bg-violet-600', 'text-white');
+
+            const demoText = document.getElementById('freqDemoText');
+            const demoNote = document.getElementById('freqDemoNote');
+
+            demoText.innerHTML = freqData[key].text;
+            demoNote.innerText = freqData[key].note;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-violet-100', 'hover:text-violet-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-violet-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-violet-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-violet-50', 'border-violet-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-violet-100');
+                correctBtn.classList.add('border-violet-500', 'text-violet-800');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: Irregular Verbs Guide & Study Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.15), 0 10px 10px -5px rgba(79, 70, 229, 0.08);
+            border-color: #6366f1; /* Indigo-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(79, 70, 229, 0.4); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            70% { border-color: rgba(79, 70, 229, 0); box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
+            100% { border-color: rgba(79, 70, 229, 0); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #4f46e5; /* Indigo-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Flashcard 3D Flip Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .flashcard-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flashcard-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard-front, .flashcard-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-800 via-indigo-700 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Grammar Reference • Master List
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Irregular Verbs Hub</h1>
+                <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Infinitive</span>, <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Past Simple</span>, and <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Past Participle</span> forms through searchable tables, pattern groups, flashcards, and drills!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-table')">1. Master Verb Table 📖</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-patterns')">2. Smart Patterns Hub 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-flashcards')">3. Interactive Flashcards 🎴</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz & Drills 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: MASTER VERB TABLE -->
+            <div id="tab-table" class="tab-content active space-y-6">
+                <!-- Search & Filters -->
+                <div class="bg-indigo-50/80 border-2 border-indigo-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+                        <div class="relative w-full sm:w-96">
+                            <input type="text" id="searchInput" onkeyup="filterVerbs()" placeholder="Search any verb form (e.g., speak, spoke, spoken)..." class="w-full pl-10 pr-4 py-3 rounded-xl border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-slate-800 text-sm shadow-sm">
+                            <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <div id="verbCounter" class="bg-indigo-600 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-sm whitespace-nowrap">
+                            Showing 83 Irregular Verbs
+                        </div>
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <button onclick="filterPattern('all')" id="pbtn-all" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">All Forms</button>
+                        <button onclick="filterPattern('aaa')" id="pbtn-aaa" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">No Change (A-A-A)</button>
+                        <button onclick="filterPattern('abb')" id="pbtn-abb" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Past = Participle (A-B-B)</button>
+                        <button onclick="filterPattern('aba')" id="pbtn-aba" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Base = Participle (A-B-A)</button>
+                        <button onclick="filterPattern('abc')" id="pbtn-abc" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">All Different (A-B-C)</button>
+                    </div>
+                </div>
+
+                <!-- Table Container -->
+                <div class="bg-white border-2 border-indigo-100 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="max-h-[580px] overflow-y-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="sticky top-0 bg-indigo-700 text-white font-bold text-sm shadow-md z-10">
+                                <tr>
+                                    <th class="p-4 w-1/3">Infinitive</th>
+                                    <th class="p-4 w-1/3">Past Simple</th>
+                                    <th class="p-4 w-1/3">Past Participle</th>
+                                    <th class="p-4 text-center w-12">🔊</th>
+                                </tr>
+                            </thead>
+                            <tbody id="verbTableBody" class="divide-y divide-indigo-50 text-sm font-medium text-slate-800">
+                                <!-- Rendered dynamically via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SMART PATTERNS HUB -->
+            <div id="tab-patterns" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700">
+                        <span class="text-3xl font-black">🧩</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Pattern Recognition for Easy Memorization</h3>
+                        <p class="text-lg text-slate-600 font-medium">Group irregular verbs by their vowel and structural shifts!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Pattern 1: A-A-A (Unchanging) -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 1 • A-A-A</span>
+                            <span class="text-2xl">🔒</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-xl mb-1">Zero Change Forms</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">Infinitive, Past Simple, and Past Participle are identical.</p>
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-900 leading-relaxed">
+                            broadcast • cost • cut • hit • hurt • let • put • read* • set • shut • spread
+                            <span class="block text-[11px] text-emerald-700 mt-1 font-normal">*Note: 'read' changes pronunciation (/riːd/ → /red/) but keeps spelling.</span>
+                        </div>
+                    </div>
+
+                    <!-- Pattern 2: -ought / -aught -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 2 • A-B-B</span>
+                            <span class="text-2xl">🧠</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-xl mb-1">-ought / -aught Shift</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">Past Simple and Participle end in -ought or -aught.</p>
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-900 leading-relaxed">
+                            bring → brought → brought<br>
+                            buy → bought → bought<br>
+                            catch → caught → caught<br>
+                            fight → fought → fought<br>
+                            teach → taught → taught<br>
+                            think → thought → thought
+                        </div>
+                    </div>
+
+                    <!-- Pattern 3: Vowel Shift i → a → u -->
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-fuchsia-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 3 • A-B-C</span>
+                            <span class="text-2xl">🎵</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-xl mb-1">i → a → u Vowel Sequence</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">Classic 3-step vowel change from i to a to u.</p>
+                        <div class="bg-fuchsia-50 p-3.5 rounded-xl border border-fuchsia-200 text-xs font-semibold text-fuchsia-900 leading-relaxed">
+                            begin → began → begun<br>
+                            drink → drank → drunk<br>
+                            ring → rang → rung<br>
+                            sing → sang → sung<br>
+                            swim → swam → swum
+                        </div>
+                    </div>
+
+                    <!-- Pattern 4: Participle ending in -en / -n -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 4 • A-B-C</span>
+                            <span class="text-2xl">⭐</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-xl mb-1">Past Participle ends in -en</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">Common pattern where past participle adds -en or -n.</p>
+                        <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-200 text-xs font-semibold text-amber-900 leading-relaxed">
+                            break → broke → broken • choose → chose → chosen<br>
+                            drive → drove → driven • eat → ate → eaten<br>
+                            fall → fell → fallen • forget → forgot → forgotten<br>
+                            freeze → froze → frozen • give → gave → given<br>
+                            speak → spoke → spoken • steal → stole → stolen<br>
+                            take → took → taken • write → wrote → written
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: INTERACTIVE FLASHCARDS -->
+            <div id="tab-flashcards" class="tab-content space-y-6">
+                <div class="bg-indigo-50/80 border-2 border-indigo-100 rounded-2xl p-6 text-center shadow-sm">
+                    <h3 class="text-2xl font-extrabold text-indigo-900 mb-1">Digital Irregular Verb Flashcards</h3>
+                    <p class="text-sm text-indigo-700 font-medium">Test yourself! Tap or click the card to flip and reveal past forms.</p>
+                </div>
+
+                <!-- Flashcard Controls -->
+                <div class="flex flex-wrap justify-between items-center gap-3">
+                    <div class="text-xs font-bold text-slate-500" id="cardProgress">Card 1 of 83</div>
+                    <div class="flex gap-2">
+                        <button onclick="shuffleCards()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition-colors">🔀 Shuffle</button>
+                        <button onclick="resetFlashcards()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">↺ Reset</button>
+                    </div>
+                </div>
+
+                <!-- 3D Card Area -->
+                <div class="perspective-1000 w-full max-w-lg mx-auto h-72 cursor-pointer" onclick="flipCard()">
+                    <div id="flashcardInner" class="flashcard-inner relative w-full h-full shadow-2xl rounded-3xl border-2 border-indigo-200 bg-white">
+                        <!-- Front -->
+                        <div class="flashcard-front absolute inset-0 rounded-3xl p-8 flex flex-col justify-between items-center bg-gradient-to-br from-white via-indigo-50/30 to-indigo-100/40">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Infinitive</span>
+                            <div class="text-center my-auto">
+                                <h2 id="cardInfinitive" class="text-4xl sm:text-5xl font-black text-indigo-950 tracking-tight">speak</h2>
+                            </div>
+                            <span class="text-xs font-bold text-indigo-500 animate-bounce">👆 Click / Tap to Flip Card</span>
+                        </div>
+
+                        <!-- Back -->
+                        <div class="flashcard-back absolute inset-0 rounded-3xl p-8 flex flex-col justify-between items-center bg-gradient-to-br from-indigo-900 via-indigo-800 to-slate-900 text-white">
+                            <span class="bg-indigo-500/40 border border-indigo-300/40 text-indigo-200 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Past Forms</span>
+                            <div class="text-center my-auto space-y-4">
+                                <div>
+                                    <span class="text-xs text-indigo-300 uppercase tracking-widest font-bold block mb-1">Past Simple</span>
+                                    <p id="cardPastSimple" class="text-2xl sm:text-3xl font-extrabold text-amber-300">spoke</p>
+                                </div>
+                                <div class="border-t border-indigo-700/80 pt-2">
+                                    <span class="text-xs text-indigo-300 uppercase tracking-widest font-bold block mb-1">Past Participle</span>
+                                    <p id="cardPastParticiple" class="text-2xl sm:text-3xl font-extrabold text-emerald-300">spoken</p>
+                                </div>
+                            </div>
+                            <button onclick="speakCurrentCard(event)" class="text-xs bg-indigo-700 hover:bg-indigo-600 px-3 py-1.5 rounded-lg text-indigo-100 font-bold transition-colors">🔊 Listen Pronunciation</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-center items-center gap-4 pt-4">
+                    <button onclick="prevCard()" class="px-6 py-3 rounded-2xl font-bold bg-white border-2 border-indigo-100 hover:border-indigo-500 text-indigo-900 shadow-sm transition-all">← Previous</button>
+                    <button onclick="nextCard()" class="px-6 py-3 rounded-2xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all">Next Verb →</button>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ & DRILLS -->
+            <div id="tab-quiz" class="tab-content space-y-8">
+                <!-- Drill Mode Selection Banner -->
+                <div class="bg-gradient-to-r from-indigo-50 via-fuchsia-50 to-amber-50 rounded-2xl p-8 border border-indigo-100 text-center shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-indigo-900 mb-2">Test Your Irregular Verbs</h3>
+                    <p class="text-indigo-700 font-medium">Choose between Multiple Choice mode or Typing Drill mode!</p>
+                    
+                    <div class="flex justify-center gap-3 mt-4">
+                        <button onclick="setQuizMode('choice')" id="qmode-choice" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm">Multiple Choice 🎯</button>
+                        <button onclick="setQuizMode('typing')" id="qmode-typing" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-indigo-800 border border-indigo-200 hover:bg-indigo-50">Typing Drill ⌨️</button>
+                    </div>
+                </div>
+
+                <!-- Multiple Choice Container -->
+                <div id="choiceQuizContainer" class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. What are the Past Simple & Participle forms of <strong class="text-indigo-700 font-bold">fly</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! fly → <strong>flew</strong> → <strong>flown</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">flew / flown</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Fly is irregular (flew / flown), not regular.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">flied / flied</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Flow / flown is not correct for fly.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">flow / flown</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. What are the Past Simple & Participle forms of <strong class="text-indigo-700 font-bold">freeze</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! freeze → <strong>froze</strong> → <strong>frozen</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">froze / frozen</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Freezed is not a standard English form.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">freezed / freezed</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Froze / froze is missing the -n participle.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">froze / froze</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. Select the correct forms for <strong class="text-indigo-700 font-bold">bring</strong>:</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! bring → <strong>brought</strong> → <strong>brought</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">brought / brought</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Brang / brung is non-standard.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">brang / brung</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Caught is the past form of catch, not bring!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">caught / caught</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. What is the Past Participle of <strong class="text-indigo-700 font-bold">write</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! write → wrote → <strong>written</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">written</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Wrote is the Past Simple, not the Past Participle.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">wrote</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Writed is not a word.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">writed</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+
+                <!-- Typing Drill Container (Hidden by Default) -->
+                <div id="typingDrillContainer" class="hidden space-y-6 bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl text-center">Interactive Typing Recall Test</h4>
+                    <p class="text-sm text-slate-600 text-center mb-4">Type the Past Simple and Past Participle for the verb shown below:</p>
+
+                    <div class="max-w-md mx-auto text-center space-y-4">
+                        <div class="bg-indigo-50 p-4 rounded-2xl border border-indigo-200">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Current Verb</span>
+                            <h3 id="typingInfinitive" class="text-4xl font-black text-indigo-950 mt-1">speak</h3>
+                        </div>
+
+                        <div class="space-y-3 text-left">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">Past Simple Form:</label>
+                                <input type="text" id="typePastSimple" placeholder="Type past simple..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-semibold text-slate-800">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1">Past Participle Form:</label>
+                                <input type="text" id="typePastParticiple" placeholder="Type past participle..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-semibold text-slate-800">
+                            </div>
+                        </div>
+
+                        <button onclick="submitTypingDrill()" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-colors">Check Answer</button>
+
+                        <div id="typingFeedback" class="hidden p-4 rounded-xl text-sm border-l-4 text-left"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Irregular Verbs</span>
+            <span>Master Study Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Complete Irregular Verbs List Array */
+        const verbList = [
+            { inf: 'be', past: 'was/were', part: 'been', type: 'abc' },
+            { inf: 'beat', past: 'beat', part: 'beat', type: 'aaa' },
+            { inf: 'become', past: 'became', part: 'become', type: 'aba' },
+            { inf: 'begin', past: 'began', part: 'begun', type: 'abc' },
+            { inf: 'bend', past: 'bent', part: 'bent', type: 'abb' },
+            { inf: 'bite', past: 'bit', part: 'bitten', type: 'abc' },
+            { inf: 'blow', past: 'blew', part: 'blown', type: 'abc' },
+            { inf: 'break', past: 'broke', part: 'broken', type: 'abc' },
+            { inf: 'bring', past: 'brought', part: 'brought', type: 'abb' },
+            { inf: 'broadcast', past: 'broadcast', part: 'broadcast', type: 'aaa' },
+            { inf: 'build', past: 'built', part: 'built', type: 'abb' },
+            { inf: 'burn', past: 'burned/burnt', part: 'burned/burnt', type: 'abb' },
+            { inf: 'buy', past: 'bought', part: 'bought', type: 'abb' },
+            { inf: 'catch', past: 'caught', part: 'caught', type: 'abb' },
+            { inf: 'choose', past: 'chose', part: 'chosen', type: 'abc' },
+            { inf: 'come', past: 'came', part: 'come', type: 'aba' },
+            { inf: 'cost', past: 'cost', part: 'cost', type: 'aaa' },
+            { inf: 'cut', past: 'cut', part: 'cut', type: 'aaa' },
+            { inf: 'do', past: 'did', part: 'done', type: 'abc' },
+            { inf: 'draw', past: 'drew', part: 'drawn', type: 'abc' },
+            { inf: 'dream', past: 'dreamed/dreamt', part: 'dreamed/dreamt', type: 'abb' },
+            { inf: 'drink', past: 'drank', part: 'drunk', type: 'abc' },
+            { inf: 'drive', past: 'drove', part: 'driven', type: 'abc' },
+            { inf: 'eat', past: 'ate', part: 'eaten', type: 'abc' },
+            { inf: 'fall', past: 'fell', part: 'fallen', type: 'abc' },
+            { inf: 'feed', past: 'fed', part: 'fed', type: 'abb' },
+            { inf: 'feel', past: 'felt', part: 'felt', type: 'abb' },
+            { inf: 'fight', past: 'fought', part: 'fought', type: 'abb' },
+            { inf: 'find', past: 'found', part: 'found', type: 'abb' },
+            { inf: 'fly', past: 'flew', part: 'flown', type: 'abc' },
+            { inf: 'forget', past: 'forgot', part: 'forgotten', type: 'abc' },
+            { inf: 'forgive', past: 'forgave', part: 'forgiven', type: 'abc' },
+            { inf: 'freeze', past: 'froze', part: 'frozen', type: 'abc' },
+            { inf: 'get', past: 'got', part: 'got', type: 'abb' },
+            { inf: 'give', past: 'gave', part: 'given', type: 'abc' },
+            { inf: 'go', past: 'went', part: 'gone', type: 'abc' },
+            { inf: 'grow', past: 'grew', part: 'grown', type: 'abc' },
+            { inf: 'hang', past: 'hung', part: 'hung', type: 'abb' },
+            { inf: 'have', past: 'had', part: 'had', type: 'abb' },
+            { inf: 'hear', past: 'heard', part: 'heard', type: 'abb' },
+            { inf: 'hide', past: 'hid', part: 'hidden', type: 'abc' },
+            { inf: 'hit', past: 'hit', part: 'hit', type: 'aaa' },
+            { inf: 'hold', past: 'held', part: 'held', type: 'abb' },
+            { inf: 'hurt', past: 'hurt', part: 'hurt', type: 'aaa' },
+            { inf: 'keep', past: 'kept', part: 'kept', type: 'abb' },
+            { inf: 'know', past: 'knew', part: 'known', type: 'abc' },
+            { inf: 'lay', past: 'laid', part: 'laid', type: 'abb' },
+            { inf: 'lead', past: 'led', part: 'led', type: 'abb' },
+            { inf: 'learn', past: 'learned/learnt', part: 'learned/learnt', type: 'abb' },
+            { inf: 'leave', past: 'left', part: 'left', type: 'abb' },
+            { inf: 'lend', past: 'lent', part: 'lent', type: 'abb' },
+            { inf: 'let', past: 'let', part: 'let', type: 'aaa' },
+            { inf: 'lie', past: 'lay', part: 'lain', type: 'abc' },
+            { inf: 'light', past: 'lit', part: 'lit', type: 'abb' },
+            { inf: 'lose', past: 'lost', part: 'lost', type: 'abb' },
+            { inf: 'make', past: 'made', part: 'made', type: 'abb' },
+            { inf: 'mean', past: 'meant', part: 'meant', type: 'abb' },
+            { inf: 'meet', past: 'met', part: 'met', type: 'abb' },
+            { inf: 'pay', past: 'paid', part: 'paid', type: 'abb' },
+            { inf: 'put', past: 'put', part: 'put', type: 'aaa' },
+            { inf: 'read', past: 'read', part: 'read', type: 'aaa' },
+            { inf: 'ride', past: 'rode', part: 'ridden', type: 'abc' },
+            { inf: 'ring', past: 'rang', part: 'rung', type: 'abc' },
+            { inf: 'rise', past: 'rose', part: 'risen', type: 'abc' },
+            { inf: 'run', past: 'ran', part: 'run', type: 'aba' },
+            { inf: 'say', past: 'said', part: 'said', type: 'abb' },
+            { inf: 'see', past: 'saw', part: 'seen', type: 'abc' },
+            { inf: 'sell', past: 'sold', part: 'sold', type: 'abb' },
+            { inf: 'send', past: 'sent', part: 'sent', type: 'abb' },
+            { inf: 'set', past: 'set', part: 'set', type: 'aaa' },
+            { inf: 'shake', past: 'shook', part: 'shaken', type: 'abc' },
+            { inf: 'shoot', past: 'shot', part: 'shot', type: 'abb' },
+            { inf: 'show', past: 'showed', part: 'shown', type: 'abc' },
+            { inf: 'shut', past: 'shut', part: 'shut', type: 'aaa' },
+            { inf: 'sing', past: 'sang', part: 'sung', type: 'abc' },
+            { inf: 'sit', past: 'sat', part: 'sat', type: 'abb' },
+            { inf: 'sleep', past: 'slept', part: 'slept', type: 'abb' },
+            { inf: 'smell', past: 'smelled/smelt', part: 'smelled/smelt', type: 'abb' },
+            { inf: 'speak', past: 'spoke', part: 'spoken', type: 'abc' },
+            { inf: 'spell', past: 'spelled/spelt', part: 'spelled/spelt', type: 'abb' },
+            { inf: 'spend', past: 'spent', part: 'spent', type: 'abb' },
+            { inf: 'spread', past: 'spread', part: 'spread', type: 'aaa' },
+            { inf: 'stand', past: 'stood', part: 'stood', type: 'abb' },
+            { inf: 'steal', past: 'stole', part: 'stolen', type: 'abc' },
+            { inf: 'strike', past: 'struck', part: 'struck', type: 'abb' },
+            { inf: 'swear', past: 'swore', part: 'sworn', type: 'abc' },
+            { inf: 'swim', past: 'swam', part: 'swum', type: 'abc' },
+            { inf: 'take', past: 'took', part: 'taken', type: 'abc' },
+            { inf: 'teach', past: 'taught', part: 'taught', type: 'abb' },
+            { inf: 'tell', past: 'told', part: 'told', type: 'abb' },
+            { inf: 'think', past: 'thought', part: 'thought', type: 'abb' },
+            { inf: 'throw', past: 'threw', part: 'thrown', type: 'abc' },
+            { inf: 'understand', past: 'understood', part: 'understood', type: 'abb' },
+            { inf: 'wake', past: 'woke', part: 'woken', type: 'abc' },
+            { inf: 'wear', past: 'wore', part: 'worn', type: 'abc' },
+            { inf: 'win', past: 'won', part: 'won', type: 'abb' },
+            { inf: 'write', past: 'wrote', part: 'written', type: 'abc' }
+        ];
+
+        /* Global State Variables */
+        let activePattern = 'all';
+        let currentDeck = [...verbList];
+        let cardIndex = 0;
+        let isFlipped = false;
+        let typingIndex = 0;
+
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
+            }
+        }
+
+        /* Render Master Table */
+        function renderTable(items) {
+            const tbody = document.getElementById('verbTableBody');
+            const counter = document.getElementById('verbCounter');
+            counter.innerText = `Showing ${items.length} Irregular Verbs`;
+
+            if (items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-slate-400 font-bold">No verbs found matching search.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = items.map((v, i) => `
+                <tr class="hover:bg-indigo-50/60 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}">
+                    <td class="p-4 font-black text-indigo-900">${v.inf}</td>
+                    <td class="p-4 font-bold text-amber-800">${v.past}</td>
+                    <td class="p-4 font-bold text-emerald-800">${v.part}</td>
+                    <td class="p-4 text-center">
+                        <button onclick="speakVerb('${v.inf}', '${v.past}', '${v.part}')" class="text-indigo-600 hover:text-indigo-900 font-bold px-2 py-1 rounded bg-indigo-50 hover:bg-indigo-100 transition-colors">🔊</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        /* Search & Filter Logic */
+        function filterVerbs() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = verbList.filter(v => {
+                const matchesPattern = (activePattern === 'all' || v.type === activePattern);
+                const matchesQuery = v.inf.toLowerCase().includes(query) ||
+                                     v.past.toLowerCase().includes(query) ||
+                                     v.part.toLowerCase().includes(query);
+                return matchesPattern && matchesQuery;
+            });
+            renderTable(filtered);
+        }
+
+        function filterPattern(pat) {
+            activePattern = pat;
+            document.querySelectorAll('[id^="pbtn-"]').forEach(b => b.classList.remove('selected', 'bg-indigo-600', 'text-white'));
+            document.getElementById(`pbtn-${pat}`).classList.add('selected', 'bg-indigo-600', 'text-white');
+            filterVerbs();
+        }
+
+        /* Text-To-Speech Synthesis */
+        function speakVerb(inf, past, part) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const cleanPast = past.split('/')[0];
+                const cleanPart = part.split('/')[0];
+                const text = `${inf}, ${cleanPast}, ${cleanPart}`;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        /* Flashcard Engine */
+        function updateFlashcardUI() {
+            const card = currentDeck[cardIndex];
+            document.getElementById('cardInfinitive').innerText = card.inf;
+            document.getElementById('cardPastSimple').innerText = card.past;
+            document.getElementById('cardPastParticiple').innerText = card.part;
+            document.getElementById('cardProgress').innerText = `Card ${cardIndex + 1} of ${currentDeck.length}`;
+
+            // Reset flip state
+            isFlipped = false;
+            document.getElementById('flashcardInner').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            isFlipped = !isFlipped;
+            const inner = document.getElementById('flashcardInner');
+            if (isFlipped) {
+                inner.classList.add('flipped');
+            } else {
+                inner.classList.remove('flipped');
+            }
+        }
+
+        function nextCard() {
+            cardIndex = (cardIndex + 1) % currentDeck.length;
+            updateFlashcardUI();
+        }
+
+        function prevCard() {
+            cardIndex = (cardIndex - 1 + currentDeck.length) % currentDeck.length;
+            updateFlashcardUI();
+        }
+
+        function shuffleCards() {
+            currentDeck = [...verbList].sort(() => Math.random() - 0.5);
+            cardIndex = 0;
+            updateFlashcardUI();
+        }
+
+        function resetFlashcards() {
+            currentDeck = [...verbList];
+            cardIndex = 0;
+            updateFlashcardUI();
+        }
+
+        function speakCurrentCard(e) {
+            e.stopPropagation();
+            const card = currentDeck[cardIndex];
+            speakVerb(card.inf, card.past, card.part);
+        }
+
+        /* Quiz & Drills Logic */
+        function setQuizMode(mode) {
+            const choiceBtn = document.getElementById('qmode-choice');
+            const typingBtn = document.getElementById('qmode-typing');
+            const choiceBox = document.getElementById('choiceQuizContainer');
+            const typingBox = document.getElementById('typingDrillContainer');
+
+            if (mode === 'choice') {
+                choiceBtn.classList.replace('bg-white', 'bg-indigo-600');
+                choiceBtn.classList.replace('text-indigo-800', 'text-white');
+                typingBtn.classList.replace('bg-indigo-600', 'bg-white');
+                typingBtn.classList.replace('text-white', 'text-indigo-800');
+                choiceBox.classList.remove('hidden');
+                typingBox.classList.add('hidden');
+            } else {
+                typingBtn.classList.replace('bg-white', 'bg-indigo-600');
+                typingBtn.classList.replace('text-indigo-800', 'text-white');
+                choiceBtn.classList.replace('bg-indigo-600', 'bg-white');
+                choiceBtn.classList.replace('text-white', 'text-indigo-800');
+                choiceBox.classList.add('hidden');
+                typingBox.classList.remove('hidden');
+                loadTypingQuestion();
+            }
+        }
+
+        function loadTypingQuestion() {
+            const verb = verbList[typingIndex % verbList.length];
+            document.getElementById('typingInfinitive').innerText = verb.inf;
+            document.getElementById('typePastSimple').value = '';
+            document.getElementById('typePastParticiple').value = '';
+            const feedback = document.getElementById('typingFeedback');
+            feedback.classList.add('hidden');
+        }
+
+        function submitTypingDrill() {
+            const verb = verbList[typingIndex % verbList.length];
+            const uPast = document.getElementById('typePastSimple').value.trim().toLowerCase();
+            const uPart = document.getElementById('typePastParticiple').value.trim().toLowerCase();
+
+            const cPast = verb.past.toLowerCase();
+            const cPart = verb.part.toLowerCase();
+
+            const isPastCorrect = cPast.includes('/') ? cPast.split('/').includes(uPast) : uPast === cPast;
+            const isPartCorrect = cPart.includes('/') ? cPart.split('/').includes(uPart) : uPart === cPart;
+
+            const feedback = document.getElementById('typingFeedback');
+            feedback.classList.remove('hidden');
+
+            if (isPastCorrect && isPartCorrect) {
+                feedback.className = 'p-4 rounded-xl text-sm border-l-4 bg-emerald-50 border-emerald-500 text-slate-800';
+                feedback.innerHTML = `<strong class="text-emerald-700 block text-base">🎉 Brilliant! Perfect Match!</strong> ${verb.inf} → ${verb.past} → ${verb.part}`;
+                setTimeout(() => {
+                    typingIndex = Math.floor(Math.random() * verbList.length);
+                    loadTypingQuestion();
+                }, 1800);
+            } else {
+                feedback.className = 'p-4 rounded-xl text-sm border-l-4 bg-rose-50 border-rose-500 text-slate-800';
+                feedback.innerHTML = `<strong class="text-rose-700 block text-base">✗ Not quite right.</strong> Correct forms: <strong>Past Simple:</strong> ${verb.past} | <strong>Past Participle:</strong> ${verb.part}`;
+            }
+        }
+
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-indigo-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-indigo-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-indigo-50', 'border-indigo-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-indigo-50', 'border-indigo-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-indigo-100');
+                correctBtn.classList.add('border-indigo-500', 'text-indigo-800');
+            }
+        }
+
+        // Initialize Master Table & Flashcards on window load
+        window.onload = function() {
+            renderTable(verbList);
+            updateFlashcardUI();
+        };
+    </script>
+</body>
+</html>

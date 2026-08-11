@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 9: Present Perfect & Past Simple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff1f2;
+            /* Rose-50 background */
+            color: #1f2937;
+        }
+
+        /* Custom Animations */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Timeline and Card Hover Effects */
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Comparison Toggle Switch CSS */
+        .comparison-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-state {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(20px);
+        }
+
+        .comparison-state.active {
+            position: relative;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        /* Toggle switch design */
+        .tense-toggle-bg {
+            background-color: #f43f5e;
+            /* Rose-500 (Past Simple) */
+        }
+
+        input:checked~.tense-toggle-bg {
+            background-color: #8b5cf6;
+            /* Violet-500 (Present Perfect) */
+        }
+
+        input:checked~.tense-toggle-bg .tense-toggle-dot {
+            transform: translateX(100%);
+        }
+
+        /* Timeline Graphics */
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #e5e7eb;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+
+        .pulse-icon {
+            animation: pulseShadow 2s infinite;
+        }
+
+        @keyframes pulseShadow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-rose-100">
+
+        <!-- Vibrant Header (Warm Tones) -->
+        <div
+            class="bg-gradient-to-br from-rose-500 via-pink-600 to-purple-700 text-white p-8 sm:p-12 relative overflow-hidden">
+            <!-- Decorative SVG background -->
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-pink-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 9 Grammar Guide
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Present Perfect vs. Past Simple</h1>
+                <p class="mt-4 text-pink-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master the difference between finished and unfinished time. Learn exactly when to use these two
+                    essential tenses to talk about the past.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <div class="flex border-b-2 border-gray-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-violet-600 border-b-4 border-violet-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-presperf')">1. Present Perfect</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-gray-400 hover:text-gray-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-pastsimp')">2. Past Simple</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-gray-400 hover:text-gray-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-compare')">3. The Showdown</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-emerald-500 hover:text-emerald-600 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    5. Visual Reference 🖼️
+                </button>
+            </div>
+
+            <div id="tab-presperf" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-violet-100 p-4 rounded-2xl text-violet-600 pulse-icon">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-gray-900">The Present Perfect Connection</h3>
+                        <p class="text-lg text-gray-600 font-medium">Formed with: <span
+                                class="bg-violet-100 text-violet-800 px-2 py-1 rounded font-bold">have/has + past
+                                participle</span></p>
+                    </div>
+                </div>
+
+                <p class="text-lg text-gray-700">We use the Present Perfect when there is a strong connection to the
+                    <strong>present</strong>. It is all about <span
+                        class="text-violet-600 font-bold underline decoration-2 decoration-violet-300">unfinished</span>
+                    time or information.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm">
+                        <div
+                            class="w-10 h-10 bg-violet-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                            1</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Indefinite Past Time</h4>
+                        <p class="text-sm text-gray-600 mb-4">We don't say exactly <em>when</em> the action happened.
+                            The experience itself is what matters.</p>
+                        <div class="bg-violet-50 p-3 rounded-xl border border-violet-100">
+                            <p class="text-gray-800 font-medium text-sm">"I <strong class="text-violet-700">have
+                                    been</strong> to Spain."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm">
+                        <div
+                            class="w-10 h-10 bg-violet-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                            2</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Unfinished Action</h4>
+                        <p class="text-sm text-gray-600 mb-4">The action started in the past and is <em>still
+                                continuing</em> right now.</p>
+                        <div class="bg-violet-50 p-3 rounded-xl border border-violet-100">
+                            <p class="text-gray-800 font-medium text-sm">"My brother <strong class="text-violet-700">has
+                                    worked</strong> here since 2015."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm">
+                        <div
+                            class="w-10 h-10 bg-violet-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                            3</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Unfinished Time Period</h4>
+                        <p class="text-sm text-gray-600 mb-4">The time period we are talking about (today, this week,
+                            this year) hasn't ended yet.</p>
+                        <div class="bg-violet-50 p-3 rounded-xl border border-violet-100">
+                            <p class="text-gray-800 font-medium text-sm">"I <strong class="text-violet-700">have
+                                    been</strong> to the library 4 times this week."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-pastsimp" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-rose-100 p-4 rounded-2xl text-rose-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-gray-900">The Past Simple Anchor</h3>
+                        <p class="text-lg text-gray-600 font-medium">Formed with: <span
+                                class="bg-rose-100 text-rose-800 px-2 py-1 rounded font-bold">Verb + ed (or irregular
+                                past form)</span></p>
+                    </div>
+                </div>
+
+                <p class="text-lg text-gray-700">We use the Past Simple when the action is completely disconnected from
+                    the present. It is all about <span
+                        class="text-rose-600 font-bold underline decoration-2 decoration-rose-300">finished</span>,
+                    completed events.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <div
+                            class="w-10 h-10 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                            1</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Specific Past Time</h4>
+                        <p class="text-sm text-gray-600 mb-4">We explicitly state or know <em>when</em> the past action
+                            happened.</p>
+                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                            <p class="text-gray-800 font-medium text-sm">"I <strong class="text-rose-600">was</strong>
+                                in Spain last weekend."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <div
+                            class="w-10 h-10 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                            2</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Completed Action</h4>
+                        <p class="text-sm text-gray-600 mb-4">The action started and definitively finished in the past.
+                            It's over.</p>
+                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                            <p class="text-gray-800 font-medium text-sm">"My brother <strong
+                                    class="text-rose-600">worked</strong> here for five years."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <div
+                            class="w-10 h-10 bg-rose-500 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-md">
+                            3</div>
+                        <h4 class="font-bold text-gray-900 mb-2">Finished Time Period</h4>
+                        <p class="text-sm text-gray-600 mb-4">The time period we are talking about (yesterday, last
+                            week) has completely ended.</p>
+                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                            <p class="text-gray-800 font-medium text-sm">"I <strong class="text-rose-600">went</strong>
+                                to the library 4 times last week."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-compare" class="tab-content space-y-6">
+                <div class="text-center mb-10">
+                    <h3 class="text-3xl font-extrabold text-gray-900">Grammar Showdown</h3>
+                    <p class="text-gray-600 mt-2">Toggle the switch to see how changing the tense completely changes the
+                        reality of the sentence.</p>
+                </div>
+
+                <!-- Comparison 1 -->
+                <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 shadow-md mb-8">
+                    <div
+                        class="flex flex-col sm:flex-row justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                        <h4 class="font-bold text-gray-500 uppercase tracking-widest text-sm mb-4 sm:mb-0">Scenario 1:
+                            Travel</h4>
+
+                        <label class="flex items-center cursor-pointer group">
+                            <span class="mr-3 text-sm font-bold text-rose-500">Past Simple</span>
+                            <div class="relative">
+                                <input type="checkbox" class="sr-only" onchange="toggleCompare('comp1', this.checked)"
+                                    checked>
+                                <div
+                                    class="tense-toggle-bg block w-14 h-8 rounded-full transition-colors duration-300 shadow-inner">
+                                    <div
+                                        class="tense-toggle-dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform duration-300 shadow-md">
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ml-3 text-sm font-bold text-violet-600">Present Perfect</span>
+                        </label>
+                    </div>
+
+                    <div class="comparison-container h-32 sm:h-24">
+                        <!-- Past Simple State -->
+                        <div id="comp1-past" class="comparison-state flex flex-col sm:flex-row gap-4 items-center">
+                            <div class="bg-rose-50 border border-rose-200 rounded-xl p-4 w-full sm:w-1/2">
+                                <p class="text-xl font-medium text-gray-800">"I <strong
+                                        class="text-rose-600 underline">was</strong> in Spain last weekend."</p>
+                            </div>
+                            <div class="w-full sm:w-1/2 p-2">
+                                <span
+                                    class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Specific
+                                    Time Mentioned</span>
+                                <p class="text-gray-600 mt-2 text-sm">We are interested in exactly <strong>when</strong>
+                                    you went. The time (last weekend) is finished.</p>
+                            </div>
+                        </div>
+
+                        <!-- Present Perfect State -->
+                        <div id="comp1-pres"
+                            class="comparison-state active flex flex-col sm:flex-row gap-4 items-center">
+                            <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 w-full sm:w-1/2">
+                                <p class="text-xl font-medium text-gray-800">"I <strong
+                                        class="text-violet-700 underline">have been</strong> to Spain."</p>
+                            </div>
+                            <div class="w-full sm:w-1/2 p-2">
+                                <span
+                                    class="bg-violet-100 text-violet-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Indefinite
+                                    Time</span>
+                                <p class="text-gray-600 mt-2 text-sm">We don't know or care exactly when. We are only
+                                    interested in your life <strong>experience</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison 2 -->
+                <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 shadow-md mb-8">
+                    <div
+                        class="flex flex-col sm:flex-row justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                        <h4 class="font-bold text-gray-500 uppercase tracking-widest text-sm mb-4 sm:mb-0">Scenario 2:
+                            Employment</h4>
+
+                        <label class="flex items-center cursor-pointer group">
+                            <span class="mr-3 text-sm font-bold text-rose-500">Past Simple</span>
+                            <div class="relative">
+                                <input type="checkbox" class="sr-only" onchange="toggleCompare('comp2', this.checked)"
+                                    checked>
+                                <div
+                                    class="tense-toggle-bg block w-14 h-8 rounded-full transition-colors duration-300 shadow-inner">
+                                    <div
+                                        class="tense-toggle-dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform duration-300 shadow-md">
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="ml-3 text-sm font-bold text-violet-600">Present Perfect</span>
+                        </label>
+                    </div>
+
+                    <div class="comparison-container h-32 sm:h-24">
+                        <!-- Past Simple State -->
+                        <div id="comp2-past" class="comparison-state flex flex-col sm:flex-row gap-4 items-center">
+                            <div class="bg-rose-50 border border-rose-200 rounded-xl p-4 w-full sm:w-1/2">
+                                <p class="text-xl font-medium text-gray-800">"My brother <strong
+                                        class="text-rose-600 underline">worked</strong> here for 5 years."</p>
+                            </div>
+                            <div class="w-full sm:w-1/2 p-2">
+                                <span
+                                    class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Action
+                                    Finished</span>
+                                <p class="text-gray-600 mt-2 text-sm">He <strong>no longer</strong> works here. The
+                                    5-year period is completely in the past.</p>
+                            </div>
+                        </div>
+
+                        <!-- Present Perfect State -->
+                        <div id="comp2-pres"
+                            class="comparison-state active flex flex-col sm:flex-row gap-4 items-center">
+                            <div class="bg-violet-50 border border-violet-200 rounded-xl p-4 w-full sm:w-1/2">
+                                <p class="text-xl font-medium text-gray-800">"My brother <strong
+                                        class="text-violet-700 underline">has worked</strong> here since 2015."</p>
+                            </div>
+                            <div class="w-full sm:w-1/2 p-2">
+                                <span
+                                    class="bg-violet-100 text-violet-800 text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Action
+                                    Continuing</span>
+                                <p class="text-gray-600 mt-2 text-sm">He started in 2015 and he <strong>still works
+                                        here</strong> right now.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div
+                    class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-emerald-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-emerald-700 font-medium">Select the correct verb tense to complete the sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div
+                        class="quiz-question bg-white border-2 border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-gray-800 mb-4">1. I <span
+                                class="inline-block w-24 border-b-2 border-gray-400"></span> in London for two years,
+                            but then I moved to Paris.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Because the person moved to Paris, their time living in London is a <strong>finished action</strong> in the past.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-gray-100 hover:bg-rose-100 hover:text-rose-700 text-gray-700 transition-colors border-2 border-transparent"
+                                data-correct="true">lived</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. <em>Have lived</em> implies they still live there now, but the sentence says they moved to Paris.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-gray-100 hover:bg-violet-100 hover:text-violet-700 text-gray-700 transition-colors border-2 border-transparent">have
+                                lived</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div
+                        class="quiz-question bg-white border-2 border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-gray-800 mb-4">2. Oh no! I <span
+                                class="inline-block w-24 border-b-2 border-gray-400"></span> my keys. I can't get into
+                            my house!</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. While losing them happened in the past, it has a very strong present result (cannot get into the house now).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-gray-100 hover:bg-rose-100 hover:text-rose-700 text-gray-700 transition-colors border-2 border-transparent">lost</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! We use Present Perfect because a past action (losing keys) has a direct, visible consequence in the <strong>present</strong> (can\'t enter the house).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-gray-100 hover:bg-violet-100 hover:text-violet-700 text-gray-700 transition-colors border-2 border-transparent"
+                                data-correct="true">have lost</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div
+                        class="quiz-question bg-white border-2 border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-gray-800 mb-4">3. She <span
+                                class="inline-block w-24 border-b-2 border-gray-400"></span> three cups of coffee
+                            yesterday.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! <em>Yesterday</em> is a specific, <strong>finished time period</strong>, so we must use the Past Simple.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-gray-100 hover:bg-rose-100 hover:text-rose-700 text-gray-700 transition-colors border-2 border-transparent"
+                                data-correct="true">drank</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. We cannot use Present Perfect with specific finished time words like <em>yesterday</em>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-gray-100 hover:bg-violet-100 hover:text-violet-700 text-gray-700 transition-colors border-2 border-transparent">has
+                                drunk</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-icon">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-gray-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-gray-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-gray-300 rounded-3xl p-8 text-center bg-gray-50/80 hover:bg-gray-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <img id="grammar-reference-img" src="https://i.postimg.cc/63ZxWp8h/Module-9a-Grammar.png"
+                        alt="Grammar Reference Visual"
+                        class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-gray-200 hidden"
+                        onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden');">
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-gray-500 mb-4">No reference image added yet. Insert your image URL in
+                                the <code
+                                    class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-gray-200 text-gray-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-gray-200 shadow-sm text-xs font-mono text-gray-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-gray-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+            class="bg-gray-50 px-8 py-5 border-t border-gray-200 flex justify-between items-center text-sm font-medium text-gray-500">
+            <span>Grammar Reference</span>
+            <span>Module 9</span>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation Logic
+        function openTab(evt, tabName) {
+            // Hide all contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            // Reset all buttons styling
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-violet-600', 'text-violet-600', 'border-rose-500', 'text-rose-600', 'border-emerald-500', 'text-emerald-500');
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-emerald-500');
+                } else {
+                    btn.classList.add('border-transparent', 'text-gray-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            // Activate clicked tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Highlight clicked button
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-gray-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+
+            if (tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-emerald-500', 'text-emerald-600');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-500', 'text-indigo-600');
+            } else if (tabName === 'tab-pastsimp') {
+                clickedBtn.classList.add('border-rose-500', 'text-rose-600');
+            } else {
+                clickedBtn.classList.add('border-violet-600', 'text-violet-600');
+            }
+        }
+
+        // Showdown Toggle Logic
+        function toggleCompare(containerId, isPresentPerfect) {
+            const pastEl = document.getElementById(containerId + '-past');
+            const presEl = document.getElementById(containerId + '-pres');
+
+            if (isPresentPerfect) {
+                pastEl.classList.remove('active');
+                presEl.classList.add('active');
+            } else {
+                presEl.classList.remove('active');
+                pastEl.classList.add('active');
+            }
+        }
+
+        // Quiz Logic
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+
+            // Disable all buttons in this question row
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-rose-100', 'hover:bg-violet-100', 'hover:text-rose-700', 'hover:text-violet-700');
+            });
+
+            // Reset this button's opacity so we can see the result clearly
+            btn.classList.remove('opacity-50');
+
+            if (isCorrect) {
+                btn.classList.replace('bg-gray-100', 'bg-emerald-500');
+                btn.classList.replace('text-gray-700', 'text-white');
+                feedback.innerHTML = `<span class="text-emerald-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-gray-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-emerald-50', 'border-emerald-500');
+            } else {
+                btn.classList.replace('bg-gray-100', 'bg-red-500');
+                btn.classList.replace('text-gray-700', 'text-white');
+                feedback.innerHTML = `<span class="text-red-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-gray-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-red-50', 'border-red-500');
+
+                // Show the correct answer
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-gray-100', 'bg-emerald-100');
+                correctBtn.classList.add('border-emerald-500', 'text-emerald-800');
+            }
+        }
+    </script>
+</body>
+
+</html>

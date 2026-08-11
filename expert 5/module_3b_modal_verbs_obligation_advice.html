@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: Obligation, Necessity & Advice (Page 48)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff1f2; /* Rose-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(225, 29, 72, 0.15), 0 10px 10px -5px rgba(225, 29, 72, 0.08);
+            border-color: #f43f5e; /* Rose-500 */
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(225, 29, 72, 0.4); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4); }
+            70% { border-color: rgba(225, 29, 72, 0); box-shadow: 0 0 0 8px rgba(225, 29, 72, 0); }
+            100% { border-color: rgba(225, 29, 72, 0); box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scenario-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .scenario-pill:hover, .scenario-pill.selected {
+            background-color: #e11d48; /* Rose-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-rose-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-rose-600 via-pink-600 to-amber-600 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-rose-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Grammar Guide • Page 48
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Have to, Must, Need to & Should</h1>
+                <p class="mt-4 text-rose-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Learn how to express <span class="bg-rose-500/40 px-2 py-0.5 rounded font-bold text-white border border-rose-300/40">necessity</span>, <span class="bg-rose-500/40 px-2 py-0.5 rounded font-bold text-white border border-rose-300/40">rules & obligations</span>, <span class="bg-rose-500/40 px-2 py-0.5 rounded font-bold text-white border border-rose-300/40">prohibitions</span>, and give <span class="bg-rose-500/40 px-2 py-0.5 rounded font-bold text-white border border-rose-300/40">advice</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-rose-600 border-b-4 border-rose-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-have-must')">1. Necessity (Have to / Must / Need to)</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-mustnt-dont-have')">2. Mustn't vs. Don't Have to ⚠️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-should')">3. Advice (Should / Shouldn't)</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Decision Explorer 🧭</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: HAVE TO, MUST & NEED TO -->
+            <div id="tab-have-must" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-rose-100 p-4 rounded-2xl text-rose-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Expressing Necessity & Obligation</h3>
+                        <p class="text-lg text-slate-600 font-medium">We use <strong>have to</strong>, <strong>must</strong>, and <strong>need to</strong> when an action is necessary.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Have To -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">External Obligation</span>
+                                <span class="text-2xl">📋</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">have to</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Used when the action is necessary because of <strong>external rules, laws, or someone else's authority</strong>.
+                            </p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I <strong class="text-rose-700 font-bold">have to start</strong> work at 8.30 every morning."</p>
+                            <span class="text-xs text-rose-600 font-semibold block">(It's a company rule / employer requirement)</span>
+                        </div>
+                    </div>
+
+                    <!-- Must -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Internal Feeling</span>
+                                <span class="text-2xl">💡</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">must</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Used when <strong>the speaker feels personally</strong> that the action is necessary or very important.
+                            </p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I <strong class="text-amber-800 font-bold">must remember</strong> to book the tickets tonight."</p>
+                            <span class="text-xs text-amber-700 font-semibold block">(Personal determination / self-reminder)</span>
+                        </div>
+                    </div>
+
+                    <!-- Need To -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">General Necessity</span>
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">need to</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Very similar to <em>have to</em>. Shows that an action is necessary to achieve a requirement or goal.
+                            </p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I <strong class="text-indigo-700 font-bold">need to make</strong> some important phone calls this morning."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Callout -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold mb-3 text-rose-300 uppercase tracking-widest flex items-center gap-2">
+                        <span>🔑 Quick Key Summary: Have to vs. Must</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-rose-400 font-bold block mb-1">Rule / Law / Authority</span>
+                            <div class="text-slate-300">👉 Use <strong>have to</strong></div>
+                            <div class="text-xs text-slate-400 mt-1">"Employees <strong class="text-slate-200">have to wear</strong> safety gear."</div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-amber-400 font-bold block mb-1">Speaker's Personal Decision</span>
+                            <div class="text-slate-300">👉 Use <strong>must</strong></div>
+                            <div class="text-xs text-slate-400 mt-1">"I <strong class="text-slate-200">must call</strong> my grandma today."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: MUSTN'T VS DON'T HAVE TO -->
+            <div id="tab-mustnt-dont-have" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-rose-100 p-4 rounded-2xl text-rose-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Crucial Contrast: Mustn't vs. Don't Have to</h3>
+                        <p class="text-lg text-slate-600 font-medium">Though positive <em>must</em> and <em>have to</em> are similar, their negatives mean completely different things!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Mustn't (Prohibition) -->
+                    <div class="interactive-card bg-white border-2 border-rose-300 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-rose-600 text-white font-extrabold text-xs px-3 py-1.5 rounded-full uppercase tracking-wider">🚫 Prohibition / Forbidden</span>
+                            <span class="text-3xl">🛑</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-2xl mb-2">mustn't</h4>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                            Means it is <strong>necessary NOT to do something</strong> or it is <strong>NOT allowed / forbidden</strong>.
+                        </p>
+                        
+                        <div class="space-y-3 font-medium text-sm">
+                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-slate-800">
+                                "You <strong class="text-rose-700 underline font-bold">mustn't eat</strong> a lot before exercising."
+                                <span class="text-xs text-rose-600 block mt-1 font-semibold">(It is important that you don't – it's bad for you!)</span>
+                            </div>
+                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-slate-800">
+                                "We <strong class="text-rose-700 underline font-bold">mustn't use</strong> our phones in here."
+                                <span class="text-xs text-rose-600 block mt-1 font-semibold">(It's strictly forbidden / against rules!)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Don't have to / Don't need to (Lack of obligation) -->
+                    <div class="interactive-card bg-white border-2 border-emerald-300 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-emerald-600 text-white font-extrabold text-xs px-3 py-1.5 rounded-full uppercase tracking-wider">🔓 No Obligation / Optional</span>
+                            <span class="text-3xl">🎉</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-2xl mb-2">don't have to / don't need to</h4>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                            Means something is <strong>NOT necessary</strong>. You can do it if you want, but you don't need to.
+                        </p>
+                        
+                        <div class="space-y-3 font-medium text-sm">
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800">
+                                "I <strong class="text-emerald-700 underline font-bold">don't have to wear</strong> a uniform at work."
+                                <span class="text-xs text-emerald-700 block mt-1 font-semibold">(It's not necessary – I wear whatever I like!)</span>
+                            </div>
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800">
+                                "My brother <strong class="text-emerald-700 underline font-bold">doesn't have to get up</strong> early today."
+                                <span class="text-xs text-emerald-700 block mt-1 font-semibold">(Because he starts work at 4 p.m.)</span>
+                            </div>
+                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800">
+                                "He <strong class="text-indigo-700 underline font-bold">doesn't need to complete</strong> the report now."
+                                <span class="text-xs text-indigo-700 block mt-1 font-semibold">(He can do it tomorrow instead.)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Warning Callout -->
+                <div class="bg-amber-500/10 border-2 border-amber-400 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">⚠️</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-900 text-lg mb-1">Common English Learner Trap!</h4>
+                            <p class="text-sm text-amber-900 font-medium leading-relaxed">
+                                Never confuse <em>mustn't</em> and <em>don't have to</em>!<br>
+                                • <strong class="text-rose-700">"You mustn't come."</strong> = Do NOT come! You are forbidden.<br>
+                                • <strong class="text-emerald-700">"You don't have to come."</strong> = You are free to choose! Come if you want, but no pressure.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SHOULD & SHOULDN'T -->
+            <div id="tab-should" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-pink-100 p-4 rounded-2xl text-pink-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">3. Giving Advice: Should & Shouldn't</h3>
+                        <p class="text-lg text-slate-600 font-medium">We use <strong>should</strong> and <strong>shouldn't</strong> to express whether an action is or isn't a good idea.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Should Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Good Idea (+)</span>
+                                <span class="text-2xl">👍</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">should + bare infinitive</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Used to give positive advice or recommend a wise course of action.
+                            </p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "You <strong class="text-emerald-700 font-bold">should check</strong> your spelling before you print a document."</p>
+                            <span class="text-xs text-emerald-700 font-semibold block">(Advice: it is a good idea to double check!)</span>
+                        </div>
+                    </div>
+
+                    <!-- Shouldn't Card -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Bad Idea (-)</span>
+                                <span class="text-2xl">👎</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">shouldn't + bare infinitive</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                Used to advise someone against doing something because it's a bad idea.
+                            </p>
+                        </div>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "You <strong class="text-rose-700 font-bold">shouldn't speak</strong> to your boss like that."</p>
+                            <span class="text-xs text-rose-600 font-semibold block">(Advice: speaking like that is unwise/rude)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Difference from Obligation Banner -->
+                <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg border border-slate-700">
+                    <h4 class="text-base font-bold mb-2 text-rose-300 uppercase tracking-wider flex items-center gap-2">
+                        <span>💡 Advice vs. Obligation Difference</span>
+                    </h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        • <strong>Should</strong> is softer than <em>must/have to</em>. If you don't do what you "should" do, it's just a bad idea or poor choice—not a crime or rule violation.<br>
+                        • <strong>Must / Have to</strong> carry force, rules, or strict necessity!
+                    </p>
+                </div>
+            </div>
+
+            <!-- TAB 4: DECISION EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Modal Decision Explorer</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a scenario type to see which modal verb you should choose!</p>
+
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <button onclick="selectScenario('rule')" id="btn-rule" class="scenario-pill selected px-4 py-2 rounded-full text-xs font-bold border border-rose-300 bg-white text-rose-800">Rule / Law (Have to)</button>
+                        <button onclick="selectScenario('personal')" id="btn-personal" class="scenario-pill px-4 py-2 rounded-full text-xs font-bold border border-rose-300 bg-white text-rose-800">Personal Feeling (Must)</button>
+                        <button onclick="selectScenario('prohibition')" id="btn-prohibition" class="scenario-pill px-4 py-2 rounded-full text-xs font-bold border border-rose-300 bg-white text-rose-800">Forbidden / Illegal (Mustn't)</button>
+                        <button onclick="selectScenario('optional')" id="btn-optional" class="scenario-pill px-4 py-2 rounded-full text-xs font-bold border border-rose-300 bg-white text-rose-800">Not Necessary (Don't have to)</button>
+                        <button onclick="selectScenario('advice')" id="btn-advice" class="scenario-pill px-4 py-2 rounded-full text-xs font-bold border border-rose-300 bg-white text-rose-800">Friendly Advice (Should)</button>
+                    </div>
+
+                    <div id="scenarioContainer" class="space-y-3 bg-white p-6 rounded-xl border border-rose-200 shadow-inner text-center">
+                        <p id="scenarioText" class="text-xl font-extrabold text-slate-800">"I <span class="bg-rose-100 text-rose-700 px-2.5 py-1 rounded border border-rose-300">have to</span> start work at 8.30 every morning."</p>
+                        <p id="scenarioNote" class="text-sm text-slate-600 font-medium">Category: External rule or law set by an employer/authority.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 rounded-2xl p-8 border border-rose-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-rose-900 mb-2">Test Your Page 48 Knowledge</h3>
+                    <p class="text-rose-700 font-medium">Choose the correct modal verb to complete each sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. We <span class="inline-block w-28 border-b-2 border-slate-400"></span> use our phones in here. It's strictly forbidden.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>mustn\'t</strong> expresses prohibition (not allowed).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">mustn't</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Don\'t have to means optional/not necessary. Forbidden actions require mustn\'t.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">don't have to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Shouldn\'t is for advice, whereas rules/forbidden actions use mustn\'t.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">shouldn't</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. I <span class="inline-block w-28 border-b-2 border-slate-400"></span> wear a uniform at work – I can wear whatever I like.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Mustn\'t means it is forbidden to wear a uniform!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">mustn't</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>don\'t have to</strong> shows that wearing a uniform is not necessary (optional).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">don't have to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Shouldn\'t gives advice, whereas don\'t have to states lack of requirement.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">shouldn't</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. You <span class="inline-block w-28 border-b-2 border-slate-400"></span> check your spelling before printing. It's a very good idea.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>should</strong> is used to give good advice or say something is a good idea.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">should</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Must shows strict necessity, whereas checking spelling is recommended advice.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">must</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Have to is for rules or laws.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">have to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. He <span class="inline-block w-28 border-b-2 border-slate-400"></span> complete the report now – he can do it tomorrow.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>doesn\'t need to</strong> shows that the action is not necessary right now.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">doesn't need to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Mustn\'t implies he is forbidden from completing it!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">mustn't</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Has to implies he is required to do it now.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-rose-100 hover:text-rose-700 text-slate-700 transition-colors border-2 border-transparent">has to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Modal Verbs</span>
+            <span>Page 48 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-rose-600', 'text-rose-600', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-rose-600', 'text-rose-600');
+            }
+        }
+
+        /* Decision Explorer Logic */
+        const scenarioData = {
+            'rule': {
+                text: '"I <span class=\'bg-rose-100 text-rose-700 px-2.5 py-0.5 rounded border border-rose-300 font-extrabold\'>have to</span> start work at 8.30 every morning."',
+                note: 'Category: External obligation set by rules, laws, or employers.'
+            },
+            'personal': {
+                text: '"I <span class=\'bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded border border-amber-300 font-extrabold\'>must</span> remember to book the tickets tonight."',
+                note: 'Category: Internal determination / speaker thinks it is personally necessary.'
+            },
+            'prohibition': {
+                text: '"You <span class=\'bg-rose-200 text-rose-800 px-2.5 py-0.5 rounded border border-rose-400 font-extrabold\'>mustn\'t</span> eat a lot before exercising."',
+                note: 'Category: Prohibition / necessary NOT to do or not allowed.'
+            },
+            'optional': {
+                text: '"I <span class=\'bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded border border-emerald-300 font-extrabold\'>don\'t have to</span> wear a uniform at work."',
+                note: 'Category: Absence of obligation / action is not necessary.'
+            },
+            'advice': {
+                text: '"You <span class=\'bg-pink-100 text-pink-800 px-2.5 py-0.5 rounded border border-pink-300 font-extrabold\'>should</span> check your spelling before printing."',
+                note: 'Category: Advice / saying that something is a good idea.'
+            }
+        };
+
+        function selectScenario(key) {
+            const buttons = document.querySelectorAll('.scenario-pill');
+            buttons.forEach(b => {
+                b.classList.remove('selected', 'bg-rose-600', 'text-white');
+            });
+
+            document.getElementById(`btn-${key}`).classList.add('selected', 'bg-rose-600', 'text-white');
+
+            const textEl = document.getElementById('scenarioText');
+            const noteEl = document.getElementById('scenarioNote');
+
+            textEl.innerHTML = scenarioData[key].text;
+            noteEl.innerText = scenarioData[key].note;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-rose-100', 'hover:text-rose-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-rose-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-rose-100');
+                correctBtn.classList.add('border-rose-500', 'text-rose-800');
+            }
+        }
+    </script>
+</body>
+</html>

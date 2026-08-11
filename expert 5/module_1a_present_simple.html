@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Present Simple & Adverbs of Frequency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdf4;
+            /* Emerald-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.15), 0 10px 10px -5px rgba(5, 150, 105, 0.1);
+            border-color: #10b981;
+            /* Emerald-500 */
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+
+        @keyframes pulseBorder {
+            0% {
+                border-color: rgba(16, 185, 129, 0.4);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+
+            70% {
+                border-color: rgba(16, 185, 129, 0);
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                border-color: rgba(16, 185, 129, 0);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .adverb-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .adverb-pill:hover,
+        .adverb-pill.selected {
+            background-color: #059669;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100">
+
+        <!-- Header Banner -->
+        <div
+            class="bg-gradient-to-br from-emerald-600 via-teal-600 to-indigo-700 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-emerald-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 1 Grammar Guide
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Present Simple & Frequency</h1>
+                <p class="mt-4 text-emerald-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Express routines, permanent facts, habits, and daily schedules! Learn how to build positive,
+                    negative, and question forms, along with word order for frequency adverbs.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-emerald-600 border-b-4 border-emerald-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-uses-form')">1. Uses & Form</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-adverbs')">2. Adverbs of Frequency</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-spelling')">3. Third Person Spelling (-s/-es)</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    5. Visual Reference 🖼️
+                </button>
+            </div>
+
+            <!-- TAB 1: USES & FORM -->
+            <div id="tab-uses-form" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-emerald-100 p-4 rounded-2xl text-emerald-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">3 Main Uses of the Present Simple</h3>
+                        <p class="text-lg text-slate-600 font-medium">When to use the base verb (or verb + <strong
+                                class="text-emerald-600">-s/-es</strong>).</p>
+                    </div>
+                </div>
+
+                <!-- 3 Uses Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-8 h-8 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">
+                                1</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Routines & Habits</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Regular, repeated actions that occur regularly.</p>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"We <strong
+                                    class="text-emerald-700">study</strong> in the library most of the time."</p>
+                            <p class="text-slate-800 font-medium text-sm">"Doctor Meyer <strong
+                                    class="text-emerald-700">gives</strong> lectures every Monday and Friday."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold">
+                                2</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Permanent Situations</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">States or circumstances that are ongoing and stable.</p>
+                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"We <strong
+                                    class="text-teal-700">live</strong> in Madrid."</p>
+                            <p class="text-slate-800 font-medium text-sm">"My brother <strong
+                                    class="text-teal-700">goes</strong> to college in York."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                                3</div>
+                            <h4 class="font-bold text-slate-900 text-lg">General Truths & Facts</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Universal truths and scientific or general facts.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"The sun <strong
+                                    class="text-indigo-700">rises</strong> in the east."</p>
+                            <p class="text-slate-800 font-medium text-sm">"The course <strong
+                                    class="text-indigo-700">lasts</strong> three years."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Section -->
+                <h4 class="text-xl font-bold text-slate-900 mb-4 border-t border-slate-200 pt-6">Grammar Formulas &
+                    Sentences</h4>
+                <div class="form-grid mb-4">
+                    <div class="bg-white border-t-4 border-emerald-500 rounded-b-xl shadow-md p-5">
+                        <p class="font-bold text-emerald-700 mb-2">Positive (+)</p>
+                        <ul class="text-sm space-y-2 text-slate-700 font-medium">
+                            <li class="bg-emerald-50/60 p-2 rounded">I / You / We / They <strong
+                                    class="text-emerald-700">speak</strong> German.</li>
+                            <li class="bg-emerald-50/60 p-2 rounded">He / She / It <strong
+                                    class="text-emerald-700">speaks</strong> German. <span
+                                    class="text-xs text-amber-700 font-bold block mt-1">(+s / +es added!)</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white border-t-4 border-rose-500 rounded-b-xl shadow-md p-5">
+                        <p class="font-bold text-rose-700 mb-2">Negative (-)</p>
+                        <ul class="text-sm space-y-2 text-slate-700 font-medium">
+                            <li class="bg-rose-50/60 p-2 rounded">I / You / We / They <strong
+                                    class="text-rose-700">don't speak</strong> German.</li>
+                            <li class="bg-rose-50/60 p-2 rounded">He / She / It <strong class="text-rose-700">doesn't
+                                    speak</strong> German. <span class="text-xs text-slate-500 block mt-1">(Base verb
+                                    loses -s)</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white border-t-4 border-purple-500 rounded-b-xl shadow-md p-5">
+                        <p class="font-bold text-purple-700 mb-2">Questions (?) & Short Answers</p>
+                        <ul class="text-sm space-y-2 text-slate-700 font-medium">
+                            <li class="bg-purple-50/60 p-2 rounded"><strong class="text-purple-700">Do</strong> you
+                                <strong class="text-purple-700">speak</strong> German? <br><span
+                                    class="text-xs text-slate-600">✓ Yes, I do. / ✗ No, I don't.</span>
+                            </li>
+                            <li class="bg-purple-50/60 p-2 rounded"><strong class="text-purple-700">Does</strong> she
+                                <strong class="text-purple-700">speak</strong> German? <br><span
+                                    class="text-xs text-slate-600">✓ Yes, she does. / ✗ No, she doesn't.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: ADVERBS OF FREQUENCY -->
+            <div id="tab-adverbs" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-teal-100 p-4 rounded-2xl text-teal-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Adverbs & Time Expressions</h3>
+                        <p class="text-lg text-slate-600 font-medium">Word order for expressing how frequently actions
+                            occur.</p>
+                    </div>
+                </div>
+
+                <!-- Position Rules -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Rule 1: Before Main Verbs -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="bg-teal-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                            <h4 class="font-bold text-slate-900 text-lg">BEFORE Main Verbs</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Adverbs sit directly between the subject and the main
+                            verb (or after don't/doesn't).</p>
+                        <div class="bg-teal-50 p-4 rounded-xl space-y-2 text-sm font-medium border border-teal-100">
+                            <p class="text-slate-800">"We <strong
+                                    class="text-teal-700 bg-white px-1.5 py-0.5 rounded border border-teal-200">usually</strong>
+                                study together."</p>
+                            <p class="text-slate-800">"I don't <strong
+                                    class="text-teal-700 bg-white px-1.5 py-0.5 rounded border border-teal-200">normally</strong>
+                                have lectures on Fridays."</p>
+                            <p class="text-slate-800">"Do you <strong
+                                    class="text-teal-700 bg-white px-1.5 py-0.5 rounded border border-teal-200">often</strong>
+                                give presentations?"</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2: After Verb Be -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span
+                                class="bg-teal-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                            <h4 class="font-bold text-slate-900 text-lg">AFTER Verb <em>To Be</em></h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Adverbs sit directly after am / is / are.</p>
+                        <div class="bg-teal-50 p-4 rounded-xl space-y-2 text-sm font-medium border border-teal-100">
+                            <p class="text-slate-800">"I am <strong
+                                    class="text-teal-700 bg-white px-1.5 py-0.5 rounded border border-teal-200">always</strong>
+                                tired after work."</p>
+                            <p class="text-slate-800">"My tutor isn't <strong
+                                    class="text-teal-700 bg-white px-1.5 py-0.5 rounded border border-teal-200">usually</strong>
+                                late."</p>
+                            <p class="text-slate-800">"Are you <strong
+                                    class="text-teal-700 bg-white px-1.5 py-0.5 rounded border border-teal-200">often</strong>
+                                busy at weekends?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Time Expressions -->
+                <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg border border-slate-700">
+                    <h4 class="text-lg font-bold mb-3 text-emerald-300 uppercase tracking-widest">Other Time Expressions
+                    </h4>
+                    <p class="text-sm text-slate-300 mb-4">Phrases like <span class="text-amber-300 font-semibold">every
+                            day/week/month</span>, <span class="text-amber-300 font-semibold">once/twice/three times a
+                            week</span>, or <span class="text-amber-300 font-semibold">on Mondays/Fridays</span> usually
+                        go at the <strong>beginning</strong> or <strong>end</strong> of the sentence.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-700/60 p-3.5 rounded-xl border border-slate-600 text-sm font-medium">
+                            <span class="text-xs text-emerald-400 font-bold uppercase block mb-1">Beginning of
+                                sentence</span>
+                            "<u class="text-amber-300">On Thursday afternoons</u> we have a tutorial."
+                        </div>
+                        <div class="bg-slate-700/60 p-3.5 rounded-xl border border-slate-600 text-sm font-medium">
+                            <span class="text-xs text-emerald-400 font-bold uppercase block mb-1">End of sentence</span>
+                            "I have lunch on campus <u class="text-amber-300">every day</u>."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Frequency Scale -->
+                <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-lg mb-2 text-center">Interactive Frequency Scale Tool
+                    </h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Click any frequency adverb below to preview its
+                        position in a live sentence!</p>
+
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <button onclick="selectAdverb('always', '100%')"
+                            class="adverb-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">always
+                            (100%)</button>
+                        <button onclick="selectAdverb('usually', '80%')"
+                            class="adverb-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">usually
+                            (80%)</button>
+                        <button onclick="selectAdverb('often', '60%')"
+                            class="adverb-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">often
+                            (60%)</button>
+                        <button onclick="selectAdverb('sometimes', '40%')"
+                            class="adverb-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">sometimes
+                            (40%)</button>
+                        <button onclick="selectAdverb('rarely', '10%')"
+                            class="adverb-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">rarely
+                            (10%)</button>
+                        <button onclick="selectAdverb('never', '0%')"
+                            class="adverb-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">never
+                            (0%)</button>
+                    </div>
+
+                    <div class="space-y-3 bg-white p-5 rounded-xl border border-emerald-200 shadow-inner text-center">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Main Verb
+                                Example:</span>
+                            <p id="demoMainVerb" class="text-lg font-extrabold text-slate-800">"We <span
+                                    class="text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">always</span> study in
+                                the library."</p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-1">Verb 'To
+                                Be' Example:</span>
+                            <p id="demoBeVerb" class="text-lg font-extrabold text-slate-800">"She is <span
+                                    class="text-teal-600 bg-teal-100 px-2 py-0.5 rounded">always</span> punctual for
+                                lectures."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SPELLING RULES (-S/-ES) -->
+            <div id="tab-spelling" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Third Person Singular Spelling (He / She /
+                            It)</h3>
+                        <p class="text-lg text-slate-600 font-medium">How to modify base verbs in positive Present
+                            Simple sentences.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Rule 1 -->
+                    <div class="interactive-card bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <div
+                            class="bg-emerald-100 text-emerald-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">
+                            Rule 1: Most Verbs</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Add <span class="text-emerald-600">-s</span>
+                        </h4>
+                        <p class="text-sm text-slate-600 mb-3">Simply append -s to base verb.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg space-y-1 font-medium text-sm">
+                            <p>speak → speak<strong class="text-emerald-600">s</strong></p>
+                            <p>live → live<strong class="text-emerald-600">s</strong></p>
+                            <p>give → give<strong class="text-emerald-600">s</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="interactive-card bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <div
+                            class="bg-purple-100 text-purple-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">
+                            Rule 2: -ch, -sh, -s, -x, -z, -o</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Add <span class="text-purple-600">-es</span>
+                        </h4>
+                        <p class="text-sm text-slate-600 mb-3">Add -es for ease of pronunciation.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg space-y-1 font-medium text-sm">
+                            <p>watch → watch<strong class="text-purple-600">es</strong></p>
+                            <p>go → go<strong class="text-purple-600">es</strong></p>
+                            <p>pass → pass<strong class="text-purple-600">es</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="interactive-card bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <div
+                            class="bg-amber-100 text-amber-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">
+                            Rule 3: Consonant + -y</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Change <span class="text-red-500">-y</span> to
+                            <span class="text-amber-600">-ies</span>
+                        </h4>
+                        <p class="text-sm text-slate-600 mb-3">Drop -y, then add -ies.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg space-y-1 font-medium text-sm">
+                            <p>stud<span class="line-through text-red-400">y</span> → stud<strong
+                                    class="text-amber-600">ies</strong></p>
+                            <p>carr<span class="line-through text-red-400">y</span> → carr<strong
+                                    class="text-amber-600">ies</strong></p>
+                            <p>fl<span class="line-through text-red-400">y</span> → fl<strong
+                                    class="text-amber-600">ies</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 4 -->
+                    <div class="interactive-card bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <div
+                            class="bg-blue-100 text-blue-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">
+                            Rule 4: Vowel + -y</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Keep <span class="text-slate-800">-y</span> +
+                            <span class="text-blue-600">-s</span>
+                        </h4>
+                        <p class="text-sm text-slate-600 mb-3">Do NOT drop -y if preceded by a vowel.</p>
+                        <div class="bg-slate-50 p-3 rounded-lg space-y-1 font-medium text-sm">
+                            <p>play → play<strong class="text-blue-600">s</strong></p>
+                            <p>enjoy → enjoy<strong class="text-blue-600">s</strong></p>
+                            <p>stay → stay<strong class="text-blue-600">s</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Rule Card -->
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-2xl shadow-sm">
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">💡</span>
+                        <div>
+                            <h4 class="font-bold text-amber-900 text-base">Important Reminder for Negative & Question
+                                Sentences</h4>
+                            <p class="text-sm text-amber-800 mt-1">
+                                In negative sentences (<u class="font-bold">doesn't</u>) and questions (<u
+                                    class="font-bold">does</u>), the main verb returns to its <strong>BASE form</strong>
+                                without -s or -es!<br>
+                                Say: <strong>"He doesn't live in York."</strong> (NOT <span
+                                    class="line-through text-red-600">"He doesn't lives"</span>).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div
+                    class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-emerald-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-emerald-700 font-medium">Select the correct option to complete each Present Simple
+                        sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. She <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> late for morning
+                            tutorials.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Adverbs of frequency come AFTER the verb \'be\'.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">usually
+                                is</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Adverbs of frequency always come <strong>AFTER</strong> the verb <em>to be</em> (is usually).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">is usually</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Is usually is the correct word order.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">is
+                                usually being</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. My brother <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> German at university.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! For <em>study</em> (consonant + -y), we drop -y and add <strong>-ies</strong> for third person singular.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">studies</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Verbs ending in consonant + -y change -y to -ies (studies).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">studys</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Don\'t forget to add -ies for third person singular (He/She/It).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">study</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> Doctor Meyer give lectures
+                            on Fridays?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Doctor Meyer is third person singular (He/She), so we use Does.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">Do</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! We use <strong>Does</strong> for third person singular questions (He/She/It).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">Does</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Is is used for continuous forms or states, not simple present action verbs.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">Is</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-slate-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-slate-300 rounded-3xl p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <img id="grammar-reference-img" src="https://i.postimg.cc/mrJGWHg1/Module-1a-Grammar.png"
+                        alt="Grammar Reference Visual"
+                        class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden"
+                        onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden');">
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-slate-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-slate-500 mb-4">No reference image added yet. Insert your image URL
+                                in the <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-mono text-slate-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-slate-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+            class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference</span>
+            <span>Module 1</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-600', 'border-teal-600', 'text-teal-600');
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600');
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+
+            if (tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+            } else {
+                clickedBtn.classList.add('border-emerald-600', 'text-emerald-600');
+            }
+        }
+
+        /* Interactive Adverb Selector Logic */
+        function selectAdverb(adverb, percentage) {
+            const buttons = document.querySelectorAll('.adverb-pill');
+            buttons.forEach(b => {
+                b.classList.remove('selected', 'bg-emerald-600', 'text-white');
+                if (b.innerText.includes(adverb)) {
+                    b.classList.add('selected');
+                }
+            });
+
+            const demoMain = document.getElementById('demoMainVerb');
+            const demoBe = document.getElementById('demoBeVerb');
+
+            demoMain.innerHTML = `"We <span class="text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">${adverb}</span> study in the library."`;
+            demoBe.innerHTML = `"She is <span class="text-teal-600 bg-teal-100 px-2 py-0.5 rounded">${adverb}</span> punctual for lectures."`;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-emerald-100', 'hover:text-emerald-700');
+            });
+
+            btn.classList.remove('opacity-50');
+
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-emerald-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-emerald-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-emerald-50', 'border-emerald-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-red-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-red-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-red-50', 'border-red-500');
+
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-emerald-100');
+                correctBtn.classList.add('border-emerald-500', 'text-emerald-800');
+            }
+        }
+    </script>
+</body>
+
+</html>

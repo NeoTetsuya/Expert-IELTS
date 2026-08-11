@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: Modal Verb "Can" & "Can't"</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Sky-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.15), 0 10px 10px -5px rgba(14, 165, 233, 0.08);
+            border-color: #0284c7; /* Sky-600 */
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(2, 132, 199, 0.4); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.4); }
+            70% { border-color: rgba(2, 132, 199, 0); box-shadow: 0 0 0 8px rgba(2, 132, 199, 0); }
+            100% { border-color: rgba(2, 132, 199, 0); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .use-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .use-pill:hover, .use-pill.selected {
+            background-color: #0284c7;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-sky-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-sky-600 via-indigo-600 to-blue-700 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9 12l2 2 4-4"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-sky-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Grammar Guide • Page 16
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Modal Verb: Can & Can't</h1>
+                <p class="mt-4 text-sky-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master using <span class="bg-sky-500/40 px-2 py-0.5 rounded font-bold text-white border border-sky-300/40">can</span> and <span class="bg-sky-500/40 px-2 py-0.5 rounded font-bold text-white border border-sky-300/40">can't</span> to express present ability, possibility, and to ask for or grant permission!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-sky-600 border-b-4 border-sky-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-rules-form')">1. 3 Golden Rules & Form</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-uses')">2. Ability, Possibility & Permission</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-pitfalls')">3. Common Pitfalls ⚠️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: 3 GOLDEN RULES & FORM -->
+            <div id="tab-rules-form" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-sky-100 p-4 rounded-2xl text-sky-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">3 Golden Rules for Modal Verb "Can"</h3>
+                        <p class="text-lg text-slate-600 font-medium">Important features that apply to all modal verbs in English.</p>
+                    </div>
+                </div>
+
+                <!-- 3 Rules Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Rule 1 -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-sky-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Infinitive Without "To"</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">After modal verbs, always use the bare infinitive (no "to").</p>
+                        <div class="bg-sky-50 p-4 rounded-xl border border-sky-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I can <strong class="text-sky-700 underline decoration-sky-400">speak</strong> French and Italian."</p>
+                            <p class="text-slate-400 font-medium text-xs line-through">✗ "I can to speak French..."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <h4 class="font-bold text-slate-900 text-lg">No "-s" for He / She / It</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Modal verbs do NOT add -s in the third person singular.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "Professor Murray <strong class="text-indigo-700 font-bold">can</strong> help you with your assignment."</p>
+                            <p class="text-slate-400 font-medium text-xs line-through">✗ "Professor Murray cans help..."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <h4 class="font-bold text-slate-900 text-lg">No "Do / Does" Auxiliary</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">In negative sentences and questions, the auxiliary <em>do</em> is NOT used.</p>
+                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">✓ "I <strong class="text-blue-700 font-bold">can't</strong> read these notes."</p>
+                            <p class="text-slate-800 font-medium text-sm">✓ "<strong class="text-blue-700 font-bold">Can</strong> you read my essay?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Section -->
+                <h4 class="text-xl font-bold text-slate-900 mb-4 border-t border-slate-200 pt-6">Sentence Structures & Examples</h4>
+                <div class="form-grid mb-4">
+                    <div class="bg-white border-t-4 border-emerald-500 rounded-b-xl shadow-md p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-bold text-emerald-700">Positive (+)</span>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">Subject + can + V_bare</span>
+                        </div>
+                        <ul class="text-sm space-y-2.5 text-slate-700 font-medium">
+                            <li class="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-100">
+                                <strong>I / You / We / They</strong> can speak French.
+                            </li>
+                            <li class="bg-emerald-50/70 p-2.5 rounded-lg border border-emerald-100">
+                                <strong>He / She / It</strong> can help you.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white border-t-4 border-rose-500 rounded-b-xl shadow-md p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-bold text-rose-700">Negative (-)</span>
+                            <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-bold">Subject + can't + V_bare</span>
+                        </div>
+                        <ul class="text-sm space-y-2.5 text-slate-700 font-medium">
+                            <li class="bg-rose-50/70 p-2.5 rounded-lg border border-rose-100">
+                                I <strong class="text-rose-700">can't</strong> read these notes.
+                            </li>
+                            <li class="bg-rose-50/70 p-2.5 rounded-lg border border-rose-100">
+                                She <strong class="text-rose-700">can't</strong> swim very well.
+                            </li>
+                        </ul>
+                        <p class="text-xs text-slate-500 mt-2 font-medium">Note: <em>can't</em> = <em>cannot</em> (one word in full form).</p>
+                    </div>
+
+                    <div class="bg-white border-t-4 border-indigo-500 rounded-b-xl shadow-md p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-bold text-indigo-700">Questions (?) & Answers</span>
+                            <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">Can + Subject + V_bare?</span>
+                        </div>
+                        <ul class="text-sm space-y-2.5 text-slate-700 font-medium">
+                            <li class="bg-indigo-50/70 p-2.5 rounded-lg border border-indigo-100">
+                                <strong class="text-indigo-700">Can</strong> you read my essay?
+                                <div class="text-xs text-slate-600 mt-1 font-semibold">✓ Yes, I can. / ✗ No, I can't.</div>
+                            </li>
+                            <li class="bg-indigo-50/70 p-2.5 rounded-lg border border-indigo-100">
+                                <strong class="text-indigo-700">Can</strong> we use this classroom?
+                                <div class="text-xs text-slate-600 mt-1 font-semibold">✓ Yes, you can. / ✗ No, you can't.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: ABILITY, POSSIBILITY & PERMISSION -->
+            <div id="tab-uses" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-teal-100 p-4 rounded-2xl text-teal-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">3 Main Functions of Can / Can't</h3>
+                        <p class="text-lg text-slate-600 font-medium">We use can/can't for Ability, Possibility, and Permission.</p>
+                    </div>
+                </div>
+
+                <!-- 3 Uses Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Function 1: Ability -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-sky-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Function 1</span>
+                                <span class="text-2xl">🎸</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Ability in Present</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                To express physical or mental skills, talents, and capabilities in the present.
+                            </p>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl border border-sky-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"He <strong class="text-sky-700">can play</strong> the guitar and the piano."</p>
+                            <p class="text-slate-800 font-medium text-sm">"I <strong class="text-sky-700">can't swim</strong> very well."</p>
+                        </div>
+                    </div>
+
+                    <!-- Function 2: Possibility -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Function 2</span>
+                                <span class="text-2xl">📅</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Possibility</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                To say that something is or isn't possible given circumstances or schedule.
+                            </p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"You <strong class="text-indigo-700">can meet</strong> your tutor tomorrow."</p>
+                            <p class="text-slate-800 font-medium text-sm">"I <strong class="text-indigo-700">can't go</strong> out tonight – I'm too busy."</p>
+                        </div>
+                    </div>
+
+                    <!-- Function 3: Permission -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Function 3</span>
+                                <span class="text-2xl">🔑</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Permission</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                To ask for, give, or refuse permission to do an action.
+                            </p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"<strong>Can</strong> we <strong class="text-teal-700">use</strong> this classroom?" <span class="text-xs text-slate-500 block">(Ask)</span></p>
+                            <p class="text-slate-800 font-medium text-sm">"You <strong class="text-teal-700">can come</strong> in now." <span class="text-xs text-slate-500 block">(Give)</span></p>
+                            <p class="text-slate-800 font-medium text-sm">"You <strong class="text-teal-700">can't eat</strong> in here." <span class="text-xs text-slate-500 block">(Refuse)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Function Demo Explorer -->
+                <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-lg mb-2 text-center">Interactive Context Explorer Tool</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Click a function below to explore live usage scenarios!</p>
+
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <button onclick="selectUse('ability')" id="btn-ability" class="use-pill selected px-4 py-2 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">1. Ability Examples</button>
+                        <button onclick="selectUse('possibility')" id="btn-possibility" class="use-pill px-4 py-2 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">2. Possibility Examples</button>
+                        <button onclick="selectUse('permission')" id="btn-permission" class="use-pill px-4 py-2 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">3. Permission Examples</button>
+                    </div>
+
+                    <div id="demoContainer" class="space-y-3 bg-white p-6 rounded-xl border border-sky-200 shadow-inner">
+                        <!-- Dynamic Content Loaded via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: COMMON PITFALLS -->
+            <div id="tab-pitfalls" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-amber-100 p-4 rounded-2xl text-amber-600">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Common Mistakes to Avoid</h3>
+                        <p class="text-lg text-slate-600 font-medium">Keep these golden rules in mind when writing or speaking!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Mistake 1 -->
+                    <div class="bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <div class="bg-rose-100 text-rose-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">Pitfall #1</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Adding "to" after Can</h4>
+                        <p class="text-sm text-slate-600 mb-4">Never place "to" between <em>can/can't</em> and the main verb.</p>
+                        
+                        <div class="space-y-2 text-sm font-medium">
+                            <div class="bg-rose-50 text-rose-800 p-3 rounded-lg border border-rose-200">
+                                ❌ "I can <span class="underline decoration-rose-500 font-bold">to speak</span> French."
+                            </div>
+                            <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-200">
+                                ✅ "I can <span class="font-bold">speak</span> French."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mistake 2 -->
+                    <div class="bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <div class="bg-rose-100 text-rose-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">Pitfall #2</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Adding "-s" for He/She/It</h4>
+                        <p class="text-sm text-slate-600 mb-4">Modal verbs never change form or add -s for third person.</p>
+                        
+                        <div class="space-y-2 text-sm font-medium">
+                            <div class="bg-rose-50 text-rose-800 p-3 rounded-lg border border-rose-200">
+                                ❌ "Professor Murray <span class="underline decoration-rose-500 font-bold">cans</span> help you."
+                            </div>
+                            <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-200">
+                                ✅ "Professor Murray <span class="font-bold">can</span> help you."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mistake 3 -->
+                    <div class="bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <div class="bg-rose-100 text-rose-800 text-xs font-bold uppercase py-1 px-3 rounded-full inline-block mb-3">Pitfall #3</div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Using "Do / Does" Auxiliary</h4>
+                        <p class="text-sm text-slate-600 mb-4">Do not use <em>do/does/don't/doesn't</em> with modal verbs.</p>
+                        
+                        <div class="space-y-2 text-sm font-medium">
+                            <div class="bg-rose-50 text-rose-800 p-3 rounded-lg border border-rose-200">
+                                ❌ "<span class="underline decoration-rose-500 font-bold">Do you can</span> read my essay?"
+                            </div>
+                            <div class="bg-emerald-50 text-emerald-800 p-3 rounded-lg border border-emerald-200">
+                                ✅ "<span class="font-bold">Can you</span> read my essay?"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Checklist Banner -->
+                <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg border border-slate-700">
+                    <h4 class="text-lg font-bold mb-3 text-sky-300 uppercase tracking-widest">Quick Revision Checklist</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-medium">
+                        <div class="bg-slate-700/60 p-3.5 rounded-xl border border-slate-600 flex items-center gap-3">
+                            <span class="text-sky-400 text-xl">✔️</span>
+                            <span>Can + Bare Infinitive</span>
+                        </div>
+                        <div class="bg-slate-700/60 p-3.5 rounded-xl border border-slate-600 flex items-center gap-3">
+                            <span class="text-sky-400 text-xl">✔️</span>
+                            <span>No -s for He / She / It</span>
+                        </div>
+                        <div class="bg-slate-700/60 p-3.5 rounded-xl border border-slate-600 flex items-center gap-3">
+                            <span class="text-sky-400 text-xl">✔️</span>
+                            <span>Can / Can't for Questions & Negatives</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-sky-50 to-indigo-50 rounded-2xl p-8 border border-sky-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-sky-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-sky-700 font-medium">Select the correct option to complete each sentence according to page 16 rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. Professor Murray <span class="inline-block w-28 border-b-2 border-slate-400"></span> you with your assignment.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Modal verbs don\'t add -s after he/she/it.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">cans help</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Modal verbs like <strong>can</strong> never add -s for third-person singular (he/she/it).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">can help</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. After modal verbs, use the infinitive without \'to\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">can to help</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. <span class="inline-block w-28 border-b-2 border-slate-400"></span> we use this classroom?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. The auxiliary \'do\' is not necessary for questions with modal verbs.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">Do can</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! In questions, <strong>Can</strong> moves to the front without using \'do/does\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Can</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Use \'Can\' directly without \'to\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">Can to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. I <span class="inline-block w-28 border-b-2 border-slate-400"></span> out tonight – I'm too busy. (Possibility)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>can\'t</strong> to express that something is not possible due to circumstances.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">can't go</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Do not use \'to\' after modal verbs.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">can't to go</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. For modal negatives, use can\'t directly without don\'t.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-slate-100 text-slate-700 transition-colors border-2 border-transparent">don't can go</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. "You <span class="inline-block w-28 border-b-2 border-slate-400"></span> eat in here." (Refusing Permission)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>can\'t</strong> is used to refuse permission or express prohibition.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">can't</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Modal verbs don\'t use don\'t.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">don't can</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. You need the negative modal \'can\'t\' to refuse permission.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">can to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Modal Verbs</span>
+            <span>Page 16 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-sky-600', 'text-sky-600', 'border-indigo-600', 'text-indigo-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-indigo-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
+            } else {
+                clickedBtn.classList.add('border-sky-600', 'text-sky-600');
+            }
+        }
+
+        /* Interactive Function Explorer Data & Logic */
+        const useData = {
+            ability: [
+                { type: 'Positive (+)', text: 'He <span class="text-sky-600 font-bold bg-sky-100 px-2 py-0.5 rounded">can play</span> the guitar and the piano.' },
+                { type: 'Negative (-)', text: 'I <span class="text-rose-600 font-bold bg-rose-100 px-2 py-0.5 rounded">can\'t swim</span> very well.' },
+                { type: 'Question (?)', text: '<span class="text-indigo-600 font-bold bg-indigo-100 px-2 py-0.5 rounded">Can</span> you <span class="font-bold">speak</span> French and Italian?' }
+            ],
+            possibility: [
+                { type: 'Positive (+)', text: 'You <span class="text-sky-600 font-bold bg-sky-100 px-2 py-0.5 rounded">can meet</span> your tutor tomorrow.' },
+                { type: 'Negative (-)', text: 'I <span class="text-rose-600 font-bold bg-rose-100 px-2 py-0.5 rounded">can\'t go</span> out tonight – I\'m too busy.' },
+                { type: 'Question (?)', text: '<span class="text-indigo-600 font-bold bg-indigo-100 px-2 py-0.5 rounded">Can</span> we <span class="font-bold">meet</span> at the library later?' }
+            ],
+            permission: [
+                { type: 'Asking (?)', text: '<span class="text-indigo-600 font-bold bg-indigo-100 px-2 py-0.5 rounded">Can</span> we <span class="font-bold">use</span> this classroom?' },
+                { type: 'Giving (+)', text: 'You <span class="text-sky-600 font-bold bg-sky-100 px-2 py-0.5 rounded">can come</span> in now.' },
+                { type: 'Refusing (-)', text: 'You <span class="text-rose-600 font-bold bg-rose-100 px-2 py-0.5 rounded">can\'t eat</span> in here.' }
+            ]
+        };
+
+        function selectUse(useKey) {
+            const buttons = document.querySelectorAll('.use-pill');
+            buttons.forEach(b => {
+                b.classList.remove('selected', 'bg-sky-600', 'text-white');
+            });
+
+            document.getElementById(`btn-${useKey}`).classList.add('selected', 'bg-sky-600', 'text-white');
+
+            const container = document.getElementById('demoContainer');
+            const items = useData[useKey];
+
+            container.innerHTML = items.map(item => `
+                <div class="p-3 border-b border-slate-100 last:border-b-0 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider w-28">${item.type}:</span>
+                    <p class="text-base text-slate-800 font-medium flex-1">${item.text}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize default view for Explorer Tool
+        selectUse('ability');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-sky-100', 'hover:text-sky-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-sky-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-sky-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-sky-50', 'border-sky-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-sky-100');
+                correctBtn.classList.add('border-sky-500', 'text-sky-800');
+            }
+        }
+    </script>
+</body>
+</html>

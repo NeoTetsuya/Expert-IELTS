@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: Countable and Uncountable Nouns & Quantifiers (Page 64)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ecfeff; /* Cyan-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(8, 145, 178, 0.18), 0 10px 10px -5px rgba(8, 145, 178, 0.08);
+            border-color: #06b6d4; /* Cyan-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(8, 145, 178, 0.4); box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.4); }
+            70% { border-color: rgba(8, 145, 178, 0); box-shadow: 0 0 0 8px rgba(8, 145, 178, 0); }
+            100% { border-color: rgba(8, 145, 178, 0); box-shadow: 0 0 0 0 rgba(8, 145, 178, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #0891b2; /* Cyan-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-cyan-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-cyan-700 via-teal-600 to-slate-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-cyan-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Grammar Guide • Page 64
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Countable / Uncountable Nouns & Quantifiers</h1>
+                <p class="mt-4 text-cyan-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master the differences between <span class="bg-cyan-500/40 px-2 py-0.5 rounded font-bold text-white border border-cyan-300/40">countable</span> and <span class="bg-cyan-500/40 px-2 py-0.5 rounded font-bold text-white border border-cyan-300/40">uncountable</span> nouns, and learn how to pair them accurately with <span class="bg-cyan-500/40 px-2 py-0.5 rounded font-bold text-white border border-cyan-300/40">quantifiers</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-cyan-700 border-b-4 border-cyan-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-nouns')">1. Countable vs. Uncountable</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-quantifiers')">2. Quantifiers Rules 📊</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">3. Quantifier Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: COUNTABLE VS UNCOUNTABLE -->
+            <div id="tab-nouns" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-cyan-100 p-4 rounded-2xl text-cyan-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Countable vs. Uncountable Nouns</h3>
+                        <p class="text-lg text-slate-600 font-medium">Understanding singular/plural verb agreement and noun behavior.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Countable Nouns Card -->
+                    <div class="interactive-card bg-white border-2 border-cyan-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-cyan-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Countable Nouns</span>
+                                <span class="text-2xl">🔢</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Can be counted (1, 2, 3...)</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Countable nouns have <strong>both singular and plural forms</strong> (e.g., <em>country → countries, animal → animals, plant → plants</em>).
+                            </p>
+                            <ul class="text-sm space-y-2 text-slate-700 mb-4 font-medium">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-600 font-bold">•</span>
+                                    <span><strong>Singular noun + Singular verb:</strong> "This plant <strong class="text-cyan-700 underline">is</strong> very common in my region."</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-cyan-600 font-bold">•</span>
+                                    <span><strong>Plural noun + Plural verb:</strong> "There <strong class="text-cyan-700 underline">are</strong> a number of animals that are endangered."</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-100">
+                            <span class="text-xs font-bold text-cyan-800 uppercase block mb-1">Examples:</span>
+                            <p class="text-xs text-slate-700 font-medium">beach, river, mountain, animal, park, country, city, tiger, document</p>
+                        </div>
+                    </div>
+
+                    <!-- Uncountable Nouns Card -->
+                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-slate-700 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Uncountable Nouns</span>
+                                <span class="text-2xl">🌊</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Cannot be counted</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Uncountable nouns <strong>do NOT have a plural form</strong>. They are <strong>ALWAYS followed by a singular verb</strong>.
+                            </p>
+                            <ul class="text-sm space-y-2 text-slate-700 mb-4 font-medium">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-slate-700 font-bold">•</span>
+                                    <span><strong>Always Singular Verb:</strong> "The doctor's advice <strong class="text-slate-900 underline">was</strong> very helpful."</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-slate-700 font-bold">•</span>
+                                    <span><strong>No "s" ending:</strong> We never say <span class="line-through text-rose-500">advices</span>, <span class="line-through text-rose-500">informations</span>, or <span class="line-through text-rose-500">traffics</span>.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs font-bold text-slate-800 uppercase block mb-1">Key Uncountable Examples (Page 64):</span>
+                            <p class="text-xs text-slate-700 font-medium">information, advice, traffic, money, research, rain, luggage, time, wildlife</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verb Agreement Summary Banner -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold mb-3 text-cyan-300 uppercase tracking-widest flex items-center gap-2">
+                        <span>⚡ Verb Agreement Summary Cheat-Sheet</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-cyan-400 font-bold block mb-1">Singular Countable</span>
+                            <div class="text-slate-300">👉 Uses <strong>Singular Verb</strong></div>
+                            <div class="text-xs text-slate-400 mt-1">"This <strong class="text-slate-200">park is</strong> beautiful."</div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-teal-400 font-bold block mb-1">Plural Countable</span>
+                            <div class="text-slate-300">👉 Uses <strong>Plural Verb</strong></div>
+                            <div class="text-xs text-slate-400 mt-1">"There <strong class="text-slate-200">are many tigers</strong>."</div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-amber-400 font-bold block mb-1">Uncountable Noun</span>
+                            <div class="text-slate-300">👉 ALWAYS <strong>Singular Verb</strong></div>
+                            <div class="text-xs text-slate-400 mt-1">"The <strong class="text-slate-200">information was</strong> useful."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: QUANTIFIERS -->
+            <div id="tab-quantifiers" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-teal-100 p-4 rounded-2xl text-teal-700">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Quantifiers Breakdown</h3>
+                        <p class="text-lg text-slate-600 font-medium">Which quantifiers match which noun type? (Page 64 Rules)</p>
+                    </div>
+                </div>
+
+                <!-- Rules Reference Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1: Both Countable & Uncountable -->
+                    <div class="interactive-card bg-white border-2 border-cyan-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-cyan-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Both Types</span>
+                                <span class="text-2xl">🤝</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">some / any / a lot of / enough</h4>
+                            <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                                Use with <strong>plural countable</strong> AND <strong>uncountable</strong> nouns.
+                            </p>
+                            <ul class="text-xs space-y-2 text-slate-700 font-medium mb-4">
+                                <li class="bg-cyan-50 p-2.5 rounded-lg border border-cyan-100">
+                                    <strong>(+) Positive:</strong> "We need <strong class="text-cyan-700">some</strong> more rain." / "<strong class="text-cyan-700">some</strong> birds"
+                                </li>
+                                <li class="bg-cyan-50 p-2.5 rounded-lg border border-cyan-100">
+                                    <strong>(-) Negative:</strong> "Haven't got <strong class="text-cyan-700">any</strong> high mountains." / "don't need <strong class="text-cyan-700">any</strong> more research."
+                                </li>
+                                <li class="bg-cyan-50 p-2.5 rounded-lg border border-cyan-100">
+                                    <strong>(?) Question:</strong> "Are there <strong class="text-cyan-700">any</strong> rivers?" / "got <strong class="text-cyan-700">any</strong> information?"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Countable Only -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Plural Countable Only</span>
+                                <span class="text-2xl">🌴</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">many / a few / too many</h4>
+                            <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                                Used exclusively with <strong>plural countable nouns</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2 text-slate-700 font-medium mb-4">
+                                <li class="bg-teal-50 p-2.5 rounded-lg border border-teal-100">
+                                    <strong>a few = small number:</strong> "There are <strong class="text-teal-700">a few</strong> good beaches near here."
+                                </li>
+                                <li class="bg-teal-50 p-2.5 rounded-lg border border-teal-100">
+                                    <strong>too many = excess:</strong> "There are <strong class="text-teal-700">too many</strong> animals in that zoo."
+                                </li>
+                                <li class="bg-teal-50 p-2.5 rounded-lg border border-teal-100">
+                                    <strong>(how) many:</strong> "How <strong class="text-teal-700">many</strong> animals...?" / "aren't <strong class="text-teal-700">many</strong> tigers"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Uncountable Only -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Uncountable Only</span>
+                                <span class="text-2xl">⏳</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">much / a little / too much</h4>
+                            <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+                                Used exclusively with <strong>uncountable nouns</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2 text-slate-700 font-medium mb-4">
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-100">
+                                    <strong>a little = small amount:</strong> "I've only got <strong class="text-indigo-700">a little</strong> time to see the country."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-100">
+                                    <strong>too much = excess:</strong> "I take <strong class="text-indigo-700">too much</strong> luggage when I travel."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-100">
+                                    <strong>(how) much:</strong> "How <strong class="text-indigo-700">much</strong> money...?" / "haven't got <strong class="text-indigo-700">much</strong> time"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Matrix Card -->
+                <div class="bg-slate-800 text-white rounded-2xl p-6 shadow-lg border border-slate-700">
+                    <h4 class="text-lg font-bold mb-4 text-cyan-300 uppercase tracking-widest text-center">
+                        📋 Page 64 Master Quantifier Comparison Matrix
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm font-medium border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-cyan-400">
+                                    <th class="p-3">Quantifier</th>
+                                    <th class="p-3">Singular Countable</th>
+                                    <th class="p-3">Plural Countable</th>
+                                    <th class="p-3">Uncountable</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-700/60 text-slate-300">
+                                <tr>
+                                    <td class="p-3 font-bold text-white">a / an</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (a beach)</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-white">some / any</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (some mountains)</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (some rain)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-white">a lot of / enough</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (a lot of birds)</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (enough info)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-white">many / a few / too many</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (a few beaches)</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-white">much / a little / too much</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                    <td class="p-3 text-rose-400">❌ No</td>
+                                    <td class="p-3 text-emerald-400">✅ Yes (a little time)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: QUANTIFIER EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-cyan-50 border-2 border-cyan-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Quantifier Pairs Validator</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a quantifier and noun category below to test whether they pair correctly!</p>
+
+                    <!-- Quantifier Selection -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Step 1: Choose a Quantifier</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectQuantifier('a_an')" id="qbtn-a_an" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">a / an</button>
+                            <button onclick="selectQuantifier('some')" id="qbtn-some" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">some / any</button>
+                            <button onclick="selectQuantifier('many')" id="qbtn-many" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">many / a few / too many</button>
+                            <button onclick="selectQuantifier('much')" id="qbtn-much" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">much / a little / too much</button>
+                            <button onclick="selectQuantifier('enough')" id="qbtn-enough" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">enough / a lot of</button>
+                        </div>
+                    </div>
+
+                    <!-- Noun Category Selection -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Step 2: Choose a Noun Type</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectNounType('sing_count')" id="nbtn-sing_count" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">Singular Countable (e.g., beach, park)</button>
+                            <button onclick="selectNounType('plur_count')" id="nbtn-plur_count" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">Plural Countable (e.g., animals, rivers)</button>
+                            <button onclick="selectNounType('uncountable')" id="nbtn-uncountable" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-cyan-300 bg-white text-cyan-800">Uncountable (e.g., time, money, rain)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-cyan-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-cyan-50 via-teal-50 to-amber-50 rounded-2xl p-8 border border-cyan-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-cyan-900 mb-2">Test Your Page 64 Knowledge</h3>
+                    <p class="text-cyan-700 font-medium">Select the correct option according to Page 64 grammar rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. The doctor's advice <span class="inline-block w-28 border-b-2 border-slate-400"></span> very helpful.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Advice</strong> is an uncountable noun, so it ALWAYS takes a singular verb (was).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">was</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Advice is uncountable and cannot take a plural verb like were.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">were</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Uncountable nouns are treated as singular.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">are</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. We haven't got <span class="inline-block w-28 border-b-2 border-slate-400"></span> time to finish this.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Time</strong> (meaning available duration) is uncountable, so we use <strong>much</strong> in negative sentences.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">much</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Many is used with plural countable nouns (e.g. many hours). Time is uncountable.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">many</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A few is used with plural countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">a few</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. There are <span class="inline-block w-28 border-b-2 border-slate-400"></span> good beaches near here.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Beaches</strong> is a plural countable noun, so we use <strong>a few</strong> to mean a small number.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">a few</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A little is only used with uncountable nouns (e.g. a little time).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">a little</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Much is used with uncountable nouns in negative or question sentences.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">much</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. I take <span class="inline-block w-28 border-b-2 border-slate-400"></span> luggage when I travel.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Luggage</strong> is an uncountable noun, so we use <strong>too much</strong> for excess.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">too much</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Luggage is uncountable; too many is only for plural countable nouns (e.g., too many bags).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">too many</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A few is used for plural countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">a few</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Have you got <span class="inline-block w-28 border-b-2 border-slate-400"></span> information about the wildlife on the island?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>any</strong> in questions with uncountable nouns (information).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">any</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Many cannot be used with uncountable nouns like information.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">many</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A few is used for plural countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-cyan-100 hover:text-cyan-700 text-slate-700 transition-colors border-2 border-transparent">a few</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Nouns & Quantifiers</span>
+            <span>Page 64 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-cyan-600', 'text-cyan-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-cyan-600', 'text-cyan-700');
+            }
+        }
+
+        /* Quantifier Pair Explorer Logic */
+        let activeQuantifier = 'a_an';
+        let activeNounType = 'sing_count';
+
+        const validatorMatrix = {
+            'a_an': {
+                'sing_count': { valid: true, text: '✅ "There is <strong>a beautiful beach</strong> near here."', note: 'Valid! Use a/an with singular countable nouns.' },
+                'plur_count': { valid: false, text: '❌ "<span class="line-through">a beaches</span>"', note: 'Invalid! Cannot use a/an with plural nouns.' },
+                'uncountable': { valid: false, text: '❌ "<span class="line-through">an information</span>"', note: 'Invalid! Cannot use a/an with uncountable nouns.' }
+            },
+            'some': {
+                'sing_count': { valid: false, text: '❌ "<span class="line-through">some beach</span>"', note: 'Invalid! Use a/an for singular countable nouns instead.' },
+                'plur_count': { valid: true, text: '✅ "We saw <strong>some interesting birds</strong> in the park."', note: 'Valid! Use some with plural countable nouns.' },
+                'uncountable': { valid: true, text: '✅ "We need <strong>some more rain</strong>."', note: 'Valid! Use some with uncountable nouns in positive statements.' }
+            },
+            'many': {
+                'sing_count': { valid: false, text: '❌ "<span class="line-through">many beach</span>"', note: 'Invalid! Many requires plural nouns.' },
+                'plur_count': { valid: true, text: '✅ "There aren\'t <strong>many tigers</strong> left in the wild."', note: 'Valid! Use (how) many / a few / too many with plural countable nouns.' },
+                'uncountable': { valid: false, text: '❌ "<span class="line-through">many time</span>"', note: 'Invalid! Use (how) much / a little / too much with uncountable nouns instead.' }
+            },
+            'much': {
+                'sing_count': { valid: false, text: '❌ "<span class="line-through">much beach</span>"', note: 'Invalid! Much is for uncountable nouns.' },
+                'plur_count': { valid: false, text: '❌ "<span class="line-through">much tigers</span>"', note: 'Invalid! Use many for plural countable nouns.' },
+                'uncountable': { valid: true, text: '✅ "I take <strong>too much luggage</strong> when I travel."', note: 'Valid! Use (how) much / a little / too much with uncountable nouns.' }
+            },
+            'enough': {
+                'sing_count': { valid: false, text: '❌ "<span class="line-through">enough park</span>"', note: 'Invalid! Use enough with plural or uncountable nouns.' },
+                'plur_count': { valid: true, text: '✅ "There aren\'t <strong>enough parks</strong> in my city."', note: 'Valid! Enough works with plural countable nouns.' },
+                'uncountable': { valid: true, text: '✅ "We have <strong>enough information</strong> about the area."', note: 'Valid! Enough works with uncountable nouns.' }
+            }
+        };
+
+        function selectQuantifier(q) {
+            activeQuantifier = q;
+            document.querySelectorAll('[id^="qbtn-"]').forEach(b => b.classList.remove('selected', 'bg-cyan-600', 'text-white'));
+            document.getElementById(`qbtn-${q}`).classList.add('selected', 'bg-cyan-600', 'text-white');
+            updateExplorerResult();
+        }
+
+        function selectNounType(n) {
+            activeNounType = n;
+            document.querySelectorAll('[id^="nbtn-"]').forEach(b => b.classList.remove('selected', 'bg-cyan-600', 'text-white'));
+            document.getElementById(`nbtn-${n}`).classList.add('selected', 'bg-cyan-600', 'text-white');
+            updateExplorerResult();
+        }
+
+        function updateExplorerResult() {
+            const res = validatorMatrix[activeQuantifier][activeNounType];
+            const container = document.getElementById('explorerResult');
+
+            if (res.valid) {
+                container.className = 'bg-cyan-50/80 p-6 rounded-xl border border-cyan-300 shadow-inner text-center space-y-2';
+                container.innerHTML = `
+                    <p class="text-xl font-bold text-slate-800">${res.text}</p>
+                    <p class="text-sm font-semibold text-cyan-800">${res.note}</p>
+                `;
+            } else {
+                container.className = 'bg-rose-50/80 p-6 rounded-xl border border-rose-300 shadow-inner text-center space-y-2';
+                container.innerHTML = `
+                    <p class="text-xl font-bold text-slate-800">${res.text}</p>
+                    <p class="text-sm font-semibold text-rose-700">${res.note}</p>
+                `;
+            }
+        }
+
+        // Initialize explorer on load
+        updateExplorerResult();
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-cyan-100', 'hover:text-cyan-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-cyan-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-cyan-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-cyan-50', 'border-cyan-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-cyan-50', 'border-cyan-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-cyan-100');
+                correctBtn.classList.add('border-cyan-500', 'text-cyan-800');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: Quantifiers & Indefinite Pronouns (Page 191)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf5ff; /* Fuchsia-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(192, 38, 211, 0.18), 0 10px 10px -5px rgba(192, 38, 211, 0.08);
+            border-color: #c026d3; /* Fuchsia-600 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(192, 38, 211, 0.4); box-shadow: 0 0 0 0 rgba(192, 38, 211, 0.4); }
+            70% { border-color: rgba(192, 38, 211, 0); box-shadow: 0 0 0 8px rgba(192, 38, 211, 0); }
+            100% { border-color: rgba(192, 38, 211, 0); box-shadow: 0 0 0 0 rgba(192, 38, 211, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #a21caf; /* Fuchsia-700 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-fuchsia-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-800 via-fuchsia-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-fuchsia-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Grammar Guide • Page 191
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Quantifiers & Indefinite Pronouns</h1>
+                <p class="mt-4 text-fuchsia-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master <span class="bg-fuchsia-500/40 px-2 py-0.5 rounded font-bold text-white border border-fuchsia-300/40">each vs. every</span>, <span class="bg-fuchsia-500/40 px-2 py-0.5 rounded font-bold text-white border border-fuchsia-300/40">both / either / neither</span>, <span class="bg-fuchsia-500/40 px-2 py-0.5 rounded font-bold text-white border border-fuchsia-300/40">amount / number phrases</span>, and <span class="bg-fuchsia-500/40 px-2 py-0.5 rounded font-bold text-white border border-fuchsia-300/40">indefinite pronouns</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-fuchsia-700 border-b-4 border-fuchsia-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-each-both')">1. Each / Every & Pairs 👥</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-group-phrases')">2. Groups & Amount Phrases 📊</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-indefinite')">3. Indefinite Pronouns 👤</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Quantifier Matrix 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: EACH, EVERY & TWO-ITEM QUANTIFIERS -->
+            <div id="tab-each-both" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-fuchsia-100 p-4 rounded-2xl text-fuchsia-700 pulse-border">
+                        <span class="text-3xl font-black">1 & 2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Each, Every & Two-Item Quantifiers</h3>
+                        <p class="text-lg text-slate-600 font-medium">Distinguishing individual members, groups, and dual pairs.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Each vs Every Card -->
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-fuchsia-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Each vs. Every</span>
+                                <span class="text-2xl">🔍</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Singular Noun + Singular Verb</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Both take a <strong>singular noun</strong> and <strong>singular verb</strong>.
+                            </p>
+                            <ul class="text-sm space-y-3 text-slate-700 font-medium mb-4">
+                                <li class="bg-fuchsia-50 p-3 rounded-xl border border-fuchsia-200">
+                                    <strong class="text-fuchsia-800 font-bold">Each:</strong> Focuses on thinking about each person or thing <em>separately</em>.<br>
+                                    👉 "I read <strong class="underline text-fuchsia-900">each article</strong> in the magazine very carefully."
+                                </li>
+                                <li class="bg-fuchsia-50 p-3 rounded-xl border border-fuchsia-200">
+                                    <strong class="text-fuchsia-800 font-bold">Every:</strong> Focuses on thinking about all members <em>together as a group</em>.<br>
+                                    👉 "<strong class="underline text-fuchsia-900">Every TV programme</strong> seems to be the same."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Both, Either, Neither Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Both / Either / Neither</span>
+                                <span class="text-2xl">✌️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Used for Exactly 2 Things</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Refers to <strong>two people or things</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 font-bold">Both (of) + Plural Noun + Plural Verb:</strong> (1 AND the other)<br>
+                                    👉 "<strong>Both of these articles are</strong> useful for your assignment."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 font-bold">Either (of) + Singular Noun + Singular Verb:</strong> (1 OR the other)<br>
+                                    👉 "<strong>Either of these laptops is</strong> suitable for you."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 font-bold">Neither (of) + Singular Noun + Singular Verb:</strong> (NOT 1 or the other)<br>
+                                    👉 "Unfortunately, <strong>neither of these tablets has</strong> the right software."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Several & Plenty Of Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Several</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">several + Plural Noun + Plural Verb</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Means <em>'more than a few but not a lot'</em>:</p>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm font-semibold text-slate-800">
+                            "<strong>Several friends of mine are studying</strong> journalism."
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Plenty Of</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">plenty of + Plural / Uncountable Noun</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Means <em>'a large number or amount'</em> (more than enough):</p>
+                        <div class="space-y-2 text-xs font-semibold text-slate-800">
+                            <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+                                📚 <strong>Plural:</strong> "There are <strong>plenty of books</strong> to help with research."
+                            </div>
+                            <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+                                💰 <strong>Uncountable:</strong> "You need <strong>plenty of money</strong> to set up a business."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: GROUP QUANTIFIERS & QUANTITY PHRASES -->
+            <div id="tab-group-phrases" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700">
+                        <span class="text-3xl font-black">All / No</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Group Quantifiers & Amount Phrases</h3>
+                        <p class="text-lg text-slate-600 font-medium">Quantifying specific groups, zero amounts, and precise quantity expressions.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- All, Most, Some -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">All / Most / Some</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">Specific Groups</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Used with <em>(of)</em> before specific nouns:</p>
+                            <ul class="text-xs space-y-2 text-slate-800 font-medium">
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong>+ Plural Noun + Plural Verb:</strong><br>
+                                    "All the electronic devices I own <strong>are</strong> very old."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong>+ Uncountable Noun + Singular Verb:</strong><br>
+                                    "Most news these days <strong>is</strong> very depressing."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    "I think some of the information on this website <strong>is</strong> wrong."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- No vs None Of -->
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-fuchsia-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">No vs. None Of</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">Negative Meaning (+) Verb</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Both have negative meanings; use with <strong>affirmative verbs</strong>!</p>
+                            <ul class="text-xs space-y-2 text-slate-800 font-medium">
+                                <li class="bg-fuchsia-50 p-2.5 rounded-lg border border-fuchsia-200">
+                                    <strong>No + Plural/Uncountable:</strong><br>
+                                    "There <strong>are no messaging apps</strong> on my phone." / "There <strong>is no ink</strong>."
+                                </li>
+                                <li class="bg-fuchsia-50 p-2.5 rounded-lg border border-fuchsia-200">
+                                    <strong>None of + Uncountable (Singular V):</strong><br>
+                                    "None of the information <strong>was</strong> very helpful."
+                                </li>
+                                <li class="bg-fuchsia-50 p-2.5 rounded-lg border border-fuchsia-200">
+                                    <strong>None of + Plural (Singular OR Plural V):</strong><br>
+                                    "None of these news articles <strong>is / are</strong> very interesting."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Expressions -->
+                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Specific Phrases</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">Amount / Number Phrases</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal & natural phrases for quantity:</p>
+                            <ul class="text-xs space-y-2 text-slate-800 font-medium">
+                                <li class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                                    <strong>a great deal of + Uncountable:</strong><br>
+                                    "don't have <strong>a great deal of money</strong>"
+                                </li>
+                                <li class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                                    <strong>amount of + Uncountable:</strong><br>
+                                    "a small <strong>amount of time</strong>"
+                                </li>
+                                <li class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                                    <strong>number of + Plural:</strong><br>
+                                    "a large <strong>number of useful apps</strong>"
+                                </li>
+                                <li class="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                                    <strong>a couple of + Plural:</strong><br>
+                                    "a <strong>couple of good TV programmes</strong>"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cheat Sheet Banner -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold mb-3 text-fuchsia-300 uppercase tracking-widest flex items-center gap-2">
+                        <span>⚡ Amount vs. Number Quick Guardrail</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-fuchsia-400 font-bold block mb-1">Uncountable Nouns ONLY</span>
+                            <div class="text-slate-300">👉 <strong>a great deal of</strong>, <strong>a small/large amount of</strong></div>
+                            <div class="text-xs text-slate-400 mt-1 font-mono">amount of money / time / info</div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-indigo-400 font-bold block mb-1">Plural Countable Nouns ONLY</span>
+                            <div class="text-slate-300">👉 <strong>a large/small number of</strong>, <strong>a couple of</strong></div>
+                            <div class="text-xs text-slate-400 mt-1 font-mono">number of apps / articles / programmes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: INDEFINITE PRONOUNS -->
+            <div id="tab-indefinite" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-fuchsia-100 p-4 rounded-2xl text-fuchsia-700">
+                        <span class="text-3xl font-black">some- / any-</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">C. Indefinite Pronouns Table & Rules</h3>
+                        <p class="text-lg text-slate-600 font-medium">Combining <em>some-, any-, no-, every-</em> with <em>-one, -body, -thing</em>.</p>
+                    </div>
+                </div>
+
+                <!-- Matrix Table -->
+                <div class="bg-white border-2 border-fuchsia-100 rounded-2xl overflow-hidden shadow-sm">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-fuchsia-700 text-white font-bold text-sm">
+                                <th class="p-4">Prefix</th>
+                                <th class="p-4">People (-one / -body)</th>
+                                <th class="p-4">Things (-thing)</th>
+                                <th class="p-4">Typical Usage Context</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-fuchsia-100 text-sm font-medium text-slate-800">
+                            <tr class="hover:bg-fuchsia-50/50">
+                                <td class="p-4 font-extrabold text-fuchsia-800">some-</td>
+                                <td class="p-4 font-semibold">someone / somebody</td>
+                                <td class="p-4 font-semibold">something</td>
+                                <td class="p-4 text-xs text-slate-600"><strong>Positive (+):</strong> "I know <strong>someone</strong> who works in film."</td>
+                            </tr>
+                            <tr class="hover:bg-fuchsia-50/50">
+                                <td class="p-4 font-extrabold text-indigo-800">any-</td>
+                                <td class="p-4 font-semibold">anyone / anybody</td>
+                                <td class="p-4 font-semibold">anything</td>
+                                <td class="p-4 text-xs text-slate-600"><strong>Negatives (-) & Questions (?):</strong> "don't know <strong>anyone</strong>" / "Is there <strong>anything</strong>?" <br><em class="text-fuchsia-700 font-bold">Or (+) for "any person/thing without preference"</em>: "<strong>Anyone</strong> can take photos."</td>
+                            </tr>
+                            <tr class="hover:bg-fuchsia-50/50">
+                                <td class="p-4 font-extrabold text-slate-800">no-</td>
+                                <td class="p-4 font-semibold">no one / nobody</td>
+                                <td class="p-4 font-semibold">nothing</td>
+                                <td class="p-4 text-xs text-slate-600"><strong>Negative meaning with (+) Affirmative verb:</strong> "<strong>Nobody</strong> seems to know." / "produced <strong>nothing</strong>."</td>
+                            </tr>
+                            <tr class="hover:bg-fuchsia-50/50">
+                                <td class="p-4 font-extrabold text-amber-800">every-</td>
+                                <td class="p-4 font-semibold">everyone / everybody</td>
+                                <td class="p-4 font-semibold">everything</td>
+                                <td class="p-4 text-xs text-slate-600"><strong>All members (takes SINGULAR verb):</strong> "<strong>Everyone</strong> in my family <strong>uses</strong> instant messaging."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Singular Verb vs Pronoun Agreement Callout -->
+                <div class="bg-amber-500/10 border-2 border-amber-400 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">⚠️</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-900 text-lg mb-2">Crucial Pronoun Reference Agreement Rule!</h4>
+                            <p class="text-sm text-amber-900 font-medium leading-relaxed mb-3">
+                                ALL indefinite pronouns take a <strong>SINGULAR VERB</strong> (e.g. <em>Everyone <u>is</u> / Nobody <u>knows</u></em>). However, when referring back to them later in the sentence, use plural pronouns: <strong>they, them, their, or themselves</strong>!
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-amber-300 text-sm font-bold text-slate-800">
+                                👉 "<strong>Everyone</strong> should carry a mobile <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded border border-amber-300">so they can use it</span> in an emergency."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: QUANTIFIER MATRIX EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-fuchsia-50 border-2 border-fuchsia-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Quantifier & Pronoun Decision Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a scenario to discover the correct quantifier/pronoun rule and verb agreement!</p>
+
+                    <!-- Filter Selection -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('each')" id="ebtn-each" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-fuchsia-300 bg-white text-fuchsia-800">each vs. every (Separate vs. Group)</button>
+                            <button onclick="selectExplorer('neither')" id="ebtn-neither" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-fuchsia-300 bg-white text-fuchsia-800">neither / either (2 Items)</button>
+                            <button onclick="selectExplorer('amount_number')" id="ebtn-amount_number" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-fuchsia-300 bg-white text-fuchsia-800">amount of vs. number of</button>
+                            <button onclick="selectExplorer('no_none')" id="ebtn-no_none" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-fuchsia-300 bg-white text-fuchsia-800">no vs. none of</button>
+                            <button onclick="selectExplorer('everyone_they')" id="ebtn-everyone_they" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-fuchsia-300 bg-white text-fuchsia-800">Everyone + Singular V + they/their</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-fuchsia-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-fuchsia-50 via-indigo-50 to-amber-50 rounded-2xl p-8 border border-fuchsia-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-fuchsia-900 mb-2">Test Your Page 191 Knowledge</h3>
+                    <p class="text-fuchsia-700 font-medium">Select the correct option according to Page 191 grammar rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. I read <span class="inline-block w-28 border-b-2 border-slate-400"></span> article in the magazine very carefully.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We prefer <strong>each</strong> when thinking about items separately.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">each</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Every prefers thinking about all items together in a general sense.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">every</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. All requires a plural noun (all articles).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">all</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Unfortunately, <span class="inline-block w-28 border-b-2 border-slate-400"></span> of these two tablets has the right software.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>neither</strong> refers to 2 things in a negative sense (\'not one or the other\').')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">neither</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Either means \'one or the other\', but the context specifies none have the right software.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">either</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Both requires a plural verb (have).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">both</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. There are a large <span class="inline-block w-28 border-b-2 border-slate-400"></span> of useful travel apps for smartphones.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>number of</strong> with plural countable nouns (travel apps).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">number</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Amount of is used with uncountable nouns (e.g., amount of time/money).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">amount</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Great deal of is used with uncountable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">deal</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. <span class="inline-block w-28 border-b-2 border-slate-400"></span> in my family uses instant messaging.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Everyone</strong> takes a singular verb (uses).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Everyone</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. All would require a plural verb (All in my family use...).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">All</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Both is used for two people, and takes a plural verb.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">Both</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Everyone should carry a mobile so <span class="inline-block w-28 border-b-2 border-slate-400"></span> can use it in an emergency.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! When referring back to indefinite pronouns like everyone/somebody, we use <strong>they / them / their</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">they</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. In modern English, we avoid he/she and use gender-neutral plural pronouns (they).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">he</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Everyone is referring to people, not an object (it).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-fuchsia-100 hover:text-fuchsia-700 text-slate-700 transition-colors border-2 border-transparent">it</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Quantifiers & Pronouns</span>
+            <span>Page 191 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-fuchsia-600', 'text-fuchsia-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-fuchsia-600', 'text-fuchsia-700');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'each': {
+                title: 'Each vs. Every',
+                example: '👉 "I read <strong class="text-fuchsia-800 underline">each article</strong> carefully. / <strong class="text-fuchsia-800 underline">Every TV programme</strong> is the same."',
+                rule: 'Rule: Each = thinking of items individually/separately. Every = thinking of all items together. Both take singular nouns and singular verbs.'
+            },
+            'neither': {
+                title: 'Both / Either / Neither (2 Items)',
+                example: '👉 "<strong class="text-fuchsia-800 underline">Both</strong> (plural V) vs. <strong class="text-fuchsia-800 underline">Either/Neither</strong> of these tablets <strong class="text-fuchsia-800 underline">has</strong> (singular V)."',
+                rule: 'Rule: Used for 2 items. Both takes plural verb. Either/Neither take singular nouns and singular verbs.'
+            },
+            'amount_number': {
+                title: 'Amount vs. Number Phrases',
+                example: '👉 "A small <strong class="text-fuchsia-800 underline">amount of time</strong> (Uncountable) vs. A large <strong class="text-fuchsia-800 underline">number of apps</strong> (Plural)."',
+                rule: 'Rule: Use "deal of" or "amount of" for uncountable nouns. Use "number of" or "couple of" for plural countable nouns.'
+            },
+            'no_none': {
+                title: 'No vs. None Of',
+                example: '👉 "There is <strong class="text-fuchsia-800 underline">no ink</strong>. / <strong class="text-fuchsia-800 underline">None of</strong> the information <strong class="text-fuchsia-800 underline">was</strong> helpful."',
+                rule: 'Rule: Both carry negative meaning, so use with AFFIRMATIVE verbs! None of + uncountable takes singular verb.'
+            },
+            'everyone_they': {
+                title: 'Indefinite Pronoun Reference Agreement',
+                example: '👉 "<strong class="text-fuchsia-800 underline">Everyone</strong> in my family <strong class="text-fuchsia-800 underline">uses</strong> tech so <strong class="text-fuchsia-800 underline">they can</strong> stay connected."',
+                rule: 'Rule: Indefinite pronouns take a singular verb, BUT refer back to them using they/them/their/themselves.'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-fuchsia-700', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-fuchsia-700', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-fuchsia-100 text-fuchsia-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-fuchsia-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('each');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-fuchsia-100', 'hover:text-fuchsia-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-fuchsia-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-fuchsia-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-fuchsia-50', 'border-fuchsia-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-fuchsia-50', 'border-fuchsia-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-fuchsia-100');
+                correctBtn.classList.add('border-fuchsia-500', 'text-fuchsia-800');
+            }
+        }
+    </script>
+</body>
+</html>

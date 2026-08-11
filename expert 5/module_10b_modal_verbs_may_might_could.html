@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: May, Might & Could (Page 160)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdfa; /* Teal-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.18), 0 10px 10px -5px rgba(13, 148, 136, 0.08);
+            border-color: #0d9488; /* Teal-600 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(13, 148, 136, 0.4); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+            70% { border-color: rgba(13, 148, 136, 0); box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+            100% { border-color: rgba(13, 148, 136, 0); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #0d9488; /* Teal-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-teal-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-teal-700 via-cyan-800 to-indigo-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-teal-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Grammar Guide • Page 160
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">May, Might & Could</h1>
+                <p class="mt-4 text-teal-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">possibility</span> (may / might / could), <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">formal permission</span> (may), <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">past ability</span> (could), and <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">polite requests</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-700 border-b-4 border-teal-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-may-might')">1. May & Might 🔮</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-could')">2. Could (Ability, Possibility & Requests) ⏳</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-pitfalls')">3. Key Rules & Pitfalls ⚠️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Modal Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: MAY & MIGHT -->
+            <div id="tab-may-might" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-teal-100 p-4 rounded-2xl text-teal-700 pulse-border">
+                        <span class="text-3xl font-black">May / Might</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. May & Might for Possibility & Permission</h3>
+                        <p class="text-lg text-slate-600 font-medium">Expressing present/future chance and asking for or granting permission.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Possibility Card -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Possibility (Present / Future)</span>
+                                <span class="text-2xl">🔮</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">may / might (+ Infinitive)</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Used when we think something is <strong>possible now or in the future</strong>. Both <em>may</em> and <em>might</em> are interchangeable in this sense.
+                            </p>
+                            <ul class="text-sm space-y-3 text-slate-700 font-medium mb-4">
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
+                                    <strong class="text-teal-900 font-bold">(+) Affirmative:</strong><br>
+                                    👉 "My dictionary isn't on my desk – it <strong class="underline text-teal-800">may / might be</strong> in my bag."
+                                </li>
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
+                                    <strong class="text-teal-900 font-bold">(-) Negative (may not / might not):</strong><br>
+                                    👉 "People <strong class="underline text-teal-800">may not / might not have</strong> to learn English in the future."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Permission Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Permission (Formal)</span>
+                                <span class="text-2xl">🔑</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">may ONLY (NOT might)</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                We use <strong>may</strong> to ask for, give, or refuse permission formally. <em class="text-rose-600 font-bold">Do NOT use might for permission!</em>
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 font-bold">Asking Permission (?):</strong><br>
+                                    👉 "<strong class="underline text-indigo-900">May I borrow</strong> your dictionary?"
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 font-bold">Giving Permission (+):</strong><br>
+                                    👉 "You <strong class="underline text-indigo-900">may use</strong> my notes."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 font-bold">Refusing Permission (-):</strong><br>
+                                    👉 "You <strong class="underline text-indigo-900">may not take</strong> any of the books from the library."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Rule Callout -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold mb-3 text-teal-300 uppercase tracking-widest flex items-center gap-2">
+                        <span>⚡ Quick Guardrail: May vs. Might for Permission</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-teal-400 font-bold block mb-1">Possibility Context</span>
+                            <div class="text-slate-300">✅ Use BOTH <strong>may</strong> or <strong>might</strong></div>
+                            <div class="text-xs text-slate-400 mt-1 font-mono">"It may be / might be in my bag."</div>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-indigo-400 font-bold block mb-1">Permission Context</span>
+                            <div class="text-slate-300">✅ Use <strong>may ONLY</strong> (Never "Might I...?")</div>
+                            <div class="text-xs text-slate-400 mt-1 font-mono">"May I borrow...?" / "You may not take..."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: COULD -->
+            <div id="tab-could" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700">
+                        <span class="text-3xl font-black">Could</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Could for Ability, Possibility & Requests</h3>
+                        <p class="text-lg text-slate-600 font-medium">Three distinct uses of <em>could</em> according to Page 160.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Past Ability -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Past Ability</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">could / couldn't</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">To express general ability in the past:</p>
+                            <ul class="text-xs space-y-2 text-slate-800 font-medium">
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong>(+) Ability:</strong><br>
+                                    "I <strong class="text-indigo-900">could speak</strong> very good French by the time I was nine or ten."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong>(-) Inability:</strong><br>
+                                    "He <strong class="text-indigo-900">couldn't communicate</strong> with his grandmother until he learned German."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Possibility -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Possibility</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">could (Positive)</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Like <em>may/might</em>, expresses present or future chance:</p>
+                            <ul class="text-xs space-y-2 text-slate-800 font-medium">
+                                <li class="bg-teal-50 p-2.5 rounded-lg border border-teal-200">
+                                    <strong>(+) Chance:</strong><br>
+                                    "Intercultural communication <strong class="text-teal-900">could become</strong> even more important in the future."
+                                </li>
+                                <li class="bg-rose-50 p-2.5 rounded-lg border border-rose-200 text-rose-900">
+                                    <strong>⚠️ Critical Rule for Negatives:</strong><br>
+                                    In negative sentences for possibility, use <strong>may not</strong> or <strong>might not</strong> (NOT <em>couldn't</em>)!
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Requests -->
+                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Requests</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">Polite Requests</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">To ask someone politely to do something:</p>
+                            <ul class="text-xs space-y-2 text-slate-800 font-medium">
+                                <li class="bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                                    <strong>Could you + bare infinitive...?</strong><br>
+                                    "<strong class="text-slate-900">Could you translate</strong> this for me, please?"
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: KEY RULES & PITFALLS -->
+            <div id="tab-pitfalls" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-amber-100 p-4 rounded-2xl text-amber-700">
+                        <span class="text-3xl font-black">⚠️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Common Pitfalls & Essential Rules</h3>
+                        <p class="text-lg text-slate-600 font-medium">Key mistakes to avoid in exam questions and formal writing.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Pitfall 1: Couldn't vs May Not / Might Not -->
+                    <div class="bg-rose-500/10 border-2 border-rose-400 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">🚫</div>
+                            <div>
+                                <h4 class="font-extrabold text-rose-900 text-lg mb-2">Pitfall 1: Do NOT use "couldn't" for negative possibility!</h4>
+                                <p class="text-sm text-rose-900 font-medium leading-relaxed mb-3">
+                                    When expressing that something is possibly NOT true, use <strong>may not</strong> or <strong>might not</strong>. <em>Couldn't</em> implies deduction of impossibility or past inability, NOT possibility.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold">
+                                    <div class="bg-white p-3 rounded-xl border border-rose-300 text-rose-800">
+                                        ❌ Incorrect: "You <span class="line-through">couldn't</span> be able to understand her accent."
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-teal-300 text-teal-800">
+                                        ✅ Correct: "You <strong>may not / might not</strong> be able to understand her accent."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pitfall 2: Might for Permission -->
+                    <div class="bg-amber-500/10 border-2 border-amber-400 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="text-3xl">⚠️</div>
+                            <div>
+                                <h4 class="font-extrabold text-amber-900 text-lg mb-2">Pitfall 2: Do NOT use "might" to ask for permission!</h4>
+                                <p class="text-sm text-amber-900 font-medium leading-relaxed mb-3">
+                                    While <em>may</em> and <em>might</em> both work for possibility, ONLY <strong>may</strong> is used for asking or granting permission.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold">
+                                    <div class="bg-white p-3 rounded-xl border border-amber-300 text-rose-800">
+                                        ❌ Incorrect: "<span class="line-through">Might I borrow</span> your dictionary?"
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-teal-300 text-teal-800">
+                                        ✅ Correct: "<strong>May I borrow</strong> your dictionary?"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: MODAL EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Modal Decision Explorer</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a context below to view the correct modal verb and example sentence!</p>
+
+                    <!-- Filter Selection -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('possibility')" id="ebtn-possibility" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Present/Future Possibility</button>
+                            <button onclick="selectExplorer('permission')" id="ebtn-permission" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Asking / Giving Permission</button>
+                            <button onclick="selectExplorer('past_ability')" id="ebtn-past_ability" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Past Ability</button>
+                            <button onclick="selectExplorer('neg_possibility')" id="ebtn-neg_possibility" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Negative Possibility</button>
+                            <button onclick="selectExplorer('request')" id="ebtn-request" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Polite Requests</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-teal-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-teal-50 via-indigo-50 to-amber-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Page 160 Knowledge</h3>
+                    <p class="text-teal-700 font-medium">Select the correct option according to Page 160 grammar rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. My dictionary isn't on my desk – it <span class="inline-block w-28 border-b-2 border-slate-400"></span> be in my bag.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Both <strong>may</strong> and <strong>might</strong> show present/future possibility.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">may / might</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Must shows deduction of certainty (\'it must be\'), whereas may/might expresses possibility.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">must</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Couldn\'t expresses impossibility.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">couldn't</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. <span class="inline-block w-28 border-b-2 border-slate-400"></span> I borrow your dictionary, please?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>May</strong> (not Might) to ask for formal permission.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">May</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Page 160 states that we use may (but NOT might) to ask for permission.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">Might</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Should is used for advice, not asking permission.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">Should</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. I <span class="inline-block w-28 border-b-2 border-slate-400"></span> speak very good French by the time I was nine or ten.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>could</strong> to express ability in the past.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">could</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Can is used for ability in the present, not past.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">can</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. May expresses possibility/permission, not past general ability.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">may</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. You <span class="inline-block w-28 border-b-2 border-slate-400"></span> be able to understand her accent. (Negative Possibility)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! In negative possibility sentences, we use <strong>may not / might not</strong> (NOT couldn\'t).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">may not / might not</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect! Page 160 explicitly specifies: in negative sentences for possibility, we use may not or might not, but NOT couldn\'t.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">couldn't</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Mustn\'t expresses prohibition.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">mustn't</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. <span class="inline-block w-28 border-b-2 border-slate-400"></span> you translate this for me, please?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>Could</strong> to make polite requests.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Could</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Might is not used to make direct polite requests to someone.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">Might</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. May you... is not standard English for requests.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">May</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Modal Verbs</span>
+            <span>Page 160 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-teal-600', 'text-teal-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'possibility': {
+                title: 'Present / Future Possibility',
+                example: '👉 "My dictionary isn\'t on my desk – it <strong class="text-teal-800 underline">may / might / could be</strong> in my bag."',
+                rule: 'Rule: Use may, might, or could to express present or future chance.'
+            },
+            'permission': {
+                title: 'Asking / Giving / Refusing Permission',
+                example: '👉 "<strong class="text-teal-800 underline">May I borrow</strong> your dictionary? You <strong class="text-teal-800 underline">may use</strong> my notes."',
+                rule: 'Rule: Use MAY (never might) to ask for, give, or refuse permission.'
+            },
+            'past_ability': {
+                title: 'Past Ability',
+                example: '👉 "I <strong class="text-teal-800 underline">could speak</strong> French by nine. He <strong class="text-teal-800 underline">couldn\'t communicate</strong> in German."',
+                rule: 'Rule: Use could / couldn\'t to express general ability/inability in the past.'
+            },
+            'neg_possibility': {
+                title: 'Negative Possibility',
+                example: '👉 "You <strong class="text-teal-800 underline">may not / might not be</strong> able to understand her accent."',
+                rule: 'Rule: In negative possibility sentences, use "may not" or "might not" (NOT couldn\'t).'
+            },
+            'request': {
+                title: 'Polite Requests',
+                example: '👉 "<strong class="text-teal-800 underline">Could you translate</strong> this for me, please?"',
+                rule: 'Rule: Use "Could you + bare infinitive" to make polite requests.'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-teal-700', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-teal-700', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-teal-100 text-teal-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-teal-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('possibility');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-teal-100', 'hover:text-teal-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+    </script>
+</body>
+</html>
