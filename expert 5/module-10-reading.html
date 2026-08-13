@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Academic Simulator - Do dolphins have conversations?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        /* Typography Improvements */
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .para-letter {
+            position: absolute;
+            left: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 1.1em;
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.6em;
+            text-align: center;
+        }
+        .reading-passage h4 {
+            font-family: 'Inter', sans-serif;
+            color: #475569;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* Question Styles */
+        .q-item {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        .q-input {
+            border: 0;
+            border-bottom: 2px solid #cbd5e1;
+            background-color: transparent;
+            padding: 0.25rem 0.5rem;
+            width: 180px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+            transition: border-color 0.2s;
+        }
+        .q-input:focus {
+            outline: none;
+            border-bottom-color: #3b82f6;
+            background-color: #f0fdf4;
+        }
+        
+        /* Vocabulary Styles */
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        /* UI Elements */
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        /* Progress Tracker Styles */
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .progress-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            max-width: calc(100vw - 120px);
+            scrollbar-width: thin;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .progress-container {
+                max-width: calc(100vw - 80px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">IELTS Simulator <span class="text-blue-600 font-medium hidden md:inline">| Do dolphins have conversations?</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <!-- Student Name -->
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-3 py-1.5 text-sm w-32 sm:w-48 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+            </div>
+            
+            <!-- Clear Highlights Button -->
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <!-- Font controls -->
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <!-- Left Pane: Passages -->
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Do dolphins have conversations?</h3>
+                
+                <p><span class="para-letter">A</span> Researchers have recorded two dolphins having a conversation for the first time after the development of an underwater microphone which can <span class="vocab-word" data-word="distinguish">distinguish</span> the animals’ different ‘voices’. Researchers have known for years that dolphins have an advanced form of communication, using a range of clicks and whistles to show they are excited, happy, stressed or separated from the group. But scientists have now shown that dolphins make changes to the volume and <span class="vocab-word" data-word="frequency">frequency</span> of their clicks to form individual ‘words’, which they group together into sentences similar to how humans speak.</p>
+                
+                <p><span class="para-letter">B</span> Researchers at the Karadag Nature Reserve in Feodosia, Ukraine, recorded two Black Sea bottlenose dolphins called Yasha and Yana talking to each other in a pool. They found that each dolphin would listen to a sentence of clicks, without stopping the other dolphin, before replying. Lead researcher Dr Vyacheslav Ryabov said, ‘Essentially, this exchange is very much like a conversation between two people. Each click that is produced by dolphins is different from another, so we can assume that each click represents a word of the dolphin’s spoken language.’</p>
+                
+                <p><span class="para-letter">C</span> The researchers found that Yasha and Yana could create sentences of up to five ‘words’, but the scientists have not worked out the content yet. Dr Ryabov said it was now almost certain that dolphins speak their own language and it is time to start studying how to communicate directly with them. Because dolphins have brains that are larger, more complex and older than human ones, Dr Ryabov said, ‘Humans must take the first step to form relationships with the first intelligent inhabitants of the planet Earth, We need to create devices that allow communication between dolphins and people.’</p>
+                
+                <p><span class="para-letter">D</span> Scientists already knew that dolphins use more than 1,000 different types of whistle depending on social <span class="vocab-word" data-word="context">context</span>, but it was unclear if they could communicate directly with each other, one to one. In 2007 Australian scientists identified specific whistles which they <span class="vocab-word" data-word="interpreted">interpreted</span> to mean, ‘I’m here, where is everyone?’, ‘Hurry up!’ and ‘There’s food over here.’ Researchers also think that dolphins have developed a type of sign language in which they communicate with their flippers.</p>
+                
+                <p><span class="para-letter">E</span> Furthermore, a group of scientists in Florida recently showed that the communication between dolphins increases when they are doing a difficult task. The dolphins in the experiment were filmed working together to remove the lid from a container - it looked like they were discussing the best solution. When one animal was working to open the container, it whistled or made a series of clicks. When two were involved, pulling off the lids from each end, the frequency of whistles and clicks increased dramatically. In other words, they were ‘talking’ to each other in order to solve a complex problem.</p>
+                
+                <p><span class="para-letter">F</span> Research has come a long way since the founder of dolphin communication research, Louis Herman, started out. Herman worked with two dolphins, Pheonix and Ake, in Hawaii. Phoenix was taught to respond to computer-generated whistles, while Ake learnt a ‘dolphinised’ version of American Sign Language. The two systems had their own different grammar structure. For Phoenix, ‘pipe fetch gate’ meant ‘take the piece of pipe to the pool gate’, but for Ake the words were organised differently, so ‘channel fish fetch’ meant ‘take the fish to the channel connecting the pools’. Each dolphin learnt about 30 words in all and by following the commands correctly, they both showed an understanding of directions.</p>
+                
+                <p><span class="para-letter">G</span> Herman also made numerous studies of the whistles and clicks dolphins use to express pleasure or anger. He found evidence to suggest that, by giving out a sharp clicking sound that <span class="vocab-word" data-word="echoes">echoes</span> back when it comes into contact with something — a process known as ‘<span class="vocab-word" data-word="echolocation">echolocation</span>’ - dolphins can make out the shape or size of objects they have never seen before, For several years the US Navy provided him with money for these experiments, in the hope that true communication between species might let dolphins help humans in special naval activities.</p>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500 italic space-y-1">
+                    <p>*interpret: explain the meaning of something</p>
+                    <p>*echo: if a sound echoes, it is repeated because it hits a surface and returns</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Splitter -->
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <!-- Right Pane: Questions -->
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-2xl mx-auto space-y-8">
+                
+                <!-- Questions 1 - 5 -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1–5</span>
+                        <h4 class="font-bold text-gray-800">Short Answer Questions</h4>
+                    </div>
+                    <p class="mb-6 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        Answer the questions below. Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.
+                    </p>
+                    
+                    <div class="space-y-6 text-gray-800 leading-relaxed">
+                        
+                        <div class="q-item" id="container-q1">
+                            <label class="block mb-2 font-medium">
+                                <span class="font-bold text-blue-600 mr-2">1</span> 
+                                What did scientists use to record Yasha and Yana’s ‘conversations’?
+                            </label>
+                            <div>
+                                <input type="text" name="q1" class="q-input w-full max-w-xs text-left" autocomplete="off" placeholder="Your answer...">
+                            </div>
+                        </div>
+
+                        <div class="q-item" id="container-q2">
+                            <label class="block mb-2 font-medium">
+                                <span class="font-bold text-blue-600 mr-2">2</span> 
+                                As well as changing how often they ‘click’, what else do dolphins change about their ‘clicks’ to help them communicate?
+                            </label>
+                            <div>
+                                <input type="text" name="q2" class="q-input w-full max-w-xs text-left" autocomplete="off" placeholder="Your answer...">
+                            </div>
+                        </div>
+
+                        <div class="q-item" id="container-q3">
+                            <label class="block mb-2 font-medium">
+                                <span class="font-bold text-blue-600 mr-2">3</span> 
+                                What are the researchers in Ukraine unable to understand about Yasha and Yana’s ‘conversations’?
+                            </label>
+                            <div>
+                                <input type="text" name="q3" class="q-input w-full max-w-xs text-left" autocomplete="off" placeholder="Your answer...">
+                            </div>
+                        </div>
+
+                        <div class="q-item" id="container-q4">
+                            <label class="block mb-2 font-medium">
+                                <span class="font-bold text-blue-600 mr-2">4</span> 
+                                What form of communication do scientists believe dolphins use when they communicate with their flippers?
+                            </label>
+                            <div>
+                                <input type="text" name="q4" class="q-input w-full max-w-xs text-left" autocomplete="off" placeholder="Your answer...">
+                            </div>
+                        </div>
+                        
+                        <div class="q-item" id="container-q5">
+                            <label class="block mb-2 font-medium">
+                                <span class="font-bold text-blue-600 mr-2">5</span> 
+                                What type of instruction were both Phoenix and Ake able to follow in Louis Herman’s research?
+                            </label>
+                            <div>
+                                <input type="text" name="q5" class="q-input w-full max-w-xs text-left" autocomplete="off" placeholder="Your answer...">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Questions 6 - 10 -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 6–10</span>
+                        <h4 class="font-bold text-gray-800">YES / NO / NOT GIVEN</h4>
+                    </div>
+                    <p class="mb-4 text-gray-700">
+                        Do the following statements agree with claims of the writer in the reading passage? Write:
+                    </p>
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6 text-sm text-gray-700 space-y-1">
+                        <p><strong class="w-24 inline-block text-gray-900">YES</strong> if the statement agrees with the claims of the writer.</p>
+                        <p><strong class="w-24 inline-block text-gray-900">NO</strong> if the statement contradicts the claims of the writer.</p>
+                        <p><strong class="w-24 inline-block text-gray-900">NOT GIVEN</strong> if it is impossible to say what the writer thinks about this.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q6">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">6</span> It is only recently that researchers have realised that dolphins can communicate.</span>
+                            <select name="q6" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-36 text-sm flex-shrink-0">
+                                <option value="">Select...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q7">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">7</span> Researchers found some dolphins wait until it is their turn to ‘speak’ in a conversation.</span>
+                            <select name="q7" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-36 text-sm flex-shrink-0">
+                                <option value="">Select...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q8">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">8</span> Australian researchers were able to communicate with dolphins using a series of whistles.</span>
+                            <select name="q8" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-36 text-sm flex-shrink-0">
+                                <option value="">Select...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q9">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">9</span> The experiment in Florida showed that dolphins communicate more when the task is harder.</span>
+                            <select name="q9" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-36 text-sm flex-shrink-0">
+                                <option value="">Select...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 gap-3" id="container-q10">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">10</span> Dolphins are the only animals that use echolocation to help identify objects.</span>
+                            <select name="q10" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-36 text-sm flex-shrink-0">
+                                <option value="">Select...</option>
+                                <option value="YES">YES</option>
+                                <option value="NO">NO</option>
+                                <option value="NOT GIVEN">NOT GIVEN</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button Area -->
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center pb-8">
+                    <button id="submit-form-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg shadow-md inline-flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg>
+                        <span>Submit to Google Form</span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">This will open your pre-filled Google Form in a new tab.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Progress Footer -->
+    <footer class="bg-white border-t border-gray-200 p-3 flex justify-center items-center z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] overflow-hidden">
+        <span class="text-sm font-bold text-gray-700 mr-3 flex-shrink-0">Progress:</span>
+        <div class="progress-container">
+            <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+            <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+            <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+            <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+            <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+            <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+            <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+            <a href="#container-q9" class="progress-item" data-q="q9">9</a>
+            <a href="#container-q10" class="progress-item" data-q="q10">10</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Highlight Tooltip -->
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white mr-4 transition-all shadow-sm border border-blue-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    // --- DATA ---
+    const vocabulary = {
+        'distinguish': { meaning: 'To recognize or point out a difference between people, sounds, or things.', phonetic: '/dɪˈstɪŋ.ɡwɪʃ/' },
+        'frequency': { meaning: 'The rate at which a vibration or wave occurs that constitutes a wave, such as sound or radio waves.', phonetic: '/ˈfriː.kwən.si/' },
+        'context': { meaning: 'The circumstances that form the setting for an event, statement, or idea.', phonetic: '/ˈkɒn.tekst/' },
+        'interpreted': { meaning: 'Explained or understood the meaning of information, actions, or sounds in a particular way.', phonetic: '/ɪnˈtɜː.prɪ.tɪd/' },
+        'echoes': { meaning: 'Sounds repeated because they hit a hard surface and return back.', phonetic: '/ˈek.əʊz/' },
+        'echolocation': { meaning: 'The location of objects by reflected sound, used by animals like dolphins and bats.', phonetic: '/ˌek.əʊ.ləʊˈkeɪ.ʃən/' }
+    };
+
+    // --- APPLICATION LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            // Elements
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                // Vocab Words & Marks Event Delegation
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                // Form Input Event Listeners for Progress Tracking
+                document.body.addEventListener('input', (e) => {
+                    if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') {
+                        this.updateProgress();
+                    }
+                });
+                document.body.addEventListener('change', (e) => {
+                    if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') {
+                        this.updateProgress();
+                    }
+                });
+
+                // Google Form Submission
+                document.body.addEventListener('click', (e) => {
+                    const submitBtn = e.target.closest('#submit-form-btn');
+                    if (submitBtn) {
+                        this.submitToGoogleForm();
+                    }
+                });
+                
+                // Audio Pronunciation Event
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-blue-600', 'bg-blue-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       this.resetAudioBtn();
+                   }
+                });
+            },
+
+            updateProgress() {
+                const progressItems = document.querySelectorAll('.progress-item');
+                progressItems.forEach(item => {
+                    const qName = item.dataset.q;
+                    const inputElement = document.querySelector(`[name="${qName}"]`);
+                    let isAnswered = false;
+                    
+                    if (inputElement) {
+                        if (inputElement.tagName === 'SELECT') {
+                            isAnswered = inputElement.value !== '';
+                        } else if (inputElement.type === 'text') {
+                            isAnswered = inputElement.value.trim() !== '';
+                        }
+                    }
+                    
+                    if (isAnswered) {
+                        item.classList.add('answered');
+                    } else {
+                        item.classList.remove('answered');
+                    }
+                });
+            },
+
+            initProgressTracker() {
+                this.updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-blue-600', 'bg-blue-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+            
+            submitToGoogleForm() {
+                const nameInput = document.getElementById('student-name');
+                const name = nameInput ? nameInput.value : '';
+
+                const params = new URLSearchParams();
+                params.append('usp', 'pp_url');
+                
+                // Student Name Field Entry
+                if (name) params.append('entry.61052668', name);
+
+                // Entry mappings based on the pre-filled Google Form link
+                const formEntries = {
+                    'q1': 'entry.149551709',
+                    'q2': 'entry.1997524203',
+                    'q3': 'entry.117415797',
+                    'q4': 'entry.1553665307',
+                    'q5': 'entry.776940504',
+                    'q6': 'entry.1130126949',
+                    'q7': 'entry.342394446',
+                    'q8': 'entry.1130428097',
+                    'q9': 'entry.485410400',
+                    'q10': 'entry.461912682'
+                };
+
+                // Add Values from inputs & selects
+                for (const [qId, entryId] of Object.entries(formEntries)) {
+                    const inputEl = document.querySelector(`[name="${qId}"]`);
+                    if (inputEl && inputEl.value.trim() !== "") {
+                        params.append(entryId, inputEl.value.trim());
+                    }
+                }
+
+                // Form ID extracted from URL
+                const formId = '1FAIpQLSda0yLMCDzD9VYKlvDjI8Bl59mQ9-ovYt59smOs90QICzWFww';
+                const url = `https://docs.google.com/forms/d/e/${formId}/viewform?${params.toString()}`;
+                
+                window.open(url, '_blank');
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>
