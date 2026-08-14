@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Comparative Forms (Page 45)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eff6ff; /* Blue-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.15), 0 10px 10px -5px rgba(37, 99, 235, 0.08);
+            border-color: #3b82f6; /* Blue-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(37, 99, 235, 0.4); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { border-color: rgba(37, 99, 235, 0); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
+            100% { border-color: rgba(37, 99, 235, 0); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #2563eb; /* Blue-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-blue-700 via-indigo-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 20V10"></path>
+                    <path d="M12 20V4"></path>
+                    <path d="M6 20v-6"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-blue-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                    Module 3 Grammar Guide • Page 45
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Comparative Forms & Multiples</h1>
+                <p class="mt-4 text-blue-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">comparative & superlative rules</span> across syllable types, <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">irregular forms</span>, and multiplier structures like <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">twice as...as</span> and <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">three times higher / as high as</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-blue-700 border-b-4 border-blue-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-rules')">1. Syllable Rules 📏</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-multiples')">2. Multiples & Multipliers ✖️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-irregulars')">3. Irregulars & Traps ⚠️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Comparative Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: SYLLABLE RULES -->
+            <div id="tab-rules" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-blue-100 p-4 rounded-2xl text-blue-700 pulse-border">
+                        <span class="text-3xl font-black">1-2-3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Syllable-Based Rules for Adjectives & Adverbs</h3>
+                        <p class="text-lg text-slate-600 font-medium">How to build comparatives (-er / more) and superlatives (-est / most).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 1-Syllable Card -->
+                    <div class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1-Syllable</span>
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">+er / +est endings</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Add <strong>-er</strong> for comparatives and <strong>-est</strong> for superlatives.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
+                                <li class="bg-blue-50 p-2.5 rounded-xl border border-blue-200">
+                                    <strong>Standard:</strong> fast → <strong>faster</strong> → <strong>fastest</strong><br>
+                                    👉 "It's the <strong class="text-blue-900">fastest way</strong> to learn new words."
+                                </li>
+                                <li class="bg-blue-50 p-2.5 rounded-xl border border-blue-200">
+                                    <strong>Vowel + Consonant (Double):</strong> big → <strong>bigger</strong>, sad → <strong>sadder</strong><br>
+                                    👉 "The new school was <strong class="text-blue-900">bigger than</strong> the old one."
+                                </li>
+                                <li class="bg-blue-50 p-2.5 rounded-xl border border-blue-200">
+                                    <strong>Ending in -e (+r / +st):</strong> safe → <strong>safer</strong> → <strong>safest</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 2-Syllable Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2-Syllables</span>
+                                <span class="text-2xl">⚖️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">more / most OR -ier</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Use <strong>more / the most</strong> for standard adjectives; replace <strong>-y</strong> with <strong>-ier / -iest</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong>Standard 2-syllables:</strong><br>
+                                    👉 "The results were <strong class="text-indigo-900">more interesting</strong> than imagined."<br>
+                                    👉 "Maths was the <strong class="text-indigo-900">most popular</strong> subject."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                                    <strong>Ending in -y (-ier / -iest):</strong><br>
+                                    heavy → <strong>heavier</strong> → <strong>heaviest</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3+ Syllable Card -->
+                    <div class="interactive-card bg-white border-2 border-cyan-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-cyan-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3+ Syllables</span>
+                                <span class="text-2xl">🌟</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">more / the most</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Always use <strong>more</strong> (comparative) and <strong>the most</strong> (superlative) for long adjectives and adverbs.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
+                                <li class="bg-cyan-50 p-2.5 rounded-xl border border-cyan-200">
+                                    <strong>Long Adverb:</strong><br>
+                                    👉 "He spoke <strong class="text-cyan-900">more seriously</strong> than before."
+                                </li>
+                                <li class="bg-cyan-50 p-2.5 rounded-xl border border-cyan-200">
+                                    <strong>Long Adjective:</strong><br>
+                                    👉 "The Hadron Collider is the <strong class="text-cyan-900">most important project</strong>."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Summary Table -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-blue-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <span>⚡ Syllable Transformation Quick Reference</span>
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-medium border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-blue-300 font-bold uppercase">
+                                    <th class="p-3">Type</th>
+                                    <th class="p-3">Base Word</th>
+                                    <th class="p-3">Comparative</th>
+                                    <th class="p-3">Superlative</th>
+                                    <th class="p-3">Rule Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">1-Syllable</td>
+                                    <td class="p-3 font-mono">fast / safe</td>
+                                    <td class="p-3 text-emerald-400 font-bold">faster / safer</td>
+                                    <td class="p-3 text-cyan-400 font-bold">fastest / safest</td>
+                                    <td class="p-3">Add -er / -est (or -r / -st if ends in -e)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">1-Syllable (CVC)</td>
+                                    <td class="p-3 font-mono">big / sad</td>
+                                    <td class="p-3 text-emerald-400 font-bold">bigger / sadder</td>
+                                    <td class="p-3 text-cyan-400 font-bold">biggest / saddest</td>
+                                    <td class="p-3">Double final consonant before -er / -est</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">2-Syllable (-y)</td>
+                                    <td class="p-3 font-mono">heavy</td>
+                                    <td class="p-3 text-emerald-400 font-bold">heavier</td>
+                                    <td class="p-3 text-cyan-400 font-bold">heaviest</td>
+                                    <td class="p-3">Replace -y with -i + er / est</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">2-Syllable (Standard)</td>
+                                    <td class="p-3 font-mono">popular</td>
+                                    <td class="p-3 text-emerald-400 font-bold">more popular</td>
+                                    <td class="p-3 text-cyan-400 font-bold">the most popular</td>
+                                    <td class="p-3">Use more / the most</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">3+ Syllables</td>
+                                    <td class="p-3 font-mono">important / seriously</td>
+                                    <td class="p-3 text-emerald-400 font-bold">more important</td>
+                                    <td class="p-3 text-cyan-400 font-bold">the most important</td>
+                                    <td class="p-3">Use more / the most for long forms</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: MULTIPLES & MULTIPLIERS -->
+            <div id="tab-multiples" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-blue-100 p-4 rounded-2xl text-blue-700">
+                        <span class="text-3xl font-black">✖️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Comparatives with Multiples (Page 45)</h3>
+                        <p class="text-lg text-slate-600 font-medium">Formulas for expressing ratios: <em>twice as...as</em>, <em>half as...as</em>, and <em>3x+ multipliers</em>.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Rule 1: Twice & Half -->
+                    <div class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Twice / Half</span>
+                                <span class="text-2xl">2️⃣</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">twice / half + as + adjective + as</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                With <strong>twice</strong> or <strong>half</strong>, we ALWAYS use the equative structure <strong class="text-blue-700">as + adjective + as</strong>.
+                            </p>
+                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs font-semibold text-blue-950 space-y-2 mb-4">
+                                <p>👉 "Sport was <strong class="underline text-blue-800">twice as popular as</strong> art among primary school children."</p>
+                                <p>👉 "The other class is only <strong class="underline text-blue-800">half as big as</strong> this one."</p>
+                            </div>
+                        </div>
+
+                        <!-- Trap Box -->
+                        <div class="bg-rose-50 border border-rose-300 p-4 rounded-xl text-xs font-bold text-rose-900 space-y-1">
+                            <span class="text-rose-700 uppercase tracking-wider text-[11px] block">⚠️ CRITICAL TRAP: Do NOT use "more" or "-er" with twice/half!</span>
+                            <p>❌ Incorrect: "The number of males was <span class="line-through text-rose-600">twice higher</span> than females."</p>
+                            <p class="text-emerald-800">✅ Correct: "The number of males was <strong>twice as high as</strong> the number of females."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2: Three Times or More -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Three Times or More (3x+)</span>
+                                <span class="text-2xl">3️⃣</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Dual Option Choice</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                With multipliers of <strong>three times or more</strong>, you can use EITHER structure:
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
+                                    <strong class="text-teal-900 block mb-1">Option A: three times + adjective + -er + than</strong>
+                                    👉 "Pass rates were <strong class="underline text-teal-800">four times higher than</strong> last year."
+                                </li>
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
+                                    <strong class="text-teal-900 block mb-1">Option B: three times + as + adjective + as</strong>
+                                    👉 "Pass rates were <strong class="underline text-teal-800">four times as high as</strong> last year."
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-emerald-50 border border-emerald-300 p-3.5 rounded-xl text-xs font-semibold text-emerald-900">
+                            💡 Both options are 100% grammatically correct for 3x, 4x, 5x, etc.!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multiplier Formula Summary Card -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-blue-300 uppercase tracking-widest flex items-center gap-2 mb-3">
+                        <span>⚡ Multipliers Summary Formula Table</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-rose-400 font-bold block mb-1">Twice / Half (Single Formula Only)</span>
+                            <div class="text-slate-300 font-mono">twice / half + as + adjective + as</div>
+                            <p class="text-slate-400 text-[11px] mt-1">✓ twice as high as (NEVER twice higher)</p>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-teal-400 font-bold block mb-1">Three Times + (Dual Formula)</span>
+                            <div class="text-slate-300 font-mono">1. [x] times + adj-er + than</div>
+                            <div class="text-slate-300 font-mono">2. [x] times + as + adj + as</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: IRREGULARS & TRAPS -->
+            <div id="tab-irregulars" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-amber-100 p-4 rounded-2xl text-amber-700">
+                        <span class="text-3xl font-black">⚠️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">C. Irregular Forms & Key Exam Traps</h3>
+                        <p class="text-lg text-slate-600 font-medium">Essential irregular adjective forms and common mistakes to avoid.</p>
+                    </div>
+                </div>
+
+                <!-- Irregular Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Good -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular #1</span>
+                        <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">good / well</h4>
+                        <p class="text-xs text-slate-500 mb-3 font-medium">Comparative & Superlative:</p>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-sm font-bold text-emerald-950 space-y-1 text-center">
+                            <p>Base: <span class="text-slate-700">good</span></p>
+                            <p>Comparative: <span class="text-emerald-700">better</span></p>
+                            <p>Superlative: <span class="text-emerald-900">the best</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Bad -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular #2</span>
+                        <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">bad / badly</h4>
+                        <p class="text-xs text-slate-500 mb-3 font-medium">Comparative & Superlative:</p>
+                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-sm font-bold text-rose-950 space-y-1 text-center">
+                            <p>Base: <span class="text-slate-700">bad</span></p>
+                            <p>Comparative: <span class="text-rose-700">worse</span></p>
+                            <p>Superlative: <span class="text-rose-900">the worst</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Far -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular #3</span>
+                        <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">far</h4>
+                        <p class="text-xs text-slate-500 mb-3 font-medium">Comparative & Superlative:</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-sm font-bold text-indigo-950 space-y-1 text-center">
+                            <p>Base: <span class="text-slate-700">far</span></p>
+                            <p>Comparative: <span class="text-indigo-700">further / farther</span></p>
+                            <p>Superlative: <span class="text-indigo-900">the furthest / farthest</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pitfalls & Guardrails Banner -->
+                <div class="bg-rose-500/10 border-2 border-rose-400 rounded-2xl p-6 shadow-sm space-y-3">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">🚫</div>
+                        <div>
+                            <h4 class="font-extrabold text-rose-900 text-lg mb-1">Page 45 Guardrail Review: Avoid These 3 Exam Errors!</h4>
+                            <ul class="text-xs text-rose-900 font-semibold space-y-2 leading-relaxed">
+                                <li>❌ <strong>Mistake 1:</strong> Using <em>more</em> with <em>twice</em> or <em>half</em>. (Say: <strong>twice as high as</strong>, NOT <span class="line-through">twice higher</span>).</li>
+                                <li>❌ <strong>Mistake 2:</strong> Double comparatives (Say: <strong>more interesting</strong>, NOT <span class="line-through">more more interesting</span> or <span class="line-through">more bigger</span>).</li>
+                                <li>❌ <strong>Mistake 3:</strong> Forgetting to double the consonant in 1-syllable vowel + consonant words (e.g. <strong>bigger</strong>, <strong>sadder</strong>).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: COMPARATIVE EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Comparative & Multiplier Decision Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test which grammar rule applies according to Page 45!</p>
+
+                    <!-- Filter Options -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Scenario</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('one_syllable')" id="ebtn-one_syllable" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">1-Syllable (big / fast)</button>
+                            <button onclick="selectExplorer('two_syllable_y')" id="ebtn-two_syllable_y" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">2-Syllable in -y (heavy)</button>
+                            <button onclick="selectExplorer('long_word')" id="ebtn-long_word" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">3+ Syllables (important)</button>
+                            <button onclick="selectExplorer('twice_half')" id="ebtn-twice_half" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">Multipliers: Twice / Half</button>
+                            <button onclick="selectExplorer('four_times')" id="ebtn-four_times" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">Multipliers: 4 Times (3x+)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-blue-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-emerald-50 rounded-2xl p-8 border border-blue-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-blue-900 mb-2">Test Your Page 45 Knowledge</h3>
+                    <p class="text-blue-700 font-medium">Select the correct comparative or multiplier form according to Page 45 rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. The number of males was twice <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> the number of females.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 45 states that with <strong>twice</strong> or <strong>half</strong>, we use <strong>as + adjective + as</strong> (twice as high as).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">as high as</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect! We do NOT use \'higher than\' or \'more\' with twice or half.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">higher than</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Twice requires the equative structure \'as high as\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more higher than</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Pass rates were four times <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> last year.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! With multipliers of 3x or more, BOTH <strong>higher than</strong> AND <strong>as high as</strong> are grammatically correct!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">higher than / as high as</button>
+                            <button onclick="checkAnswer(this, false, 'Incomplete! While \'higher than\' is valid, \'as high as\' is also equally correct for 4 times.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">only higher than</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Double comparative \'more higher\' is strictly ungrammatical.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more high than</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. The Large Hadron Collider is the <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> project in Europe.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! For 3-syllable adjectives (im-por-tant), the superlative is formed with <strong>the most important</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">most important</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Long adjectives do not take the -est ending.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">importantest</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. More important is comparative (comparing 2 things), whereas here we need the superlative (the most).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more important</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. This suitcase is much <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> than that one.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! 2-syllable adjectives ending in -y drop the -y and add <strong>-ier</strong> (heavier).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">heavier</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Keep in mind that heavy ends in -y, so it changes to heavier rather than using more.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more heavy</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. You must drop the -y before adding -ier.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">heavyer</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. What are the comparative and superlative forms of <strong class="text-blue-700 font-bold">far</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! far is irregular: <strong>further / farther</strong> (comparative) and <strong>furthest / farthest</strong> (superlative).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">further / furthest</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Far is irregular and does not follow standard -er / -est spelling without vowel shift.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">farer / fairest</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Far does not use more or most.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more far / most far</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Comparative Forms</span>
+            <span>Page 45 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-blue-600', 'text-blue-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-blue-600', 'text-blue-700');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'one_syllable': {
+                title: '1-Syllable Adjectives',
+                example: '👉 "The new school was <strong class="text-blue-800 underline">bigger than</strong> the old one / <strong class="text-blue-800 underline">fastest way</strong>."',
+                rule: 'Rule: Add -er (comparative) or -est (superlative). Double consonant for CVC words (big -> bigger). Add -r/-st for words ending in -e.'
+            },
+            'two_syllable_y': {
+                title: '2-Syllable Adjectives in -y',
+                example: '👉 "This suitcase is <strong class="text-blue-800 underline">heavier than</strong> that one / <strong class="text-blue-800 underline">heaviest</strong>."',
+                rule: 'Rule: Change -y to -i and add -er or -est.'
+            },
+            'long_word': {
+                title: '3+ Syllables & Adverbs',
+                example: '👉 "The results were <strong class="text-blue-800 underline">more interesting</strong> / <strong class="text-blue-800 underline">most important project</strong>."',
+                rule: 'Rule: Use "more" for comparatives and "the most" for superlatives.'
+            },
+            'twice_half': {
+                title: 'Multipliers: Twice / Half',
+                example: '👉 "Sport was <strong class="text-blue-800 underline">twice as popular as</strong> art / <strong class="text-blue-800 underline">half as big as</strong> this one."',
+                rule: 'Rule: ALWAYS use "twice / half + as + adjective + as". NEVER use "more" or "-er" with twice/half!'
+            },
+            'four_times': {
+                title: 'Multipliers: 3x or More',
+                example: '👉 "Pass rates were <strong class="text-blue-800 underline">four times higher than</strong> last year OR <strong class="text-blue-800 underline">four times as high as</strong> last year."',
+                rule: 'Rule: Both "times + adj-er than" AND "times + as + adj + as" are grammatically correct!'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-blue-600', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-blue-600', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-blue-100 text-blue-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-blue-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('one_syllable');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-blue-100', 'hover:text-blue-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-blue-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-blue-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-blue-50', 'border-blue-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-blue-50', 'border-blue-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-blue-100');
+                correctBtn.classList.add('border-blue-500', 'text-blue-800');
+            }
+        }
+    </script>
+</body>
+</html>

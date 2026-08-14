@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Past Simple Tense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1; /* Indigo-500 */
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 15 15"></polyline>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Grammar Reference Guide
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Past Simple Tense</h1>
+                <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Express completed past actions and general past states with confidence! Learn sentence structures and master essential irregular verbs.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-uses-form')">1. Uses & Formulas</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-irregular')">2. Irregular Verbs Vault 📚</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: USES & FORM -->
+            <div id="tab-uses-form" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2 Core Uses of the Past Simple</h3>
+                        <p class="text-lg text-slate-600 font-medium">When to use the past tense of verbs.</p>
+                    </div>
+                </div>
+
+                <!-- 2 Uses Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <h4 class="font-bold text-slate-900 text-lg">Completed Past Actions</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Actions that both started and finished at a specific time in the past.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"The man <strong class="text-indigo-700">sent</strong> a text message."</p>
+                            <p class="text-slate-800 font-medium text-sm">"I <strong class="text-indigo-700">finished</strong> work early."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <h4 class="font-bold text-slate-900 text-lg">General Past Situations</h4>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4">Past states, habits, or facts that were true over a period of time in the past.</p>
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 space-y-2">
+                            <p class="text-slate-800 font-medium text-sm">"I <strong class="text-purple-700">studied</strong> Biology at university."</p>
+                            <p class="text-slate-800 font-medium text-sm">"Sending emails <strong class="text-purple-700">became</strong> popular in the 1990s."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Formulas -->
+                <h4 class="text-xl font-bold text-slate-900 mb-4 border-t border-slate-200 pt-6">Sentence Structures</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                    <!-- Positive -->
+                    <div class="bg-white border-t-4 border-emerald-500 rounded-b-2xl shadow-md p-6">
+                        <p class="font-bold text-emerald-700 mb-1 text-lg">Positive (+)</p>
+                        <p class="text-xs text-slate-500 font-bold mb-3 uppercase tracking-wider">Subject + Verb + -ed (or Irregular)</p>
+                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                            <p class="text-slate-800 font-medium text-sm">"They <strong class="text-emerald-700">filmed</strong> this show in New York."</p>
+                            <p class="text-slate-800 font-medium text-sm mt-1">"I <strong class="text-emerald-700">went</strong> home early."</p>
+                        </div>
+                    </div>
+
+                    <!-- Negative -->
+                    <div class="bg-white border-t-4 border-rose-500 rounded-b-2xl shadow-md p-6">
+                        <p class="font-bold text-rose-700 mb-1 text-lg">Negative (-)</p>
+                        <p class="text-xs text-slate-500 font-bold mb-3 uppercase tracking-wider">Subject + didn't + Infinitive</p>
+                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                            <p class="text-slate-800 font-medium text-sm">"I <strong class="text-rose-700">didn't see</strong> the article."</p>
+                            <span class="text-xs text-rose-700 font-bold block mt-2">💡 Note: Main verb stays in base form!</span>
+                        </div>
+                    </div>
+
+                    <!-- Question -->
+                    <div class="bg-white border-t-4 border-indigo-500 rounded-b-2xl shadow-md p-6">
+                        <p class="font-bold text-indigo-700 mb-1 text-lg">Question (?)</p>
+                        <p class="text-xs text-slate-500 font-bold mb-3 uppercase tracking-wider">Did + Subject + Infinitive</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                            <p class="text-slate-800 font-medium text-sm">"<strong class="text-indigo-700">Did</strong> you <strong class="text-indigo-700">finish</strong> the movie?"</p>
+                            <span class="text-xs text-indigo-700 font-bold block mt-2">✓ Yes, I did. / ✗ No, I didn't.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: IRREGULAR VERBS VAULT -->
+            <div id="tab-irregular" class="tab-content space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Irregular Verbs Reference Vault</h3>
+                        <p class="text-sm text-slate-600 font-medium">Search or filter common irregular verbs and their past simple forms.</p>
+                    </div>
+                    <!-- Search Input -->
+                    <div class="relative w-full sm:w-64">
+                        <input type="text" id="verbSearch" onkeyup="filterVerbs()" placeholder="Search verb..." class="w-full pl-10 pr-4 py-2 border-2 border-indigo-200 rounded-xl focus:outline-none focus:border-indigo-600 text-sm font-medium">
+                        <svg class="w-5 h-5 text-indigo-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="verbsContainer">
+                    <!-- Cards created dynamically or hardcoded -->
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">bet</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">bet</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">bend</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">bent</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">blow</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">blew</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">deal</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">dealt</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">dream</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-sm sm:text-base">dreamed / dreamt</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">drive</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">drove</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">fall</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">fell</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">find</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">found</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">forbid</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">forbade</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">forget</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">forgot</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">grow</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">grew</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">lead</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">led</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">leave</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">left</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">mean</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">meant</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">mislead</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">misled</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">rise</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">rose</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">rebuild</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">rebuilt</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">set</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">set</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">undergo</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">underwent</span>
+                    </div>
+
+                    <div class="verb-card bg-slate-50 border border-slate-200 rounded-xl p-3 text-center hover:bg-indigo-50 hover:border-indigo-300 transition-all">
+                        <span class="text-xs text-slate-400 font-bold uppercase block">Base Form</span>
+                        <span class="font-extrabold text-slate-800 text-base">undertake</span>
+                        <div class="my-1 border-t border-slate-200"></div>
+                        <span class="text-xs text-indigo-500 font-bold uppercase block">Past Simple</span>
+                        <span class="font-extrabold text-indigo-600 text-base">undertook</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-teal-700 font-medium">Select the correct Past Simple verb form for each sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. I <span class="inline-block w-28 border-b-2 border-slate-400"></span> the article online yesterday.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. In negative Past Simple sentences, we use <em>didn\'t + base form</em> (didn\'t see).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">didn't saw</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! We form negative sentences with <strong>didn\'t + base verb</strong> (didn\'t see).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">didn't see</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Remember to use <em>didn\'t</em> for negative past simple sentences.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">don't saw</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. What is the Past Simple form of the irregular verb <strong>rise</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Rise is an irregular verb (rise → rose).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">rised</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! The irregular past simple form of <strong>rise</strong> is <strong>rose</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">rose</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Risen is the past participle form, not the past simple form.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">risen</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. <span class="inline-block w-28 border-b-2 border-slate-400"></span> you finish watching the movie last night?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We form Past Simple questions with <strong>Did + Subject + base verb</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Did</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Do is present tense. We use Did for past simple questions.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Do</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. We use Did + base verb to form past questions.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Finished</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference Guide</span>
+            <span>Past Simple Tense</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+            }
+        }
+
+        /* Filter Irregular Verbs */
+        function filterVerbs() {
+            const input = document.getElementById('verbSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.verb-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+    </script>
+</body>
+</html>

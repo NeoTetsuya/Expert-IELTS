@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Review of Formal Structures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Slate-100 */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.18), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1; /* Indigo-500 */
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .toggle-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .clause-pill {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"></path>
+                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-300 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    Grammar Reference Guide
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Review of Formal Structures</h1>
+                <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Elevate your academic writing! Master formal grammatical structures including the <strong>passive voice</strong>, <strong>complex sentences</strong>, and academic <strong>"that" clauses</strong>.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-passive')">1. The Passive Voice ⚙️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-complex')">2. Complex Sentences 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-that-clauses')">3. Formal "That" Clauses 📝</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <div id="tab-passive" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">The Passive Voice in Academic Writing</h3>
+                        <p class="text-base text-slate-600 font-medium">In formal research and reports, we use the passive voice to highlight the <strong>action or object</strong> rather than the person performing it.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Cards: Active vs Passive -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full font-extrabold text-xs uppercase">Active Focus (Informal)</span>
+                            <span class="text-2xl">👤</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Focus on the Agent</h4>
+                        <p class="text-sm text-slate-600 mb-4">Emphasizes who performed the action (shipping company, fishermen, researcher).</p>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"The shipping company <strong class="text-indigo-700">ships the goods</strong> worldwide."</p>
+                            <p class="text-slate-800">"Fishermen <strong class="text-indigo-700">take the fish</strong> from the sea in a net."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-indigo-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-xs uppercase">Passive Focus (Academic)</span>
+                            <span class="text-2xl">⚙️</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Focus on Action / Process</h4>
+                        <p class="text-sm text-slate-600 mb-4">Omits or de-emphasizes the agent to maintain objective academic tone.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"The goods <strong class="text-indigo-700">are shipped</strong> to the other side of the world."</p>
+                            <p class="text-slate-800">"The fish <strong class="text-indigo-700">are taken</strong> from the sea in a net."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Passive Voice Inspector -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block mb-1">Interactive Focus Switcher</span>
+                            <h4 class="text-2xl font-black text-white">Active vs. Academic Passive</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setPassiveScenario('goods')" id="btnPassiveGoods" class="toggle-btn bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white">1. Shipping Goods</button>
+                            <button onclick="setPassiveScenario('fish')" id="btnPassiveFish" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">2. Sea Fishing</button>
+                            <button onclick="setPassiveScenario('crops')" id="btnPassiveCrops" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">3. Damaged Crops</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-800/90 p-6 rounded-2xl border border-slate-700">
+                        <div class="bg-slate-900 p-5 rounded-xl border border-rose-500/30">
+                            <span class="text-xs font-bold uppercase text-rose-400 block mb-1">Active Voice (Agent Focused)</span>
+                            <p id="passiveActiveText" class="text-lg font-bold text-white mb-2">"The company ships the goods across the world."</p>
+                            <p id="passiveActiveDesc" class="text-xs text-slate-300 font-medium leading-relaxed">
+                                Subject = "The company". Focuses on who does the action.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-900 p-5 rounded-xl border border-emerald-500/30">
+                            <span class="text-xs font-bold uppercase text-emerald-400 block mb-1">Academic Passive Voice (Process Focused)</span>
+                            <p id="passivePassText" class="text-lg font-bold text-emerald-300 mb-2">"The goods are shipped to the other side of the world."</p>
+                            <p id="passivePassDesc" class="text-xs text-slate-300 font-medium leading-relaxed">
+                                Subject = "The goods". Agent ("by the company") is omitted as unnecessary.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Takeaway Box -->
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-2xl shadow-sm">
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">💡</span>
+                        <div>
+                            <h4 class="font-bold text-amber-900 text-base">Academic Guardrail</h4>
+                            <p class="text-sm text-amber-800 mt-1">
+                                Use the passive voice when the process, result, or object of study is more important than the individual researcher or worker!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-complex" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-blue-100 p-4 rounded-2xl text-blue-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Complex Sentences & Clause Structures</h3>
+                        <p class="text-base text-slate-600 font-medium">A complex sentence combines one <strong>independent clause</strong> with one or more <strong>dependent clauses</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Independent vs Dependent Clause Visualization -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+                        <h4 class="text-lg font-bold text-indigo-400 uppercase tracking-wider">Anatomy of a Complex Sentence</h4>
+                        <span class="text-xs bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full border border-indigo-500/30">Independent + Dependent</span>
+                    </div>
+
+                    <div class="bg-slate-800/90 p-5 rounded-2xl border border-slate-700 space-y-4">
+                        <div class="text-lg font-black text-white leading-relaxed">
+                            "<span class="bg-rose-500/20 text-rose-300 px-3 py-1.5 rounded-xl border border-rose-500/40 inline-block mb-2 sm:mb-0">Although they were planted</span>, 
+                            <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1.5 rounded-xl border border-emerald-500/40 inline-block">the weather caused the crops to die.</span>"
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium pt-2">
+                            <div class="bg-rose-950/40 p-3 rounded-xl border border-rose-800/40 text-rose-200">
+                                <strong class="text-rose-400 font-bold block mb-1">⚠️ Dependent Clause (Incomplete):</strong>
+                                "Although they were planted" — Starts with subordinating conjunction <em>although</em>. Makes no sense on its own.
+                            </div>
+                            <div class="bg-emerald-950/40 p-3 rounded-xl border border-emerald-800/40 text-emerald-200">
+                                <strong class="text-emerald-400 font-bold block mb-1">✔️ Independent Clause (Complete):</strong>
+                                "the weather caused the crops to die." — Contains complete subject + verb. Makes complete sense alone.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Ways to Build Academic Complex Sentences -->
+                <h4 class="text-xl font-bold text-slate-900 border-t border-slate-200 pt-6">3 Ways to Form Complex Academic Sentences</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- 1. Subordinating Conjunctions -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">1. Conjunctions</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Subordinating Conjunctions</h4>
+                        <p class="text-sm text-slate-600 mb-3">Link clauses using <em>because, although, while, when, unless, even though, as, if</em>.</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl space-y-2 text-xs font-semibold text-slate-800">
+                            <p>"<strong class="text-indigo-700">Because the drought lasted so long</strong>, crops were damaged."</p>
+                            <p>"<strong class="text-indigo-700">While the rain fell</strong>, farmers harvested crops."</p>
+                        </div>
+                    </div>
+
+                    <!-- 2. Relative Clauses -->
+                    <div class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">2. Relative Clauses</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Defining Relative Clauses</h4>
+                        <p class="text-sm text-slate-600 mb-3">Embed essential identifying detail using <em>who, which, that, where</em>.</p>
+                        <div class="bg-blue-50 p-3 rounded-xl space-y-2 text-xs font-semibold text-slate-800">
+                            <p>"People <strong class="text-blue-700">who grow their own vegetables</strong> are increasing in number."</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Participle Clauses -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">3. Participle Clauses</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Reduced Participle Clauses</h4>
+                        <p class="text-sm text-slate-600 mb-3">Reduce clauses using <strong>-ing</strong> (active) or <strong>-ed</strong> (passive) participles.</p>
+                        <div class="bg-teal-50 p-3 rounded-xl space-y-2 text-xs font-semibold text-slate-800">
+                            <p>"Those people <strong class="text-teal-700">growing their own food</strong> are less dependent."</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="tab-that-clauses" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-purple-100 p-4 rounded-2xl text-purple-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic "That" Clauses</h3>
+                        <p class="text-base text-slate-600 font-medium">In spoken English, <em>that</em> is often omitted. In formal academic writing, <strong>including "that" is expected!</strong></p>
+                    </div>
+                </div>
+
+                <!-- Academic Reporting Verbs Card Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <span class="text-xs font-bold text-purple-600 uppercase block mb-1">Personal / Direct Claim</span>
+                        <h4 class="text-lg font-extrabold text-slate-900 mb-2">believe / think / state</h4>
+                        <p class="text-sm text-slate-600 mb-3">Introduces an author's argument or direct statement.</p>
+                        <div class="bg-purple-50 p-3 rounded-xl text-xs font-bold text-purple-900">
+                            "I <u>believe</u> <strong>that</strong> people should do more to fight hunger."
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm">
+                        <span class="text-xs font-bold text-fuchsia-600 uppercase block mb-1">Consensus Passive</span>
+                        <h4 class="text-lg font-extrabold text-slate-900 mb-2">It is agreed that...</h4>
+                        <p class="text-sm text-slate-600 mb-3">Expresses general academic agreement or shared findings.</p>
+                        <div class="bg-fuchsia-50 p-3 rounded-xl text-xs font-bold text-fuchsia-900">
+                            "It is <u>agreed</u> <strong>that</strong> convenience food affects public health."
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="text-xs font-bold text-indigo-600 uppercase block mb-1">Research Conclusion</span>
+                        <h4 class="text-lg font-extrabold text-slate-900 mb-2">It can be concluded that...</h4>
+                        <p class="text-sm text-slate-600 mb-3">Summarizes data-driven deductions or research outcomes.</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl text-xs font-bold text-indigo-900">
+                            "It can be <u>concluded</u> <strong>that</strong> cholesterol has varied health impacts."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spoken vs Formal Academic Comparison Inspector -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-widest block mb-1">Spoken vs. Academic Formalizer</span>
+                            <h4 class="text-2xl font-black text-white">Always Include "THAT" in Writing</h4>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-800/90 p-6 rounded-2xl border border-slate-700">
+                        <!-- Spoken (Omitted) -->
+                        <div class="bg-slate-900 p-5 rounded-xl border border-amber-500/30">
+                            <span class="text-xs font-bold uppercase text-amber-400 block mb-1">Informal Spoken English (Omitted 'that')</span>
+                            <p class="text-lg font-bold text-white mb-2">"I think people should do more to fight hunger."</p>
+                            <p class="text-xs text-slate-300 font-medium leading-relaxed">
+                                'That' is missing. Common in everyday speech, but discouraged in formal essays.
+                            </p>
+                        </div>
+
+                        <!-- Formal Writing (Included) -->
+                        <div class="bg-slate-900 p-5 rounded-xl border border-purple-500/30">
+                            <span class="text-xs font-bold uppercase text-purple-300 block mb-1">Formal Academic Essay (Included 'that')</span>
+                            <p class="text-lg font-bold text-purple-300 mb-2">"I believe <u class="text-amber-300">that</u> people should do more to fight hunger."</p>
+                            <p class="text-xs text-slate-300 font-medium leading-relaxed">
+                                Explicit 'that' clause adds structural clarity and academic tone.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-teal-700 font-medium">Select the correct choice or formal structure for each academic sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. Why is the passive voice frequently used in academic writing?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Active voice de-emphasizes the process and focuses on the agent.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">To emphasize the person who did the action</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Passive voice focuses on the <strong>action, process, or object</strong> rather than who performed it.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">To focus on the action rather than the agent</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Passive sentences are often longer, but the goal is objectivity.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">To make sentences as short as possible</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. In "Although they were planted, the crops died", which part is the <strong>dependent clause</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Although they were planted</strong> is dependent because it starts with a conjunction and cannot stand alone.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Although they were planted</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'the crops died\' makes complete sense on its own, so it is independent.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">the crops died</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. Which sentence represents the most appropriate <strong>formal academic style</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Omitting \'that\' is common in speech, but formal writing prefers including \'that\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">It is agreed convenience food is bad.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Academic English explicitly includes <strong>that</strong> in reporting clauses (e.g. <em>It is agreed that...</em>).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">It is agreed that convenience food is affecting our health.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference Guide</span>
+            <span>Review of Formal Structures</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-700', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
+            }
+        }
+
+        /* Passive Voice Scenario Selector (Tab 1) */
+        function setPassiveScenario(scenario) {
+            const btnGoods = document.getElementById('btnPassiveGoods');
+            const btnFish = document.getElementById('btnPassiveFish');
+            const btnCrops = document.getElementById('btnPassiveCrops');
+
+            const actText = document.getElementById('passiveActiveText');
+            const actDesc = document.getElementById('passiveActiveDesc');
+            const passText = document.getElementById('passivePassText');
+            const passDesc = document.getElementById('passivePassDesc');
+
+            const activeClass = 'toggle-btn bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white';
+            const inactiveClass = 'toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700';
+
+            btnGoods.className = inactiveClass;
+            btnFish.className = inactiveClass;
+            btnCrops.className = inactiveClass;
+
+            if (scenario === 'goods') {
+                btnGoods.className = activeClass;
+                actText.innerText = '"The shipping company ships the goods across the world."';
+                actDesc.innerText = 'Subject = "The shipping company". Focuses on who does the action.';
+                passText.innerText = '"The goods are shipped to the other side of the world."';
+                passDesc.innerText = 'Subject = "The goods". Agent ("by the shipping company") is omitted as unnecessary.';
+            } else if (scenario === 'fish') {
+                btnFish.className = activeClass;
+                actText.innerText = '"Fishermen take the fish from the sea in a net."';
+                actDesc.innerText = 'Subject = "Fishermen". Agent is specified actively.';
+                passText.innerText = '"The fish are taken from the sea in a net."';
+                passDesc.innerText = 'Subject = "The fish". Focuses purely on the process/action.';
+            } else if (scenario === 'crops') {
+                btnCrops.className = activeClass;
+                actText.innerText = '"The extreme drought damaged the crops severely."';
+                actDesc.innerText = 'Active focus on the cause ("The extreme drought").';
+                passText.innerText = '"The crops were damaged due to severe weather."';
+                passDesc.innerText = 'Passive focus on the impact ("The crops").';
+            }
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 10: Quantifiers Guide (Page 157)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Violet-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.18), 0 10px 10px -5px rgba(124, 58, 237, 0.08);
+            border-color: #7c3aed; /* Violet-600 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(124, 58, 237, 0.4); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+            70% { border-color: rgba(124, 58, 237, 0); box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
+            100% { border-color: rgba(124, 58, 237, 0); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #6d28d9; /* Violet-700 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-violet-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-violet-800 via-indigo-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-violet-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Module 10 Grammar Guide • Page 157
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Quantifiers & Register</h1>
+                <p class="mt-4 text-violet-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-violet-300/40">Countable & Uncountable Quantifiers</span>, academic vs. spoken register (<span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-violet-300/40">many/much vs. a lot of</span>), <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-violet-300/40">few / a few</span> & <span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-violet-300/40">little / a little</span>, and excess & insufficiency (<span class="bg-violet-500/40 px-2 py-0.5 rounded font-bold text-white border border-violet-300/40">too / not enough</span>)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-violet-700 border-b-4 border-violet-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-quantifiers-register')">1. Quantifiers & Academic Register 📊</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-few-little')">2. Few / A Few & Little / A Little ⚖️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-too-enough')">3. Too & Enough (Excess & Shortage) ⚠️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Quantifier Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: QUANTIFIERS & ACADEMIC REGISTER -->
+            <div id="tab-quantifiers-register" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-violet-100 p-4 rounded-2xl text-violet-700 pulse-border">
+                        <span class="text-3xl font-black">📊</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Quantifiers & Register Rules</h3>
+                        <p class="text-lg text-slate-600 font-medium">Matching quantifiers with countable vs. uncountable nouns and formal vs. spoken English.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Countable Nouns Card -->
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-violet-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Countable Nouns</span>
+                                <span class="text-2xl">🔢</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Plural Countable Quantifiers</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                With countable nouns, use <strong>some, any, many, a few, few, a lot of, a large number of, plenty of</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
+                                <li class="bg-violet-50 p-3 rounded-xl border border-violet-200">
+                                    <strong class="text-violet-900 block mb-1">(+) Positive Verbs:</strong>
+                                    👉 "Sports events, concerts and festivals are just <strong class="underline text-violet-800 font-extrabold">a few examples</strong> of events."<br>
+                                    👉 "There are <strong class="underline text-violet-800 font-extrabold">plenty of things</strong> to do in the town."
+                                </li>
+                                <li class="bg-violet-50 p-3 rounded-xl border border-violet-200">
+                                    <strong class="text-violet-900 block mb-1">(-) Negative Verbs:</strong>
+                                    👉 "There <strong class="underline text-violet-800 font-extrabold">aren't many concerts</strong> held in this area."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Uncountable Nouns Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Uncountable Nouns</span>
+                                <span class="text-2xl">⏳</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Uncountable Quantifiers</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                With uncountable nouns, use <strong>some, any, much, a little, little, a lot of, a large amount of, plenty of</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
+                                <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 block mb-1">(+) Positive Verbs:</strong>
+                                    👉 "People spend <strong class="underline text-indigo-800 font-extrabold">a large amount of time</strong> helping others."<br>
+                                    👉 "There is <strong class="underline text-indigo-800 font-extrabold">plenty of evidence</strong> that the park has been a success."
+                                </li>
+                                <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
+                                    <strong class="text-indigo-900 block mb-1">(-) Negative Verbs:</strong>
+                                    👉 "There's little crime... so police <strong class="underline text-indigo-800 font-extrabold">don't have much work</strong> to do."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic vs Spoken English Comparison Card -->
+                <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Register Comparison</span>
+                        <span class="text-2xl">📜 vs 💬</span>
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-1">Academic & Formal Written English vs. Everyday Spoken English</h4>
+                    <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                        In formal academic writing, <strong>many</strong> and <strong>much</strong> are frequently used in <em>positive sentences</em>. In everyday spoken English, <strong>a lot of</strong> or <strong>lots of</strong> is preferred instead!
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold">
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 space-y-2">
+                            <span class="text-amber-900 font-extrabold block text-sm">📜 Academic & Formal Written English</span>
+                            <p>👉 "<strong class="underline text-amber-900">Many researchers</strong> suggest that the data is accurate."</p>
+                            <p>👉 "There is <strong class="underline text-amber-900">much evidence</strong> to support the argument."</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-2">
+                            <span class="text-indigo-900 font-extrabold block text-sm">💬 Everyday Spoken English</span>
+                            <p>👉 "<strong class="underline text-indigo-900">Lots of researchers</strong> suggest the data's accurate."</p>
+                            <p>👉 "There's <strong class="underline text-indigo-900">a lot of evidence</strong> to support the argument."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formula Quick Reference Summary Table -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-violet-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <span>⚡ Page 157 Master Quantifier & Verb Agreement Table</span>
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-medium border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-violet-300 font-bold uppercase">
+                                    <th class="p-3">Noun Category</th>
+                                    <th class="p-3">Positive Verb Quantifiers</th>
+                                    <th class="p-3">Negative Verb Quantifiers</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Countable Plural Nouns</td>
+                                    <td class="p-3 text-emerald-300 font-mono">some, many, a few, few, a lot of, a large number of, plenty of</td>
+                                    <td class="p-3 text-rose-300 font-mono">any, many, a lot of</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Uncountable Nouns</td>
+                                    <td class="p-3 text-indigo-300 font-mono">some, a little, little, a lot of, a large amount of, plenty of</td>
+                                    <td class="p-3 text-rose-300 font-mono">any, much, a lot of</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: FEW VS A FEW & LITTLE VS A LITTLE -->
+            <div id="tab-few-little" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-violet-100 p-4 rounded-2xl text-violet-700">
+                        <span class="text-3xl font-black">⚖️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Few / A Few & Little / A Little Nuances</h3>
+                        <p class="text-lg text-slate-600 font-medium">The article 'a' completely changes the meaning from positive/neutral to negative (not enough)!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- A Few vs Few Card -->
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-violet-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Plural Countable Nouns</span>
+                                <span class="text-2xl">👥</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">a few vs. few</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Both are used with countable plural nouns, but carry opposite emotional tones:
+                            </p>
+                            <ul class="text-xs space-y-3 text-slate-800 font-medium mb-4">
+                                <li class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                                    <strong class="text-emerald-900 block mb-1">a few = Small Number (Neutral / Positive)</strong>
+                                    👉 "There are <strong class="underline text-emerald-800 font-extrabold">a few people</strong> waiting outside."<br>
+                                    <span class="text-slate-500 font-normal">(Meaning: There is a small number of people.)</span>
+                                </li>
+                                <li class="bg-rose-50 p-3 rounded-xl border border-rose-200">
+                                    <strong class="text-rose-900 block mb-1">few = Not Enough / Almost None (Negative)</strong>
+                                    👉 "<strong class="underline text-rose-800 font-extrabold">Few people</strong> are waiting outside."<br>
+                                    <span class="text-slate-500 font-normal">(Meaning: There are not enough people.)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- A Little vs Little Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Uncountable Nouns</span>
+                                <span class="text-2xl">⏱️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">a little vs. little</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Both are used with uncountable nouns, but carry opposite emotional tones:
+                            </p>
+                            <ul class="text-xs space-y-3 text-slate-800 font-medium mb-4">
+                                <li class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                                    <strong class="text-emerald-900 block mb-1">a little = Small Amount (Neutral / Positive)</strong>
+                                    👉 "We have <strong class="underline text-emerald-800 font-extrabold">a little time</strong> to organise the event."<br>
+                                    <span class="text-slate-500 font-normal">(Meaning: There is a small amount of time available.)</span>
+                                </li>
+                                <li class="bg-rose-50 p-3 rounded-xl border border-rose-200">
+                                    <strong class="text-rose-900 block mb-1">little = Not Enough / Almost None (Negative)</strong>
+                                    👉 "We have <strong class="underline text-rose-800 font-extrabold">little time</strong> to organise the event."<br>
+                                    <span class="text-slate-500 font-normal">(Meaning: There is not enough time.)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rule Breakdown Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-amber-300 uppercase tracking-widest flex items-center gap-2 mb-2">
+                        <span>⚡ CRITICAL EXAM RULE: The Power of 'A'</span>
+                    </h4>
+                    <p class="text-xs text-slate-300 leading-relaxed font-medium">
+                        Remember: <strong>A few / A little</strong> = <em>A positive or neutral small amount</em>.<br>
+                        Without 'a', <strong>Few / Little</strong> = <em>Negative meaning (insufficient / not enough of something)</em>!
+                    </p>
+                </div>
+            </div>
+
+            <!-- TAB 3: TOO & ENOUGH -->
+            <div id="tab-too-enough" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-violet-100 p-4 rounded-2xl text-violet-700">
+                        <span class="text-3xl font-black">⚠️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">C. Too & Enough (Excess & Shortage)</h3>
+                        <p class="text-lg text-slate-600 font-medium">Expressing when something is more or less than we want or need.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Excess: Too Many / Too Much -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Excess (More than wanted)</span>
+                                <span class="text-2xl">📈</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">too many / too much</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Expresses that there is <strong>more than we want or need</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
+                                <li class="bg-rose-50 p-3 rounded-xl border border-rose-200">
+                                    <strong class="text-rose-900 block mb-1">too many + Plural Countable Noun:</strong>
+                                    👉 "There are <strong class="underline text-rose-800 font-extrabold">too many risks</strong> involved in this project."
+                                </li>
+                                <li class="bg-rose-50 p-3 rounded-xl border border-rose-200">
+                                    <strong class="text-rose-900 block mb-1">too much + Uncountable Noun:</strong>
+                                    👉 "<strong class="underline text-rose-800 font-extrabold">Too much work</strong> can be bad for you."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Shortage: Too Few / Too Little / Not Enough -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Shortage (Less than wanted)</span>
+                                <span class="text-2xl">📉</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">too few / too little / not enough</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Expresses that there is <strong>less than we want or need</strong>.
+                            </p>
+                            <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong class="text-indigo-900 block mb-0.5">too few + Plural Countable Noun:</strong>
+                                    👉 "<strong class="underline text-indigo-800">Too few people</strong> help others in their community."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong class="text-indigo-900 block mb-0.5">too little + Uncountable Noun:</strong>
+                                    👉 "<strong class="underline text-indigo-800">Too little attention</strong> is spent on building friendships."
+                                </li>
+                                <li class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-200">
+                                    <strong class="text-indigo-900 block mb-0.5">not enough + Countable OR Uncountable Noun:</strong>
+                                    👉 "<strong class="underline text-indigo-800">Not enough people</strong> volunteered to help out."<br>
+                                    👉 "There isn't <strong class="underline text-indigo-800">enough time</strong> to find a solution."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: QUANTIFIER EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-violet-50 border-2 border-violet-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Quantifier Scenario Explorer</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test formulas and Page 157 examples!</p>
+
+                    <!-- Filter Options -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('academic_positive')" id="ebtn-academic_positive" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">Academic Register (Many / Much in +)</button>
+                            <button onclick="selectExplorer('a_few_neutral')" id="ebtn-a_few_neutral" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">A Few (Small Number - Neutral)</button>
+                            <button onclick="selectExplorer('few_negative')" id="ebtn-few_negative" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">Few (Not Enough - Negative)</button>
+                            <button onclick="selectExplorer('too_excess')" id="ebtn-too_excess" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">Too Many / Too Much (Excess)</button>
+                            <button onclick="selectExplorer('not_enough')" id="ebtn-not_enough" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-violet-300 bg-white text-violet-800">Not Enough (Both Noun Types)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-violet-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-violet-50 via-indigo-50 to-amber-50 rounded-2xl p-8 border border-violet-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-violet-900 mb-2">Test Your Page 157 Knowledge</h3>
+                    <p class="text-violet-700 font-medium">Select the correct quantifier according to Page 157 rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> researchers suggest that the data is accurate. (Formal Academic Written Style)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! In formal academic written English, <strong>Many</strong> is used in positive sentences, whereas lots of is used in everyday spoken English.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Many</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Lots of is used in everyday spoken English, not formal academic written English.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Lots of</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Much is used with uncountable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Much</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> people are waiting outside. (Meaning: There are not enough people!)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 157 specifies that <strong>Few</strong> has a negative meaning (\'not enough people\').')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Few</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A few means a neutral/positive small number, not an insufficient shortage.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">A few</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Little is used with uncountable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Little</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. We have <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> time to organise the event. (Meaning: We have a small amount of time available)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>a little</strong> means a small amount (neutral/positive), whereas little means not enough.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">a little</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Little carries a negative meaning (\'not enough time\').')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">little</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A few is used with plural countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">a few</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> work can be bad for you.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Work is an uncountable noun, so we express excess using <strong>Too much</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Too much</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Too many is used only with plural countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Too many</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Too few is used with plural countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">Too few</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Which quantifier can be used with <strong class="text-violet-700 font-bold">BOTH</strong> countable plural nouns and uncountable nouns to express insufficiency?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 157 states that <strong>not enough</strong> works with both countable and uncountable nouns!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">not enough</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Too few is used ONLY with countable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">too few</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Too little is used ONLY with uncountable nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">too little</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Quantifiers</span>
+            <span>Page 157 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-violet-600', 'text-violet-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-violet-600', 'text-violet-700');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'academic_positive': {
+                title: 'Academic Register (Many / Much in + Sentences)',
+                example: '👉 "<strong class="text-violet-800 underline">Many researchers</strong> suggest that the data is accurate / There is <strong class="text-violet-800 underline">much evidence</strong>."',
+                rule: 'Rule: In formal written academic English, many and much are used in positive sentences. In everyday spoken English, a lot of / lots of is preferred.'
+            },
+            'a_few_neutral': {
+                title: 'A Few (Small Number - Neutral / Positive)',
+                example: '👉 "There are <strong class="text-violet-800 underline">a few people</strong> waiting outside / <strong class="text-violet-800 underline">a little time</strong>."',
+                rule: 'Rule: A few (countable) / a little (uncountable) means a small number or amount (neutral or positive).'
+            },
+            'few_negative': {
+                title: 'Few / Little (Not Enough - Negative Meaning)',
+                example: '👉 "<strong class="text-violet-800 underline">Few people</strong> are waiting / We have <strong class="text-violet-800 underline">little time</strong> to organise."',
+                rule: 'Rule: Without \'a\', few (countable) / little (uncountable) means not enough (negative shortage).'
+            },
+            'too_excess': {
+                title: 'Too Many / Too Much (Excess)',
+                example: '👉 "There are <strong class="text-violet-800 underline">too many risks</strong> / <strong class="text-violet-800 underline">Too much work</strong> can be bad."',
+                rule: 'Rule: Too many + plural countable; Too much + uncountable. Means more than wanted.'
+            },
+            'not_enough': {
+                title: 'Not Enough (Both Noun Categories)',
+                example: '👉 "<strong class="text-violet-800 underline">Not enough people</strong> volunteered / There isn\'t <strong class="text-violet-800 underline">enough time</strong>."',
+                rule: 'Rule: Not enough can be used with BOTH countable plural nouns and uncountable nouns.'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-violet-600', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-violet-600', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-violet-100 text-violet-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-violet-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('academic_positive');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-violet-100', 'hover:text-violet-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-violet-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-violet-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-violet-50', 'border-violet-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-violet-50', 'border-violet-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-violet-100');
+                correctBtn.classList.add('border-violet-500', 'text-violet-800');
+            }
+        }
+    </script>
+</body>
+</html>

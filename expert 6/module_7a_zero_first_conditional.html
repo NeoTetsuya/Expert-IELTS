@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Zero & First Conditional (Page 109)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff7ed; /* Orange-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(234, 88, 12, 0.18), 0 10px 10px -5px rgba(234, 88, 12, 0.08);
+            border-color: #f97316; /* Orange-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(234, 88, 12, 0.4); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.4); }
+            70% { border-color: rgba(234, 88, 12, 0); box-shadow: 0 0 0 8px rgba(234, 88, 12, 0); }
+            100% { border-color: rgba(234, 88, 12, 0); box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #ea580c; /* Orange-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-orange-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-orange-600 via-amber-600 to-rose-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 3h5v5"></path>
+                    <path d="M8 21H3v-5"></path>
+                    <path d="M21 3l-7.5 7.5"></path>
+                    <path d="M3 21l7.5-7.5"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-orange-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Module 7 Grammar Guide • Page 109
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Zero & First Conditional</h1>
+                <p class="mt-4 text-orange-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master general truths & rules with <span class="bg-orange-500/40 px-2 py-0.5 rounded font-bold text-white border border-orange-300/40">Zero Conditional</span>, future possibilities with <span class="bg-orange-500/40 px-2 py-0.5 rounded font-bold text-white border border-orange-300/40">First Conditional</span>, comma rules, and key connectors (<span class="bg-orange-500/40 px-2 py-0.5 rounded font-bold text-white border border-orange-300/40">when, provided that, even if, unless</span>)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-orange-700 border-b-4 border-orange-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-zero')">1. Zero Conditional ⚡</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-first')">2. First Conditional 🔮</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-connectors')">3. Punctuation & Connectors 🔗</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Conditional Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-rose-600 hover:text-rose-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: ZERO CONDITIONAL -->
+            <div id="tab-zero" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-orange-100 p-4 rounded-2xl text-orange-700 pulse-border">
+                        <span class="text-3xl font-black">If / When</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Zero Conditional (Rules, Truths & General Facts)</h3>
+                        <p class="text-lg text-slate-600 font-medium">Used to state things that are always true, scientific facts, or strict rules.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Core Meaning Card -->
+                    <div class="interactive-card bg-white border-2 border-orange-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-orange-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Function</span>
+                                <span class="text-2xl">⚙️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">General Truths & Rules</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Expresses a cause-and-effect relationship that is <strong>always true or automatic</strong>.
+                            </p>
+                            <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "<strong class="text-orange-900 underline font-extrabold">If you go</strong> to China, you <strong class="text-orange-900 underline font-extrabold">need</strong> a visa."</p>
+                                <p class="text-slate-500 font-normal">(= An official travel requirement/rule)</p>
+                                <p>👉 "People often <strong class="text-orange-900 underline font-extrabold">experience</strong> difficulties <strong class="text-orange-900 underline font-extrabold">when they travel</strong>."</p>
+                                <p class="text-slate-500 font-normal">(= Something that generally happens all the time)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formula Card -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Formula</span>
+                                <span class="text-2xl">📐</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Grammar Structure</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Both clauses use the <strong>Present Simple</strong> tense!
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-slate-800 text-xs font-semibold space-y-3 mb-4">
+                                <div class="bg-white p-3 rounded-lg border border-amber-300 font-mono text-center text-amber-950 font-bold">
+                                    If / When + Present Simple, Subject + Present Simple
+                                </div>
+                                <p class="text-slate-600 font-normal leading-relaxed">
+                                    Note: You can swap <em>if</em> with <em>when</em> in zero conditional sentences without changing the fundamental meaning!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sentence Formula Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-orange-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <span>⚡ Zero Conditional Formula Summary</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-amber-400 font-bold block mb-1">If-Clause First (Requires Comma)</span>
+                            <div class="text-slate-200 font-mono">If + Present Simple, Present Simple</div>
+                            <p class="text-slate-400 text-[11px] mt-1">✓ <strong>If you go</strong> to China<strong>,</strong> you <strong>need</strong> a visa.</p>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-rose-400 font-bold block mb-1">Main Clause First (No Comma)</span>
+                            <div class="text-slate-200 font-mono">Present Simple + if / when + Present Simple</div>
+                            <p class="text-slate-400 text-[11px] mt-1">✓ People <strong>experience</strong> difficulties <strong>when they travel</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: FIRST CONDITIONAL -->
+            <div id="tab-first" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-orange-100 p-4 rounded-2xl text-orange-700">
+                        <span class="text-3xl font-black">Future Possibility</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. First Conditional (Future Possibility)</h3>
+                        <p class="text-lg text-slate-600 font-medium">Used to talk about specific things that might happen in the future.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Positive First Conditional Card -->
+                    <div class="interactive-card bg-white border-2 border-orange-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-orange-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Positive Outcome</span>
+                                <span class="text-2xl">🔮</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Possible Real Future Situation</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Predicts a realistic outcome if a future condition is fulfilled.
+                            </p>
+                            <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "<strong class="text-orange-900 underline font-extrabold">If I have</strong> time in the summer, I<strong class="text-orange-900 underline font-extrabold">'ll go</strong> to the coast."</p>
+                                <p class="text-slate-500 font-normal">(= Present condition → Possible future result)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Negative First Conditional Card -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Negative / Warning</span>
+                                <span class="text-2xl">⚠️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">If... don't / won't</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Expresses negative conditions or warnings about future consequences.
+                            </p>
+                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "<strong class="text-rose-900 underline font-extrabold">If you don't visit</strong> the pyramids on your trip, you<strong class="text-rose-900 underline font-extrabold">'ll regret</strong> it."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- First Conditional Formula Table -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-orange-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <span>⚡ First Conditional Formula & Clause Order</span>
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-medium border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-orange-300 font-bold uppercase">
+                                    <th class="p-3">Clause Order</th>
+                                    <th class="p-3">Condition Clause (If)</th>
+                                    <th class="p-3">Punctuation</th>
+                                    <th class="p-3">Main Result Clause</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">If Clause First</td>
+                                    <td class="p-3 text-amber-300 font-mono">If + Present Simple</td>
+                                    <td class="p-3 text-rose-400 font-extrabold">COMMA (,)</td>
+                                    <td class="p-3 text-emerald-300 font-mono">Subject + will / 'll + infinitive</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Main Clause First</td>
+                                    <td class="p-3 text-emerald-300 font-mono">Subject + will + infinitive</td>
+                                    <td class="p-3 text-slate-400 font-bold">NO COMMA</td>
+                                    <td class="p-3 text-amber-300 font-mono">if + Present Simple</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PUNCTUATION & CONNECTORS -->
+            <div id="tab-connectors" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-orange-100 p-4 rounded-2xl text-orange-700">
+                        <span class="text-3xl font-black">🔗</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">C & D. Punctuation Rules & Conditional Words</h3>
+                        <p class="text-lg text-slate-600 font-medium">Comma rules and using <em>when, provided that, even if,</em> and <em>unless</em>.</p>
+                    </div>
+                </div>
+
+                <!-- Punctuation Rules Grid -->
+                <div class="bg-white border-2 border-orange-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-xl flex items-center gap-2">
+                        <span>✏️ C. Punctuation Rules in Conditionals</span>
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold">
+                        <div class="bg-orange-50 p-4 rounded-xl border border-orange-200 space-y-1">
+                            <span class="text-orange-900 font-extrabold block text-sm">1. If clause in FIRST half = USE COMMA (,)</span>
+                            <p class="text-slate-700">Must put a comma between the two clauses:</p>
+                            <p class="text-orange-950 font-mono mt-1">"If we hurry<strong>,</strong> we will be able to make the flight."</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 space-y-1">
+                            <span class="text-amber-900 font-extrabold block text-sm">2. If clause in SECOND half = NO COMMA</span>
+                            <p class="text-slate-700">Do NOT use a comma when main clause comes first:</p>
+                            <p class="text-amber-950 font-mono mt-1">"We will be able to make the flight if we hurry."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connectors Breakdown Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- 1. WHEN -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. WHEN</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">Things happening all the time</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Used only in <strong>zero and first conditionals</strong>.</p>
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs font-semibold text-amber-950 space-y-1">
+                                <p>👉 "The science class is better <strong class="underline text-amber-800">when</strong> we do practical work."</p>
+                                <p>👉 "<strong class="underline text-amber-800">When</strong> scientists begin new projects, they usually have clear aims."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. PROVIDED THAT -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. PROVIDED THAT</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">Desired Outcomes ONLY</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Stresses something will happen <em>only if</em> another thing happens. Used ONLY for <strong>things we WANT to happen</strong>!</p>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-950 space-y-1">
+                                <p>✅ "<strong class="underline text-emerald-800">Provided that</strong> the vote is positive, the new airport will be built."</p>
+                                <p class="text-rose-700 font-bold text-[11px] mt-1">❌ Incorrect: Provided that time runs out, the forest cannot be saved.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. EVEN IF -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. EVEN IF</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">Outcome remains true regardless</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Emphasizes that something will STILL be true. Used in <strong>any conditional form</strong>.</p>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-950 space-y-1">
+                                <p>👉 "The area will benefit, <strong class="underline text-indigo-800">even if</strong> only a few tourists come."</p>
+                                <p>👉 "<strong class="underline text-indigo-800">Even if</strong> we cut down on flights, air travel will cause pollution."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. UNLESS -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">4. UNLESS (= IF NOT)</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">Stronger warning tone</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Means <em>'if not'</em>. Used in <strong>zero and first conditionals</strong> only.</p>
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-200 text-xs font-semibold text-rose-950 space-y-1">
+                                <p>👉 "<strong class="underline text-rose-800">Unless</strong> we build more hotels, there will be nowhere for tourists to stay."</p>
+                                <p class="text-slate-500 font-normal">(= If we don't build more hotels...)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: CONDITIONAL EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Conditional Matrix Explorer</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a conditional structure or connector to test Page 109 rules!</p>
+
+                    <!-- Filter Options -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('zero_cond')" id="ebtn-zero_cond" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-orange-300 bg-white text-orange-800">Zero Conditional (General Rule)</button>
+                            <button onclick="selectExplorer('first_cond')" id="ebtn-first_cond" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-orange-300 bg-white text-orange-800">First Conditional (Future Possibility)</button>
+                            <button onclick="selectExplorer('when_conn')" id="ebtn-when_conn" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-orange-300 bg-white text-orange-800">When (Happens all the time)</button>
+                            <button onclick="selectExplorer('provided_conn')" id="ebtn-provided_conn" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-orange-300 bg-white text-orange-800">Provided that (Desired outcome ONLY)</button>
+                            <button onclick="selectExplorer('unless_conn')" id="ebtn-unless_conn" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-orange-300 bg-white text-orange-800">Unless (= If not warning)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-orange-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-orange-50 via-amber-50 to-rose-50 rounded-2xl p-8 border border-orange-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-orange-900 mb-2">Test Your Page 109 Knowledge</h3>
+                    <p class="text-orange-700 font-medium">Select the correct conditional structure or connector according to Page 109 rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. If you go to China, you <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> a visa. (Zero Conditional Rule)</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! For general rules and requirements (Zero Conditional), both clauses use the <strong>Present Simple</strong> (need).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">need</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Will need is first conditional, but official travel requirements use Zero Conditional present simple.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">will need</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Needed is past simple.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">needed</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. If I have time in the summer, I <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> to the coast.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! For future possibilities (First Conditional), the main clause uses <strong>will / \'ll + infinitive</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">'ll go</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Go is present simple, but future possibilities take will + infinitive.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">go</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Went is past tense.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">went</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> the vote is positive, the new airport will be built.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 109 specifies that <strong>Provided that</strong> is used strictly for outcomes we WANT to happen.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Provided that</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Unless means \'if not\', which changes the meaning completely.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">Unless</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Even if means regardless of the vote.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">Even if</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> we build more hotels, there will be nowhere for tourists to stay.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>Unless</strong> means \'if not\' and gives a stronger warning tone (\'Unless we build...\' = \'If we don\'t build...\').')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Unless</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Provided that is used only for desired positive results.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">Provided that</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. When describes routine occurrences.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">When</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Which sentence correctly uses a <strong class="text-orange-700 font-bold">comma</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 109 states that when the if-clause comes in the first half, we MUST place a comma between the clauses.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">If we hurry, we will make the flight.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. When the main clause comes first, NO comma is used.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">We will make the flight, if we hurry.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Commas are not placed after the word \'if\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 transition-colors border-2 border-transparent">If, we hurry we will make the flight.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Zero & First Conditional</span>
+            <span>Page 109 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-orange-600', 'text-orange-700', 'border-rose-600', 'text-rose-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-rose-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-rose-600', 'text-rose-700');
+            } else {
+                clickedBtn.classList.add('border-orange-600', 'text-orange-700');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'zero_cond': {
+                title: 'Zero Conditional (Rule / General Fact)',
+                example: '👉 "If you <strong class="text-orange-800 underline">go</strong> to China, you <strong class="text-orange-800 underline">need</strong> a visa."',
+                rule: 'Formula: If/When + Present Simple, Subject + Present Simple. Used for strict rules and universal truths.'
+            },
+            'first_cond': {
+                title: 'First Conditional (Future Possibility)',
+                example: '👉 "If I <strong class="text-orange-800 underline">have</strong> time in the summer, I<strong class="text-orange-800 underline">\'ll go</strong> to the coast."',
+                rule: 'Formula: If + Present Simple, Subject + will + infinitive. Used for realistic future possibilities.'
+            },
+            'when_conn': {
+                title: 'When (Things happening all the time)',
+                example: '👉 "The science class is better <strong class="text-orange-800 underline">when</strong> we do practical work."',
+                rule: 'Rule: Replaces "if" when talking about general routines that happen all the time (Zero/First conditionals).'
+            },
+            'provided_conn': {
+                title: 'Provided that (Desired Outcome ONLY)',
+                example: '👉 "<strong class="text-orange-800 underline">Provided that</strong> the vote is positive, the new airport will be built."',
+                rule: 'Rule: Stresses something happens ONLY IF another thing happens. Used ONLY for outcomes we WANT to happen!'
+            },
+            'unless_conn': {
+                title: 'Unless (= If Not Warning)',
+                example: '👉 "<strong class="text-orange-800 underline">Unless</strong> we build more hotels, there will be nowhere for tourists to stay."',
+                rule: 'Rule: Replaces "If... not". Stronger warning tone. (Unless we build = If we don\'t build).'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-orange-600', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-orange-600', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-orange-100 text-orange-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-orange-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('zero_cond');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-orange-100', 'hover:text-orange-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-orange-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-orange-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-orange-50', 'border-orange-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-orange-50', 'border-orange-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-orange-100');
+                correctBtn.classList.add('border-orange-500', 'text-orange-800');
+            }
+        }
+    </script>
+</body>
+</html>

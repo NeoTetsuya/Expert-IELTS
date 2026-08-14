@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Verb Patterns</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdf4ff; /* Fuchsia-50 */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(168, 85, 247, 0.15), 0 8px 10px -6px rgba(168, 85, 247, 0.1);
+            border-color: #a855f7; /* Purple-500 */
+        }
+
+        .verb-chip {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .verb-chip:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+            70% { border-color: rgba(168, 85, 247, 0); box-shadow: 0 0 0 8px rgba(168, 85, 247, 0); }
+            100% { border-color: rgba(168, 85, 247, 0); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-purple-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-purple-800 via-fuchsia-700 to-indigo-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-purple-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse text-fuchsia-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Grammar Reference Guide
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Verb Patterns</h1>
+                <p class="mt-4 text-purple-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master when to follow a verb with an <strong>-ing form</strong>, a <strong>to-infinitive</strong>, or <strong>both</strong>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-purple-700 border-b-4 border-purple-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-ing')">1. -ing Forms 🔄</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-infinitives')">2. Infinitives ➡️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-both')">3. Both (-ing & Infinitive) 🔀</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: -ING FORMS -->
+            <div id="tab-ing" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-purple-100 p-4 rounded-2xl text-purple-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">The -ing Form (Gerund)</h3>
+                        <p class="text-base text-slate-600 font-medium">Using a verb like a noun to describe an activity in a general way.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Rule A: Subject or Object -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-extrabold text-xs uppercase">A. Subject / Object</span>
+                            <span class="text-2xl">🏛️</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">As Subject or Object</h4>
+                        <p class="text-sm text-slate-600 mb-4">Functions as the main noun in the sentence when talking about an action generally.</p>
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"<strong class="text-purple-700">Banking</strong> is less popular than it was in 2000."</p>
+                            <p class="text-slate-800">"<strong class="text-purple-700">Working</strong> and <strong class="text-purple-700">studying</strong> at the same time can be hard."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule B: After Prepositions -->
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-fuchsia-100 text-fuchsia-800 rounded-full font-extrabold text-xs uppercase">B. After Prepositions</span>
+                            <span class="text-2xl">🔗</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">After Prepositions</h4>
+                        <p class="text-sm text-slate-600 mb-4">When a verb follows a preposition (about, of, in, at, for, by), it MUST take -ing.</p>
+                        <div class="bg-fuchsia-50 p-4 rounded-xl border border-fuchsia-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"I’m not happy <u>about</u> <strong class="text-fuchsia-700">working</strong> late."</p>
+                            <p class="text-slate-800">"Brian’s nervous <u>about</u> <strong class="text-fuchsia-700">meeting</strong> his boss."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule C: After Certain Verbs -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-xs uppercase">C. Specific Verbs</span>
+                            <span class="text-2xl">⭐</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">After Certain Verbs</h4>
+                        <p class="text-sm text-slate-600 mb-4">Certain main verbs always trigger an -ing form on the verb that follows.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"The researchers <u>suggested</u> <strong class="text-indigo-700">introducing</strong> higher taxes."</p>
+                            <p class="text-slate-800">"The project <u>involved</u> <strong class="text-indigo-700">building</strong> a new centre."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Vault for Verbs Taking -ing -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800">
+                    <h4 class="text-lg font-bold text-fuchsia-400 uppercase tracking-wider mb-2">Common Verbs Followed by -ing</h4>
+                    <p class="text-slate-300 text-sm mb-4">Click any verb chip below to see an example sentence!</p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6" id="ingVerbsContainer">
+                        <span onclick="showVerbExample('avoid', 'She tries to avoid driving during rush hour.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">avoid</span>
+                        <span onclick="showVerbExample('consider', 'We are considering moving to a new city.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">consider</span>
+                        <span onclick="showVerbExample('finish', 'Did you finish writing the report?')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">finish</span>
+                        <span onclick="showVerbExample('give up', 'He gave up smoking last year.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">give up</span>
+                        <span onclick="showVerbExample('imagine', 'Can you imagine living on Mars?')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">imagine</span>
+                        <span onclick="showVerbExample('involve', 'The job involves travelling overseas.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">involve</span>
+                        <span onclick="showVerbExample('mind', 'Do you mind opening the window?')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">mind</span>
+                        <span onclick="showVerbExample('practise', 'They practise playing every afternoon.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">practise</span>
+                        <span onclick="showVerbExample('prevent someone', 'Bad weather prevented us from going out.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">prevent someone</span>
+                        <span onclick="showVerbExample('recommend', 'Doctors recommend eating more fruit.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">recommend</span>
+                        <span onclick="showVerbExample('suggest', 'She suggested taking a taxi to the airport.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">suggest</span>
+                        <span onclick="showVerbExample('understand', 'I understand wanting to leave early.')" class="verb-chip bg-slate-800 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl font-semibold text-sm">understand</span>
+                    </div>
+
+                    <div id="verbExampleBox" class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-sm font-medium text-slate-200">
+                        Select a verb above to inspect its usage.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: INFINITIVES -->
+            <div id="tab-infinitives" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Infinitives (to + base verb)</h3>
+                        <p class="text-base text-slate-600 font-medium">The base form of a verb, usually preceded by 'to'.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Rule A: After Adjectives -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-xs uppercase">A. After Adjectives</span>
+                            <span class="text-2xl">🎨</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">After Adjectives</h4>
+                        <p class="text-sm text-slate-600 mb-4">We use <strong>to + infinitive</strong> following descriptive adjectives.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"It’s <u>difficult</u> <strong class="text-indigo-700">to identify</strong> the right person for the job."</p>
+                            <p class="text-slate-800">"It was <u>hard</u> <strong class="text-indigo-700">to remember</strong> the company’s name."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule B: After Certain Verbs -->
+                    <div class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full font-extrabold text-xs uppercase">B. Specific Verbs</span>
+                            <span class="text-2xl">📋</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">After Certain Verbs</h4>
+                        <p class="text-sm text-slate-600 mb-4">Many verbs naturally connect to the next action with <strong>to + verb</strong>.</p>
+                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"The speakers <u>agreed</u> <strong class="text-blue-700">to disagree</strong>."</p>
+                            <p class="text-slate-800">"The results <u>appeared</u> <strong class="text-blue-700">to show</strong> a difference in sales."</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule C: To Express Purpose -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full font-extrabold text-xs uppercase">C. Purpose</span>
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">To Express Purpose</h4>
+                        <p class="text-sm text-slate-600 mb-4">Explains <em>why</em> someone does an action (answers "For what reason?").</p>
+                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"They separated into two groups <strong class="text-teal-700">to get</strong> the work done faster."</p>
+                            <p class="text-slate-800">"The figures were checked <strong class="text-teal-700">to make</strong> sure they were correct."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vault of Verbs taking Infinitive -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800">
+                    <h4 class="text-lg font-bold text-indigo-400 uppercase tracking-wider mb-2">Common Verbs Followed by To-Infinitive</h4>
+                    <p class="text-slate-300 text-sm mb-4">Click any verb chip below to inspect its example sentence!</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6" id="infVerbsContainer">
+                        <span onclick="showInfExample('afford', 'I cannot afford to buy a new laptop this month.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">afford</span>
+                        <span onclick="showInfExample('agree', 'They agreed to help us with the presentation.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">agree</span>
+                        <span onclick="showInfExample('appear', 'The computer appeared to stop working.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">appear</span>
+                        <span onclick="showInfExample('arrange', 'We arranged to meet at nine o\'clock.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">arrange</span>
+                        <span onclick="showInfExample('ask', 'She asked to see the manager.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">ask</span>
+                        <span onclick="showInfExample('choose', 'He chose to study engineering.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">choose</span>
+                        <span onclick="showInfExample('decide', 'They decided to launch the product in June.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">decide</span>
+                        <span onclick="showInfExample('expect', 'We expect to finish by Tuesday.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">expect</span>
+                        <span onclick="showInfExample('hope', 'I hope to pass the exam.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">hope</span>
+                        <span onclick="showInfExample('learn', 'She learned to speak Japanese quickly.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">learn</span>
+                        <span onclick="showInfExample('manage', 'How did you manage to fix the car?')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">manage</span>
+                        <span onclick="showInfExample('offer', 'He offered to carry her heavy bags.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">offer</span>
+                        <span onclick="showInfExample('plan', 'We plan to expand our team soon.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">plan</span>
+                        <span onclick="showInfExample('refuse', 'They refused to sign the document.')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">refuse</span>
+                        <span onclick="showInfExample('want', 'Do you want to join us for lunch?')" class="verb-chip bg-slate-800 border border-indigo-500/50 text-indigo-300 px-3 py-1.5 rounded-xl font-semibold text-sm">want</span>
+                    </div>
+
+                    <div id="infExampleBox" class="bg-slate-800 p-4 rounded-xl border border-slate-700 text-sm font-medium text-slate-200">
+                        Select a verb above to inspect its usage.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: BOTH FORMS -->
+            <div id="tab-both" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-fuchsia-100 p-4 rounded-2xl text-fuchsia-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Verbs Followed by -ing or Infinitive</h3>
+                        <p class="text-base text-slate-600 font-medium">Some verbs accept both structures. In some cases, there is little difference; in others, the meaning changes significantly.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Comparison Tool -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-fuchsia-400 uppercase tracking-widest block mb-1">Interactive Meaning Inspector</span>
+                            <h4 class="text-2xl font-black text-white">Compare Dual-Pattern Verbs</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="selectDualVerb('begin')" class="dual-btn bg-fuchsia-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white">begin / start</button>
+                            <button onclick="selectDualVerb('stop')" class="dual-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">stop</button>
+                            <button onclick="selectDualVerb('remember')" class="dual-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">remember / forget</button>
+                        </div>
+                    </div>
+
+                    <div id="dualDisplayPanel" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-800/80 p-6 rounded-2xl border border-slate-700">
+                        <!-- Left (-ing) -->
+                        <div class="bg-slate-900 p-5 rounded-xl border border-purple-500/30">
+                            <span class="text-xs font-bold uppercase text-purple-400 block mb-1">Pattern 1: + -ing Form</span>
+                            <p id="dualIngSentence" class="text-lg font-bold text-white mb-2">"He began talking."</p>
+                            <p id="dualIngMeaning" class="text-xs text-slate-300 font-medium leading-relaxed">Virtually the same meaning as the infinitive form. Describes entering into the activity of talking.</p>
+                        </div>
+                        <!-- Right (to-infinitive) -->
+                        <div class="bg-slate-900 p-5 rounded-xl border border-indigo-500/30">
+                            <span class="text-xs font-bold uppercase text-indigo-400 block mb-1">Pattern 2: + To-Infinitive</span>
+                            <p id="dualInfSentence" class="text-lg font-bold text-white mb-2">"He began to talk."</p>
+                            <p id="dualInfMeaning" class="text-xs text-slate-300 font-medium leading-relaxed">Identical or almost identical in meaning for 'begin' and 'start'.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">Minimal Difference</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">begin & start</h4>
+                        <p class="text-sm text-slate-600 mb-3">Both -ing and infinitive can be used interchangeably with no real change in meaning.</p>
+                        <div class="bg-purple-50 p-3 rounded-xl space-y-1 text-sm font-medium">
+                            <p class="text-slate-800">"He began <strong class="text-purple-700">talking</strong>."</p>
+                            <p class="text-slate-800">"He began <strong class="text-purple-700">to talk</strong>."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-fuchsia-100 text-fuchsia-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">Important Difference</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">stop, remember, forget</h4>
+                        <p class="text-sm text-slate-600 mb-3">-ing refers to the action itself or a past memory. The infinitive refers to stopping <em>in order to</em> do an action, or remembering a duty.</p>
+                        <div class="bg-fuchsia-50 p-3 rounded-xl space-y-1 text-sm font-medium">
+                            <p class="text-slate-800">"He stopped <strong class="text-fuchsia-700">working</strong>." <em>(Quit the activity)</em></p>
+                            <p class="text-slate-800">"He stopped <strong class="text-fuchsia-700">to work</strong>." <em>(Paused to start working)</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-teal-700 font-medium">Select the correct verb pattern for each sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. She is nervous about <span class="inline-block w-28 border-b-2 border-slate-400 text-center text-purple-700 font-bold"></span> her new manager.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>About</strong> is a preposition, so the verb that follows must be in the <strong>-ing form</strong> (meeting).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">meeting</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Verbs following prepositions (like \'about\') must use the -ing form.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">to meet</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Remember to use the -ing form after prepositions.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">meet</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. It is difficult <span class="inline-block w-28 border-b-2 border-slate-400 text-center text-indigo-700 font-bold"></span> the right candidate for the job.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. We use to + infinitive following adjectives like \'difficult\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">identifying</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! We use a <strong>to-infinitive</strong> (to identify) after adjectives like <em>difficult</em>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">to identify</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Don\'t forget the \'to\' in the to-infinitive after adjectives.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">identify</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. The team separated into two groups <span class="inline-block w-28 border-b-2 border-slate-400 text-center text-teal-700 font-bold"></span> the task faster.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use the <strong>to-infinitive</strong> (to get) to express <strong>purpose</strong> (why they separated).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">to get</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. To express purpose or reason, we use to + infinitive.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">getting</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Bare infinitives are not used to express purpose.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">get</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference Guide</span>
+            <span>Verb Patterns</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-purple-600', 'text-purple-700', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else {
+                clickedBtn.classList.add('border-purple-600', 'text-purple-700');
+            }
+        }
+
+        /* Show Verb Examples for -ing Vault */
+        function showVerbExample(verb, sentence) {
+            const box = document.getElementById('verbExampleBox');
+            box.innerHTML = `<span class="text-xs text-purple-400 font-bold uppercase block mb-1">Verb: ${verb} (+ -ing)</span> <p class="text-base text-white font-bold">"${sentence}"</p>`;
+        }
+
+        /* Show Verb Examples for Infinitive Vault */
+        function showInfExample(verb, sentence) {
+            const box = document.getElementById('infExampleBox');
+            box.innerHTML = `<span class="text-xs text-indigo-400 font-bold uppercase block mb-1">Verb: ${verb} (+ to-infinitive)</span> <p class="text-base text-white font-bold">"${sentence}"</p>`;
+        }
+
+        /* Dual-Pattern Verb Inspector */
+        function selectDualVerb(verbKey) {
+            const btns = document.querySelectorAll('.dual-btn');
+            btns.forEach(b => {
+                b.classList.remove('bg-fuchsia-600', 'text-white');
+                b.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-800', 'text-slate-300');
+            event.currentTarget.classList.add('bg-fuchsia-600', 'text-white');
+
+            const ingSent = document.getElementById('dualIngSentence');
+            const ingMean = document.getElementById('dualIngMeaning');
+            const infSent = document.getElementById('dualInfSentence');
+            const infMean = document.getElementById('dualInfMeaning');
+
+            if (verbKey === 'begin') {
+                ingSent.innerText = '"He began talking."';
+                ingMean.innerText = 'Same meaning as infinitive. Refers to starting the activity.';
+                infSent.innerText = '"He began to talk."';
+                infMean.innerText = 'Same meaning as -ing form. Refers to starting the activity.';
+            } else if (verbKey === 'stop') {
+                ingSent.innerText = '"He stopped working."';
+                ingMean.innerText = 'Quitting or ending the action of working.';
+                infSent.innerText = '"He stopped to work."';
+                infMean.innerText = 'Pausing another action IN ORDER TO start working.';
+            } else if (verbKey === 'remember') {
+                ingSent.innerText = '"I remember visiting London."';
+                ingMean.innerText = 'Having a memory of a past event that occurred.';
+                infSent.innerText = '"I remembered to lock the door."';
+                infMean.innerText = 'Not forgetting a duty or task you needed to do.';
+            }
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-purple-100', 'hover:text-purple-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Second Conditional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Violet-50 */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(124, 58, 237, 0.18), 0 8px 10px -6px rgba(124, 58, 237, 0.1);
+            border-color: #8b5cf6; /* Violet-500 */
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+            70% { border-color: rgba(139, 92, 246, 0); box-shadow: 0 0 0 8px rgba(139, 92, 246, 0); }
+            100% { border-color: rgba(139, 92, 246, 0); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .toggle-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Clause Swapper Animation Styles */
+        .clause-box {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .comma-mark {
+            transition: all 0.3s ease;
+        }
+        .comma-hidden {
+            opacity: 0;
+            transform: scale(0);
+            width: 0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-violet-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-purple-950 to-violet-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-violet-300 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L5.603 15.11a1.994 1.994 0 01-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L.603 15.11a1.994 1.994 0 01-1.022-.547"></path>
+                    </svg>
+                    Grammar Reference Guide
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Second Conditional</h1>
+                <p class="mt-4 text-violet-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Explore hypothetical possibilities! Learn how to describe <strong>unreal</strong>, <strong>unlikely</strong>, or <strong>imaginary</strong> situations using <em>If + Past Simple, Would + Infinitive</em>.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-violet-700 border-b-4 border-violet-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-use-form')">1. Use & Form 💭</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-was-were')">2. Was vs. Were 🎓</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-clause-order')">3. Clause Order & Comma 🔄</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    4. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: USE & FORM -->
+            <div id="tab-use-form" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-violet-100 p-4 rounded-2xl text-violet-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Unreal, Unlikely or Imaginary Situations</h3>
+                        <p class="text-base text-slate-600 font-medium">We use the second conditional to talk about hypothetical scenarios and their imagined results in the present or future.</p>
+                    </div>
+                </div>
+
+                <!-- Formula Banner Card -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800">
+                    <div class="flex items-center justify-between border-b border-slate-700 pb-3 mb-4">
+                        <h4 class="text-lg font-bold text-violet-400 uppercase tracking-wider">Second Conditional Formula</h4>
+                        <span class="text-xs bg-violet-500/20 text-violet-300 px-3 py-1 rounded-full border border-violet-500/30">If + Past Simple, Would + Infinitive</span>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        Although we use the <strong>Past Simple</strong> tense in the <em>if clause</em>, we are talking about present or future imaginary situations (NOT the past!).
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800/90 p-5 rounded-2xl border border-violet-500/30">
+                            <span class="text-xs font-bold text-violet-400 uppercase block mb-1">If Clause (Condition)</span>
+                            <p class="text-lg font-black text-white">If + Subject + <u class="text-violet-300">Past Simple</u></p>
+                            <p class="text-xs text-slate-400 mt-1">e.g., <em>If I lived abroad... / If I were younger...</em></p>
+                        </div>
+
+                        <div class="bg-slate-800/90 p-5 rounded-2xl border border-indigo-500/30">
+                            <span class="text-xs font-bold text-indigo-400 uppercase block mb-1">Main Clause (Result)</span>
+                            <p class="text-lg font-black text-white">Subject + <u class="text-indigo-300">would / 'd + Base Verb</u></p>
+                            <p class="text-xs text-slate-400 mt-1">e.g., <em>...I would try to learn the language. / ...I'd get involved.</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Core Scenarios Cards -->
+                <h4 class="text-xl font-bold text-slate-900 border-t border-slate-200 pt-6">3 Types of Hypothetical Contexts</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Scenario 1: Unlikely -->
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full font-extrabold text-xs uppercase">Scenario 1</span>
+                            <span class="text-2xl">🌍</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Unlikely Situation</h4>
+                        <p class="text-sm text-slate-600 mb-4">Possible in theory, but unlikely to happen in reality.</p>
+                        <div class="bg-violet-50 p-4 rounded-xl border border-violet-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"If I <strong class="text-violet-700">lived</strong> abroad, I <strong class="text-violet-700">would try</strong> hard to learn the local language."</p>
+                            <p class="text-xs text-slate-500 italic mt-1">(Reality: I do not live abroad and have no plans to.)</p>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2: Unreal -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-extrabold text-xs uppercase">Scenario 2</span>
+                            <span class="text-2xl">⌛</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Unreal / Contrary to Fact</h4>
+                        <p class="text-sm text-slate-600 mb-4">Completely impossible or contrary to current present facts.</p>
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"If I <strong class="text-purple-700">were</strong> younger, I<strong class="text-purple-700">'d get</strong> more involved in my community."</p>
+                            <p class="text-xs text-slate-500 italic mt-1">(Reality: I am older; I cannot change my age.)</p>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 3: Imagined -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-xs uppercase">Scenario 3</span>
+                            <span class="text-2xl">✨</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Imagined Improvement</h4>
+                        <p class="text-sm text-slate-600 mb-4">Imagining how things would be different if behavior changed.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"If everyone <strong class="text-indigo-700">took</strong> more care over litter, the town <strong class="text-indigo-700">would look</strong> much better."</p>
+                            <p class="text-xs text-slate-500 italic mt-1">(Reality: People currently drop litter.)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Reality vs Second Conditional Inspector -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-violet-400 uppercase tracking-widest block mb-1">Interactive Meaning Inspector</span>
+                            <h4 class="text-2xl font-black text-white">Compare Reality vs Second Conditional</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="selectContext('living')" id="btnLiving" class="toggle-btn bg-violet-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white">1. Living Abroad</button>
+                            <button onclick="selectContext('age')" id="btnAge" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">2. Age / Youth</button>
+                            <button onclick="selectContext('litter')" id="btnLitter" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">3. Town Litter</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-800/90 p-6 rounded-2xl border border-slate-700">
+                        <!-- Present Reality -->
+                        <div class="bg-slate-900 p-5 rounded-xl border border-amber-500/30">
+                            <span class="text-xs font-bold uppercase text-amber-400 block mb-1">Current Present Reality (Fact)</span>
+                            <p id="contextRealityText" class="text-lg font-bold text-white mb-2">"I do not live abroad."</p>
+                            <p id="contextRealityDesc" class="text-xs text-slate-300 font-medium leading-relaxed">
+                                True statement in the real world.
+                            </p>
+                        </div>
+
+                        <!-- Second Conditional -->
+                        <div class="bg-slate-900 p-5 rounded-xl border border-violet-500/30">
+                            <span class="text-xs font-bold uppercase text-violet-400 block mb-1">Second Conditional (Imaginary Result)</span>
+                            <p id="contextCondText" class="text-lg font-bold text-violet-300 mb-2">"If I lived abroad, I would try hard to learn the local language."</p>
+                            <p id="contextCondDesc" class="text-xs text-slate-300 font-medium leading-relaxed">
+                                Hypothesizes an unlikely or imaginary state and its outcome.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: WAS VS WERE -->
+            <div id="tab-was-were" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-purple-100 p-4 rounded-2xl text-purple-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.083 0 01.665-6.479L12 14z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Was vs. Were in the First Person (If I was / If I were)</h3>
+                        <p class="text-base text-slate-600 font-medium">Both forms are used in English, but they differ in level of formal academic appropriateness.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Were: Formal Academic -->
+                    <div class="interactive-card bg-white border-2 border-violet-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-violet-100 text-violet-800 rounded-full font-extrabold text-xs uppercase">Academic Written English</span>
+                            <span class="text-2xl">🎓</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">"If I WERE..."</h4>
+                        <p class="text-sm text-slate-600 mb-4">Standard, formal register. Highly recommended for university essays, academic writing, and exams.</p>
+                        <div class="bg-violet-50 p-4 rounded-xl border border-violet-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"If I <strong class="text-violet-700">were</strong> setting up a business here, I’d insist on a faster internet connection."</p>
+                            <p class="text-slate-800">"If I <strong class="text-violet-700">were</strong> younger, I’d get more involved."</p>
+                        </div>
+                    </div>
+
+                    <!-- Was: Spoken / Informal -->
+                    <div class="interactive-card bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full font-extrabold text-xs uppercase">Spoken / Informal English</span>
+                            <span class="text-2xl">🗣️</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">"If I WAS..."</h4>
+                        <p class="text-sm text-slate-600 mb-4">Common in everyday casual conversation and informal writing, though frowned upon in strict academic contexts.</p>
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"If I <strong class="text-amber-700">was</strong> able to learn another language, I’d learn Arabic."</p>
+                            <p class="text-slate-800">"If I <strong class="text-amber-700">was</strong> you, I'd ask for help."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formality Register Switcher Box -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-violet-400 uppercase tracking-widest block mb-1">Formality Level Inspector</span>
+                            <h4 class="text-2xl font-black text-white">Compare Academic vs Spoken Register</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setFormality('were')" id="btnFormWere" class="toggle-btn bg-violet-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white">Formal Essay (WERE)</button>
+                            <button onclick="setFormality('was')" id="btnFormWas" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">Spoken Casual (WAS)</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 space-y-3">
+                        <span id="formBadge" class="text-xs font-bold uppercase px-3 py-1 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30 w-fit block">
+                            Academic Written Standard
+                        </span>
+                        <p id="formSentence" class="text-xl font-black text-white">
+                            "If I <u class="text-violet-300">were</u> setting up a business here, I'd insist on a faster internet connection."
+                        </p>
+                        <p id="formAnalysis" class="text-xs text-slate-300 font-medium leading-relaxed">
+                            Uses subjunctive 'were' for all persons (I/he/she/it). Preferred in academic essays and formal publications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: CLAUSE ORDER & PUNCTUATION -->
+            <div id="tab-clause-order" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Clause Order & Comma Rules</h3>
+                        <p class="text-base text-slate-600 font-medium">You can place either the <em>if clause</em> or the <em>main clause</em> first without altering the sentence meaning!</p>
+                    </div>
+                </div>
+
+                <!-- Comma Punctuation Rules -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-xs uppercase">Order 1: If Clause First</span>
+                            <span class="text-2xl">⚠️</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Requires a Comma ( , )</h4>
+                        <p class="text-sm text-slate-600 mb-4">When the sentence begins with the <strong>If clause</strong>, place a comma between the two clauses.</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"If everyone followed the rules<strong class="text-rose-600 text-lg">,</strong> life would be much easier."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full font-extrabold text-xs uppercase">Order 2: Main Clause First</span>
+                            <span class="text-2xl">✔️</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">NO Comma Needed</h4>
+                        <p class="text-sm text-slate-600 mb-4">When the sentence begins with the <strong>Main clause</strong>, do NOT use a comma before <em>if</em>.</p>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"Life would be much easier <strong class="text-emerald-700">if</strong> everyone followed the rules."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Clause Swapper Tool -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-violet-400 uppercase tracking-widest block mb-1">Interactive Punctuation Visualizer</span>
+                            <h4 class="text-2xl font-black text-white">Clause Order Swapper</h4>
+                        </div>
+                        <button onclick="swapClauses()" class="toggle-btn bg-violet-600 hover:bg-violet-500 px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                            Swap Clause Order
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Sentence Display -->
+                    <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 space-y-4">
+                        <div id="swapperDisplay" class="flex flex-wrap items-center gap-2 text-lg font-bold leading-relaxed">
+                            <span id="clauseA" class="clause-box bg-violet-500/30 text-violet-300 px-3 py-1.5 rounded-xl border border-violet-500/40">If everyone followed the rules</span>
+                            <span id="commaA" class="comma-mark text-rose-400 text-2xl font-black">,</span>
+                            <span id="clauseB" class="clause-box bg-indigo-500/30 text-indigo-300 px-3 py-1.5 rounded-xl border border-indigo-500/40">life would be much easier.</span>
+                        </div>
+
+                        <p id="swapperRuleText" class="text-xs text-rose-300 font-medium">
+                            ⚠️ <strong>Comma Rule:</strong> Because the "If clause" comes first, a comma is REQUIRED before the main clause.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-teal-700 font-medium">Select the correct verb forms or punctuation to complete each Second Conditional sentence.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. If I <span class="inline-block w-36 border-b-2 border-slate-400 text-center text-violet-700 font-bold"></span> abroad, I would try hard to learn the local language.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! In the <em>if clause</em> of a Second Conditional sentence, we use the <strong>Past Simple</strong> (lived).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">lived</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. We use the Past Simple in the if clause, not would live.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">would live</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Present tense live is used in First Conditional for real possibilities.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">live</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Which option represents the most appropriate <strong>formal academic written style</strong>?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! In formal academic writing, <strong>were</strong> is preferred for first person singular (If I were...).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">If I were setting up a business here...</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. While \'was\' is common in spoken English, \'were\' is the formal academic standard.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">If I was setting up a business here...</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. Life would be much easier <span class="inline-block w-36 border-b-2 border-slate-400 text-center text-violet-700 font-bold"></span> everyone followed the rules.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! When the <strong>main clause comes first</strong>, NO comma is used before \'if\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">if (no comma)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A comma is only required when the \'if clause\' starts the sentence.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-violet-100 hover:text-violet-700 text-slate-700 transition-colors border-2 border-transparent">, if (with comma)</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference Guide</span>
+            <span>Second Conditional</span>
+        </div>
+    </div>
+
+    <!-- JavaScript Execution Logic -->
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-violet-600', 'text-violet-700', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else {
+                clickedBtn.classList.add('border-violet-600', 'text-violet-700');
+            }
+        }
+
+        /* Meaning Inspector Logic (Tab 1) */
+        function selectContext(type) {
+            const btnLiv = document.getElementById('btnLiving');
+            const btnAge = document.getElementById('btnAge');
+            const btnLit = document.getElementById('btnLitter');
+
+            const realText = document.getElementById('contextRealityText');
+            const realDesc = document.getElementById('contextRealityDesc');
+            const condText = document.getElementById('contextCondText');
+            const condDesc = document.getElementById('contextCondDesc');
+
+            const activeClass = 'toggle-btn bg-violet-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white';
+            const inactiveClass = 'toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700';
+
+            btnLiv.className = inactiveClass;
+            btnAge.className = inactiveClass;
+            btnLit.className = inactiveClass;
+
+            if (type === 'living') {
+                btnLiv.className = activeClass;
+                realText.innerText = '"I do not live abroad."';
+                realDesc.innerText = 'True fact in the real world.';
+                condText.innerText = '"If I lived abroad, I would try hard to learn the local language."';
+                condDesc.innerText = 'Unlikely hypothetical scenario in the mind of the speaker.';
+            } else if (type === 'age') {
+                btnAge.className = activeClass;
+                realText.innerText = '"I am older / not young anymore."';
+                realDesc.innerText = 'Fixed present reality.';
+                condText.innerText = '"If I were younger, I’d get more involved in my community."';
+                condDesc.innerText = 'Unreal scenario contrary to present facts.';
+            } else if (type === 'litter') {
+                btnLit.className = activeClass;
+                realText.innerText = '"People currently drop litter in town."';
+                realDesc.innerText = 'Observed present habit.';
+                condText.innerText = '"If everyone took more care over their litter, the town would look much better."';
+                condDesc.innerText = 'Imagined situation and its positive result.';
+            }
+        }
+
+        /* Formality Inspector Logic (Tab 2) */
+        function setFormality(level) {
+            const btnWere = document.getElementById('btnFormWere');
+            const btnWas = document.getElementById('btnFormWas');
+
+            const badge = document.getElementById('formBadge');
+            const sentence = document.getElementById('formSentence');
+            const analysis = document.getElementById('formAnalysis');
+
+            const activeClass = 'toggle-btn bg-violet-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white';
+            const inactiveClass = 'toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700';
+
+            btnWere.className = inactiveClass;
+            btnWas.className = inactiveClass;
+
+            if (level === 'were') {
+                btnWere.className = activeClass;
+                badge.innerText = 'Academic Written Standard';
+                badge.className = 'text-xs font-bold uppercase px-3 py-1 rounded-full bg-violet-500/20 text-violet-300 border border-violet-500/30 w-fit block';
+                sentence.innerHTML = '"If I <u class="text-violet-300">were</u> setting up a business here, I\'d insist on a faster internet connection."';
+                analysis.innerText = 'Uses subjunctive "were" for all persons (I/he/she/it). Strongly preferred in formal essays and academic publishing.';
+            } else if (level === 'was') {
+                btnWas.className = activeClass;
+                badge.innerText = 'Spoken / Casual Register';
+                badge.className = 'text-xs font-bold uppercase px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 w-fit block';
+                sentence.innerHTML = '"If I <u class="text-amber-300">was</u> able to learn another language, I\'d learn Arabic."';
+                analysis.innerText = 'Uses "was" in the first person. Common in everyday speech, but avoided in formal academic writing.';
+            }
+        }
+
+        /* Clause Swapper Logic (Tab 3) */
+        let isIfFirst = true;
+        function swapClauses() {
+            const container = document.getElementById('swapperDisplay');
+            const clauseA = document.getElementById('clauseA');
+            const commaA = document.getElementById('commaA');
+            const clauseB = document.getElementById('clauseB');
+            const ruleText = document.getElementById('swapperRuleText');
+
+            if (isIfFirst) {
+                // Change to Main Clause First
+                container.innerHTML = `
+                    <span id="clauseB" class="clause-box bg-indigo-500/30 text-indigo-300 px-3 py-1.5 rounded-xl border border-indigo-500/40">Life would be much easier</span>
+                    <span id="clauseA" class="clause-box bg-violet-500/30 text-violet-300 px-3 py-1.5 rounded-xl border border-violet-500/40">if everyone followed the rules.</span>
+                `;
+                ruleText.innerHTML = '✔️ <strong>Punctuation Rule:</strong> Because the "Main clause" comes first, <strong>NO COMMA</strong> is used before "if".';
+                ruleText.className = 'text-xs text-emerald-300 font-medium';
+                isIfFirst = false;
+            } else {
+                // Change to If Clause First
+                container.innerHTML = `
+                    <span id="clauseA" class="clause-box bg-violet-500/30 text-violet-300 px-3 py-1.5 rounded-xl border border-violet-500/40">If everyone followed the rules</span>
+                    <span id="commaA" class="comma-mark text-rose-400 text-2xl font-black">,</span>
+                    <span id="clauseB" class="clause-box bg-indigo-500/30 text-indigo-300 px-3 py-1.5 rounded-xl border border-indigo-500/40">life would be much easier.</span>
+                `;
+                ruleText.innerHTML = '⚠️ <strong>Punctuation Rule:</strong> Because the "If clause" comes first, a <strong>COMMA</strong> is required before the main clause.';
+                ruleText.className = 'text-xs text-rose-300 font-medium';
+                isIfFirst = true;
+            }
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-violet-100', 'hover:text-violet-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+    </script>
+</body>
+</html>

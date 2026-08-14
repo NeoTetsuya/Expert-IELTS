@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Relative Clauses (Page 29)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Violet-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.15), 0 10px 10px -5px rgba(99, 102, 241, 0.08);
+            border-color: #6366f1; /* Indigo-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #4f46e5; /* Indigo-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-800 via-violet-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                    Module 2 Grammar Guide • Page 29
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Relative Clauses</h1>
+                <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">defining relative clauses</span>, <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">subject vs. object relative pronouns</span>, pronoun <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">omission rules</span>, and <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">whose / where / when</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-defining')">1. Defining Clauses 💡</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-sub-obj')">2. Subject vs. Object Pronouns ⚖️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-pronouns-connectors')">3. Pronouns & Connectors 🔗</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Relative Clause Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: DEFINING RELATIVE CLAUSES -->
+            <div id="tab-defining" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700 pulse-border">
+                        <span class="text-3xl font-black">Clause</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Defining Relative Clauses</h3>
+                        <p class="text-lg text-slate-600 font-medium">Used to identify or classify a noun or pronoun in a sentence.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Core Function Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Function</span>
+                                <span class="text-2xl">🔍</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Identify & Classify Nouns</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Defining relative clauses give essential information about a noun. Without this clause, the sentence would be incomplete or unclear.
+                            </p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-sm font-semibold space-y-2">
+                            <p>👉 "Happiness is an emotion <strong class="text-indigo-900 underline">which makes us feel good</strong>."</p>
+                            <p class="text-xs text-indigo-700 font-normal">(= Happiness is an emotion. It makes us feel good.)</p>
+                        </div>
+                    </div>
+
+                    <!-- Register & Formal Style Card -->
+                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-violet-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Formal vs Informal</span>
+                                <span class="text-2xl">📝</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Using "that" vs. "who/which"</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                In spoken and informal English, we frequently use <strong>that</strong> instead of <em>which</em> or <em>who</em>. In more formal texts, <em>which</em> and <em>who</em> are preferred.
+                            </p>
+                        </div>
+                        <div class="bg-violet-50 p-4 rounded-xl border border-violet-200 text-slate-800 text-sm font-semibold space-y-2">
+                            <p>💬 Informal: "The research <strong class="text-violet-900 underline">that</strong> the professor gave us..."</p>
+                            <p>📜 Formal: "The research <strong class="text-violet-900 underline">which</strong> the professor gave us..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Rule Callout -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold mb-3 text-indigo-300 uppercase tracking-widest flex items-center gap-2">
+                        <span>⚡ Essential Concept: Combining Two Sentences</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium">
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-indigo-400 font-bold block mb-1">Two Separate Sentences</span>
+                            <p class="text-slate-300">1. Happiness is an emotion.</p>
+                            <p class="text-slate-300">2. It makes us feel good.</p>
+                        </div>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-emerald-400 font-bold block mb-1">Joined with Relative Clause</span>
+                            <p class="text-slate-300 font-bold">👉 "Happiness is an emotion <span class="text-emerald-300 underline">which makes us feel good</span>."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SUBJECT VS OBJECT PRONOUNS -->
+            <div id="tab-sub-obj" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700">
+                        <span class="text-3xl font-black">Subject / Object</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Relative Pronoun Functions & Omission Rules</h3>
+                        <p class="text-lg text-slate-600 font-medium">Understanding when relative pronouns act as subject vs. object, and when they can be omitted.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Subject Relative Pronoun Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Subject Relative Pronoun</span>
+                                <span class="text-2xl">👤</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Subject of the Relative Clause</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Used when the relative pronoun is the <strong>subject</strong> performing the action in the relative clause.
+                            </p>
+                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "A bucket list is something <strong class="text-indigo-900 underline">which can motivate us</strong> to experience new things."</p>
+                                <p class="text-slate-500 font-normal">(= A bucket list is a thing. It can motivate us...)</p>
+                            </div>
+                        </div>
+
+                        <!-- Trap Alert -->
+                        <div class="bg-rose-50 border border-rose-300 p-4 rounded-xl text-xs font-bold text-rose-900 space-y-1">
+                            <span class="text-rose-700 uppercase tracking-wider text-[11px] block">⚠️ CRITICAL TRAP! Do NOT repeat subject pronoun!</span>
+                            <p>❌ Incorrect: "A person who is stressed <span class="line-through text-rose-600">he</span> has high blood pressure."</p>
+                            <p class="text-emerald-800">✅ Correct: "A person <strong>who is stressed</strong> has high blood pressure."</p>
+                        </div>
+                    </div>
+
+                    <!-- Object Relative Pronoun Card -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Object Relative Pronoun</span>
+                                <span class="text-2xl">📦</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Object of the Relative Clause</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Used when the relative pronoun is the <strong>object</strong> receiving the action.
+                            </p>
+                            <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "We have to read the research report <strong class="text-teal-900 underline">that the professor gave us</strong>."</p>
+                                <p class="text-slate-500 font-normal">(= We have to read the research report. The professor gave it to us.)</p>
+                            </div>
+                        </div>
+
+                        <!-- Omission Rule Callout -->
+                        <div class="bg-emerald-50 border border-emerald-300 p-4 rounded-xl text-xs font-bold text-emerald-900 space-y-1">
+                            <span class="text-emerald-700 uppercase tracking-wider text-[11px] block">💡 GOLDEN RULE: Pronoun Omission</span>
+                            <p>We CAN omit the relative pronoun when it is the object!</p>
+                            <p class="text-slate-800 mt-1 font-semibold">👉 "Embarrassment is a feeling <strong class="text-emerald-800">(that)</strong> we don't want to experience."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Summary Table -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-indigo-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <span>⚡ Subject vs. Object Relative Pronouns Quick Guide</span>
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-medium border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-indigo-300 font-bold uppercase">
+                                    <th class="p-3">Role</th>
+                                    <th class="p-3">Function in Clause</th>
+                                    <th class="p-3">Can it be omitted?</th>
+                                    <th class="p-3">Example Sentence</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Subject Pronoun</td>
+                                    <td class="p-3">Followed by a verb (e.g. <em>who is...</em>)</td>
+                                    <td class="p-3 text-rose-400 font-bold">❌ NEVER Omit</td>
+                                    <td class="p-3 font-mono text-xs">"A person <strong>who is</strong> stressed..."</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Object Pronoun</td>
+                                    <td class="p-3">Followed by subject + verb (e.g. <em>we don't want...</em>)</td>
+                                    <td class="p-3 text-emerald-400 font-bold">✅ CAN Omit</td>
+                                    <td class="p-3 font-mono text-xs">"Embarrassment is a feeling <strong>(that)</strong> we don't want..."</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PRONOUNS & CONNECTORS -->
+            <div id="tab-pronouns-connectors" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700">
+                        <span class="text-3xl font-black">🔗</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">C. Relative Pronouns & Adverbial Connectors</h3>
+                        <p class="text-lg text-slate-600 font-medium">Matching pronouns to people, things, possessions, places, and times.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Which / That -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Things / Objects</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">which / that</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Used for objects, ideas, or non-human items:</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-950 space-y-1">
+                            "A bucket list is something <strong>which / that</strong> can motivate us."
+                        </div>
+                    </div>
+
+                    <!-- Who / That -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">People</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">who / that</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Used for people and individuals:</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-950 space-y-1">
+                            "A person <strong>who / that</strong> is stressed has high blood pressure."
+                        </div>
+                    </div>
+
+                    <!-- Whose -->
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-fuchsia-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Possessions</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">whose</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Used to show ownership or relationship:</p>
+                        <div class="bg-fuchsia-50 p-3 rounded-xl border border-fuchsia-200 text-xs font-semibold text-fuchsia-950 space-y-1">
+                            "A person <strong>whose</strong> body language is negative gives a bad impression."
+                        </div>
+                    </div>
+
+                    <!-- Where -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
+                        <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Places</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">where</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Connects to locations or geographical settings:</p>
+                        <div class="bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-1">
+                            "Places <strong>where</strong> people are noisy can be very stressful."
+                        </div>
+                    </div>
+
+                    <!-- When -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm sm:col-span-2 lg:col-span-2">
+                        <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Times / Dates</span>
+                        <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">when</h4>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Connects to time expressions, days, or occasions:</p>
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs font-semibold text-amber-950 space-y-1">
+                            "A time <strong>when</strong> people may feel happy is on their graduation day."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connectors Note Banner -->
+                <div class="bg-amber-500/10 border-2 border-amber-400 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div class="text-3xl">⚠️</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-900 text-lg mb-1">Note on "When" and "Where"</h4>
+                            <p class="text-sm text-amber-900 font-medium leading-relaxed">
+                                Sentences with <strong>when</strong> and <strong>where</strong> are technically adverbial clauses rather than relative clauses, but they act in a virtually identical way to link descriptions to places and times!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: RELATIVE CLAUSE MATRIX EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Relative Clause Explorer</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test which relative pronoun/connector applies according to Page 29!</p>
+
+                    <!-- Filter Options -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Category</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('person_sub')" id="ebtn-person_sub" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Person (Subject Pronoun)</button>
+                            <button onclick="selectExplorer('thing_sub')" id="ebtn-thing_sub" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Thing (Subject Pronoun)</button>
+                            <button onclick="selectExplorer('thing_obj')" id="ebtn-thing_obj" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Thing / Emotion (Object Pronoun - Omission)</button>
+                            <button onclick="selectExplorer('possession')" id="ebtn-possession" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Possessions (Whose)</button>
+                            <button onclick="selectExplorer('place')" id="ebtn-place" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Place (Where)</button>
+                            <button onclick="selectExplorer('time')" id="ebtn-time" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Time (When)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-indigo-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-indigo-50 via-violet-50 to-emerald-50 rounded-2xl p-8 border border-indigo-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-indigo-900 mb-2">Test Your Page 29 Knowledge</h3>
+                    <p class="text-indigo-700 font-medium">Select the correct relative pronoun or rule according to Page 29.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. A person <span class="inline-block w-28 border-b-2 border-slate-400"></span> is stressed has high blood pressure.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>who</strong> (or that) for people as the subject of the clause.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">who</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect! Do NOT repeat the subject pronoun \'he\' after a relative pronoun.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">who he</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Which is used for things, not people.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">which</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Embarrassment is a feeling <span class="inline-block w-28 border-b-2 border-slate-400"></span> we don't want to experience.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Since the relative pronoun is the object (we don\'t want to experience it), both <strong>that</strong> and omitting the pronoun (Ø) are completely correct.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">that / Ø (omit)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Whose is used for possessions, not feelings as objects.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">whose</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Where is used for geographical locations.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">where</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. A person <span class="inline-block w-28 border-b-2 border-slate-400"></span> body language is negative gives a bad impression.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>whose</strong> to show possession or connection to a body language.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">whose</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Who indicates the subject person, but here we need a possessive relative pronoun.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">who</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Which is used for things.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">which</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. Places <span class="inline-block w-28 border-b-2 border-slate-400"></span> people are noisy can be very stressful.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>where</strong> to refer to locations and places.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">where</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. When refers to times or dates.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">when</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Whose is used for possessions.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">whose</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Graduation day is a time <span class="inline-block w-28 border-b-2 border-slate-400"></span> people may feel happy.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>when</strong> to connect to time expressions and days.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">when</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Where refers to places, not times.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">where</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Who refers to people.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">who</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Relative Clauses</span>
+            <span>Page 29 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
+            }
+        }
+
+        /* Relative Clause Explorer Matrix Data */
+        const explorerData = {
+            'person_sub': {
+                pronoun: 'who / that',
+                omissible: '❌ NO (Never omit subject pronouns)',
+                example: '👉 "A person <strong class="text-indigo-800 underline">who is stressed</strong> has high blood pressure."',
+                rule: 'Rule: Who/that functions as the subject of the clause. Never add "he/she" after who!'
+            },
+            'thing_sub': {
+                pronoun: 'which / that',
+                omissible: '❌ NO (Subject pronoun cannot be omitted)',
+                example: '👉 "A bucket list is something <strong class="text-indigo-800 underline">which can motivate us</strong> to experience new things."',
+                rule: 'Rule: Which/that functions as the subject for things and ideas.'
+            },
+            'thing_obj': {
+                pronoun: '(that / which / Ø)',
+                omissible: '✅ YES! Can be omitted completely',
+                example: '👉 "Embarrassment is a feeling <strong class="text-indigo-800 underline">(that) we don\'t want to experience</strong>."',
+                rule: 'Rule: When the relative pronoun acts as the object of the verb, it can be omitted.'
+            },
+            'possession': {
+                pronoun: 'whose',
+                omissible: '❌ NO',
+                example: '👉 "A person <strong class="text-indigo-800 underline">whose body language is negative</strong> gives a bad impression."',
+                rule: 'Rule: Whose replaces possessive adjectives (his, her, its, their).'
+            },
+            'place': {
+                pronoun: 'where',
+                omissible: '❌ NO',
+                example: '👉 "Places <strong class="text-indigo-800 underline">where people are noisy</strong> can be very stressful."',
+                rule: 'Rule: Connects clauses describing physical locations and settings.'
+            },
+            'time': {
+                pronoun: 'when',
+                omissible: '❌ NO',
+                example: '👉 "A time <strong class="text-indigo-800 underline">when people may feel happy</strong> is on their graduation day."',
+                rule: 'Rule: Connects clauses describing times, dates, or occasions.'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-indigo-600', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-indigo-600', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-indigo-100 text-indigo-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">Pronoun: ${item.pronoun} | Omission: ${item.omissible}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-indigo-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('person_sub');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-indigo-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-indigo-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-indigo-50', 'border-indigo-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-indigo-50', 'border-indigo-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-indigo-100');
+                correctBtn.classList.add('border-indigo-500', 'text-indigo-800');
+            }
+        }
+    </script>
+</body>
+</html>

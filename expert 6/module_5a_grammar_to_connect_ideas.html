@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar to Connect Ideas (Page 77)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Slate-100 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 10px 10px -5px rgba(15, 23, 42, 0.06);
+            border-color: #0ea5e9; /* Sky-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(14, 165, 233, 0.4); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+            70% { border-color: rgba(14, 165, 233, 0); box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+            100% { border-color: rgba(14, 165, 233, 0); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #0284c7; /* Sky-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-sky-950 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-sky-400 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                    Grammar Guide • Page 77
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Grammar to Connect Ideas</h1>
+                <p class="mt-4 text-slate-300 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master cohesive references using <span class="bg-sky-500/30 px-2 py-0.5 rounded font-bold text-sky-200 border border-sky-400/30">this & these</span>, <span class="bg-sky-500/30 px-2 py-0.5 rounded font-bold text-sky-200 border border-sky-400/30">that & those</span>, <span class="bg-sky-500/30 px-2 py-0.5 rounded font-bold text-sky-200 border border-sky-400/30">those who</span>, <span class="bg-sky-500/30 px-2 py-0.5 rounded font-bold text-sky-200 border border-sky-400/30">do so & modals</span>, and <span class="bg-sky-500/30 px-2 py-0.5 rounded font-bold text-sky-200 border border-sky-400/30">such</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-sky-600 border-b-4 border-sky-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-this-these')">1. This & These 🔗</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-that-those')">2. That, Those & Those Who ⏳</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-doso-modals')">3. Do So & Modals ⚡</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-such')">4. Such + Noun Phrases 🏛️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">5. Connection Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    6. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: THIS & THESE -->
+            <div id="tab-this-these" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-sky-100 p-4 rounded-2xl text-sky-700 pulse-border">
+                        <span class="text-3xl font-black">This / These</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Using "This" and "These" to Connect Sentences</h3>
+                        <p class="text-lg text-slate-600 font-medium">Replaces singular/plural nouns or combines with synonyms to repeat ideas smoothly.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Rule 1: This (Singular) -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-sky-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Singular Noun</span>
+                                <span class="text-2xl">☝️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">this (standalone pronoun)</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Replaces a singular noun, clause, or situation mentioned in the previous sentence.
+                            </p>
+                            <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "There was an increase in numbers of visitors to the gallery. <strong class="text-sky-900 underline font-extrabold">This</strong> was largely due to the new opening hours."</p>
+                                <p class="text-slate-500 font-normal">(= This increase was due to new hours.)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2: This + Synonym -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. This + Synonym</span>
+                                <span class="text-2xl">🔄</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">this + [Synonym / Noun]</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Combines <em>this</em> with a summary noun or synonym to summarize a full idea.
+                            </p>
+                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Organisers decided to hold the art competition every two years, rather than every year. <strong class="text-indigo-900 underline font-extrabold">This change</strong> was made to give artists more time to prepare."</p>
+                                <p class="text-slate-500 font-normal">('This change' summarizes holding it every 2 years)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3: These (Plural) -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Plural Noun</span>
+                                <span class="text-2xl">👥</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">these (standalone pronoun)</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Replaces a plural noun mentioned previously.
+                            </p>
+                            <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "There were a lot of complaints about the exhibition. Most of <strong class="text-teal-900 underline font-extrabold">these</strong> related to just one painting."</p>
+                                <p class="text-slate-500 font-normal">(= Most of these complaints...)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 4: These + Synonym -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">4. These + Synonym</span>
+                                <span class="text-2xl">👥🏷️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">these + [Plural Synonym]</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Combines <em>these</em> with a plural synonym to re-categorize a group.
+                            </p>
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "The number of teenagers who regularly purchase music decreased. The availability of free music online was the main reason reported by <strong class="text-emerald-900 underline font-extrabold">these young people</strong>."</p>
+                                <p class="text-slate-500 font-normal">('these young people' replaces 'teenagers')</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Writing Tip Banner -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-sky-300 uppercase tracking-widest flex items-center gap-2 mb-2">
+                        <span>⚡ Academic Cohesion Tip: "This + Summary Noun"</span>
+                    </h4>
+                    <p class="text-xs text-slate-300 leading-relaxed font-medium">
+                        In IELTS/academic essays, using <strong>This + noun</strong> (e.g. <em>This decision, This trend, This reduction, This change</em>) is significantly clearer and more sophisticated than using a bare "This" alone!
+                    </p>
+                </div>
+            </div>
+
+            <!-- TAB 2: THAT, THOSE & THOSE WHO -->
+            <div id="tab-that-those" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-sky-100 p-4 rounded-2xl text-sky-700">
+                        <span class="text-3xl font-black">That / Those</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B & C. That, Those & "Those Who"</h3>
+                        <p class="text-lg text-slate-600 font-medium">When to use <em>that/those</em> instead of <em>this/these</em>, and using <em>those who</em>.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Condition 1: Distance in Time / Space -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Distance (Time/Space)</span>
+                                <span class="text-2xl">🏛️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Distant Reference</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Use <strong>that</strong> (sing) or <strong>those</strong> (plural) when the reference is far away in history, time, or geographic space.
+                            </p>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-950 space-y-2 mb-3">
+                                <p>👉 "Hatra contains fine examples of architecture. <strong class="underline text-indigo-800">That region</strong> of modern-day Iran was a major centre..."</p>
+                                <p>👉 "Michelangelo painted the Sistine Chapel from 1508–1512. At <strong class="underline text-indigo-800">that time</strong>, it wasn't unusual..."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Condition 2: Comparison & "The Same As" -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Comparisons</span>
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Comparisons & "Same As"</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Use <strong>that / those</strong> following a comparative form or <em>the same as</em> to avoid repeating the noun.
+                            </p>
+                            <div class="bg-teal-50 p-3.5 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-2 mb-3">
+                                <p>👉 "Sales of paintings rose faster than <strong class="underline text-teal-800">those of statues</strong>." (= sales of statues)</p>
+                                <p>👉 "The statistics for art students... were the same as for <strong class="underline text-teal-800">those on postgraduate programmes</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section C: Those Who -->
+                    <div class="interactive-card bg-white border-2 border-fuchsia-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-fuchsia-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Section C: "Those Who"</span>
+                                <span class="text-2xl">👥</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">those who = people who</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Use <strong>those who</strong> as a formal, elegant replacement for <em>people who</em>.
+                            </p>
+                            <div class="bg-fuchsia-50 p-3.5 rounded-xl border border-fuchsia-200 text-xs font-semibold text-fuchsia-950 space-y-2 mb-3">
+                                <p>👉 "Many people dislike visiting art galleries. However, <strong class="underline text-fuchsia-900">those who</strong> enjoy going there visit regularly."</p>
+                                <p>👉 "...separated into <strong class="underline text-fuchsia-900">those who were</strong> in full-time work and <strong class="underline text-fuchsia-900">those who were not</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: DO SO & MODALS -->
+            <div id="tab-doso-modals" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-sky-100 p-4 rounded-2xl text-sky-700">
+                        <span class="text-3xl font-black">⚡</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">D. Do So, Substitution & Modals</h3>
+                        <p class="text-lg text-slate-600 font-medium">Avoiding repetitive verb phrases using <em>do so</em> or short auxiliaries / modals.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Rule D1: Do So -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-sky-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Verb Substitution</span>
+                                <span class="text-2xl">📝</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">do so (replaces "do it / action")</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                In formal academic English, use <strong>do so / doing so / did so</strong> instead of <em>do it / doing it</em>.
+                            </p>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 text-slate-800 text-xs font-semibold space-y-2">
+                            <p>👉 "The gallery owners decided to show a much wider range of paintings. <strong class="text-sky-900 underline font-extrabold">By doing so</strong>, they attracted a wider audience."</p>
+                            <p class="text-slate-500 font-normal">(= By showing a wider range of paintings...)</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule D2: Auxiliary / Modal Substitution -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Auxiliary / Modal Shortening</span>
+                                <span class="text-2xl">✂️</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">can / do / are (short form)</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Use an auxiliary or modal verb (e.g. <em>can, do, are</em>) in place of repeating a whole verb phrase.
+                            </p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2">
+                            <p>👉 "Many people think they can't understand art, but they <strong class="text-indigo-900 underline font-extrabold">can</strong>."</p>
+                            <p class="text-slate-500 font-normal">(= ...but they can understand art.)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: SUCH + NOUN PHRASES -->
+            <div id="tab-such" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-sky-100 p-4 rounded-2xl text-sky-700">
+                        <span class="text-3xl font-black">🏛️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">E. Using "Such" to Replace Nouns</h3>
+                        <p class="text-lg text-slate-600 font-medium">Formulas for singular countable vs. plural & uncountable nouns.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Singular Countable -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-sky-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Singular Countable</span>
+                                <span class="text-2xl">1️⃣</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">such + a (adj) + singular noun</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Used when referring back to a singular countable noun or event. Must include <strong>a/an</strong>!
+                            </p>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl border border-sky-200 text-xs font-semibold text-slate-800 space-y-2">
+                            <p>👉 "The government decided to increase the number of hours spent on art in primary schools. <strong class="text-sky-900 underline font-extrabold">Such a big decision</strong> was always going to create disagreement."</p>
+                        </div>
+                    </div>
+
+                    <!-- Plural / Uncountable -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Plural / Uncountable</span>
+                                <span class="text-2xl">🔢</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">such + (adj) + plural/uncountable noun</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Used with plural or uncountable nouns. Do NOT include <em>a/an</em>!
+                            </p>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs font-semibold text-slate-800 space-y-2">
+                            <p>👉 "The fashion industry is worth around $1.2 trillion each year. Many people think that <strong class="text-emerald-900 underline font-extrabold">such large sums of money</strong> should be used for better purposes."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: CONNECTION EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Cohesion & Reference Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a connection scenario to test which grammar rule applies according to Page 77!</p>
+
+                    <!-- Filter Options -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('this_singular')" id="ebtn-this_singular" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">This (Singular Reference)</button>
+                            <button onclick="selectExplorer('these_synonym')" id="ebtn-these_synonym" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">These + Synonym (Teenagers → These young people)</button>
+                            <button onclick="selectExplorer('that_distant')" id="ebtn-that_distant" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">That (Distant in History/Space)</button>
+                            <button onclick="selectExplorer('those_who')" id="ebtn-those_who" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">Those who (People who)</button>
+                            <button onclick="selectExplorer('do_so')" id="ebtn-do_so" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">By doing so (Action substitution)</button>
+                            <button onclick="selectExplorer('such_a')" id="ebtn-such_a" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-sky-300 bg-white text-sky-800">Such a big decision (Singular Countable)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-sky-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 6: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-sky-50 via-indigo-50 to-amber-50 rounded-2xl p-8 border border-sky-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-sky-900 mb-2">Test Your Page 77 Knowledge</h3>
+                    <p class="text-sky-700 font-medium">Select the correct cohesive connecting structure according to Page 77 rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. Organisers decided to hold the art competition every two years. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> was made to give artists more time to prepare.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 77 uses <strong>This change</strong> (this + synonym) to repeat and summarize an idea.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">This change</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. These change is ungrammatical because change is singular.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">These change</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Those is used for distant history or comparisons.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">Those change</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Sales of paintings rose faster than <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> of statues and other art forms.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>those</strong> to replace a plural noun (sales) following a comparison form.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">those</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. These is used for immediate previous mention, but comparisons specifically take that/those.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">these</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. That is singular, but sales is plural.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">that</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. Many people dislike visiting art galleries. However, <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> enjoy going there visit regularly.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 77 states we use <strong>those who</strong> to replace \'people who\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">those who</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. These who is not standard English; we use those who.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">these who</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. That who is ungrammatical.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">that who</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. The gallery owners decided to show a much wider range of paintings. By <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span>, they attracted a wider audience.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Academic English uses <strong>doing so</strong> in place of \'doing it\' to refer to an action.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">doing so</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Doing it is informal; academic style prefers doing so.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">doing it</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Doing this requires a noun, e.g. doing this action.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">doing this</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. The government decided to increase art hours. <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> big decision was always going to create disagreement.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! For singular countable nouns, the formula is <strong>Such a + adjective + noun</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Such a</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. You must include \'a\' before a singular countable noun (such a big decision).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">Such</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Such that is used in result clauses, not before a noun phrase.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-sky-100 hover:text-sky-700 text-slate-700 transition-colors border-2 border-transparent">Such that</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • Connecting Ideas</span>
+            <span>Page 77 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-sky-600', 'text-sky-600', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-sky-600', 'text-sky-600');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'this_singular': {
+                title: 'This (Singular Noun / Clause)',
+                example: '👉 "There was an increase in numbers of visitors... <strong class="text-sky-800 underline">This</strong> was largely due to new opening hours."',
+                rule: 'Rule: Replaces a singular noun or entire situation mentioned in the preceding sentence.'
+            },
+            'these_synonym': {
+                title: 'These + Synonym',
+                example: '👉 "Teenagers who purchase music decreased... reason reported by <strong class="text-sky-800 underline">these young people</strong>."',
+                rule: 'Rule: Replaces a plural noun (teenagers) with a broader plural noun/synonym (these young people).'
+            },
+            'that_distant': {
+                title: 'That / Those (Distant Reference)',
+                example: '👉 "Sistine Chapel in 1508–1512. At <strong class="text-sky-800 underline">that time</strong>, it wasn\'t unusual..."',
+                rule: 'Rule: Use that/those when the reference is distant in history, time, or geographical space.'
+            },
+            'those_who': {
+                title: 'Those Who (Replaces People Who)',
+                example: '👉 "Many people dislike visiting art galleries. However, <strong class="text-sky-800 underline">those who</strong> enjoy going there visit regularly."',
+                rule: 'Rule: Formal academic replacement for "people who".'
+            },
+            'do_so': {
+                title: 'Do So (Replaces Do It / Verb Phrase)',
+                example: '👉 "Decided to show a wider range of paintings. By <strong class="text-sky-800 underline">doing so</strong>, they attracted a wider audience."',
+                rule: 'Rule: Formal academic substitute for repeating an entire action verb phrase.'
+            },
+            'such_a': {
+                title: 'Such a + Adjective + Singular Countable Noun',
+                example: '👉 "The government decided to increase art hours... <strong class="text-sky-800 underline">Such a big decision</strong> was always going to create disagreement."',
+                rule: 'Rule: Replaces a singular countable noun. Formula: such + a/an + adj + singular noun.'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-sky-600', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-sky-600', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-sky-100 text-sky-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-sky-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('this_singular');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-sky-100', 'hover:text-sky-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-sky-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-sky-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-sky-50', 'border-sky-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-sky-50', 'border-sky-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-sky-100');
+                correctBtn.classList.add('border-sky-500', 'text-sky-800');
+            }
+        }
+    </script>
+</body>
+</html>

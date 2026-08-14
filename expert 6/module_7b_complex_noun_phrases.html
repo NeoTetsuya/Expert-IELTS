@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Complex Noun Phrases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.18), 0 8px 10px -6px rgba(79, 70, 229, 0.1);
+            border-color: #6366f1; /* Indigo-500 */
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .toggle-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phrase-segment {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-300 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                    Grammar Reference Guide
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Complex Noun Phrases & Sentence Structure</h1>
+                <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master academic writing! Learn how to expand simple nouns into multi-word <strong>noun phrases</strong>, organize <strong>subject and object groups</strong>, and structure adverbs of <strong>manner, place, and time</strong>.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-nouns-vs-phrases')">1. Noun vs. Noun Phrase 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-word-order')">2. Sentence Word Order 📐</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-builder')">3. Interactive Phrase Builder 🧱</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-modifiers')">4. Manner, Place & Time 🎓</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: NOUN VS NOUN PHRASE -->
+            <div id="tab-nouns-vs-phrases" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">What is a Noun Phrase?</h3>
+                        <p class="text-base text-slate-600 font-medium">A single noun can be expanded into a multi-word phrase to provide rich detail without creating a new sentence.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Cards: Single Noun vs Noun Phrase -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full font-extrabold text-xs uppercase">Simple Noun</span>
+                            <span class="text-2xl">🏷️</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Single Word Nouns</h4>
+                        <p class="text-sm text-slate-600 mb-4">Consists of just one isolated word referring to a person, place, or thing.</p>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"The <strong class="text-indigo-700">visitor</strong> was welcomed in the capital."</p>
+                            <p class="text-slate-800">"The <strong class="text-indigo-700">tickets</strong> arrived on time."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-indigo-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-extrabold text-xs uppercase">Noun Phrase</span>
+                            <span class="text-2xl">📦</span>
+                        </div>
+                        <h4 class="text-xl font-extrabold text-slate-900 mb-2">Expanded Noun Phrase</h4>
+                        <p class="text-sm text-slate-600 mb-4">Combines a head noun with modifiers (articles, adjectives, relative clauses, or prepositions).</p>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2 text-sm font-medium">
+                            <p class="text-slate-800">"The <strong class="text-indigo-700">foreign visitor</strong> was welcomed..."</p>
+                            <p class="text-slate-800">"The <strong class="text-indigo-700">office which gives out visas</strong> is near..."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Components of Noun Phrases -->
+                <h4 class="text-xl font-bold text-slate-900 border-t border-slate-200 pt-6">4 Ways to Build a Noun Phrase</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-5 bg-white border-2 border-slate-100 rounded-2xl shadow-sm">
+                        <span class="text-xs font-bold text-indigo-600 uppercase block mb-1">1. Article + Adjective + Head Noun</span>
+                        <p class="text-sm font-extrabold text-slate-900 mb-1">"The foreign visitor"</p>
+                        <p class="text-xs text-slate-500">Adds descriptive qualities before the noun.</p>
+                    </div>
+
+                    <div class="p-5 bg-white border-2 border-slate-100 rounded-2xl shadow-sm">
+                        <span class="text-xs font-bold text-blue-600 uppercase block mb-1">2. Head Noun + Relative Clause</span>
+                        <p class="text-sm font-extrabold text-slate-900 mb-1">"The office <span class="text-blue-600 underline">which gives out visas</span>"</p>
+                        <p class="text-xs text-slate-500">Attaches a defining relative clause after the noun.</p>
+                    </div>
+
+                    <div class="p-5 bg-white border-2 border-slate-100 rounded-2xl shadow-sm">
+                        <span class="text-xs font-bold text-purple-600 uppercase block mb-1">3. Head Noun + Prepositional Phrase</span>
+                        <p class="text-sm font-extrabold text-slate-900 mb-1">"The number <span class="text-purple-600 underline">of people in the United States</span>"</p>
+                        <p class="text-xs text-slate-500">Links location or group details using prepositions.</p>
+                    </div>
+
+                    <div class="p-5 bg-white border-2 border-slate-100 rounded-2xl shadow-sm">
+                        <span class="text-xs font-bold text-amber-600 uppercase block mb-1">4. Prepositional Phrase + Relative Clause</span>
+                        <p class="text-sm font-extrabold text-slate-900 mb-1">"The number of people <span class="text-amber-600 underline">who travel abroad</span>"</p>
+                        <p class="text-xs text-slate-500">Combines prepositions and clauses for high academic precision.</p>
+                    </div>
+                </div>
+
+                <!-- Golden Rule Card -->
+                <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-2xl shadow-sm">
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">💡</span>
+                        <div>
+                            <h4 class="font-bold text-amber-900 text-base">Key Grammar Guardrail</h4>
+                            <p class="text-sm text-amber-800 mt-1">
+                                <strong>Noun phrases NEVER contain the main verb of a sentence!</strong> A noun phrase acts as a single block that functions as either the <u>Subject</u> or the <u>Object</u> of the sentence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: SENTENCE WORD ORDER -->
+            <div id="tab-word-order" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-blue-100 p-4 rounded-2xl text-blue-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Basic English Sentence Word Order</h3>
+                        <p class="text-base text-slate-600 font-medium">Standard declarative sentences follow a fixed sequence from Subject to Verb to Object, followed by Manner, Place, and Time.</p>
+                    </div>
+                </div>
+
+                <!-- Sentence Matrix Visualization -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 overflow-x-auto">
+                    <h4 class="text-lg font-bold text-indigo-400 uppercase tracking-wider mb-4">Basic Word Order Matrix</h4>
+                    
+                    <table class="w-full text-left min-w-[650px]">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-xs font-bold uppercase tracking-wider text-slate-400">
+                                <th class="p-3 text-indigo-400">Subject (Group)</th>
+                                <th class="p-3 text-emerald-400">Verb (Group)</th>
+                                <th class="p-3 text-amber-400">Object (Group)</th>
+                                <th class="p-3 text-rose-400">Adverb: Manner</th>
+                                <th class="p-3 text-cyan-400">Adverb: Place</th>
+                                <th class="p-3 text-purple-400">Adverb: Time</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800 text-sm font-semibold">
+                            <!-- Example 1 -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 text-white">I</td>
+                                <td class="p-3 text-emerald-300">take</td>
+                                <td class="p-3 text-amber-300">my phone</td>
+                                <td class="p-3 text-slate-500">—</td>
+                                <td class="p-3 text-cyan-300">with me on holiday</td>
+                                <td class="p-3 text-purple-300">every year.</td>
+                            </tr>
+                            <!-- Example 2 -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 text-white">The number of people who travel abroad</td>
+                                <td class="p-3 text-emerald-300">has gone up</td>
+                                <td class="p-3 text-slate-500">—</td>
+                                <td class="p-3 text-rose-300">dramatically</td>
+                                <td class="p-3 text-slate-500">—</td>
+                                <td class="p-3 text-purple-300">since the start of the century.</td>
+                            </tr>
+                            <!-- Example 3 -->
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 text-white">The scientist</td>
+                                <td class="p-3 text-emerald-300">gave</td>
+                                <td class="p-3 text-amber-300">his opinion</td>
+                                <td class="p-3 text-slate-500">—</td>
+                                <td class="p-3 text-cyan-300">on the rise in air transport</td>
+                                <td class="p-3 text-purple-300">over the last 25 years.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Explanation Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">Core Clause</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Subject + Verb + Object</h4>
+                        <p class="text-sm text-slate-600 mb-3">The essential core of the sentence. Complex noun phrases simply fill the Subject or Object positions.</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl space-y-1 text-sm font-medium">
+                            <p class="text-slate-800">"<strong>Dr Brown</strong> [Subject] <strong>carried out</strong> [Verb] <strong>the study</strong> [Object]."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">Adverb Sequence</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Manner → Place → Time</h4>
+                        <p class="text-sm text-slate-600 mb-3">When adding circumstantial details, place them in order: <em>How</em> (Manner) → <em>Where</em> (Place) → <em>When</em> (Time).</p>
+                        <div class="bg-purple-50 p-3 rounded-xl space-y-1 text-sm font-medium">
+                            <p class="text-slate-800">"...in a perfect accent [Manner] at the concert [Place] last night [Time]."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: INTERACTIVE PHRASE BUILDER -->
+            <div id="tab-builder" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-purple-100 p-4 rounded-2xl text-purple-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Subject & Object Expansion</h3>
+                        <p class="text-base text-slate-600 font-medium">Select expansion levels below to watch how simple subjects and objects transform into academic noun phrases!</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Builder Control Box -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block mb-1">Interactive Phrase Generator</span>
+                            <h4 class="text-2xl font-black text-white">Expand Sentence Elements</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setBuilderLevel('basic')" id="btnLevelBasic" class="toggle-btn bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white">1. Basic Sentence</button>
+                            <button onclick="setBuilderLevel('relative')" id="btnLevelRel" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">2. + Relative Clause</button>
+                            <button onclick="setBuilderLevel('preposition')" id="btnLevelPrep" class="toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700">3. + Preposition Phrase</button>
+                        </div>
+                    </div>
+
+                    <!-- Sentence Display Container -->
+                    <div class="bg-slate-800/90 p-6 rounded-2xl border border-slate-700 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Subject Group Expansion:</span>
+                            <p id="builderSubjectDisplay" class="text-xl font-black text-white leading-relaxed">
+                                <span class="bg-indigo-500/30 text-indigo-300 px-2 py-1 rounded border border-indigo-500/40">The journalists</span> wanted answers.
+                            </p>
+                            <p id="builderSubjectAnalysis" class="text-xs text-slate-300 font-medium mt-2">
+                                <strong>Simple Subject:</strong> Head noun ("journalists") with article ("The").
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-700">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Object Group Expansion:</span>
+                            <p id="builderObjectDisplay" class="text-xl font-black text-white leading-relaxed">
+                                They looked at <span class="bg-amber-500/30 text-amber-300 px-2 py-1 rounded border border-amber-500/40">the building</span>.
+                            </p>
+                            <p id="builderObjectAnalysis" class="text-xs text-slate-300 font-medium mt-2">
+                                <strong>Simple Object:</strong> Head noun ("building") with article ("the").
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Structural Analysis Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">Subject Expansion Pattern</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Expanding the Subject Group</h4>
+                        <p class="text-sm text-slate-600 mb-3">Attach defining relative clauses or preposition phrases directly after the subject noun.</p>
+                        <div class="bg-indigo-50 p-3 rounded-xl space-y-1 text-sm font-medium">
+                            <p class="text-slate-800">"The journalists <strong class="text-indigo-700">who worked for Time Magazine</strong> wanted answers."</p>
+                            <p class="text-slate-800">"The journalists <strong class="text-indigo-700">from Time Magazine</strong> wanted answers."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full font-bold text-xs uppercase block w-fit mb-3">Object Expansion Pattern</span>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Expanding the Object Group</h4>
+                        <p class="text-sm text-slate-600 mb-3">Follow the same pattern after active verbs to build descriptive object groups.</p>
+                        <div class="bg-amber-50 p-3 rounded-xl space-y-1 text-sm font-medium">
+                            <p class="text-slate-800">"They looked at the building <strong class="text-amber-700">which was more than 200 years old</strong>."</p>
+                            <p class="text-slate-800">"They looked at the building <strong class="text-amber-700">from their hotel window</strong>."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: MANNER, PLACE & TIME -->
+            <div id="tab-modifiers" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-teal-100 p-4 rounded-2xl text-teal-700 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.083 0 01.665-6.479L12 14z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Adding Multiple Phrases in Academic English</h3>
+                        <p class="text-base text-slate-600 font-medium">When noun phrases become very long, modifiers following the object must follow the strict sequence: <strong>Manner → Place → Time</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Academic Sentence Transformations -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+                        <h4 class="text-lg font-bold text-teal-400 uppercase tracking-wider">Academic Sequence Inspector</h4>
+                        <span class="text-xs bg-teal-500/20 text-teal-300 px-3 py-1 rounded-full border border-teal-500/30">Manner → Place → Time</span>
+                    </div>
+
+                    <!-- Example 1 -->
+                    <div class="space-y-3 bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Example 1: Performance Sentence</span>
+                        <p class="text-sm text-slate-300">Basic Sentence: "The man sang an English song."</p>
+                        
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 font-medium text-sm space-y-2">
+                            <p class="text-white font-bold">
+                                "The man sang an English song 
+                                <span class="bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded border border-rose-500/30">in a perfect accent</span> [Manner] 
+                                <span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/30">at the concert</span> [Place] 
+                                <span class="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">last night</span> [Time]."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Example 2 -->
+                    <div class="space-y-3 bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Example 2: Academic Opinion Sentence</span>
+                        <p class="text-sm text-slate-300">Basic Sentence: "The scientist gave his opinion."</p>
+                        
+                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 font-medium text-sm space-y-2">
+                            <p class="text-white font-bold">
+                                "The scientist gave his opinion 
+                                <span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/30">on the rise in air transport</span> [Place/Topic] 
+                                <span class="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">over the last 25 years</span> [Time]."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sequence Rule Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="p-5 bg-rose-50 border border-rose-200 rounded-2xl text-center">
+                        <span class="text-xs font-bold text-rose-600 uppercase block mb-1">1. Manner</span>
+                        <span class="font-extrabold text-slate-900 text-sm">How / Quality</span>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">"in a perfect accent"</p>
+                    </div>
+
+                    <div class="p-5 bg-cyan-50 border border-cyan-200 rounded-2xl text-center">
+                        <span class="text-xs font-bold text-cyan-600 uppercase block mb-1">2. Place / Scope</span>
+                        <span class="font-extrabold text-slate-900 text-sm">Where / Topic</span>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">"at the concert"</p>
+                    </div>
+
+                    <div class="p-5 bg-purple-50 border border-purple-200 rounded-2xl text-center">
+                        <span class="text-xs font-bold text-purple-600 uppercase block mb-1">3. Time</span>
+                        <span class="font-extrabold text-slate-900 text-sm">When / Duration</span>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">"last night"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Knowledge</h3>
+                    <p class="text-teal-700 font-medium">Select the correct choice or structure for each complex noun phrase question.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. Which element is <strong>NEVER</strong> contained inside a noun phrase?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Relative clauses are very common inside noun phrases (e.g. the office which gives out visas).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Relative Clause</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Noun phrases function as subjects or objects, but they <strong>NEVER contain the main verb</strong> of a sentence.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Main Verb</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Prepositional phrases are frequently added after head nouns.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Prepositional Phrase</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. What is the correct order for multiple circumstantial phrases after an object?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Time usually comes at the end, after manner and place.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Time → Place → Manner</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Standard word order for multiple post-object phrases is <strong>Manner → Place → Time</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Manner → Place → Time</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Manner (How) precedes Place (Where).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Place → Manner → Time</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. In "The journalists <u>from Time Magazine</u> wanted answers", what expands the subject group?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <em>From Time Magazine</em> is a <strong>prepositional phrase</strong> expanding the subject noun.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Preposition Phrase</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A defining relative clause requires a relative pronoun like who/which/that (e.g., who worked for Time Magazine).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Defining Relative Clause</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. It is a prepositional phrase starting with \'from\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Adverb of Manner</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference Guide</span>
+            <span>Complex Noun Phrases</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-700', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
+            }
+        }
+
+        /* Interactive Phrase Builder Logic (Tab 3) */
+        function setBuilderLevel(level) {
+            const btnBasic = document.getElementById('btnLevelBasic');
+            const btnRel = document.getElementById('btnLevelRel');
+            const btnPrep = document.getElementById('btnLevelPrep');
+
+            const subjDisp = document.getElementById('builderSubjectDisplay');
+            const subjAnal = document.getElementById('builderSubjectAnalysis');
+            const objDisp = document.getElementById('builderObjectDisplay');
+            const objAnal = document.getElementById('builderObjectAnalysis');
+
+            const activeClass = 'toggle-btn bg-indigo-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-white';
+            const inactiveClass = 'toggle-btn bg-slate-800 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-300 border border-slate-700';
+
+            btnBasic.className = inactiveClass;
+            btnRel.className = inactiveClass;
+            btnPrep.className = inactiveClass;
+
+            if (level === 'basic') {
+                btnBasic.className = activeClass;
+                subjDisp.innerHTML = '<span class="bg-indigo-500/30 text-indigo-300 px-2 py-1 rounded border border-indigo-500/40">The journalists</span> wanted answers.';
+                subjAnal.innerHTML = '<strong>Simple Subject:</strong> Head noun ("journalists") with article ("The").';
+
+                objDisp.innerHTML = 'They looked at <span class="bg-amber-500/30 text-amber-300 px-2 py-1 rounded border border-amber-500/40">the building</span>.';
+                objAnal.innerHTML = '<strong>Simple Object:</strong> Head noun ("building") with article ("the").';
+            } else if (level === 'relative') {
+                btnRel.className = activeClass;
+                subjDisp.innerHTML = '<span class="bg-indigo-500/30 text-indigo-300 px-2 py-1 rounded border border-indigo-500/40">The journalists <u class="text-indigo-200">who worked for Time Magazine</u></span> wanted answers.';
+                subjAnal.innerHTML = '<strong>Subject + Relative Clause:</strong> Added defining clause ("who worked for Time Magazine").';
+
+                objDisp.innerHTML = 'They looked at <span class="bg-amber-500/30 text-amber-300 px-2 py-1 rounded border border-amber-500/40">the building <u class="text-amber-200">which was more than 200 years old</u></span>.';
+                objAnal.innerHTML = '<strong>Object + Relative Clause:</strong> Added relative clause ("which was more than 200 years old").';
+            } else if (level === 'preposition') {
+                btnPrep.className = activeClass;
+                subjDisp.innerHTML = '<span class="bg-indigo-500/30 text-indigo-300 px-2 py-1 rounded border border-indigo-500/40">The journalists <u class="text-indigo-200">from Time Magazine</u></span> wanted answers.';
+                subjAnal.innerHTML = '<strong>Subject + Preposition Phrase:</strong> Added preposition phrase ("from Time Magazine").';
+
+                objDisp.innerHTML = 'They looked at <span class="bg-amber-500/30 text-amber-300 px-2 py-1 rounded border border-amber-500/40">the building <u class="text-amber-200">from their hotel window</u></span>.';
+                objAnal.innerHTML = '<strong>Object + Preposition Phrase:</strong> Added preposition phrase ("from their hotel window").';
+            }
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+    </script>
+</body>
+</html>

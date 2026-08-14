@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: The Passive & Subject-Verb Agreement (Page 125)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdf4; /* Emerald-50 background */
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.18), 0 10px 10px -5px rgba(16, 185, 129, 0.08);
+            border-color: #10b981; /* Emerald-500 */
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .filter-pill:hover, .filter-pill.selected {
+            background-color: #059669; /* Emerald-600 */
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-emerald-800 via-teal-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="M8 11l3 3 5-5"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-emerald-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Module 8 Grammar Guide • Page 125
+                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">The Passive & Subject-Verb Agreement</h1>
+                <p class="mt-4 text-emerald-100 max-w-2xl text-lg font-medium leading-relaxed">
+                    Master using the <span class="bg-emerald-500/40 px-2 py-0.5 rounded font-bold text-white border border-emerald-300/40">Passive Voice</span> across tenses & modals, and precision rules for <span class="bg-emerald-500/40 px-2 py-0.5 rounded font-bold text-white border border-emerald-300/40">Subject-Verb Agreement</span>!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-emerald-700 border-b-4 border-emerald-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-passive-tenses')">1. Passive Tenses ⚙️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-modals-agent')">2. Modals & Agent Focus 🤖</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-agreement')">3. Subject-Verb Agreement ⚖️</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Passive Explorer 🧩</button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    5. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: PASSIVE TENSES -->
+            <div id="tab-passive-tenses" class="tab-content active space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-emerald-100 p-4 rounded-2xl text-emerald-700 pulse-border">
+                        <span class="text-3xl font-black">be + V3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A, B & C. Passive Tense Transformations</h3>
+                        <p class="text-lg text-slate-600 font-medium">Forming passive structures across Present, Past, and Future tenses.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Present Passive Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">A. Present Passive</span>
+                                <span class="text-2xl">🌱</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Simple & Continuous</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Describes present habits, facts, or actions in progress.
+                            </p>
+                            <ul class="text-xs space-y-3 text-slate-800 font-medium mb-4">
+                                <li class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                                    <strong class="text-emerald-900 block mb-1">Present Simple Passive: am / is / are + V3</strong>
+                                    👉 "A machine <strong class="underline text-emerald-800 font-bold">is used</strong> to clean the vegetables."
+                                </li>
+                                <li class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                                    <strong class="text-emerald-900 block mb-1">Present Continuous Passive: am / is / are being + V3</strong>
+                                    👉 "The potatoes <strong class="underline text-emerald-800 font-bold">are being checked</strong> to make sure they meet quality standards."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Past Passive Card -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">B. Past Passive</span>
+                                <span class="text-2xl">📅</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Simple & Continuous</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Describes completed past actions or actions that were in progress in the past.
+                            </p>
+                            <ul class="text-xs space-y-3 text-slate-800 font-medium mb-4">
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
+                                    <strong class="text-teal-900 block mb-1">Past Simple Passive: was / were + V3</strong>
+                                    👉 "The food <strong class="underline text-teal-800 font-bold">was placed</strong> on the counter."
+                                </li>
+                                <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
+                                    <strong class="text-teal-900 block mb-1">Past Continuous Passive: was / were being + V3</strong>
+                                    👉 "The accident happened when the barbecue <strong class="underline text-teal-800 font-bold">was being lit</strong>."
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Future Passive Card Grid -->
+                <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">C. Future Passive</span>
+                        <span class="text-2xl">🔮</span>
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-1">Will Passive & Going To Passive</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold">
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-1">
+                            <span class="text-indigo-900 font-extrabold block text-sm">Will Passive (will be + V3)</span>
+                            <p class="text-slate-700">Future predictions or conditional consequences:</p>
+                            <p class="text-indigo-950 font-mono mt-1">"Food crops <strong>will be destroyed</strong> if the storm hits the south."</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-1">
+                            <span class="text-indigo-900 font-extrabold block text-sm">Going to Passive (am/is/are going to be + V3)</span>
+                            <p class="text-slate-700">Planned future events:</p>
+                            <p class="text-indigo-950 font-mono mt-1">"The crops <strong>are going to be harvested</strong> soon."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formula Quick Reference Summary Table -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
+                    <h4 class="text-lg font-bold text-emerald-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                        <span>⚡ Passive Voice Tenses Summary Formula Table</span>
+                    </h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-medium border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-700 text-emerald-300 font-bold uppercase">
+                                    <th class="p-3">Tense / Structure</th>
+                                    <th class="p-3">Passive Formula</th>
+                                    <th class="p-3">Page 125 Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 text-slate-300">
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Present Simple</td>
+                                    <td class="p-3 text-emerald-300 font-mono">am / is / are + V3</td>
+                                    <td class="p-3">A machine <strong>is used</strong> to clean the vegetables.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Present Continuous</td>
+                                    <td class="p-3 text-emerald-300 font-mono">am / is / are being + V3</td>
+                                    <td class="p-3">The potatoes <strong>are being checked</strong>.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Past Simple</td>
+                                    <td class="p-3 text-teal-300 font-mono">was / were + V3</td>
+                                    <td class="p-3">The food <strong>was placed</strong> on the counter.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Past Continuous</td>
+                                    <td class="p-3 text-teal-300 font-mono">was / were being + V3</td>
+                                    <td class="p-3">...when the barbecue <strong>was being lit</strong>.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Future (will)</td>
+                                    <td class="p-3 text-indigo-300 font-mono">will be + V3</td>
+                                    <td class="p-3">Food crops <strong>will be destroyed</strong>...</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50">
+                                    <td class="p-3 font-bold text-white">Future (going to)</td>
+                                    <td class="p-3 text-indigo-300 font-mono">am/is/are going to be + V3</td>
+                                    <td class="p-3">The crops <strong>are going to be harvested</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: MODALS & AGENT FOCUS -->
+            <div id="tab-modals-agent" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-emerald-100 p-4 rounded-2xl text-emerald-700">
+                        <span class="text-3xl font-black">🤖</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">D & Overview: Modals & Why We Use Passive</h3>
+                        <p class="text-lg text-slate-600 font-medium">Focusing on the action rather than the agent, and using passive with modal verbs.</p>
+                    </div>
+                </div>
+
+                <!-- Active vs Passive Comparison Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Why Use Passive Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Overview</span>
+                                <span class="text-2xl">💡</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">When to Use Passive Voice</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Use passive when you want to make the <strong>action more important</strong> than the person who did it, or when the person is <strong>unknown / not important</strong>.
+                            </p>
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>🏃 <strong>Active:</strong> "The farmer harvests the crops in autumn."</p>
+                                <p>⚙️ <strong>Passive:</strong> "The crops <strong class="text-emerald-900 underline font-extrabold">are harvested</strong> in autumn."</p>
+                                <div class="border-t border-emerald-200 pt-2 mt-2">
+                                    <p>🏃 <strong>Active:</strong> "The waiter removes plates from the table."</p>
+                                    <p>⚙️ <strong>Passive:</strong> "The plates <strong class="text-emerald-900 underline font-extrabold">are removed</strong> from the table."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modals Passive Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">D. Modals & Passive</span>
+                                <span class="text-2xl">🔒</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">modal verb + be + past participle</h4>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
+                                Combine modal verbs (can, may, must, should, etc.) directly with <strong>be + past participle (V3)</strong>.
+                            </p>
+                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Bread <strong class="text-indigo-900 underline font-extrabold">can be made</strong> with a variety of crop types."</p>
+                                <p>👉 "Corn crops <strong class="text-indigo-900 underline font-extrabold">may be harvested</strong> early if the fine weather continues."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: SUBJECT-VERB AGREEMENT -->
+            <div id="tab-agreement" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-emerald-100 p-4 rounded-2xl text-emerald-700">
+                        <span class="text-3xl font-black">⚖️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">E. Subject and Verb Agreement Rules</h3>
+                        <p class="text-lg text-slate-600 font-medium">Precision rules for choosing singular vs. plural verbs with quantifiers and collective nouns.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Singular Verbs Grid -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Singular Verbs</span>
+                            <span class="text-2xl">1️⃣</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-xl mb-2">Use Singular Verbs With:</h4>
+                        <ul class="text-xs space-y-2 text-slate-700 font-medium mb-4">
+                            <li class="bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
+                                <strong>Singular & Uncountable Nouns:</strong><br>
+                                👉 "More and more fast food <strong class="text-emerald-900 underline font-bold">is being eaten</strong> these days."
+                            </li>
+                            <li class="bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
+                                <strong>everyone, everybody, every, someone, somebody, some, no one, nobody, no, each, either</strong>
+                            </li>
+                            <li class="bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
+                                <strong>The amount of, An/The increase:</strong><br>
+                                👉 "There <strong class="text-emerald-900 underline font-bold">has been an increase</strong> in the amount of water which <strong class="text-emerald-900 underline font-bold">is being used</strong>."
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Plural Verbs Grid -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Plural Verbs</span>
+                            <span class="text-2xl">🔢</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-xl mb-2">Use Plural Verbs With:</h4>
+                        <ul class="text-xs space-y-2 text-slate-700 font-medium mb-4">
+                            <li class="bg-teal-50 p-2.5 rounded-lg border border-teal-200">
+                                <strong>Countable Plural Nouns</strong>
+                            </li>
+                            <li class="bg-teal-50 p-2.5 rounded-lg border border-teal-200">
+                                <strong>None, All, Neither, A/The number of:</strong><br>
+                                👉 "None of them <strong class="text-teal-900 underline font-bold">are</strong> good enough to eat."<br>
+                                👉 "Neither of them <strong class="text-teal-900 underline font-bold">provide</strong> an effective solution."<br>
+                                👉 "A number of homes <strong class="text-teal-900 underline font-bold">have been cut off</strong> from the water supply."
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Collective Nouns Section -->
+                <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Collective Nouns</span>
+                        <span class="text-2xl">👥</span>
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-1">Group vs. Individual Focus (Dual Option)</h4>
+                    <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                        With collective nouns like <strong>a group, a team, a family, a company</strong>, you can use EITHER singular or plural verbs depending on your focus:
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold">
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-2">
+                            <span class="text-indigo-900 font-extrabold block text-sm">Singular Verb = Focus on Group as a Single Unit</span>
+                            <p>👉 "My family <strong class="underline text-indigo-900">has been given</strong> a new home."</p>
+                            <p>👉 "A team of farmers <strong class="underline text-indigo-900">has been rewarded</strong> for their good food."</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-2">
+                            <span class="text-indigo-900 font-extrabold block text-sm">Plural Verb = Focus on Individual Members of Group</span>
+                            <p>👉 "My family <strong class="underline text-indigo-900">have been given</strong> a new home."</p>
+                            <p>👉 "A team of farmers <strong class="underline text-indigo-900">have been rewarded</strong> for their hard work."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: PASSIVE EXPLORER -->
+            <div id="tab-explorer" class="tab-content space-y-8">
+                <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-6 shadow-sm">
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Passive & Agreement Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a grammar category below to test formulas and Page 125 examples!</p>
+
+                    <!-- Filter Options -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Scenario</label>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            <button onclick="selectExplorer('pres_simple')" id="ebtn-pres_simple" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">Present Simple Passive</button>
+                            <button onclick="selectExplorer('pres_cont')" id="ebtn-pres_cont" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">Present Continuous Passive</button>
+                            <button onclick="selectExplorer('modal_passive')" id="ebtn-modal_passive" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">Modal Passive (can / may be)</button>
+                            <button onclick="selectExplorer('sing_agree')" id="ebtn-sing_agree" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">Singular Agreement (An increase in...)</button>
+                            <button onclick="selectExplorer('plur_agree')" id="ebtn-plur_agree" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">Plural Agreement (A number of / None of)</button>
+                            <button onclick="selectExplorer('collective')" id="ebtn-collective" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-300 bg-white text-emerald-800">Collective Nouns (has/have been)</button>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-emerald-200 shadow-inner text-center space-y-2">
+                        <!-- Content rendered via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                <div class="bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 rounded-2xl p-8 border border-emerald-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-emerald-900 mb-2">Test Your Page 125 Knowledge</h3>
+                    <p class="text-emerald-700 font-medium">Select the correct passive form or verb agreement according to Page 125 rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. The potatoes <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> to make sure they meet quality standards right now.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Present Continuous passive formula is <strong>am/is/are being + past participle</strong> (are being checked).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">are being checked</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Are checking is active voice, but potatoes receive the action.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">are checking</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Were being checked is past continuous passive.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">were being checked</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Bread <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> with a variety of crop types.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Modal passive formula is <strong>modal verb + be + past participle</strong> (can be made).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">can be made</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Can make is active voice.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">can make</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Modal passive requires bare infinitive be, not is.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">can is made</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. There has been an increase in the amount of water which <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> used.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 125 states that \'An increase\' and \'The amount of\' require a <strong>singular verb</strong> (is being).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">is being</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Water is uncountable and \'amount of\' takes a singular verb, so are being is wrong.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">are being</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Were being is plural past.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">were being</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. A number of homes <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> cut off from the water supply.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 125 specifies that \'A/The number of\' takes a <strong>plural verb</strong> (have been).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">have been</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Has been is singular, but \'a number of homes\' requires a plural verb.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">has been</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Is is singular present.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">is</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Which sentence uses collective noun agreement correctly?</p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Page 125 states we can use EITHER singular (has been) OR plural (have been) with collective nouns like family or team!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Both "family has been" and "family have been"</button>
+                            <button onclick="checkAnswer(this, false, 'Incomplete. Plural verb is also accepted when focusing on individual members.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">Only "family has been"</button>
+                            <button onclick="checkAnswer(this, false, 'Incomplete. Singular verb is also accepted when focusing on the group as a unit.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 hover:text-emerald-700 text-slate-700 transition-colors border-2 border-transparent">Only "family have been"</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Grammar Reference • The Passive</span>
+            <span>Page 125 Guide</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-700', 'border-amber-600', 'text-amber-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else {
+                clickedBtn.classList.add('border-emerald-600', 'text-emerald-700');
+            }
+        }
+
+        /* Explorer Matrix Data */
+        const explorerData = {
+            'pres_simple': {
+                title: 'Present Simple Passive',
+                example: '👉 "A machine <strong class="text-emerald-800 underline">is used</strong> to clean the vegetables."',
+                rule: 'Formula: am / is / are + past participle (V3). Used for routines and facts in passive voice.'
+            },
+            'pres_cont': {
+                title: 'Present Continuous Passive',
+                example: '👉 "The potatoes <strong class="text-emerald-800 underline">are being checked</strong> to make sure they meet standards."',
+                rule: 'Formula: am / is / are being + past participle (V3). Action in progress right now.'
+            },
+            'modal_passive': {
+                title: 'Modal Verbs Passive',
+                example: '👉 "Bread <strong class="text-emerald-800 underline">can be made</strong> with a variety of crop types / Corn <strong class="text-emerald-800 underline">may be harvested</strong> early."',
+                rule: 'Formula: modal verb + be + past participle (V3). Works with can, may, must, should, etc.'
+            },
+            'sing_agree': {
+                title: 'Singular Subject-Verb Agreement',
+                example: '👉 "More and more fast food <strong class="text-emerald-800 underline">is being eaten</strong> / An increase in water which <strong class="text-emerald-800 underline">is being used</strong>."',
+                rule: 'Rule: Singular verbs are used with uncountable nouns, everyone/everybody, each, either, the amount of, an increase.'
+            },
+            'plur_agree': {
+                title: 'Plural Subject-Verb Agreement',
+                example: '👉 "None of them <strong class="text-emerald-800 underline">are</strong> good / A number of homes <strong class="text-emerald-800 underline">have been cut off</strong>."',
+                rule: 'Rule: Plural verbs are used with countable plural nouns, None, All, Neither, A/The number of.'
+            },
+            'collective': {
+                title: 'Collective Nouns (Group vs. Individual)',
+                example: '👉 "My family <strong class="text-emerald-800 underline">has been given</strong> a home OR My family <strong class="text-emerald-800 underline">have been given</strong> a home."',
+                rule: 'Rule: Singular verb focuses on the group as a unit; plural verb focuses on individual members.'
+            }
+        };
+
+        function selectExplorer(key) {
+            document.querySelectorAll('[id^="ebtn-"]').forEach(b => b.classList.remove('selected', 'bg-emerald-600', 'text-white'));
+            document.getElementById(`ebtn-${key}`).classList.add('selected', 'bg-emerald-600', 'text-white');
+
+            const item = explorerData[key];
+            const container = document.getElementById('explorerResult');
+
+            container.innerHTML = `
+                <div class="inline-block bg-emerald-100 text-emerald-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">${item.title}</div>
+                <p class="text-xl font-bold text-slate-800">${item.example}</p>
+                <p class="text-sm font-semibold text-emerald-800 mt-2">${item.rule}</p>
+            `;
+        }
+
+        // Initialize Explorer default view
+        selectExplorer('pres_simple');
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-emerald-100', 'hover:text-emerald-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-emerald-600');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-emerald-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-emerald-50', 'border-emerald-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-slate-700');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-emerald-50', 'border-emerald-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-emerald-100');
+                correctBtn.classList.add('border-emerald-500', 'text-emerald-800');
+            }
+        }
+    </script>
+</body>
+</html>
