@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 10b Reading — Cultural Diversity in Business Today</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f8fafc;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #ffffff;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #0284c7;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.95;
+            color: #334155;
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem; 
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 1.75rem;
+            font-weight: 700;
+            font-size: 1.65em;
+            text-align: center;
+            text-indent: 0;
+            letter-spacing: -0.02em;
+        }
+        .paragraph-label {
+            float: left;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.05em;
+            margin-right: 0.5rem;
+            color: #0284c7;
+            text-indent: 0;
+            background: #e0f2fe;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .q-item {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+        }
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-weight: 600;
+            color: #0f172a;
+            transition: all 0.2s;
+            background-color: #ffffff;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #0284c7;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .custom-radio-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            background-color: white;
+            font-weight: 600;
+            color: #475569;
+        }
+        .custom-radio-label:hover {
+            background-color: #f0f9ff;
+            border-color: #bae6fd;
+            color: #0369a1;
+        }
+
+        .vocab-word {
+            color: #0284c7;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #38bdf8;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #e0f2fe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #0f172a;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .progress-item.answered {
+            background-color: #0284c7;
+            border-color: #0284c7;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #0284c7;
+            color: #0284c7;
+        }
+        .progress-tracker {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .footnote-box {
+            margin-top: 2rem;
+            padding: 1rem 1.25rem;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 0.9em;
+            color: #475569;
+        }
+
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-3.5 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-sky-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-lg sm:text-xl font-bold text-gray-800">Reading Practice <span class="text-sky-600 font-medium hidden md:inline">| Module 10b</span></h1>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2.5 py-1 text-sm w-28 sm:w-40 focus:outline-none focus:ring-2 focus:ring-sky-400" placeholder="Your Name">
+            </div>
+
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-xs font-semibold" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <div class="flex items-center space-x-1 bg-gray-100 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-50 text-gray-700 transition-colors focus:outline-none font-bold text-sm" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-50 text-gray-700 transition-colors focus:outline-none font-bold text-sm" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <!-- Left Pane: Passage -->
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Cultural diversity in business today</h3>
+                
+                <p><span class="paragraph-label">A</span> Many businesses today employ people from a range of different cultures. This means that communication issues may sometimes cause problems. Therefore, companies need to do all they can to make sure that managers and employees are communicating effectively. Business success depends on good communications between a company and its staff.</p>
+                
+                <p><span class="paragraph-label">B</span> Poor communication practices within a company can lead to personal conflicts and unsatisfactory work, as well as an incorrect understanding of the business’s goals. All of these factors can make staff unhappy and may even make them decide to leave their job. On the other hand, effective communication means there is trust between members of staff, which helps the company produce more and perform at its best.</p>
+                
+                <p><span class="paragraph-label">C</span> When considering cultural <span class="vocab-word" data-word="diversity">diversity</span>, one of the most obvious areas of difficulty is language. It is important for a business to think about how to deal with this. If it fails to do so, misunderstandings will occur. An employee may say they understand an instruction when they do not, especially if they are embarrassed or frustrated with the language problem, and this can have a very serious effect on the quality of a company’s work.</p>
+                
+                <p><span class="paragraph-label">D</span> However, there are other less obvious cultural differences that affect communication. There is the issue of personal space, for example. An American is used to being about 1.5 metres away from the other person when talking to them. Germans and the Japanese may find that distance uncomfortably close while Arabs and Latin Americans may feel that that is too far apart to be friendly. The amount of eye contact that people make with one another is also different in different cultures. Europeans and North Americans feel that eye contact is necessary and shows attention and honesty, while in some Asian and Latin cultures too much eye contact can suggest a lack of respect. Greeting people can also vary a great deal between cultures. Some cultures typically shake hands when they meet, others give each other a kiss and others simply say hello.</p>
+                
+                <p><span class="paragraph-label">E</span> Sociologists divide cultures into two types, which they call ‘high-context’ and ‘low-context’. High-context cultures are those that give a lot of importance to <span class="vocab-word" data-word="nonverbal">nonverbal</span> communication, actions and contexts. In other words, body language, behaviour and relationships communicate almost as powerfully as words. Japan, India and the Middle East are examples of high-context cultures. Low-context cultures, on the other hand, emphasise the importance of language for communication and do not pay as much attention to other information. Examples of low-context cultures are the US, the UK and Germany. Neither type, of course, is better than the other; the important thing is simply to be aware of the difference in values.</p>
+                
+                <p><span class="paragraph-label">F</span> It is also important to remember that cultural differences relating to roles and <span class="vocab-word" data-word="status">status</span> can also have an impact on communication in the workplace. For instance, different attitudes to the roles and status of men and women can affect how a male employee feels about having a female manager or how comfortable a female employee feels when a male colleague talks to her. Moreover, some cultures accept quite <span class="vocab-word" data-word="informal">informal</span> relationships between people with a different status in an organisation or between people of different ages, while others feel that younger people or those in a lower position should treat their managers or their elders in a formal, respectful way.</p>
+
+                <p><span class="paragraph-label">G</span> It is very important for businesses with employees from a number of different countries to do all they can to make sure that communication works as well as possible. The best way for companies to do this is to provide training in cultural awareness for all members of staff. This should explain some of the differences between cultures and encourage staff to respect and be interested in all the cultures of their fellow workers. The company should, however, remember to avoid <span class="vocab-word" data-word="stereotyping">stereotyping</span>. A culture may have certain typical characteristics but that does not mean that such things are true of each individual. A simple way to indicate the company’s respect for all its staff is for it to know when a culture has its main festivals and to allow people from those cultures time off to celebrate them. A language programme can also be very useful. This should show managers how to avoid using very difficult language when they are talking to staff with a different first language. It should teach them how to explain information simply and clearly, using pictures and diagrams whenever that is possible, to support what they are saying.</p>
+
+                <p><span class="paragraph-label">H</span> If a business values the cultural diversity of its staff and encourages them all to understand and respect one another, the company will gain many advantages. It will not only be more productive but it will also be a happier place for all the people who work there.</p>
+
+                <div class="footnote-box">
+                    <p class="mb-1"><strong>*diversity:</strong> the fact of including many different types of people or things</p>
+                    <p><strong>*stereotype:</strong> when you have a fixed idea about what a particular type of person is like</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Splitter -->
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <!-- Right Pane: Questions -->
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-2xl mx-auto space-y-8 pb-10">
+                
+                <!-- Questions 1-5 -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full mr-3 uppercase tracking-wider">Questions 1–5</span>
+                        <h4 class="font-bold text-gray-800 text-base">Short Answer Questions</h4>
+                    </div>
+                    <p class="mb-5 text-sm text-gray-700 bg-sky-50/70 p-4 rounded-xl border border-sky-100 leading-relaxed">
+                        Answer the questions below. Choose <strong>NO MORE THAN TWO WORDS</strong> from the passage for each answer.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <!-- Q1 -->
+                        <div class="q-item" id="container-q1">
+                            <label for="q1" class="block font-medium text-gray-800 mb-2">
+                                <strong class="text-sky-600 mr-2 text-base">1</strong> What do Germans prefer more of than Americans?
+                            </label>
+                            <input type="text" id="q1" name="q1" class="text-input w-full max-w-md" placeholder="Type your answer here..." autocomplete="off">
+                        </div>
+                        
+                        <!-- Q2 -->
+                        <div class="q-item" id="container-q2">
+                            <label for="q2" class="block font-medium text-gray-800 mb-2">
+                                <strong class="text-sky-600 mr-2 text-base">2</strong> What do some Asian cultures think a person is failing to show if they look directly at you most of the time?
+                            </label>
+                            <input type="text" id="q2" name="q2" class="text-input w-full max-w-md" placeholder="Type your answer here..." autocomplete="off">
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="q-item" id="container-q3">
+                            <label for="q3" class="block font-medium text-gray-800 mb-2">
+                                <strong class="text-sky-600 mr-2 text-base">3</strong> What involves physical contact in some cultures but just a word in others?
+                            </label>
+                            <input type="text" id="q3" name="q3" class="text-input w-full max-w-md" placeholder="Type your answer here..." autocomplete="off">
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="q-item" id="container-q4">
+                            <label for="q4" class="block font-medium text-gray-800 mb-2">
+                                <strong class="text-sky-600 mr-2 text-base">4</strong> Who developed the idea of high- and low-context cultures?
+                            </label>
+                            <input type="text" id="q4" name="q4" class="text-input w-full max-w-md" placeholder="Type your answer here..." autocomplete="off">
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="q-item" id="container-q5">
+                            <label for="q5" class="block font-medium text-gray-800 mb-2">
+                                <strong class="text-sky-600 mr-2 text-base">5</strong> Which aspect of communication do people in low-context cultures find most effective?
+                            </label>
+                            <input type="text" id="q5" name="q5" class="text-input w-full max-w-md" placeholder="Type your answer here..." autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions 6-10 -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full mr-3 uppercase tracking-wider">Questions 6–10</span>
+                        <h4 class="font-bold text-gray-800 text-base">YES / NO / NOT GIVEN</h4>
+                    </div>
+                    <div class="mb-5 text-sm text-gray-700 bg-sky-50/70 p-4 rounded-xl border border-sky-100 leading-relaxed">
+                        Do the following statements agree with the claims of the writer in the reading passage?<br>
+                        <strong class="text-sky-900">YES</strong> if the statement agrees with the claims of the writer.<br>
+                        <strong class="text-sky-900">NO</strong> if the statement contradicts the claims of the writer.<br>
+                        <strong class="text-sky-900">NOT GIVEN</strong> if it is impossible to say what the writer thinks about this.
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Q6 -->
+                        <div class="q-item" id="container-q6">
+                            <p class="mb-3 font-medium text-gray-800"><strong class="text-sky-600 mr-2 text-base">6</strong> If employees are unhappy with communication at their workplace, they may want to stop working there.</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="custom-radio-label"><input type="radio" name="q6" value="YES" class="hidden"><span>YES</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q6" value="NO" class="hidden"><span>NO</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q6" value="NOT GIVEN" class="hidden"><span>NOT GIVEN</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q7 -->
+                        <div class="q-item" id="container-q7">
+                            <p class="mb-3 font-medium text-gray-800"><strong class="text-sky-600 mr-2 text-base">7</strong> People are not always honest about how much they have understood.</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="custom-radio-label"><input type="radio" name="q7" value="YES" class="hidden"><span>YES</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q7" value="NO" class="hidden"><span>NO</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q7" value="NOT GIVEN" class="hidden"><span>NOT GIVEN</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q8 -->
+                        <div class="q-item" id="container-q8">
+                            <p class="mb-3 font-medium text-gray-800"><strong class="text-sky-600 mr-2 text-base">8</strong> Low-context cultures tend to be more successful in business than high-context cultures.</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="custom-radio-label"><input type="radio" name="q8" value="YES" class="hidden"><span>YES</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q8" value="NO" class="hidden"><span>NO</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q8" value="NOT GIVEN" class="hidden"><span>NOT GIVEN</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q9 -->
+                        <div class="q-item" id="container-q9">
+                            <p class="mb-3 font-medium text-gray-800"><strong class="text-sky-600 mr-2 text-base">9</strong> Many men feel uncomfortable about having a boss who is a woman.</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="custom-radio-label"><input type="radio" name="q9" value="YES" class="hidden"><span>YES</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q9" value="NO" class="hidden"><span>NO</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q9" value="NOT GIVEN" class="hidden"><span>NOT GIVEN</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Q10 -->
+                        <div class="q-item" id="container-q10">
+                            <p class="mb-3 font-medium text-gray-800"><strong class="text-sky-600 mr-2 text-base">10</strong> A language programme is the most important way for a company to deal with cultural diversity among its employees.</p>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="custom-radio-label"><input type="radio" name="q10" value="YES" class="hidden"><span>YES</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q10" value="NO" class="hidden"><span>NO</span></label>
+                                <label class="custom-radio-label"><input type="radio" name="q10" value="NOT GIVEN" class="hidden"><span>NOT GIVEN</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-wrap justify-center items-center gap-2 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <span class="text-sm font-bold text-gray-700 mr-2 w-full text-center sm:w-auto">Progress:</span>
+        <div class="progress-tracker">
+            <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+            <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+            <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+            <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+            <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+            <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+            <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+            <a href="#container-q9" class="progress-item" data-q="q9">9</a>
+            <a href="#container-q10" class="progress-item" data-q="q10">10</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Highlight Tooltip -->
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white mr-4 transition-all shadow-sm border border-sky-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    const vocabulary = {
+        'diversity': { meaning: 'The fact or state of including or involving people from a range of different social and ethnic backgrounds.', phonetic: '/daɪˈvɜːsəti/' },
+        'nonverbal': { meaning: 'Not involving or using words or speech (e.g., gestures, facial expressions, body language).', phonetic: '/ˌnɒnˈvɜːbl/' },
+        'status': { meaning: 'The relative social, professional, or official position/standing of someone within a group or society.', phonetic: '/ˈsteɪtəs/' },
+        'informal': { meaning: 'Having a relaxed, friendly, or unofficial style or manner.', phonetic: '/ɪnˈfɔːml/' },
+        'stereotyping': { meaning: 'Categorizing or forming a fixed, oversimplified idea about a particular type of person or culture.', phonetic: '/ˈsteriətaɪpɪŋ/' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            // Elements
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+
+            setupEventListeners() {
+                // Font Size Adjustments
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                // Clear highlights
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                // Modal close actions
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                    if (e.target === this.vocabModal) this.closeModal();
+                });
+
+                // Vocabulary term click delegator
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                // Audio Pronunciation TTS
+                this.playAudioBtn.addEventListener('click', () => {
+                    const word = this.vocabWordEl.textContent;
+                    if (!word) return;
+                    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                    
+                    this.playAudioBtn.classList.remove('text-sky-600', 'bg-sky-50');
+                    this.playAudioBtn.classList.add('bg-emerald-500', 'text-white');
+                    
+                    if ('speechSynthesis' in window) {
+                        const utterance = new SpeechSynthesisUtterance(word);
+                        utterance.lang = 'en-GB'; 
+                        utterance.rate = 0.9; 
+                        utterance.onend = () => this.resetAudioBtn();
+                        utterance.onerror = () => this.resetAudioBtn();
+                        window.speechSynthesis.speak(utterance);
+                    } else {
+                        setTimeout(() => this.resetAudioBtn(), 500);
+                    }
+                });
+
+                // Radio buttons custom selection styling
+                document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const name = e.target.name;
+                        const radios = document.querySelectorAll(`input[name="${name}"]`);
+                        radios.forEach(r => {
+                            const label = r.closest('label');
+                            if (r.checked) {
+                                label.classList.add('bg-sky-50', 'border-sky-400', 'text-sky-800');
+                                label.classList.remove('bg-white', 'border-gray-200');
+                            } else {
+                                label.classList.remove('bg-sky-50', 'border-sky-400', 'text-sky-800');
+                                label.classList.add('bg-white', 'border-gray-200');
+                            }
+                        });
+                    });
+                });
+            },
+
+            initProgressTracker() {
+                const updateProgress = () => {
+                    for (let i = 1; i <= 10; i++) {
+                        const qId = `q${i}`;
+                        const progressItem = document.querySelector(`.progress-item[data-q="${qId}"]`);
+                        
+                        if (i <= 5) {
+                            const input = document.getElementById(qId);
+                            if (input && input.value.trim() !== '') {
+                                progressItem.classList.add('answered');
+                            } else {
+                                progressItem.classList.remove('answered');
+                            }
+                        } else {
+                            const checked = document.querySelector(`input[name="${qId}"]:checked`);
+                            if (checked) {
+                                progressItem.classList.add('answered');
+                            } else {
+                                progressItem.classList.remove('answered');
+                            }
+                        }
+                    }
+                };
+
+                document.querySelectorAll('input').forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                    input.addEventListener('change', updateProgress);
+                });
+                updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                            this.highlightTooltip.style.display = 'none';
+                            return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3 && range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                this.highlightTooltip.style.display = 'none';
+                                return;
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                    if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-sky-600', 'bg-sky-50');
+                this.playAudioBtn.classList.remove('bg-emerald-500', 'text-white');
+            },
+
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

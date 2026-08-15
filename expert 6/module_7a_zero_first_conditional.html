@@ -817,7 +817,7 @@
             }
         }
 
-        /* Image Modal & Zoom Logic */
+                /* Image Modal & Zoom Logic */
         let currentZoom = 1;
         let isPanning = false;
         let startX = 0, startY = 0;
@@ -844,7 +844,7 @@
         }
 
         function handleModalBackdropClick(e) {
-            if (e.target.id === 'imageZoomModal' || e.target.id === 'modalViewport') {
+            if (e.target.id === 'imageZoomModal') {
                 closeImageModal();
             }
         }
@@ -852,16 +852,26 @@
         function updateZoomTransform() {
             const modalImg = document.getElementById('modalZoomImg');
             const zoomText = document.getElementById('zoomLevelText');
+            const viewport = document.getElementById('modalViewport');
             if (modalImg) {
                 modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
             }
             if (zoomText) {
                 zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
             }
+            if (viewport) {
+                if (currentZoom > 1) {
+                    viewport.style.cursor = isPanning ? 'grabbing' : 'grab';
+                } else {
+                    viewport.style.cursor = 'zoom-in';
+                }
+            }
         }
 
         function zoomIn() {
             if (currentZoom < 4) {
+                const modalImg = document.getElementById('modalZoomImg');
+                if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
                 currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
                 updateZoomTransform();
             }
@@ -869,6 +879,8 @@
 
         function zoomOut() {
             if (currentZoom > 0.5) {
+                const modalImg = document.getElementById('modalZoomImg');
+                if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
                 currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
                 if (currentZoom <= 1) {
                     translateX = 0;
@@ -882,10 +894,15 @@
             currentZoom = 1;
             translateX = 0;
             translateY = 0;
+            const modalImg = document.getElementById('modalZoomImg');
+            if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
             updateZoomTransform();
         }
 
         function toggleZoom(e) {
+            if (e) e.stopPropagation();
+            const modalImg = document.getElementById('modalZoomImg');
+            if (modalImg) modalImg.style.transition = 'transform 0.2s ease-out';
             if (currentZoom === 1) {
                 currentZoom = 2;
             } else {
@@ -907,12 +924,20 @@
 
         function startPan(e) {
             if (currentZoom <= 1) return;
+            e.preventDefault();
+            e.stopPropagation();
             isPanning = true;
             startX = e.clientX - translateX;
             startY = e.clientY - translateY;
 
+            const modalImg = document.getElementById('modalZoomImg');
+            if (modalImg) modalImg.style.transition = 'none';
+            const viewport = document.getElementById('modalViewport');
+            if (viewport) viewport.style.cursor = 'grabbing';
+
             const handleMouseMove = (ev) => {
                 if (!isPanning) return;
+                ev.preventDefault();
                 translateX = ev.clientX - startX;
                 translateY = ev.clientY - startY;
                 updateZoomTransform();
@@ -920,6 +945,9 @@
 
             const handleMouseUp = () => {
                 isPanning = false;
+                if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
+                const vp = document.getElementById('modalViewport');
+                if (vp) vp.style.cursor = currentZoom > 1 ? 'grab' : 'zoom-in';
                 window.removeEventListener('mousemove', handleMouseMove);
                 window.removeEventListener('mouseup', handleMouseUp);
             };
@@ -949,7 +977,7 @@
                 <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
                     <span>🖼️ Grammar Reference</span>
                 </span>
-                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan</span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan • Double-click to toggle</span>
             </div>
 
             <!-- Controls -->
@@ -985,12 +1013,11 @@
 
         <!-- Viewport Container -->
         <div id="modalViewport"
-            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-grab active:cursor-grabbing"
-            onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-zoom-in"
+            onclick="event.stopPropagation()" onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
             <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
-                class="max-w-none max-h-[85vh] object-contain transition-transform duration-100 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-150 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
         </div>
-    </div>
-</body>
+    </div></body>
 
 </html>

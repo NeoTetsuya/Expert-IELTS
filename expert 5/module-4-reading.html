@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Academic Simulator - Stressed?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        /* Typography Improvements */
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .para-letter {
+            position: absolute;
+            left: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 1.1em;
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.6em;
+            text-align: center;
+        }
+
+        /* Question Styles */
+        .q-item {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        
+        /* Vocabulary Styles */
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        /* UI Elements */
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        /* Progress Tracker Styles */
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .progress-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            max-width: calc(100vw - 120px);
+            scrollbar-width: thin;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .progress-container {
+                max-width: calc(100vw - 80px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">IELTS Simulator <span class="text-blue-600 font-medium hidden md:inline">| Stressed?</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <!-- Student Name -->
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-3 py-1.5 text-sm w-32 sm:w-48 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+            </div>
+            
+            <!-- Clear Highlights Button -->
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <!-- Font controls -->
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <!-- Left Pane: Reading Passage -->
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Stressed?</h3>
+                
+                <p><span class="para-letter">A</span> We all know that diet and exercise have an effect on our health. Modern diets mean people eat more fast foods that can result in health issues such as heart disease and weight problems. This, and people doing less exercise, has led to serious health problems in some countries, which could mean that in the future people might not live such long lives. There are also many other modern lifestyle issues that are having a serious effect on our health. However, some simple changes can help deal with these.</p>
+                
+                <p><span class="para-letter">B</span> When people are worried about danger, the brain reacts by sending different chemicals around the body. These give people the energy to immediately get away from any danger. However, people can develop physical and mental health problems when these chemicals are too high for too long. These chemicals are also connected to other behaviour. One, <span class="vocab-word" data-word="dopamine">dopamine</span>, makes us look for things that make us feel good, and sometimes these are unhealthy sugary or fatty foods. Another, <span class="vocab-word" data-word="cortisol">cortisol</span>, makes us keep fat on our body so that we can fight any future danger. These chemicals are also present when we are under a lot of stress. As a result, stress makes us eat more and gain weight, which can lead to heart disease and other health problems connected to weight.</p>
+                
+                <p><span class="para-letter">C</span> Another <span class="vocab-word" data-word="symptom">symptom</span> of modern lifestyles is a lack of sleep. Sleep helps us to become physically stronger and to get better during an illness. Also, a lack of sleep changes our body. Not getting enough sleep reduces our levels of a chemical that makes us feel full after eating, and increases our levels of another that makes us feel hungry, so we eat more than we should. Lastly, poor sleep can lead to long-term worrying and so increase our stress. People need to get more sleep in order to deal with these problems.</p>
+                
+                <p><span class="para-letter">D</span> So, how can we reduce stress levels and sleep more? It seems nature may provide the answers we need. According to Professor Pretty from the University of Essex, doing outdoor activities can make people feel better, less stressed and more relaxed. Interestingly, the amount of time doing these activities does not matter much. Six hours can have a very similar <span class="vocab-word" data-word="impact">impact</span> as just doing the same outdoor activity for 30 minutes. Additionally, studies from Johns Hopkins University even found that a view of nature from your window can have positive effects on your mental health.</p>
+                
+                <p><span class="para-letter">E</span> If nature does not interest you, then an alternative is the company of others. <span class="vocab-word" data-word="loneliness">Loneliness</span> can lead to similar changes in the body as those caused by stress. Perhaps because people feel safer in groups, they are more relaxed. Studies by the Universities of Chicago and California found that lonely people often had a higher chance of becoming ill. It seems then that being outside with others may be one of the best things we can do for our health.</p>
+            </div>
+        </div>
+
+        <!-- Splitter -->
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <!-- Right Pane: Questions -->
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-2xl mx-auto space-y-8">
+                
+                <!-- Questions 1 - 6 -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1–6</span>
+                        <h4 class="font-bold text-gray-800">Matching Sentence Endings</h4>
+                    </div>
+                    <p class="mb-4 text-gray-700">
+                        Complete each sentence with the correct ending <strong>A–H</strong> below. Select the appropriate option from the drop-down menu for each statement.
+                    </p>
+                    
+                    <!-- Reference Options List -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6 text-sm text-gray-700 space-y-2">
+                        <p><strong class="w-6 inline-block text-gray-900">A</strong> makes us eat more bad foods.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">B</strong> may make us feel more secure.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">C</strong> may be very stressful.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">D</strong> may cause people to die at a younger age.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">E</strong> makes us feel more positive.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">F</strong> makes us age more slowly.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">G</strong> is designed to keep us safe.</p>
+                        <p><strong class="w-6 inline-block text-gray-900">H</strong> helps us recover when we are not well.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q1">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">1</span> Continuing with our modern lifestyle into the future...</span>
+                            <select name="q1" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-56 text-sm flex-shrink-0">
+                                <option value="">Select option...</option>
+                                <option value="A. makes us eat more bad foods.">A. makes us eat more bad foods.</option>
+                                <option value="B. may make us feel more secure.">B. may make us feel more secure.</option>
+                                <option value="C. may be very stressful.">C. may be very stressful.</option>
+                                <option value="D. may cause people to die at a younger age.">D. may cause people to die at a younger age.</option>
+                                <option value="E. makes us feel more positive.">E. makes us feel more positive.</option>
+                                <option value="F. makes us age more slowly.">F. makes us age more slowly.</option>
+                                <option value="G. is designed to keep us safe.">G. is designed to keep us safe.</option>
+                                <option value="H. helps us recover when we are not well.">H. helps us recover when we are not well.</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q2">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">2</span> Our body's response to danger...</span>
+                            <select name="q2" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-56 text-sm flex-shrink-0">
+                                <option value="">Select option...</option>
+                                <option value="A. makes us eat more bad foods.">A. makes us eat more bad foods.</option>
+                                <option value="B. may make us feel more secure.">B. may make us feel more secure.</option>
+                                <option value="C. may be very stressful.">C. may be very stressful.</option>
+                                <option value="D. may cause people to die at a younger age.">D. may cause people to die at a younger age.</option>
+                                <option value="E. makes us feel more positive.">E. makes us feel more positive.</option>
+                                <option value="F. makes us age more slowly.">F. makes us age more slowly.</option>
+                                <option value="G. is designed to keep us safe.">G. is designed to keep us safe.</option>
+                                <option value="H. helps us recover when we are not well.">H. helps us recover when we are not well.</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q3">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">3</span> A chemical present when we are stressed...</span>
+                            <select name="q3" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-56 text-sm flex-shrink-0">
+                                <option value="">Select option...</option>
+                                <option value="A. makes us eat more bad foods.">A. makes us eat more bad foods.</option>
+                                <option value="B. may make us feel more secure.">B. may make us feel more secure.</option>
+                                <option value="C. may be very stressful.">C. may be very stressful.</option>
+                                <option value="D. may cause people to die at a younger age.">D. may cause people to die at a younger age.</option>
+                                <option value="E. makes us feel more positive.">E. makes us feel more positive.</option>
+                                <option value="F. makes us age more slowly.">F. makes us age more slowly.</option>
+                                <option value="G. is designed to keep us safe.">G. is designed to keep us safe.</option>
+                                <option value="H. helps us recover when we are not well.">H. helps us recover when we are not well.</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q4">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">4</span> Getting enough sleep...</span>
+                            <select name="q4" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-56 text-sm flex-shrink-0">
+                                <option value="">Select option...</option>
+                                <option value="A. makes us eat more bad foods.">A. makes us eat more bad foods.</option>
+                                <option value="B. may make us feel more secure.">B. may make us feel more secure.</option>
+                                <option value="C. may be very stressful.">C. may be very stressful.</option>
+                                <option value="D. may cause people to die at a younger age.">D. may cause people to die at a younger age.</option>
+                                <option value="E. makes us feel more positive.">E. makes us feel more positive.</option>
+                                <option value="F. makes us age more slowly.">F. makes us age more slowly.</option>
+                                <option value="G. is designed to keep us safe.">G. is designed to keep us safe.</option>
+                                <option value="H. helps us recover when we are not well.">H. helps us recover when we are not well.</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b border-gray-100 gap-3" id="container-q5">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">5</span> Taking part in open-air activities...</span>
+                            <select name="q5" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-56 text-sm flex-shrink-0">
+                                <option value="">Select option...</option>
+                                <option value="A. makes us eat more bad foods.">A. makes us eat more bad foods.</option>
+                                <option value="B. may make us feel more secure.">B. may make us feel more secure.</option>
+                                <option value="C. may be very stressful.">C. may be very stressful.</option>
+                                <option value="D. may cause people to die at a younger age.">D. may cause people to die at a younger age.</option>
+                                <option value="E. makes us feel more positive.">E. makes us feel more positive.</option>
+                                <option value="F. makes us age more slowly.">F. makes us age more slowly.</option>
+                                <option value="G. is designed to keep us safe.">G. is designed to keep us safe.</option>
+                                <option value="H. helps us recover when we are not well.">H. helps us recover when we are not well.</option>
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 gap-3" id="container-q6">
+                            <span class="text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">6</span> Being with other people...</span>
+                            <select name="q6" class="border border-gray-300 rounded px-3 py-2 bg-white text-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full sm:w-56 text-sm flex-shrink-0">
+                                <option value="">Select option...</option>
+                                <option value="A. makes us eat more bad foods.">A. makes us eat more bad foods.</option>
+                                <option value="B. may make us feel more secure.">B. may make us feel more secure.</option>
+                                <option value="C. may be very stressful.">C. may be very stressful.</option>
+                                <option value="D. may cause people to die at a younger age.">D. may cause people to die at a younger age.</option>
+                                <option value="E. makes us feel more positive.">E. makes us feel more positive.</option>
+                                <option value="F. makes us age more slowly.">F. makes us age more slowly.</option>
+                                <option value="G. is designed to keep us safe.">G. is designed to keep us safe.</option>
+                                <option value="H. helps us recover when we are not well.">H. helps us recover when we are not well.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button Area -->
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center pb-8">
+                    <button id="submit-form-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg shadow-md inline-flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg>
+                        <span>Submit to Google Form</span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">This will open your pre-filled Google Form in a new tab.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Progress Footer -->
+    <footer class="bg-white border-t border-gray-200 p-3 flex justify-center items-center z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] overflow-hidden">
+        <span class="text-sm font-bold text-gray-700 mr-3 flex-shrink-0">Progress:</span>
+        <div class="progress-container">
+            <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+            <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+            <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+            <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+            <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Highlight Tooltip -->
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white mr-4 transition-all shadow-sm border border-blue-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    // --- DATA ---
+    const vocabulary = {
+        'dopamine': { meaning: 'A compound present in the body as a neurotransmitter that gives feelings of pleasure and satisfaction.', phonetic: '/ˈdəʊ.pə.miːn/' },
+        'cortisol': { meaning: 'A hormone released by the adrenal glands in response to stress.', phonetic: '/ˈkɔː.tɪ.zɒl/' },
+        'symptom': { meaning: 'A physical or mental feature indicating a condition or disease.', phonetic: '/ˈsɪmp.təm/' },
+        'impact': { meaning: 'A marked effect or influence that something has on an outcome or situation.', phonetic: '/ˈɪm.pækt/' },
+        'loneliness': { meaning: 'Sadness or isolation resulting from a lack of companionship or connection with others.', phonetic: '/ˈləʊn.li.nəs/' }
+    };
+
+    // --- APPLICATION LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            // Elements
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                // Vocab Words & Marks Event Delegation
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                // Form Input Event Listeners for Progress Tracking
+                document.body.addEventListener('input', (e) => {
+                    if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') {
+                        this.updateProgress();
+                    }
+                });
+                document.body.addEventListener('change', (e) => {
+                    if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') {
+                        this.updateProgress();
+                    }
+                });
+
+                // Google Form Submission
+                document.body.addEventListener('click', (e) => {
+                    const submitBtn = e.target.closest('#submit-form-btn');
+                    if (submitBtn) {
+                        this.submitToGoogleForm();
+                    }
+                });
+                
+                // Audio Pronunciation Event
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-blue-600', 'bg-blue-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       this.resetAudioBtn();
+                   }
+                });
+            },
+
+            updateProgress() {
+                const progressItems = document.querySelectorAll('.progress-item');
+                progressItems.forEach(item => {
+                    const qName = item.dataset.q;
+                    const inputElement = document.querySelector(`[name="${qName}"]`);
+                    let isAnswered = false;
+                    
+                    if (inputElement) {
+                        if (inputElement.tagName === 'SELECT') {
+                            isAnswered = inputElement.value !== '';
+                        } else if (inputElement.type === 'text') {
+                            isAnswered = inputElement.value.trim() !== '';
+                        }
+                    }
+                    
+                    if (isAnswered) {
+                        item.classList.add('answered');
+                    } else {
+                        item.classList.remove('answered');
+                    }
+                });
+            },
+
+            initProgressTracker() {
+                this.updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-blue-600', 'bg-blue-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey.toLowerCase()];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+            
+            submitToGoogleForm() {
+                const nameInput = document.getElementById('student-name');
+                const name = nameInput ? nameInput.value : '';
+
+                const params = new URLSearchParams();
+                params.append('usp', 'pp_url');
+                
+                // Student Name Field Entry
+                if (name) params.append('entry.426470376', name);
+
+                // Entry mappings based on the pre-filled Google Form link
+                const formEntries = {
+                    'q1': 'entry.973332277',
+                    'q2': 'entry.1356865990',
+                    'q3': 'entry.212923894',
+                    'q4': 'entry.738157280',
+                    'q5': 'entry.855758844',
+                    'q6': 'entry.1459291293'
+                };
+
+                // Add Values from inputs & selects
+                for (const [qId, entryId] of Object.entries(formEntries)) {
+                    const inputEl = document.querySelector(`[name="${qId}"]`);
+                    if (inputEl && inputEl.value.trim() !== "") {
+                        params.append(entryId, inputEl.value.trim());
+                    }
+                }
+
+                // Form ID extracted from URL
+                const formId = '1FAIpQLScYxUKvCZYJoOkGfDkvREEyX4ob6KIcZuiUSAOOKRhVHbBJjw';
+                const url = `https://docs.google.com/forms/d/e/${formId}/viewform?${params.toString()}`;
+                
+                window.open(url, '_blank');
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

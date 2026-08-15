@@ -511,10 +511,16 @@
                 <!-- Image Placeholder Container -->
                 <div
                     class="border-2 border-dashed border-gray-300 rounded-3xl p-8 text-center bg-gray-50/80 hover:bg-gray-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
-                    <img id="grammar-reference-img" src="https://i.postimg.cc/63ZxWp8h/Module-9a-Grammar.png"
-                        alt="Grammar Reference Visual"
-                        class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-gray-200 hidden"
-                        onload="this.classList.remove('hidden'); this.nextElementSibling.classList.add('hidden');">
+                    <div class="relative group cursor-pointer inline-block max-w-full" onclick="openImageModal()">
+                        <img id="grammar-reference-img" src="https://i.postimg.cc/63ZxWp8h/Module-9a-Grammar.png"
+                            alt="Grammar Reference Visual"
+                            class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden group-hover:opacity-95 transition-all group-hover:shadow-2xl"
+                            onload="this.classList.remove('hidden'); this.closest('.group').nextElementSibling.classList.add('hidden'); if(document.getElementById('img-zoom-hint')) document.getElementById('img-zoom-hint').classList.remove('hidden');">
+                        <div id="img-zoom-hint" class="hidden absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl backdrop-blur flex items-center gap-1.5 shadow-lg pointer-events-none group-hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+                            <span>Click to Zoom</span>
+                        </div>
+                    </div>
 
                     <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
                         <div
@@ -639,7 +645,208 @@
                 correctBtn.classList.add('border-emerald-500', 'text-emerald-800');
             }
         }
+    
+                /* Image Modal & Zoom Logic */
+        let currentZoom = 1;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
+        function openImageModal() {
+            const originalImg = document.getElementById('grammar-reference-img');
+            if (!originalImg || !originalImg.src || originalImg.src.trim() === '' || originalImg.classList.contains('hidden')) {
+                return;
+            }
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('modalZoomImg');
+            modalImg.src = originalImg.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'imageZoomModal') {
+                closeImageModal();
+            }
+        }
+
+        function updateZoomTransform() {
+            const modalImg = document.getElementById('modalZoomImg');
+            const zoomText = document.getElementById('zoomLevelText');
+            const viewport = document.getElementById('modalViewport');
+            if (modalImg) {
+                modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            }
+            if (zoomText) {
+                zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+            if (viewport) {
+                if (currentZoom > 1) {
+                    viewport.style.cursor = isPanning ? 'grabbing' : 'grab';
+                } else {
+                    viewport.style.cursor = 'zoom-in';
+                }
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < 4) {
+                const modalImg = document.getElementById('modalZoomImg');
+                if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
+                currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
+                updateZoomTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                const modalImg = document.getElementById('modalZoomImg');
+                if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
+                currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+                if (currentZoom <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateZoomTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            const modalImg = document.getElementById('modalZoomImg');
+            if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
+            updateZoomTransform();
+        }
+
+        function toggleZoom(e) {
+            if (e) e.stopPropagation();
+            const modalImg = document.getElementById('modalZoomImg');
+            if (modalImg) modalImg.style.transition = 'transform 0.2s ease-out';
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+            }
+            updateZoomTransform();
+        }
+
+        function handleWheelZoom(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+
+        function startPan(e) {
+            if (currentZoom <= 1) return;
+            e.preventDefault();
+            e.stopPropagation();
+            isPanning = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+
+            const modalImg = document.getElementById('modalZoomImg');
+            if (modalImg) modalImg.style.transition = 'none';
+            const viewport = document.getElementById('modalViewport');
+            if (viewport) viewport.style.cursor = 'grabbing';
+
+            const handleMouseMove = (ev) => {
+                if (!isPanning) return;
+                ev.preventDefault();
+                translateX = ev.clientX - startX;
+                translateY = ev.clientY - startY;
+                updateZoomTransform();
+            };
+
+            const handleMouseUp = () => {
+                isPanning = false;
+                if (modalImg) modalImg.style.transition = 'transform 0.15s ease-out';
+                const vp = document.getElementById('modalViewport');
+                if (vp) vp.style.cursor = currentZoom > 1 ? 'grab' : 'zoom-in';
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mouseup', handleMouseUp);
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageZoomModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeImageModal();
+                }
+            }
+        });
     </script>
-</body>
+
+    <!-- Lightbox Image Zoom Modal -->
+    <div id="imageZoomModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-2 sm:p-4 select-none"
+        onclick="handleModalBackdropClick(event)">
+        <!-- Toolbar -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-4 py-3 bg-slate-900/90 border border-slate-800 rounded-2xl text-white shadow-2xl mb-2 sm:mb-4 z-10"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
+                    <span>🖼️ Grammar Reference</span>
+                </span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan • Double-click to toggle</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="zoomOut()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom Out (-)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                </button>
+                <span id="zoomLevelText"
+                    class="px-2.5 py-1 bg-slate-800/80 rounded-lg text-xs font-mono font-bold text-indigo-300 min-w-[52px] text-center">100%</span>
+                <button onclick="zoomIn()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom In (+)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button onclick="resetZoom()"
+                    class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors hidden sm:inline-flex items-center gap-1"
+                    title="Reset Zoom">
+                    ↺ Reset
+                </button>
+                <button onclick="closeImageModal()"
+                    class="ml-2 p-2 sm:px-3 sm:py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Close (Esc)">
+                    ✕ <span class="hidden sm:inline">Close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Container -->
+        <div id="modalViewport"
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-zoom-in"
+            onclick="event.stopPropagation()" onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-150 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+        </div>
+    </div></body>
 
 </html>
