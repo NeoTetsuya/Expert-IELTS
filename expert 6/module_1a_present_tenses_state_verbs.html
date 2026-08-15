@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Slate-50 background */
+            background-color: #f8fafc;
+            /* Slate-50 background */
             color: #0f172a;
         }
 
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
             animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .interactive-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .interactive-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.15), 0 10px 10px -5px rgba(79, 70, 229, 0.08);
-            border-color: #6366f1; /* Indigo-500 */
+            border-color: #6366f1;
+            /* Indigo-500 */
         }
 
         .hide-scroll-bar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scroll-bar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -46,46 +60,74 @@
         .pulse-border {
             animation: pulseBorder 2s infinite;
         }
+
         @keyframes pulseBorder {
-            0% { border-color: rgba(79, 70, 229, 0.4); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-            70% { border-color: rgba(79, 70, 229, 0); box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
-            100% { border-color: rgba(79, 70, 229, 0); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+            0% {
+                border-color: rgba(79, 70, 229, 0.4);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+            }
+
+            70% {
+                border-color: rgba(79, 70, 229, 0);
+                box-shadow: 0 0 0 8px rgba(79, 70, 229, 0);
+            }
+
+            100% {
+                border-color: rgba(79, 70, 229, 0);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+            }
         }
 
         .filter-pill {
             transition: all 0.2s ease;
             cursor: pointer;
         }
-        .filter-pill:hover, .filter-pill.selected {
-            background-color: #4f46e5; /* Indigo-600 */
+
+        .filter-pill:hover,
+        .filter-pill.selected {
+            background-color: #4f46e5;
+            /* Indigo-600 */
             color: white;
             transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
 
     <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
-        
+
         <!-- Header Banner -->
-        <div class="bg-gradient-to-br from-indigo-700 via-indigo-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
-                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div
+            class="bg-gradient-to-br from-indigo-700 via-indigo-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
             </div>
-            
+
             <div class="relative z-10">
                 <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
                     <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     Module 1 Grammar Guide • Page 13
                 </h2>
                 <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Present Tenses & State Verbs</h1>
                 <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
-                    Master <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Present Simple</span> for habits & permanent facts, <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Present Continuous</span> for actions happening now & temporary states, and identify non-continuous <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">State Verbs</span>!
+                    Master <span
+                        class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Present
+                        Simple</span> for habits & permanent facts, <span
+                        class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Present
+                        Continuous</span> for actions happening now & temporary states, and identify non-continuous
+                    <span
+                        class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">State
+                        Verbs</span>!
                 </p>
             </div>
         </div>
@@ -93,12 +135,27 @@
         <div class="p-6 sm:p-10">
             <!-- Navigation Tabs -->
             <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-simple')">1. Present Simple 🔁</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-continuous')">2. Present Continuous ⏳</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-state')">3. State Verbs 🧠</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Tense Explorer 🧩</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-emerald-600 hover:text-emerald-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-simple')">1. Present Simple 🔁</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-continuous')">2. Present Continuous ⏳</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-state')">3. State Verbs 🧠</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-explorer')">4. Tense Explorer 🧩</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-emerald-600 hover:text-emerald-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
                     5. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    6. Visual Reference 🖼️
                 </button>
             </div>
 
@@ -110,16 +167,20 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">A. Present Simple Uses & Sentence Form</h3>
-                        <p class="text-lg text-slate-600 font-medium">Used for regular routines, habits, and permanent situations.</p>
+                        <p class="text-lg text-slate-600 font-medium">Used for regular routines, habits, and permanent
+                            situations.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Use 1: Routines & Habits -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use 1</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use
+                                    1</span>
                                 <span class="text-2xl">🔄</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Regular & Repeated Actions</h4>
@@ -127,29 +188,40 @@
                                 We use the Present Simple to talk about habits, repeated routines, and scheduled events.
                             </p>
                         </div>
-                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-sm font-semibold space-y-2">
-                            <p>👉 "Most people <strong class="text-indigo-800 underline">pay</strong> a monthly fee for their mobile."</p>
-                            <p>👉 "The computer system <strong class="text-indigo-800 underline">updates</strong> every Monday."</p>
-                            <p>👉 "The office <strong class="text-indigo-800 underline">doesn't open</strong> on Wednesday afternoons."</p>
+                        <div
+                            class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-sm font-semibold space-y-2">
+                            <p>👉 "Most people <strong class="text-indigo-800 underline">pay</strong> a monthly fee for
+                                their mobile."</p>
+                            <p>👉 "The computer system <strong class="text-indigo-800 underline">updates</strong> every
+                                Monday."</p>
+                            <p>👉 "The office <strong class="text-indigo-800 underline">doesn't open</strong> on
+                                Wednesday afternoons."</p>
                         </div>
                     </div>
 
                     <!-- Use 2: Permanent Situations -->
-                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use 2</span>
+                                <span
+                                    class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use
+                                    2</span>
                                 <span class="text-2xl">🏢</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Permanent Situations</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                We use the Present Simple for long-term states or general truths that do not change quickly.
+                                We use the Present Simple for long-term states or general truths that do not change
+                                quickly.
                             </p>
                         </div>
-                        <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 text-slate-800 text-sm font-semibold space-y-2">
-                            <p>👉 "This company <strong class="text-slate-900 underline">offers</strong> free email accounts."</p>
+                        <div
+                            class="bg-slate-100 p-4 rounded-xl border border-slate-200 text-slate-800 text-sm font-semibold space-y-2">
+                            <p>👉 "This company <strong class="text-slate-900 underline">offers</strong> free email
+                                accounts."</p>
                             <p>👉 "My family <strong class="text-slate-900 underline">live</strong> by the sea."</p>
-                            <p>👉 "My mobile plan <strong class="text-slate-900 underline">doesn't give</strong> free calls."</p>
+                            <p>👉 "My mobile plan <strong class="text-slate-900 underline">doesn't give</strong> free
+                                calls."</p>
                         </div>
                     </div>
                 </div>
@@ -157,23 +229,32 @@
                 <!-- Sentence Structure Table -->
                 <div class="bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm space-y-4">
                     <h4 class="font-extrabold text-slate-900 text-xl mb-2">Forming Present Simple Sentences</h4>
-                    <p class="text-xs text-slate-500 font-medium">We use the base form of the verb. <strong>He / She / It</strong> forms add <strong>-s / -es</strong>.</p>
-                    
+                    <p class="text-xs text-slate-500 font-medium">We use the base form of the verb. <strong>He / She /
+                            It</strong> forms add <strong>-s / -es</strong>.</p>
+
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-semibold">
                         <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 space-y-2">
-                            <span class="bg-emerald-600 text-white font-extrabold px-2.5 py-1 rounded text-[11px] block w-fit">Positive (+)</span>
+                            <span
+                                class="bg-emerald-600 text-white font-extrabold px-2.5 py-1 rounded text-[11px] block w-fit">Positive
+                                (+)</span>
                             <p class="text-slate-800">I / You / We / They <strong>like</strong> pop music.</p>
                             <p class="text-emerald-900">He / She / It <strong>likes</strong> pop music. (+s)</p>
                         </div>
                         <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 space-y-2">
-                            <span class="bg-rose-600 text-white font-extrabold px-2.5 py-1 rounded text-[11px] block w-fit">Negative (-)</span>
+                            <span
+                                class="bg-rose-600 text-white font-extrabold px-2.5 py-1 rounded text-[11px] block w-fit">Negative
+                                (-)</span>
                             <p class="text-slate-800">I / You / We / They <strong>don't like</strong> social media.</p>
                             <p class="text-rose-900">He / She / It <strong>doesn't like</strong> social media.</p>
                         </div>
                         <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-2">
-                            <span class="bg-indigo-600 text-white font-extrabold px-2.5 py-1 rounded text-[11px] block w-fit">Questions (?)</span>
-                            <p class="text-slate-800"><strong>Do</strong> you like pop music?<br>✓ Yes, I do. / ✗ No, I don't.</p>
-                            <p class="text-indigo-900"><strong>Does</strong> he like pop music?<br>✓ Yes, he does. / ✗ No, he doesn't.</p>
+                            <span
+                                class="bg-indigo-600 text-white font-extrabold px-2.5 py-1 rounded text-[11px] block w-fit">Questions
+                                (?)</span>
+                            <p class="text-slate-800"><strong>Do</strong> you like pop music?<br>✓ Yes, I do. / ✗ No, I
+                                don't.</p>
+                            <p class="text-indigo-900"><strong>Does</strong> he like pop music?<br>✓ Yes, he does. / ✗
+                                No, he doesn't.</p>
                         </div>
                     </div>
                 </div>
@@ -187,16 +268,20 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">B. Present Continuous Uses & Inversion</h3>
-                        <p class="text-lg text-slate-600 font-medium">Formed with <strong>be (am/is/are) + -ing form</strong> for current or temporary actions.</p>
+                        <p class="text-lg text-slate-600 font-medium">Formed with <strong>be (am/is/are) + -ing
+                                form</strong> for current or temporary actions.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Use 1: Actions Happening Now -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use 1</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use
+                                    1</span>
                                 <span class="text-2xl">⚡</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Happening Right Now</h4>
@@ -204,16 +289,20 @@
                                 To describe activities taking place at the exact moment of speaking.
                             </p>
                         </div>
-                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-sm font-semibold">
+                        <div
+                            class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-sm font-semibold">
                             👉 "The manager <strong class="text-indigo-900 underline">is updating</strong> the website."
                         </div>
                     </div>
 
                     <!-- Use 2: Temporary Situations -->
-                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use 2</span>
+                                <span
+                                    class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Use
+                                    2</span>
                                 <span class="text-2xl">⏳</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Temporary Situations</h4>
@@ -221,8 +310,10 @@
                                 To describe actions or projects happening around now, but for a limited time.
                             </p>
                         </div>
-                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-sm font-semibold">
-                            👉 "Dr Brown's <strong class="text-teal-900 underline">working</strong> on a new system this summer."
+                        <div
+                            class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-sm font-semibold">
+                            👉 "Dr Brown's <strong class="text-teal-900 underline">working</strong> on a new system this
+                            summer."
                         </div>
                     </div>
                 </div>
@@ -236,17 +327,21 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-medium">
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-emerald-400 font-bold block mb-1">Positive (+)</span>
-                            <p class="text-slate-300">I'm / You're / He's / She's / It's / We're / They're + <strong>-ing form</strong></p>
+                            <p class="text-slate-300">I'm / You're / He's / She's / It's / We're / They're +
+                                <strong>-ing form</strong></p>
                             <p class="text-xs text-slate-400 mt-2 font-mono">"They're working hard."</p>
                         </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-rose-400 font-bold block mb-1">Negative (-)</span>
-                            <p class="text-slate-300">I'm not / You aren't / He isn't / She isn't / We aren't + <strong>-ing form</strong></p>
+                            <p class="text-slate-300">I'm not / You aren't / He isn't / She isn't / We aren't +
+                                <strong>-ing form</strong></p>
                             <p class="text-xs text-slate-400 mt-2 font-mono">"He isn't living here."</p>
                         </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
-                            <span class="text-indigo-400 font-bold block mb-1">Questions (?) Subject-Verb Inversion</span>
-                            <p class="text-slate-300"><strong>Am / Is / Are</strong> + subject + <strong>-ing form</strong>?</p>
+                            <span class="text-indigo-400 font-bold block mb-1">Questions (?) Subject-Verb
+                                Inversion</span>
+                            <p class="text-slate-300"><strong>Am / Is / Are</strong> + subject + <strong>-ing
+                                    form</strong>?</p>
                             <p class="text-xs text-slate-400 mt-2 font-mono">"Are you working at the moment?"</p>
                         </div>
                     </div>
@@ -261,42 +356,59 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">C. State Verbs (Non-Continuous)</h3>
-                        <p class="text-lg text-slate-600 font-medium">State verbs describe conditions/states, not actions, and are <strong>not normally used in a continuous form</strong>.</p>
+                        <p class="text-lg text-slate-600 font-medium">State verbs describe conditions/states, not
+                            actions, and are <strong>not normally used in a continuous form</strong>.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Category 1: Emotions & Mental States -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 1</span>
+                            <span
+                                class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group
+                                1</span>
                             <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">Emotions & Mental States</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Verbs that express thoughts, feelings, or preferences:</p>
-                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-bold text-indigo-900 leading-relaxed space-y-1">
-                                agree • disagree • hate • like • mind • need • prefer • promise • seem • understand • want
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Verbs that express thoughts, feelings, or
+                                preferences:</p>
+                            <div
+                                class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-bold text-indigo-900 leading-relaxed space-y-1">
+                                agree • disagree • hate • like • mind • need • prefer • promise • seem • understand •
+                                want
                             </div>
                         </div>
                     </div>
 
                     <!-- Category 2: Senses -->
-                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 2</span>
+                            <span
+                                class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group
+                                2</span>
                             <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">The Senses</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Verbs that describe sensory perceptions:</p>
-                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs font-bold text-teal-900 leading-relaxed space-y-1">
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Verbs that describe sensory perceptions:
+                            </p>
+                            <div
+                                class="bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs font-bold text-teal-900 leading-relaxed space-y-1">
                                 feel • hear • see • smell • sound • taste
                             </div>
                         </div>
                     </div>
 
                     <!-- Category 3: Owning / Possession -->
-                    <div class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group 3</span>
+                            <span
+                                class="bg-slate-800 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Group
+                                3</span>
                             <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-2">Owning & Possession</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Verbs describing ownership or relationships:</p>
-                            <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 leading-relaxed space-y-1">
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Verbs describing ownership or
+                                relationships:</p>
+                            <div
+                                class="bg-slate-100 p-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-900 leading-relaxed space-y-1">
                                 belong to • have • own
                             </div>
                         </div>
@@ -321,23 +433,38 @@
             <!-- TAB 4: TENSE EXPLORER -->
             <div id="tab-explorer" class="tab-content space-y-8">
                 <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6 shadow-sm">
-                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Tense Decision Matrix</h4>
-                    <p class="text-sm text-slate-600 text-center mb-6">Select a context below to view the correct tense and example according to Page 13!</p>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Tense Decision Matrix
+                    </h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a context below to view the correct tense
+                        and example according to Page 13!</p>
 
                     <!-- Filter Options -->
                     <div class="mb-6">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select
+                            Grammar Context</label>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="selectExplorer('routine')" id="ebtn-routine" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Routine / Habit (Present Simple)</button>
-                            <button onclick="selectExplorer('permanent')" id="ebtn-permanent" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Permanent Situation (Present Simple)</button>
-                            <button onclick="selectExplorer('now')" id="ebtn-now" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Action Happening Now (Continuous)</button>
-                            <button onclick="selectExplorer('temporary')" id="ebtn-temporary" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Temporary Situation (Continuous)</button>
-                            <button onclick="selectExplorer('state')" id="ebtn-state" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Mental / Emotional State (State Verb)</button>
+                            <button onclick="selectExplorer('routine')" id="ebtn-routine"
+                                class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Routine
+                                / Habit (Present Simple)</button>
+                            <button onclick="selectExplorer('permanent')" id="ebtn-permanent"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Permanent
+                                Situation (Present Simple)</button>
+                            <button onclick="selectExplorer('now')" id="ebtn-now"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Action
+                                Happening Now (Continuous)</button>
+                            <button onclick="selectExplorer('temporary')" id="ebtn-temporary"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Temporary
+                                Situation (Continuous)</button>
+                            <button onclick="selectExplorer('state')" id="ebtn-state"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Mental
+                                / Emotional State (State Verb)</button>
                         </div>
                     </div>
 
                     <!-- Result Card -->
-                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-indigo-200 shadow-inner text-center space-y-2">
+                    <div id="explorerResult"
+                        class="bg-white p-6 rounded-xl border border-indigo-200 shadow-inner text-center space-y-2">
                         <!-- Content rendered via JS -->
                     </div>
                 </div>
@@ -345,72 +472,186 @@
 
             <!-- TAB 5: PRACTICE QUIZ -->
             <div id="tab-quiz" class="tab-content space-y-6">
-                <div class="bg-gradient-to-r from-indigo-50 via-teal-50 to-emerald-50 rounded-2xl p-8 border border-indigo-100 text-center mb-8 shadow-inner">
+                <div
+                    class="bg-gradient-to-r from-indigo-50 via-teal-50 to-emerald-50 rounded-2xl p-8 border border-indigo-100 text-center mb-8 shadow-inner">
                     <h3 class="text-3xl font-extrabold text-indigo-900 mb-2">Test Your Module 1 Knowledge</h3>
-                    <p class="text-indigo-700 font-medium">Select the correct option according to Page 13 grammar rules.</p>
+                    <p class="text-indigo-700 font-medium">Select the correct option according to Page 13 grammar rules.
+                    </p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">1. The computer system <span class="inline-block w-28 border-b-2 border-slate-400"></span> every Monday morning.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. The computer system <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> every Monday morning.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! For regular, repeated routines (every Monday), we use the <strong>Present Simple</strong> with -s (updates).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">updates</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Is updating is present continuous, whereas every Monday signals a regular repeated routine.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">is updating</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. System is third-person singular (it), so it requires updates.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">update</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! For regular, repeated routines (every Monday), we use the <strong>Present Simple</strong> with -s (updates).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">updates</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Is updating is present continuous, whereas every Monday signals a regular repeated routine.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">is
+                                updating</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. System is third-person singular (it), so it requires updates.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">update</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q2 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">2. The manager <span class="inline-block w-28 border-b-2 border-slate-400"></span> the website at the moment.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. The manager <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> the website at the moment.
+                        </p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Actions happening right now take the <strong>Present Continuous</strong> (is updating).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">is updating</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Updates is Present Simple (routines).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">updates</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Present continuous requires be + -ing (is updating).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">updating</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Actions happening right now take the <strong>Present Continuous</strong> (is updating).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">is updating</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Updates is Present Simple (routines).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">updates</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Present continuous requires be + -ing (is updating).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">updating</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q3 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">3. I <span class="inline-block w-28 border-b-2 border-slate-400"></span> a new computer for my university course.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. I <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> a new computer for my
+                            university course.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! <strong>need</strong> is a state verb (mental/emotional necessity) and is not used in continuous forms.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">need</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Need is a state verb and not used in continuous forms.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">am needing</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Subject \'I\' takes base form \'need\', not needs.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">needs</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! <strong>need</strong> is a state verb (mental/emotional necessity) and is not used in continuous forms.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">need</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Need is a state verb and not used in continuous forms.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">am
+                                needing</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Subject \'I\' takes base form \'need\', not needs.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">needs</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q4 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">4. Dr Brown <span class="inline-block w-28 border-b-2 border-slate-400"></span> on a new research system this summer.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. Dr Brown <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> on a new research system
+                            this summer.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Temporary situations happening around now (this summer) take the <strong>Present Continuous</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">is working</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Works implies a permanent situation, whereas \'this summer\' indicates a temporary situation.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">works</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Present continuous requires auxiliary \'is\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">working</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Temporary situations happening around now (this summer) take the <strong>Present Continuous</strong>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">is working</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Works implies a permanent situation, whereas \'this summer\' indicates a temporary situation.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">works</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Present continuous requires auxiliary \'is\'.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">working</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q5 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">5. <span class="inline-block w-28 border-b-2 border-slate-400"></span> living in university halls this term?</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. <span
+                                class="inline-block w-28 border-b-2 border-slate-400"></span> living in university halls
+                            this term?</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Present Continuous questions invert subject and verb be: <strong>Is he</strong> living...?')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">Is he</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Does he is used for Present Simple questions with base verbs.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Does he</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Questions require subject-verb inversion (Is he).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">He is</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Present Continuous questions invert subject and verb be: <strong>Is he</strong> living...?')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">Is he</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Does he is used for Present Simple questions with base verbs.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">Does
+                                he</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Questions require subject-verb inversion (Is he).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">He
+                                is</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-slate-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-slate-300 rounded-3xl p-6 sm:p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <div class="relative group cursor-pointer inline-block max-w-full" onclick="openImageModal()">
+                        <img id="grammar-reference-img" src="https://i.postimg.cc/pTHt741H/Module-1a-Grammar.png"
+                            alt="Grammar Reference Visual"
+                            class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden group-hover:opacity-95 transition-all group-hover:shadow-2xl"
+                            onload="this.classList.remove('hidden'); this.closest('.group').nextElementSibling.classList.add('hidden'); if(document.getElementById('img-zoom-hint')) document.getElementById('img-zoom-hint').classList.remove('hidden');">
+                        <div id="img-zoom-hint"
+                            class="hidden absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl backdrop-blur flex items-center gap-1.5 shadow-lg pointer-events-none group-hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                            </svg>
+                            <span>Click to Zoom</span>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-slate-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-slate-500 mb-4">No reference image added yet. Insert your image URL
+                                in the <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-mono text-slate-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-slate-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+        <div
+            class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
             <span>Grammar Reference • Module 1</span>
             <span>Page 13 Guide</span>
         </div>
@@ -425,9 +666,9 @@
             const tabBtns = document.querySelectorAll('.tab-btn');
             tabBtns.forEach(btn => {
                 btn.classList.remove('border-indigo-600', 'text-indigo-700', 'border-emerald-600', 'text-emerald-600');
-                
-                if(btn.innerText.includes('Quiz')) {
-                    btn.classList.add('border-transparent', 'text-emerald-600'); 
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-emerald-600');
                 } else {
                     btn.classList.add('border-transparent', 'text-slate-400');
                     btn.classList.remove('font-bold');
@@ -436,14 +677,16 @@
             });
 
             document.getElementById(tabName).classList.add('active');
-            
+
             const clickedBtn = evt.currentTarget;
             clickedBtn.classList.remove('border-transparent', 'text-slate-400');
             clickedBtn.classList.remove('font-semibold');
             clickedBtn.classList.add('font-bold');
-            
-            if(tabName === 'tab-quiz') {
+
+            if (tabName === 'tab-quiz') {
                 clickedBtn.classList.add('border-emerald-600', 'text-emerald-700');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
             } else {
                 clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
             }
@@ -505,15 +748,15 @@
             const container = btn.closest('.quiz-question');
             const buttons = container.querySelectorAll('button');
             const feedback = container.querySelector('.feedback');
-            
+
             buttons.forEach(b => {
                 b.disabled = true;
                 b.classList.add('opacity-50', 'cursor-not-allowed');
                 b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
             });
-            
+
             btn.classList.remove('opacity-50');
-            
+
             if (isCorrect) {
                 btn.classList.replace('bg-slate-100', 'bg-indigo-600');
                 btn.classList.replace('text-slate-700', 'text-white');
@@ -526,13 +769,188 @@
                 feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
                 feedback.classList.remove('hidden');
                 feedback.classList.add('bg-indigo-50', 'border-indigo-500');
-                
+
                 const correctBtn = container.querySelector('[data-correct="true"]');
                 correctBtn.classList.remove('opacity-50');
                 correctBtn.classList.replace('bg-slate-100', 'bg-indigo-100');
                 correctBtn.classList.add('border-indigo-500', 'text-indigo-800');
             }
         }
+
+        /* Image Modal & Zoom Logic */
+        let currentZoom = 1;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
+        function openImageModal() {
+            const originalImg = document.getElementById('grammar-reference-img');
+            if (!originalImg || !originalImg.src || originalImg.src.trim() === '' || originalImg.classList.contains('hidden')) {
+                return;
+            }
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('modalZoomImg');
+            modalImg.src = originalImg.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'imageZoomModal' || e.target.id === 'modalViewport') {
+                closeImageModal();
+            }
+        }
+
+        function updateZoomTransform() {
+            const modalImg = document.getElementById('modalZoomImg');
+            const zoomText = document.getElementById('zoomLevelText');
+            if (modalImg) {
+                modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            }
+            if (zoomText) {
+                zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < 4) {
+                currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
+                updateZoomTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+                if (currentZoom <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateZoomTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateZoomTransform();
+        }
+
+        function toggleZoom(e) {
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+            }
+            updateZoomTransform();
+        }
+
+        function handleWheelZoom(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+
+        function startPan(e) {
+            if (currentZoom <= 1) return;
+            isPanning = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+
+            const handleMouseMove = (ev) => {
+                if (!isPanning) return;
+                translateX = ev.clientX - startX;
+                translateY = ev.clientY - startY;
+                updateZoomTransform();
+            };
+
+            const handleMouseUp = () => {
+                isPanning = false;
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mouseup', handleMouseUp);
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageZoomModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeImageModal();
+                }
+            }
+        });
     </script>
+
+    <!-- Lightbox Image Zoom Modal -->
+    <div id="imageZoomModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-2 sm:p-4 select-none"
+        onclick="handleModalBackdropClick(event)">
+        <!-- Toolbar -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-4 py-3 bg-slate-900/90 border border-slate-800 rounded-2xl text-white shadow-2xl mb-2 sm:mb-4 z-10"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
+                    <span>🖼️ Grammar Reference</span>
+                </span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="zoomOut()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom Out (-)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                </button>
+                <span id="zoomLevelText"
+                    class="px-2.5 py-1 bg-slate-800/80 rounded-lg text-xs font-mono font-bold text-indigo-300 min-w-[52px] text-center">100%</span>
+                <button onclick="zoomIn()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom In (+)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button onclick="resetZoom()"
+                    class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors hidden sm:inline-flex items-center gap-1"
+                    title="Reset Zoom">
+                    ↺ Reset
+                </button>
+                <button onclick="closeImageModal()"
+                    class="ml-2 p-2 sm:px-3 sm:py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Close (Esc)">
+                    ✕ <span class="hidden sm:inline">Close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Container -->
+        <div id="modalViewport"
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-grab active:cursor-grabbing"
+            onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-100 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0fdf4; /* Emerald-50 background */
+            background-color: #f0fdf4;
+            /* Emerald-50 background */
             color: #0f172a;
         }
 
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
             animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .interactive-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .interactive-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(13, 148, 136, 0.18), 0 10px 10px -5px rgba(13, 148, 136, 0.08);
-            border-color: #0d9488; /* Teal-600 */
+            border-color: #0d9488;
+            /* Teal-600 */
         }
 
         .hide-scroll-bar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scroll-bar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -46,58 +60,103 @@
         .pulse-border {
             animation: pulseBorder 2s infinite;
         }
+
         @keyframes pulseBorder {
-            0% { border-color: rgba(13, 148, 136, 0.4); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
-            70% { border-color: rgba(13, 148, 136, 0); box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
-            100% { border-color: rgba(13, 148, 136, 0); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+            0% {
+                border-color: rgba(13, 148, 136, 0.4);
+                box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4);
+            }
+
+            70% {
+                border-color: rgba(13, 148, 136, 0);
+                box-shadow: 0 0 0 8px rgba(13, 148, 136, 0);
+            }
+
+            100% {
+                border-color: rgba(13, 148, 136, 0);
+                box-shadow: 0 0 0 0 rgba(13, 148, 136, 0);
+            }
         }
 
         .filter-pill {
             transition: all 0.2s ease;
             cursor: pointer;
         }
-        .filter-pill:hover, .filter-pill.selected {
-            background-color: #0d9488; /* Teal-600 */
+
+        .filter-pill:hover,
+        .filter-pill.selected {
+            background-color: #0d9488;
+            /* Teal-600 */
             color: white;
             transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
 
     <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-teal-100">
-        
+
         <!-- Header Banner -->
-        <div class="bg-gradient-to-br from-teal-800 via-emerald-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
-                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div
+            class="bg-gradient-to-br from-teal-800 via-emerald-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
             </div>
-            
+
             <div class="relative z-10">
                 <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-teal-200 flex items-center gap-2">
                     <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     Module 6 Grammar Guide • Page 93
                 </h2>
-                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Present Perfect Simple vs. Past Simple</h1>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Present Perfect Simple vs. Past
+                    Simple</h1>
                 <p class="mt-4 text-teal-100 max-w-2xl text-lg font-medium leading-relaxed">
-                    Master connecting past actions to the present with <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">Present Perfect Simple</span>, contrasting finished past events with <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">Past Simple</span>, and using <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">for / since</span>, <span class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">just / already / yet</span>!
+                    Master connecting past actions to the present with <span
+                        class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">Present
+                        Perfect Simple</span>, contrasting finished past events with <span
+                        class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">Past
+                        Simple</span>, and using <span
+                        class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">for /
+                        since</span>, <span
+                        class="bg-teal-500/40 px-2 py-0.5 rounded font-bold text-white border border-teal-300/40">just /
+                        already / yet</span>!
                 </p>
             </div>
         </div>
 
         <div class="p-6 sm:p-10">
             <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-700 border-b-4 border-teal-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-present-perfect')">1. Present Perfect Simple ⏳</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-past-vs-perfect')">2. Perfect vs. Past Simple ⚖️</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-for-since')">3. For / Since & Time Words 🗓️</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Tense Explorer 🧩</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-700 border-b-4 border-teal-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-present-perfect')">1. Present Perfect Simple ⏳</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-past-vs-perfect')">2. Perfect vs. Past Simple ⚖️</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-for-since')">3. For / Since & Time Words 🗓️</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-explorer')">4. Tense Explorer 🧩</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
                     5. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    6. Visual Reference 🖼️
                 </button>
             </div>
 
@@ -109,45 +168,61 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">A. Present Perfect Simple Core Functions</h3>
-                        <p class="text-lg text-slate-600 font-medium">Connects a past action or state to the present moment.</p>
+                        <p class="text-lg text-slate-600 font-medium">Connects a past action or state to the present
+                            moment.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Function 1: Past Action with Present Result -->
-                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Past Action → Present Result</span>
+                                <span
+                                    class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1.
+                                    Past Action → Present Result</span>
                                 <span class="text-2xl">🔗</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Indefinite Past Time</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Action happened at an indefinite time in the past, but the <strong>result is important now</strong>.
+                                Action happened at an indefinite time in the past, but the <strong>result is important
+                                    now</strong>.
                             </p>
-                            <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "I<strong class="text-teal-900 underline font-extrabold">'ve been</strong> to university."</p>
-                                <p class="text-slate-500 font-normal">(= I went in the past, exact time is unstated.)</p>
-                                <p>👉 "The world population <strong class="text-teal-900 underline font-extrabold">has increased</strong> significantly in recent years."</p>
+                            <div
+                                class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "I<strong class="text-teal-900 underline font-extrabold">'ve been</strong> to
+                                    university."</p>
+                                <p class="text-slate-500 font-normal">(= I went in the past, exact time is unstated.)
+                                </p>
+                                <p>👉 "The world population <strong class="text-teal-900 underline font-extrabold">has
+                                        increased</strong> significantly in recent years."</p>
                                 <p class="text-slate-500 font-normal">(= Result now: a high world population.)</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Function 2: Unfinished / Continuing Action -->
-                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Continuing / Unfinished</span>
+                                <span
+                                    class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2.
+                                    Continuing / Unfinished</span>
                                 <span class="text-2xl">📈</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Started in Past, Continues Now</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Action began in the past and is still ongoing. Usually paired with <strong>for</strong> or <strong>since</strong>.
+                                Action began in the past and is still ongoing. Usually paired with <strong>for</strong>
+                                or <strong>since</strong>.
                             </p>
-                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "Global warming <strong class="text-emerald-900 underline font-extrabold">has been</strong> an issue for the last two decades."</p>
-                                <p>👉 "Technology <strong class="text-emerald-900 underline font-extrabold">has developed</strong> significantly since industrialisation."</p>
+                            <div
+                                class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Global warming <strong class="text-emerald-900 underline font-extrabold">has
+                                        been</strong> an issue for the last two decades."</p>
+                                <p>👉 "Technology <strong class="text-emerald-900 underline font-extrabold">has
+                                        developed</strong> significantly since industrialisation."</p>
                             </div>
                         </div>
                     </div>
@@ -156,31 +231,38 @@
                 <!-- Function 3: Just, Already, Yet & Expressions -->
                 <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm space-y-4">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Just, Already, Yet & Time Expressions</span>
+                        <span
+                            class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3.
+                            Just, Already, Yet & Time Expressions</span>
                         <span class="text-2xl">⏳</span>
                     </div>
-                    <h4 class="font-extrabold text-slate-900 text-xl mb-1">Time Words Used with Present Perfect Simple</h4>
-                    
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-1">Time Words Used with Present Perfect Simple
+                    </h4>
+
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-semibold">
                         <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-1">
                             <span class="text-indigo-900 font-extrabold block text-sm">just</span>
                             <p class="text-slate-700">Happened very recently:</p>
-                            <p class="text-indigo-950 font-mono mt-1">"Scientists have <strong>just discovered</strong> water on Mars."</p>
+                            <p class="text-indigo-950 font-mono mt-1">"Scientists have <strong>just discovered</strong>
+                                water on Mars."</p>
                         </div>
                         <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-1">
                             <span class="text-indigo-900 font-extrabold block text-sm">already</span>
                             <p class="text-slate-700">Happened sooner than expected:</p>
-                            <p class="text-indigo-950 font-mono mt-1">"We've <strong>already studied</strong> this topic."</p>
+                            <p class="text-indigo-950 font-mono mt-1">"We've <strong>already studied</strong> this
+                                topic."</p>
                         </div>
                         <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 space-y-1">
                             <span class="text-indigo-900 font-extrabold block text-sm">yet</span>
                             <p class="text-slate-700">Used in negatives & questions:</p>
-                            <p class="text-indigo-950 font-mono mt-1">"Have you completed the essay <strong>yet</strong>?"</p>
+                            <p class="text-indigo-950 font-mono mt-1">"Have you completed the essay
+                                <strong>yet</strong>?"</p>
                         </div>
                     </div>
 
                     <div class="bg-slate-900 text-white p-4 rounded-xl text-xs space-y-2">
-                        <span class="text-teal-300 font-bold block uppercase tracking-wider">Other Page 93 Time Expressions for Present Perfect:</span>
+                        <span class="text-teal-300 font-bold block uppercase tracking-wider">Other Page 93 Time
+                            Expressions for Present Perfect:</span>
                         <p class="text-slate-300 font-mono leading-relaxed">
                             ever • recently • so far • until now • up to now • over the last (three months)
                         </p>
@@ -196,12 +278,15 @@
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-emerald-400 font-bold block mb-1">Positive (+)</span>
                             <div class="text-slate-200 font-mono">Subject + have / has + past participle (V3)</div>
-                            <p class="text-slate-400 text-[11px] mt-1">✓ They <strong>have finished</strong> the report.</p>
+                            <p class="text-slate-400 text-[11px] mt-1">✓ They <strong>have finished</strong> the report.
+                            </p>
                         </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-rose-400 font-bold block mb-1">Negative (-)</span>
-                            <div class="text-slate-200 font-mono">Subject + haven't / hasn't + past participle (V3)</div>
-                            <p class="text-slate-400 text-[11px] mt-1">✓ He <strong>hasn't completed</strong> it yet.</p>
+                            <div class="text-slate-200 font-mono">Subject + haven't / hasn't + past participle (V3)
+                            </div>
+                            <p class="text-slate-400 text-[11px] mt-1">✓ He <strong>hasn't completed</strong> it yet.
+                            </p>
                         </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-teal-400 font-bold block mb-1">Question (?)</span>
@@ -219,55 +304,75 @@
                         <span class="text-3xl font-black">Past vs Perfect</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-extrabold text-slate-900">B. Past Simple vs. Present Perfect Simple</h3>
-                        <p class="text-lg text-slate-600 font-medium">Finished past time vs. Unfinished or indefinite past connection.</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900">B. Past Simple vs. Present Perfect Simple
+                        </h3>
+                        <p class="text-lg text-slate-600 font-medium">Finished past time vs. Unfinished or indefinite
+                            past connection.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Past Simple Card -->
-                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Past Simple</span>
+                                <span
+                                    class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Past
+                                    Simple</span>
                                 <span class="text-2xl">📅</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Finished Action at Specific Time</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Used when an action started and <strong>completely finished at a definite time in the past</strong>.
+                                Used when an action started and <strong>completely finished at a definite time in the
+                                    past</strong>.
                             </p>
-                            <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "The company <strong class="text-amber-900 underline font-extrabold">became</strong> more energy efficient in 2015."</p>
-                                <p>👉 "Oil prices <strong class="text-amber-900 underline font-extrabold">fell</strong> last year."</p>
+                            <div
+                                class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "The company <strong
+                                        class="text-amber-900 underline font-extrabold">became</strong> more energy
+                                    efficient in 2015."</p>
+                                <p>👉 "Oil prices <strong class="text-amber-900 underline font-extrabold">fell</strong>
+                                    last year."</p>
                             </div>
                         </div>
 
-                        <div class="bg-amber-100/70 p-3.5 rounded-xl border border-amber-300 text-xs text-amber-950 font-medium space-y-1">
+                        <div
+                            class="bg-amber-100/70 p-3.5 rounded-xl border border-amber-300 text-xs text-amber-950 font-medium space-y-1">
                             <span class="font-bold text-amber-900 block mb-1">Common Past Simple Time Words:</span>
                             <p>ago • at 4 o'clock • before 2010 • in 2016 • last week • yesterday</p>
                         </div>
                     </div>
 
                     <!-- Present Perfect Card -->
-                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Present Perfect</span>
+                                <span
+                                    class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Present
+                                    Perfect</span>
                                 <span class="text-2xl">⚡</span>
                             </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Indefinite Time / Present Connection</h4>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">Indefinite Time / Present Connection
+                            </h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Used when the exact time is unstated, or when the action continues into or affects the present.
+                                Used when the exact time is unstated, or when the action continues into or affects the
+                                present.
                             </p>
-                            <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "Oil prices <strong class="text-teal-900 underline font-extrabold">have fallen</strong> recently."</p>
+                            <div
+                                class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Oil prices <strong class="text-teal-900 underline font-extrabold">have
+                                        fallen</strong> recently."</p>
                                 <p class="text-slate-500 font-normal">(= Recent fall, effect is felt now.)</p>
-                                <p>👉 "They <strong class="text-teal-900 underline font-extrabold">have lived</strong> here for 10 years."</p>
+                                <p>👉 "They <strong class="text-teal-900 underline font-extrabold">have lived</strong>
+                                    here for 10 years."</p>
                                 <p class="text-slate-500 font-normal">(= They still live here now.)</p>
                             </div>
                         </div>
 
-                        <div class="bg-teal-100/70 p-3.5 rounded-xl border border-teal-300 text-xs text-teal-950 font-medium space-y-1">
+                        <div
+                            class="bg-teal-100/70 p-3.5 rounded-xl border border-teal-300 text-xs text-teal-950 font-medium space-y-1">
                             <span class="font-bold text-teal-900 block mb-1">Common Present Perfect Time Words:</span>
                             <p>for • since • so far • recently • ever • never • already • yet</p>
                         </div>
@@ -328,7 +433,8 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">For vs. Since & Key Time Expressions</h3>
-                        <p class="text-lg text-slate-600 font-medium">Precision rules for time indicators used with Present Perfect Simple.</p>
+                        <p class="text-lg text-slate-600 font-medium">Precision rules for time indicators used with
+                            Present Perfect Simple.</p>
                     </div>
                 </div>
 
@@ -336,28 +442,42 @@
                     <!-- FOR Card -->
                     <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. FOR</span>
+                            <span
+                                class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1.
+                                FOR</span>
                             <span class="text-2xl">⏱️</span>
                         </div>
                         <h4 class="font-extrabold text-slate-900 text-2xl mb-1">Duration / Length of Time</h4>
-                        <p class="text-xs text-slate-600 mb-3 font-medium">Use <strong>FOR</strong> to state <em>how long</em> an action or state has lasted.</p>
-                        <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-2">
-                            <p>👉 "Global warming has been an issue <strong class="underline text-teal-800">for the last two decades</strong>."</p>
-                            <p>👉 "They have lived in London <strong class="underline text-teal-800">for ten years</strong> / <strong class="underline text-teal-800">for a long time</strong>."</p>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Use <strong>FOR</strong> to state <em>how
+                                long</em> an action or state has lasted.</p>
+                        <div
+                            class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-2">
+                            <p>👉 "Global warming has been an issue <strong class="underline text-teal-800">for the last
+                                    two decades</strong>."</p>
+                            <p>👉 "They have lived in London <strong class="underline text-teal-800">for ten
+                                    years</strong> / <strong class="underline text-teal-800">for a long time</strong>."
+                            </p>
                         </div>
                     </div>
 
                     <!-- SINCE Card -->
                     <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. SINCE</span>
+                            <span
+                                class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2.
+                                SINCE</span>
                             <span class="text-2xl">📌</span>
                         </div>
                         <h4 class="font-extrabold text-slate-900 text-2xl mb-1">Starting Point in Time</h4>
-                        <p class="text-xs text-slate-600 mb-3 font-medium">Use <strong>SINCE</strong> to state the exact <em>starting moment</em> when an action began.</p>
-                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-950 space-y-2">
-                            <p>👉 "Technology has developed significantly <strong class="underline text-emerald-800">since industrialisation</strong>."</p>
-                            <p>👉 "She has worked at the university <strong class="underline text-emerald-800">since 2018</strong> / <strong class="underline text-emerald-800">since last January</strong>."</p>
+                        <p class="text-xs text-slate-600 mb-3 font-medium">Use <strong>SINCE</strong> to state the exact
+                            <em>starting moment</em> when an action began.</p>
+                        <div
+                            class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-950 space-y-2">
+                            <p>👉 "Technology has developed significantly <strong
+                                    class="underline text-emerald-800">since industrialisation</strong>."</p>
+                            <p>👉 "She has worked at the university <strong class="underline text-emerald-800">since
+                                    2018</strong> / <strong class="underline text-emerald-800">since last
+                                    January</strong>."</p>
                         </div>
                     </div>
                 </div>
@@ -372,17 +492,21 @@
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-emerald-400 font-bold block mb-1">JUST (Between have & V3)</span>
                             <p class="text-slate-300">Shows action completed very recently.</p>
-                            <p class="text-teal-200 font-mono mt-1">"Scientists have <strong>just discovered</strong> water on Mars."</p>
+                            <p class="text-teal-200 font-mono mt-1">"Scientists have <strong>just discovered</strong>
+                                water on Mars."</p>
                         </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-teal-400 font-bold block mb-1">ALREADY (Between have & V3)</span>
                             <p class="text-slate-300">Shows action done earlier than expected.</p>
-                            <p class="text-teal-200 font-mono mt-1">"We have <strong>already studied</strong> this topic."</p>
+                            <p class="text-teal-200 font-mono mt-1">"We have <strong>already studied</strong> this
+                                topic."</p>
                         </div>
                         <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 space-y-1">
                             <span class="text-amber-400 font-bold block mb-1">YET (At End of Sentence)</span>
-                            <p class="text-slate-300">Used in <strong>negatives (-)</strong> & <strong>questions (?)</strong>.</p>
-                            <p class="text-teal-200 font-mono mt-1">"Have you completed the essay <strong>yet</strong>?"</p>
+                            <p class="text-slate-300">Used in <strong>negatives (-)</strong> & <strong>questions
+                                    (?)</strong>.</p>
+                            <p class="text-teal-200 font-mono mt-1">"Have you completed the essay <strong>yet</strong>?"
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -391,22 +515,35 @@
             <!-- TAB 4: TENSE EXPLORER -->
             <div id="tab-explorer" class="tab-content space-y-8">
                 <div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-6 shadow-sm">
-                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Tense & Time Matrix</h4>
-                    <p class="text-sm text-slate-600 text-center mb-6">Select a scenario context to see which tense formula applies according to Page 93!</p>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Tense & Time Matrix
+                    </h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a scenario context to see which tense
+                        formula applies according to Page 93!</p>
 
                     <!-- Filter Options -->
                     <div class="mb-6">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Context</label>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select
+                            Grammar Context</label>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="selectExplorer('indefinite_past')" id="ebtn-indefinite_past" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Indefinite Past (Present Result)</button>
-                            <button onclick="selectExplorer('unfinished_action')" id="ebtn-unfinished_action" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Unfinished Action (for / since)</button>
-                            <button onclick="selectExplorer('just_recent')" id="ebtn-just_recent" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Recent Action (just / already / yet)</button>
-                            <button onclick="selectExplorer('finished_past_time')" id="ebtn-finished_past_time" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Finished Past Time (in 2015 / last year)</button>
+                            <button onclick="selectExplorer('indefinite_past')" id="ebtn-indefinite_past"
+                                class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Indefinite
+                                Past (Present Result)</button>
+                            <button onclick="selectExplorer('unfinished_action')" id="ebtn-unfinished_action"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Unfinished
+                                Action (for / since)</button>
+                            <button onclick="selectExplorer('just_recent')" id="ebtn-just_recent"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Recent
+                                Action (just / already / yet)</button>
+                            <button onclick="selectExplorer('finished_past_time')" id="ebtn-finished_past_time"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-teal-300 bg-white text-teal-800">Finished
+                                Past Time (in 2015 / last year)</button>
                         </div>
                     </div>
 
                     <!-- Result Card -->
-                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-teal-200 shadow-inner text-center space-y-2">
+                    <div id="explorerResult"
+                        class="bg-white p-6 rounded-xl border border-teal-200 shadow-inner text-center space-y-2">
                         <!-- Content rendered via JS -->
                     </div>
                 </div>
@@ -414,72 +551,183 @@
 
             <!-- TAB 5: PRACTICE QUIZ -->
             <div id="tab-quiz" class="tab-content space-y-6">
-                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-amber-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                <div
+                    class="bg-gradient-to-r from-teal-50 via-emerald-50 to-amber-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
                     <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Test Your Page 93 Knowledge</h3>
-                    <p class="text-teal-700 font-medium">Select the correct tense or time expression according to Page 93 rules.</p>
+                    <p class="text-teal-700 font-medium">Select the correct tense or time expression according to Page
+                        93 rules.</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">1. The company <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> more energy efficient in 2015.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. The company <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> more energy
+                            efficient in 2015.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! For a finished action at a specific past time (\'in 2015\'), we use the <strong>Past Simple</strong> (became).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">became</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Has become is present perfect, but \'in 2015\' specifies a finished past time requiring Past Simple.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">has become</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Had become is past perfect, which is not required for a single finished past event.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">had become</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! For a finished action at a specific past time (\'in 2015\'), we use the <strong>Past Simple</strong> (became).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">became</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Has become is present perfect, but \'in 2015\' specifies a finished past time requiring Past Simple.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">has
+                                become</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Had become is past perfect, which is not required for a single finished past event.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">had
+                                become</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q2 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">2. Global warming has been an issue <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> the last two decades.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Global warming has been an issue <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> the last two
+                            decades.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>for</strong> to express the length or duration of an action (\'for the last two decades\').')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">for</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Since is used for a starting point (e.g. since 2000), whereas \'the last two decades\' is a duration.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">since</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Ago is used with Past Simple (e.g. two decades ago).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">ago</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! We use <strong>for</strong> to express the length or duration of an action (\'for the last two decades\').')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">for</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Since is used for a starting point (e.g. since 2000), whereas \'the last two decades\' is a duration.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">since</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Ago is used with Past Simple (e.g. two decades ago).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">ago</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q3 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">3. Scientists have <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> discovered water on Mars.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. Scientists have <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> discovered
+                            water on Mars.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>just</strong> between have and the past participle to indicate a very recent discovery.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">just</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Yet goes at the end of negative sentences or questions.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">yet</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Ago is used with Past Simple at the end of a time phrase.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">ago</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! We use <strong>just</strong> between have and the past participle to indicate a very recent discovery.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">just</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Yet goes at the end of negative sentences or questions.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">yet</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Ago is used with Past Simple at the end of a time phrase.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">ago</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q4 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">4. Have you completed the essay <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span>?</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. Have you completed the essay <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span>?</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Page 93 specifies that we use <strong>yet</strong> in questions and negative verbs, placed at the end.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">yet</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Just is placed between have and the past participle.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">just</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Since requires a starting point time expression.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">since</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Page 93 specifies that we use <strong>yet</strong> in questions and negative verbs, placed at the end.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">yet</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Just is placed between have and the past participle.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">just</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Since requires a starting point time expression.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">since</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q5 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">5. Technology has developed significantly <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> industrialisation.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Technology has developed significantly
+                            <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span>
+                            industrialisation.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! We use <strong>since</strong> to mark the starting point of an ongoing time period.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">since</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. For is used for a duration/number of years, not a named starting point like industrialisation.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">for</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Ago requires Past Simple.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">ago</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! We use <strong>since</strong> to mark the starting point of an ongoing time period.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">since</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. For is used for a duration/number of years, not a named starting point like industrialisation.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">for</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Ago requires Past Simple.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 hover:text-teal-700 text-slate-700 transition-colors border-2 border-transparent">ago</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-slate-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-slate-300 rounded-3xl p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <div class="relative group cursor-pointer inline-block max-w-full" onclick="openImageModal()">
+                        <img id="grammar-reference-img" src="https://i.postimg.cc/76kycdQq/Module-6a-Grammar.png"
+                            alt="Grammar Reference Visual"
+                            class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden group-hover:opacity-95 transition-all group-hover:shadow-2xl"
+                            onload="this.classList.remove('hidden'); this.closest('.group').nextElementSibling.classList.add('hidden'); if(document.getElementById('img-zoom-hint')) document.getElementById('img-zoom-hint').classList.remove('hidden');">
+                        <div id="img-zoom-hint"
+                            class="hidden absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl backdrop-blur flex items-center gap-1.5 shadow-lg pointer-events-none group-hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                            </svg>
+                            <span>Click to Zoom</span>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-slate-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-slate-500 mb-4">No reference image added yet. Insert your image URL
+                                in the <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-mono text-slate-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-slate-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+        <div
+            class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
             <span>Grammar Reference • Present Perfect & Past Simple</span>
             <span>Page 93 Guide</span>
         </div>
@@ -494,9 +742,9 @@
             const tabBtns = document.querySelectorAll('.tab-btn');
             tabBtns.forEach(btn => {
                 btn.classList.remove('border-teal-600', 'text-teal-700', 'border-amber-600', 'text-amber-600');
-                
-                if(btn.innerText.includes('Quiz')) {
-                    btn.classList.add('border-transparent', 'text-amber-600'); 
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600');
                 } else {
                     btn.classList.add('border-transparent', 'text-slate-400');
                     btn.classList.remove('font-bold');
@@ -505,14 +753,16 @@
             });
 
             document.getElementById(tabName).classList.add('active');
-            
+
             const clickedBtn = evt.currentTarget;
             clickedBtn.classList.remove('border-transparent', 'text-slate-400');
             clickedBtn.classList.remove('font-semibold');
             clickedBtn.classList.add('font-bold');
-            
-            if(tabName === 'tab-quiz') {
+
+            if (tabName === 'tab-quiz') {
                 clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
             } else {
                 clickedBtn.classList.add('border-teal-600', 'text-teal-700');
             }
@@ -568,15 +818,15 @@
             const container = btn.closest('.quiz-question');
             const buttons = container.querySelectorAll('button');
             const feedback = container.querySelector('.feedback');
-            
+
             buttons.forEach(b => {
                 b.disabled = true;
                 b.classList.add('opacity-50', 'cursor-not-allowed');
                 b.classList.remove('hover:bg-teal-100', 'hover:text-teal-700');
             });
-            
+
             btn.classList.remove('opacity-50');
-            
+
             if (isCorrect) {
                 btn.classList.replace('bg-slate-100', 'bg-teal-600');
                 btn.classList.replace('text-slate-700', 'text-white');
@@ -589,13 +839,188 @@
                 feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
                 feedback.classList.remove('hidden');
                 feedback.classList.add('bg-teal-50', 'border-teal-500');
-                
+
                 const correctBtn = container.querySelector('[data-correct="true"]');
                 correctBtn.classList.remove('opacity-50');
                 correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
                 correctBtn.classList.add('border-teal-500', 'text-teal-800');
             }
         }
+
+        /* Image Modal & Zoom Logic */
+        let currentZoom = 1;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
+        function openImageModal() {
+            const originalImg = document.getElementById('grammar-reference-img');
+            if (!originalImg || !originalImg.src || originalImg.src.trim() === '' || originalImg.classList.contains('hidden')) {
+                return;
+            }
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('modalZoomImg');
+            modalImg.src = originalImg.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'imageZoomModal' || e.target.id === 'modalViewport') {
+                closeImageModal();
+            }
+        }
+
+        function updateZoomTransform() {
+            const modalImg = document.getElementById('modalZoomImg');
+            const zoomText = document.getElementById('zoomLevelText');
+            if (modalImg) {
+                modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            }
+            if (zoomText) {
+                zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < 4) {
+                currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
+                updateZoomTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+                if (currentZoom <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateZoomTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateZoomTransform();
+        }
+
+        function toggleZoom(e) {
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+            }
+            updateZoomTransform();
+        }
+
+        function handleWheelZoom(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+
+        function startPan(e) {
+            if (currentZoom <= 1) return;
+            isPanning = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+
+            const handleMouseMove = (ev) => {
+                if (!isPanning) return;
+                translateX = ev.clientX - startX;
+                translateY = ev.clientY - startY;
+                updateZoomTransform();
+            };
+
+            const handleMouseUp = () => {
+                isPanning = false;
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mouseup', handleMouseUp);
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageZoomModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeImageModal();
+                }
+            }
+        });
     </script>
+
+    <!-- Lightbox Image Zoom Modal -->
+    <div id="imageZoomModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-2 sm:p-4 select-none"
+        onclick="handleModalBackdropClick(event)">
+        <!-- Toolbar -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-4 py-3 bg-slate-900/90 border border-slate-800 rounded-2xl text-white shadow-2xl mb-2 sm:mb-4 z-10"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
+                    <span>🖼️ Grammar Reference</span>
+                </span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="zoomOut()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom Out (-)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                </button>
+                <span id="zoomLevelText"
+                    class="px-2.5 py-1 bg-slate-800/80 rounded-lg text-xs font-mono font-bold text-indigo-300 min-w-[52px] text-center">100%</span>
+                <button onclick="zoomIn()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom In (+)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button onclick="resetZoom()"
+                    class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors hidden sm:inline-flex items-center gap-1"
+                    title="Reset Zoom">
+                    ↺ Reset
+                </button>
+                <button onclick="closeImageModal()"
+                    class="ml-2 p-2 sm:px-3 sm:py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Close (Esc)">
+                    ✕ <span class="hidden sm:inline">Close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Container -->
+        <div id="modalViewport"
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-grab active:cursor-grabbing"
+            onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-100 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #eff6ff; /* Blue-50 background */
+            background-color: #eff6ff;
+            /* Blue-50 background */
             color: #0f172a;
         }
 
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
             animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .interactive-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .interactive-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.15), 0 10px 10px -5px rgba(37, 99, 235, 0.08);
-            border-color: #3b82f6; /* Blue-500 */
+            border-color: #3b82f6;
+            /* Blue-500 */
         }
 
         .hide-scroll-bar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scroll-bar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -46,47 +60,76 @@
         .pulse-border {
             animation: pulseBorder 2s infinite;
         }
+
         @keyframes pulseBorder {
-            0% { border-color: rgba(37, 99, 235, 0.4); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-            70% { border-color: rgba(37, 99, 235, 0); box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
-            100% { border-color: rgba(37, 99, 235, 0); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+            0% {
+                border-color: rgba(37, 99, 235, 0.4);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+            }
+
+            70% {
+                border-color: rgba(37, 99, 235, 0);
+                box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+            }
+
+            100% {
+                border-color: rgba(37, 99, 235, 0);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
         }
 
         .filter-pill {
             transition: all 0.2s ease;
             cursor: pointer;
         }
-        .filter-pill:hover, .filter-pill.selected {
-            background-color: #2563eb; /* Blue-600 */
+
+        .filter-pill:hover,
+        .filter-pill.selected {
+            background-color: #2563eb;
+            /* Blue-600 */
             color: white;
             transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
 
     <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100">
-        
+
         <!-- Header Banner -->
-        <div class="bg-gradient-to-br from-blue-700 via-indigo-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
-                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div
+            class="bg-gradient-to-br from-blue-700 via-indigo-800 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 20V10"></path>
                     <path d="M12 20V4"></path>
                     <path d="M6 20v-6"></path>
                 </svg>
             </div>
-            
+
             <div class="relative z-10">
                 <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-blue-200 flex items-center gap-2">
                     <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                     </svg>
                     Module 3 Grammar Guide • Page 45
                 </h2>
                 <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Comparative Forms & Multiples</h1>
                 <p class="mt-4 text-blue-100 max-w-2xl text-lg font-medium leading-relaxed">
-                    Master <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">comparative & superlative rules</span> across syllable types, <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">irregular forms</span>, and multiplier structures like <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">twice as...as</span> and <span class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">three times higher / as high as</span>!
+                    Master <span
+                        class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">comparative
+                        & superlative rules</span> across syllable types, <span
+                        class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">irregular
+                        forms</span>, and multiplier structures like <span
+                        class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">twice
+                        as...as</span> and <span
+                        class="bg-blue-500/40 px-2 py-0.5 rounded font-bold text-white border border-blue-300/40">three
+                        times higher / as high as</span>!
                 </p>
             </div>
         </div>
@@ -94,12 +137,27 @@
         <div class="p-6 sm:p-10">
             <!-- Navigation Tabs -->
             <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-blue-700 border-b-4 border-blue-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-rules')">1. Syllable Rules 📏</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-multiples')">2. Multiples & Multipliers ✖️</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-irregulars')">3. Irregulars & Traps ⚠️</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Comparative Explorer 🧩</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-blue-700 border-b-4 border-blue-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-rules')">1. Syllable Rules 📏</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-multiples')">2. Multiples & Multipliers ✖️</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-irregulars')">3. Irregulars & Traps ⚠️</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-explorer')">4. Comparative Explorer 🧩</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
                     5. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    6. Visual Reference 🖼️
                 </button>
             </div>
 
@@ -110,17 +168,21 @@
                         <span class="text-3xl font-black">1-2-3</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-extrabold text-slate-900">A. Syllable-Based Rules for Adjectives & Adverbs</h3>
-                        <p class="text-lg text-slate-600 font-medium">How to build comparatives (-er / more) and superlatives (-est / most).</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A. Syllable-Based Rules for Adjectives &
+                            Adverbs</h3>
+                        <p class="text-lg text-slate-600 font-medium">How to build comparatives (-er / more) and
+                            superlatives (-est / most).</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- 1-Syllable Card -->
-                    <div class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1-Syllable</span>
+                                <span
+                                    class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1-Syllable</span>
                                 <span class="text-2xl">⚡</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">+er / +est endings</h4>
@@ -129,35 +191,43 @@
                             </p>
                             <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
                                 <li class="bg-blue-50 p-2.5 rounded-xl border border-blue-200">
-                                    <strong>Standard:</strong> fast → <strong>faster</strong> → <strong>fastest</strong><br>
+                                    <strong>Standard:</strong> fast → <strong>faster</strong> →
+                                    <strong>fastest</strong><br>
                                     👉 "It's the <strong class="text-blue-900">fastest way</strong> to learn new words."
                                 </li>
                                 <li class="bg-blue-50 p-2.5 rounded-xl border border-blue-200">
-                                    <strong>Vowel + Consonant (Double):</strong> big → <strong>bigger</strong>, sad → <strong>sadder</strong><br>
-                                    👉 "The new school was <strong class="text-blue-900">bigger than</strong> the old one."
+                                    <strong>Vowel + Consonant (Double):</strong> big → <strong>bigger</strong>, sad →
+                                    <strong>sadder</strong><br>
+                                    👉 "The new school was <strong class="text-blue-900">bigger than</strong> the old
+                                    one."
                                 </li>
                                 <li class="bg-blue-50 p-2.5 rounded-xl border border-blue-200">
-                                    <strong>Ending in -e (+r / +st):</strong> safe → <strong>safer</strong> → <strong>safest</strong>
+                                    <strong>Ending in -e (+r / +st):</strong> safe → <strong>safer</strong> →
+                                    <strong>safest</strong>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- 2-Syllable Card -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2-Syllables</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2-Syllables</span>
                                 <span class="text-2xl">⚖️</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">more / most OR -ier</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Use <strong>more / the most</strong> for standard adjectives; replace <strong>-y</strong> with <strong>-ier / -iest</strong>.
+                                Use <strong>more / the most</strong> for standard adjectives; replace
+                                <strong>-y</strong> with <strong>-ier / -iest</strong>.
                             </p>
                             <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
                                 <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
                                     <strong>Standard 2-syllables:</strong><br>
-                                    👉 "The results were <strong class="text-indigo-900">more interesting</strong> than imagined."<br>
+                                    👉 "The results were <strong class="text-indigo-900">more interesting</strong> than
+                                    imagined."<br>
                                     👉 "Maths was the <strong class="text-indigo-900">most popular</strong> subject."
                                 </li>
                                 <li class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
@@ -169,15 +239,19 @@
                     </div>
 
                     <!-- 3+ Syllable Card -->
-                    <div class="interactive-card bg-white border-2 border-cyan-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-cyan-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-cyan-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3+ Syllables</span>
+                                <span
+                                    class="bg-cyan-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3+
+                                    Syllables</span>
                                 <span class="text-2xl">🌟</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">more / the most</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Always use <strong>more</strong> (comparative) and <strong>the most</strong> (superlative) for long adjectives and adverbs.
+                                Always use <strong>more</strong> (comparative) and <strong>the most</strong>
+                                (superlative) for long adjectives and adverbs.
                             </p>
                             <ul class="text-xs space-y-2.5 text-slate-700 font-medium mb-4">
                                 <li class="bg-cyan-50 p-2.5 rounded-xl border border-cyan-200">
@@ -186,7 +260,8 @@
                                 </li>
                                 <li class="bg-cyan-50 p-2.5 rounded-xl border border-cyan-200">
                                     <strong>Long Adjective:</strong><br>
-                                    👉 "The Hadron Collider is the <strong class="text-cyan-900">most important project</strong>."
+                                    👉 "The Hadron Collider is the <strong class="text-cyan-900">most important
+                                        project</strong>."
                                 </li>
                             </ul>
                         </div>
@@ -259,41 +334,57 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">B. Comparatives with Multiples (Page 45)</h3>
-                        <p class="text-lg text-slate-600 font-medium">Formulas for expressing ratios: <em>twice as...as</em>, <em>half as...as</em>, and <em>3x+ multipliers</em>.</p>
+                        <p class="text-lg text-slate-600 font-medium">Formulas for expressing ratios: <em>twice
+                                as...as</em>, <em>half as...as</em>, and <em>3x+ multipliers</em>.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Rule 1: Twice & Half -->
-                    <div class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-blue-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Twice / Half</span>
+                                <span
+                                    class="bg-blue-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1.
+                                    Twice / Half</span>
                                 <span class="text-2xl">2️⃣</span>
                             </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">twice / half + as + adjective + as</h4>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">twice / half + as + adjective + as
+                            </h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                With <strong>twice</strong> or <strong>half</strong>, we ALWAYS use the equative structure <strong class="text-blue-700">as + adjective + as</strong>.
+                                With <strong>twice</strong> or <strong>half</strong>, we ALWAYS use the equative
+                                structure <strong class="text-blue-700">as + adjective + as</strong>.
                             </p>
-                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs font-semibold text-blue-950 space-y-2 mb-4">
-                                <p>👉 "Sport was <strong class="underline text-blue-800">twice as popular as</strong> art among primary school children."</p>
-                                <p>👉 "The other class is only <strong class="underline text-blue-800">half as big as</strong> this one."</p>
+                            <div
+                                class="bg-blue-50 p-4 rounded-xl border border-blue-200 text-xs font-semibold text-blue-950 space-y-2 mb-4">
+                                <p>👉 "Sport was <strong class="underline text-blue-800">twice as popular as</strong>
+                                    art among primary school children."</p>
+                                <p>👉 "The other class is only <strong class="underline text-blue-800">half as big
+                                        as</strong> this one."</p>
                             </div>
                         </div>
 
                         <!-- Trap Box -->
-                        <div class="bg-rose-50 border border-rose-300 p-4 rounded-xl text-xs font-bold text-rose-900 space-y-1">
-                            <span class="text-rose-700 uppercase tracking-wider text-[11px] block">⚠️ CRITICAL TRAP: Do NOT use "more" or "-er" with twice/half!</span>
-                            <p>❌ Incorrect: "The number of males was <span class="line-through text-rose-600">twice higher</span> than females."</p>
-                            <p class="text-emerald-800">✅ Correct: "The number of males was <strong>twice as high as</strong> the number of females."</p>
+                        <div
+                            class="bg-rose-50 border border-rose-300 p-4 rounded-xl text-xs font-bold text-rose-900 space-y-1">
+                            <span class="text-rose-700 uppercase tracking-wider text-[11px] block">⚠️ CRITICAL TRAP: Do
+                                NOT use "more" or "-er" with twice/half!</span>
+                            <p>❌ Incorrect: "The number of males was <span class="line-through text-rose-600">twice
+                                    higher</span> than females."</p>
+                            <p class="text-emerald-800">✅ Correct: "The number of males was <strong>twice as high
+                                    as</strong> the number of females."</p>
                         </div>
                     </div>
 
                     <!-- Rule 2: Three Times or More -->
-                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Three Times or More (3x+)</span>
+                                <span
+                                    class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2.
+                                    Three Times or More (3x+)</span>
                                 <span class="text-2xl">3️⃣</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">Dual Option Choice</h4>
@@ -302,17 +393,22 @@
                             </p>
                             <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
                                 <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
-                                    <strong class="text-teal-900 block mb-1">Option A: three times + adjective + -er + than</strong>
-                                    👉 "Pass rates were <strong class="underline text-teal-800">four times higher than</strong> last year."
+                                    <strong class="text-teal-900 block mb-1">Option A: three times + adjective + -er +
+                                        than</strong>
+                                    👉 "Pass rates were <strong class="underline text-teal-800">four times higher
+                                        than</strong> last year."
                                 </li>
                                 <li class="bg-teal-50 p-3 rounded-xl border border-teal-200">
-                                    <strong class="text-teal-900 block mb-1">Option B: three times + as + adjective + as</strong>
-                                    👉 "Pass rates were <strong class="underline text-teal-800">four times as high as</strong> last year."
+                                    <strong class="text-teal-900 block mb-1">Option B: three times + as + adjective +
+                                        as</strong>
+                                    👉 "Pass rates were <strong class="underline text-teal-800">four times as high
+                                        as</strong> last year."
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="bg-emerald-50 border border-emerald-300 p-3.5 rounded-xl text-xs font-semibold text-emerald-900">
+                        <div
+                            class="bg-emerald-50 border border-emerald-300 p-3.5 rounded-xl text-xs font-semibold text-emerald-900">
                             💡 Both options are 100% grammatically correct for 3x, 4x, 5x, etc.!
                         </div>
                     </div>
@@ -346,7 +442,8 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">C. Irregular Forms & Key Exam Traps</h3>
-                        <p class="text-lg text-slate-600 font-medium">Essential irregular adjective forms and common mistakes to avoid.</p>
+                        <p class="text-lg text-slate-600 font-medium">Essential irregular adjective forms and common
+                            mistakes to avoid.</p>
                     </div>
                 </div>
 
@@ -354,10 +451,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Good -->
                     <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
-                        <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular #1</span>
+                        <span
+                            class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular
+                            #1</span>
                         <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">good / well</h4>
                         <p class="text-xs text-slate-500 mb-3 font-medium">Comparative & Superlative:</p>
-                        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-sm font-bold text-emerald-950 space-y-1 text-center">
+                        <div
+                            class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-sm font-bold text-emerald-950 space-y-1 text-center">
                             <p>Base: <span class="text-slate-700">good</span></p>
                             <p>Comparative: <span class="text-emerald-700">better</span></p>
                             <p>Superlative: <span class="text-emerald-900">the best</span></p>
@@ -366,10 +466,13 @@
 
                     <!-- Bad -->
                     <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
-                        <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular #2</span>
+                        <span
+                            class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular
+                            #2</span>
                         <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">bad / badly</h4>
                         <p class="text-xs text-slate-500 mb-3 font-medium">Comparative & Superlative:</p>
-                        <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-sm font-bold text-rose-950 space-y-1 text-center">
+                        <div
+                            class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-sm font-bold text-rose-950 space-y-1 text-center">
                             <p>Base: <span class="text-slate-700">bad</span></p>
                             <p>Comparative: <span class="text-rose-700">worse</span></p>
                             <p>Superlative: <span class="text-rose-900">the worst</span></p>
@@ -378,10 +481,13 @@
 
                     <!-- Far -->
                     <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
-                        <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular #3</span>
+                        <span
+                            class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Irregular
+                            #3</span>
                         <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">far</h4>
                         <p class="text-xs text-slate-500 mb-3 font-medium">Comparative & Superlative:</p>
-                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-sm font-bold text-indigo-950 space-y-1 text-center">
+                        <div
+                            class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-sm font-bold text-indigo-950 space-y-1 text-center">
                             <p>Base: <span class="text-slate-700">far</span></p>
                             <p>Comparative: <span class="text-indigo-700">further / farther</span></p>
                             <p>Superlative: <span class="text-indigo-900">the furthest / farthest</span></p>
@@ -394,11 +500,17 @@
                     <div class="flex items-start gap-4">
                         <div class="text-3xl">🚫</div>
                         <div>
-                            <h4 class="font-extrabold text-rose-900 text-lg mb-1">Page 45 Guardrail Review: Avoid These 3 Exam Errors!</h4>
+                            <h4 class="font-extrabold text-rose-900 text-lg mb-1">Page 45 Guardrail Review: Avoid These
+                                3 Exam Errors!</h4>
                             <ul class="text-xs text-rose-900 font-semibold space-y-2 leading-relaxed">
-                                <li>❌ <strong>Mistake 1:</strong> Using <em>more</em> with <em>twice</em> or <em>half</em>. (Say: <strong>twice as high as</strong>, NOT <span class="line-through">twice higher</span>).</li>
-                                <li>❌ <strong>Mistake 2:</strong> Double comparatives (Say: <strong>more interesting</strong>, NOT <span class="line-through">more more interesting</span> or <span class="line-through">more bigger</span>).</li>
-                                <li>❌ <strong>Mistake 3:</strong> Forgetting to double the consonant in 1-syllable vowel + consonant words (e.g. <strong>bigger</strong>, <strong>sadder</strong>).</li>
+                                <li>❌ <strong>Mistake 1:</strong> Using <em>more</em> with <em>twice</em> or
+                                    <em>half</em>. (Say: <strong>twice as high as</strong>, NOT <span
+                                        class="line-through">twice higher</span>).</li>
+                                <li>❌ <strong>Mistake 2:</strong> Double comparatives (Say: <strong>more
+                                        interesting</strong>, NOT <span class="line-through">more more
+                                        interesting</span> or <span class="line-through">more bigger</span>).</li>
+                                <li>❌ <strong>Mistake 3:</strong> Forgetting to double the consonant in 1-syllable vowel
+                                    + consonant words (e.g. <strong>bigger</strong>, <strong>sadder</strong>).</li>
                             </ul>
                         </div>
                     </div>
@@ -408,23 +520,38 @@
             <!-- TAB 4: COMPARATIVE EXPLORER -->
             <div id="tab-explorer" class="tab-content space-y-8">
                 <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 shadow-sm">
-                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Comparative & Multiplier Decision Matrix</h4>
-                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test which grammar rule applies according to Page 45!</p>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Comparative &
+                        Multiplier Decision Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test which grammar
+                        rule applies according to Page 45!</p>
 
                     <!-- Filter Options -->
                     <div class="mb-6">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Grammar Scenario</label>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select
+                            Grammar Scenario</label>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="selectExplorer('one_syllable')" id="ebtn-one_syllable" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">1-Syllable (big / fast)</button>
-                            <button onclick="selectExplorer('two_syllable_y')" id="ebtn-two_syllable_y" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">2-Syllable in -y (heavy)</button>
-                            <button onclick="selectExplorer('long_word')" id="ebtn-long_word" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">3+ Syllables (important)</button>
-                            <button onclick="selectExplorer('twice_half')" id="ebtn-twice_half" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">Multipliers: Twice / Half</button>
-                            <button onclick="selectExplorer('four_times')" id="ebtn-four_times" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">Multipliers: 4 Times (3x+)</button>
+                            <button onclick="selectExplorer('one_syllable')" id="ebtn-one_syllable"
+                                class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">1-Syllable
+                                (big / fast)</button>
+                            <button onclick="selectExplorer('two_syllable_y')" id="ebtn-two_syllable_y"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">2-Syllable
+                                in -y (heavy)</button>
+                            <button onclick="selectExplorer('long_word')" id="ebtn-long_word"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">3+
+                                Syllables (important)</button>
+                            <button onclick="selectExplorer('twice_half')" id="ebtn-twice_half"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">Multipliers:
+                                Twice / Half</button>
+                            <button onclick="selectExplorer('four_times')" id="ebtn-four_times"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-blue-300 bg-white text-blue-800">Multipliers:
+                                4 Times (3x+)</button>
                         </div>
                     </div>
 
                     <!-- Result Card -->
-                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-blue-200 shadow-inner text-center space-y-2">
+                    <div id="explorerResult"
+                        class="bg-white p-6 rounded-xl border border-blue-200 shadow-inner text-center space-y-2">
                         <!-- Content rendered via JS -->
                     </div>
                 </div>
@@ -432,72 +559,188 @@
 
             <!-- TAB 5: PRACTICE QUIZ -->
             <div id="tab-quiz" class="tab-content space-y-6">
-                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-emerald-50 rounded-2xl p-8 border border-blue-100 text-center mb-8 shadow-inner">
+                <div
+                    class="bg-gradient-to-r from-blue-50 via-indigo-50 to-emerald-50 rounded-2xl p-8 border border-blue-100 text-center mb-8 shadow-inner">
                     <h3 class="text-3xl font-extrabold text-blue-900 mb-2">Test Your Page 45 Knowledge</h3>
-                    <p class="text-blue-700 font-medium">Select the correct comparative or multiplier form according to Page 45 rules.</p>
+                    <p class="text-blue-700 font-medium">Select the correct comparative or multiplier form according to
+                        Page 45 rules.</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">1. The number of males was twice <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> the number of females.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. The number of males was twice <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> the number of
+                            females.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Page 45 states that with <strong>twice</strong> or <strong>half</strong>, we use <strong>as + adjective + as</strong> (twice as high as).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">as high as</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect! We do NOT use \'higher than\' or \'more\' with twice or half.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">higher than</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Twice requires the equative structure \'as high as\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more higher than</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Page 45 states that with <strong>twice</strong> or <strong>half</strong>, we use <strong>as + adjective + as</strong> (twice as high as).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">as high as</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect! We do NOT use \'higher than\' or \'more\' with twice or half.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">higher
+                                than</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Twice requires the equative structure \'as high as\'.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more
+                                higher than</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q2 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">2. Pass rates were four times <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> last year.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. Pass rates were four times <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> last year.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! With multipliers of 3x or more, BOTH <strong>higher than</strong> AND <strong>as high as</strong> are grammatically correct!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">higher than / as high as</button>
-                            <button onclick="checkAnswer(this, false, 'Incomplete! While \'higher than\' is valid, \'as high as\' is also equally correct for 4 times.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">only higher than</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Double comparative \'more higher\' is strictly ungrammatical.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more high than</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! With multipliers of 3x or more, BOTH <strong>higher than</strong> AND <strong>as high as</strong> are grammatically correct!')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">higher than / as high as</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incomplete! While \'higher than\' is valid, \'as high as\' is also equally correct for 4 times.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">only
+                                higher than</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Double comparative \'more higher\' is strictly ungrammatical.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more
+                                high than</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q3 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">3. The Large Hadron Collider is the <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> project in Europe.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. The Large Hadron Collider is the <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> project in
+                            Europe.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! For 3-syllable adjectives (im-por-tant), the superlative is formed with <strong>the most important</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">most important</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Long adjectives do not take the -est ending.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">importantest</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. More important is comparative (comparing 2 things), whereas here we need the superlative (the most).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more important</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! For 3-syllable adjectives (im-por-tant), the superlative is formed with <strong>the most important</strong>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">most important</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Long adjectives do not take the -est ending.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">importantest</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. More important is comparative (comparing 2 things), whereas here we need the superlative (the most).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more
+                                important</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q4 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">4. This suitcase is much <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> than that one.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. This suitcase is much <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> than that one.
+                        </p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! 2-syllable adjectives ending in -y drop the -y and add <strong>-ier</strong> (heavier).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">heavier</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Keep in mind that heavy ends in -y, so it changes to heavier rather than using more.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more heavy</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. You must drop the -y before adding -ier.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">heavyer</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! 2-syllable adjectives ending in -y drop the -y and add <strong>-ier</strong> (heavier).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">heavier</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Keep in mind that heavy ends in -y, so it changes to heavier rather than using more.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more
+                                heavy</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. You must drop the -y before adding -ier.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">heavyer</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q5 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">5. What are the comparative and superlative forms of <strong class="text-blue-700 font-bold">far</strong>?</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. What are the comparative and superlative
+                            forms of <strong class="text-blue-700 font-bold">far</strong>?</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! far is irregular: <strong>further / farther</strong> (comparative) and <strong>furthest / farthest</strong> (superlative).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">further / furthest</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Far is irregular and does not follow standard -er / -est spelling without vowel shift.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">farer / fairest</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Far does not use more or most.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more far / most far</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! far is irregular: <strong>further / farther</strong> (comparative) and <strong>furthest / farthest</strong> (superlative).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">further / furthest</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Far is irregular and does not follow standard -er / -est spelling without vowel shift.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">farer
+                                / fairest</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Far does not use more or most.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-blue-100 hover:text-blue-700 text-slate-700 transition-colors border-2 border-transparent">more
+                                far / most far</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-slate-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-slate-300 rounded-3xl p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <div class="relative group cursor-pointer inline-block max-w-full" onclick="openImageModal()">
+                        <img id="grammar-reference-img" src="https://i.postimg.cc/fLNhFpgQ/Module-3a-Grammar.png"
+                            alt="Grammar Reference Visual"
+                            class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden group-hover:opacity-95 transition-all group-hover:shadow-2xl"
+                            onload="this.classList.remove('hidden'); this.closest('.group').nextElementSibling.classList.add('hidden'); if(document.getElementById('img-zoom-hint')) document.getElementById('img-zoom-hint').classList.remove('hidden');">
+                        <div id="img-zoom-hint"
+                            class="hidden absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl backdrop-blur flex items-center gap-1.5 shadow-lg pointer-events-none group-hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                            </svg>
+                            <span>Click to Zoom</span>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-slate-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-slate-500 mb-4">No reference image added yet. Insert your image URL
+                                in the <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-mono text-slate-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-slate-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+        <div
+            class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
             <span>Grammar Reference • Comparative Forms</span>
             <span>Page 45 Guide</span>
         </div>
@@ -512,9 +755,9 @@
             const tabBtns = document.querySelectorAll('.tab-btn');
             tabBtns.forEach(btn => {
                 btn.classList.remove('border-blue-600', 'text-blue-700', 'border-amber-600', 'text-amber-600');
-                
-                if(btn.innerText.includes('Quiz')) {
-                    btn.classList.add('border-transparent', 'text-amber-600'); 
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600');
                 } else {
                     btn.classList.add('border-transparent', 'text-slate-400');
                     btn.classList.remove('font-bold');
@@ -523,14 +766,16 @@
             });
 
             document.getElementById(tabName).classList.add('active');
-            
+
             const clickedBtn = evt.currentTarget;
             clickedBtn.classList.remove('border-transparent', 'text-slate-400');
             clickedBtn.classList.remove('font-semibold');
             clickedBtn.classList.add('font-bold');
-            
-            if(tabName === 'tab-quiz') {
+
+            if (tabName === 'tab-quiz') {
                 clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
             } else {
                 clickedBtn.classList.add('border-blue-600', 'text-blue-700');
             }
@@ -587,15 +832,15 @@
             const container = btn.closest('.quiz-question');
             const buttons = container.querySelectorAll('button');
             const feedback = container.querySelector('.feedback');
-            
+
             buttons.forEach(b => {
                 b.disabled = true;
                 b.classList.add('opacity-50', 'cursor-not-allowed');
                 b.classList.remove('hover:bg-blue-100', 'hover:text-blue-700');
             });
-            
+
             btn.classList.remove('opacity-50');
-            
+
             if (isCorrect) {
                 btn.classList.replace('bg-slate-100', 'bg-blue-600');
                 btn.classList.replace('text-slate-700', 'text-white');
@@ -608,13 +853,188 @@
                 feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
                 feedback.classList.remove('hidden');
                 feedback.classList.add('bg-blue-50', 'border-blue-500');
-                
+
                 const correctBtn = container.querySelector('[data-correct="true"]');
                 correctBtn.classList.remove('opacity-50');
                 correctBtn.classList.replace('bg-slate-100', 'bg-blue-100');
                 correctBtn.classList.add('border-blue-500', 'text-blue-800');
             }
         }
+
+        /* Image Modal & Zoom Logic */
+        let currentZoom = 1;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
+        function openImageModal() {
+            const originalImg = document.getElementById('grammar-reference-img');
+            if (!originalImg || !originalImg.src || originalImg.src.trim() === '' || originalImg.classList.contains('hidden')) {
+                return;
+            }
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('modalZoomImg');
+            modalImg.src = originalImg.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'imageZoomModal' || e.target.id === 'modalViewport') {
+                closeImageModal();
+            }
+        }
+
+        function updateZoomTransform() {
+            const modalImg = document.getElementById('modalZoomImg');
+            const zoomText = document.getElementById('zoomLevelText');
+            if (modalImg) {
+                modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            }
+            if (zoomText) {
+                zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < 4) {
+                currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
+                updateZoomTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+                if (currentZoom <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateZoomTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateZoomTransform();
+        }
+
+        function toggleZoom(e) {
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+            }
+            updateZoomTransform();
+        }
+
+        function handleWheelZoom(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+
+        function startPan(e) {
+            if (currentZoom <= 1) return;
+            isPanning = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+
+            const handleMouseMove = (ev) => {
+                if (!isPanning) return;
+                translateX = ev.clientX - startX;
+                translateY = ev.clientY - startY;
+                updateZoomTransform();
+            };
+
+            const handleMouseUp = () => {
+                isPanning = false;
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mouseup', handleMouseUp);
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageZoomModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeImageModal();
+                }
+            }
+        });
     </script>
+
+    <!-- Lightbox Image Zoom Modal -->
+    <div id="imageZoomModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-2 sm:p-4 select-none"
+        onclick="handleModalBackdropClick(event)">
+        <!-- Toolbar -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-4 py-3 bg-slate-900/90 border border-slate-800 rounded-2xl text-white shadow-2xl mb-2 sm:mb-4 z-10"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
+                    <span>🖼️ Grammar Reference</span>
+                </span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="zoomOut()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom Out (-)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                </button>
+                <span id="zoomLevelText"
+                    class="px-2.5 py-1 bg-slate-800/80 rounded-lg text-xs font-mono font-bold text-indigo-300 min-w-[52px] text-center">100%</span>
+                <button onclick="zoomIn()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom In (+)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button onclick="resetZoom()"
+                    class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors hidden sm:inline-flex items-center gap-1"
+                    title="Reset Zoom">
+                    ↺ Reset
+                </button>
+                <button onclick="closeImageModal()"
+                    class="ml-2 p-2 sm:px-3 sm:py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Close (Esc)">
+                    ✕ <span class="hidden sm:inline">Close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Container -->
+        <div id="modalViewport"
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-grab active:cursor-grabbing"
+            onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-100 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+        </div>
+    </div>
 </body>
+
 </html>

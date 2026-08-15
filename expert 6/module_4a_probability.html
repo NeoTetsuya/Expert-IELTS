@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3e8ff; /* Purple-100/50 background */
+            background-color: #f3e8ff;
+            /* Purple-100/50 background */
             color: #0f172a;
         }
 
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
             animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .interactive-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .interactive-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(147, 51, 234, 0.18), 0 10px 10px -5px rgba(147, 51, 234, 0.08);
-            border-color: #a855f7; /* Purple-500 */
+            border-color: #a855f7;
+            /* Purple-500 */
         }
 
         .hide-scroll-bar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scroll-bar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -46,47 +60,74 @@
         .pulse-border {
             animation: pulseBorder 2s infinite;
         }
+
         @keyframes pulseBorder {
-            0% { border-color: rgba(147, 51, 234, 0.4); box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4); }
-            70% { border-color: rgba(147, 51, 234, 0); box-shadow: 0 0 0 8px rgba(147, 51, 234, 0); }
-            100% { border-color: rgba(147, 51, 234, 0); box-shadow: 0 0 0 0 rgba(147, 51, 234, 0); }
+            0% {
+                border-color: rgba(147, 51, 234, 0.4);
+                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4);
+            }
+
+            70% {
+                border-color: rgba(147, 51, 234, 0);
+                box-shadow: 0 0 0 8px rgba(147, 51, 234, 0);
+            }
+
+            100% {
+                border-color: rgba(147, 51, 234, 0);
+                box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+            }
         }
 
         .filter-pill {
             transition: all 0.2s ease;
             cursor: pointer;
         }
-        .filter-pill:hover, .filter-pill.selected {
-            background-color: #9333ea; /* Purple-600 */
+
+        .filter-pill:hover,
+        .filter-pill.selected {
+            background-color: #9333ea;
+            /* Purple-600 */
             color: white;
             transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
 
     <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-purple-100">
-        
+
         <!-- Header Banner -->
-        <div class="bg-gradient-to-br from-purple-800 via-indigo-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
-                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div
+            class="bg-gradient-to-br from-purple-800 via-indigo-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
                     <path d="M2 12h20"></path>
                 </svg>
             </div>
-            
+
             <div class="relative z-10">
                 <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-purple-200 flex items-center gap-2">
                     <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                     Module 4 Grammar Guide • Page 61
                 </h2>
                 <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Probability in Academic English</h1>
                 <p class="mt-4 text-purple-100 max-w-2xl text-lg font-medium leading-relaxed">
-                    Master expressing <span class="bg-purple-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">Future Probability</span> with modal adverbs & formal academic structures, and <span class="bg-purple-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">Present Probability</span> with <span class="bg-purple-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">must / can't / might / may / could</span>!
+                    Master expressing <span
+                        class="bg-purple-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">Future
+                        Probability</span> with modal adverbs & formal academic structures, and <span
+                        class="bg-purple-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">Present
+                        Probability</span> with <span
+                        class="bg-purple-500/40 px-2 py-0.5 rounded font-bold text-white border border-purple-300/40">must
+                        / can't / might / may / could</span>!
                 </p>
             </div>
         </div>
@@ -95,12 +136,27 @@
         <div class="p-6 sm:p-10">
             <!-- Navigation Tabs -->
             <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-purple-700 border-b-4 border-purple-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-future-modals')">1. Future Probability (Modals) 🔮</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-academic-structures')">2. Academic Formal Structures 📜</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-present-prob')">3. Present Probability 🧠</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Probability Explorer 🧩</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-purple-700 border-b-4 border-purple-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-future-modals')">1. Future Probability (Modals) 🔮</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-academic-structures')">2. Academic Formal Structures 📜</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-present-prob')">3. Present Probability 🧠</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-explorer')">4. Probability Explorer 🧩</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
                     5. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    6. Visual Reference 🖼️
                 </button>
             </div>
 
@@ -111,79 +167,107 @@
                         <span class="text-3xl font-black">100% - 30%</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-extrabold text-slate-900">A1. Modal Verbs & Adverbs for Future Probability</h3>
-                        <p class="text-lg text-slate-600 font-medium">Use modal combinations to signal your exact degree of certainty about future events.</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A1. Modal Verbs & Adverbs for Future
+                            Probability</h3>
+                        <p class="text-lg text-slate-600 font-medium">Use modal combinations to signal your exact degree
+                            of certainty about future events.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Certainty Card 100% -->
-                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">100% Certainty</span>
+                                <span
+                                    class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">100%
+                                    Certainty</span>
                                 <span class="text-2xl">💯</span>
                             </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">will definitely (not) + infinitive</h4>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">will definitely (not) + infinitive
+                            </h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Used when you are <strong>100% sure</strong> that something will or will not happen in the future.
+                                Used when you are <strong>100% sure</strong> that something will or will not happen in
+                                the future.
                             </p>
-                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "Technology <strong class="text-emerald-900 underline">will definitely change</strong> the way we learn a foreign language."</p>
-                                <p>👉 "We <strong class="text-emerald-900 underline">will definitely not lose</strong> our access to basic education."</p>
+                            <div
+                                class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Technology <strong class="text-emerald-900 underline">will definitely
+                                        change</strong> the way we learn a foreign language."</p>
+                                <p>👉 "We <strong class="text-emerald-900 underline">will definitely not lose</strong>
+                                    our access to basic education."</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Certainty Card 80% -->
-                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-purple-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">~80% Quite Sure</span>
+                                <span
+                                    class="bg-purple-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">~80%
+                                    Quite Sure</span>
                                 <span class="text-2xl">📈</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">will probably (not) + infinitive</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
                                 Used when you are <strong>quite sure</strong>, though not completely 100% certain.
                             </p>
-                            <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "Cars <strong class="text-purple-900 underline">will probably not fly</strong> before 2050."</p>
-                                <p>👉 "Online universities <strong class="text-purple-900 underline">will probably become</strong> more popular."</p>
+                            <div
+                                class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Cars <strong class="text-purple-900 underline">will probably not fly</strong>
+                                    before 2050."</p>
+                                <p>👉 "Online universities <strong class="text-purple-900 underline">will probably
+                                        become</strong> more popular."</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Certainty Card 50% -->
-                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">~50% Weak Possibility</span>
+                                <span
+                                    class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">~50%
+                                    Weak Possibility</span>
                                 <span class="text-2xl">🎲</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">will possibly (not) + infinitive</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
                                 Expresses a moderate possibility, but you state that you are <strong>not sure</strong>.
                             </p>
-                            <div class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "Automation <strong class="text-amber-900 underline">will possibly reduce</strong> physical labor jobs."</p>
+                            <div
+                                class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Automation <strong class="text-amber-900 underline">will possibly reduce</strong>
+                                    physical labor jobs."</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Certainty Card 30-50% May / Might -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">30-50% Uncertain</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">30-50%
+                                    Uncertain</span>
                                 <span class="text-2xl">🔮</span>
                             </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">might (not) / may (not) + infinitive</h4>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">might (not) / may (not) + infinitive
+                            </h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
                                 Used when something is <strong>possible, but you are not sure</strong>.
                             </p>
-                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "Our working lives <strong class="text-indigo-900 underline">may not be</strong> so different in 2030."</p>
-                                <p>👉 "Space tourism <strong class="text-indigo-900 underline">might become</strong> affordable for some."</p>
+                            <div
+                                class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "Our working lives <strong class="text-indigo-900 underline">may not be</strong>
+                                    so different in 2030."</p>
+                                <p>👉 "Space tourism <strong class="text-indigo-900 underline">might become</strong>
+                                    affordable for some."</p>
                             </div>
                         </div>
                     </div>
@@ -191,7 +275,8 @@
 
                 <!-- Certainty Summary Table -->
                 <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
-                    <h4 class="text-lg font-bold text-purple-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                    <h4
+                        class="text-lg font-bold text-purple-300 uppercase tracking-widest flex items-center gap-2 mb-4">
                         <span>⚡ Future Probability Scale Quick Reference</span>
                     </h4>
                     <div class="overflow-x-auto">
@@ -207,7 +292,8 @@
                                 <tr class="hover:bg-slate-800/50">
                                     <td class="p-3 font-bold text-emerald-400 font-mono">will definitely (not) + V</td>
                                     <td class="p-3">I'm 100% sure.</td>
-                                    <td class="p-3">Technology <strong>will definitely change</strong> language learning.</td>
+                                    <td class="p-3">Technology <strong>will definitely change</strong> language
+                                        learning.</td>
                                 </tr>
                                 <tr class="hover:bg-slate-800/50">
                                     <td class="p-3 font-bold text-purple-400 font-mono">will probably (not) + V</td>
@@ -237,55 +323,70 @@
                         <span class="text-3xl font-black">📜</span>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-extrabold text-slate-900">A2. Academic & Formal Probability Structures</h3>
-                        <p class="text-lg text-slate-600 font-medium">Particularly common in academic writing because they present a formal, objective style.</p>
+                        <h3 class="text-2xl font-extrabold text-slate-900">A2. Academic & Formal Probability Structures
+                        </h3>
+                        <p class="text-lg text-slate-600 font-medium">Particularly common in academic writing because
+                            they present a formal, objective style.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Structure 1: Noun Phrases -->
-                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-purple-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Noun Phrases</span>
+                                <span
+                                    class="bg-purple-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1.
+                                    Noun Phrases</span>
                                 <span class="text-2xl">🏛️</span>
                             </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">There is a [adj] chance / possibility that...</h4>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">There is a [adj] chance / possibility
+                                that...</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Quantifies probability using abstract nouns like <em>chance</em> or <em>possibility</em>.
+                                Quantifies probability using abstract nouns like <em>chance</em> or
+                                <em>possibility</em>.
                             </p>
                             <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
                                 <li class="bg-purple-50 p-3 rounded-xl border border-purple-200">
                                     <strong class="text-purple-900 block mb-1">Small Possibility:</strong>
-                                    👉 "There is a <strong class="underline text-purple-800">small chance that</strong> we will all have microchips in our brains."
+                                    👉 "There is a <strong class="underline text-purple-800">small chance that</strong>
+                                    we will all have microchips in our brains."
                                 </li>
                                 <li class="bg-purple-50 p-3 rounded-xl border border-purple-200">
                                     <strong class="text-purple-900 block mb-1">Strong Possibility:</strong>
-                                    👉 "There is a <strong class="underline text-purple-800">strong possibility that</strong> printed books will disappear."
+                                    👉 "There is a <strong class="underline text-purple-800">strong possibility
+                                        that</strong> printed books will disappear."
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Structure 2: Adjective Clauses -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Adjective Phrases</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2.
+                                    Adjective Phrases</span>
                                 <span class="text-2xl">📊</span>
                             </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">It is [quite / highly] likely that...</h4>
+                            <h4 class="font-extrabold text-slate-900 text-xl mb-2">It is [quite / highly] likely that...
+                            </h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
                                 Uses dummy <em>it</em> paired with probability adjectives like <em>likely</em>.
                             </p>
                             <ul class="text-xs space-y-2.5 text-slate-800 font-medium mb-4">
                                 <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
                                     <strong class="text-indigo-900 block mb-1">Weak / Moderate Probability:</strong>
-                                    👉 "It is <strong class="underline text-indigo-800">quite likely that</strong> more people will own their own home."
+                                    👉 "It is <strong class="underline text-indigo-800">quite likely that</strong> more
+                                    people will own their own home."
                                 </li>
                                 <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
                                     <strong class="text-indigo-900 block mb-1">Strong Probability:</strong>
-                                    👉 "It is <strong class="underline text-indigo-800">highly likely that</strong> cities will become overcrowded."
+                                    👉 "It is <strong class="underline text-indigo-800">highly likely that</strong>
+                                    cities will become overcrowded."
                                 </li>
                             </ul>
                         </div>
@@ -295,26 +396,34 @@
                 <!-- Structure 3: Subject + be likely to -->
                 <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm">
                     <div class="flex items-center justify-between mb-3">
-                        <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Personal / Direct Structure</span>
+                        <span
+                            class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3.
+                            Personal / Direct Structure</span>
                         <span class="text-2xl">🎓</span>
                     </div>
                     <h4 class="font-extrabold text-slate-900 text-xl mb-2">[Subject] + be likely to + infinitive</h4>
                     <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
                         Focuses directly on the subject, followed by <em>be (is/are) likely to + bare infinitive</em>.
                     </p>
-                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-2">
-                        <p>👉 "More people <strong class="underline text-teal-800 text-sm">are likely to learn</strong> computer programming at school."</p>
-                        <p>👉 "Global temperatures <strong class="underline text-teal-800 text-sm">are likely to rise</strong> over the next decade."</p>
+                    <div
+                        class="bg-teal-50 p-4 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-2">
+                        <p>👉 "More people <strong class="underline text-teal-800 text-sm">are likely to learn</strong>
+                            computer programming at school."</p>
+                        <p>👉 "Global temperatures <strong class="underline text-teal-800 text-sm">are likely to
+                                rise</strong> over the next decade."</p>
                     </div>
                 </div>
 
                 <!-- Academic Style Callout Banner -->
                 <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
-                    <h4 class="text-lg font-bold text-purple-300 uppercase tracking-widest flex items-center gap-2 mb-3">
+                    <h4
+                        class="text-lg font-bold text-purple-300 uppercase tracking-widest flex items-center gap-2 mb-3">
                         <span>⚡ Academic Style Tip</span>
                     </h4>
                     <p class="text-xs text-slate-300 leading-relaxed font-medium">
-                        Academic writers avoid over-assertive claims (such as "This will definitely happen") and prefer hedged formal phrases like <strong>"There is a strong possibility that..."</strong> or <strong>"It is highly likely that..."</strong> to sound objective and cautious!
+                        Academic writers avoid over-assertive claims (such as "This will definitely happen") and prefer
+                        hedged formal phrases like <strong>"There is a strong possibility that..."</strong> or
+                        <strong>"It is highly likely that..."</strong> to sound objective and cautious!
                     </p>
                 </div>
             </div>
@@ -327,47 +436,70 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">B. Present Probability & Deductions</h3>
-                        <p class="text-lg text-slate-600 font-medium">Expressing how sure or unsure we are about current states and situations.</p>
+                        <p class="text-lg text-slate-600 font-medium">Expressing how sure or unsure we are about current
+                            states and situations.</p>
                     </div>
                 </div>
 
                 <!-- Present Probability Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Must -->
-                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. Positive Certainty</span>
+                            <span
+                                class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1.
+                                Positive Certainty</span>
                             <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">must + infinitive</h4>
-                            <p class="text-xs text-slate-500 mb-3 font-medium">Used when we are <strong>sure that something is true</strong> based on evidence.</p>
-                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs font-bold text-emerald-950 space-y-1">
-                                <p>👉 "The scientists <strong class="text-emerald-800 underline">must be</strong> excited about their latest findings."</p>
-                                <p class="text-[11px] text-emerald-700 font-normal mt-1">(= I'm sure they are excited.)</p>
+                            <p class="text-xs text-slate-500 mb-3 font-medium">Used when we are <strong>sure that
+                                    something is true</strong> based on evidence.</p>
+                            <div
+                                class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 text-xs font-bold text-emerald-950 space-y-1">
+                                <p>👉 "The scientists <strong class="text-emerald-800 underline">must be</strong>
+                                    excited about their latest findings."</p>
+                                <p class="text-[11px] text-emerald-700 font-normal mt-1">(= I'm sure they are excited.)
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Can't / Cannot -->
-                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Negative Certainty</span>
-                            <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">can't / cannot + infinitive</h4>
-                            <p class="text-xs text-slate-500 mb-3 font-medium">Used when we are <strong>sure that something is NOT possible</strong>.</p>
-                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs font-bold text-rose-950 space-y-1">
-                                <p>👉 "Life on other planets <strong class="text-rose-800 underline">cannot exist</strong> without water."</p>
+                            <span
+                                class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2.
+                                Negative Certainty</span>
+                            <h4 class="font-extrabold text-slate-900 text-2xl mt-3 mb-1">can't / cannot + infinitive
+                            </h4>
+                            <p class="text-xs text-slate-500 mb-3 font-medium">Used when we are <strong>sure that
+                                    something is NOT possible</strong>.</p>
+                            <div
+                                class="bg-rose-50 p-4 rounded-xl border border-rose-200 text-xs font-bold text-rose-950 space-y-1">
+                                <p>👉 "Life on other planets <strong class="text-rose-800 underline">cannot
+                                        exist</strong> without water."</p>
                                 <p class="text-[11px] text-rose-700 font-normal mt-1">(= I'm sure it's impossible.)</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Might / May / Could -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. Present Possibility</span>
-                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">might / may / could + infinitive</h4>
-                            <p class="text-xs text-slate-500 mb-3 font-medium">Used when we think <strong>something is possible, but we are not sure</strong>.</p>
-                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs font-bold text-indigo-950 space-y-2">
-                                <p>👉 "Scientists <strong class="text-indigo-800 underline">might be able to cure</strong> serious illnesses."</p>
-                                <p>👉 "Researchers <strong class="text-indigo-800 underline">may find</strong> a cure soon."</p>
+                            <span
+                                class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3.
+                                Present Possibility</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">might / may / could + infinitive
+                            </h4>
+                            <p class="text-xs text-slate-500 mb-3 font-medium">Used when we think <strong>something is
+                                    possible, but we are not sure</strong>.</p>
+                            <div
+                                class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-xs font-bold text-indigo-950 space-y-2">
+                                <p>👉 "Scientists <strong class="text-indigo-800 underline">might be able to
+                                        cure</strong> serious illnesses."</p>
+                                <p>👉 "Researchers <strong class="text-indigo-800 underline">may find</strong> a cure
+                                    soon."</p>
                             </div>
                         </div>
                     </div>
@@ -378,10 +510,13 @@
                     <div class="flex items-start gap-4">
                         <div class="text-3xl">⚠️</div>
                         <div>
-                            <h4 class="font-extrabold text-rose-900 text-lg mb-1">Page 61 Deduction Guardrail: Must vs. Can't</h4>
+                            <h4 class="font-extrabold text-rose-900 text-lg mb-1">Page 61 Deduction Guardrail: Must vs.
+                                Can't</h4>
                             <p class="text-xs text-rose-900 font-medium leading-relaxed">
-                                • For positive certainty in present deductions, use <strong>must</strong> (e.g., <em>"They must be happy."</em>)<br>
-                                • For negative certainty in present deductions, use <strong>can't / cannot</strong> (NOT <span class="line-through">mustn't</span>) (e.g., <em>"That story can't be true!"</em>)
+                                • For positive certainty in present deductions, use <strong>must</strong> (e.g.,
+                                <em>"They must be happy."</em>)<br>
+                                • For negative certainty in present deductions, use <strong>can't / cannot</strong> (NOT
+                                <span class="line-through">mustn't</span>) (e.g., <em>"That story can't be true!"</em>)
                             </p>
                         </div>
                     </div>
@@ -391,24 +526,41 @@
             <!-- TAB 4: PROBABILITY EXPLORER -->
             <div id="tab-explorer" class="tab-content space-y-8">
                 <div class="bg-purple-50 border-2 border-purple-200 rounded-2xl p-6 shadow-sm">
-                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Probability & Academic Expression Matrix</h4>
-                    <p class="text-sm text-slate-600 text-center mb-6">Select a scenario below to explore its grammar formula, certainty level, and Page 61 examples!</p>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Probability &
+                        Academic Expression Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a scenario below to explore its grammar
+                        formula, certainty level, and Page 61 examples!</p>
 
                     <!-- Filter Options -->
                     <div class="mb-6">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Probability Context</label>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select
+                            Probability Context</label>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="selectExplorer('future_certain')" id="ebtn-future_certain" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Future 100% Certainty (will definitely)</button>
-                            <button onclick="selectExplorer('future_probable')" id="ebtn-future_probable" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Future High Probability (will probably)</button>
-                            <button onclick="selectExplorer('academic_possibility')" id="ebtn-academic_possibility" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Academic: Strong Possibility (There is a...)</button>
-                            <button onclick="selectExplorer('academic_likely')" id="ebtn-academic_likely" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Academic: Subject + be likely to</button>
-                            <button onclick="selectExplorer('present_sure_true')" id="ebtn-present_sure_true" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Present Positive Deduction (must be)</button>
-                            <button onclick="selectExplorer('present_sure_false')" id="ebtn-present_sure_false" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Present Negative Deduction (cannot)</button>
+                            <button onclick="selectExplorer('future_certain')" id="ebtn-future_certain"
+                                class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Future
+                                100% Certainty (will definitely)</button>
+                            <button onclick="selectExplorer('future_probable')" id="ebtn-future_probable"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Future
+                                High Probability (will probably)</button>
+                            <button onclick="selectExplorer('academic_possibility')" id="ebtn-academic_possibility"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Academic:
+                                Strong Possibility (There is a...)</button>
+                            <button onclick="selectExplorer('academic_likely')" id="ebtn-academic_likely"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Academic:
+                                Subject + be likely to</button>
+                            <button onclick="selectExplorer('present_sure_true')" id="ebtn-present_sure_true"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Present
+                                Positive Deduction (must be)</button>
+                            <button onclick="selectExplorer('present_sure_false')" id="ebtn-present_sure_false"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-purple-300 bg-white text-purple-800">Present
+                                Negative Deduction (cannot)</button>
                         </div>
                     </div>
 
                     <!-- Result Card -->
-                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-purple-200 shadow-inner text-center space-y-2">
+                    <div id="explorerResult"
+                        class="bg-white p-6 rounded-xl border border-purple-200 shadow-inner text-center space-y-2">
                         <!-- Content rendered via JS -->
                     </div>
                 </div>
@@ -416,72 +568,187 @@
 
             <!-- TAB 5: PRACTICE QUIZ -->
             <div id="tab-quiz" class="tab-content space-y-6">
-                <div class="bg-gradient-to-r from-purple-50 via-indigo-50 to-amber-50 rounded-2xl p-8 border border-purple-100 text-center mb-8 shadow-inner">
+                <div
+                    class="bg-gradient-to-r from-purple-50 via-indigo-50 to-amber-50 rounded-2xl p-8 border border-purple-100 text-center mb-8 shadow-inner">
                     <h3 class="text-3xl font-extrabold text-purple-900 mb-2">Test Your Page 61 Knowledge</h3>
-                    <p class="text-purple-700 font-medium">Select the correct probability form according to Page 61 academic rules.</p>
+                    <p class="text-purple-700 font-medium">Select the correct probability form according to Page 61
+                        academic rules.</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">1. Technology <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> change the way we learn a foreign language. (I'm 100% sure)</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. Technology <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> change the way
+                            we learn a foreign language. (I'm 100% sure)</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! To show 100% future certainty, we use <strong>will definitely</strong> + infinitive.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">will definitely</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Will probably expresses ~80% probability, not 100% certainty.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">will probably</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Might shows uncertainty.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">might</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! To show 100% future certainty, we use <strong>will definitely</strong> + infinitive.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">will definitely</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Will probably expresses ~80% probability, not 100% certainty.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">will
+                                probably</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Might shows uncertainty.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">might</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q2 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">2. There is a strong <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> that printed books will disappear.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. There is a strong <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> that printed
+                            books will disappear.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Academic English uses <strong>possibility</strong> in noun structures: \'a strong possibility that...\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">possibility</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Likely is an adjective used in \'It is likely that...\' or \'Subject is likely to...\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">likely</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Probably is an adverb, not a noun following \'a strong...\'.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">probably</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Academic English uses <strong>possibility</strong> in noun structures: \'a strong possibility that...\'.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">possibility</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Likely is an adjective used in \'It is likely that...\' or \'Subject is likely to...\'.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">likely</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Probably is an adverb, not a noun following \'a strong...\'.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">probably</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q3 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">3. More people <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> learn computer programming at school.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. More people <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> learn computer
+                            programming at school.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! The structure is <strong>[Subject] + be likely to + infinitive</strong> (\'are likely to learn\').')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">are likely to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. The formula requires the auxiliary verb \'be\' (are likely to).')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">likely to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Probability takes \'likely to\', not \'likely that\' when directly following the subject.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">are likely that</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! The structure is <strong>[Subject] + be likely to + infinitive</strong> (\'are likely to learn\').')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">are likely to</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. The formula requires the auxiliary verb \'be\' (are likely to).')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">likely
+                                to</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Probability takes \'likely to\', not \'likely that\' when directly following the subject.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">are
+                                likely that</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q4 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">4. The scientists <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> excited about their latest findings. (We are sure that it's true)</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. The scientists <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> excited about
+                            their latest findings. (We are sure that it's true)</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! For present probability when we are sure something is true, we use <strong>must + infinitive</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">must be</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Can\'t is used when we are sure something is NOT true/possible.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">can't be</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Might be expresses uncertainty.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">might be</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! For present probability when we are sure something is true, we use <strong>must + infinitive</strong>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">must be</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Can\'t is used when we are sure something is NOT true/possible.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">can't
+                                be</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Might be expresses uncertainty.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">might
+                                be</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q5 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">5. Life on other planets <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> exist without water. (We are sure it is impossible)</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Life on other planets <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> exist without
+                            water. (We are sure it is impossible)</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! For present probability when we are sure something is NOT possible, we use <strong>cannot / can\'t</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">cannot</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Must shows positive certainty, not impossibility.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">must</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Might not expresses uncertainty, but here we are sure it is impossible.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">might not</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! For present probability when we are sure something is NOT possible, we use <strong>cannot / can\'t</strong>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">cannot</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Must shows positive certainty, not impossibility.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">must</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Might not expresses uncertainty, but here we are sure it is impossible.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 hover:text-purple-700 text-slate-700 transition-colors border-2 border-transparent">might
+                                not</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-slate-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-slate-300 rounded-3xl p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <div class="relative group cursor-pointer inline-block max-w-full" onclick="openImageModal()">
+                        <img id="grammar-reference-img" src="https://i.postimg.cc/3RTH6Vb7/Module-4a-Grammar.png"
+                            alt="Grammar Reference Visual"
+                            class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden group-hover:opacity-95 transition-all group-hover:shadow-2xl"
+                            onload="this.classList.remove('hidden'); this.closest('.group').nextElementSibling.classList.add('hidden'); if(document.getElementById('img-zoom-hint')) document.getElementById('img-zoom-hint').classList.remove('hidden');">
+                        <div id="img-zoom-hint"
+                            class="hidden absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl backdrop-blur flex items-center gap-1.5 shadow-lg pointer-events-none group-hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                            </svg>
+                            <span>Click to Zoom</span>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-slate-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-slate-500 mb-4">No reference image added yet. Insert your image URL
+                                in the <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-mono text-slate-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-slate-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+        <div
+            class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
             <span>Grammar Reference • Probability</span>
             <span>Page 61 Guide</span>
         </div>
@@ -496,9 +763,9 @@
             const tabBtns = document.querySelectorAll('.tab-btn');
             tabBtns.forEach(btn => {
                 btn.classList.remove('border-purple-600', 'text-purple-700', 'border-amber-600', 'text-amber-600');
-                
-                if(btn.innerText.includes('Quiz')) {
-                    btn.classList.add('border-transparent', 'text-amber-600'); 
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600');
                 } else {
                     btn.classList.add('border-transparent', 'text-slate-400');
                     btn.classList.remove('font-bold');
@@ -507,14 +774,16 @@
             });
 
             document.getElementById(tabName).classList.add('active');
-            
+
             const clickedBtn = evt.currentTarget;
             clickedBtn.classList.remove('border-transparent', 'text-slate-400');
             clickedBtn.classList.remove('font-semibold');
             clickedBtn.classList.add('font-bold');
-            
-            if(tabName === 'tab-quiz') {
+
+            if (tabName === 'tab-quiz') {
                 clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
             } else {
                 clickedBtn.classList.add('border-purple-600', 'text-purple-700');
             }
@@ -576,15 +845,15 @@
             const container = btn.closest('.quiz-question');
             const buttons = container.querySelectorAll('button');
             const feedback = container.querySelector('.feedback');
-            
+
             buttons.forEach(b => {
                 b.disabled = true;
                 b.classList.add('opacity-50', 'cursor-not-allowed');
                 b.classList.remove('hover:bg-purple-100', 'hover:text-purple-700');
             });
-            
+
             btn.classList.remove('opacity-50');
-            
+
             if (isCorrect) {
                 btn.classList.replace('bg-slate-100', 'bg-purple-600');
                 btn.classList.replace('text-slate-700', 'text-white');
@@ -597,13 +866,188 @@
                 feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
                 feedback.classList.remove('hidden');
                 feedback.classList.add('bg-purple-50', 'border-purple-500');
-                
+
                 const correctBtn = container.querySelector('[data-correct="true"]');
                 correctBtn.classList.remove('opacity-50');
                 correctBtn.classList.replace('bg-slate-100', 'bg-purple-100');
                 correctBtn.classList.add('border-purple-500', 'text-purple-800');
             }
         }
+
+        /* Image Modal & Zoom Logic */
+        let currentZoom = 1;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
+        function openImageModal() {
+            const originalImg = document.getElementById('grammar-reference-img');
+            if (!originalImg || !originalImg.src || originalImg.src.trim() === '' || originalImg.classList.contains('hidden')) {
+                return;
+            }
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('modalZoomImg');
+            modalImg.src = originalImg.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'imageZoomModal' || e.target.id === 'modalViewport') {
+                closeImageModal();
+            }
+        }
+
+        function updateZoomTransform() {
+            const modalImg = document.getElementById('modalZoomImg');
+            const zoomText = document.getElementById('zoomLevelText');
+            if (modalImg) {
+                modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            }
+            if (zoomText) {
+                zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < 4) {
+                currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
+                updateZoomTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+                if (currentZoom <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateZoomTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateZoomTransform();
+        }
+
+        function toggleZoom(e) {
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+            }
+            updateZoomTransform();
+        }
+
+        function handleWheelZoom(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+
+        function startPan(e) {
+            if (currentZoom <= 1) return;
+            isPanning = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+
+            const handleMouseMove = (ev) => {
+                if (!isPanning) return;
+                translateX = ev.clientX - startX;
+                translateY = ev.clientY - startY;
+                updateZoomTransform();
+            };
+
+            const handleMouseUp = () => {
+                isPanning = false;
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mouseup', handleMouseUp);
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageZoomModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeImageModal();
+                }
+            }
+        });
     </script>
+
+    <!-- Lightbox Image Zoom Modal -->
+    <div id="imageZoomModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-2 sm:p-4 select-none"
+        onclick="handleModalBackdropClick(event)">
+        <!-- Toolbar -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-4 py-3 bg-slate-900/90 border border-slate-800 rounded-2xl text-white shadow-2xl mb-2 sm:mb-4 z-10"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
+                    <span>🖼️ Grammar Reference</span>
+                </span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="zoomOut()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom Out (-)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                </button>
+                <span id="zoomLevelText"
+                    class="px-2.5 py-1 bg-slate-800/80 rounded-lg text-xs font-mono font-bold text-indigo-300 min-w-[52px] text-center">100%</span>
+                <button onclick="zoomIn()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom In (+)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button onclick="resetZoom()"
+                    class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors hidden sm:inline-flex items-center gap-1"
+                    title="Reset Zoom">
+                    ↺ Reset
+                </button>
+                <button onclick="closeImageModal()"
+                    class="ml-2 p-2 sm:px-3 sm:py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Close (Esc)">
+                    ✕ <span class="hidden sm:inline">Close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Container -->
+        <div id="modalViewport"
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-grab active:cursor-grabbing"
+            onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-100 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+        </div>
+    </div>
 </body>
+
 </html>

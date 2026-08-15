@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f3ff; /* Violet-50 background */
+            background-color: #f5f3ff;
+            /* Violet-50 background */
             color: #0f172a;
         }
 
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
             animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(14px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .interactive-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .interactive-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.18), 0 10px 10px -5px rgba(99, 102, 241, 0.08);
-            border-color: #6366f1; /* Indigo-500 */
+            border-color: #6366f1;
+            /* Indigo-500 */
         }
 
         .hide-scroll-bar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scroll-bar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -46,46 +60,73 @@
         .pulse-border {
             animation: pulseBorder 2s infinite;
         }
+
         @keyframes pulseBorder {
-            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
-            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
-            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+            0% {
+                border-color: rgba(99, 102, 241, 0.4);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            70% {
+                border-color: rgba(99, 102, 241, 0);
+                box-shadow: 0 0 0 8px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                border-color: rgba(99, 102, 241, 0);
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
         }
 
         .filter-pill {
             transition: all 0.2s ease;
             cursor: pointer;
         }
-        .filter-pill:hover, .filter-pill.selected {
-            background-color: #4f46e5; /* Indigo-600 */
+
+        .filter-pill:hover,
+        .filter-pill.selected {
+            background-color: #4f46e5;
+            /* Indigo-600 */
             color: white;
             transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+<body
+    class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
 
     <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100">
-        
+
         <!-- Header Banner -->
-        <div class="bg-gradient-to-br from-indigo-800 via-violet-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
-                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div
+            class="bg-gradient-to-br from-indigo-800 via-violet-900 to-slate-900 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="340" height="340" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     <path d="M9 12l2 2 4-4"></path>
                 </svg>
             </div>
-            
+
             <div class="relative z-10">
                 <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
                     <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                     Module 9 Grammar Guide • Page 141
                 </h2>
                 <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Modals of Obligation</h1>
                 <p class="mt-4 text-indigo-100 max-w-2xl text-lg font-medium leading-relaxed">
-                    Master <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Present Obligation</span> (have to vs. must), <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Past & Future Obligation</span> (had to, will have to), and <span class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Formal Obligation Expressions</span>!
+                    Master <span
+                        class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Present
+                        Obligation</span> (have to vs. must), <span
+                        class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Past
+                        & Future Obligation</span> (had to, will have to), and <span
+                        class="bg-indigo-500/40 px-2 py-0.5 rounded font-bold text-white border border-indigo-300/40">Formal
+                        Obligation Expressions</span>!
                 </p>
             </div>
         </div>
@@ -93,12 +134,27 @@
         <div class="p-6 sm:p-10">
             <!-- Navigation Tabs -->
             <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-present')">1. Present Obligation ⏱️</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-past-future')">2. Past & Future Obligation ⏳🔮</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-other-expressions')">3. Advanced Expressions 🏛️</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-explorer')">4. Obligation Explorer 🧩</button>
-                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-700 border-b-4 border-indigo-600 focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-present')">1. Present Obligation ⏱️</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-past-future')">2. Past & Future Obligation ⏳🔮</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-other-expressions')">3. Advanced Expressions 🏛️</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all"
+                    onclick="openTab(event, 'tab-explorer')">4. Obligation Explorer 🧩</button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-amber-600 hover:text-amber-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-quiz')">
                     5. Practice Quiz 🎯
+                </button>
+                <button
+                    class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 hover:text-indigo-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2"
+                    onclick="openTab(event, 'tab-image-reference')">
+                    6. Visual Reference 🖼️
                 </button>
             </div>
 
@@ -110,43 +166,62 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">A. Present Obligation & Necessity</h3>
-                        <p class="text-lg text-slate-600 font-medium">Expressing external rules, personal decisions, prohibitions, and advice in the present.</p>
+                        <p class="text-lg text-slate-600 font-medium">Expressing external rules, personal decisions,
+                            prohibitions, and advice in the present.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Have to Card -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1. External Decision</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">1.
+                                    External Decision</span>
                                 <span class="text-2xl">📋</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">has / have to + infinitive</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Talks about an obligation that exists because of a <strong>decision made by another person</strong> (supervisor, doctor, rule, law).
+                                Talks about an obligation that exists because of a <strong>decision made by another
+                                    person</strong> (supervisor, doctor, rule, law).
                             </p>
-                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "I <strong class="text-indigo-900 underline font-extrabold">have to stop</strong> eating so much sugar." <span class="text-slate-500 font-normal">(My dietician told me.)</span></p>
-                                <p>👉 "She <strong class="text-indigo-900 underline font-extrabold">has to finish</strong> the report before tomorrow." <span class="text-slate-500 font-normal">(Her supervisor told her.)</span></p>
+                            <div
+                                class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "I <strong class="text-indigo-900 underline font-extrabold">have to stop</strong>
+                                    eating so much sugar." <span class="text-slate-500 font-normal">(My dietician told
+                                        me.)</span></p>
+                                <p>👉 "She <strong class="text-indigo-900 underline font-extrabold">has to
+                                        finish</strong> the report before tomorrow." <span
+                                        class="text-slate-500 font-normal">(Her supervisor told her.)</span></p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Must Card -->
-                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-purple-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2. Internal Necessity</span>
+                                <span
+                                    class="bg-purple-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">2.
+                                    Internal Necessity</span>
                                 <span class="text-2xl">💡</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">must + infinitive</h4>
                             <p class="text-sm text-slate-600 mb-4 leading-relaxed font-medium">
-                                Talks about an obligation that <strong>the speaker thinks is necessary or important</strong>.
+                                Talks about an obligation that <strong>the speaker thinks is necessary or
+                                    important</strong>.
                             </p>
-                            <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
-                                <p>👉 "I <strong class="text-purple-900 underline font-extrabold">must send</strong> this invitation out today." <span class="text-slate-500 font-normal">(Event is next week.)</span></p>
-                                <p>👉 "Children <strong class="text-purple-900 underline font-extrabold">must spend</strong> more time doing sport." <span class="text-slate-500 font-normal">(I think it's important.)</span></p>
+                            <div
+                                class="bg-purple-50 p-4 rounded-xl border border-purple-200 text-slate-800 text-xs font-semibold space-y-2 mb-4">
+                                <p>👉 "I <strong class="text-purple-900 underline font-extrabold">must send</strong>
+                                    this invitation out today." <span class="text-slate-500 font-normal">(Event is next
+                                        week.)</span></p>
+                                <p>👉 "Children <strong class="text-purple-900 underline font-extrabold">must
+                                        spend</strong> more time doing sport." <span
+                                        class="text-slate-500 font-normal">(I think it's important.)</span></p>
                             </div>
                         </div>
                     </div>
@@ -156,48 +231,64 @@
                     <!-- Don't have to / Don't need to -->
                     <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3. No Obligation</span>
+                            <span
+                                class="bg-emerald-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">3.
+                                No Obligation</span>
                             <span class="text-2xl">🎉</span>
                         </div>
                         <h4 class="font-extrabold text-slate-900 text-lg mb-2">don't have to / don't need to</h4>
-                        <p class="text-xs text-slate-600 mb-3 font-medium">States that an action is <strong>not necessary</strong> (optional):</p>
-                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-950 space-y-1">
-                            👉 "You <strong class="underline text-emerald-800">don't have to exercise</strong> every day, usually three times a week is fine."
+                        <p class="text-xs text-slate-600 mb-3 font-medium">States that an action is <strong>not
+                                necessary</strong> (optional):</p>
+                        <div
+                            class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-xs font-semibold text-emerald-950 space-y-1">
+                            👉 "You <strong class="underline text-emerald-800">don't have to exercise</strong> every
+                            day, usually three times a week is fine."
                         </div>
                     </div>
 
                     <!-- Mustn't -->
                     <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">4. Prohibition</span>
+                            <span
+                                class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">4.
+                                Prohibition</span>
                             <span class="text-2xl">🛑</span>
                         </div>
                         <h4 class="font-extrabold text-slate-900 text-lg mb-2">mustn't + infinitive</h4>
-                        <p class="text-xs text-slate-600 mb-3 font-medium">States that an action is <strong>not permitted or forbidden</strong>:</p>
-                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-200 text-xs font-semibold text-rose-950 space-y-1">
-                            👉 "You <strong class="underline text-rose-800">mustn't copy</strong> material from the internet for your end-of-term paper."
+                        <p class="text-xs text-slate-600 mb-3 font-medium">States that an action is <strong>not
+                                permitted or forbidden</strong>:</p>
+                        <div
+                            class="bg-rose-50 p-3 rounded-xl border border-rose-200 text-xs font-semibold text-rose-950 space-y-1">
+                            👉 "You <strong class="underline text-rose-800">mustn't copy</strong> material from the
+                            internet for your end-of-term paper."
                         </div>
                     </div>
 
                     <!-- Should / Need to / Can -->
                     <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm">
                         <div class="flex items-center justify-between mb-3">
-                            <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">5, 6 & 7. Mild & Possible</span>
+                            <span
+                                class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">5,
+                                6 & 7. Mild & Possible</span>
                             <span class="text-2xl">💬</span>
                         </div>
                         <h4 class="font-extrabold text-slate-900 text-lg mb-2">should / need to / can</h4>
                         <p class="text-xs text-slate-600 mb-2 font-medium">Advice, general necessity & possibility:</p>
                         <ul class="text-[11px] space-y-1.5 text-slate-800 font-semibold">
-                            <li class="bg-amber-50 p-2 rounded-lg border border-amber-200"><strong>should:</strong> Mild obligation/advice ("He <u>should speak</u> to his tutor.")</li>
-                            <li class="bg-amber-50 p-2 rounded-lg border border-amber-200"><strong>need to:</strong> General necessity ("He <u>needs to give</u> his work in.")</li>
-                            <li class="bg-amber-50 p-2 rounded-lg border border-amber-200"><strong>can:</strong> Possibility ("He <u>can leave</u> now if he wants.")</li>
+                            <li class="bg-amber-50 p-2 rounded-lg border border-amber-200"><strong>should:</strong> Mild
+                                obligation/advice ("He <u>should speak</u> to his tutor.")</li>
+                            <li class="bg-amber-50 p-2 rounded-lg border border-amber-200"><strong>need to:</strong>
+                                General necessity ("He <u>needs to give</u> his work in.")</li>
+                            <li class="bg-amber-50 p-2 rounded-lg border border-amber-200"><strong>can:</strong>
+                                Possibility ("He <u>can leave</u> now if he wants.")</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Page 141 Present Obligation Summary Table -->
                 <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg border border-slate-800">
-                    <h4 class="text-lg font-bold text-indigo-300 uppercase tracking-widest flex items-center gap-2 mb-4">
+                    <h4
+                        class="text-lg font-bold text-indigo-300 uppercase tracking-widest flex items-center gap-2 mb-4">
                         <span>⚡ Present Obligation Quick Formula Reference</span>
                     </h4>
                     <div class="overflow-x-auto">
@@ -221,7 +312,8 @@
                                     <td class="p-3">I <strong>must send</strong> this invitation out today.</td>
                                 </tr>
                                 <tr class="hover:bg-slate-800/50">
-                                    <td class="p-3 font-bold text-emerald-300 font-mono">don't have to / don't need to</td>
+                                    <td class="p-3 font-bold text-emerald-300 font-mono">don't have to / don't need to
+                                    </td>
                                     <td class="p-3">No obligation (optional)</td>
                                     <td class="p-3">You <strong>don't have to exercise</strong> every day.</td>
                                 </tr>
@@ -249,16 +341,20 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">B & C. Past and Future Obligation</h3>
-                        <p class="text-lg text-slate-600 font-medium">How obligation changes across past and future timeframes.</p>
+                        <p class="text-lg text-slate-600 font-medium">How obligation changes across past and future
+                            timeframes.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Past Obligation Card -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">B. Past Obligation</span>
+                                <span
+                                    class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">B.
+                                    Past Obligation</span>
                                 <span class="text-2xl">⏳</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">had to / didn't have to</h4>
@@ -267,22 +363,29 @@
                             </p>
                             <ul class="text-xs space-y-3 text-slate-800 font-medium mb-4">
                                 <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
-                                    <strong class="text-indigo-900 block mb-1">(+) Past Obligation (had to + infinitive):</strong>
-                                    👉 "I <strong class="underline text-indigo-800 font-extrabold">had to stay up</strong> late last night to prepare for the meeting."
+                                    <strong class="text-indigo-900 block mb-1">(+) Past Obligation (had to +
+                                        infinitive):</strong>
+                                    👉 "I <strong class="underline text-indigo-800 font-extrabold">had to stay
+                                        up</strong> late last night to prepare for the meeting."
                                 </li>
                                 <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
-                                    <strong class="text-indigo-900 block mb-1">(-) No Past Obligation (didn't have to + infinitive):</strong>
-                                    👉 "We <strong class="underline text-indigo-800 font-extrabold">didn't have to give</strong> back the question paper after the test."
+                                    <strong class="text-indigo-900 block mb-1">(-) No Past Obligation (didn't have to +
+                                        infinitive):</strong>
+                                    👉 "We <strong class="underline text-indigo-800 font-extrabold">didn't have to
+                                        give</strong> back the question paper after the test."
                                 </li>
                             </ul>
                         </div>
                     </div>
 
                     <!-- Future Obligation Card -->
-                    <div class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-violet-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-3">
-                                <span class="bg-violet-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">C. Future Obligation</span>
+                                <span
+                                    class="bg-violet-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">C.
+                                    Future Obligation</span>
                                 <span class="text-2xl">🔮</span>
                             </div>
                             <h4 class="font-extrabold text-slate-900 text-xl mb-2">will have to / won't have to</h4>
@@ -291,12 +394,16 @@
                             </p>
                             <ul class="text-xs space-y-3 text-slate-800 font-medium mb-4">
                                 <li class="bg-violet-50 p-3 rounded-xl border border-violet-200">
-                                    <strong class="text-violet-900 block mb-1">(+) Future Obligation (will have to + infinitive):</strong>
-                                    👉 "The company <strong class="underline text-violet-800 font-extrabold">will have to reduce</strong> their costs next year."
+                                    <strong class="text-violet-900 block mb-1">(+) Future Obligation (will have to +
+                                        infinitive):</strong>
+                                    👉 "The company <strong class="underline text-violet-800 font-extrabold">will have
+                                        to reduce</strong> their costs next year."
                                 </li>
                                 <li class="bg-violet-50 p-3 rounded-xl border border-violet-200">
-                                    <strong class="text-violet-900 block mb-1">(-) No Future Obligation (won't have to + infinitive):</strong>
-                                    👉 "Science students <strong class="underline text-violet-800 font-extrabold">won't have to attend</strong> the language class."
+                                    <strong class="text-violet-900 block mb-1">(-) No Future Obligation (won't have to +
+                                        infinitive):</strong>
+                                    👉 "Science students <strong class="underline text-violet-800 font-extrabold">won't
+                                        have to attend</strong> the language class."
                                 </li>
                             </ul>
                         </div>
@@ -309,7 +416,9 @@
                         <span>⚡ CRITICAL GRAMMAR RULE: Past Form of Must</span>
                     </h4>
                     <p class="text-xs text-slate-300 leading-relaxed font-medium">
-                        Remember that <strong>must has no past tense form</strong>! The past form of both <em>must</em> and <em>have to</em> is strictly <strong>had to</strong>! (e.g., <em>"I must go today"</em> → <em>"I had to go yesterday"</em>).
+                        Remember that <strong>must has no past tense form</strong>! The past form of both <em>must</em>
+                        and <em>have to</em> is strictly <strong>had to</strong>! (e.g., <em>"I must go today"</em> →
+                        <em>"I had to go yesterday"</em>).
                     </p>
                 </div>
             </div>
@@ -322,55 +431,81 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-extrabold text-slate-900">D. Other Expressions of Obligation</h3>
-                        <p class="text-lg text-slate-600 font-medium">Formal phrases expressing obligation often tested in academic reading and writing exams.</p>
+                        <p class="text-lg text-slate-600 font-medium">Formal phrases expressing obligation often tested
+                            in academic reading and writing exams.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <!-- 1. Make something possible -->
-                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase 1</span>
+                            <span
+                                class="bg-indigo-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase
+                                1</span>
                             <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">make something possible</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Enables an outcome or gives capability.</p>
-                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-950 space-y-1">
-                                👉 "The large donation <strong class="underline text-indigo-800">made the new health centre possible</strong>."
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Enables an outcome or gives capability.
+                            </p>
+                            <div
+                                class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs font-semibold text-indigo-950 space-y-1">
+                                👉 "The large donation <strong class="underline text-indigo-800">made the new health
+                                    centre possible</strong>."
                             </div>
                         </div>
                     </div>
 
                     <!-- 2. Permit -->
-                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase 2</span>
+                            <span
+                                class="bg-teal-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase
+                                2</span>
                             <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">permit (be permitted to)</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal equivalent for <em>allow / can</em>.</p>
-                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-1">
-                                👉 "Scientists <strong class="underline text-teal-800">were not permitted to work</strong> on the new cure."
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal equivalent for <em>allow /
+                                    can</em>.</p>
+                            <div
+                                class="bg-teal-50 p-3 rounded-xl border border-teal-200 text-xs font-semibold text-teal-950 space-y-1">
+                                👉 "Scientists <strong class="underline text-teal-800">were not permitted to
+                                    work</strong> on the new cure."
                             </div>
                         </div>
                     </div>
 
                     <!-- 3. Be necessary -->
-                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase 3</span>
-                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">be necessary (it is/was necessary to)</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal phrase for necessity or requirement.</p>
-                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs font-semibold text-amber-950 space-y-1">
-                                👉 "It <strong class="underline text-amber-800">became necessary to change</strong> the way people ate."
+                            <span
+                                class="bg-amber-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase
+                                3</span>
+                            <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">be necessary (it is/was
+                                necessary to)</h4>
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal phrase for necessity or
+                                requirement.</p>
+                            <div
+                                class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs font-semibold text-amber-950 space-y-1">
+                                👉 "It <strong class="underline text-amber-800">became necessary to change</strong> the
+                                way people ate."
                             </div>
                         </div>
                     </div>
 
                     <!-- 4. Be prohibited -->
-                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
                         <div>
-                            <span class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase 4</span>
+                            <span
+                                class="bg-rose-600 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Phrase
+                                4</span>
                             <h4 class="font-extrabold text-slate-900 text-xl mt-3 mb-1">be prohibited</h4>
-                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal equivalent for <em>mustn't / not allowed</em>.</p>
-                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-200 text-xs font-semibold text-rose-950 space-y-1">
-                                👉 "Travelling without a vaccination <strong class="underline text-rose-800">is prohibited</strong>."
+                            <p class="text-xs text-slate-600 mb-3 font-medium">Formal equivalent for <em>mustn't / not
+                                    allowed</em>.</p>
+                            <div
+                                class="bg-rose-50 p-3 rounded-xl border border-rose-200 text-xs font-semibold text-rose-950 space-y-1">
+                                👉 "Travelling without a vaccination <strong class="underline text-rose-800">is
+                                    prohibited</strong>."
                             </div>
                         </div>
                     </div>
@@ -380,24 +515,41 @@
             <!-- TAB 4: OBLIGATION EXPLORER -->
             <div id="tab-explorer" class="tab-content space-y-8">
                 <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6 shadow-sm">
-                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Obligation & Timeframe Matrix</h4>
-                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test which modal formula applies according to Page 141!</p>
+                    <h4 class="font-extrabold text-slate-900 text-xl mb-2 text-center">Interactive Obligation &
+                        Timeframe Matrix</h4>
+                    <p class="text-sm text-slate-600 text-center mb-6">Select a category below to test which modal
+                        formula applies according to Page 141!</p>
 
                     <!-- Filter Options -->
                     <div class="mb-6">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select Obligation Scenario</label>
+                        <label
+                            class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 text-center">Select
+                            Obligation Scenario</label>
                         <div class="flex flex-wrap justify-center gap-2">
-                            <button onclick="selectExplorer('ext_oblig')" id="ebtn-ext_oblig" class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">External Authority (have to)</button>
-                            <button onclick="selectExplorer('int_oblig')" id="ebtn-int_oblig" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Internal Decision (must)</button>
-                            <button onclick="selectExplorer('prohibition')" id="ebtn-prohibition" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Prohibition (mustn't)</button>
-                            <button onclick="selectExplorer('past_oblig')" id="ebtn-past_oblig" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Past Obligation (had to)</button>
-                            <button onclick="selectExplorer('fut_oblig')" id="ebtn-fut_oblig" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Future Obligation (will have to)</button>
-                            <button onclick="selectExplorer('prohibited_formal')" id="ebtn-prohibited_formal" class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Formal Prohibited (be prohibited)</button>
+                            <button onclick="selectExplorer('ext_oblig')" id="ebtn-ext_oblig"
+                                class="filter-pill selected px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">External
+                                Authority (have to)</button>
+                            <button onclick="selectExplorer('int_oblig')" id="ebtn-int_oblig"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Internal
+                                Decision (must)</button>
+                            <button onclick="selectExplorer('prohibition')" id="ebtn-prohibition"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Prohibition
+                                (mustn't)</button>
+                            <button onclick="selectExplorer('past_oblig')" id="ebtn-past_oblig"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Past
+                                Obligation (had to)</button>
+                            <button onclick="selectExplorer('fut_oblig')" id="ebtn-fut_oblig"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Future
+                                Obligation (will have to)</button>
+                            <button onclick="selectExplorer('prohibited_formal')" id="ebtn-prohibited_formal"
+                                class="filter-pill px-3 py-1.5 rounded-full text-xs font-bold border border-indigo-300 bg-white text-indigo-800">Formal
+                                Prohibited (be prohibited)</button>
                         </div>
                     </div>
 
                     <!-- Result Card -->
-                    <div id="explorerResult" class="bg-white p-6 rounded-xl border border-indigo-200 shadow-inner text-center space-y-2">
+                    <div id="explorerResult"
+                        class="bg-white p-6 rounded-xl border border-indigo-200 shadow-inner text-center space-y-2">
                         <!-- Content rendered via JS -->
                     </div>
                 </div>
@@ -405,72 +557,184 @@
 
             <!-- TAB 5: PRACTICE QUIZ -->
             <div id="tab-quiz" class="tab-content space-y-6">
-                <div class="bg-gradient-to-r from-indigo-50 via-violet-50 to-amber-50 rounded-2xl p-8 border border-indigo-100 text-center mb-8 shadow-inner">
+                <div
+                    class="bg-gradient-to-r from-indigo-50 via-violet-50 to-amber-50 rounded-2xl p-8 border border-indigo-100 text-center mb-8 shadow-inner">
                     <h3 class="text-3xl font-extrabold text-indigo-900 mb-2">Test Your Page 141 Knowledge</h3>
-                    <p class="text-indigo-700 font-medium">Select the correct modal form or expression according to Page 141 rules.</p>
+                    <p class="text-indigo-700 font-medium">Select the correct modal form or expression according to Page
+                        141 rules.</p>
                 </div>
 
                 <div class="space-y-6">
                     <!-- Q1 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">1. She <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> finish the report before tomorrow because her supervisor told her.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">1. She <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> finish the
+                            report before tomorrow because her supervisor told her.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Page 141 specifies that for external obligation from another person (her supervisor), we use <strong>has to</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">has to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Must is used when the speaker feels the necessity internally.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">must</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Shouldn\'t expresses advice against an action.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">shouldn't</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Page 141 specifies that for external obligation from another person (her supervisor), we use <strong>has to</strong>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">has to</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Must is used when the speaker feels the necessity internally.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">must</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Shouldn\'t expresses advice against an action.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">shouldn't</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q2 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">2. I <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> stay up late last night to prepare for the meeting.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">2. I <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> stay up late
+                            last night to prepare for the meeting.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! <strong>had to</strong> is the past form of both have to and must.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">had to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Must has no past tense form.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">musted</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Have to is present tense.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">have to</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! <strong>had to</strong> is the past form of both have to and must.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">had to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Must has no past tense form.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">musted</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Have to is present tense.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">have
+                                to</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q3 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">3. Science students <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> attend the language class next semester.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">3. Science students <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> attend the
+                            language class next semester.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! To express no future obligation, we use <strong>won\'t have to</strong>.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">won't have to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Didn\'t have to expresses no past obligation.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">didn't have to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Mustn\'t expresses prohibition, not lack of future obligation.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">mustn't</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! To express no future obligation, we use <strong>won\'t have to</strong>.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">won't have to</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Didn\'t have to expresses no past obligation.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">didn't
+                                have to</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Mustn\'t expresses prohibition, not lack of future obligation.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">mustn't</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q4 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">4. You <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> copy material from the internet for your paper.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">4. You <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span> copy material
+                            from the internet for your paper.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! <strong>mustn\'t</strong> expresses that something is not permitted or forbidden.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">mustn't</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Don\'t have to means optional, whereas plagiarism is forbidden!')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">don't have to</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Can means something is possible or permitted.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">can</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! <strong>mustn\'t</strong> expresses that something is not permitted or forbidden.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">mustn't</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Don\'t have to means optional, whereas plagiarism is forbidden!')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">don't
+                                have to</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Can means something is possible or permitted.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">can</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
                     </div>
 
                     <!-- Q5 -->
-                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                        <p class="text-xl font-medium text-slate-800 mb-4">5. Travelling without a vaccination <span class="inline-block w-36 border-b-2 border-slate-400 text-center"></span>.</p>
+                    <div
+                        class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-xl font-medium text-slate-800 mb-4">5. Travelling without a vaccination <span
+                                class="inline-block w-36 border-b-2 border-slate-400 text-center"></span>.</p>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="checkAnswer(this, true, 'Correct! Page 141 states that <strong>is prohibited</strong> is a formal phrase expressing that something is forbidden.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent" data-correct="true">is prohibited</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Is permitted means allowed.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">is permitted</button>
-                            <button onclick="checkAnswer(this, false, 'Incorrect. Is necessary changes the intended meaning.')" class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">is necessary</button>
+                            <button
+                                onclick="checkAnswer(this, true, 'Correct! Page 141 states that <strong>is prohibited</strong> is a formal phrase expressing that something is forbidden.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent"
+                                data-correct="true">is prohibited</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Is permitted means allowed.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">is
+                                permitted</button>
+                            <button
+                                onclick="checkAnswer(this, false, 'Incorrect. Is necessary changes the intended meaning.')"
+                                class="px-6 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent">is
+                                necessary</button>
                         </div>
                         <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: GRAMMAR REFERENCE IMAGE PLACEHOLDER -->
+            <div id="tab-image-reference" class="tab-content space-y-6">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Grammar Visual Reference</h3>
+                        <p class="text-lg text-slate-600 font-medium">Visual chart &amp; summary image for quick
+                            reference.</p>
+                    </div>
+                </div>
+
+                <!-- Image Placeholder Container -->
+                <div
+                    class="border-2 border-dashed border-slate-300 rounded-3xl p-8 text-center bg-slate-50/80 hover:bg-slate-100/80 transition-all flex flex-col items-center justify-center min-h-[350px]">
+                    <div class="relative group cursor-pointer inline-block max-w-full" onclick="openImageModal()">
+                        <img id="grammar-reference-img" src="https://i.postimg.cc/pTHt741m/Module-9a-Grammar.png"
+                            alt="Grammar Reference Visual"
+                            class="max-w-full max-h-[550px] rounded-2xl shadow-lg border border-slate-200 hidden group-hover:opacity-95 transition-all group-hover:shadow-2xl"
+                            onload="this.classList.remove('hidden'); this.closest('.group').nextElementSibling.classList.add('hidden'); if(document.getElementById('img-zoom-hint')) document.getElementById('img-zoom-hint').classList.remove('hidden');">
+                        <div id="img-zoom-hint"
+                            class="hidden absolute bottom-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl backdrop-blur flex items-center gap-1.5 shadow-lg pointer-events-none group-hover:scale-105 transition-transform">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                            </svg>
+                            <span>Click to Zoom</span>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-box flex flex-col items-center space-y-4 py-8">
+                        <div
+                            class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center text-3xl shadow-inner">
+                            🖼️
+                        </div>
+                        <div class="max-w-md">
+                            <h4 class="text-xl font-bold text-slate-800 mb-2">Image Reference Placeholder</h4>
+                            <p class="text-sm text-slate-500 mb-4">No reference image added yet. Insert your image URL
+                                in the <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">src=""</code>
+                                attribute of <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-0.5 rounded text-xs font-mono">&lt;img id="grammar-reference-img"&gt;</code>.
+                            </p>
+                            <div
+                                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-mono text-slate-600">
+                                <span class="text-indigo-600 font-semibold">src:</span> <span
+                                    class="text-slate-400 italic">"https://example.com/grammar-chart.png"</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+        <div
+            class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
             <span>Grammar Reference • Modals of Obligation</span>
             <span>Page 141 Guide</span>
         </div>
@@ -485,9 +749,9 @@
             const tabBtns = document.querySelectorAll('.tab-btn');
             tabBtns.forEach(btn => {
                 btn.classList.remove('border-indigo-600', 'text-indigo-700', 'border-amber-600', 'text-amber-600');
-                
-                if(btn.innerText.includes('Quiz')) {
-                    btn.classList.add('border-transparent', 'text-amber-600'); 
+
+                if (btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-amber-600');
                 } else {
                     btn.classList.add('border-transparent', 'text-slate-400');
                     btn.classList.remove('font-bold');
@@ -496,14 +760,16 @@
             });
 
             document.getElementById(tabName).classList.add('active');
-            
+
             const clickedBtn = evt.currentTarget;
             clickedBtn.classList.remove('border-transparent', 'text-slate-400');
             clickedBtn.classList.remove('font-semibold');
             clickedBtn.classList.add('font-bold');
-            
-            if(tabName === 'tab-quiz') {
+
+            if (tabName === 'tab-quiz') {
                 clickedBtn.classList.add('border-amber-600', 'text-amber-700');
+            } else if (tabName === 'tab-image-reference') {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
             } else {
                 clickedBtn.classList.add('border-indigo-600', 'text-indigo-700');
             }
@@ -565,15 +831,15 @@
             const container = btn.closest('.quiz-question');
             const buttons = container.querySelectorAll('button');
             const feedback = container.querySelector('.feedback');
-            
+
             buttons.forEach(b => {
                 b.disabled = true;
                 b.classList.add('opacity-50', 'cursor-not-allowed');
                 b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
             });
-            
+
             btn.classList.remove('opacity-50');
-            
+
             if (isCorrect) {
                 btn.classList.replace('bg-slate-100', 'bg-indigo-600');
                 btn.classList.replace('text-slate-700', 'text-white');
@@ -586,13 +852,188 @@
                 feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
                 feedback.classList.remove('hidden');
                 feedback.classList.add('bg-indigo-50', 'border-indigo-500');
-                
+
                 const correctBtn = container.querySelector('[data-correct="true"]');
                 correctBtn.classList.remove('opacity-50');
                 correctBtn.classList.replace('bg-slate-100', 'bg-indigo-100');
                 correctBtn.classList.add('border-indigo-500', 'text-indigo-800');
             }
         }
+
+        /* Image Modal & Zoom Logic */
+        let currentZoom = 1;
+        let isPanning = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
+        function openImageModal() {
+            const originalImg = document.getElementById('grammar-reference-img');
+            if (!originalImg || !originalImg.src || originalImg.src.trim() === '' || originalImg.classList.contains('hidden')) {
+                return;
+            }
+            const modal = document.getElementById('imageZoomModal');
+            const modalImg = document.getElementById('modalZoomImg');
+            modalImg.src = originalImg.src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            resetZoom();
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageZoomModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            resetZoom();
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'imageZoomModal' || e.target.id === 'modalViewport') {
+                closeImageModal();
+            }
+        }
+
+        function updateZoomTransform() {
+            const modalImg = document.getElementById('modalZoomImg');
+            const zoomText = document.getElementById('zoomLevelText');
+            if (modalImg) {
+                modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+            }
+            if (zoomText) {
+                zoomText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+
+        function zoomIn() {
+            if (currentZoom < 4) {
+                currentZoom = Math.min(4, Math.round((currentZoom + 0.25) * 100) / 100);
+                updateZoomTransform();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom = Math.max(0.5, Math.round((currentZoom - 0.25) * 100) / 100);
+                if (currentZoom <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateZoomTransform();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateZoomTransform();
+        }
+
+        function toggleZoom(e) {
+            if (currentZoom === 1) {
+                currentZoom = 2;
+            } else {
+                currentZoom = 1;
+                translateX = 0;
+                translateY = 0;
+            }
+            updateZoomTransform();
+        }
+
+        function handleWheelZoom(e) {
+            e.preventDefault();
+            if (e.deltaY < 0) {
+                zoomIn();
+            } else {
+                zoomOut();
+            }
+        }
+
+        function startPan(e) {
+            if (currentZoom <= 1) return;
+            isPanning = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+
+            const handleMouseMove = (ev) => {
+                if (!isPanning) return;
+                translateX = ev.clientX - startX;
+                translateY = ev.clientY - startY;
+                updateZoomTransform();
+            };
+
+            const handleMouseUp = () => {
+                isPanning = false;
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mouseup', handleMouseUp);
+            };
+
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('imageZoomModal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    closeImageModal();
+                }
+            }
+        });
     </script>
+
+    <!-- Lightbox Image Zoom Modal -->
+    <div id="imageZoomModal"
+        class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex flex-col items-center justify-center p-2 sm:p-4 select-none"
+        onclick="handleModalBackdropClick(event)">
+        <!-- Toolbar -->
+        <div class="w-full max-w-4xl flex items-center justify-between px-4 py-3 bg-slate-900/90 border border-slate-800 rounded-2xl text-white shadow-2xl mb-2 sm:mb-4 z-10"
+            onclick="event.stopPropagation()">
+            <div class="flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-bold text-indigo-300 flex items-center gap-1.5">
+                    <span>🖼️ Grammar Reference</span>
+                </span>
+                <span class="hidden sm:inline-block text-xs text-slate-400">• Scroll to zoom • Drag to pan</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button onclick="zoomOut()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom Out (-)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                    </svg>
+                </button>
+                <span id="zoomLevelText"
+                    class="px-2.5 py-1 bg-slate-800/80 rounded-lg text-xs font-mono font-bold text-indigo-300 min-w-[52px] text-center">100%</span>
+                <button onclick="zoomIn()"
+                    class="p-2 sm:px-3 sm:py-1.5 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Zoom In (+)">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+                <button onclick="resetZoom()"
+                    class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors hidden sm:inline-flex items-center gap-1"
+                    title="Reset Zoom">
+                    ↺ Reset
+                </button>
+                <button onclick="closeImageModal()"
+                    class="ml-2 p-2 sm:px-3 sm:py-1.5 bg-rose-600/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1"
+                    title="Close (Esc)">
+                    ✕ <span class="hidden sm:inline">Close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Viewport Container -->
+        <div id="modalViewport"
+            class="relative w-full flex-1 max-w-5xl overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-center cursor-grab active:cursor-grabbing"
+            onmousedown="startPan(event)" onwheel="handleWheelZoom(event)" ondblclick="toggleZoom(event)">
+            <img id="modalZoomImg" src="" alt="Grammar Visual Full View"
+                class="max-w-none max-h-[85vh] object-contain transition-transform duration-100 ease-out origin-center pointer-events-none select-none drop-shadow-2xl">
+        </div>
+    </div>
 </body>
+
 </html>
