@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanded Grammar Reference: Module 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Custom Toggle Switch Animation */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #6366f1;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #6366f1;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Expert Grammar Reference Guide
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Passive Voice & Relative Clauses</h1>
+                <p class="mt-4 text-indigo-100 max-w-3xl text-lg font-medium leading-relaxed">
+                    Interactive study notes featuring dynamic tense transformation pills, interactive Active/Passive structure toggle cards, and clause reduction tools.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-passive')">
+                    1. Passive Voice Masterclass (p. 29) 🔄
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-relative')">
+                    2. Relative & Reduced Clauses (p. 32) 🔗
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Comprehensive Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: PASSIVE VOICE (Page 29) -->
+            <div id="tab-passive" class="tab-content active space-y-8">
+                
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Passive Voice Core Concepts</h3>
+                        <p class="text-base text-slate-600 font-medium">Interactive active-to-passive structure switcher and tense converter.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Active/Passive Toggle Switch Card (Inspired by reference image) -->
+                <div class="bg-emerald-50/60 border-2 border-emerald-200 rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                        <span>✨ Interactive Switcher</span>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-4 pr-32">
+                        <h4 class="text-2xl font-extrabold text-slate-900">Active &harr; Passive Voice Switcher</h4>
+                    </div>
+
+                    <!-- Trick Hint Box -->
+                    <div class="bg-white p-4 rounded-2xl border border-emerald-200 shadow-sm mb-6 flex items-start gap-3">
+                        <div class="text-emerald-600 font-bold text-lg mt-0.5">ℹ</div>
+                        <div>
+                            <p class="text-xs text-slate-600 font-medium">Structural Rule:</p>
+                            <p class="text-emerald-900 font-bold text-sm">Active focuses on the <em>Doer</em>. Passive switches focus to the <em>Receiver / Object</em> using <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-800 font-mono">BE + V3</span>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Switchable Sentence Cards -->
+                    <div class="space-y-4" id="toggleCardContainer">
+                        
+                        <!-- Sentence 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                                <div class="text-base sm:text-lg font-bold text-slate-800" id="sentenceText1">
+                                    "Our manager <span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">wrote</span> this interesting report."
+                                </div>
+                                <!-- Toggle Switch UI -->
+                                <div class="flex items-center gap-3 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Toggle Voice</span>
+                                    <label for="voiceToggle1" class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" id="voiceToggle1" class="sr-only" onchange="toggleVoice(1)">
+                                        <div class="w-12 h-6 bg-slate-300 rounded-full transition-colors p-1 shadow-inner flex items-center" id="toggleBg1">
+                                            <div class="w-4 h-4 bg-white rounded-full shadow-md transform transition-transform" id="toggleDot1"></div>
+                                        </div>
+                                    </label>
+                                    <span class="text-xs font-bold text-indigo-600 min-w-[50px]" id="toggleBadge1">Active</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 italic" id="sentenceDesc1">Current state: Active Voice (Focuses on the manager who performed the action).</p>
+                        </div>
+
+                        <!-- Sentence 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                                <div class="text-base sm:text-lg font-bold text-slate-800" id="sentenceText2">
+                                    "Asian countries <span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">grow</span> the majority of the world's rice."
+                                </div>
+                                <!-- Toggle Switch UI -->
+                                <div class="flex items-center gap-3 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Toggle Voice</span>
+                                    <label for="voiceToggle2" class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" id="voiceToggle2" class="sr-only" onchange="toggleVoice(2)">
+                                        <div class="w-12 h-6 bg-slate-300 rounded-full transition-colors p-1 shadow-inner flex items-center" id="toggleBg2">
+                                            <div class="w-4 h-4 bg-white rounded-full shadow-md transform transition-transform" id="toggleDot2"></div>
+                                        </div>
+                                    </label>
+                                    <span class="text-xs font-bold text-indigo-600 min-w-[50px]" id="toggleBadge2">Active</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 italic" id="sentenceDesc2">Current state: Active Voice (Focuses on Asian countries as doers).</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Interactive Passive Tense Transformer -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Interactive Passive Tense Converter</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on any tense pill below to inspect how the auxiliary verb <em>be</em> and main verb transform into the passive form:
+                    </p>
+
+                    <!-- Tense Selector Pills -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="passiveTensePillGroup">
+                        <button onclick="selectPassiveTense('pres-simple')" id="ptpill-pres-simple" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">Present Simple</button>
+                        <button onclick="selectPassiveTense('past-simple')" id="ptpill-past-simple" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Simple</button>
+                        <button onclick="selectPassiveTense('pres-cont')" id="ptpill-pres-cont" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Present Continuous</button>
+                        <button onclick="selectPassiveTense('past-cont')" id="ptpill-past-cont" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Continuous</button>
+                        <button onclick="selectPassiveTense('pres-perf')" id="ptpill-pres-perf" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Present Perfect</button>
+                        <button onclick="selectPassiveTense('past-perf')" id="ptpill-past-perf" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Perfect</button>
+                        <button onclick="selectPassiveTense('future-simple')" id="ptpill-future-simple" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Future Simple</button>
+                        <button onclick="selectPassiveTense('modal')" id="ptpill-modal" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Modal Verb</button>
+                    </div>
+
+                    <!-- Dynamic Tense Display Card -->
+                    <div id="passiveTenseDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- 3 Core Uses Deep Dive -->
+                <h4 class="text-xl font-bold text-slate-900 pt-2 border-t border-slate-200">Primary Reasons to Use the Passive Voice</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1 -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                                <h5 class="font-bold text-slate-900 text-lg">Changing Focus</h5>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Emphasizes the topic or result over the person responsible. Sentence-initial position gives primary prominence to the subject.
+                            </p>
+                            <div class="bg-indigo-50/80 p-3 rounded-xl border border-indigo-100 space-y-2 text-xs">
+                                <p class="text-slate-800 font-medium">"The majority of rice <strong class="text-indigo-700">is grown</strong> in Asia."</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-indigo-600 font-semibold">
+                            ✔ Highlights topic/product over producer.
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                                <h5 class="font-bold text-slate-900 text-lg">Unknown/Irrelevant Agent</h5>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Used when the doer is unknown, obvious from context, or unimportant to mention.
+                            </p>
+                            <div class="bg-purple-50/80 p-3 rounded-xl border border-purple-100 space-y-2 text-xs">
+                                <p class="text-slate-800 font-medium">"This window <strong class="text-purple-700">has been left</strong> open."</p>
+                                <p class="text-slate-800 font-medium mt-1">"The patient <strong class="text-purple-700">was asked</strong> to fill out a form."</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-purple-600 font-semibold">
+                            ✔ Avoids unnecessary agent naming.
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-8 h-8 bg-emerald-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                                <h5 class="font-bold text-slate-900 text-lg">Academic Writing & IELTS</h5>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Standard in scientific reports and IELTS Task 1 process diagrams for objective step-by-step descriptions.
+                            </p>
+                            <div class="bg-emerald-50/80 p-3 rounded-xl border border-emerald-100 space-y-2 text-xs">
+                                <p class="text-slate-800 font-medium">"A long pipe <strong class="text-emerald-700">is connected</strong> to the turbine."</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-emerald-600 font-semibold">
+                            ✔ Maintains objective formal academic tone.
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Band 8.0+ Impersonal Passive Masterclass -->
+                <div class="bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-emerald-500/10 border-2 border-purple-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Academic Passive Mastery
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Impersonal & Reporting Passive Structures</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg border border-purple-200">IELTS Writing Task 2 Essential</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        To maintain an objective, academic stance without overusing personal pronouns (<em>"I think"</em>, <em>"People believe"</em>), high-band essays use two sophisticated impersonal passive constructions:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-700 block">Pattern 1: "It is [thought/believed/argued] that..."</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "<strong class="text-purple-700">It is widely acknowledged that</strong> early childhood education plays a pivotal role in cognitive development."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">
+                                Common verbs: <em>asserted, maintained, estimated, recognized, hypothesized</em>.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Pattern 2: "[Subject] is [said/thought] to [have + V3]..."</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "Deforestation <strong class="text-indigo-700">is estimated to have contributed</strong> to over 15% of global greenhouse emissions."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">
+                                Use <em>"to + base verb"</em> for present/general claims, or <em>"to have + past participle"</em> for completed historical actions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: RELATIVE CLAUSES (Page 32) -->
+            <div id="tab-relative" class="tab-content space-y-8">
+                
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Relative Clauses & Clause Reduction Guide</h3>
+                        <p class="text-base text-slate-600 font-medium">Interactive clause type comparison pills and strikethrough clause reduction tool.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Defining vs Non-Defining Comparison Switcher -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Interactive Relative Clause Explorer</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on the clause types below to inspect comma rules, pronoun substitution permissions, and sentence essentiality:
+                    </p>
+
+                    <!-- Interactive Pills Header -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="relativePillGroup">
+                        <button onclick="selectRelativeType('defining')" id="rpill-defining" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">1. Defining Relative Clause</button>
+                        <button onclick="selectRelativeType('non-defining')" id="rpill-non-defining" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">2. Non-Defining Relative Clause</button>
+                    </div>
+
+                    <!-- Dynamic Relative Clause Display Card -->
+                    <div id="relativeDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- Interactive Reduced Relative Clauses Switcher (Photo-inspired Toggle Card) -->
+                <div class="bg-emerald-50/60 border-2 border-emerald-200 rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                        <span>CAN BE REDUCED! ✓</span>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-4 pr-36">
+                        <h4 class="text-2xl font-extrabold text-slate-900">3. Reduced Relative Clauses Switcher</h4>
+                    </div>
+
+                    <!-- Trick Hint Box -->
+                    <div class="bg-white p-4 rounded-2xl border border-emerald-200 shadow-sm mb-6 flex items-start gap-3">
+                        <div class="text-emerald-600 font-bold text-lg mt-0.5">ℹ</div>
+                        <div>
+                            <p class="text-xs text-slate-600 font-medium">Academic Conciseness Trick:</p>
+                            <p class="text-emerald-900 font-bold text-sm">Omit relative pronouns (<span class="bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-800 font-mono">who/which/that</span>) + auxiliary <span class="bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-800 font-mono">BE</span> or convert to infinitives to streamline academic sentences.</p>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Switchable Sentence Cards -->
+                    <div class="space-y-4" id="reductionToggleContainer">
+                        
+                        <!-- Sentence 1: Drop BE + Adj -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                                <div class="text-base sm:text-lg font-bold text-slate-800" id="redSentenceText1">
+                                    "The director is the person <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">who is</span> able to make that decision."
+                                </div>
+                                <!-- Toggle Switch UI -->
+                                <div class="flex items-center gap-3 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 shrink-0">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Toggle Reduction</span>
+                                    <label for="redToggle1" class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" id="redToggle1" class="sr-only" onchange="toggleReduction(1)">
+                                        <div class="w-12 h-6 bg-slate-300 rounded-full transition-colors p-1 shadow-inner flex items-center" id="redToggleBg1">
+                                            <div class="w-4 h-4 bg-white rounded-full shadow-md transform transition-transform" id="redToggleDot1"></div>
+                                        </div>
+                                    </label>
+                                    <span class="text-xs font-bold text-indigo-600 min-w-[60px]" id="redToggleBadge1">Full</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 italic" id="redSentenceDesc1">Method 1: Full clause with relative pronoun 'who' and auxiliary verb 'is'.</p>
+                        </div>
+
+                        <!-- Sentence 2: Participle Phrase -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                                <div class="text-base sm:text-lg font-bold text-slate-800" id="redSentenceText2">
+                                    "The reason <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">which was</span> given for the closure was electricity costs."
+                                </div>
+                                <!-- Toggle Switch UI -->
+                                <div class="flex items-center gap-3 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 shrink-0">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Toggle Reduction</span>
+                                    <label for="redToggle2" class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" id="redToggle2" class="sr-only" onchange="toggleReduction(2)">
+                                        <div class="w-12 h-6 bg-slate-300 rounded-full transition-colors p-1 shadow-inner flex items-center" id="redToggleBg2">
+                                            <div class="w-4 h-4 bg-white rounded-full shadow-md transform transition-transform" id="redToggleDot2"></div>
+                                        </div>
+                                    </label>
+                                    <span class="text-xs font-bold text-indigo-600 min-w-[60px]" id="redToggleBadge2">Full</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 italic" id="redSentenceDesc2">Method 2: Full passive relative clause ('which was given').</p>
+                        </div>
+
+                        <!-- Sentence 3: Infinitive Replacement -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                                <div class="text-base sm:text-lg font-bold text-slate-800" id="redSentenceText3">
+                                    "The person <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">who you should talk to</span> is the librarian."
+                                </div>
+                                <!-- Toggle Switch UI -->
+                                <div class="flex items-center gap-3 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200 shrink-0">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Toggle Reduction</span>
+                                    <label for="redToggle3" class="flex items-center cursor-pointer relative">
+                                        <input type="checkbox" id="redToggle3" class="sr-only" onchange="toggleReduction(3)">
+                                        <div class="w-12 h-6 bg-slate-300 rounded-full transition-colors p-1 shadow-inner flex items-center" id="redToggleBg3">
+                                            <div class="w-4 h-4 bg-white rounded-full shadow-md transform transition-transform" id="redToggleDot3"></div>
+                                        </div>
+                                    </label>
+                                    <span class="text-xs font-bold text-indigo-600 min-w-[60px]" id="redToggleBadge3">Full</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-500 italic" id="redSentenceDesc3">Method 3: Full modal relative clause ('who you should talk to').</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Band 8.0+ Preposition Fronting & Relative Clause Masterclass -->
+                <div class="bg-gradient-to-r from-indigo-500/10 via-teal-500/10 to-emerald-500/10 border-2 border-indigo-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-indigo-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Stylistic Precision
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Preposition Fronting in Relative Clauses</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200">Writing Task 2 & Reading Analysis</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Leaving prepositions dangling at the end of a clause (<em>"the topic which we talked about"</em>) is common in informal speech, but placing the preposition <strong>before the relative pronoun</strong> (<em>"the topic about which we spoke"</em>) produces an elevated academic register:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-600 block">Degree / Extent</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "<strong class="text-indigo-700">The degree to which</strong> automation impacts employment remains disputed."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Replaces: "The degree that automation impacts employment to..."</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-600 block">Condition / Basis</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "The fundamental pillars <strong class="text-indigo-700">upon which</strong> democratic societies are established."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Replaces: "...pillars that societies are established on."</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-600 block">Method / Medium</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "A mechanism <strong class="text-indigo-700">by means of which</strong> heat energy is recycled."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Replaces: "...mechanism that energy is recycled by."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Module 2 Mastery Check</h3>
+                    <p class="text-teal-700 font-medium">Test your understanding of passive voice conversions, relative clause rules, and reduced structures.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            1. In IELTS Academic Task 1 writing (describing a process), why is the passive voice preferred over active voice?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Active sentences are often shorter than passive sentences. The passive voice is used because the agent is irrelevant.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">To keep sentences as short as possible</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Process descriptions focus on objective steps and results rather than the individuals executing them.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Because the steps and processes are important, not who performs them</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. The passive voice always requires past participle (V3) verb forms.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">To avoid using past participle verb forms</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            2. Convert to Present Perfect Passive: "Researchers have discovered a new cure." &rarr; "A new cure <span class="inline-block w-36 border-b-2 border-slate-400"></span> by researchers."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'was discovered\' is Past Simple Passive.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">was discovered</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Present Perfect Passive formula is has/have + been + past participle (has been discovered).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">has been discovered</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'is discovered\' is Present Simple Passive.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">is discovered</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            3. Which sentence contains a correctly punctuated NON-DEFINING relative clause?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Non-defining clauses MUST be enclosed in commas, and cannot use \'that\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">The project that cost more than predicted will finish today.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Non-defining relative clauses must be surrounded by commas and use \'which\' for things (not \'that\').')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">The project, which has cost more than predicted, will finish this week.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. You cannot use \'that\' in a non-defining relative clause enclosed by commas.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">The project, that has cost more than predicted, will finish this week.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            4. Can you replace <strong>who</strong> or <strong>which</strong> with <strong>that</strong> in DEFINING relative clauses?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! In DEFINING relative clauses (no commas), \'that\' can replace both who and which.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Yes, in defining clauses 'that' is fully permitted.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'that\' IS allowed in defining clauses, but forbidden in non-defining clauses.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">No, 'that' can never replace relative pronouns.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            5. What is the correct REDUCED form of: "The director is the person <em>who is able to make that decision</em>"?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! We reduce the clause by removing the relative pronoun (who) and auxiliary verb (is).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">"The director is the person able to make that decision."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Adding \'being\' creates an ungrammatical reduced clause here.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The director is the person being able to make that decision."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Keeping \'who\' without a verb leaves the clause incomplete.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The director is the person who able to make that decision."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            6. Choose the reduced infinitive sentence for: "The person <em>who you should speak to</em> is the librarian."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'speaking\' is a present participle, but this sentence requires an infinitive of obligation/duty.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The person speaking to is the librarian."</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! We replace relative clauses expressing duty/advice with an infinitive phrase (to talk to / to speak to).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">"The person to speak to is the librarian."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'spoken\' is a past participle, which changes the active duty to a passive action.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The person spoken to is the librarian."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Expert Grammar Reference Guide</span>
+            <span>Module 2: Passive Voice & Relative Clauses</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            document.getElementById(tabName).classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+            clickedBtn.classList.remove('font-semibold');
+            clickedBtn.classList.add('font-bold');
+            
+            if(tabName === 'tab-quiz') {
+                clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+            } else {
+                clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+            }
+        }
+
+        /* Active / Passive Toggle Switch Logic */
+        const voiceData = {
+            1: {
+                active: '"Our manager <span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">wrote</span> this interesting report."',
+                passive: '"This interesting report <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">was written</span> by our manager."',
+                activeDesc: 'Current state: Active Voice (Focuses on the manager who performed the action).',
+                passiveDesc: 'Current state: Passive Voice (Focuses on the report as the new subject/receiver).'
+            },
+            2: {
+                active: '"Asian countries <span class="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold">grow</span> the majority of the world\'s rice."',
+                passive: '"The majority of the world\'s rice <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">is grown</span> in Asian countries."',
+                activeDesc: 'Current state: Active Voice (Focuses on Asian countries as doers).',
+                passiveDesc: 'Current state: Passive Voice (Focuses on rice as the new subject/result).'
+            }
+        };
+
+        function toggleVoice(id) {
+            const checkbox = document.getElementById(`voiceToggle${id}`);
+            const textEl = document.getElementById(`sentenceText${id}`);
+            const descEl = document.getElementById(`sentenceDesc${id}`);
+            const badgeEl = document.getElementById(`toggleBadge${id}`);
+            const bgEl = document.getElementById(`toggleBg${id}`);
+            const dotEl = document.getElementById(`toggleDot${id}`);
+
+            const data = voiceData[id];
+
+            if (checkbox.checked) {
+                textEl.innerHTML = data.passive;
+                descEl.innerText = data.passiveDesc;
+                badgeEl.innerText = "Passive";
+                badgeEl.className = "text-xs font-bold text-emerald-600 min-w-[50px]";
+                bgEl.style.backgroundColor = "#10b981"; // Emerald
+                dotEl.style.transform = "translateX(24px)";
+            } else {
+                textEl.innerHTML = data.active;
+                descEl.innerText = data.activeDesc;
+                badgeEl.innerText = "Active";
+                badgeEl.className = "text-xs font-bold text-indigo-600 min-w-[50px]";
+                bgEl.style.backgroundColor = "#cbd5e1"; // Slate
+                dotEl.style.transform = "translateX(0px)";
+            }
+        }
+
+        /* Reduced Relative Clauses Toggle Logic */
+        const reductionToggleData = {
+            1: {
+                full: '"The director is the person <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">who is</span> able to make that decision."',
+                reduced: '"The director is the person <span class="bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold underline">able to make that decision</span>."',
+                fullDesc: "Method 1: Full clause with relative pronoun 'who' and auxiliary verb 'is'.",
+                reducedDesc: "Method 1 Reduced: Relative pronoun 'who' and verb 'is' omitted!"
+            },
+            2: {
+                full: '"The reason <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">which was</span> given for the closure was electricity costs."',
+                reduced: '"The reason <span class="bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold underline">given for the closure</span> was electricity costs."',
+                fullDesc: "Method 2: Full passive clause with pronoun 'which' and auxiliary 'was'.",
+                reducedDesc: "Method 2 Reduced: Reduced to past participle phrase ('given for the closure')."
+            },
+            3: {
+                full: '"The person <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold">who you should talk to</span> is the librarian."',
+                reduced: '"The person <span class="bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold underline">to speak to</span> is the librarian."',
+                fullDesc: "Method 3: Full relative clause with modal duty ('who you should talk to').",
+                reducedDesc: "Method 3 Reduced: Replaced with infinitive phrase ('to speak to')."
+            }
+        };
+
+        function toggleReduction(id) {
+            const checkbox = document.getElementById(`redToggle${id}`);
+            const textEl = document.getElementById(`redSentenceText${id}`);
+            const descEl = document.getElementById(`redSentenceDesc${id}`);
+            const badgeEl = document.getElementById(`redToggleBadge${id}`);
+            const bgEl = document.getElementById(`redToggleBg${id}`);
+            const dotEl = document.getElementById(`redToggleDot${id}`);
+
+            const data = reductionToggleData[id];
+
+            if (checkbox.checked) {
+                textEl.innerHTML = data.reduced;
+                descEl.innerText = data.reducedDesc;
+                badgeEl.innerText = "Reduced";
+                badgeEl.className = "text-xs font-bold text-emerald-600 min-w-[60px]";
+                bgEl.style.backgroundColor = "#10b981"; // Emerald
+                dotEl.style.transform = "translateX(24px)";
+            } else {
+                textEl.innerHTML = data.full;
+                descEl.innerText = data.fullDesc;
+                badgeEl.innerText = "Full";
+                badgeEl.className = "text-xs font-bold text-indigo-600 min-w-[60px]";
+                bgEl.style.backgroundColor = "#cbd5e1"; // Slate
+                dotEl.style.transform = "translateX(0px)";
+            }
+        }
+
+        /* Passive Tense Converter Data */
+        const passiveTenseData = {
+            'pres-simple': {
+                title: "Present Simple Passive",
+                active: "They write the report.",
+                passive: "The report is written.",
+                formula: "am / is / are + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'is'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Used for regular processes, habits, and permanent scientific facts."
+            },
+            'past-simple': {
+                title: "Past Simple Passive",
+                active: "Our manager wrote the report.",
+                passive: "The report was written by our manager.",
+                formula: "was / were + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'was'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" },
+                    { text: "Agent: 'by our manager'", class: "bg-slate-200 text-slate-800" }
+                ],
+                explanation: "Used for completed past events where the action or result is emphasized over the doer."
+            },
+            'pres-cont': {
+                title: "Present Continuous Passive",
+                active: "They are writing the report right now.",
+                passive: "The report is being written right now.",
+                formula: "am / is / are + being + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'is being'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Emphasizes an ongoing action currently in progress."
+            },
+            'past-cont': {
+                title: "Past Continuous Passive",
+                active: "They were writing the report when I called.",
+                passive: "The report was being written when I called.",
+                formula: "was / were + being + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'was being'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Describes an ongoing action in progress at a specific moment in the past."
+            },
+            'pres-perf': {
+                title: "Present Perfect Passive",
+                active: "The team has written the report.",
+                passive: "The report has been written.",
+                formula: "has / have + been + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'has been'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Connects a recently completed action or result to the present moment."
+            },
+            'past-perf': {
+                title: "Past Perfect Passive",
+                active: "They had written the report before the deadline.",
+                passive: "The report had been written before the deadline.",
+                formula: "had + been + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'had been'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Shows an action completed before another past event or point in time."
+            },
+            'future-simple': {
+                title: "Future Simple Passive",
+                active: "The author will write the report tomorrow.",
+                passive: "The report will be written tomorrow.",
+                formula: "will + be + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Auxiliary BE: 'will be'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Used to predict or state future actions where focus is on the outcome."
+            },
+            'modal': {
+                title: "Modal Verb Passive",
+                active: "You should write the report immediately.",
+                passive: "The report should be written immediately.",
+                formula: "modal verb + be + Past Participle (V3)",
+                pills: [
+                    { text: "Subject (Object): 'The report'", class: "bg-emerald-100 text-emerald-900" },
+                    { text: "Modal + BE: 'should be'", class: "bg-indigo-600 text-white font-bold" },
+                    { text: "Past Participle V3: 'written'", class: "bg-indigo-900 text-indigo-100 font-bold" }
+                ],
+                explanation: "Combines modal meanings (advice, obligation, possibility) with passive focus."
+            }
+        };
+
+        function selectPassiveTense(tenseKey) {
+            const buttons = document.querySelectorAll('#passiveTensePillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`ptpill-${tenseKey}`);
+            if (activeBtn) {
+                activeBtn.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = passiveTenseData[tenseKey];
+            const card = document.getElementById('passiveTenseDisplayCard');
+
+            card.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h5 class="text-lg font-extrabold text-indigo-950">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-200 text-indigo-900 rounded-full text-xs font-mono font-bold">${data.formula}</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 text-xs font-medium">
+                    <div class="bg-white p-3 rounded-xl border border-slate-200">
+                        <span class="text-slate-400 font-bold uppercase block mb-1">Active Input</span>
+                        <p class="text-slate-800">"${data.active}"</p>
+                    </div>
+                    <div class="bg-indigo-100/70 p-3 rounded-xl border border-indigo-200">
+                        <span class="text-indigo-600 font-bold uppercase block mb-1">Passive Output</span>
+                        <p class="text-indigo-950 font-bold">"${data.passive}"</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    ${data.pills.map(p => `<span class="px-3 py-1 rounded-lg text-xs font-medium ${p.class}">${p.text}</span>`).join('')}
+                </div>
+                <p class="text-xs text-indigo-900/80 font-medium italic">💡 ${data.explanation}</p>
+            `;
+        }
+
+        /* Relative Clause Comparison Switcher Data */
+        const relativeData = {
+            defining: {
+                title: "1. Defining Relative Clause (Essential Detail)",
+                desc: "Provides critical identifying information. The sentence will become incomplete or lose its intended meaning if removed.",
+                pills: [
+                    { text: "Commas: FORBIDDEN ✗", class: "bg-rose-100 text-rose-800 border-rose-300 font-bold" },
+                    { text: "'That' Substitution: PERMITTED ✓", class: "bg-emerald-100 text-emerald-800 border-emerald-300 font-bold" },
+                    { text: "Clause Removable: NO ✗", class: "bg-rose-100 text-rose-800 border-rose-300 font-bold" }
+                ],
+                examples: [
+                    "This is the book <strong class='text-indigo-700 underline'>which / that is the most useful for your essay</strong>.",
+                    "Susan Jones is the person <strong class='text-indigo-700 underline'>who / that would be suitable for this position</strong>."
+                ],
+                note: "Notice that NO commas enclose the relative clause. You can freely use 'that' instead of 'who' or 'which'."
+            },
+            'non-defining': {
+                title: "2. Non-Defining Relative Clause (Extra Background Info)",
+                desc: "Adds extra, non-essential details. The noun is already fully identified, so deleting the clause leaves a complete sentence.",
+                pills: [
+                    { text: "Commas: MANDATORY ✓", class: "bg-emerald-100 text-emerald-800 border-emerald-300 font-bold" },
+                    { text: "'That' Substitution: FORBIDDEN ✗", class: "bg-rose-100 text-rose-800 border-rose-300 font-bold" },
+                    { text: "Clause Removable: YES ✓", class: "bg-emerald-100 text-emerald-800 border-emerald-300 font-bold" }
+                ],
+                examples: [
+                    "The project<strong class='text-purple-700'>, which has cost more than predicted,</strong> will finish this week.",
+                    "Your final grades<strong class='text-purple-700'>, which were agreed by two tutors,</strong> are available on the intranet."
+                ],
+                note: "Notice the mandatory commas around the clause. Replacing 'which' with 'that' here is ungrammatical!"
+            }
+        };
+
+        function selectRelativeType(typeKey) {
+            const buttons = document.querySelectorAll('#relativePillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`rpill-${typeKey}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = relativeData[typeKey];
+            const card = document.getElementById('relativeDisplayCard');
+
+            card.innerHTML = `
+                <h5 class="text-base font-extrabold text-indigo-950 mb-1">${data.title}</h5>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">${data.desc}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    ${data.pills.map(p => `<span class="px-3 py-1.5 rounded-xl border text-xs ${p.class}">${p.text}</span>`).join('')}
+                </div>
+                <div class="space-y-2 mb-4">
+                    ${data.examples.map(ex => `<div class="bg-white p-3 rounded-xl border border-indigo-100 text-xs text-slate-800">${ex}</div>`).join('')}
+                </div>
+                <div class="p-3 bg-white/80 rounded-xl text-xs text-indigo-900 font-semibold border border-indigo-200">
+                    💡 ${data.note}
+                </div>
+            `;
+        }
+
+        /* Reduced Relative Clause Data */
+        const reductionData = {
+            'be-adj': {
+                title: "Method 1: Omitting Relative Pronoun + Verb 'BE'",
+                desc: "When a relative clause contains 'be' followed by an adjective, adverb, or prepositional phrase, drop both the relative pronoun and 'be'.",
+                full: "The director is the person <span class='line-through text-rose-400 font-bold px-1 bg-slate-900 rounded'>who is</span> able to make that decision.",
+                reduced: "The director is the person <strong class='text-emerald-400 font-bold'>able to make that decision</strong>.",
+                pill: "Drop: Pronoun + 'BE'",
+                rule: "Result: An adjective phrase modifying 'the person'."
+            },
+            'participle': {
+                title: "Method 2: Participle Phrases (-ing / V3)",
+                desc: "For passive forms, drop the pronoun + 'be' before the past participle (V3). For active verbs, drop the pronoun and change the main verb to the -ing present participle.",
+                full: "The reason <span class='line-through text-rose-400 font-bold px-1 bg-slate-900 rounded'>which was</span> given for the factory closure was rising electricity costs.",
+                reduced: "The reason <strong class='text-emerald-400 font-bold'>given for the factory closure</strong> was rising electricity costs.",
+                pill: "Drop: Pronoun + 'BE' before Past Participle",
+                rule: "Result: A concise reduced participle clause."
+            },
+            'infinitive': {
+                title: "Method 3: Infinitive Replacement (to + verb)",
+                desc: "Replace relative clauses expressing obligation, advice, purpose, or following ordinal words (e.g. 'the first', 'the only') with an infinitive phrase.",
+                full: "The person <span class='line-through text-rose-400 font-bold px-1 bg-slate-900 rounded'>who you should talk</span> to is the librarian.",
+                reduced: "The person <strong class='text-emerald-400 font-bold'>to talk to</strong> is the librarian.",
+                pill: "Replace: Clause &rarr; 'to + verb'",
+                rule: "Result: An infinitive phrase replacing modal duty/advice."
+            }
+        };
+
+        function selectReductionMethod(methodKey) {
+            const buttons = document.querySelectorAll('#reductionPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700";
+            });
+
+            const activeBtn = document.getElementById(`rdpill-${methodKey}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-500 text-white shadow-md";
+            }
+
+            const data = reductionData[methodKey];
+            const card = document.getElementById('reductionDisplayCard');
+
+            card.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <h5 class="text-base font-extrabold text-white">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-500/30 text-indigo-300 border border-indigo-400/30 rounded-full text-xs font-bold">${data.pill}</span>
+                </div>
+                <p class="text-xs text-slate-300 mb-4 leading-relaxed">${data.desc}</p>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-rose-400 font-bold uppercase block text-[10px] mb-1">Full Relative Clause (With Striking Removal)</span>
+                        <p class="text-slate-300">${data.full}</p>
+                    </div>
+                    <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 text-xs">
+                        <span class="text-emerald-400 font-bold uppercase block text-[10px] mb-1">Reduced Concise Form</span>
+                        <p class="text-white font-medium">${data.reduced}</p>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-indigo-300 italic font-semibold">💡 ${data.rule}</p>
+            `;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                correctBtn.classList.remove('opacity-50');
+                correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                correctBtn.classList.add('border-teal-500', 'text-teal-800');
+            }
+        }
+
+        // Initialize default view
+        window.onload = function() {
+            selectPassiveTense('pres-simple');
+            selectRelativeType('defining');
+        };
+    </script>
+</body>
+</html>

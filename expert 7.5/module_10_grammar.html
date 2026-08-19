@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Module 10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Toggle switch custom styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #6366f1;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #6366f1;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Module 10 Reference Masterclass
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Unreal Conditionals & Past Modals</h1>
+                <p class="mt-4 text-indigo-100 max-w-3xl text-lg font-medium leading-relaxed">
+                    Expanded study notes covering Third Conditionals, past vs. present hypothetical expressions (<em>wish, if only, suppose, what if</em>) (p. 157), interactive structure switchers, and past modal verbs (p. 160)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-unreal')">
+                    1. Unreal Conditionals & Wish (p. 157) 💫
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-pastmodals')">
+                    2. Past Modal Verbs (p. 160) ⏳
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: UNREAL CONDITIONALS, WISH & IF ONLY (Page 157) -->
+            <div id="tab-unreal" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Hypotheticals, Regrets & Precautionary Expressions</h3>
+                        <p class="text-base text-slate-600 font-medium">Structure Third Conditionals, past vs. present hypothetical states, <em>in case</em> precautions, and <em>it's time</em> imperatives.</p>
+                    </div>
+                </div>
+
+                <!-- Fact vs. Hypothetical Truth Matrix Banner -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">💡 Understanding the "Hypothetical Reality" Concept</h4>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+                        Unreal conditionals and wish structures express the <strong>opposite of actual historical reality</strong>. Compare what was said against the true facts:
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-medium">
+                        <div class="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-2">
+                            <span class="text-purple-400 font-bold uppercase tracking-wider block">Hypothetical Statement (Unreal)</span>
+                            <p class="text-white text-sm font-bold">"If I had taken more time, I would have continued my education."</p>
+                            <p class="text-purple-300 font-bold">"If I hadn't studied so hard, I wouldn't have passed the test."</p>
+                        </div>
+                        <div class="bg-slate-800/90 p-4 rounded-2xl border border-slate-700 space-y-2">
+                            <span class="text-emerald-400 font-bold uppercase tracking-wider block">Real-World Fact (What Actually Happened)</span>
+                            <p class="text-slate-300 text-sm">❌ Fact: The person <strong class="text-rose-400">did not take enough time</strong> and <strong class="text-rose-400">did not continue</strong> education.</p>
+                            <p class="text-slate-300 text-sm">✅ Fact: The person <strong class="text-emerald-400">studied hard</strong> and <strong class="text-emerald-400">successfully passed</strong> the test!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Switcher Card: Present vs. Past Hypotheticals -->
+                <div class="border-2 border-emerald-200 rounded-3xl bg-emerald-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-emerald-50/80 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-emerald-950 flex items-center gap-2">
+                            <span>Interactive Hypothetical Time-Frame Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-emerald-200 text-emerald-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE TRANSFORMED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-emerald-100 rounded-full text-emerald-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Grammar Rule Pattern</p>
+                                <p class="text-xs sm:text-sm font-bold text-emerald-900">
+                                    Toggle the switches below to convert between <span class="text-indigo-600">Present Hypotheticals (+ Past Simple)</span> and <span class="text-purple-600">Past Regrets (+ Past Perfect)</span> across various hypothetical expressions!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 1: Third Conditional Switcher -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="unrealText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "If I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">had taken</span> more time, I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">would have continued</span> my education."
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                <span id="unrealStatus1" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">THIRD CONDITIONAL (PAST REGRET: DID NOT TAKE TIME)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE NEGATIVE FORM</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleUnrealCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Wish & If Only Switcher -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="unrealText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "I wish / If only I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">had</span> more money."
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                <span id="unrealStatus2" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">HYPOTHETICAL PRESENT (+ PAST SIMPLE)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE PAST REGRET</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleUnrealCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Suppose & What If Switcher -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="unrealText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "Suppose / What if I <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">’d gone</span> home earlier?"
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                <span id="unrealStatus3" class="text-xs font-bold text-purple-700 uppercase tracking-wider">HYPOTHETICAL PAST (+ PAST PERFECT)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE PRESENT STATE</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleUnrealCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: In Case vs It's Time -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="unrealText4" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "Take an umbrella <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">in case</span> it rains."
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                <span id="unrealStatus4" class="text-xs font-bold text-emerald-700 uppercase tracking-wider">IN CASE (PRECAUTION / POSSIBLY TRUE)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE IT'S TIME</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleUnrealCard(4, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Interactive Expression & Formula Explorer -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Interactive Expression Explorer</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on any expression pill below to view its exact formula, time-frame usage, and textbook examples:
+                    </p>
+
+                    <!-- Selector Pills -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="expressionPillGroup">
+                        <button onclick="selectExpression('3rd-cond')" id="exppill-3rd-cond" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">1. Third Conditional</button>
+                        <button onclick="selectExpression('wish')" id="exppill-wish" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">2. Wish / If Only</button>
+                        <button onclick="selectExpression('suppose')" id="exppill-suppose" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">3. Suppose / What If</button>
+                        <button onclick="selectExpression('incase')" id="exppill-incase" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">4. In Case</button>
+                        <button onclick="selectExpression('itstime')" id="exppill-itstime" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">5. It's Time</button>
+                    </div>
+
+                    <!-- Dynamic Expression Display Card -->
+                    <div id="expressionDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- 4 Formula Cards Breakdown -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-indigo-100 pb-3">
+                            <h4 class="font-bold text-indigo-900 text-lg">Third Conditional Formula</h4>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-mono font-bold">If + Past Perfect, would have + V3</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            Describes hypothetical results of past events that did not happen (or did happen in negative forms).
+                        </p>
+                        <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 text-xs font-medium space-y-1">
+                            <p class="text-slate-800">"If I <strong class="text-indigo-700">had taken</strong> time, I <strong class="text-indigo-700">would have continued</strong> education."</p>
+                            <p class="text-slate-800">"If I <strong class="text-indigo-700">hadn’t studied</strong> hard, I <strong class="text-indigo-700">wouldn’t have passed</strong>."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-purple-100 pb-3">
+                            <h4 class="font-bold text-purple-900 text-lg">Wish / If Only Timeframes</h4>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-mono font-bold">Past Perfect vs. Past Simple</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            Use <strong>Past Perfect</strong> for past regrets; use <strong>Past Simple</strong> for present hypothetical desires.
+                        </p>
+                        <div class="bg-purple-50/70 p-3.5 rounded-xl border border-purple-100 text-xs font-medium space-y-1">
+                            <p class="text-slate-800"><strong class="text-purple-700">Past Regret:</strong> "I wish / If only I <strong class="text-purple-700">had gone</strong> home earlier."</p>
+                            <p class="text-slate-800"><strong class="text-purple-700">Present Desire:</strong> "I wish / If only I <strong class="text-purple-700">had</strong> more money."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-amber-100 pb-3">
+                            <h4 class="font-bold text-amber-900 text-lg">Suppose & What If</h4>
+                            <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-mono font-bold">Suppose / What if + Past</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            Used to invite someone to imagine a hypothetical present or past scenario.
+                        </p>
+                        <div class="bg-amber-50/70 p-3.5 rounded-xl border border-amber-100 text-xs font-medium space-y-1">
+                            <p class="text-slate-800">"Suppose I <strong class="text-amber-700">’d gone</strong> home earlier?" <span class="text-slate-400 text-[10px] block">(Past)</span></p>
+                            <p class="text-slate-800">"What if I <strong class="text-amber-700">had</strong> more money?" <span class="text-slate-400 text-[10px] block">(Present)</span></p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-emerald-100 pb-3">
+                            <h4 class="font-bold text-emerald-900 text-lg">In Case & It's Time</h4>
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-mono font-bold">Precaution & Obligation</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            <em>In case</em> expresses precautions; <em>It's time</em> indicates something should happen now.
+                        </p>
+                        <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-100 text-xs font-medium space-y-1">
+                            <p class="text-slate-800">"Take an umbrella <strong class="text-emerald-700">in case it rains</strong>."</p>
+                            <p class="text-slate-800">"<strong class="text-emerald-700">It’s time they changed</strong> enrolment procedures."</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Band 8.5+ Mixed Conditionals Masterclass -->
+                <div class="bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-emerald-500/10 border-2 border-purple-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.5+ Advanced Mastery
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Mixed Conditionals (Time Bridging)</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg border border-purple-200">Writing Task 2 & Speaking Part 3</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Standard conditionals stick to one timeframe. <strong>Mixed Conditionals</strong> bridge past causes with present consequences (or vice versa):
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-700 block">Type A: Past Cause &rarr; Present Result</span>
+                            <p class="font-mono text-slate-700 text-[11px] bg-slate-50 p-1.5 rounded border border-slate-200">If + Past Perfect, would + Base Verb</p>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "If the municipal government <strong class="text-purple-700 font-bold">had upgraded</strong> the water network in 2015, the city <strong class="text-purple-700 font-bold">would not face</strong> shortages today."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Past inaction causes present problem.</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Type B: Permanent Trait &rarr; Past Consequence</span>
+                            <p class="font-mono text-slate-700 text-[11px] bg-slate-50 p-1.5 rounded border border-slate-200">If + Past Simple, would have + V3</p>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "If that corporation <strong class="text-indigo-700 font-bold">were</strong> more adaptable, it <strong class="text-indigo-700 font-bold">would not have gone</strong> bankrupt during the tech boom."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Ongoing characteristic affected past event.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: PAST MODAL VERBS (Page 160) -->
+            <div id="tab-pastmodals" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Past Modal Verbs Explorer</h3>
+                        <p class="text-base text-slate-600 font-medium">Formed using <em>Modal + have + Past Participle (V3)</em> to express past recommendations, imaginary results, possibilities, and logical deductions.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Past Modal Function Selector -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Interactive Past Modal Selector</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on any past modal pill below to inspect its exact communicative function, meaning, and textbook examples:
+                    </p>
+
+                    <!-- Past Modal Pills -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="pastModalPillGroup">
+                        <button onclick="selectModalType('should')" id="pmpill-should" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">1. should have (Recommendation / Regret)</button>
+                        <button onclick="selectModalType('would')" id="pmpill-would" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">2. would have (Hypothetical Result)</button>
+                        <button onclick="selectModalType('might')" id="pmpill-might" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">3. might have (Possible Result)</button>
+                        <button onclick="selectModalType('could')" id="pmpill-could" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">4. could have (Hypothetical Possibility)</button>
+                        <button onclick="selectModalType('must')" id="pmpill-must" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">5. must have (Logical Certainty)</button>
+                        <button onclick="selectModalType('cant')" id="pmpill-cant" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">6. can't have (Logical Impossibility)</button>
+                    </div>
+
+                    <!-- Dynamic Past Modal Display Card -->
+                    <div id="pastModalDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- Interactive Past Modal Switcher Card (Photo Style) -->
+                <div class="border-2 border-indigo-200 rounded-3xl bg-indigo-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-indigo-50/80 px-6 py-4 border-b border-indigo-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-indigo-950 flex items-center gap-2">
+                            <span>Interactive Past Modal Function Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-indigo-200 text-indigo-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE TRANSFORMED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-indigo-100 rounded-full text-indigo-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Modal Nuance Trick</p>
+                                <p class="text-xs sm:text-sm font-bold text-indigo-900">
+                                    Toggle the switches below to compare how changing the modal auxiliary shifts meaning between <span class="text-indigo-600">Recommendation</span>, <span class="text-purple-600">Hypothetical Result</span>, and <span class="text-emerald-700">Unrealized Possibility</span>!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Modal Switcher Card 1: Recommendation vs Hypothetical Result -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="modalText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "You <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">should have seen</span> that programme."
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                <span id="modalStatus1" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">RECOMMENDATION ABOUT A PAST ACTION (WAS A GOOD IDEA)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE WOULD HAVE</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleModalCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Switcher Card 2: Possibility vs Certainty -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="modalText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "We <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">could have gone</span> to France if we’d had enough money."
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                                <span id="modalStatus2" class="text-xs font-bold text-emerald-700 uppercase tracking-wider">HYPOTHETICAL POSSIBILITY (NOT POSSIBLE DUE TO MONEY)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE MIGHT HAVE</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleModalCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 4 Past Modals Summary Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Recommendation / Advice</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">should have + V3</h5>
+                        <p class="text-xs text-slate-600">"You <strong class="text-indigo-700">should have seen</strong> that programme." <span class="text-slate-400 text-[10px] block">(It was a good idea, but you didn't.)</span></p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-purple-600 block mb-1">Hypothetical Result</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">would have + V3</h5>
+                        <p class="text-xs text-slate-600">"I <strong class="text-purple-700">would have been</strong> happier if my team won." <span class="text-slate-400 text-[10px] block">(I was not happy.)</span></p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 block mb-1">Possible Result</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">might have + V3</h5>
+                        <p class="text-xs text-slate-600">"I <strong class="text-amber-700">might have been</strong> on time if the bus were quicker."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 block mb-1">Unreal Possibility</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">could have + V3</h5>
+                        <p class="text-xs text-slate-600">"We <strong class="text-emerald-700">could have gone</strong> if we had money." <span class="text-slate-400 text-[10px] block">(It was not possible.)</span></p>
+                    </div>
+
+                </div>
+
+                <!-- Band 8.0+ Past Modals of Deduction & Speculation Masterclass -->
+                <div class="bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-indigo-500/10 border-2 border-amber-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-amber-500 text-slate-950 rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Retrospective Analysis
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Past Modals of Deduction & Criticism</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">Speaking Part 3 & Task 2 Argumentation</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Speculating on historical actions or critiquing past policy failures requires precise past modal distinctions:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-white p-3.5 rounded-xl border border-amber-200 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-amber-700 block">must have + V3 (95% Certain)</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "The sudden collapse <strong class="text-amber-700 font-bold">must have been caused</strong> by structural design flaws."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">High-confidence past logical deduction.</p>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-purple-200 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-700 block">couldn't have + V3 (Impossible)</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "The company <strong class="text-purple-700 font-bold">could not have foreseen</strong> the unprecedented global disruption."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Logical impossibility in the past.</p>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-indigo-200 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">should have + V3 (Past Advice)</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "Authorities <strong class="text-indigo-700 font-bold">should have implemented</strong> strict emission quotas earlier."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Unfulfilled obligation or critique.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Module 10 Mastery Check</h3>
+                    <p class="text-teal-700 font-medium">Test your understanding of Third Conditionals, wish/if only tenses, and past modal verbs.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            1. What tense follows <strong>I wish / If only</strong> when expressing a regret about a PAST event?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Past Perfect (e.g. \'I wish I had gone home earlier\') is used for past regrets.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Past Perfect (had + V3)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Past Simple is used for present hypothetical desires (e.g. \'I wish I had more money\').')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Past Simple</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Present Perfect is not used after wish/if only.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Present Perfect</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            2. Complete the Third Conditional: "If I hadn’t studied so hard, I <span class="inline-block w-36 border-b-2 border-slate-400"></span> the test."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Third Conditional result clause uses wouldn\'t have + past participle (wouldn\'t have passed).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">wouldn’t have passed</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Wouldn\'t pass is Second Conditional (present hypothetical).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">wouldn’t pass</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Haven\'t passed is Present Perfect.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">haven’t passed</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            3. Which past modal expresses a recommendation or good idea about a past action that was missed?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'should have + past participle\' expresses a recommendation or regret about a past action.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">should have + past participle</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Would have expresses an imaginary hypothetical result.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">would have + past participle</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Could have expresses hypothetical possibilities.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">could have + past participle</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            4. Complete the precautionary sentence: "Take an umbrella <span class="inline-block w-28 border-b-2 border-slate-400"></span> it rains."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'in case\' means in the chance/event that something happens.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">in case</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'It\'s time\' is followed by a clause indicating something should happen.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">it’s time</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'unless\' means if... not.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">unless</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            5. What does "We could have gone to France if we’d had enough money" mean?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'could have\' indicates a hypothetical past possibility that was not actually possible due to lack of money.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">It was not possible to go to France because they lacked money.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. The sentence states they did not go because they lacked money.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">They went to France successfully.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            6. Complete the imperative obligation sentence: "It’s time they <span class="inline-block w-28 border-b-2 border-slate-400"></span> enrolment procedures."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'It\'s time\' is followed by a subject + Past Simple verb to indicate something should happen now.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">changed</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'It\'s time\' requires a Past Simple verb form when followed by a subject clause.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">change</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'had changed\' is Past Perfect.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">had changed</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Expert Grammar Reference Guide</span>
+            <span>Module 10: Unreal Conditionals & Past Modals</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+                clickedBtn.classList.remove('font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Toggle Unreal / Wish Cards */
+        function toggleUnrealCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`unrealText${cardNum}`);
+            const statusEl = document.getElementById(`unrealStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"If I <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">hadn’t studied</span> so hard, I <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">wouldn’t have passed</span> the test."`;
+                    statusEl.innerText = "THIRD CONDITIONAL (PAST ACTION DID HAPPEN: STUDENT PASSED)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"If I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">had taken</span> more time, I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">would have continued</span> my education."`;
+                    statusEl.innerText = "THIRD CONDITIONAL (PAST REGRET: DID NOT TAKE TIME)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"I wish / If only I <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">’d gone</span> home earlier."`;
+                    statusEl.innerText = "HYPOTHETICAL PAST REGRET (+ PAST PERFECT)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"I wish / If only I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">had</span> more money."`;
+                    statusEl.innerText = "HYPOTHETICAL PRESENT (+ PAST SIMPLE)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Suppose / What if I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">had</span> more money?"`;
+                    statusEl.innerText = "HYPOTHETICAL PRESENT STATE (+ PAST SIMPLE)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"Suppose / What if I <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">’d gone</span> home earlier?"`;
+                    statusEl.innerText = "HYPOTHETICAL PAST (+ PAST PERFECT)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 4) {
+                if (isChecked) {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-amber-600 text-white rounded font-bold">It’s time</span> they <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">changed</span> enrolment procedures."`;
+                    statusEl.innerText = "IT'S TIME + PAST SIMPLE (SHOULD HAPPEN NOW)";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"Take an umbrella <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">in case</span> it rains."`;
+                    statusEl.innerText = "IN CASE (PRECAUTION / POSSIBLY TRUE)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Toggle Past Modal Cards */
+        function toggleModalCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`modalText${cardNum}`);
+            const statusEl = document.getElementById(`modalStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"I <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">would have been</span> happier if my team had won."`;
+                    statusEl.innerText = "HYPOTHETICAL PAST RESULT (IMAGINED OUTCOME: WAS NOT HAPPY)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"You <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">should have seen</span> that programme."`;
+                    statusEl.innerText = "RECOMMENDATION ABOUT A PAST ACTION (WAS A GOOD IDEA)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"I <span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded font-bold">might have been</span> on time if the bus were quicker."`;
+                    statusEl.innerText = "POSSIBLE HYPOTHETICAL RESULT (REALISTIC CHANCE)";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"We <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">could have gone</span> to France if we’d had enough money."`;
+                    statusEl.innerText = "HYPOTHETICAL POSSIBILITY (NOT POSSIBLE DUE TO MONEY)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Expression Explorer Data */
+        const expressionData = {
+            '3rd-cond': {
+                title: "1. Third Conditional Formula",
+                formula: "If + Past Perfect (had + V3), Subject + would have + Past Participle (V3)",
+                meaning: "Explains results of past events that did not happen. Used to reflect on historical alternatives or express regret.",
+                examples: [
+                    "If I had taken more time, I would have continued my education.",
+                    "If I hadn’t studied so hard, I wouldn’t have passed the test."
+                ]
+            },
+            'wish': {
+                title: "2. Wish / If Only Structures",
+                formula: "Wish/If only + Past Simple (Present Desire) OR Past Perfect (Past Regret)",
+                meaning: "Expresses strong desires or regrets about imaginary conditions.",
+                examples: [
+                    "I wish / If only I had more money. (Present hypothetical state)",
+                    "I wish / If only I’d gone home earlier. (Past regret)"
+                ]
+            },
+            'suppose': {
+                title: "3. Suppose / What If",
+                formula: "Suppose / What if + Past Simple (Present) OR Past Perfect (Past)",
+                meaning: "Invites the listener to imagine an alternative present or past scenario.",
+                examples: [
+                    "Suppose I had more money? (Imagining present state)",
+                    "What if I’d gone home earlier? (Imagining past alternative)"
+                ]
+            },
+            'incase': {
+                title: "4. In Case (Precautions)",
+                formula: "Clause + in case + Present/Past Clause",
+                meaning: "Used to explain taking precautions against a possible future or present situation.",
+                examples: [
+                    "Take an umbrella in case it rains.",
+                    "In case you don’t understand the instructions, I’ll explain again."
+                ]
+            },
+            'itstime': {
+                title: "5. It's Time (Urgent Imperative)",
+                formula: "It's time + Subject + Past Simple Verb",
+                meaning: "Indicates an action is not currently happening, but ought/should happen immediately.",
+                examples: [
+                    "It’s time they changed enrolment procedures. (They should change them now.)",
+                    "It's time we started working on our final dissertation."
+                ]
+            }
+        };
+
+        function selectExpression(key) {
+            const buttons = document.querySelectorAll('#expressionPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`exppill-${key}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = expressionData[key];
+            const card = document.getElementById('expressionDisplayCard');
+            if (!card || !data) return;
+
+            card.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h5 class="text-lg font-extrabold text-indigo-950">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-200 text-indigo-900 rounded-full text-xs font-mono font-bold">Formula: ${data.formula}</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 font-medium">${data.meaning}</p>
+                <div class="space-y-2 mb-2">
+                    ${data.examples.map(ex => `<div class="bg-white p-3 rounded-xl border border-indigo-100 text-xs font-medium text-slate-800">"${ex}"</div>`).join('')}
+                </div>
+            `;
+        }
+
+        /* Past Modal Selector Data */
+        const pastModalData = {
+            should: {
+                title: "1. should have + Past Participle",
+                formula: "should + have + past participle (V3)",
+                meaning: "Recommendation or piece of advice about a past action that was NOT taken.",
+                examples: [
+                    "You should have seen that programme. (It was a good idea, but you missed it.)",
+                    "I should have studied more before taking the exam."
+                ]
+            },
+            would: {
+                title: "2. would have + Past Participle",
+                formula: "would + have + past participle (V3)",
+                meaning: "Imagining a hypothetical past result that did not actually occur.",
+                examples: [
+                    "I would have been happier if my team had won. (I was not happy because they lost.)",
+                    "She would have taken the job if the salary were higher."
+                ]
+            },
+            might: {
+                title: "3. might have + Past Participle",
+                formula: "might + have + past participle (V3)",
+                meaning: "Imagining a possible hypothetical result that could have happened.",
+                examples: [
+                    "I might have been on time if the bus were quicker. (It is possible I would have been punctual.)",
+                    "They might have arrived by now if traffic wasn't heavy."
+                ]
+            },
+            could: {
+                title: "4. could have + Past Participle",
+                formula: "could + have + past participle (V3)",
+                meaning: "Expressing an unrealized past opportunity or hypothetical possibility.",
+                examples: [
+                    "We could have gone to France if we’d had enough money. (It was not possible.)",
+                    "He could have won the competition if he hadn't fallen."
+                ]
+            },
+            must: {
+                title: "5. must have + Past Participle",
+                formula: "must + have + past participle (V3)",
+                meaning: "Logical deduction of positive certainty about a past event based on strong evidence.",
+                examples: [
+                    "They must have known about the delay because they left early.",
+                    "He must have passed the test given his top score."
+                ]
+            },
+            cant: {
+                title: "6. can't have / couldn't have + Past Participle",
+                formula: "can't / couldn't + have + past participle (V3)",
+                meaning: "Logical deduction of impossibility regarding a past event.",
+                examples: [
+                    "She can't have forgotten the meeting because I reminded her twice.",
+                    "They couldn't have finished the report in ten minutes."
+                ]
+            }
+        };
+
+        function selectModalType(key) {
+            const buttons = document.querySelectorAll('#pastModalPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`pmpill-${key}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = pastModalData[key];
+            const card = document.getElementById('pastModalDisplayCard');
+            if (!card || !data) return;
+
+            card.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h5 class="text-lg font-extrabold text-indigo-950">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-200 text-indigo-900 rounded-full text-xs font-mono font-bold">Formula: ${data.formula}</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 font-medium">${data.meaning}</p>
+                <div class="space-y-2 mb-2">
+                    ${data.examples.map(ex => `<div class="bg-white p-3 rounded-xl border border-indigo-100 text-xs font-medium text-slate-800">"${ex}"</div>`).join('')}
+                </div>
+            `;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-800');
+                }
+            }
+        }
+
+        // Initialize default view
+        window.onload = function() {
+            selectExpression('3rd-cond');
+            selectModalType('should');
+        };
+    </script>
+</body>
+</html>

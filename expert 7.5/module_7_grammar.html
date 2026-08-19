@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Module 7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Module 7 Reference Masterclass
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Editing, Punctuation & Prepositions</h1>
+                <p class="mt-4 text-indigo-100 max-w-3xl text-lg font-medium leading-relaxed">
+                    Identify and repair sentence fragments & run-ons, master academic punctuation rules (p. 109), and explore prepositional relationship categories (p. 112)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-errors')">
+                    1. Fragments & Punctuation (p. 109) ✏️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-prepositions')">
+                    2. Preposition Functions (p. 112) 🧭
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: FRAGMENTS, RUN-ONS & PUNCTUATION (Page 109) -->
+            <div id="tab-errors" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Sentence Repair & Punctuation Vault</h3>
+                        <p class="text-base text-slate-600 font-medium">Detect incomplete fragments or merged run-ons and apply standard punctuation marks.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Sentence Error Switcher -->
+                <div class="border-2 border-emerald-200 rounded-3xl bg-emerald-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-emerald-50/80 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-emerald-950 flex items-center gap-2">
+                            <span>Interactive Sentence Error Repair Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-emerald-200 text-emerald-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE REPAIRED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <!-- Trick Box -->
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-emerald-100 rounded-full text-emerald-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Proofreading Trick</p>
+                                <p class="text-xs sm:text-sm font-bold text-emerald-900">
+                                    Toggle the switches below to repair <span class="text-rose-600">Sentence Fragments</span> (missing subject/verb/clause) and <span class="text-amber-600">Run-On Sentences</span> (missing conjunction or full stop)!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 1: Dependent Clause Fragment -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="fixText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "<span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">If the government invested more money.</span>"
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="fixStatus1" class="text-xs font-bold text-rose-600 uppercase tracking-wider">FRAGMENT (MISSING SECOND / MAIN CLAUSE)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPAIR</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleFixCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Run-on Sentence -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="fixText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "I play football at weekends <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">I like it a lot</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="fixStatus2" class="text-xs font-bold text-rose-600 uppercase tracking-wider">RUN-ON SENTENCE (2 CLAUSES MERGED WITHOUT PUNCTUATION)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPAIR</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleFixCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Missing Verb Fragment -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="fixText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "The university <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">[???]</span> a variety of courses at undergraduate and postgraduate levels."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="fixStatus3" class="text-xs font-bold text-rose-600 uppercase tracking-wider">FRAGMENT (MISSING MAIN VERB AFTER SUBJECT)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPAIR</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleFixCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Missing Subject Fragment -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="fixText4" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "<span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">[???]</span> Discovered an ancient burial site during their last expedition."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="fixStatus4" class="text-xs font-bold text-rose-600 uppercase tracking-wider">FRAGMENT (MISSING SUBJECT BEFORE VERB)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPAIR</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleFixCard(4, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Interactive Punctuation Reference Explorer -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Interactive Punctuation Vault</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Select a punctuation mark pill below to review its specific grammatical function and examples:
+                    </p>
+
+                    <!-- Punctuation Selector Pills -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="punctuationPillGroup">
+                        <button onclick="selectPunctuation('capital')" id="pckpill-capital" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">Capital Letter (G)</button>
+                        <button onclick="selectPunctuation('fullstop')" id="pckpill-fullstop" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Full Stop (.)</button>
+                        <button onclick="selectPunctuation('comma')" id="pckpill-comma" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Comma (,)</button>
+                        <button onclick="selectPunctuation('semicolon')" id="pckpill-semicolon" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Semi-colon (;)</button>
+                        <button onclick="selectPunctuation('colon')" id="pckpill-colon" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Colon (:)</button>
+                        <button onclick="selectPunctuation('apostrophe')" id="pckpill-apostrophe" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Apostrophe (')</button>
+                        <button onclick="selectPunctuation('quotes')" id="pckpill-quotes" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Quotation Marks (" ")</button>
+                        <button onclick="selectPunctuation('question')" id="pckpill-question" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Question Mark (?)</button>
+                        <button onclick="selectPunctuation('exclamation')" id="pckpill-exclamation" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Exclamation (!)</button>
+                    </div>
+
+                    <!-- Dynamic Punctuation Display Card -->
+                    <div id="punctuationDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- Band 8.0+ Semicolons & Conjunctive Adverbs Masterclass -->
+                <div class="bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-teal-500/10 border-2 border-indigo-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-indigo-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Punctuation Mastery
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Semicolons with Conjunctive Adverbs</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">Task 2 Sentence Variety</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Joining two complete thoughts with a semicolon and an adverbial connector demonstrates sophisticated punctuation control:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Formula & Punctuation Pattern</span>
+                            <p class="font-mono text-slate-700 text-[11px] bg-slate-50 p-2 rounded-lg border border-slate-200">
+                                [Clause 1] <strong>;</strong> <em>however / therefore / conversely / nevertheless</em> <strong>,</strong> [Clause 2]
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-emerald-700 block">High-Band Academic Example</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "Initial investments in solar power are substantial<strong class="text-indigo-700 font-bold">; nevertheless,</strong> the recurring operational savings are immense."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: PREPOSITION FUNCTIONS (Page 112) -->
+            <div id="tab-prepositions" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Prepositional Relationships Explorer</h3>
+                        <p class="text-base text-slate-600 font-medium">Prepositions connect nouns/pronouns to sentences, expressing 8 distinct grammatical functions.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Preposition Category Switcher -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Preposition Category Masterclass</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on any relationship category below to explore its specific prepositions, grammatical functions, and academic examples:
+                    </p>
+
+                    <!-- Category Pills -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="prepCategoryPillGroup">
+                        <button onclick="selectPreposition('comparison')" id="prepcpill-comparison" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">1. Comparison</button>
+                        <button onclick="selectPreposition('direction')" id="prepcpill-direction" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">2. Direction</button>
+                        <button onclick="selectPreposition('place')" id="prepcpill-place" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">3. Place / Location</button>
+                        <button onclick="selectPreposition('possession')" id="prepcpill-possession" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">4. Possession</button>
+                        <button onclick="selectPreposition('purpose')" id="prepcpill-purpose" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">5. Purpose</button>
+                        <button onclick="selectPreposition('time')" id="prepcpill-time" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">6. Time</button>
+                        <button onclick="selectPreposition('agency')" id="prepcpill-agency" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">7. Agency</button>
+                        <button onclick="selectPreposition('source')" id="prepcpill-source" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">8. Source</button>
+                    </div>
+
+                    <!-- Dynamic Preposition Display Card -->
+                    <div id="prepDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- 8 Relationship Category Summary Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Comparison</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">like, as</h5>
+                        <p class="text-xs text-slate-600">"Works <strong class="text-indigo-700">as</strong> a researcher."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Direction</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">through, towards, into</h5>
+                        <p class="text-xs text-slate-600">"Moved <strong class="text-indigo-700">into</strong> the laboratory."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Place / Location</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">on, near, at</h5>
+                        <p class="text-xs text-slate-600">"Studied <strong class="text-indigo-700">at</strong> university."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Possession</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">of</h5>
+                        <p class="text-xs text-slate-600">"The findings <strong class="text-indigo-700">of</strong> the study."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Purpose</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">to, for</h5>
+                        <p class="text-xs text-slate-600">"Designed <strong class="text-indigo-700">for</strong> learning."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Time</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">before, at</h5>
+                        <p class="text-xs text-slate-600">"Finished <strong class="text-indigo-700">before</strong> noon."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Agency</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">by</h5>
+                        <p class="text-xs text-slate-600">"Written <strong class="text-indigo-700">by</strong> scholars."</p>
+                    </div>
+
+                    <div class="interactive-card bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-1">Source</span>
+                        <h5 class="font-extrabold text-slate-900 text-base mb-1">from</h5>
+                        <p class="text-xs text-slate-600">"Data <strong class="text-indigo-700">from</strong> archives."</p>
+                    </div>
+
+                </div>
+
+                <!-- Band 8.0+ Task 1 Data Reporting Preposition Masterclass -->
+                <div class="bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-indigo-500/10 border-2 border-teal-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-teal-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Task 1 Precision
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Prepositions in Data Trends & Comparisons</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200">Writing Task 1 High Score Essential</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Misusing prepositions with data alters factual meaning and reduces your Task Achievement score. Master these four crucial distinctions:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-teal-700 block">Difference (by)</span>
+                            <p class="text-slate-800 font-bold">"increased <span class="text-teal-700 underline">by 15%</span>"</p>
+                            <p class="text-[11px] text-slate-500 italic">The margin of increase (from 50% to 65%).</p>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Final Endpoint (to)</span>
+                            <p class="text-slate-800 font-bold">"rose <span class="text-indigo-700 underline">to 65%</span>"</p>
+                            <p class="text-[11px] text-slate-500 italic">The final reached numerical figure.</p>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-700 block">Noun Margin (of)</span>
+                            <p class="text-slate-800 font-bold">"a surge <span class="text-purple-700 underline">of 2,000 units</span>"</p>
+                            <p class="text-[11px] text-slate-500 italic">Used after trend nouns (increase, drop, rise).</p>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-amber-700 block">Precise Point (at)</span>
+                            <p class="text-slate-800 font-bold">"peaked <span class="text-amber-700 underline">at 92%</span> in 2020"</p>
+                            <p class="text-[11px] text-slate-500 italic">Used with peak, stand, plateau.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Module 7 Mastery Check</h3>
+                    <p class="text-teal-700 font-medium">Test your ability to spot sentence errors, select correct punctuation, and identify preposition functions.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            1. What type of sentence error is present in: "Discovered an ancient burial site during their last expedition."?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! It is a sentence fragment because it is missing a subject (e.g., \'The archaeologists discovered...\').')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Sentence Fragment (Missing Subject)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A run-on sentence contains two merged main clauses without punctuation.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Run-On Sentence</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            2. Identify the run-on sentence repair for: "I play football at weekends I like it a lot."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! You can repair a run-on sentence by inserting a comma + conjunction (and) or using a full stop.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">"I play football at weekends, and I like it a lot."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Inserting only a comma without a conjunction creates a comma splice error!')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"I play football at weekends, I like it a lot."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            3. Which punctuation mark is used to expand on a sentence by introducing a list or a second part of the same idea?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! A semi-colon (;) expands on a sentence by connecting related independent ideas or introducing detailed lists.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Semi-colon (;)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. A comma indicates a short pause or list separation, but does not join full independent thoughts alone.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Comma (,)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. An apostrophe indicates contraction or possession.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Apostrophe (')</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            4. What prepositional relationship function is expressed by <strong>by</strong> in: "The report was compiled <span class="text-indigo-600 underline">by</span> senior researchers"?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'by\' expresses Agency (identifying the agent or doer of the action).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Agency (Doer of action)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Source uses prepositions like \'from\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Source</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Comparison uses prepositions like \'like\' or \'as\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Comparison</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            5. Which prepositions express the relationship of <strong>Direction</strong>?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'through\', \'towards\', and \'into\' describe movement and direction.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">through, towards, into</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'on\', \'near\', \'at\' describe Place / Location.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">on, near, at</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'to\', \'for\' describe Purpose.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">to, for</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Expert Grammar Reference Guide</span>
+            <span>Module 7: Editing, Punctuation & Prepositions</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+                clickedBtn.classList.remove('font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Toggle Sentence Error Repair Cards (Tab 1) */
+        function toggleFixCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`fixText${cardNum}`);
+            const statusEl = document.getElementById(`fixStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"If the government invested more money<span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">, education standards would improve</span>."`;
+                    statusEl.innerText = "COMPLETE SENTENCE (MAIN CLAUSE ADDED)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">If the government invested more money.</span>"`;
+                    statusEl.innerText = "FRAGMENT (MISSING SECOND / MAIN CLAUSE)";
+                    statusEl.className = "text-xs font-bold text-rose-600 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"I play football at weekends<span class="px-2 py-0.5 bg-indigo-600 text-white rounded font-bold">, and</span> I like it a lot."`;
+                    statusEl.innerText = "REPAIRED RUN-ON (COMMA + CONJUNCTION 'and' ADDED)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"I play football at weekends <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">I like it a lot</span>."`;
+                    statusEl.innerText = "RUN-ON SENTENCE (2 CLAUSES MERGED WITHOUT PUNCTUATION)";
+                    statusEl.className = "text-xs font-bold text-rose-600 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The university <span class="px-2 py-0.5 bg-emerald-600 text-white rounded font-bold">offers</span> a variety of courses at undergraduate and postgraduate levels."`;
+                    statusEl.innerText = "COMPLETE SENTENCE (MAIN VERB 'offers' INSERTED)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The university <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">[???]</span> a variety of courses at undergraduate and postgraduate levels."`;
+                    statusEl.innerText = "FRAGMENT (MISSING MAIN VERB AFTER SUBJECT)";
+                    statusEl.className = "text-xs font-bold text-rose-600 uppercase tracking-wider";
+                }
+            } else if (cardNum === 4) {
+                if (isChecked) {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-purple-600 text-white rounded font-bold">The archaeologists</span> discovered an ancient burial site during their last expedition."`;
+                    statusEl.innerText = "COMPLETE SENTENCE (SUBJECT 'The archaeologists' INSERTED)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">[???]</span> Discovered an ancient burial site during their last expedition."`;
+                    statusEl.innerText = "FRAGMENT (MISSING SUBJECT BEFORE VERB)";
+                    statusEl.className = "text-xs font-bold text-rose-600 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Punctuation Vault Data */
+        const punctuationData = {
+            capital: {
+                title: "Capital Letter (G)",
+                desc: "Required at the start of all sentences and for proper nouns including names of countries, days of the week, and months.",
+                example: "<strong class='text-indigo-700'>T</strong>here are many courses in <strong class='text-indigo-700'>E</strong>nglish. <strong class='text-indigo-700'>S</strong>undays in <strong class='text-indigo-700'>J</strong>anuary are cold in <strong class='text-indigo-700'>C</strong>anada.",
+                rule: "Always capitalize proper nouns and sentence openings."
+            },
+            fullstop: {
+                title: "Full Stop (.)",
+                desc: "Marks the absolute end of a complete sentence or indicates an abbreviated short word form.",
+                example: "The university offers a variety of courses<strong class='text-indigo-700 font-extrabold text-lg'>.</strong> Professor Smith received his Ph.D<strong class='text-indigo-700 font-extrabold text-lg'>.</strong> yesterday.",
+                rule: "Ensures sentence boundaries are clear and distinct."
+            },
+            comma: {
+                title: "Comma (,)",
+                desc: "Shows a short pause, separates clauses joined by coordinating conjunctions, or separates items in a list.",
+                example: "The study analyzed rain<strong class='text-indigo-700 font-extrabold text-lg'>,</strong> wind<strong class='text-indigo-700 font-extrabold text-lg'>,</strong> and temperature<strong class='text-indigo-700 font-extrabold text-lg'>,</strong> but the results were inconclusive.",
+                rule: "Do not use a comma to join two main clauses without a conjunction (prevents comma splices)."
+            },
+            semicolon: {
+                title: "Semi-colon (;)",
+                desc: "Expands on a sentence by introducing a second part of the same idea or separating complex list items containing commas.",
+                example: "Spelling rules exist<strong class='text-indigo-700 font-extrabold text-lg'>;</strong> however, they are manageable to learn.",
+                rule: "Connects closely related independent clauses without needing a conjunction."
+            },
+            colon: {
+                title: "Colon (:)",
+                desc: "Separates clauses or phrases in a sentence OR introduces a list, explanation, or direct quote.",
+                example: "The study examined three variables<strong class='text-indigo-700 font-extrabold text-lg'>:</strong> age, education, and income.",
+                rule: "Signals that important elaboration or listing follows."
+            },
+            apostrophe: {
+                title: "Apostrophe (')",
+                desc: "Indicates omitted letters in contracted forms (don't) or shows noun possession (Fred's car).",
+                example: "It<strong class='text-indigo-700 font-extrabold text-lg'>'</strong>s clear that Fred<strong class='text-indigo-700 font-extrabold text-lg'>'</strong>s study was successful.",
+                rule: "Note: In formal academic writing, avoid contractions (use 'does not' instead of 'doesn't')."
+            },
+            quotes: {
+                title: "Quotation Marks (' ' / \" \")",
+                desc: "Encloses exact direct speech, recorded spoken words, or specific quoted titles/terms (also known as inverted commas).",
+                example: "The professor stated, <strong class='text-indigo-700 font-extrabold text-lg'>“</strong>The results are significant,<strong class='text-indigo-700 font-extrabold text-lg'>”</strong> during his lecture.",
+                rule: "Always enclose exact words when recording quotes."
+            },
+            question: {
+                title: "Question Mark (?)",
+                desc: "Placed at the end of a direct question in writing.",
+                example: "Did you finish writing the research proposal<strong class='text-indigo-700 font-extrabold text-lg'>?</strong>",
+                rule: "Do not use question marks after indirect questions (e.g. 'He asked if I finished')."
+            },
+            exclamation: {
+                title: "Exclamation Mark (!)",
+                desc: "Expresses surprise, anger, or strong excitement.",
+                example: "What a remarkable scientific breakthrough<strong class='text-indigo-700 font-extrabold text-lg'>!</strong>",
+                rule: "Use sparingly in formal academic writing."
+            }
+        };
+
+        function selectPunctuation(typeKey) {
+            const buttons = document.querySelectorAll('#punctuationPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`pckpill-${typeKey}`);
+            if (activeBtn) {
+                activeBtn.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = punctuationData[typeKey];
+            const card = document.getElementById('punctuationDisplayCard');
+            if (!card || !data) return;
+
+            card.innerHTML = `
+                <h5 class="text-base font-extrabold text-indigo-950 mb-1">${data.title}</h5>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">${data.desc}</p>
+                <div class="bg-white p-4 rounded-xl border border-indigo-100 text-xs font-medium text-slate-800 mb-3">
+                    ${data.example}
+                </div>
+                <div class="p-3 bg-white/80 rounded-xl text-xs text-indigo-900 font-semibold border border-indigo-200">
+                    💡 ${data.rule}
+                </div>
+            `;
+        }
+
+        /* Preposition Category Data */
+        const prepData = {
+            comparison: {
+                title: "1. Prepositions of Comparison (like, as)",
+                desc: "Describes similarities, roles, or comparisons between entities.",
+                preps: "like, as",
+                example: "She works <strong class='text-indigo-700 font-bold'>as</strong> an environmental scientist. The new solar cell behaves <strong class='text-indigo-700 font-bold'>like</strong> a leaf.",
+                rule: "Use 'as' for actual roles or functions; use 'like' for similarity comparisons."
+            },
+            direction: {
+                title: "2. Prepositions of Direction (through, towards, into)",
+                desc: "Describes movement or orientation from one point to another.",
+                preps: "through, towards, into",
+                example: "The water flows <strong class='text-indigo-700 font-bold'>through</strong> the pipe and <strong class='text-indigo-700 font-bold'>into</strong> the turbine.",
+                rule: "Essential for describing directional flows in IELTS Task 1 diagrams!"
+            },
+            place: {
+                title: "3. Prepositions of Place / Location (on, near, at)",
+                desc: "Specifies exact spatial position or geographic location.",
+                preps: "on, near, at",
+                example: "The campus is situated <strong class='text-indigo-700 font-bold'>near</strong> the river <strong class='text-indigo-700 font-bold'>at</strong> the edge of town.",
+                rule: "Use 'at' for specific points, 'on' for surfaces, and 'in' for enclosed areas."
+            },
+            possession: {
+                title: "4. Prepositions of Possession (of)",
+                desc: "Shows ownership, belonging, or part-to-whole relationships.",
+                preps: "of",
+                example: "The results <strong class='text-indigo-700 font-bold'>of</strong> the study were published in the journal <strong class='text-indigo-700 font-bold'>of</strong> medicine.",
+                rule: "Frequently forms complex noun phrases in academic contexts."
+            },
+            purpose: {
+                title: "5. Prepositions of Purpose (to, for)",
+                desc: "Explains intention, target use, or reason behind an action.",
+                preps: "to, for",
+                example: "Funding was allocated <strong class='text-indigo-700 font-bold'>for</strong> research <strong class='text-indigo-700 font-bold'>to</strong> improve battery life.",
+                rule: "Use 'for' + noun / -ing noun phrase; use 'to' + infinitive verb."
+            },
+            time: {
+                title: "6. Prepositions of Time (before, at)",
+                desc: "Indicates temporal points, deadlines, or time periods.",
+                preps: "before, at",
+                example: "All assignments must be submitted <strong class='text-indigo-700 font-bold'>before</strong> 5 p.m. <strong class='text-indigo-700 font-bold'>at</strong> the end of term.",
+                rule: "Crucial for expressing chronologies and schedules."
+            },
+            agency: {
+                title: "7. Prepositions of Agency (by)",
+                desc: "Identifies the person, organization, or mechanism that performs an action.",
+                preps: "by",
+                example: "The groundbreaking research was conducted <strong class='text-indigo-700 font-bold'>by</strong> international scholars.",
+                rule: "Standardly used in passive voice sentences to name the doer."
+            },
+            source: {
+                title: "8. Prepositions of Source (from)",
+                desc: "Shows origin, derivation, or starting points.",
+                preps: "from",
+                example: "Data gathered <strong class='text-indigo-700 font-bold'>from</strong> national census archives revealed new trends.",
+                rule: "Identifies where data, quotes, or materials originate."
+            }
+        };
+
+        function selectPreposition(catKey) {
+            const buttons = document.querySelectorAll('#prepCategoryPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`prepcpill-${catKey}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = prepData[catKey];
+            const card = document.getElementById('prepDisplayCard');
+            if (!card || !data) return;
+
+            card.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <h5 class="text-base font-extrabold text-indigo-950">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-200 text-indigo-900 rounded-full text-xs font-mono font-bold">Key Terms: ${data.preps}</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">${data.desc}</p>
+                <div class="bg-white p-4 rounded-xl border border-indigo-100 text-xs font-medium text-slate-800 mb-3">
+                    ${data.example}
+                </div>
+                <div class="p-3 bg-white/80 rounded-xl text-xs text-indigo-900 font-semibold border border-indigo-200">
+                    💡 ${data.rule}
+                </div>
+            `;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-800');
+                }
+            }
+        }
+
+        // Initialize default view
+        window.onload = function() {
+            selectPunctuation('capital');
+            selectPreposition('comparison');
+        };
+    </script>
+</body>
+</html>

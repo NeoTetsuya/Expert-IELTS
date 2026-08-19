@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar & Vocabulary Reference: Module 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Module 1 Reference Masterclass
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Word Building & Complete Tense Review</h1>
+                <p class="mt-4 text-indigo-100 max-w-3xl text-lg font-medium leading-relaxed">
+                    Interactive study notes covering Synonyms, Prefixes, and Word Formation (p. 13), interactive vocabulary & tense aspect switchers, and complete tense patterns (p. 16).
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-word-building')">
+                    1. Word Building (p. 13) ✨
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-tenses')">
+                    2. Tense Review (p. 16) ⏳
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: WORD BUILDING (Page 13) -->
+            <div id="tab-word-building" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Vocabulary & Word Transformations</h3>
+                        <p class="text-base text-slate-600 font-medium">Rephrase ideas concisely using synonyms, negative/modifying prefixes, and part-of-speech class conversion.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Switcher Card (Photo-inspired Style) -->
+                <div class="border-2 border-emerald-200 rounded-3xl bg-emerald-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-emerald-50/80 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-emerald-950 flex items-center gap-2">
+                            <span>Interactive Word Transformation Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-emerald-200 text-emerald-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE TRANSFORMED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <!-- Trick Box -->
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-emerald-100 rounded-full text-emerald-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Academic Paraphrasing Trick</p>
+                                <p class="text-xs sm:text-sm font-bold text-emerald-900">
+                                    Toggle the switches below to see how key vocabulary can be rephrased using <span class="text-indigo-600">Synonym Swap</span>, <span class="text-purple-600">Prefix Addition</span>, or <span class="text-emerald-700">Word Formation Conversion</span>!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 1: Synonym Replacement -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="wbText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "Using the internet can improve your <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">pace</span> of learning."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="wbStatus1" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">ORIGINAL WORD ('pace')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE SYNONYM</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleWordBuildingCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 2: Prefix Reversal -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="wbText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "If you don’t check the instructions, you <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">won’t understand</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="wbStatus2" class="text-xs font-bold text-rose-600 uppercase tracking-wider">CLAUSE FORM (VERB + NEGATIVE)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE PREFIX</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleWordBuildingCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 3: Word Formation (Adjective -> Verb) -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="wbText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "Watching video instructions can <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">make a task simpler</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="wbStatus3" class="text-xs font-bold text-amber-700 uppercase tracking-wider">ADJECTIVE PHRASE ('make simpler')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE VERB CONVERSION</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleWordBuildingCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Detailed Deep-Dive Category Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Synonyms Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">Strategy 1</span>
+                                <h4 class="font-bold text-slate-900 text-lg">Synonyms</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Synonyms are words with identical or closely related meanings. Replacing words with synonyms prevents repetitive writing and raises your Lexical Resource score in academic exams.
+                            </p>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
+                                    <p class="text-[11px] text-indigo-500 font-bold uppercase mb-0.5">Paraphrase Pair 1</p>
+                                    <p class="text-slate-800 text-xs font-medium"><strong class="text-indigo-700">pace</strong> &harr; <strong class="text-indigo-700">rate</strong></p>
+                                    <p class="text-[11px] text-slate-500 italic mt-0.5">"improve your pace of learning" &rarr; "improve your rate of learning"</p>
+                                </div>
+                                <div class="bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
+                                    <p class="text-[11px] text-indigo-500 font-bold uppercase mb-0.5">Paraphrase Pair 2</p>
+                                    <p class="text-slate-800 text-xs font-medium"><strong class="text-indigo-700">method</strong> &harr; <strong class="text-indigo-700">approach / technique</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-indigo-700 font-semibold border border-slate-200">
+                            💡 Context Tip: Ensure the synonym fits the specific academic collocations (e.g. <em>rate of progress</em>).
+                        </div>
+                    </div>
+
+                    <!-- Prefixes Card -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-wider">Strategy 2</span>
+                                <h4 class="font-bold text-slate-900 text-lg">Prefixes</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Prefixes are letter combinations attached to the beginning of a root word to reverse or modify its meaning without rephrasing into long multi-word clauses.
+                            </p>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="bg-purple-50/70 p-3 rounded-xl border border-purple-100">
+                                    <p class="text-[11px] text-purple-600 font-bold uppercase mb-0.5">Prefix 'mis-' ("wrongly")</p>
+                                    <p class="text-slate-800 text-xs font-medium">won't understand &rarr; <strong class="text-purple-700 font-bold">misunderstand</strong></p>
+                                </div>
+                                <div class="bg-purple-50/70 p-3 rounded-xl border border-purple-100">
+                                    <p class="text-[11px] text-purple-600 font-bold uppercase mb-0.5">Prefix 'dis-' / 'un-' / 'in-' ("not")</p>
+                                    <p class="text-slate-800 text-xs font-medium">not agree &rarr; <strong class="text-purple-700 font-bold">disagree</strong> | not common &rarr; <strong class="text-purple-700 font-bold">uncommon</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-purple-700 font-semibold border border-slate-200">
+                            💡 Context Tip: Using prefixes turns negative verb clauses into elegant single-word verbs or adjectives.
+                        </div>
+                    </div>
+
+                    <!-- Word Formation Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider">Strategy 3</span>
+                                <h4 class="font-bold text-slate-900 text-lg">Word Formation</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Shift parts of speech (adjective &rarr; verb, noun &rarr; verb) using suffixes like <em>-ify</em>, <em>-ize</em>, <em>-en</em>, or <em>-ate</em> to convert wordy descriptions into concise active verbs.
+                            </p>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-100">
+                                    <p class="text-[11px] text-emerald-600 font-bold uppercase mb-0.5">Adjective &rarr; Verb (-ify)</p>
+                                    <p class="text-slate-800 text-xs font-medium">make simpler &rarr; <strong class="text-emerald-700 font-bold">simplify</strong></p>
+                                </div>
+                                <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-100">
+                                    <p class="text-[11px] text-emerald-600 font-bold uppercase mb-0.5">Noun &rarr; Verb (-ize / -ate)</p>
+                                    <p class="text-slate-800 text-xs font-medium">make summary &rarr; <strong class="text-emerald-700 font-bold">summarize</strong> | give creation &rarr; <strong class="text-emerald-700 font-bold">create</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-emerald-700 font-semibold border border-slate-200">
+                            💡 Context Tip: Replacing wordy phrases like <em>"make a task simpler"</em> with <em>"simplify"</em> streamlines academic sentences.
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Band 8.0+ Lexical & Word Building Masterclass -->
+                <div class="bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-purple-500/10 border-2 border-amber-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-amber-500 text-slate-950 rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Masterclass
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Lexical Resource & Academic Register</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">Writing Task 2 & Speaking Part 3</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Examiners award high scores not merely for rare words, but for <strong>precise register and collocations</strong>. Transforming informal phrasing into formal academic language requires specific prefixing and nominalization:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-amber-200/70 shadow-2xs">
+                            <span class="text-[10px] font-extrabold uppercase text-amber-700 block mb-1">Low Band Phrasing</span>
+                            <p class="text-slate-500 line-through mb-1">"The problem gets worse every year."</p>
+                            <span class="text-[10px] font-extrabold uppercase text-emerald-700 block mb-1">Band 8.0+ Transformation</span>
+                            <p class="text-slate-800 font-bold">"The situation continues to <span class="text-emerald-700 underline">deteriorate</span> annually."</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-amber-200/70 shadow-2xs">
+                            <span class="text-[10px] font-extrabold uppercase text-amber-700 block mb-1">Low Band Phrasing</span>
+                            <p class="text-slate-500 line-through mb-1">"This will make their authority weaker."</p>
+                            <span class="text-[10px] font-extrabold uppercase text-emerald-700 block mb-1">Band 8.0+ Transformation</span>
+                            <p class="text-slate-800 font-bold">"This measure may <span class="text-emerald-700 underline">undermine</span> their authority."</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-amber-200/70 shadow-2xs">
+                            <span class="text-[10px] font-extrabold uppercase text-amber-700 block mb-1">Low Band Phrasing</span>
+                            <p class="text-slate-500 line-through mb-1">"People do not value education enough."</p>
+                            <span class="text-[10px] font-extrabold uppercase text-emerald-700 block mb-1">Band 8.0+ Transformation</span>
+                            <p class="text-slate-800 font-bold">"Society consistently <span class="text-emerald-700 underline">undervalues</span> vocational education."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: TENSE REVIEW (Page 16) -->
+            <div id="tab-tenses" class="tab-content space-y-8">
+                
+                <!-- Section Header -->
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Complete Tense System Masterclass</h3>
+                        <p class="text-base text-slate-600 font-medium">Interactive tense selector pills and perspective switchers across simple, continuous, perfect, and future forms.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Tense Detail Explorer Card -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Interactive Tense Aspect Explorer</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on any tense aspect pill below to inspect its core auxiliary formulas, positive/negative/question structures, and academic usage context:
+                    </p>
+
+                    <!-- Interactive Pills Header -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="tenseDetailPillGroup">
+                        <button onclick="selectTenseDetail('pres-simple')" id="tpill-pres-simple" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">Present Simple</button>
+                        <button onclick="selectTenseDetail('past-simple')" id="tpill-past-simple" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Simple</button>
+                        <button onclick="selectTenseDetail('pres-cont')" id="tpill-pres-cont" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Present Continuous</button>
+                        <button onclick="selectTenseDetail('past-cont')" id="tpill-past-cont" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Continuous</button>
+                        <button onclick="selectTenseDetail('pres-perf')" id="tpill-pres-perf" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Present Perfect</button>
+                        <button onclick="selectTenseDetail('past-perf')" id="tpill-past-perf" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Perfect</button>
+                        <button onclick="selectTenseDetail('pres-perf-cont')" id="tpill-pres-perf-cont" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Pres. Perf. Cont.</button>
+                        <button onclick="selectTenseDetail('past-perf-cont')" id="tpill-past-perf-cont" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Perf. Cont.</button>
+                        <button onclick="selectTenseDetail('future-forms')" id="tpill-future-forms" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Future Forms</button>
+                        <button onclick="selectTenseDetail('future-perf')" id="tpill-future-perf" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Future Perfect</button>
+                    </div>
+
+                    <!-- Dynamic Tense Card Output -->
+                    <div id="tenseDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- Interactive Tense Perspective Switcher Card (Photo-inspired Style) -->
+                <div class="border-2 border-emerald-200 rounded-3xl bg-emerald-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-emerald-50/80 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-emerald-950 flex items-center gap-2">
+                            <span>Interactive Tense Aspect Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-emerald-200 text-emerald-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            PERSPECTIVE SWITCHER <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-emerald-100 rounded-full text-emerald-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Aspect Focus Rule</p>
+                                <p class="text-xs sm:text-sm font-bold text-emerald-900">
+                                    Toggle the switches below to compare how shifting verb aspects (<span class="text-indigo-600">Simple vs. Continuous</span>, <span class="text-purple-600">Past Simple vs. Present Perfect</span>, <span class="text-amber-700">Past Perfect Continuous</span>) alters the meaning!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 1: Simple vs Continuous -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="tenseText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">go</span> to school every day."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="tenseStatus1" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">PRESENT SIMPLE (Routine Fact / Habit)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE CONTINUOUS</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleTenseCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sky-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 2: Past Simple vs Present Perfect -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="tenseText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">didn't do</span> my homework yesterday."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="tenseStatus2" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">PAST SIMPLE (Specific Completed Time 'yesterday')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE PRESENT PERFECT</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleTenseCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 3: Past Perfect Continuous vs Result -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="tenseText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "Mariella <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">had been studying</span> a lot, so she got a good grade."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="tenseStatus3" class="text-xs font-bold text-amber-700 uppercase tracking-wider">PAST PERFECT CONTINUOUS (Continuous Activity before past result)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE NEGATIVE LACK</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleTenseCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 5 Tense Categories Deep Dive Grid -->
+                <div class="grid grid-cols-1 gap-6">
+                    
+                    <!-- 1. Simple Tenses -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-indigo-600 text-white font-extrabold flex items-center justify-center text-sm">1</span>
+                                <h4 class="text-xl font-bold text-slate-900">Simple Tenses (Present & Past)</h4>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-200">
+                                Auxiliaries: do / does / did
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Simple tenses state routine facts, habits, general truths, or single completed past events. Negatives and questions require auxiliary <em>do/does/did</em> + base verb.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium">
+                            <div class="bg-indigo-50/60 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-[10px] font-bold uppercase text-indigo-600 block mb-1">Present Simple Question</span>
+                                <p class="text-slate-800 font-semibold">"<strong class="text-indigo-700">Do</strong> you <strong class="text-indigo-700">go</strong> to school every day?"</p>
+                            </div>
+                            <div class="bg-indigo-50/60 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-[10px] font-bold uppercase text-indigo-600 block mb-1">Past Simple Negative</span>
+                                <p class="text-slate-800 font-semibold">"I <strong class="text-indigo-700">didn’t do</strong> my homework yesterday."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Continuous Tenses -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-sky-600 text-white font-extrabold flex items-center justify-center text-sm">2</span>
+                                <h4 class="text-xl font-bold text-slate-900">Continuous Tenses (Progressive)</h4>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 bg-sky-50 text-sky-700 rounded-full border border-sky-200">
+                                Auxiliary: 'be' (am/is/are/was/were) + -ing
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Emphasizes ongoing or in-progress activities occurring at a specific moment in time (now or at a specific past moment).
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium">
+                            <div class="bg-sky-50/60 p-3.5 rounded-xl border border-sky-100">
+                                <span class="text-[10px] font-bold uppercase text-sky-600 block mb-1">Present Continuous</span>
+                                <p class="text-slate-800 font-semibold">"I<strong class="text-sky-700">’m learning</strong> to speak Hindi."</p>
+                            </div>
+                            <div class="bg-sky-50/60 p-3.5 rounded-xl border border-sky-100">
+                                <span class="text-[10px] font-bold uppercase text-sky-600 block mb-1">Past Continuous</span>
+                                <p class="text-slate-800 font-semibold">"Ahmet <strong class="text-sky-700">wasn’t having</strong> lunch at 2p.m. yesterday."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Perfect Tenses -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-emerald-600 text-white font-extrabold flex items-center justify-center text-sm">3</span>
+                                <h4 class="text-xl font-bold text-slate-900">Perfect Tenses</h4>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
+                                Auxiliary: 'have/has/had' + Past Participle (V3)
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Links two points in time. Present Perfect links past action to present relevance; Past Perfect shows an action completed before another past event.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium">
+                            <div class="bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-[10px] font-bold uppercase text-emerald-600 block mb-1">Present Perfect</span>
+                                <p class="text-slate-800 font-semibold">"Huan <strong class="text-emerald-700">hasn’t seen</strong> the teacher yet."</p>
+                            </div>
+                            <div class="bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-[10px] font-bold uppercase text-emerald-600 block mb-1">Past Perfect</span>
+                                <p class="text-slate-800 font-semibold">"I <strong class="text-emerald-700">hadn’t learnt</strong> any Greek words before I arrived in Athens."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Perfect Continuous Tenses -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-amber-600 text-white font-extrabold flex items-center justify-center text-sm">4</span>
+                                <h4 class="text-xl font-bold text-slate-900">Perfect Continuous Combination</h4>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200">
+                                Formula: have/has/had + been + -ing
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Emphasizes the continuous duration or process of an activity leading up to a specific reference moment.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium">
+                            <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100">
+                                <span class="text-[10px] font-bold uppercase text-amber-600 block mb-1">Present Perfect Continuous</span>
+                                <p class="text-slate-800 font-semibold">"Daniel <strong class="text-amber-700">hasn’t been studying</strong> very much, so he probably won’t pass."</p>
+                            </div>
+                            <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100">
+                                <span class="text-[10px] font-bold uppercase text-amber-600 block mb-1">Past Perfect Continuous</span>
+                                <p class="text-slate-800 font-semibold">"Mariella <strong class="text-amber-700">had been studying</strong> a lot, and she got a good grade."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Future Forms -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 rounded-full bg-purple-600 text-white font-extrabold flex items-center justify-center text-sm">5</span>
+                                <h4 class="text-xl font-bold text-slate-900">Future Forms & Structures</h4>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 bg-purple-50 text-purple-700 rounded-full border border-purple-200">
+                                Present Continuous / Be going to / Will
+                            </span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="text-[10px] font-bold uppercase text-slate-400 mb-2 tracking-wider">Three Primary Future Structures</h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                    <span class="text-[11px] font-bold text-purple-700 block mb-1">Present Continuous (Fixed Arrangement)</span>
+                                    <p class="text-slate-800 text-xs font-medium">"Bella <strong class="text-purple-700">is sitting</strong> a music exam tonight."</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                    <span class="text-[11px] font-bold text-purple-700 block mb-1">be + going to + verb (Intentions)</span>
+                                    <p class="text-slate-800 text-xs font-medium">"Yasmin <strong class="text-purple-700">is going to study</strong> English."</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                    <span class="text-[11px] font-bold text-purple-700 block mb-1">Future Simple (will/won't)</span>
+                                    <p class="text-slate-800 text-xs font-medium">"One day, people <strong class="text-purple-700">will study</strong> anywhere."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5 class="text-[10px] font-bold uppercase text-slate-400 mb-2 tracking-wider">Advanced Future Aspect Combinations</h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                    <span class="text-[11px] font-bold text-indigo-600 block mb-1">Future Continuous</span>
+                                    <p class="text-slate-800 text-xs font-medium">"In 2070, we <strong class="text-indigo-600">will be studying</strong> on Mars."</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                    <span class="text-[11px] font-bold text-indigo-600 block mb-1">Future Perfect</span>
+                                    <p class="text-slate-800 text-xs font-medium">"By next year, my class <strong class="text-indigo-600">will have graduated</strong>."</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                    <span class="text-[11px] font-bold text-indigo-600 block mb-1">Future Perfect Continuous</span>
+                                    <p class="text-slate-800 text-xs font-medium">"My teacher <strong class="text-indigo-600">will have been teaching</strong> for 50 yrs!"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-slate-100 rounded-xl text-xs text-slate-600 font-medium border border-slate-200">
+                            ✨ <strong>Further Expressions:</strong> Present simple, <em>about to</em>, <em>expect to</em>, and modals like <em>could</em> or <em>might</em>.
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Band 8.0+ Tense Usage Masterclass -->
+                <div class="bg-gradient-to-r from-indigo-500/10 via-sky-500/10 to-emerald-500/10 border-2 border-indigo-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-indigo-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Grammatical Accuracy
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Stative Verbs & Academic Tense Consistency</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Writing Task 1 & 2 Strategy</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-2">
+                            <h5 class="font-bold text-indigo-950 text-sm flex items-center gap-1.5">
+                                <span>🧠 Stative vs Dynamic Meaning Shifts</span>
+                            </h5>
+                            <p class="text-slate-600 leading-relaxed">
+                                Stative verbs describe states (not actions) and normally avoid continuous forms. However, at Band 8.0+, recognizing their deliberate shift into progressive aspect demonstrates sophisticated command:
+                            </p>
+                            <ul class="space-y-1.5 text-slate-700">
+                                <li>• <strong>I consider</strong> him a leader <em>(State: my static belief/opinion)</em>.</li>
+                                <li>• <strong>I am considering</strong> studying abroad <em>(Action: temporary mental process)</em>.</li>
+                                <li>• <strong>The report appears</strong> accurate <em>(State: impression)</em> vs <strong>He is appearing</strong> in court <em>(Action)</em>.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-2">
+                            <h5 class="font-bold text-indigo-950 text-sm flex items-center gap-1.5">
+                                <span>📊 Task 1 Data Tense Rules</span>
+                            </h5>
+                            <p class="text-slate-600 leading-relaxed">
+                                High-scoring candidates maintain strict tense discipline based on temporal markers in the graph:
+                            </p>
+                            <ul class="space-y-1.5 text-slate-700">
+                                <li>• <strong>Overview / Diagram Intro:</strong> Always <em>Present Simple</em> (e.g., <em>"The chart illustrates the proportion..."</em>).</li>
+                                <li>• <strong>Past Data Points:</strong> <em>Past Simple</em> (e.g., <em>"Sales plunged in 2015."</em>).</li>
+                                <li>• <strong>Ongoing Trend up to Now:</strong> <em>Present Perfect</em> (e.g., <em>"Consumption has climbed steadily over the last decade."</em>).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Module 1 Mastery Check</h3>
+                    <p class="text-teal-700 font-medium">Test your understanding of synonyms, prefixes, word forms, and verb tense aspects.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            1. Select the correct synonym for <strong>pace</strong> in: "Using the internet can improve your <span class="text-indigo-600 underline">pace</span> of learning."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>rate</strong> is a direct synonym for <strong>pace</strong> in speed/progress contexts.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">rate</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Level refers to rank or degree, not speed/pace of learning.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">level</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Style refers to method, not pace.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">style</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            2. Rephrase using a prefix: "If you don’t check the instructions, you won’t understand." &rarr; "you'll <span class="inline-block w-28 border-b-2 border-slate-400"></span>."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Disunderstand is not a valid word.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">disunderstand</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! The prefix <strong>mis-</strong> means wrongly, creating <strong>misunderstand</strong>.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">misunderstand</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Nonunderstand is ungrammatical.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">nonunderstand</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            3. Which verb completes the word formation conversion: "make a task simpler" &rarr; "<span class="inline-block w-28 border-b-2 border-slate-400"></span> a task"?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Simplification is the noun form.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">simplification</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>simplify</strong> is the verb converted from simple using suffix -ify.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">simplify</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Simpleness is a noun state.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">simpleness</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            4. Complete using Past Perfect: "I <span class="inline-block w-28 border-b-2 border-slate-400"></span> any Greek words before I arrived in Athens."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Haven\'t learnt is Present Perfect, but the reference point is in the past (arrived).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">haven't learnt</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Past Perfect uses <strong>hadn\'t + V3 (learnt)</strong> to show an action prior to another past event.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">hadn't learnt</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Was not learning is Past Continuous.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">wasn't learning</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            5. Identify the Future Perfect sentence:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This is Future Continuous (will be studying).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">In 2070, we will be studying on Mars.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>will have graduated</strong> is Future Perfect (action completed before a future deadline).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">By this time next year, my class will have graduated.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This is be + going to + verb.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Yasmin is going to study English in Australia.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            6. "My teacher will have been teaching here for 50 years in January!" Which tense aspect is this?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Future Perfect simple is \'will have taught\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Future Perfect Simple</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! <strong>will have been teaching</strong> is Future Perfect Continuous (duration up to a future point).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Future Perfect Continuous</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Future Continuous is \'will be teaching\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Future Continuous</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Expert Grammar Reference Guide</span>
+            <span>Module 1: Word Building & Complete Tense System</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+                clickedBtn.classList.remove('font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Toggle Word Building Cards (Tab 1) */
+        function toggleWordBuildingCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`wbText${cardNum}`);
+            const statusEl = document.getElementById(`wbStatus${cardNum}`);
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Using the internet can improve your <span class="px-2 py-0.5 bg-indigo-600 text-white rounded font-bold">rate</span> of learning."`;
+                    statusEl.innerText = "SYNONYM SWAP ('rate')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"Using the internet can improve your <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">pace</span> of learning."`;
+                    statusEl.innerText = "ORIGINAL WORD ('pace')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"If you don’t check the instructions, you’ll <span class="px-2 py-0.5 bg-purple-600 text-white rounded font-bold">misunderstand</span>."`;
+                    statusEl.innerText = "PREFIX FORM ('misunderstand')";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"If you don’t check the instructions, you <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">won’t understand</span>."`;
+                    statusEl.innerText = "CLAUSE FORM (VERB + NEGATIVE)";
+                    statusEl.className = "text-xs font-bold text-rose-600 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Watching video instructions can <span class="px-2 py-0.5 bg-emerald-600 text-white rounded font-bold">simplify</span> a task."`;
+                    statusEl.innerText = "VERB CONVERSION ('simplify')";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"Watching video instructions can <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">make a task simpler</span>."`;
+                    statusEl.innerText = "ADJECTIVE PHRASE ('make simpler')";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Toggle Tense Perspective Switcher (Tab 2) */
+        function toggleTenseCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`tenseText${cardNum}`);
+            const statusEl = document.getElementById(`tenseStatus${cardNum}`);
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"I<span class="px-2 py-0.5 bg-sky-600 text-white rounded font-bold">’m learning</span> to speak Hindi."`;
+                    statusEl.innerText = "PRESENT CONTINUOUS (Ongoing Activity Right Now)";
+                    statusEl.className = "text-xs font-bold text-sky-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">go</span> to school every day."`;
+                    statusEl.innerText = "PRESENT SIMPLE (Routine Fact / Habit)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Huan <span class="px-2 py-0.5 bg-emerald-600 text-white rounded font-bold">hasn't seen</span> the teacher yet."`;
+                    statusEl.innerText = "PRESENT PERFECT (Connected to Present 'yet')";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"I <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">didn't do</span> my homework yesterday."`;
+                    statusEl.innerText = "PAST SIMPLE (Specific Completed Time 'yesterday')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Daniel <span class="px-2 py-0.5 bg-rose-600 text-white rounded font-bold">hasn’t been studying</span> very much, so he won’t pass."`;
+                    statusEl.innerText = "PRESENT PERFECT CONTINUOUS (Lack of duration leading to failure)";
+                    statusEl.className = "text-xs font-bold text-rose-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"Mariella <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">had been studying</span> a lot, so she got a good grade."`;
+                    statusEl.innerText = "PAST PERFECT CONTINUOUS (Continuous Activity before past result)";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Tense Detail Converter Explorer Data (Tab 2) */
+        const tenseDetailData = {
+            'pres-simple': {
+                title: "Present Simple",
+                formula: "Base Verb / Verb + -s/es | Aux: do / does",
+                pos: "You go to school every day.",
+                neg: "I don't go to school on Sundays.",
+                q: "Do you go to school every day?",
+                pills: [
+                    { text: "Habits & Routines", class: "bg-indigo-100 text-indigo-900 font-bold" },
+                    { text: "Auxiliary: DO / DOES", class: "bg-indigo-600 text-white font-bold" }
+                ],
+                explanation: "Used for facts, permanent states, and daily routines."
+            },
+            'past-simple': {
+                title: "Past Simple",
+                formula: "Past Verb (V2) | Aux: did",
+                pos: "I finished my homework.",
+                neg: "I didn't do my homework yesterday.",
+                q: "Did you do your homework?",
+                pills: [
+                    { text: "Completed Past Time", class: "bg-indigo-100 text-indigo-900 font-bold" },
+                    { text: "Auxiliary: DID", class: "bg-indigo-600 text-white font-bold" }
+                ],
+                explanation: "Used for actions that started and finished at a definite past time."
+            },
+            'pres-cont': {
+                title: "Present Continuous",
+                formula: "am / is / are + Verb-ing",
+                pos: "I am learning to speak Hindi.",
+                neg: "I am not learning Hindi right now.",
+                q: "Are you learning Hindi?",
+                pills: [
+                    { text: "Action in Progress Now", class: "bg-sky-100 text-sky-900 font-bold" },
+                    { text: "Auxiliary BE + -ING", class: "bg-sky-600 text-white font-bold" }
+                ],
+                explanation: "Focuses on temporary activities currently happening around the present moment."
+            },
+            'past-cont': {
+                title: "Past Continuous",
+                formula: "was / were + Verb-ing",
+                pos: "He was having lunch at 2 p.m.",
+                neg: "Ahmet wasn't having lunch at 2 p.m.",
+                q: "Was Ahmet having lunch?",
+                pills: [
+                    { text: "Action in Progress in Past", class: "bg-sky-100 text-sky-900 font-bold" },
+                    { text: "WAS / WERE + -ING", class: "bg-sky-600 text-white font-bold" }
+                ],
+                explanation: "Describes an action that was ongoing at a specific past time reference."
+            },
+            'pres-perf': {
+                title: "Present Perfect",
+                formula: "have / has + Past Participle (V3)",
+                pos: "She has completed her project.",
+                neg: "Huan hasn't seen the teacher yet.",
+                q: "Have you seen the teacher?",
+                pills: [
+                    { text: "Past Action with Present Link", class: "bg-emerald-100 text-emerald-900 font-bold" },
+                    { text: "HAVE / HAS + V3", class: "bg-emerald-600 text-white font-bold" }
+                ],
+                explanation: "Connects a past event to the present moment without specifying exact past time."
+            },
+            'past-perf': {
+                title: "Past Perfect",
+                formula: "had + Past Participle (V3)",
+                pos: "I had finished before he arrived.",
+                neg: "I hadn't learnt Greek before I arrived in Athens.",
+                q: "Had you learnt Greek before?",
+                pills: [
+                    { text: "Action before Past Event", class: "bg-emerald-100 text-emerald-900 font-bold" },
+                    { text: "HAD + V3", class: "bg-emerald-600 text-white font-bold" }
+                ],
+                explanation: "Emphasizes an action completed prior to another reference point in the past."
+            },
+            'pres-perf-cont': {
+                title: "Present Perfect Continuous",
+                formula: "have / has + been + Verb-ing",
+                pos: "She has been studying for hours.",
+                neg: "Daniel hasn't been studying very much.",
+                q: "Has Daniel been studying?",
+                pills: [
+                    { text: "Duration up to Present", class: "bg-amber-100 text-amber-900 font-bold" },
+                    { text: "HAVE/HAS + BEEN + -ING", class: "bg-amber-600 text-white font-bold" }
+                ],
+                explanation: "Highlights continuous duration or process leading up to the present moment."
+            },
+            'past-perf-cont': {
+                title: "Past Perfect Continuous",
+                formula: "had + been + Verb-ing",
+                pos: "Mariella had been studying a lot.",
+                neg: "She hadn't been studying before.",
+                q: "Had she been studying a lot?",
+                pills: [
+                    { text: "Duration up to Past Event", class: "bg-amber-100 text-amber-900 font-bold" },
+                    { text: "HAD + BEEN + -ING", class: "bg-amber-600 text-white font-bold" }
+                ],
+                explanation: "Shows continuous activity that took place before a past outcome."
+            },
+            'future-forms': {
+                title: "Primary Future Forms (Will / Going to / Pres. Cont.)",
+                formula: "will + V1 | be going to + V1 | am/is/are + -ing",
+                pos: "Bella is sitting an exam. / One day people will study abroad.",
+                neg: "They won't pass without studying.",
+                q: "Is she sitting the exam tonight?",
+                pills: [
+                    { text: "Arrangements / Intentions / Predictions", class: "bg-purple-100 text-purple-900 font-bold" },
+                    { text: "WILL / GOING TO / PRES. CONT.", class: "bg-purple-600 text-white font-bold" }
+                ],
+                explanation: "Covers arrangements (Pres. Cont.), intention (going to), and general prediction (will)."
+            },
+            'future-perf': {
+                title: "Advanced Future Combinations (Future Perfect & Continuous)",
+                formula: "will be + -ing | will have + V3 | will have been + -ing",
+                pos: "By next year, my class will have graduated.",
+                neg: "In 2070, we won't be studying on Earth.",
+                q: "Will they have graduated by then?",
+                pills: [
+                    { text: "Future Benchmark Completion", class: "bg-purple-100 text-purple-900 font-bold" },
+                    { text: "WILL HAVE + V3", class: "bg-purple-600 text-white font-bold" }
+                ],
+                explanation: "Future Perfect shows completion by a future point; Future Continuous shows future action in progress."
+            }
+        };
+
+        function selectTenseDetail(tenseKey) {
+            const buttons = document.querySelectorAll('#tenseDetailPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`tpill-${tenseKey}`);
+            if (activeBtn) {
+                activeBtn.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = tenseDetailData[tenseKey];
+            const card = document.getElementById('tenseDisplayCard');
+
+            card.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h5 class="text-lg font-extrabold text-indigo-950">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-200 text-indigo-900 rounded-full text-xs font-mono font-bold">${data.formula}</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 text-xs font-medium">
+                    <div class="bg-white p-3 rounded-xl border border-slate-200">
+                        <span class="text-emerald-600 font-bold uppercase block mb-1">Positive (+)</span>
+                        <p class="text-slate-800">"${data.pos}"</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-slate-200">
+                        <span class="text-rose-600 font-bold uppercase block mb-1">Negative (-)</span>
+                        <p class="text-slate-800">"${data.neg}"</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-slate-200">
+                        <span class="text-indigo-600 font-bold uppercase block mb-1">Question (?)</span>
+                        <p class="text-slate-800">"${data.q}"</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    ${data.pills.map(p => `<span class="px-3 py-1 rounded-lg text-xs font-medium ${p.class}">${p.text}</span>`).join('')}
+                </div>
+                <p class="text-xs text-indigo-900/80 font-medium italic">💡 ${data.explanation}</p>
+            `;
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-800');
+                }
+            }
+        }
+
+        // Initialize default view
+        window.onload = function() {
+            selectTenseDetail('pres-simple');
+        };
+    </script>
+</body>
+</html>

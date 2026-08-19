@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Module 5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Module 5 Reference Masterclass
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Reported Speech & Noun Phrases</h1>
+                <p class="mt-4 text-indigo-100 max-w-3xl text-lg font-medium leading-relaxed">
+                    Master backshifting, reporting verb patterns (p. 77), and construct rich, precise academic Noun Phrases and quantity expressions (p. 80)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-reported-speech')">
+                    1. Reported Speech (p. 77) 💬
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-noun-phrases')">
+                    2. Noun Phrases 1 (p. 80) 🏷️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: REPORTED SPEECH (Page 77) -->
+            <div id="tab-reported-speech" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Reported Speech Patterns & Exceptions</h3>
+                        <p class="text-base text-slate-600 font-medium">Understand tense backshifting, pronoun adjustments, exceptions, and reporting verb patterns.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Switcher Card (Photo-inspired Style) -->
+                <div class="border-2 border-emerald-200 rounded-3xl bg-emerald-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-emerald-50/80 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-emerald-950 flex items-center gap-2">
+                            <span>Interactive Direct &harr; Reported Speech Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-emerald-200 text-emerald-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE TRANSFORMED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <!-- Trick Box -->
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-emerald-100 rounded-full text-emerald-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Grammar Rule Trick</p>
+                                <p class="text-xs sm:text-sm font-bold text-emerald-900">
+                                    Toggle the switches below to inspect <span class="text-indigo-600">Tense Backshifting & Pronoun Changes</span>, or observe <span class="text-purple-600">Exceptions (Unchanged Future Facts)</span>!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 1: Standard Backshift -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="rsText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                Aunt: <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">"I’ve never been</span> on a plane before."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="rsStatus1" class="text-xs font-bold text-amber-700 uppercase tracking-wider">DIRECT SPEECH (PRESENT PERFECT + 'I')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPORTED</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleReportedCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 2: Same Speaker (No Pronoun Change) -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="rsText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                Direct Quote: <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">"I don’t want to go."</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="rsStatus2" class="text-xs font-bold text-amber-700 uppercase tracking-wider">DIRECT QUOTE (FIRST PERSON 'I')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPORTED</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleReportedCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Card 3: No Tense Change Exception (Future Fact) -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="rsText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                Karen: <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">"I’ll be able to retire in 2050."</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="rsStatus3" class="text-xs font-bold text-amber-700 uppercase tracking-wider">DIRECT SPEECH (FUTURE FACT)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE REPORTED</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleReportedCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Detailed Category Breakdown Cards -->
+                <h4 class="text-xl font-bold text-slate-900 pt-4 border-t border-slate-200">Three Common Reported Verb Structures</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Pattern A -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">Pattern A</span>
+                                <h4 class="font-bold text-slate-900 text-base">Subject + Verb + that + Clause</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Verbs such as <em>deny, claim, admit, state, mention</em> follow this pattern directly without needing an object noun/pronoun.
+                            </p>
+                            <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 text-xs font-medium">
+                                <p class="text-slate-800">"She <strong class="text-indigo-700 font-bold">denied that</strong> she had changed the date of our meeting."</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-indigo-700 font-semibold border border-slate-200 mt-4">
+                            💡 Verbs: deny, admit, say, claim, state, mention
+                        </div>
+                    </div>
+
+                    <!-- Pattern B -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-wider">Pattern B</span>
+                                <h4 class="font-bold text-slate-900 text-base">Subject + Verb + to + Object + Clause/Infinitive</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Verbs such as <em>explain, suggest, point out</em> require the preposition <strong>to</strong> before the listener object.
+                            </p>
+                            <div class="bg-purple-50/70 p-3.5 rounded-xl border border-purple-100 text-xs font-medium">
+                                <p class="text-slate-800">"The manager <strong class="text-purple-700 font-bold">explained to me that</strong> the offer had expired."</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-purple-700 font-semibold border border-slate-200 mt-4">
+                            💡 Preposition Alert: Never omit 'to' with explain! (e.g. <em>explained to me</em>)
+                        </div>
+                    </div>
+
+                    <!-- Pattern C -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider">Pattern C</span>
+                                <h4 class="font-bold text-slate-900 text-base">Subject + Verb + Object + Infinitive/Clause</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Verbs such as <em>tell, advise, warn, persuade, encourage</em> take a direct listener object immediately followed by an infinitive or clause.
+                            </p>
+                            <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-100 text-xs font-medium">
+                                <p class="text-slate-800">"Many people <strong class="text-emerald-700 font-bold">told me to go and study</strong> abroad."</p>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-emerald-700 font-semibold border border-slate-200 mt-4">
+                            💡 Verbs: tell, advise, urge, persuade, instruct
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Modal No-Backshift Summary Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md border border-slate-800">
+                    <h4 class="text-base font-extrabold text-indigo-300 mb-2">⚡ Modals That DO NOT Backshift in Reported Speech</h4>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                        While modal verbs like <em>can $\rightarrow$ could</em> and <em>will $\rightarrow$ would</em> backshift, the following modals remain unchanged in reported speech:
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono font-bold">
+                        <span class="px-3 py-1.5 bg-indigo-500/30 text-indigo-300 rounded-lg border border-indigo-500/40">should</span>
+                        <span class="px-3 py-1.5 bg-indigo-500/30 text-indigo-300 rounded-lg border border-indigo-500/40">would</span>
+                        <span class="px-3 py-1.5 bg-indigo-500/30 text-indigo-300 rounded-lg border border-indigo-500/40">might</span>
+                        <span class="px-3 py-1.5 bg-indigo-500/30 text-indigo-300 rounded-lg border border-indigo-500/40">could</span>
+                        <span class="px-3 py-1.5 bg-indigo-500/30 text-indigo-300 rounded-lg border border-indigo-500/40">needn't</span>
+                    </div>
+                </div>
+
+                <!-- Band 8.0+ Evaluative Reporting Verbs Masterclass -->
+                <div class="bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-teal-500/10 border-2 border-purple-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Academic Stance
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Evaluative & Argumentative Reporting Verbs</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg border border-purple-200">Writing Task 2 Critical Analysis</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Band 8+ writers replace generic reporting verbs (<em>said, told, thought</em>) with <strong>evaluative verbs</strong> that signal precisely how reliable or controversial a claim is:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-700 block">Strong Assertion</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "Proponents <strong class="text-purple-700 font-bold">contend / maintain that</strong> early bilingual education accelerates cognitive development."
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Tentative Hypothesis</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "Sociologists <strong class="text-indigo-700 font-bold">postulate / hypothesize that</strong> urbanization weakens traditional family ties."
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs space-y-1.5">
+                            <span class="text-[10px] font-extrabold uppercase text-teal-700 block">Concession / Rebuttal</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "While economists <strong class="text-teal-700 font-bold">concede that</strong> inflation has dropped, they <strong class="text-teal-700 font-bold">refute</strong> claims of full recovery."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: NOUN PHRASES 1 (Page 80) -->
+            <div id="tab-noun-phrases" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h10m-7 5h7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Noun Phrases & Quantity Expressions</h3>
+                        <p class="text-base text-slate-600 font-medium">Build complex noun phrases using relative clauses, adjectives, compound nouns, prepositions, and fractions.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Noun Phrase Structure Switcher Card -->
+                <div class="border-2 border-indigo-200 rounded-3xl bg-indigo-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-indigo-50/80 px-6 py-4 border-b border-indigo-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-indigo-950 flex items-center gap-2">
+                            <span>Interactive Noun Phrase Builder & Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-indigo-200 text-indigo-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE STRUCTURED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-indigo-100 rounded-full text-indigo-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Academic Writing Trick</p>
+                                <p class="text-xs sm:text-sm font-bold text-indigo-900">
+                                    Toggle the switches below to inspect how simple base nouns (<span class="text-indigo-600">Houses</span>, <span class="text-purple-600">Positions</span>, <span class="text-emerald-700">Designer</span>) expand into formal academic Noun Phrases!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- NP Card 1: Noun + Relative Clause -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="npText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                Base Noun: <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">"Houses"</span> are susceptible to flooding.
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="npStatus1" class="text-xs font-bold text-slate-500 uppercase tracking-wider">BASE NOUN ONLY</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE RELATIVE CLAUSE</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleNounPhraseCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NP Card 2: Adjective + Noun -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="npText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                Base Noun: <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">"Positions"</span> are held by business leaders.
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="npStatus2" class="text-xs font-bold text-slate-500 uppercase tracking-wider">BASE NOUN ONLY</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE ADJECTIVE</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleNounPhraseCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NP Card 3: Noun + Prepositional Phrase -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="npText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                Base Noun: <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">"People"</span> were asked several questions.
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="npStatus3" class="text-xs font-bold text-slate-500 uppercase tracking-wider">BASE NOUN ONLY</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE PREPOSITIONAL PHRASE</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleNounPhraseCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 4 Structural Noun Phrase Types Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- a. Noun + Relative Clause -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-indigo-100 pb-3">
+                            <h4 class="font-bold text-indigo-900 text-lg">a. Noun + Relative Clause</h4>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-bold">Post-modification</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Expands a noun by appending a relative clause (<em>which, that, who</em>) to specify exact traits or locations.
+                        </p>
+                        <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 text-xs font-medium">
+                            <p class="text-slate-800">"Houses <strong class="text-indigo-700">which are in low land</strong> are more susceptible to flooding."</p>
+                        </div>
+                    </div>
+
+                    <!-- b. Adjective + Noun -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-purple-100 pb-3">
+                            <h4 class="font-bold text-purple-900 text-lg">b. Adjective + Noun</h4>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold">Pre-modification</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Adds qualitative descriptive adjectives directly before the head noun.
+                        </p>
+                        <div class="bg-purple-50/70 p-3.5 rounded-xl border border-purple-100 text-xs font-medium">
+                            <p class="text-slate-800"><strong class="text-purple-700">Prominent positions</strong> are held by a range of people in business and politics.</p>
+                        </div>
+                    </div>
+
+                    <!-- c. Noun + Noun -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-emerald-100 pb-3">
+                            <h4 class="font-bold text-emerald-900 text-lg">c. Noun + Noun (Compound)</h4>
+                            <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold">Noun Modifier</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Uses a primary noun as a modifying adjective before another noun to specify professional roles or categories.
+                        </p>
+                        <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-100 text-xs font-medium">
+                            <p class="text-slate-800">A <strong class="text-emerald-700">database designer</strong> is a role sought after by many companies.</p>
+                        </div>
+                    </div>
+
+                    <!-- d. Noun + Prepositional Phrase -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3 border-b border-sky-100 pb-3">
+                            <h4 class="font-bold text-sky-900 text-lg">d. Noun + Prepositional Phrase</h4>
+                            <span class="px-3 py-1 bg-sky-100 text-sky-800 rounded-full text-xs font-bold">Prepositional Post-mod</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Appends a prepositional phrase (<em>in, of, with, on</em>) directly after the noun to denote scope or context.
+                        </p>
+                        <div class="bg-sky-50/70 p-3.5 rounded-xl border border-sky-100 text-xs font-medium">
+                            <p class="text-slate-800">The people <strong class="text-sky-700">in the study</strong> were asked several questions.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Quantity Noun Phrases Section (IELTS Writing Essential) -->
+                <div class="bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl">
+                    <h4 class="text-xl font-extrabold text-indigo-200 mb-2">2. Noun Phrases for Quantities & Data (IELTS Task 1 & 2)</h4>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+                        Essential structures for summarizing statistics, survey demographics, and proportions smoothly in academic writing:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Fraction Formula -->
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/10 space-y-3">
+                            <span class="px-3 py-1 bg-amber-400 text-slate-950 font-bold rounded-full text-xs">Fraction Pattern</span>
+                            <h5 class="text-lg font-bold text-white">A (fraction) + of + (category)</h5>
+                            <div class="bg-slate-900/80 p-3.5 rounded-xl text-xs text-slate-200 font-mono border border-slate-700">
+                                <p>"<strong class="text-amber-300">A fifth of homeowners</strong> wanted to move house."</p>
+                                <p class="mt-1 text-slate-400 text-[11px] font-sans italic">&rarr; Fraction 'a fifth' (20%) + of + category 'homeowners'.</p>
+                            </div>
+                        </div>
+
+                        <!-- Majority/Minority Formula -->
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/10 space-y-3">
+                            <span class="px-3 py-1 bg-teal-400 text-slate-950 font-bold rounded-full text-xs">Majority / Minority Pattern</span>
+                            <h5 class="text-lg font-bold text-white">The/A (majority / minority) + of + (category)</h5>
+                            <div class="bg-slate-900/80 p-3.5 rounded-xl text-xs text-slate-200 font-mono border border-slate-700">
+                                <p>"<strong class="text-teal-300">The majority of young adults</strong> wish to work overseas."</p>
+                                <p class="mt-1 text-slate-400 text-[11px] font-sans italic">&rarr; Proportion 'the majority' + of + category 'young adults'.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Band 8.0+ Academic Nominalization Masterclass -->
+                <div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-indigo-500/10 border-2 border-emerald-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-emerald-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Lexical Density
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Academic Nominalization & Packaging Ideas</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Task 1 & Task 2 Density</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        <strong>Nominalization</strong> transforms verbal clauses into compact noun phrases. This increases informational density and removes informal conversational tone:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-emerald-200 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-slate-500 block">Conversational Clause (Low Band)</span>
+                            <p class="text-slate-600 italic">"Because the government invested heavily in public healthcare, mortality rates fell."</p>
+                            <span class="text-[10px] font-extrabold uppercase text-emerald-700 block">Nominalized Compound (Band 8.0+)</span>
+                            <p class="text-slate-800 font-bold">
+                                "<span class="text-emerald-700 underline">Substantial government investment in public healthcare</span> precipitated a marked reduction in mortality rates."
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-emerald-200 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-slate-500 block">Conversational Clause (Low Band)</span>
+                            <p class="text-slate-600 italic">"When individuals consume too much fast food, they tend to become obese."</p>
+                            <span class="text-[10px] font-extrabold uppercase text-emerald-700 block">Nominalized Compound (Band 8.0+)</span>
+                            <p class="text-slate-800 font-bold">
+                                "<span class="text-emerald-700 underline">Excessive fast food consumption</span> is closely correlated with the onset of obesity."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Module 5 Mastery Check</h3>
+                    <p class="text-teal-700 font-medium">Test your understanding of reported speech transformations, reporting verbs, and noun phrase structures.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            1. Select the correct reported sentence for: Aunt: "I've never been on a plane before."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Present perfect (\'ve never been) backshifts to past perfect (had never been), and pronoun \'I\' changes to \'she\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">My aunt said that she had never been on a plane before.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. The verb tense must backshift from present perfect to past perfect.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">My aunt said that she has never been on a plane before.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            2. Why does the tense NOT backshift in: "Karen said she’ll be able to retire in 2050"?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Tenses do not backshift when the reported statement is still true in the future or has not happened yet.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Because the reported event is still true and has not happened yet.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'will/shall\' can backshift to \'would\', but in this specific future context backshifting is unnecessary.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Because future tenses are forbidden from backshifting in English.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            3. Which reporting verb structure is CORRECT for the verb <strong>explain</strong>?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. The verb \'explain\' requires the preposition \'to\' before the listener object.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The manager explained me that the offer had expired."</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'explain\' follows the pattern: Subject + reported verb + to + object + that + clause.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">"The manager explained to me that the offer had expired."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            4. Identify the noun phrase structure in: "<strong>Prominent positions</strong> are held by leaders."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Prominent\' is an adjective modifying the noun \'positions\'.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Adjective + Noun</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Prominent is an adjective, not a noun modifier.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Noun + Noun</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. There is no relative pronoun (who/which) here.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Noun + Relative Clause</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            5. Choose the correctly structured Quantity Noun Phrase:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Follows the formula: A (fraction) + of + (category).')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">"A fifth of homeowners wanted to move house."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Needs the preposition \'of\' between fraction and category.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"A fifth homeowners wanted to move house."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Expert Grammar Reference Guide</span>
+            <span>Module 5: Reported Speech & Noun Phrases</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+                clickedBtn.classList.remove('font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Toggle Reported Speech Cards (Tab 1) */
+        function toggleReportedCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`rsText${cardNum}`);
+            const statusEl = document.getElementById(`rsStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"My aunt said that <span class="px-2 py-0.5 bg-indigo-600 text-white rounded font-bold">she had never been</span> on a plane before."`;
+                    statusEl.innerText = "REPORTED SPEECH (PAST PERFECT + 'SHE')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `Aunt: <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">"I’ve never been</span> on a plane before."`;
+                    statusEl.innerText = "DIRECT SPEECH (PRESENT PERFECT + 'I')";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"I told him that <span class="px-2 py-0.5 bg-purple-600 text-white rounded font-bold">I didn’t want</span> to go."`;
+                    statusEl.innerText = "REPORTED SPEECH (SAME SPEAKER 'I' UNCHANGED)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `Direct Quote: <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">"I don’t want to go."</span>`;
+                    statusEl.innerText = "DIRECT QUOTE (FIRST PERSON 'I')";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Karen said she <span class="px-2 py-0.5 bg-emerald-600 text-white rounded font-bold">’ll be able to retire</span> in 2050."`;
+                    statusEl.innerText = "REPORTED SPEECH (NO BACKSHIFT - STILL TRUE IN FUTURE)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `Karen: <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">"I’ll be able to retire in 2050."</span>`;
+                    statusEl.innerText = "DIRECT SPEECH (FUTURE FACT)";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Toggle Noun Phrase Cards (Tab 2) */
+        function toggleNounPhraseCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`npText${cardNum}`);
+            const statusEl = document.getElementById(`npStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"Houses <span class="px-2 py-0.5 bg-indigo-600 text-white rounded font-bold">which are in low land</span> are more susceptible to flooding."`;
+                    statusEl.innerText = "NOUN + RELATIVE CLAUSE MODIFICATION";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `Base Noun: <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">"Houses"</span> are susceptible to flooding.`;
+                    statusEl.innerText = "BASE NOUN ONLY";
+                    statusEl.className = "text-xs font-bold text-slate-500 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-purple-600 text-white rounded font-bold">Prominent</span> positions are held by business leaders."`;
+                    statusEl.innerText = "ADJECTIVE + NOUN PRE-MODIFICATION";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `Base Noun: <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">"Positions"</span> are held by business leaders.`;
+                    statusEl.innerText = "BASE NOUN ONLY";
+                    statusEl.className = "text-xs font-bold text-slate-500 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The people <span class="px-2 py-0.5 bg-emerald-600 text-white rounded font-bold">in the study</span> were asked several questions."`;
+                    statusEl.innerText = "NOUN + PREPOSITIONAL PHRASE POST-MODIFICATION";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `Base Noun: <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">"People"</span> were asked several questions.`;
+                    statusEl.innerText = "BASE NOUN ONLY";
+                    statusEl.className = "text-xs font-bold text-slate-500 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-800');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

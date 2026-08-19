@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Reference: Module 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+
+    <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-indigo-700 via-indigo-600 to-purple-800 text-white p-8 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-15 transform translate-x-1/4 -translate-y-1/4">
+                <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.4a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-sm font-bold tracking-widest uppercase mb-3 text-indigo-200 flex items-center gap-2">
+                    <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Module 9 Reference Masterclass
+                </h2>
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-md">Technical Process & Estimation Language</h1>
+                <p class="mt-4 text-indigo-100 max-w-3xl text-lg font-medium leading-relaxed">
+                    Master defining relative clause mechanisms to explain how things work, visual description vocabulary (p. 141), and estimation/indication phrases for IELTS Task 1 & Part 3 (p. 144)!
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all" onclick="openTab(event, 'tab-works')">
+                    1. Explaining How Things Work & Look (p. 141) ⚙️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all" onclick="openTab(event, 'tab-estimation')">
+                    2. Estimation & Indication Language (p. 144) 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-4 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all flex items-center gap-2" onclick="openTab(event, 'tab-quiz')">
+                    3. Practice Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: EXPLAINING HOW SOMETHING WORKS & LOOKS (Page 141) -->
+            <div id="tab-works" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">1. Describing Mechanisms & Physical Appearance</h3>
+                        <p class="text-base text-slate-600 font-medium">Use defining relative clauses to explain functional components, structure, size, material, and form.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Switcher Card: Functional Description Building -->
+                <div class="border-2 border-emerald-200 rounded-3xl bg-emerald-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-emerald-50/80 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-emerald-950 flex items-center gap-2">
+                            <span>Interactive Mechanism Sentence Switcher</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-emerald-200 text-emerald-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE TRANSFORMED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-emerald-100 rounded-full text-emerald-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Formula Pattern</p>
+                                <p class="text-xs sm:text-sm font-bold text-emerald-900">
+                                    <span class="text-indigo-600 font-mono">[Nouns: The part / device / element / area]</span> + <span class="text-purple-600 font-mono">[which / that]</span> + <span class="text-emerald-700 font-mono">[is used to ... / engineers manipulate to ... / makes ...]</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 1: Functional Component Switcher -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="workText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "<span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">The part</span> <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">which</span> <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">is used to filter water impurities</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="workStatus1" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">COMPONENT FUNCTION ('is used to')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE ACTION VERB</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleWorkCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Mechanical Area Switcher -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="workText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "<span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">The area</span> <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">that</span> <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">is used to store raw materials</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="workStatus2" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">LOCATION FUNCTION ('The area that...')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE DEVICE IMPACT</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleWorkCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Interactive Vocabulary Term Explorer (Structure, Size, Material, Form) -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+                    <h4 class="text-xl font-extrabold text-slate-900 mb-2">Physical Description Vocabulary Explorer</h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                        Click on any category pill below to inspect formal vocabulary terms used to describe physical diagrams, objects, and IELTS Task 1 structures:
+                    </p>
+
+                    <!-- Term Category Pills -->
+                    <div class="flex flex-wrap gap-2 mb-6" id="descCategoryPillGroup">
+                        <button onclick="selectDescCategory('structure')" id="descpill-structure" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">1. Structure</button>
+                        <button onclick="selectDescCategory('size')" id="descpill-size" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">2. Size & Scale</button>
+                        <button onclick="selectDescCategory('material')" id="descpill-material" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">3. Material</button>
+                        <button onclick="selectDescCategory('form')" id="descpill-form" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">4. Form & Appearance</button>
+                    </div>
+
+                    <!-- Dynamic Description Display Card -->
+                    <div id="descDisplayCard" class="p-6 rounded-2xl bg-indigo-50 border border-indigo-100 transition-all">
+                        <!-- JS populates content here -->
+                    </div>
+                </div>
+
+                <!-- Band 8.0+ IELTS Process Diagram Passive Syntax Masterclass -->
+                <div class="bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-teal-500/10 border-2 border-indigo-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-indigo-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Task 1 Process Mastery
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Sequential Passive & Clause Linking</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">Writing Task 1 Process Diagrams</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Examiners expect varied passive structures linked chronologically without simple <em>"First... Then... Next"</em> repetition:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Once + Present Perfect Passive</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "<strong class="text-indigo-700 font-bold">Once the raw plastic has been collected and sorted</strong>, it is subsequently melted at high temperatures."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Formula: Once + S + has/have been + V3, [Main Clause Passive]</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-teal-700 block">Participle Clause Sequence</span>
+                            <p class="text-slate-800 font-semibold leading-relaxed">
+                                "<strong class="text-teal-700 font-bold">Having been purified</strong> through filtration membranes, the water is transferred directly to storage silos."
+                            </p>
+                            <p class="text-[11px] text-slate-500 italic">Formula: Having been + V3, [Subject + Main Verb]</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: ESTIMATION AND INDICATION (Page 144) -->
+            <div id="tab-estimation" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4 mb-2">
+                    <div class="bg-indigo-100 p-4 rounded-2xl text-indigo-600 pulse-border">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">2. Estimation & Indication Language</h3>
+                        <p class="text-base text-slate-600 font-medium">Phrases for approximating quantities, categories, and speculative ideas in IELTS Task 1 & Part 3.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Cause & Effect Switcher (Photo Style) -->
+                <div class="border-2 border-indigo-200 rounded-3xl bg-indigo-50/30 overflow-hidden shadow-sm">
+                    <div class="bg-indigo-50/80 px-6 py-4 border-b border-indigo-100 flex items-center justify-between">
+                        <h4 class="text-xl font-extrabold text-indigo-950 flex items-center gap-2">
+                            <span>Interactive Estimation Transformer</span>
+                        </h4>
+                        <span class="px-3 py-1 bg-indigo-200 text-indigo-800 rounded-full text-xs font-bold flex items-center gap-1">
+                            CAN BE TRANSFORMED! <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        </span>
+                    </div>
+
+                    <div class="p-6 space-y-5">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                            <div class="p-1.5 bg-indigo-100 rounded-full text-indigo-700 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Academic Estimation Rule</p>
+                                <p class="text-xs sm:text-sm font-bold text-indigo-900">
+                                    Toggle the switches below to convert between <span class="text-indigo-600">Exact Figures</span> and <span class="text-emerald-700">Approximations / Category Language</span> required for data analysis and academic speaking!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 1: Approximately / About / Around -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="estimateText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "The temperature reached <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">100°C</span> during the second phase."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="estimateStatus1" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">EXACT QUANTITY</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE APPROXIMATION</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleEstimateCard(1, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: And so on -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="estimateText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "The machine processes metal, plastic, glass <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">[end of list]</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="estimateStatus2" class="text-xs font-bold text-rose-600 uppercase tracking-wider">LIMITED EXHAUSTIVE LIST</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE 'AND SO ON'</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleEstimateCard(2, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: More or less -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="estimateText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "The two experimental prototypes are <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">identical</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="estimateStatus3" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">ABSOLUTE CLAIM ('identical')</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE 'MORE OR LESS'</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleEstimateCard(3, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Kinds of / Types of -->
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                            <div id="estimateText4" class="text-sm sm:text-base font-semibold text-slate-800">
+                                "The survey evaluated <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">renewable energy systems</span>."
+                            </div>
+                            <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <span id="estimateStatus4" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">SPECIFIC NOUN</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-400">TOGGLE 'KINDS OF / TYPES OF'</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" onchange="toggleEstimateCard(4, this.checked)">
+                                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sky-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Band 8.0+ Task 1 Data Approximation Masterclass -->
+                <div class="bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-indigo-500/10 border-2 border-teal-400/40 rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-3 py-1 bg-teal-600 text-white rounded-full text-xs font-black tracking-wide uppercase shadow-xs flex items-center gap-1">
+                                ⭐ Band 8.0+ Task 1 Lexical Resource
+                            </span>
+                            <span class="text-xs font-bold text-slate-700">Data Approximations & Movement Modifiers</span>
+                        </div>
+                        <span class="text-[11px] font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200">Writing Task 1 Academic Range</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        Instead of stating raw percentages directly, convert numbers into natural academic fractions and proportional qualifiers:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-teal-700 block">Proportions & Fractions</span>
+                            <ul class="space-y-1 text-slate-700">
+                                <li>• <strong>73%:</strong> "roughly three-quarters"</li>
+                                <li>• <strong>32%:</strong> "just under a third"</li>
+                                <li>• <strong>4%:</strong> "a negligible fraction"</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-700 block">Multiplication & Multipliers</span>
+                            <ul class="space-y-1 text-slate-700">
+                                <li>• <strong>x2:</strong> "doubled / a twofold rise"</li>
+                                <li>• <strong>x3:</strong> "tripled / a threefold surge"</li>
+                                <li>• <strong>x4:</strong> "quadrupled / fourfold"</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-3.5 rounded-xl border border-teal-100 shadow-2xs space-y-1">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-700 block">Fluctuation & Stability</span>
+                            <ul class="space-y-1 text-slate-700">
+                                <li>• "<strong>hovered around</strong> 50%"</li>
+                                <li>• "<strong>fluctuated marginally</strong> between 20-25%"</li>
+                                <li>• "<strong>plateaued at</strong> roughly 80%"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50 to-teal-50 rounded-2xl p-8 border border-teal-100 text-center mb-8 shadow-inner">
+                    <h3 class="text-3xl font-extrabold text-teal-900 mb-2">Module 9 Mastery Check</h3>
+                    <p class="text-teal-700 font-medium">Test your knowledge of functional relative clauses, physical description terminology, and estimation language.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            1. Select the defining relative clause that correctly explains how a functional component works:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'The part which is used to filter water...\' uses a defining relative clause to describe function.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">"The part which is used to filter water impurities."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This sentence lacks a relative pronoun and verb structure.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The part filtering water impurities."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Non-defining clauses with commas are not used for essential defining functional definitions.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">"The part, which filters water, is large."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            2. Which category of visual description vocabulary includes the terms: <em>constructed from, made of, formed by, constituted</em>?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! These terms belong to the Material description category.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Material</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Structure terms include consists of, incorporates, comprises.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Structure</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Form terms include shaped like, resembles, the appearance of.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Form</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            3. Which word or phrase is used before numbers to give an approximate quantity in IELTS Task 1 writing?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Approximately\', \'about\', and \'around\' are used before numbers to indicate approximation.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">Approximately / about / around</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'And so on\' is placed at the end of a list to indicate further examples.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">And so on</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'Kinds of\' is used before a noun to refer to a category.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">Kinds of / types of</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            4. What does the phrase <strong>and so on</strong> signify when placed at the end of a list?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'And so on\' indicates that there are further unlisted examples in the same series.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">It indicates that there are further examples.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'Approximately\' is used to estimate quantities.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">It shows exact mathematical precision.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'More or less\' is used before a noun to show approximation.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">It indicates a cause and effect relationship.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                        <p class="text-base sm:text-lg font-bold text-slate-800 mb-4">
+                            5. Complete the sentence for an academic Speaking Part 3 response: "There are several <span class="inline-block w-32 border-b-2 border-slate-400"></span> renewable technology available today."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'types of\' or \'kinds of\' is placed before nouns to refer to categories.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm" data-correct="true">types of / kinds of</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'and so on\' is placed at the end of a list.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">and so on</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'in height\' belongs to the Size category.')" class="px-5 py-3 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 hover:text-indigo-700 text-slate-700 transition-colors border-2 border-transparent text-sm">in height of</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-sm border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-5 border-t border-slate-200 flex justify-between items-center text-sm font-medium text-slate-500">
+            <span>Expert Grammar Reference Guide</span>
+            <span>Module 9: Explaining How Things Work & Estimation</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Switching Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                
+                if(btn.innerText.includes('Quiz')) {
+                    btn.classList.add('border-transparent', 'text-teal-600'); 
+                } else {
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                    btn.classList.remove('font-bold');
+                    btn.classList.add('font-semibold');
+                }
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400');
+                clickedBtn.classList.remove('font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Description Vocabulary Category Data */
+        const descData = {
+            structure: {
+                title: "1. Structure Terms",
+                terms: "consists of, includes, incorporates, comprises",
+                desc: "Used to outline the individual components or sub-assemblies making up a whole machine, process, or system.",
+                example: "The solar water heater <strong class='text-indigo-700 font-bold'>incorporates</strong> three primary sub-systems: a collector panel, an insulated tank, and a pump.",
+                tip: "💡 'Comprises' does NOT take 'of' (Write 'The system comprises three parts', NOT 'comprises of')."
+            },
+            size: {
+                title: "2. Size & Dimension Terms",
+                terms: "in diameter, in height, in width, in depth, to scale, magnified, elongated, reduced, minimised",
+                desc: "Describes exact or relative physical measurements, dimensions, scale factors, and visual magnifications.",
+                example: "The main cylinder measures 15 cm <strong class='text-indigo-700 font-bold'>in diameter</strong> and 45 cm <strong class='text-indigo-700 font-bold'>in height</strong>, shown here on a <strong class='text-indigo-700 font-bold'>magnified</strong> scale.",
+                tip: "💡 Essential for IELTS Task 1 diagram descriptions requiring physical dimensions."
+            },
+            material: {
+                title: "3. Material Composition Terms",
+                terms: "constructed from, made of, formed by, constituted",
+                desc: "Specifies the raw substances, alloys, or materials utilized to build a component.",
+                example: "The outer turbine blades are <strong class='text-indigo-700 font-bold'>constructed from</strong> lightweight carbon fiber alloys.",
+                tip: "💡 Use 'made of' when the material remains unchanged; use 'constructed from' or 'made from' when processed."
+            },
+            form: {
+                title: "4. Form & Geometric Appearance Terms",
+                terms: "shaped like, resembles, the appearance of",
+                desc: "Describes geometric silhouettes, visual comparisons, and structural shapes.",
+                example: "The intake valve is <strong class='text-indigo-700 font-bold'>shaped like</strong> a funnel and <strong class='text-indigo-700 font-bold'>resembles</strong> a traditional trumpet opening.",
+                tip: "💡 Great for Task 1 diagrams depicting unusual or complex machinery shapes."
+            }
+        };
+
+        function selectDescCategory(key) {
+            const buttons = document.querySelectorAll('#descCategoryPillGroup button');
+            buttons.forEach(btn => {
+                btn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+            });
+
+            const activeBtn = document.getElementById(`descpill-${key}`);
+            if (activeBtn) {
+                activeBtn.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+            }
+
+            const data = descData[key];
+            const card = document.getElementById('descDisplayCard');
+            if (!card || !data) return;
+
+            card.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h5 class="text-lg font-extrabold text-indigo-950">${data.title}</h5>
+                    <span class="px-3 py-1 bg-indigo-200 text-indigo-900 rounded-full text-xs font-mono font-bold">Key Vocabulary: ${data.terms}</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">${data.desc}</p>
+                <div class="bg-white p-4 rounded-xl border border-indigo-100 text-xs font-medium text-slate-800 mb-3">
+                    ${data.example}
+                </div>
+                <div class="p-3 bg-white/80 rounded-xl text-xs text-indigo-900 font-semibold border border-indigo-200">
+                    ${data.tip}
+                </div>
+            `;
+        }
+
+        /* Toggle Functional Mechanism Cards */
+        function toggleWorkCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`workText${cardNum}`);
+            const statusEl = document.getElementById(`workStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">The element</span> <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">that</span> <span class="px-2 py-0.5 bg-purple-600 text-white rounded font-bold">engineers manipulate to control fluid flow</span>."`;
+                    statusEl.innerHTML = "ACTIVE ACTION VERB ('engineers manipulate to...')";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">The part</span> <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">which</span> <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">is used to filter water impurities</span>."`;
+                    statusEl.innerHTML = "COMPONENT FUNCTION ('is used to')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">The device</span> <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">which</span> <span class="px-2 py-0.5 bg-indigo-600 text-white rounded font-bold">makes the entire recycling process more efficient</span>."`;
+                    statusEl.innerHTML = "DEVICE IMPACT ('makes ... [adjective]')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"<span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">The area</span> <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">that</span> <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">is used to store raw materials</span>."`;
+                    statusEl.innerHTML = "LOCATION FUNCTION ('The area that...')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Toggle Estimation Cards */
+        function toggleEstimateCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`estimateText${cardNum}`);
+            const statusEl = document.getElementById(`estimateStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The temperature reached <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">approximately / about / around 100°C</span> during the second phase."`;
+                    statusEl.innerHTML = "APPROXIMATE QUANTITY (BEFORE NUMBERS)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The temperature reached <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">100°C</span> during the second phase."`;
+                    statusEl.innerHTML = "EXACT QUANTITY";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The machine processes metal, plastic, glass <span class="px-2 py-0.5 bg-purple-600 text-white rounded font-bold">and so on</span>."`;
+                    statusEl.innerHTML = "OPEN LIST ('AND SO ON' &rarr; FURTHER EXAMPLES EXIST)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The machine processes metal, plastic, glass <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded font-bold">[end of list]</span>."`;
+                    statusEl.innerHTML = "LIMITED EXHAUSTIVE LIST";
+                    statusEl.className = "text-xs font-bold text-rose-600 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The two experimental prototypes are <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded font-bold">more or less identical</span>."`;
+                    statusEl.innerHTML = "APPROXIMATE SIMILARITY ('MORE OR LESS' BEFORE NOUN/ADJ)";
+                    statusEl.className = "text-xs font-bold text-emerald-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The two experimental prototypes are <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">identical</span>."`;
+                    statusEl.innerHTML = "ABSOLUTE CLAIM ('identical')";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 4) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The survey evaluated several <span class="px-2 py-0.5 bg-sky-600 text-white rounded font-bold">kinds of / types of</span> renewable energy systems."`;
+                    statusEl.innerHTML = "CATEGORY REFERENCE ('KINDS OF / TYPES OF' BEFORE NOUN)";
+                    statusEl.className = "text-xs font-bold text-sky-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The survey evaluated <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">renewable energy systems</span>."`;
+                    statusEl.innerHTML = "SPECIFIC NOUN";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Quiz Validation Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.classList.remove('hover:bg-indigo-100', 'hover:text-indigo-700');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-lg block mb-1">🎉 Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-lg block mb-1">✗ Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-800');
+                }
+            }
+        }
+
+        // Initialize default view
+        window.onload = function() {
+            selectDescCategory('structure');
+        };
+    </script>
+</body>
+</html>
