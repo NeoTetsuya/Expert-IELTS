@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Practice — Can We Rely on Mother Nature?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+        }
+        .reading-passage h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            font-size: 1.8em;
+            text-align: center;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            text-indent: 0;
+            line-height: 1.3;
+        }
+
+        .q-item {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            background-color: #f8fafc;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #059669;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+        }
+
+        .vocab-word {
+            color: #059669;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #a7f3d0;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #d1fae5;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .progress-item.answered {
+            background-color: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #059669;
+            color: #059669;
+        }
+        .progress-tracker {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-emerald-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">Reading Practice <span class="text-emerald-600 font-medium hidden md:inline">| Can We Rely on Mother Nature?</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2 py-1 text-sm w-24 sm:w-40 focus:outline-none focus:ring-2 focus:ring-emerald-400" placeholder="Your Name">
+            </div>
+            
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <div id="left-pane" class="pane relative">
+            <div class="reading-passage">
+                <h3>CAN WE RELY ON MOTHER NATURE?</h3>
+                
+                <p>Could Mother Nature be coming to our rescue again? New research indicates that the Earth’s vegetation has been absorbing more carbon dioxide than had been thought, which has led to a reduction in global warming and will give us more time to get it under control.</p>
+                
+                <p>Mother Nature has been very kind to us. For centuries she took everything humans threw at her without seriously fighting back. The green land we have in Britain today is the result of the destruction of ancient forests which changed our <span class="vocab-word" data-word="ecosystem">ecosystem</span> significantly. However, this land now takes care of a much bigger population at a higher standard of living in what is still mainly a beautiful country.</p>
+                
+                <p>The Industrial Revolution had an impact on some parts of the country, but did not endanger the world as a whole. Air and water pollution had an effect at a local level but, until recently, no global effect. Even with today’s environmental issues, the Earth’s oceans and vegetation take in half the carbon dioxide we produce, which protects us against climate change.</p>
+                
+                <p>Recently, however, there have been worrying signs that this protection is weakening. Warming seas, for example, may be taking in less carbon dioxide, which makes the new research findings on plants very welcome. The increase in carbon dioxide in the atmosphere results in greater plant growth and these extra plants take in more carbon dioxide. The researchers say we <span class="vocab-word" data-word="underestimated">underestimated</span> the amount by sixteen percent because the gas remains in leaves for longer than had been thought. If they are right (and other scientists believe the research is good), it seems that nature is even kinder than we realised.</p>
+                
+                <p>But, as scientists also point out, there are limits to Mother Nature’s patience. The positive effect of carbon dioxide on plant growth is unlikely to continue in the long term because trees and vegetation meet other problems, most importantly a lack of <span class="vocab-word" data-word="nutrients">nutrients</span> such as phosphorus and nitrogen that they need to grow.</p>
+                
+                <p>Global warming brings other problems too. For instance, tree-killing insects do better in warmer temperatures. One example is the pine bark beetle, which has killed 45 million acres of forest in western Canada and north-west America. Also, climate change leads to drier weather which results in more forest fires. These release huge amounts of carbon dioxide into the atmosphere.</p>
+                
+                <p>The positive and negative effects of global warming cause much debate in climate science. However, the basic physics of global warming are agreed by scientists. Sunlight passes through the atmosphere, like glass in a <span class="vocab-word" data-word="greenhouse">greenhouse</span>, warming the Earth. Much of it is reflected back as <span class="vocab-word" data-word="infrared">infrared</span> radiation and a large amount of it is absorbed by greenhouse gases like carbon dioxide in the atmosphere, heating the world further. Without this natural process, the Earth would be 20°C colder, and humans would not be able to live here. However, when we produce more carbon dioxide, it increases greenhouse gases. This causes even higher temperatures.</p>
+                
+                <p>Although scientists agree on this, they do not always agree on how we deal with nature’s acts of kindness. Clouds are a good example of this. They naturally send heat back out into space but air pollution results in a further increase in this effect. As we clean the pollution from our skies, we send less heat back into space. Similarly, increased temperatures result in melting ice which leads to rising seas. But these actually absorb more heat.</p>
+                
+                <p>All in all, it seems that an increase in carbon dioxide will not warm the Earth as much as we had thought. However, we still need to take immediate action. For leading scientists, it is important to focus on the changes the world has already experienced from low levels of warming. These include the tree-killing insects and the melting ice in the Antarctic and the Arctic. Interestingly, the latter is being increasingly linked to storms here in Britain.</p>
+                
+                <p>If we can’t solve this problem, what will happen when the Earth gets even warmer? Perhaps nature is trying to send us a warning.</p>
+            </div>
+        </div>
+
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-3xl mx-auto space-y-8 pb-10">
+                
+                <!-- Short Answer Questions 1-5 -->
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-emerald-100 text-emerald-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1–5</span>
+                        <h4 class="font-bold text-gray-800">Short Answer Questions</h4>
+                    </div>
+                    
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm sm:text-base leading-relaxed">
+                        Answer the questions below.<br>
+                        Choose <strong>NO MORE THAN THREE WORDS</strong> from the passage for each answer.
+                    </p>
+
+                    <div class="space-y-5">
+                        <!-- Q1 -->
+                        <div class="q-item" id="container-q1">
+                            <label for="q1-input" class="block font-semibold text-gray-800 mb-2">
+                                <strong class="text-emerald-600 mr-1">1</strong> What aspect of our changing climate causes forest fires?
+                            </label>
+                            <input type="text" id="q1-input" name="q1" class="text-input w-full text-left" placeholder="Type your answer here...">
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="q-item" id="container-q2">
+                            <label for="q2-input" class="block font-semibold text-gray-800 mb-2">
+                                <strong class="text-emerald-600 mr-1">2</strong> Which part of global warming are experts in agreement about?
+                            </label>
+                            <input type="text" id="q2-input" name="q2" class="text-input w-full text-left" placeholder="Type your answer here...">
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="q-item" id="container-q3">
+                            <label for="q3-input" class="block font-semibold text-gray-800 mb-2">
+                                <strong class="text-emerald-600 mr-1">3</strong> What form of sunlight goes back out of the atmosphere?
+                            </label>
+                            <input type="text" id="q3-input" name="q3" class="text-input w-full text-left" placeholder="Type your answer here...">
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="q-item" id="container-q4">
+                            <label for="q4-input" class="block font-semibold text-gray-800 mb-2">
+                                <strong class="text-emerald-600 mr-1">4</strong> What improves a cloud’s ability to reflect the sun?
+                            </label>
+                            <input type="text" id="q4-input" name="q4" class="text-input w-full text-left" placeholder="Type your answer here...">
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="q-item" id="container-q5">
+                            <label for="q5-input" class="block font-semibold text-gray-800 mb-2">
+                                <strong class="text-emerald-600 mr-1">5</strong> What connects the Arctic to bad weather in Britain?
+                            </label>
+                            <input type="text" id="q5-input" name="q5" class="text-input w-full text-left" placeholder="Type your answer here...">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-wrap justify-center items-center gap-4 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="flex items-center flex-wrap justify-center w-full">
+            <span class="text-sm font-bold text-gray-700 mr-3 hidden sm:inline">Progress:</span>
+            <div class="progress-tracker flex flex-wrap gap-1">
+                <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+                <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+                <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+                <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+                <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white mr-4 transition-all shadow-sm border border-emerald-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    const vocabulary = {
+        'ecosystem': { meaning: 'A biological community of interacting organisms and their physical environment.', phonetic: '/ˈiːkəʊˌsɪstəm/' },
+        'underestimated': { meaning: 'Estimated something to be smaller, less important, or less capable than it actually is.', phonetic: '/ˌʌndərˈestɪmeɪtɪd/' },
+        'nutrients': { meaning: 'Substances that provide nourishment essential for growth and the maintenance of life.', phonetic: '/ˈnjuːtriənts/' },
+        'greenhouse': { meaning: 'A glass building in which plants are grown; or relating to the trapping of solar heat in the atmosphere.', phonetic: '/ˈɡriːnhaʊs/' },
+        'infrared': { meaning: 'Electromagnetic radiation with wavelengths longer than visible red light but shorter than microwaves.', phonetic: '/ˌɪnfrəˈred/' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+            
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-emerald-600', 'bg-emerald-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            initProgressTracker() {
+                const inputs = document.querySelectorAll('.text-input');
+                const progressItems = document.querySelectorAll('.progress-item');
+
+                const updateProgress = () => {
+                    progressItems.forEach(item => {
+                        const qName = item.dataset.q;
+                        const input = document.querySelector(`[name="${qName}"]`);
+                        if (input && input.value.trim() !== '') {
+                            item.classList.add('answered');
+                        } else {
+                            item.classList.remove('answered');
+                        }
+                    });
+                };
+
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                    input.addEventListener('change', updateProgress);
+                });
+                updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-emerald-600', 'bg-emerald-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

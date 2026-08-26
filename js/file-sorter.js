@@ -1,24 +1,22 @@
 /**
- * Expert IELTS - Automatic File Sorter & Material Filter Utility
- * Automatically orders files in alphabetical order for each folder.
+ * Expert IELTS - Automatic File Sorter & Skill Folder Organizer Utility
+ * Organizes files into collapsible skill folders with alphabetical sorting, real-time search, and skill filtering.
  */
 
 (function () {
   'use strict';
 
   /**
-   * Sorts elements inside a container alphabetically.
-   * @param {string|HTMLElement} container - Selector string or DOM element container
+   * Sorts elements inside a grid container alphabetically.
+   * @param {HTMLElement} grid - DOM element container
    * @param {'asc'|'desc'} direction - 'asc' for A-Z, 'desc' for Z-A
    */
-  function sortFilesAlphabetically(container, direction = 'asc') {
-    const grid = typeof container === 'string' ? document.querySelector(container) : container;
+  function sortGridAlphabetically(grid, direction = 'asc') {
     if (!grid) return;
 
-    const items = Array.from(grid.children).filter(child => child.nodeType === 1);
+    const items = Array.from(grid.children).filter(child => child.nodeType === 1 && child.classList.contains('material-card'));
     
     items.sort((a, b) => {
-      // Get title from data-title, heading text, or element text
       const titleA = (a.getAttribute('data-title') || a.querySelector('h3, h2, a')?.textContent || a.textContent).trim();
       const titleB = (b.getAttribute('data-title') || b.querySelector('h3, h2, a')?.textContent || b.textContent).trim();
 
@@ -31,121 +29,218 @@
   }
 
   /**
-   * Filters items in a container by search query and optional skill filter.
-   * @param {string|HTMLElement} container 
+   * Sorts all grids on the page (inside folders or standalone).
+   * @param {'asc'|'desc'} direction 
+   */
+  function sortAllGrids(direction = 'asc') {
+    const grids = document.querySelectorAll('.materials-grid');
+    grids.forEach(grid => sortGridAlphabetically(grid, direction));
+  }
+
+  /**
+   * Updates folder item counts and search visibility.
    * @param {string} query 
    * @param {string} skillFilter 
    */
-  function filterFiles(container, query = '', skillFilter = 'all') {
-    const grid = typeof container === 'string' ? document.querySelector(container) : container;
-    if (!grid) return;
-
+  function filterAndSearchMaterials(query = '', skillFilter = 'all') {
     const q = query.toLowerCase().trim();
     const filter = skillFilter.toLowerCase().trim();
-    const items = Array.from(grid.children);
-    let matchCount = 0;
+    const folders = document.querySelectorAll('.skill-folder');
+    let totalMatches = 0;
 
-    items.forEach(item => {
-      const text = item.textContent.toLowerCase();
-      const itemSkill = (item.getAttribute('data-skill') || '').toLowerCase();
+    if (folders.length > 0) {
+      folders.forEach(folder => {
+        const folderSkill = (folder.getAttribute('data-folder-skill') || '').toLowerCase();
+        const skillMatches = filter === 'all' || folderSkill === filter;
+        const cards = Array.from(folder.querySelectorAll('.material-card'));
+        const totalCardsInFolder = cards.length;
+        let folderMatches = 0;
 
-      const matchesSearch = !q || text.includes(q);
-      const matchesSkill = filter === 'all' || itemSkill === filter;
+        cards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          const matchesSearch = !q || text.includes(q);
 
-      if (matchesSearch && matchesSkill) {
-        item.style.display = '';
-        matchCount++;
-      } else {
-        item.style.display = 'none';
-      }
-    });
+          if (skillMatches && matchesSearch) {
+            card.style.display = '';
+            folderMatches++;
+            totalMatches++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update badge count
+        const countBadge = folder.querySelector('.folder-count-badge');
+        if (countBadge) {
+          if (q) {
+            countBadge.textContent = `${folderMatches} found`;
+          } else {
+            countBadge.textContent = `${totalCardsInFolder} ${totalCardsInFolder === 1 ? 'Module' : 'Modules'}`;
+          }
+        }
+
+        // Show/hide folder based on matches
+        if (skillMatches && folderMatches > 0) {
+          folder.style.display = '';
+          // Auto-expand folder if searching with query or selecting a specific skill filter
+          if (q || filter !== 'all') {
+            expandFolder(folder);
+          }
+        } else {
+          folder.style.display = 'none';
+        }
+      });
+    } else {
+      // Fallback for flat grid without folders
+      const flatCards = document.querySelectorAll('.materials-grid .material-card');
+      flatCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const itemSkill = (card.getAttribute('data-skill') || '').toLowerCase();
+        const matchesSearch = !q || text.includes(q);
+        const matchesSkill = filter === 'all' || itemSkill === filter;
+
+        if (matchesSearch && matchesSkill) {
+          card.style.display = '';
+          totalMatches++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
 
     const emptyState = document.getElementById('no-materials-msg');
     if (emptyState) {
-      emptyState.style.display = matchCount === 0 ? 'block' : 'none';
+      emptyState.style.display = totalMatches === 0 ? 'block' : 'none';
     }
   }
 
   /**
-   * Displays a temporary toast notification.
-   * @param {string} message 
+   * Expands a skill folder.
+   * @param {HTMLElement} folder 
    */
-  function showToast(message) {
-    const existing = document.querySelector('.toast-notification');
-    if (existing) existing.remove();
+  function expandFolder(folder) {
+    folder.classList.remove('is-collapsed');
+    folder.classList.add('is-open');
+    const header = folder.querySelector('.folder-header');
+    if (header) {
+      header.setAttribute('aria-expanded', 'true');
+      const toggleText = header.querySelector('.folder-toggle-text');
+      if (toggleText) toggleText.textContent = 'Collapse';
+    }
+  }
 
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.innerHTML = `<span>ℹ️</span> <span>${message}</span>`;
-    document.body.appendChild(toast);
+  /**
+   * Collapses a skill folder.
+   * @param {HTMLElement} folder 
+   */
+  function collapseFolder(folder) {
+    folder.classList.add('is-collapsed');
+    folder.classList.remove('is-open');
+    const header = folder.querySelector('.folder-header');
+    if (header) {
+      header.setAttribute('aria-expanded', 'false');
+      const toggleText = header.querySelector('.folder-toggle-text');
+      if (toggleText) toggleText.textContent = 'Expand';
+    }
+  }
 
-    setTimeout(() => {
-      toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px)';
-      setTimeout(() => toast.remove(), 300);
-    }, 3200);
+  /**
+   * Toggles a skill folder.
+   * @param {HTMLElement} folder 
+   */
+  function toggleFolder(folder) {
+    if (folder.classList.contains('is-collapsed')) {
+      expandFolder(folder);
+    } else {
+      collapseFolder(folder);
+    }
   }
 
   // Auto-initialize on DOMContentLoaded
   document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('materials-grid');
-    if (grid) {
-      // Auto-sort alphabetically A-Z on page load
-      sortFilesAlphabetically(grid, 'asc');
+    // Initial sort A-Z for all grids inside folders
+    sortAllGrids('asc');
 
-      // Check placeholder module clicks
-      grid.addEventListener('click', (e) => {
-        const card = e.target.closest('.material-card');
-        if (!card) return;
+    // Setup folder headers click & keyboard interaction
+    const folderHeaders = document.querySelectorAll('.folder-header');
+    folderHeaders.forEach(header => {
+      const folder = header.closest('.skill-folder');
+      if (!folder) return;
 
-        const href = card.getAttribute('href');
-        const footerSpan = card.querySelector('.material-footer span');
-        const isExerciseReady = footerSpan && footerSpan.textContent.includes('Active Exercise');
-
-        if (!isExerciseReady && href) {
-          // If exercise is not active yet, notify user when clicked
-          // Optional check: allow standard link navigation if file exists
-        }
+      header.addEventListener('click', () => {
+        toggleFolder(folder);
       });
 
-      // Bind search input if present
-      const searchInput = document.getElementById('materials-search');
-      const skillButtons = document.querySelectorAll('.skill-filter-btn');
-      const sortBtn = document.getElementById('sort-toggle-btn');
-      let currentDirection = 'asc';
-      let currentSkill = 'all';
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFolder(folder);
+        }
+      });
+    });
 
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          filterFiles(grid, e.target.value, currentSkill);
+    // Expand All / Collapse All button
+    const toggleAllBtn = document.getElementById('toggle-all-folders-btn');
+    let allExpanded = false;
+    if (toggleAllBtn) {
+      toggleAllBtn.addEventListener('click', () => {
+        const folders = document.querySelectorAll('.skill-folder');
+        allExpanded = !allExpanded;
+        folders.forEach(folder => {
+          if (allExpanded) {
+            expandFolder(folder);
+          } else {
+            collapseFolder(folder);
+          }
         });
-      }
+        const label = toggleAllBtn.querySelector('.toggle-all-label') || toggleAllBtn;
+        label.textContent = allExpanded ? 'Collapse All' : 'Expand All';
+      });
+    }
 
-      if (skillButtons) {
-        skillButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
-            skillButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentSkill = btn.getAttribute('data-skill') || 'all';
-            filterFiles(grid, searchInput ? searchInput.value : '', currentSkill);
-          });
-        });
-      }
+    // Bind Search Input
+    const searchInput = document.getElementById('materials-search');
+    const skillButtons = document.querySelectorAll('.skill-filter-btn');
+    const sortBtn = document.getElementById('sort-toggle-btn');
+    let currentDirection = 'asc';
+    let currentSkill = 'all';
 
-      if (sortBtn) {
-        sortBtn.addEventListener('click', () => {
-          currentDirection = currentDirection === 'asc' ? 'desc' : 'asc';
-          sortFilesAlphabetically(grid, currentDirection);
-          sortBtn.querySelector('.sort-label').textContent = currentDirection === 'asc' ? 'A → Z' : 'Z → A';
-          sortBtn.setAttribute('title', `Currently sorted ${currentDirection === 'asc' ? 'A to Z' : 'Z to A'}`);
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        filterAndSearchMaterials(e.target.value, currentSkill);
+      });
+    }
+
+    // Bind Skill Filters
+    if (skillButtons) {
+      skillButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          skillButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentSkill = btn.getAttribute('data-skill') || 'all';
+          filterAndSearchMaterials(searchInput ? searchInput.value : '', currentSkill);
         });
-      }
+      });
+    }
+
+    // Bind Sort Toggle
+    if (sortBtn) {
+      sortBtn.addEventListener('click', () => {
+        currentDirection = currentDirection === 'asc' ? 'desc' : 'asc';
+        sortAllGrids(currentDirection);
+        const sortLabel = sortBtn.querySelector('.sort-label');
+        if (sortLabel) {
+          sortLabel.textContent = currentDirection === 'asc' ? 'A → Z' : 'Z → A';
+        }
+        sortBtn.setAttribute('title', `Currently sorted ${currentDirection === 'asc' ? 'A to Z' : 'Z to A'}`);
+      });
     }
   });
 
   // Export to global scope
-  window.sortFilesAlphabetically = sortFilesAlphabetically;
-  window.filterFiles = filterFiles;
-  window.showToast = showToast;
+  window.sortAllGrids = sortAllGrids;
+  window.filterAndSearchMaterials = filterAndSearchMaterials;
+  window.expandFolder = expandFolder;
+  window.collapseFolder = collapseFolder;
+  window.toggleFolder = toggleFolder;
 })();

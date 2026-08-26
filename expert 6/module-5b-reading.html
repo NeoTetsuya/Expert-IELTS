@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Practice — Can Your Musical Tastes Offer a Window Into How You Think?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+        }
+        .reading-passage h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #0f172a;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            font-size: 1.85em;
+            text-align: center;
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            text-indent: 0;
+        }
+
+        .q-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 0.75rem;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .radio-option:hover {
+            background-color: #f1f5f9;
+        }
+
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            text-align: center;
+            background-color: #f8fafc;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .inline-input-wide {
+            width: 100px;
+        }
+        
+        select.text-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 6px center;
+            background-size: 12px;
+            padding-right: 22px;
+            cursor: pointer;
+        }
+
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 2px;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .progress-tracker {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            background-color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477-4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">Reading Practice <span class="text-indigo-600 font-medium hidden md:inline">| Musical Tastes & Cognition</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2 py-1 text-sm w-24 sm:w-40 focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Your Name">
+            </div>
+            
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <div id="left-pane" class="pane relative">
+            <div class="reading-passage">
+                <h3>Can your musical tastes offer a window into how you think?</h3>
+                
+                <p>Do you like your jazz to be Norah Jones or Ornette Coleman, your classical music to be Bach or Stravinsky, or your rock to be Coldplay or Faith No More? The answer could give a better understanding of the way you think, say researchers from the University of Cambridge. We know that our music choices <span class="vocab-word" data-word="fluctuate">fluctuate</span> over time as we grow and develop. For example, when people are very young, they may feel pressured into associating with a particular kind of music. And then we all choose some songs on the basis of our emotions at any one moment. However, these things are fairly temporary and often pass. Researchers at Cambridge believe that a person’s taste in musical genre can be reliably predicted from <span class="vocab-word" data-word="cognitive">cognitive</span> factors, such as the way they view others, or the way they approach problem-solving.</p>
+                
+                <p>Music is an important feature of everyday life and it is nearly everywhere we go. For this reason, it has attracted a lot of attention from psychologists. Previous studies have analysed how certain songs make us feel. Historical studies have looked at the way music is used culturally, such as in ceremonies to unite people. However, little was known about what determines our overall taste in music until this study research was published.</p>
+                
+                <p>In the study of musical tastes, a team of psychologists identified two groups of people: ‘<span class="vocab-word" data-word="empathizers">Empathizers</span>’ who like to focus on and respond to the emotions of others, and ‘<span class="vocab-word" data-word="systemizers">systemizers</span>’ who like to analyse rules and patterns in the world. They found that by categorizing people into these two groups, they could more accurately predict what type of music they liked.</p>
+                
+                <p>The researchers conducted a long and ambitious project, with multiple studies of over 4,000 participants who were found mainly through social media sites. They asked social media users to take a selection of psychology-based questionnaires; then the researchers placed the results on participants’ social media profiles for others to see. At a later date, the same people were asked to listen to and rate fifty musical pieces. The researchers used library examples of music from twenty-six genres and subgenres with all of the volunteers to minimize the chances that participants would have any personal or national associations with the piece of music.</p>
+                
+                <p>What they found was unexpected. According to David Greenberg from the Department of Psychology, although people’s music choices change over time, this study shows that a person’s ability to relate to others and their thinking style predicts what kind of music they like. He went on to argue that their cognitive style – whether they are strong on empathy or strong on systems – and how they communicate with others can be a better predictor of what music they like than their personality. For example, people who scored high on empathy tended to prefer soft music (from R&B, soft rock), unpretentious music (from country, folk) and contemporary music (from electronica, Latin, acid jazz, and Euro pop). They disliked intense music, such as punk and heavy metal. In contrast, people who scored high on systemizing favoured intense music. The results were the same even within a particular musical genre such as jazz: Empathizers preferred chill-out jazz, while systemizers preferred more adventurous, sophisticated jazz.</p>
+                
+                <p>The researchers also analysed the music itself, and found that those who scored high on sociability preferred music that had low energy, and was often used to express negative emotions, such as feeling lovesick or depressed. They also preferred more emotional depth in their music. Those who were more systematic in tests preferred music that had high energy or positive emotions, and showed a high level of depth and complexity.</p>
+                
+                <p>David Greenberg, also a trained jazz saxophonist, says the research could have implications for the music industry. ‘A lot of money is put into <span class="vocab-word" data-word="algorithms">algorithms</span> to choose what music you may want to listen to, for example on internet music services like Spotify and Apple Music. By knowing an individual’s thinking style, such services might in future be able to fine tune their music recommendations to an individual.’</p>
+                
+                <p>Dr Jason Rentfrow, the senior author on the study, said that the line of research was significant. It highlighted how music mirrors the self, and can be an expression of how we’re feeling, and is a reflection of our social and cognitive selves. Professor Simon Baron-Cohen, a member of the Cambridge team, added: ‘This new study is a fascinating extension to the ‘empathizing-systemizing’ theory of psychological individual differences. It took a talented PhD student and musician to even think to ask this question. The research may help us to understand those at the extremes, such as people with autism, who are strong systemizers and may experience difficulty socializing.’</p>
+            </div>
+        </div>
+
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-3xl mx-auto space-y-8 pb-10">
+                
+                <!-- Questions 1-4: Multiple Choice -->
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1–4</span>
+                        <h4 class="font-bold text-gray-800">Multiple Choice</h4>
+                    </div>
+                    
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm sm:text-base leading-relaxed">
+                        Choose the correct letter, <strong>A</strong>, <strong>B</strong>, <strong>C</strong> or <strong>D</strong>.
+                    </p>
+
+                    <div class="space-y-6">
+                        <!-- Q1 -->
+                        <div class="q-item" id="container-q1">
+                            <p class="font-semibold text-gray-800 mb-3"><strong class="text-indigo-600 mr-1">1</strong> Cambridge researchers were able to predict a person’s musical taste from</p>
+                            <div class="space-y-1">
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q1" value="A" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>A</strong> their age and status .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q1" value="B" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>B</strong> the friends around them .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q1" value="C" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>C</strong> the way they think .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q1" value="D" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>D</strong> the mood they are in .</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="q-item" id="container-q2">
+                            <p class="font-semibold text-gray-800 mb-3"><strong class="text-indigo-600 mr-1">2</strong> The Cambridge psychologists’ study was the first to</p>
+                            <div class="space-y-1">
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q2" value="A" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>A</strong> consider music from different time periods .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q2" value="B" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>B</strong> look at general music preferences .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q2" value="C" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>C</strong> study the rules behind music composition .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q2" value="D" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>D</strong> connect music to our deep emotions .</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="q-item" id="container-q3">
+                            <p class="font-semibold text-gray-800 mb-3"><strong class="text-indigo-600 mr-1">3</strong> The participants in the study</p>
+                            <div class="space-y-1">
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q3" value="A" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>A</strong> came from online communities .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q3" value="B" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>B</strong> contacted the organisers themselves .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q3" value="C" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>C</strong> were required to take part in the research .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q3" value="D" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>D</strong> were unaware of music from other countries .</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="q-item" id="container-q4">
+                            <p class="font-semibold text-gray-800 mb-3"><strong class="text-indigo-600 mr-1">4</strong> How did the researchers avoid music that might have a special meaning for the participants?</p>
+                            <div class="space-y-1">
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q4" value="A" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>A</strong> by selecting participants with a lot in common .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q4" value="B" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>B</strong> by studying the participants over a period of time .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q4" value="C" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>C</strong> by presenting participants with a wide range of styles .</span>
+                                </label>
+                                <label class="radio-option text-gray-700">
+                                    <input type="radio" name="q4" value="D" class="mt-1 mr-3 accent-indigo-600 text-input">
+                                    <span><strong>D</strong> by using a series of tests to match participants to certain styles .</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-section p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 5–10</span>
+                        <h4 class="font-bold text-gray-800">Matching Features</h4>
+                    </div>
+                    
+                    <p class="mb-4 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm sm:text-base leading-relaxed">
+                        Look at the following statements (<strong>Questions 5–10</strong>) and the list of researchers below.<br>
+                        Match each statement with the correct researcher(s), <strong>A–C</strong>.<br>
+                        <em class="text-xs text-gray-500 font-semibold uppercase tracking-wider block mt-1">NB You may use any letter more than once.</em>
+                    </p>
+
+                    <div class="options-grid text-gray-800 text-sm md:text-base mb-6">
+                        <div><strong>A</strong> David Greenberg</div>
+                        <div><strong>B</strong> Jason Rentfrow</div>
+                        <div><strong>C</strong> Simon Baron Cohen</div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="q-item flex items-center justify-between" id="container-q5">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">5</strong> There is a weak connection between character and musical choice.</span>
+                            <select name="q5" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+
+                        <div class="q-item flex items-center justify-between" id="container-q6">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">6</strong> The research may teach us about people who find interaction challenging.</span>
+                            <select name="q6" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+
+                        <div class="q-item flex items-center justify-between" id="container-q7">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">7</strong> This was a new link between music and an existing theory.</span>
+                            <select name="q7" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+
+                        <div class="q-item flex items-center justify-between" id="container-q8">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">8</strong> The results of the research may be interesting to online music providers.</span>
+                            <select name="q8" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+
+                        <div class="q-item flex items-center justify-between" id="container-q9">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">9</strong> Musical choice can tell you a lot about a person’s emotions.</span>
+                            <select name="q9" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+
+                        <div class="q-item flex items-center justify-between" id="container-q10">
+                            <span class="text-gray-800 pr-4"><strong class="text-indigo-600 mr-2">10</strong> The way you organise your thoughts and talk to people affects what music you like.</span>
+                            <select name="q10" class="text-input inline-input-wide text-center cursor-pointer bg-white flex-shrink-0">
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-wrap justify-center items-center gap-4 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="flex items-center flex-wrap justify-center w-full">
+            <span class="text-sm font-bold text-gray-700 mr-3 hidden sm:inline">Progress:</span>
+            <div class="progress-tracker flex flex-wrap gap-1">
+                <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+                <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+                <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+                <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+                <div class="w-2 progress-spacer block"></div>
+                <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+                <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+                <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+                <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+                <a href="#container-q9" class="progress-item" data-q="q9">9</a>
+                <a href="#container-q10" class="progress-item" data-q="q10">10</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white mr-4 transition-all shadow-sm border border-indigo-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    const vocabulary = {
+        'fluctuate': { meaning: 'Rise and fall irregularly in number or amount; change continually.', phonetic: '/ˈflʌktʃueɪt/' },
+        'cognitive': { meaning: 'Relating to, or involving, conscious mental processes such as thinking, understanding, learning, and remembering.', phonetic: '/ˈkɒɡnətɪv/' },
+        'empathizers': { meaning: 'People who tend to understand, share, and respond intensely to the feelings and emotions of others.', phonetic: '/ˈempəθaɪzəz/' },
+        'systemizers': { meaning: 'People who focus on analyzing, understanding, and building rules, systems, and patterns.', phonetic: '/ˈsɪstəmalaɪzəz/' },
+        'algorithms': { meaning: 'Processes or sets of rules to be followed in calculations or problem-solving operations, especially by a computer.', phonetic: '/ˈælɡərɪðəmz/' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+            
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-indigo-600', 'bg-indigo-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            initProgressTracker() {
+                const inputs = document.querySelectorAll('.text-input');
+                const progressItems = document.querySelectorAll('.progress-item');
+
+                const updateProgress = () => {
+                    progressItems.forEach(item => {
+                        const qName = item.dataset.q;
+                        const radioChecked = document.querySelector(`input[name="${qName}"]:checked`);
+                        const selectVal = document.querySelector(`select[name="${qName}"]`);
+                        
+                        let isAnswered = false;
+                        if (radioChecked) {
+                            isAnswered = true;
+                        } else if (selectVal && selectVal.value.trim() !== '') {
+                            isAnswered = true;
+                        }
+
+                        if (isAnswered) {
+                            item.classList.add('answered');
+                        } else {
+                            item.classList.remove('answered');
+                        }
+                    });
+                };
+
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                    input.addEventListener('change', updateProgress);
+                });
+                updateProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-indigo-600', 'bg-indigo-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

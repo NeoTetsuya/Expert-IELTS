@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Academic Simulator - Weird Science Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem; 
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.5em;
+            text-align: center;
+            text-indent: 0;
+        }
+
+        .q-item {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        .q-select {
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            background-color: white;
+            padding: 0.5rem 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 280px;
+        }
+        .q-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .progress-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            max-width: calc(100vw - 120px);
+            scrollbar-width: thin;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .progress-container {
+                max-width: calc(100vw - 80px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">IELTS Simulator <span class="text-blue-600 font-medium hidden md:inline">| Weird Science Stories</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <!-- Student Name -->
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-3 py-1.5 text-sm w-32 sm:w-48 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+            </div>
+            
+            <!-- Clear Highlights Button -->
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <!-- Font controls -->
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <!-- Left Pane: Passages -->
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Which weird science stories have proved a hit on social media?</h3>
+                
+                <p>Unusual science stories in the media soon get noticed. They then get rapidly passed on via social networking sites. The stories that follow were some of the science news items that have recently had us all thinking: ‘Oh my goodness, really?’ They come from a published list of the scientific articles that proved to be the most popular on social media, as indicated by the number of likes, shares and mentions that each of these received.</p>
+                
+                <p>One of the top stories related to artificial sweeteners, which many people add to their tea or coffee in an attempt to lose weight by reducing their sugar intake. However, it now appears that this may actually be more harmful than using sugar itself. Experiments on mice and humans suggest that common sugar alternatives change the <span class="vocab-word" data-word="metabolism">metabolism</span>, causing blood sugar levels to rise and causing diseases by changing the beneficial bacteria in the human body. The trial on humans who were given the artificial sweetener saccharin suggested such changes to the body could begin to occur after just four days. Scientists involved in the study said the widespread use of the chemicals in diet drinks and food could be contributing to a range of health problems.</p>
+                
+                <p>A rather less serious scientific study relating to sweets has also recently proved popular on social media sites. In this, researchers were attempting to find out how long it would take for doctors and other medical professionals to finish a box of chocolates when it was left in a hospital ward environment. Two 350g boxes of chocolates were placed in four wards in three different hospitals where they were watched in secret with the time recorded when each chocolate was eaten. The researchers concluded that ‘chocolate survival in a hospital ward was relatively short, with a median survival time per chocolate of 51 minutes’. It was discovered that chocolates were consumed first by healthcare assistants and nurses, followed by doctors. However, the conclusion was that further practical studies were required.</p>
+                
+                <p>Another scientific study focusing on how long something is likely to last has also been widely shared on social networks. This discussed the popularity of those very sites. Will the popularity of, for example, Facebook, Instagram and Twitter last forever? It certainly will not, according to the Princeton University researchers, who, after conducting an investigation with the aim of answering this question, concluded: that ‘Ideas, like diseases, tend to spread infectiously between people before eventually dying out. In this they have been successfully compared with medical <span class="vocab-word" data-word="epidemics">epidemics</span>.’ According to the study, the growth of a social media site resembles an infectious disease that quickly dies after a quick rise. A site that is as its peak today, then, is likely to lose 80 percent of its users in the next three years.</p>
+
+                <p>The idea of time travel - being able to move forward into the future or backwards into a previous age – is something that is usually a concern of science <span class="vocab-word" data-word="fiction">fiction</span> rather than science. However, a team of scientists from the physics department of Michigan Technological University have been searching for evidence of time travellers from the future visiting the world today. Their approach is to search online for references to people or events posted before the person in question had been born or the event had happened. For example, they used Google and other search engines to try to find mentions of Comet ISON before its discovery in 2012. So far they have not found evidence of any time travellers, but they stress that their failure to do so may just be because such travellers ‘may not want to be found and may be extremely good at covering their tracks’.</p>
+
+                <p>A further scientific study enjoying huge recent social network success relates to human communication across geographical distance rather than across time. For the first time, scientists have been able to send a simple mental message from one person to another without any contact between the two, despite the fact that they were thousands of miles apart. This research was led by experts at Harvard University and it used technology to enable brain-to-brain communication between a subject in India and another one in France.</p>
+
+                <p>It is easy to understand why, for different reasons, science stories like the five outlined above caught the interest and the imagination of millions. But what will the next story be that will start in an academic journal and end up going <span class="vocab-word" data-word="viral">viral</span>?</p>
+            </div>
+        </div>
+
+        <!-- Splitter -->
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-2xl mx-auto space-y-8">
+                
+                <!-- Questions 1-10 Matching -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1-10</span>
+                        <h4 class="font-bold text-gray-800">Matching Items</h4>
+                    </div>
+                    <p class="mb-4 text-gray-700 text-sm leading-relaxed">
+                        Match each statement 1–10 with the study it corresponds to. Select the correct letter, <strong>A–E</strong>.<br>
+                        <em class="text-xs text-gray-500">NB You may use any letter more than once.</em>
+                    </p>
+                    
+                    <!-- Studies Reference Box -->
+                    <div class="bg-blue-50/70 border border-blue-100 rounded-lg p-4 mb-6">
+                        <h5 class="font-bold text-gray-800 mb-2 text-sm uppercase tracking-wide">Studies</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700">
+                            <div><strong class="text-blue-700">A</strong> artificial sweeteners</div>
+                            <div><strong class="text-blue-700">B</strong> chocolate</div>
+                            <div><strong class="text-blue-700">C</strong> social network sites</div>
+                            <div><strong class="text-blue-700">D</strong> time travelling</div>
+                            <div><strong class="text-blue-700">E</strong> communication</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Q1 -->
+                        <div class="q-item" id="container-q1">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">1</span> People in different continents were involved.</p>
+                            <select name="q1" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="q-item" id="container-q2">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">2</span> Research in this area involved both animals and people.</p>
+                            <select name="q2" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="q-item" id="container-q3">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">3</span> The subjects of the study were unaware that they were being observed.</p>
+                            <select name="q3" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="q-item" id="container-q4">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">4</span> Something that had never previously happened was achieved.</p>
+                            <select name="q4" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="q-item" id="container-q5">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">5</span> The results may be of medical importance.</p>
+                            <select name="q5" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q6 -->
+                        <div class="q-item" id="container-q6">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">6</span> The researchers’ method involved analysing website content.</p>
+                            <select name="q6" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q7 -->
+                        <div class="q-item" id="container-q7">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">7</span> Trends in two very different areas of life were found to be similar.</p>
+                            <select name="q7" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q8 -->
+                        <div class="q-item" id="container-q8">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">8</span> The opposite of what was originally intended has been shown to occur.</p>
+                            <select name="q8" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q9 -->
+                        <div class="q-item" id="container-q9">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">9</span> People’s behaviour was analysed according to their occupation.</p>
+                            <select name="q9" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+
+                        <!-- Q10 -->
+                        <div class="q-item" id="container-q10">
+                            <p class="mb-3 text-gray-800 font-medium"><span class="font-bold text-blue-600 mr-2">10</span> Attempts to prove something were unsuccessful.</p>
+                            <select name="q10" class="q-select">
+                                <option value="">Select study...</option>
+                                <option value="A">A - Artificial sweeteners</option>
+                                <option value="B">B - Chocolate</option>
+                                <option value="C">C - Social network sites</option>
+                                <option value="D">D - Time travelling</option>
+                                <option value="E">E - Communication</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button Area -->
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center pb-8">
+                    <button id="submit-form-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg shadow-md inline-flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg>
+                        <span>Submit to Google Form</span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">This will open your pre-filled Google Form in a new tab.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Progress Footer -->
+    <footer class="bg-white border-t border-gray-200 p-3 flex justify-center items-center z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] overflow-hidden">
+        <span class="text-sm font-bold text-gray-700 mr-3 flex-shrink-0">Progress:</span>
+        <div class="progress-container">
+            <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+            <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+            <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+            <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+            <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+            <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+            <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+            <a href="#container-q9" class="progress-item" data-q="q9">9</a>
+            <a href="#container-q10" class="progress-item" data-q="q10">10</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Highlight Tooltip -->
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white mr-4 transition-all shadow-sm border border-blue-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    // --- DATA ---
+    const vocabulary = {
+        'metabolism': { meaning: 'The chemical processes that occur within a living organism in order to maintain life.', phonetic: '/mɪˈtæbəlɪzəm/' },
+        'epidemics': { meaning: 'Widespread occurrences of an infectious disease in a community at a particular time.', phonetic: '/ˌɛpɪˈdɛmɪks/' },
+        'fiction': { meaning: 'Literature in the form of prose that describes imaginary events and people.', phonetic: '/ˈfɪkʃ(ə)n/' },
+        'viral': { meaning: 'Relating to information or content that is circulated rapidly and widely from one internet user to another.', phonetic: '/ˈvaɪrəl/' }
+    };
+
+    // --- APPLICATION LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            userAnswers: {},
+            currentFontSize: 17,
+
+            // Elements
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+
+                // Select Inputs Change Event for Progress Tracking
+                document.body.addEventListener('change', (e) => {
+                    if (e.target.tagName === 'SELECT') {
+                        this.userAnswers[e.target.name] = e.target.value;
+                        this.updateProgress();
+                    }
+                });
+
+                // Vocab Words & Marks Event Delegation
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                // Form Submission Event
+                document.body.addEventListener('click', (e) => {
+                    const submitBtn = e.target.closest('#submit-form-btn');
+                    if (submitBtn) {
+                        this.submitToGoogleForm();
+                    }
+                });
+                
+                // Audio Pronunciation Event
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-blue-600', 'bg-blue-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-US'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            updateProgress() {
+                const progressItems = document.querySelectorAll('.progress-item');
+                progressItems.forEach(item => {
+                    const qName = item.dataset.q;
+                    const selectEl = document.querySelector(`select[name="${qName}"]`);
+
+                    if (selectEl && selectEl.value !== '') {
+                        item.classList.add('answered');
+                    } else {
+                        item.classList.remove('answered');
+                    }
+                });
+            },
+
+            initProgressTracker() {
+                this.updateProgress();
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-blue-600', 'bg-blue-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+            
+            submitToGoogleForm() {
+                const nameInput = document.getElementById('student-name');
+                const name = nameInput ? nameInput.value.trim() : '';
+
+                const params = new URLSearchParams();
+                params.append('usp', 'pp_url');
+                
+                if (name) params.append('entry.1152592746', name);
+
+                const studyMap = {
+                    'A': 'A - Artificial sweeteners',
+                    'B': 'B - Chocolate',
+                    'C': 'C - Social network sites',
+                    'D': 'D - Time travelling',
+                    'E': 'E - Communication'
+                };
+
+                const formEntries = {
+                    'q1': 'entry.982910528',
+                    'q2': 'entry.1206159147',
+                    'q3': 'entry.1767919036',
+                    'q4': 'entry.156344380',
+                    'q5': 'entry.919775614',
+                    'q6': 'entry.1669162127',
+                    'q7': 'entry.321831269',
+                    'q8': 'entry.1412358819',
+                    'q9': 'entry.640377736',
+                    'q10': 'entry.32000615'
+                };
+
+                // Collect select values and map to exact string expected by Google Form
+                for (const [qId, entryId] of Object.entries(formEntries)) {
+                    const selectEl = document.querySelector(`select[name="${qId}"]`);
+                    const val = selectEl ? selectEl.value.trim() : '';
+                    if (val) {
+                        const fullVal = studyMap[val] || val;
+                        params.append(entryId, fullVal);
+                    }
+                }
+
+                // Pre-filled Google Form URL
+                const formId = '1FAIpQLSePOS7fCtVqlojKSYPnQBB-y7PYCW0YSdRPnnLoqyV8CWrUbw';
+                const url = `https://docs.google.com/forms/d/e/${formId}/viewform?${params.toString()}`;
+                
+                window.open(url, '_blank');
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Expert 6 (Band 6.0) — Expert for IELTS</title>
-<meta name="description" content="Expert 6 IELTS intermediate preparation course. Practice modules auto-sorted for Reading, Writing, and Grammar.">
+<meta name="description" content="Expert 6 IELTS intermediate preparation course. Practice modules organized into skill folders for Reading, Writing, and Grammar.">
 <link rel="stylesheet" href="../css/styles.css">
 <script src="../js/file-sorter.js" defer></script>
 </head>
@@ -26,10 +26,10 @@
           <span>🎯</span> Target Score: <strong>Band 6.0+</strong>
         </div>
         <div class="stat-chip">
-          <span>📂</span> <strong>Auto-Sorted Modules (1–10)</strong>
+          <span>📂</span> <strong>Organized Skill Folders</strong>
         </div>
         <div class="stat-chip">
-          <span>📖</span> <strong>Reading, Writing &amp; Grammar Modules</strong>
+          <span>📖</span> <strong>Grammar, Reading &amp; Writing</strong>
         </div>
       </div>
     </header>
@@ -61,15 +61,19 @@
         <div class="materials-toolbar">
           <div class="search-box">
             <span class="search-icon">🔍</span>
-            <input type="text" id="materials-search" placeholder="Search module title..." aria-label="Search module title">
+            <input type="text" id="materials-search" placeholder="Search module title or topic..." aria-label="Search module title">
           </div>
           <div class="toolbar-actions">
             <div class="skill-filters">
-              <button class="skill-filter-btn active" data-skill="all">All</button>
+              <button class="skill-filter-btn active" data-skill="all">All Folders</button>
               <button class="skill-filter-btn" data-skill="grammar">Grammar</button>
               <button class="skill-filter-btn" data-skill="reading">Reading</button>
               <button class="skill-filter-btn" data-skill="writing">Writing</button>
             </div>
+            <button class="folder-toggle-all-btn" id="toggle-all-folders-btn" title="Toggle expand/collapse on all folders">
+              <span>📂</span>
+              <span class="toggle-all-label">Expand All</span>
+            </button>
             <button class="sort-btn" id="sort-toggle-btn" title="Click to change alphabetical sort order">
               <span>Sort:</span>
               <span class="sort-label">A &rarr; Z</span>
@@ -77,575 +81,730 @@
           </div>
         </div>
 
-        <!-- Files Grid (Automatically sorted in alphabetical order on page load) -->
-        <div class="materials-grid" id="materials-grid">
+        <!-- Skill Folders Container -->
+        <div class="materials-folders-container" id="materials-folders">
           
-          <!-- Module 1 -->
-          <a class="material-card" href="module_1a_present_tenses_state_verbs.html" data-title="Module 1a Grammar — Present Tenses & State Verbs" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1a</span>
+          <!-- Grammar Folder -->
+          <div class="skill-folder is-collapsed" data-folder-skill="grammar" id="folder-grammar">
+            <div class="folder-header" tabindex="0" role="button" aria-expanded="false">
+              <div class="folder-header-left">
+                <span class="folder-icon">📝</span>
+                <span class="skill-tag tag-grammar">Grammar</span>
+                <h3 class="folder-title">Grammar Lessons</h3>
+                <span class="folder-count-badge">20 Modules</span>
+              </div>
+              <div class="folder-header-right">
+                <span class="folder-toggle-text">Expand</span>
+                <span class="folder-toggle-arrow">▼</span>
+              </div>
             </div>
-            <h3>Module 1a Grammar — Present Tenses &amp; State Verbs</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+            <div class="folder-content">
+              <div class="materials-grid">
+                <a class="material-card" href="module_1a_present_tenses_state_verbs.html" data-title="Module 1a Grammar — Present Tenses & State Verbs" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1a</span>
+                  </div>
+                  <h3>Module 1a Grammar — Present Tenses &amp; State Verbs</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_1b_past_simple_grammar.html" data-title="Module 1b Grammar — Past Simple Tense" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1b</span>
-            </div>
-            <h3>Module 1b Grammar — Past Simple Tense</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_1b_past_simple_grammar.html" data-title="Module 1b Grammar — Past Simple Tense" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1b</span>
+                  </div>
+                  <h3>Module 1b Grammar — Past Simple Tense</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-1a-reading.html" data-title="Module 1a Reading — Ghost Photography" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1a</span>
-            </div>
-            <h3>Module 1a Reading — Ghost Photography</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_2a_relative_clauses.html" data-title="Module 2a Grammar — Relative Clauses" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2a</span>
+                  </div>
+                  <h3>Module 2a Grammar — Relative Clauses</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-1b-reading.html" data-title="Module 1b Reading — Reading Online" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1b</span>
-            </div>
-            <h3>Module 1b Reading — Reading Online</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_2b_parts_of_speech.html" data-title="Module 2b Grammar — Parts of Speech" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2b</span>
+                  </div>
+                  <h3>Module 2b Grammar — Parts of Speech</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-1a-writing.html" data-title="Module 1a Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1a</span>
-            </div>
-            <h3>Module 1a Writing</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_3a_comparative_forms.html" data-title="Module 3a Grammar — Comparative Forms" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3a</span>
+                  </div>
+                  <h3>Module 3a Grammar — Comparative Forms</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-1b-writing.html" data-title="Module 1b Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1b</span>
-            </div>
-            <h3>Module 1b Writing</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_3b_verb_patterns.html" data-title="Module 3b Grammar — Verb Patterns" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3b</span>
+                  </div>
+                  <h3>Module 3b Grammar — Verb Patterns</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-1-reading.html" data-title="Module 1 Extra Reading — British Sign Language" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1</span>
-            </div>
-            <h3>Module 1 Extra Reading — British Sign Language</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_4a_probability.html" data-title="Module 4a Grammar — Expressing Probability" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4a</span>
+                  </div>
+                  <h3>Module 4a Grammar — Expressing Probability</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 2 -->
-          <a class="material-card" href="module_2a_relative_clauses.html" data-title="Module 2a Grammar — Relative Clauses" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2a</span>
-            </div>
-            <h3>Module 2a Grammar — Relative Clauses</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_4b_future_forms.html" data-title="Module 4b Grammar — Future Forms" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4b</span>
+                  </div>
+                  <h3>Module 4b Grammar — Future Forms</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_2b_parts_of_speech.html" data-title="Module 2b Grammar — Parts of Speech" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2b</span>
-            </div>
-            <h3>Module 2b Grammar — Parts of Speech</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_5a_grammar_to_connect_ideas.html" data-title="Module 5a Grammar — Grammar to Connect Ideas" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5a</span>
+                  </div>
+                  <h3>Module 5a Grammar — Grammar to Connect Ideas</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-2-reading.html" data-title="Module 2 Reading — Is it better to give or to receive?" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2a</span>
-            </div>
-            <h3>Module 2 Reading — Is it better to give or to receive?</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_5b_participle_clauses.html" data-title="Module 5b Grammar — Participle Clauses (-ing & ed)" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5b</span>
+                  </div>
+                  <h3>Module 5b Grammar — Participle Clauses (-ing &amp; -ed)</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-2a-reading.html" data-title="Module 2a Reading — Should You Throw Out Your Bucket List?" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2a</span>
-            </div>
-            <h3>Module 2a Reading — Should You Throw Out Your Bucket List?</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_6a_present_perfect_simple_past_simple.html" data-title="Module 6a Grammar — Present Perfect Simple & Past Simple" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6a</span>
+                  </div>
+                  <h3>Module 6a Grammar — Present Perfect Simple &amp; Past Simple</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-2b-reading.html" data-title="Module 2b Reading — Clothes and Identity" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2b</span>
-            </div>
-            <h3>Module 2b Reading — Clothes and Identity</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_6b_articles_nouns.html" data-title="Module 6b Grammar — Articles & Nouns" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6b</span>
+                  </div>
+                  <h3>Module 6b Grammar — Articles &amp; Nouns</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-2-writing.html" data-title="Module 2 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2</span>
-            </div>
-            <h3>Module 2 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_7a_zero_first_conditional.html" data-title="Module 7a Grammar — Zero & First Conditional" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7a</span>
+                  </div>
+                  <h3>Module 7a Grammar — Zero &amp; First Conditional</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 3 -->
-          <a class="material-card" href="module_3a_comparative_forms.html" data-title="Module 3a Grammar — Comparative Forms" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3a</span>
-            </div>
-            <h3>Module 3a Grammar — Comparative Forms</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_7b_complex_noun_phrases.html" data-title="Module 7b Grammar — Complex Noun Phrases" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7b</span>
+                  </div>
+                  <h3>Module 7b Grammar — Complex Noun Phrases</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_3b_verb_patterns.html" data-title="Module 3b Grammar — Verb Patterns" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3b</span>
-            </div>
-            <h3>Module 3b Grammar — Verb Patterns</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_8a_the_passive_subject_verb_agreement.html" data-title="Module 8a Grammar — The Passive & Subject-Verb Agreement" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8a</span>
+                  </div>
+                  <h3>Module 8a Grammar — The Passive &amp; Subject-Verb Agreement</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-3a-reading.html" data-title="Module 3a Reading — Education Systems" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3a</span>
-            </div>
-            <h3>Module 3a Reading — Education Systems</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_8b_review_of_formal_structures.html" data-title="Module 8b Grammar — Review of Formal Structures" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8b</span>
+                  </div>
+                  <h3>Module 8b Grammar — Review of Formal Structures</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-3b-reading.html" data-title="Module 3b Reading — Emotional Intelligence" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3b</span>
-            </div>
-            <h3>Module 3b Reading — Emotional Intelligence</h3>
-            <div class="material-footer">
-              <span>Active Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_9a_modals_of_obligation.html" data-title="Module 9a Grammar — Modals of Obligation" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9a</span>
+                  </div>
+                  <h3>Module 9a Grammar — Modals of Obligation</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-3-writing.html" data-title="Module 3 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3</span>
-            </div>
-            <h3>Module 3 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_9b_passive_and_active_voice.html" data-title="Module 9b Grammar — Passive and Active Voice" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9b</span>
+                  </div>
+                  <h3>Module 9b Grammar — Passive and Active Voice</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 4 -->
-          <a class="material-card" href="module_4a_probability.html" data-title="Module 4a Grammar — Expressing Probability" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4a</span>
-            </div>
-            <h3>Module 4a Grammar — Expressing Probability</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module_10a_quantifiers.html" data-title="Module 10a Grammar — Quantifiers" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10a</span>
+                  </div>
+                  <h3>Module 10a Grammar — Quantifiers</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_4b_future_forms.html" data-title="Module 4b Grammar — Future Forms" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4b</span>
+                <a class="material-card" href="module_10b_second_conditional.html" data-title="Module 10b Grammar — Second Conditional" data-skill="grammar">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-grammar">📝 Grammar</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10b</span>
+                  </div>
+                  <h3>Module 10b Grammar — Second Conditional</h3>
+                  <div class="material-footer">
+                    <span>Active Lesson</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+              </div>
             </div>
-            <h3>Module 4b Grammar — Future Forms</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+          </div>
 
-          <a class="material-card" href="module-4-reading.html" data-title="Module 4 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4</span>
+          <!-- Reading Folder -->
+          <div class="skill-folder is-collapsed" data-folder-skill="reading" id="folder-reading">
+            <div class="folder-header" tabindex="0" role="button" aria-expanded="false">
+              <div class="folder-header-left">
+                <span class="folder-icon">📖</span>
+                <span class="skill-tag tag-reading">Reading</span>
+                <h3 class="folder-title">Reading Practice Modules</h3>
+                <span class="folder-count-badge">24 Modules</span>
+              </div>
+              <div class="folder-header-right">
+                <span class="folder-toggle-text">Expand</span>
+                <span class="folder-toggle-arrow">▼</span>
+              </div>
             </div>
-            <h3>Module 4 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+            <div class="folder-content">
+              <div class="materials-grid">
+                <a class="material-card" href="module-1a-reading.html" data-title="Module 1a Reading — Ghost Photography" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1a</span>
+                  </div>
+                  <h3>Module 1a Reading — Ghost Photography</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-4-writing.html" data-title="Module 4 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4</span>
-            </div>
-            <h3>Module 4 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-1b-reading.html" data-title="Module 1b Reading — Reading Online" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1b</span>
+                  </div>
+                  <h3>Module 1b Reading — Reading Online</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 5 -->
-          <a class="material-card" href="module_5a_grammar_to_connect_ideas.html" data-title="Module 5a Grammar — Grammar to Connect Ideas" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5a</span>
-            </div>
-            <h3>Module 5a Grammar — Grammar to Connect Ideas</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-1-reading.html" data-title="Module 1 Extra Reading — British Sign Language" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1</span>
+                  </div>
+                  <h3>Module 1 Extra Reading — British Sign Language</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_5b_participle_clauses.html" data-title="Module 5b Grammar — Participle Clauses (-ing & ed)" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5b</span>
-            </div>
-            <h3>Module 5b Grammar — Participle Clauses (-ing &amp; -ed)</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-2a-reading.html" data-title="Module 2a Reading — Should You Throw Out Your Bucket List?" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2a</span>
+                  </div>
+                  <h3>Module 2a Reading — Should You Throw Out Your Bucket List?</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-5-reading.html" data-title="Module 5 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5</span>
-            </div>
-            <h3>Module 5 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-2b-reading.html" data-title="Module 2b Reading — Clothes and Identity" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2b</span>
+                  </div>
+                  <h3>Module 2b Reading — Clothes and Identity</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-5-writing.html" data-title="Module 5 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5</span>
-            </div>
-            <h3>Module 5 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-2-reading.html" data-title="Module 2 Extra Reading — Is it better to give or to receive?" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2</span>
+                  </div>
+                  <h3>Module 2 Extra Reading — Is it better to give or to receive?</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 6 -->
-          <a class="material-card" href="module_6a_present_perfect_simple_past_simple.html" data-title="Module 6a Grammar — Present Perfect Simple & Past Simple" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6a</span>
-            </div>
-            <h3>Module 6a Grammar — Present Perfect Simple &amp; Past Simple</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-3a-reading.html" data-title="Module 3a Reading — Education Systems" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3a</span>
+                  </div>
+                  <h3>Module 3a Reading — Education Systems</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_6b_articles_nouns.html" data-title="Module 6b Grammar — Articles & Nouns" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6b</span>
-            </div>
-            <h3>Module 6b Grammar — Articles &amp; Nouns</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-3b-reading.html" data-title="Module 3b Reading — Emotional Intelligence" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3b</span>
+                  </div>
+                  <h3>Module 3b Reading — Emotional Intelligence</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-6-reading.html" data-title="Module 6 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6</span>
-            </div>
-            <h3>Module 6 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-3-reading.html" data-title="Module 3 Extra Reading — Working Conditions in Australia" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3</span>
+                  </div>
+                  <h3>Module 3 Extra Reading — Working Conditions in Australia</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-6-writing.html" data-title="Module 6 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6</span>
-            </div>
-            <h3>Module 6 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-4a-reading.html" data-title="Module 4a Reading — Ig Nobel Prizes" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4a</span>
+                  </div>
+                  <h3>Module 4a Reading — Ig Nobel Prizes</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 7 -->
-          <a class="material-card" href="module_7a_zero_first_conditional.html" data-title="Module 7a Grammar — Zero & First Conditional" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7a</span>
-            </div>
-            <h3>Module 7a Grammar — Zero &amp; First Conditional</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-4b-reading.html" data-title="Module 4b Reading — The Science of Interstellar" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4b</span>
+                  </div>
+                  <h3>Module 4b Reading — The Science of Interstellar</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_7b_complex_noun_phrases.html" data-title="Module 7b Grammar — Complex Noun Phrases" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7b</span>
-            </div>
-            <h3>Module 7b Grammar — Complex Noun Phrases</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-4-reading.html" data-title="Module 4 Extra Reading — Weird Science Stories" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4</span>
+                  </div>
+                  <h3>Module 4 Extra Reading — Weird Science Stories</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-7-reading.html" data-title="Module 7 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7</span>
-            </div>
-            <h3>Module 7 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-5a-reading.html" data-title="Module 5a Reading — Fashion Victim" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5a</span>
+                  </div>
+                  <h3>Module 5a Reading — Fashion Victim</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-7-writing.html" data-title="Module 7 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7</span>
-            </div>
-            <h3>Module 7 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-5b-reading.html" data-title="Module 5b Reading — Can Your Musical Tastes Offer a Window Into How You Think?" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5b</span>
+                  </div>
+                  <h3>Module 5b Reading — Can Your Musical Tastes Offer a Window Into How You Think?</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 8 -->
-          <a class="material-card" href="module_8a_the_passive_subject_verb_agreement.html" data-title="Module 8a Grammar — The Passive & Subject-Verb Agreement" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8a</span>
-            </div>
-            <h3>Module 8a Grammar — The Passive &amp; Subject-Verb Agreement</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-5-reading.html" data-title="Module 5 Extra Reading — The Assassin (Film Review)" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5</span>
+                  </div>
+                  <h3>Module 5 Extra Reading — The Assassin (Film Review)</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_8b_review_of_formal_structures.html" data-title="Module 8b Grammar — Review of Formal Structures" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8b</span>
-            </div>
-            <h3>Module 8b Grammar — Review of Formal Structures</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-6a-reading.html" data-title="Module 6a Reading — Can We Rely on Mother Nature?" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6a</span>
+                  </div>
+                  <h3>Module 6a Reading — Can We Rely on Mother Nature?</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-8-reading.html" data-title="Module 8 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8</span>
-            </div>
-            <h3>Module 8 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-6b-reading.html" data-title="Module 6b Reading — Examining the African Hunting Debate" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6b</span>
+                  </div>
+                  <h3>Module 6b Reading — Examining the African Hunting Debate</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-8-writing.html" data-title="Module 8 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8</span>
-            </div>
-            <h3>Module 8 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-6-reading.html" data-title="Module 6 Extra Reading — A Polar Cruise in Greenland" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6</span>
+                  </div>
+                  <h3>Module 6 Extra Reading — A Polar Cruise in Greenland</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 9 -->
-          <a class="material-card" href="module_9a_modals_of_obligation.html" data-title="Module 9a Grammar — Modals of Obligation" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9a</span>
-            </div>
-            <h3>Module 9a Grammar — Modals of Obligation</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-7a-reading.html" data-title="Module 7a Reading — Tourism in the Developing World" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7a</span>
+                  </div>
+                  <h3>Module 7a Reading — Tourism in the Developing World</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_9b_passive_and_active_voice.html" data-title="Module 9b Grammar — Passive and Active Voice" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9b</span>
-            </div>
-            <h3>Module 9b Grammar — Passive and Active Voice</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-7b-reading.html" data-title="Module 7b Reading — Decline of Violence" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7b</span>
+                  </div>
+                  <h3>Module 7b Reading — Decline of Violence</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-9-reading.html" data-title="Module 9 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9</span>
-            </div>
-            <h3>Module 9 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-7-reading.html" data-title="Module 7 Extra Reading — A Polar Cruise in Greenland" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7</span>
+                  </div>
+                  <h3>Module 7 Extra Reading — A Polar Cruise in Greenland</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-9-writing.html" data-title="Module 9 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9</span>
-            </div>
-            <h3>Module 9 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-8-reading.html" data-title="Module 8 Reading — Food Processors and Diets" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8</span>
+                  </div>
+                  <h3>Module 8 Reading — Food Processors and Diets</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <!-- Module 10 -->
-          <a class="material-card" href="module_10a_quantifiers.html" data-title="Module 10a Grammar — Quantifiers" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10a</span>
-            </div>
-            <h3>Module 10a Grammar — Quantifiers</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+                <a class="material-card" href="module-9-reading.html" data-title="Module 9 Reading — Public Health Reform in Britain" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9</span>
+                  </div>
+                  <h3>Module 9 Reading — Public Health Reform in Britain</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module_10b_second_conditional.html" data-title="Module 10b Grammar — Second Conditional" data-skill="grammar">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-grammar">📝 Grammar</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10b</span>
+                <a class="material-card" href="module-10-reading.html" data-title="Module 10 Reading — A Remarkable Community" data-skill="reading">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-reading">📖 Reading</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10</span>
+                  </div>
+                  <h3>Module 10 Reading — A Remarkable Community</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+              </div>
             </div>
-            <h3>Module 10b Grammar — Second Conditional</h3>
-            <div class="material-footer">
-              <span>Active Lesson</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+          </div>
 
-          <a class="material-card" href="module-10-reading.html" data-title="Module 10 Reading" data-skill="reading">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-reading">📖 Reading</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10</span>
+          <!-- Writing Folder -->
+          <div class="skill-folder is-collapsed" data-folder-skill="writing" id="folder-writing">
+            <div class="folder-header" tabindex="0" role="button" aria-expanded="false">
+              <div class="folder-header-left">
+                <span class="folder-icon">✍️</span>
+                <span class="skill-tag tag-writing">Writing</span>
+                <h3 class="folder-title">Writing Tasks</h3>
+                <span class="folder-count-badge">10 Modules</span>
+              </div>
+              <div class="folder-header-right">
+                <span class="folder-toggle-text">Expand</span>
+                <span class="folder-toggle-arrow">▼</span>
+              </div>
             </div>
-            <h3>Module 10 Reading</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+            <div class="folder-content">
+              <div class="materials-grid">
+                <a class="material-card" href="module-1a-writing.html" data-title="Module 1a Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1a</span>
+                  </div>
+                  <h3>Module 1a Writing</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
 
-          <a class="material-card" href="module-10-writing.html" data-title="Module 10 Writing" data-skill="writing">
-            <div class="material-tag-row">
-              <span class="skill-tag tag-writing">✍️ Writing</span>
-              <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10</span>
+                <a class="material-card" href="module-1b-writing.html" data-title="Module 1b Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 1b</span>
+                  </div>
+                  <h3>Module 1b Writing</h3>
+                  <div class="material-footer">
+                    <span>Active Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-2-writing.html" data-title="Module 2 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 2</span>
+                  </div>
+                  <h3>Module 2 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-3-writing.html" data-title="Module 3 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 3</span>
+                  </div>
+                  <h3>Module 3 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-4-writing.html" data-title="Module 4 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 4</span>
+                  </div>
+                  <h3>Module 4 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-5-writing.html" data-title="Module 5 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 5</span>
+                  </div>
+                  <h3>Module 5 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-6-writing.html" data-title="Module 6 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 6</span>
+                  </div>
+                  <h3>Module 6 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-7-writing.html" data-title="Module 7 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 7</span>
+                  </div>
+                  <h3>Module 7 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-8-writing.html" data-title="Module 8 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 8</span>
+                  </div>
+                  <h3>Module 8 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-9-writing.html" data-title="Module 9 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 9</span>
+                  </div>
+                  <h3>Module 9 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+
+                <a class="material-card" href="module-10-writing.html" data-title="Module 10 Writing" data-skill="writing">
+                  <div class="material-tag-row">
+                    <span class="skill-tag tag-writing">✍️ Writing</span>
+                    <span class="hero-badge badge-band6" style="padding:0.15rem 0.5rem; font-size:0.7rem; margin:0;">Module 10</span>
+                  </div>
+                  <h3>Module 10 Writing</h3>
+                  <div class="material-footer">
+                    <span>Exercise</span>
+                    <span class="action-arrow">Open &rarr;</span>
+                  </div>
+                </a>
+              </div>
             </div>
-            <h3>Module 10 Writing</h3>
-            <div class="material-footer">
-              <span>Exercise</span>
-              <span class="action-arrow">Open &rarr;</span>
-            </div>
-          </a>
+          </div>
 
         </div>
 
         <div id="no-materials-msg" class="empty-state" style="display:none;">
-          <p>No matching materials found.</p>
+          <p>No matching materials found in any folder.</p>
         </div>
       </div>
     </main>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Academic Simulator - Public Health Reform in Britain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        /* Typography */
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem; 
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.5em;
+            text-align: center;
+            text-indent: 0;
+        }
+
+        /* Question Inputs */
+        .q-item {
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        .q-input {
+            border: 0;
+            border-bottom: 2px solid #cbd5e1;
+            background-color: transparent;
+            padding: 0.25rem 0.5rem;
+            width: 160px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #1e293b;
+            transition: border-color 0.2s;
+        }
+        .q-input:focus {
+            outline: none;
+            border-bottom-color: #3b82f6;
+            background-color: #f0fdf4;
+        }
+
+        /* Vocabulary Highlights */
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        /* UI Elements & Highlights */
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        /* Progress Footer */
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .progress-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            max-width: calc(100vw - 120px);
+            scrollbar-width: thin;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+            .progress-container {
+                max-width: calc(100vw - 80px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">IELTS Simulator <span class="text-blue-600 font-medium hidden md:inline">| Public Health Reform in Britain</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <!-- Student Name -->
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-3 py-1.5 text-sm w-32 sm:w-48 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+            </div>
+            
+            <!-- Clear Highlights Button -->
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <!-- Font controls -->
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="content-panes" class="content-panes">
+        <!-- Left Pane: Passages -->
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Public health reform in Britain: the 18th and 19th centuries</h3>
+                
+                <p>Nineteenth-century movements to improve public health occurred simultaneously in several European countries. They were built upon foundations which were laid in the period between 1750 and 1830.</p>
+                
+                <p>From about 1750, the population of Europe increased rapidly, and this resulted in a heightened awareness of the large numbers of infants who were dying, and of how bad conditions in prisons and in mental institutions were. The sharp rise in numbers of people also resulted in the rapid growth of hospitals. Hospitals established in Britain, as the result of voluntary efforts by private citizens, helped to create a pattern that was to become familiar in public health services. First, a social evil is recognised, and studies are undertaken through individual initiative. These efforts shape public opinion and attract governmental attention. Finally, such campaigning leads to government action.</p>
+                
+                <p>The Industrial Revolution also gave rise to conditions which had a big impact on public health, and focused attention on the problems. The Industrial Revolution and its negative effects were first experienced in England, where the health and welfare of workers <span class="vocab-word" data-word="deteriorated">deteriorated</span> as industrialisation progressed. Between 1801 and 1841 the population of London doubled, and that of Leeds nearly tripled. With such growth there also came rising death rates. Between 1831 and 1844 the death rate per thousand increased in Birmingham from 14.6 to 27.2; in Bristol, from 16.9 to 31; and in Liverpool, from 21 to 34.8. These figures were the result of an increase in the urban population that far exceeded available housing, and of the subsequent development of conditions that led to widespread disease and poor health. As a result, a movement toward <span class="vocab-word" data-word="sanitary">sanitary</span> reform arose which finally led to the establishment of public health institutions.</p>
+                
+                <p>This era was also characterised by the efforts of doctors to educate people in health matters. For example, James Lind, who had worked as a surgeon in the British Navy, published an article about scurvy, a disease caused by a lack of Vitamin C. Later, British physician Sir John Pringle published a book that discussed ventilation in barracks and the provision of toilets. Two years earlier he had written about prison fever (now thought to be typhus), and again he emphasised the same needs, as well as personal <span class="vocab-word" data-word="hygiene">hygiene</span>.</p>
+
+                <p>Humanitarians and philanthropists in Britain also worked to educate the people and the government on problems associated with population growth, poverty, and <span class="vocab-word" data-word="epidemics">epidemics</span>. In 1781, the philosopher Jeremy Bentham proposed the idea that the greatest good of the greatest number of people should be the standard against which the morality of certain actions might be measured. In 1798 English economist and demographer Thomas Malthus wrote about population growth, its dependence on a steady supply of food, and the control of breeding. British physician Thomas Southwood Smith founded the Health of Towns Association in 1839, and by 1848 he was serving as a member of the new government department, then called the General Board of Health. In this position he published reports on quarantine, cholera, yellow fever, and the benefits of sanitary improvements.</p>
+
+                <p>The Poor Law Commission, created by the government in 1834, explored problems of community health and suggested means for solving them. Its report, in 1838, argued that the expenditure necessary to adopt and maintain <span class="vocab-word" data-word="preventative">preventative</span> measures would ultimately amount to less than the cost of dealing with the diseases themselves. Sanitary surveys proved that a relationship exists between communicable disease and dirt in the environment, and it was suggested that safeguarding public health was the province of engineers rather than physicians.</p>
+
+                <p>The Public Health Act of 1848 established a General Board of Health to provide guidance and aid in sanitary matters for local authorities, whose earlier efforts had been impeded by lack of a central authority. The national board had authority to establish local boards of health, and to investigate sanitary conditions in particular districts. Since that time several public health acts have been passed to regulate a whole range of activities, such as sewage and refuse disposal, the housing of animals, the water supply, prevention and control of disease, registration and inspection of private nursing homes and hospitals, the notification of births, and the provision of maternity and child welfare services.</p>
+            </div>
+        </div>
+
+        <!-- Splitter -->
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <!-- Right Pane: Questions -->
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-2xl mx-auto space-y-8">
+                
+                <!-- Flow Chart Completion Questions 1-8 -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1-8</span>
+                        <h4 class="font-bold text-gray-800">Flow Chart Completion</h4>
+                    </div>
+                    <p class="mb-6 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm">
+                        Complete the flow chart below. Write <strong>ONE WORD ONLY</strong> from the passage for each answer.
+                    </p>
+
+                    <!-- Flow Chart Container -->
+                    <div class="bg-blue-50/40 border border-blue-100 rounded-2xl p-6 mb-6 space-y-6">
+                        <div class="text-center font-bold text-blue-900 text-lg border-b border-blue-200 pb-2">
+                            Foundations of public health reform
+                        </div>
+
+                        <!-- Step 1 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q1">
+                            <p class="text-gray-800 font-medium text-sm">
+                                <strong>1750:</strong> A big rise in 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">1</span>
+                                    <input type="text" name="q1" class="q-input" autocomplete="off" placeholder="______">
+                                </span> 
+                                size.
+                            </p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-center text-blue-500 font-bold text-xl my-1">↓</div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q2">
+                            <p class="text-gray-800 font-medium text-sm">
+                                Greater awareness of the frequent deaths of 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">2</span>
+                                    <input type="text" name="q2" class="q-input" autocomplete="off" placeholder="______">
+                                </span> 
+                                and the poor condition of institutions.
+                            </p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-center text-blue-500 font-bold text-xl my-1">↓</div>
+
+                        <!-- Step 3 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q3">
+                            <p class="text-gray-800 font-medium text-sm">
+                                Increase in the number of 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">3</span>
+                                    <input type="text" name="q3" class="q-input" autocomplete="off" placeholder="______">
+                                </span> 
+                                founded by individuals.
+                            </p>
+                        </div>
+
+                        <!-- Section Divider -->
+                        <div class="text-center font-bold text-blue-900 text-lg border-b border-t border-blue-200 py-2 my-4">
+                            Public health education
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q4">
+                            <p class="text-gray-800 font-medium text-sm">
+                                Doctors published articles and books, e.g. James Lind's article about the cause of 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">4</span>
+                                    <input type="text" name="q4" class="q-input" autocomplete="off" placeholder="______">
+                                </span>.
+                            </p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-center text-blue-500 font-bold text-xl my-1">↓</div>
+
+                        <!-- Step 5 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm">
+                            <p class="text-gray-800 font-medium text-sm">
+                                Jeremy Bentham wrote about the importance of welfare for as many people as possible.
+                            </p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-center text-blue-500 font-bold text-xl my-1">↓</div>
+
+                        <!-- Step 6 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q5">
+                            <p class="text-gray-800 font-medium text-sm">
+                                Thomas Malthus linked population growth to the availability of 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">5</span>
+                                    <input type="text" name="q5" class="q-input" autocomplete="off" placeholder="______">
+                                </span>.
+                            </p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-center text-blue-500 font-bold text-xl my-1">↓</div>
+
+                        <!-- Step 7 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q6">
+                            <p class="text-gray-800 font-medium text-sm">
+                                Thomas Southwood Smith produced 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">6</span>
+                                    <input type="text" name="q6" class="q-input" autocomplete="off" placeholder="______">
+                                </span> 
+                                for the government about disease and hygiene.
+                            </p>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="text-center text-blue-500 font-bold text-xl my-1">↓</div>
+
+                        <!-- Step 8 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q7">
+                            <p class="text-gray-800 font-medium text-sm">
+                                The Poor Law Commission argued in favour of 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">7</span>
+                                    <input type="text" name="q7" class="q-input" autocomplete="off" placeholder="______">
+                                </span> 
+                                actions.
+                            </p>
+                        </div>
+
+                        <!-- Step 9 / Q8 -->
+                        <div class="bg-white p-4 rounded-xl border border-blue-100 shadow-sm" id="container-q8">
+                            <p class="text-gray-800 font-medium text-sm">
+                                It claimed that 
+                                <span class="inline-block my-1">
+                                    <span class="font-bold text-blue-600 mr-1">8</span>
+                                    <input type="text" name="q8" class="q-input" autocomplete="off" placeholder="______">
+                                </span> 
+                                were the most suitable people to protect public health.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Submit Button Area -->
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center pb-8">
+                    <button id="submit-form-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg shadow-md inline-flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg>
+                        <span>Submit to Google Form</span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">This will open your pre-filled Google Form in a new tab.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Progress Footer -->
+    <footer class="bg-white border-t border-gray-200 p-3 flex justify-center items-center z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] overflow-hidden">
+        <span class="text-sm font-bold text-gray-700 mr-3 flex-shrink-0">Progress:</span>
+        <div class="progress-container">
+            <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+            <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+            <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+            <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+            <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+            <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+            <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+            <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Highlight Tooltip -->
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white mr-4 transition-all shadow-sm border border-blue-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    // --- DATA ---
+    const vocabulary = {
+        'deteriorated': { meaning: 'Became progressively worse in quality, health, or condition.', phonetic: '/dɪˈtɪərɪəreɪtɪd/' },
+        'sanitary': { meaning: 'Relating to the conditions that affect hygiene and health, especially clean drinking water and proper sewage disposal.', phonetic: '/ˈsænɪtəri/' },
+        'hygiene': { meaning: 'Conditions or practices conducive to maintaining health and preventing disease, especially through cleanliness.', phonetic: '/ˈhaɪdʒiːn/' },
+        'epidemics': { meaning: 'Widespread occurrences of an infectious disease in a community at a particular time.', phonetic: '/ˌɛpɪˈdɛmɪks/' },
+        'preventative': { meaning: 'Designed to keep something undesirable such as illness or harm from occurring.', phonetic: '/prɪˈvɛntətɪv/' }
+    };
+
+    // --- APPLICATION LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            userAnswers: {},
+            currentFontSize: 17,
+
+            // Elements
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                   if (e.target === this.vocabModal) this.closeModal();
+                });
+
+                // Input Event Listener for Progress Tracking
+                document.body.addEventListener('input', (e) => {
+                    if (e.target.tagName === 'INPUT' && e.target.type === 'text') {
+                        this.userAnswers[e.target.name] = e.target.value.trim();
+                        this.updateProgress();
+                    }
+                });
+
+                // Vocab Words & Marks Event Delegation
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                // Form Submission Event
+                document.body.addEventListener('click', (e) => {
+                    const submitBtn = e.target.closest('#submit-form-btn');
+                    if (submitBtn) {
+                        this.submitToGoogleForm();
+                    }
+                });
+                
+                // Audio Pronunciation Event
+                this.playAudioBtn.addEventListener('click', () => {
+                   const word = this.vocabWordEl.textContent;
+                   if (!word) return;
+                   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                   this.playAudioBtn.classList.remove('text-blue-600', 'bg-blue-50');
+                   this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                   if ('speechSynthesis' in window) {
+                       const utterance = new SpeechSynthesisUtterance(word);
+                       utterance.lang = 'en-GB'; 
+                       utterance.rate = 0.9; 
+                       utterance.onend = () => this.resetAudioBtn();
+                       utterance.onerror = () => this.resetAudioBtn();
+                       window.speechSynthesis.speak(utterance);
+                   } else {
+                       setTimeout(() => this.resetAudioBtn(), 500);
+                   }
+                });
+            },
+
+            updateProgress() {
+                const progressItems = document.querySelectorAll('.progress-item');
+                progressItems.forEach(item => {
+                    const qName = item.dataset.q;
+                    const textInput = document.querySelector(`input[name="${qName}"][type="text"]`);
+
+                    if (textInput && textInput.value.trim() !== '') {
+                        item.classList.add('answered');
+                    } else {
+                        item.classList.remove('answered');
+                    }
+                });
+            },
+
+            initProgressTracker() {
+                this.updateProgress();
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-blue-600', 'bg-blue-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+            
+            submitToGoogleForm() {
+                const nameInput = document.getElementById('student-name');
+                const name = nameInput ? nameInput.value.trim() : '';
+
+                const params = new URLSearchParams();
+                params.append('usp', 'pp_url');
+                
+                if (name) params.append('entry.589525990', name);
+
+                const formEntries = {
+                    'q1': 'entry.228344918',
+                    'q2': 'entry.1348417162',
+                    'q3': 'entry.1594374544',
+                    'q4': 'entry.297275877',
+                    'q5': 'entry.738841590',
+                    'q6': 'entry.2024173199',
+                    'q7': 'entry.461084554'
+                };
+
+                // Collect input values
+                for (const [qId, entryId] of Object.entries(formEntries)) {
+                    const textInput = document.querySelector(`input[name="${qId}"][type="text"]`);
+                    const val = textInput ? textInput.value.trim() : '';
+                    if (val) {
+                        params.append(entryId, val);
+                    }
+                }
+
+                // Pre-filled Google Form URL
+                const formId = '1FAIpQLSfGXe9VCqaYiggmOVC63kmkqLmwSuyvU6tpMdFI4NIj8zG3Dw';
+                const url = `https://docs.google.com/forms/d/e/${formId}/viewform?${params.toString()}`;
+                
+                window.open(url, '_blank');
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                           this.highlightTooltip.style.display = 'none';
+                           return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                   if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                   }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>
