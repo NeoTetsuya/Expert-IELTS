@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothes and Identity — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --app-font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: var(--app-font-size);
+            overflow-x: hidden;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 2.15;
+            color: #334155;
+        }
+        .reading-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.25rem;
+        }
+        .reading-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .paragraph-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
+            color: #4338ca;
+            background-color: #e0e7ff;
+            border: 1px solid #c7d2fe;
+            text-indent: 0;
+            vertical-align: middle;
+        }
+
+        /* Highlight Targets & Interactive States */
+        .ans-target {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            position: relative;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            text-indent: 0;
+        }
+
+        /* Color classes for each question target */
+        .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
+        .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
+        .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
+        .ans-target-q4 { background-color: #fbcfe8; border-bottom: 2px solid #db2777; color: #9d174d; }
+        .ans-target-q5 { background-color: #ddd6fe; border-bottom: 2px solid #7c3aed; color: #5b21b6; }
+        .ans-target-q6 { background-color: #fed7aa; border-bottom: 2px solid #ea580c; color: #9a3412; }
+        .ans-target-q7 { background-color: #ccfbf1; border-bottom: 2px solid #0d9488; color: #115e59; }
+        .ans-target-q8 { background-color: #fef3c7; border-bottom: 2px solid #d97706; color: #92400e; }
+        .ans-target-q9 { background-color: #ffe4e6; border-bottom: 2px solid #e11d48; color: #9f1239; }
+        .ans-target-q10 { background-color: #e0e7ff; border-bottom: 2px solid #4f46e5; color: #3730a3; }
+        .ans-target-q12 { background-color: #fae8ff; border-bottom: 2px solid #c026d3; color: #86198f; }
+
+        /* Vocab Inline Highlights */
+        .vocab-hl {
+            background-color: #ecfdf5;
+            color: #047857;
+            font-weight: 700;
+            border-bottom: 1.5px dashed #059669;
+            padding: 1px 4px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .vocab-hl:hover {
+            background-color: #a7f3d0;
+            color: #064e3b;
+        }
+
+        /* Question Number Badges */
+        .q-badge {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72em;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: baseline;
+            line-height: 1.2;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-indent: 0;
+            user-select: none;
+        }
+
+        .ans-target:hover, .ans-target.active-target {
+            outline: 3px solid #4f46e5;
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+            filter: brightness(0.96);
+            z-index: 20;
+        }
+
+        /* Floating Explanation Popover */
+        .explanation-popover {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            width: 320px;
+            background-color: #0f172a;
+            color: #f8fafc;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+            transition: all 0.25s ease;
+            pointer-events: none;
+            line-height: 1.5;
+            font-weight: normal;
+        }
+        .explanation-popover::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+        }
+        .ans-target:hover .explanation-popover, .ans-target.active-target .explanation-popover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* SVG Canvas Overlay */
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        .tab-btn.active {
+            background-color: #4338ca;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(67, 56, 202, 0.3);
+        }
+
+        @keyframes arrowFlow {
+            from { stroke-dashoffset: 26; }
+            to { stroke-dashoffset: 0; }
+        }
+        .animated-arrow-line {
+            animation: arrowFlow 1s linear infinite;
+        }
+
+        .lang-btn.active {
+            background-color: #0f172a;
+            color: white;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col bg-slate-100">
+
+    <!-- Header Bar -->
+    <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
+        <div class="flex items-center space-x-3">
+            <div class="bg-indigo-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-shirt text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-slate-800">Clothes and Identity: We Are What We Wear</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Band 7.0–9.0 Vocabulary</p>
+            </div>
+        </div>
+
+        <!-- Controls: Language Switcher, Font Resize & Arrows Toggle -->
+        <div class="flex items-center space-x-3 flex-wrap gap-y-2">
+            <!-- Language Switcher -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" id="lang-switcher">
+                <button class="lang-btn active px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="en">EN</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="vi">VIE</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="dual">Parallel (EN/VIE)</button>
+            </div>
+
+            <!-- Font Resizer -->
+            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button id="btn-dec-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Giảm cỡ chữ">A-</button>
+                <button id="btn-inc-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Tăng cỡ chữ">A+</button>
+            </div>
+
+            <!-- Toggle Arrow Canvas -->
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 text-white border border-indigo-600 font-medium text-xs hover:bg-indigo-700 transition-colors shadow-xs">
+                <i class="fa-solid fa-route"></i>
+                <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
+        <div class="flex space-x-2 min-w-max" id="nav-tabs">
+            <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Q1–Q12)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. IELTS Vocabulary Suite (Band 7.0–9.0)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
+                <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="flex-1 overflow-hidden relative" id="main-wrapper">
+        <svg id="svg-canvas"></svg>
+
+        <!-- TAB 1: Passage & Question Analysis -->
+        <div id="tab-analysis-content" class="h-full grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
+            <!-- Left Pane: Passage View -->
+            <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-3 py-1 rounded-md border border-indigo-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — Clothes & Identity
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
+                    </div>
+
+                    <div id="passage-container" class="reading-text text-base leading-relaxed text-slate-700 space-y-4">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Pane: Questions & Explanations -->
+            <section id="right-pane" class="lg:col-span-6 bg-slate-50 overflow-y-auto p-6 lg:p-10">
+                <div class="max-w-2xl mx-auto space-y-6" id="explanations-list">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: Vocabulary Suite -->
+        <div id="tab-vocabulary-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-indigo-600"></i> Essential IELTS Reading Vocabulary — Clothes & Identity
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">High-yield psychological, behavioral, and fashion terminology with Band 7.0–9.0 collocations.</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <div class="relative flex-1 md:w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        </div>
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                            <option value="all">Tất cả từ loại</option>
+                            <option value="noun">Danh từ (Nouns)</option>
+                            <option value="verb">Động từ (Verbs)</option>
+                            <option value="adjective">Tính từ (Adjectives)</option>
+                            <option value="psychology">Tâm lý & Xã hội</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="vocab-cards-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Vocab Flashcards & Practice Quiz -->
+        <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="flex justify-center space-x-3">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-indigo-600 text-white shadow-sm transition-all">
+                        <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
+                    </button>
+                    <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-circle-question mr-2"></i> Quick Quiz Mode
+                    </button>
+                </div>
+
+                <!-- Flashcard View -->
+                <div id="flashcard-view" class="flex flex-col items-center space-y-6">
+                    <p class="text-xs text-slate-500 font-semibold">Nhấp vào thẻ để lật xem định nghĩa và giải thích tiếng Việt</p>
+                    
+                    <div class="w-full max-w-md h-72 perspective-1000 cursor-pointer" id="flashcard-wrapper">
+                        <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
+                            <!-- Front -->
+                            <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">Category</span>
+                                <div>
+                                    <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
+                                    <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
+                                </div>
+                                <span class="text-xs font-bold text-indigo-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-indigo-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <div>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-indigo-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="btn-fc-prev" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span id="fc-counter" class="text-xs font-bold text-slate-600 px-4 py-2 bg-white rounded-xl border border-slate-200">1 / 10</span>
+                        <button id="btn-fc-next" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz View -->
+                <div id="quiz-view" class="hidden space-y-6">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6" id="quiz-box">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data & Application Logic -->
+    <script>
+        const passageData = [
+            {
+                pNum: 'A',
+                en: `We all communicate through fashion. Our clothes, accessories, hairstyles and make-up are all things we use to promote ourselves to others. Fashion is about meanings and symbols that give us immediate visual communication. But <span class="ans-target ans-target-q7" data-q="q7"><span class="q-badge bg-teal-800">Q7</span>I would suggest it is also about decision-making, performance and fitting into society<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q7 Evidence (YES)</strong>Clothes do more than send messages; they also involve decision-making, performance, and social integration.</span></span>.`,
+                vi: `Tất cả chúng ta đều giao tiếp thông qua thời trang. Quần áo, phụ kiện, kiểu tóc và phong cách trang điểm đều là những phương tiện chúng ta dùng để quảng bá bản thân tới người khác. Thời trang xoay quanh các ý nghĩa và biểu tượng mang đến cho chúng ta sự giao tiếp thị giác tức thì. Nhưng <span class="ans-target ans-target-q7" data-q="q7"><span class="q-badge bg-teal-800">Q7</span>tôi muốn gợi ý rằng thời trang còn liên quan đến việc ra quyết định, hiệu suất làm việc và sự hòa nhập vào xã hội<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 7 (YES)</strong>Trang phục không chỉ gửi thông điệp giao tiếp thị giác mà còn liên quan đến ra quyết định, hiệu suất và sự hòa nhập xã hội.</span></span>.`
+            },
+            {
+                pNum: 'B',
+                en: `It is certainly true that fashion is linked to how we view each other. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-800">Q5</span>We make decisions based on a person’s appearance within a second. Clothing style gives information about a person’s character, sociability and intelligence<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Para B)</strong>We use looks to make judgements about someone's personality almost immediately ('within a second').</span></span>. <span class="ans-target ans-target-q8" data-q="q8"><span class="q-badge bg-amber-800">Q8</span>Attractive people generate a ‘halo effect’, which makes us believe everything connected with that person is positive. Consequently, we often think attractive people are more intelligent, healthy and sociable compared with unattractive people<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q8 Evidence (YES)</strong>The 'halo effect' makes us assume attractive individuals possess more positive personal qualities.</span></span>. In a recent study supported by a tailoring company, participants were shown images of a man for three seconds. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-800">Q4</span>The first image showed him in a suit made especially for him. The second showed him in a suit bought from a highstreet shop. People thought the man in the first image was more confident, successful and a higher earner than in the second<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Para B)</strong>Wearing bespoke/specially designed clothes created a far more positive impression.</span></span>.`,
+                vi: `Một điều hoàn toàn đúng là thời trang gắn liền với cách chúng ta nhìn nhận lẫn nhau. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-800">Q5</span>Chúng ta đưa ra nhận định dựa trên ngoại hình của một người chỉ trong vòng một giây. Phong cách ăn mặc cung cấp thông tin về tính cách, sự hòa đồng và trí tuệ của một cá nhân<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 5 (Para B)</strong>Đưa ra nhận định về tính cách, trí tuệ dựa vào ngoại hình gần như ngay lập tức ('within a second').</span></span>. <span class="ans-target ans-target-q8" data-q="q8"><span class="q-badge bg-amber-800">Q8</span>Những người cuốn hút tạo ra một 'hiệu ứng hào quang' (halo effect), khiến chúng ta tin rằng mọi thứ gắn liền với người đó đều tích cực. Do đó, chúng ta thường nghĩ rằng những người ưa nhìn sẽ thông minh, khỏe mạnh và hòa đồng hơn so với những người kém thu hút<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 8 (YES)</strong>Hiệu ứng hào quang khiến chúng ta cho rằng người hấp dẫn có nhiều phẩm chất cá nhân tốt đẹp hơn.</span></span>. Trong một nghiên cứu gần đây được tài trợ bởi một công ty may đo, các đối tượng tham gia được cho xem ảnh một người đàn ông trong 3 giây. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-800">Q4</span>Bức ảnh đầu tiên cho thấy anh ta mặc một bộ suit may riêng cho mình. Bức ảnh thứ hai cho thấy anh ta mặc bộ suit mua ở cửa hàng đại trà. Mọi người đều cho rằng người đàn ông trong ảnh đầu tiên tự tin, thành đạt và có thu nhập cao hơn so với trong ảnh thứ hai<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 4 (Para B)</strong>Người mặc trang phục may riêng ('suit made especially for him') tạo ấn tượng tích cực hơn nhiều.</span></span>.`
+            },
+            {
+                pNum: 'C',
+                en: `Researchers have also looked at the difference between wanting what we have and having what we want, and they made an interesting discovery. They found that we get more pleasure from buying objects than we do from owning the objects themselves. We enjoy shopping because it allows us to compare ourselves with others. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-amber-800">Q1</span>Our new Prada shoes may be lovely, but our pleasure in them depends on impressing others<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Para C)</strong>People purchase expensive goods because their pleasure derives from impressing and being noticed by others.</span></span>. <span class="ans-target ans-target-q9" data-q="q9"><span class="q-badge bg-rose-800">Q9</span>You’d think that buyer’s guilt would stop us shopping but it doesn’t. In fact, psychologists found that feeling guilty often pushes us to shop more<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q9 Evidence (NO)</strong>Guilt does NOT stop people from shopping; instead, it pushes them to shop more.</span></span>. And when we can’t find what we want, we are motivated to try even harder because our brains release the chemical dopamine which gives us pleasure. The longer it takes us to find what we want, the more dopamine our brain releases.`,
+                vi: `Các nhà nghiên cứu cũng đã xem xét sự khác biệt giữa việc muốn những gì mình có và có những gì mình muốn, và họ đã phát hiện ra một điều rất thú vị. Họ nhận thấy chúng ta có nhiều niềm vui hơn từ việc mua sắm đồ vật hơn là việc thực sự sở hữu chính những món đồ đó. Chúng ta thích đi mua sắm vì nó cho phép chúng ta so sánh bản thân với người khác. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-amber-800">Q1</span>Đôi giày Prada mới của chúng ta có thể rất đẹp, nhưng niềm vui của chúng ta với chúng lại phụ thuộc vào việc gây ấn tượng với người khác<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 1 (Para C)</strong>Mua sắm đồ hiệu mang lại niềm vui khi làm người khác chú ý và ấn tượng.</span></span>. <span class="ans-target ans-target-q9" data-q="q9"><span class="q-badge bg-rose-800">Q9</span>Bạn có thể nghĩ rằng cảm giác tội lỗi của người mua sắm sẽ ngăn chúng ta tiếp tục mua, nhưng thực tế không phải vậy. Các nhà tâm lý học nhận thấy cảm giác tội lỗi thường thôi thúc chúng ta mua sắm nhiều hơn<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 9 (NO)</strong>Cảm giác tội lỗi/hối hận KHÔNG dừng chúng ta mua sắm mà còn thôi thúc mua nhiều hơn.</span></span>. Và khi chúng ta không tìm thấy thứ mình muốn, chúng ta càng được thôi thúc cố gắng hơn vì não bộ giải phóng chất dopamine mang lại cảm giác thỏa mãn. Càng mất nhiều thời gian tìm kiếm món đồ mình muốn, não chúng ta càng tiết ra nhiều dopamine.`
+            },
+            {
+                pNum: 'D',
+                en: `The shopping experience is not always the same for both genders, however. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-800">Q3</span>From a young age, women are judged on their appearance, and men on skills and abilities<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Para D)</strong>Opinions about males and females are formed using different criteria (appearance vs skills).</span></span>. Fashion can be used to change appearance, self-identity and boost confidence by showing some qualities and hiding others. It is therefore not surprising that shopping is more popular among women. It is beginning to change but in a 2013 paper, researchers found 80 percent of men hate shopping with their partner, and 45 percent try not to go at all costs. Half of couples fight when they shop together, as men claim they get bored, hungry or thirsty and wish they were outside. <span class="ans-target ans-target-q10" data-q="q10"><span class="q-badge bg-indigo-800">Q10</span>If we compare this to the past when men hunted alone, as fast as possible, and women spent time with each other selecting berries, nuts and vegetables, we can see shopping is the same. Women take their time and do it with friends. Men prefer to shop alone and fast<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q10 Evidence (NO)</strong>Shopping habits have NOT changed over the years; they mirror ancient hunting & foraging patterns.</span></span>.`,
+                vi: `Tuy nhiên, trải nghiệm mua sắm không phải lúc nào cũng giống nhau đối với cả hai giới. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-800">Q3</span>Từ khi còn nhỏ, phụ nữ đã bị đánh giá dựa trên ngoại hình, còn nam giới được đánh giá dựa trên kỹ năng và năng lực<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 3 (Para D)</strong>Ý kiến về nam và nữ được hình thành dựa trên các tiêu chí khác nhau (ngoại hình so với năng lực).</span></span>. Thời trang có thể được dùng để thay đổi ngoại hình, bản sắc cá nhân và nâng cao sự tự tin bằng cách thể hiện một số phẩm chất và che giấu những điểm khác. Do đó không có gì ngạc nhiên khi mua sắm phổ biến hơn ở phụ nữ. Điều này đang bắt đầu thay đổi nhưng trong một bài báo năm 2013, các nhà nghiên cứu nhận thấy 80% nam giới ghét đi mua sắm cùng bạn đời và 45% cố gắng tránh né bằng mọi giá. Một nửa các cặp đôi cãi nhau khi đi mua sắm cùng nhau, khi nam giới phàn nàn rằng họ thấy chán, đói hoặc khát và ước mình đang ở bên ngoài. <span class="ans-target ans-target-q10" data-q="q10"><span class="q-badge bg-indigo-800">Q10</span>Nếu so sánh điều này với quá khứ khi đàn ông đi săn một mình, càng nhanh càng tốt, còn phụ nữ dành thời gian cùng nhau hái lượm quả mọng, hạt và rau củ, chúng ta có thể thấy việc mua sắm vẫn giữ nguyên như vậy. Phụ nữ từ tốn và mua sắm cùng bạn bè. Nam giới thích mua sắm một mình và nhanh chóng<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 10 (NO)</strong>Thói quen tìm kiếm đồ đạc KHÔNG hề thay đổi theo năm tháng mà vẫn giống như hành vi săn bắt hái lượm cổ xưa.</span></span>.`
+            },
+            {
+                pNum: 'E',
+                en: `Clothes and accessories are not only connected with our identity; they also affect how we feel and perform. When we give meaning to the clothes we wear, <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-800">Q6</span>we can improve our cognitive abilities, which can influence our social interactions. Researchers found that simply wearing a lab coat increased performance on attention-related tasks. And, more interestingly, when it was described as a doctor’s coat as opposed to a painter’s, sustained attention increased even more<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Para E)</strong>Clothes can enhance cognitive abilities and focus ('increased performance on attention-related tasks').</span></span>. Psychologists call this effect ‘enclothed cognition’.`,
+                vi: `Quần áo và phụ kiện không chỉ gắn kết với danh tính của chúng ta; chúng còn ảnh hưởng đến cảm xúc và hiệu suất thực hiện công việc. Khi chúng ta gán ý nghĩa cho trang phục mình mặc, <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-800">Q6</span>chúng ta có thể cải thiện khả năng nhận thức của mình, từ đó ảnh hưởng đến các tương tác xã hội. Các nhà nghiên cứu phát hiện ra rằng chỉ cần mặc áo choàng phòng thí nghiệm đã làm tăng hiệu suất đối với các nhiệm vụ liên quan đến sự chú ý. Và thú vị hơn nữa, khi nó được mô tả là áo blouse của bác sĩ thay vì áo của họa sĩ, khả năng duy trì sự tập trung chú ý còn tăng nhiều hơn nữa<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 6 (Para E)</strong>Trang phục giúp nâng cao năng lực nhận thức và khả năng tập trung ('sustained attention increased').</span></span>. Các nhà tâm lý học gọi hiệu ứng này là 'nhận thức qua trang phục' (enclothed cognition).`
+            },
+            {
+                pNum: 'F',
+                en: `Finally, fashion can allow us to fit into a group or stand out as different. Groups have a ‘uniform’ that identifies membership (e.g., punk, City worker). <span class="ans-target ans-target-q12" data-q="q12"><span class="q-badge bg-fuchsia-800">Q12</span>Our desire to be part of the group will influence the way we dress, and following the latest trends can give us membership of the ‘fashionable’ group. This is a problem for fashion, as people think it is about looking different. But once an item becomes fashionable, it is no longer different<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q12 Evidence (YES)</strong>People follow fashion trends to gain membership in groups and look like others.</span></span>. <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-800">Q2</span>Uniforms are frequently adopted by fashion and other industry leaders. For example, fashion magazine editor Anna Wintour only wears printed sleeveless dresses, and famous model Kate Moss is addicted to skinny jeans and ankle boots. Wearing the same clothes every day means you do not have to worry about what to wear and people immediately recognise you<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Para F)</strong>Fashion icons (Anna Wintour, Kate Moss) regularly choose the same signature type of clothing.</span></span>.`,
+                vi: `Cuối cùng, thời trang cho phép chúng ta hòa nhập vào một tập thể hoặc trở nên khác biệt, nổi bật. Các nhóm xã hội đều có một dạng 'đồng phục' nhận diện thành viên (ví dụ: phong cách punk, nhân viên tài chính City). <span class="ans-target ans-target-q12" data-q="q12"><span class="q-badge bg-fuchsia-800">Q12</span>Khao khát muốn trở thành một phần của nhóm sẽ chi phối cách chúng ta ăn mặc, và việc chạy theo các xu hướng mới nhất giúp chúng ta có được tư cách thành viên trong nhóm 'hợp thời'. Đây là một nghịch lý của thời trang, vì mọi người thường nghĩ thời trang là để trông khác biệt. Nhưng một khi món đồ đã trở thành xu hướng, nó sẽ không còn khác biệt nữa<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 12 (YES)</strong>Mọi người mặc theo xu hướng là để giống với số đông và hòa nhập vào nhóm.</span></span>. <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-800">Q2</span>Đồng phục đặc trưng thường được áp dụng bởi các nhà lãnh đạo trong ngành thời trang và các lĩnh vực khác. Ví dụ, tổng biên tập tạp chí thời trang Anna Wintour chỉ mặc váy không tay in họa tiết, còn siêu mẫu nổi tiếng Kate Moss thì nghiện mặc quần skinny jeans cùng bốt cổ ngắn. Việc mặc cùng một kiểu trang phục mỗi ngày giúp bạn không phải đau đầu nghĩ xem nên mặc gì và mọi người sẽ nhận ra bạn ngay lập tức<span class="explanation-popover"><strong class="text-indigo-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Câu 2 (Para F)</strong>Những người dẫn đầu ngành thời trang thường xuyên chọn cùng một kiểu trang phục mỗi ngày.</span></span>.`
+            }
+        ];
+
+        const questionsData = [
+            {
+                id: 'q1',
+                num: '1',
+                type: 'Matching Information',
+                ansKey: 'Paragraph C',
+                badgeColor: 'bg-amber-600',
+                prompt: 'People purchase things so they can feel good when other people notice them.',
+                explEn: 'Paragraph C explains that our joy in high-end purchases comes from making an impression on others: "Our new Prada shoes may be lovely, but our pleasure in them depends on impressing others."',
+                explVi: 'Đoạn C giải thích niềm vui khi mua sắm đồ xa xỉ phụ thuộc vào việc gây ấn tượng với người khác: "Our new Prada shoes may be lovely, but our pleasure in them depends on impressing others." -> Paragraph C.',
+                synonyms: [
+                    { q: 'purchase things', p: 'buying objects / Prada shoes' },
+                    { q: 'feel good ... other people notice them', p: 'pleasure depends on impressing others' }
+                ]
+            },
+            {
+                id: 'q2',
+                num: '2',
+                type: 'Matching Information',
+                ansKey: 'Paragraph F',
+                badgeColor: 'bg-sky-600',
+                prompt: 'Some people in the fashion business choose the same type of clothes regularly.',
+                explEn: 'Paragraph F mentions fashion icons like Anna Wintour only wearing printed sleeveless dresses and Kate Moss wearing skinny jeans: "Uniforms are frequently adopted by fashion and other industry leaders..."',
+                explVi: 'Đoạn F đưa ra ví dụ về các nhà lãnh đạo thời trang như Anna Wintour chỉ mặc váy không tay in hoa và Kate Moss nghiện quần skinny jeans -> Paragraph F.',
+                synonyms: [
+                    { q: 'people in fashion business', p: 'fashion leaders / magazine editor / famous model' },
+                    { q: 'choose the same type of clothes regularly', p: 'only wears / addicted to / wearing the same clothes every day' }
+                ]
+            },
+            {
+                id: 'q3',
+                num: '3',
+                type: 'Matching Information',
+                ansKey: 'Paragraph D',
+                badgeColor: 'bg-emerald-600',
+                prompt: 'People form opinions about males and females using different criteria.',
+                explEn: 'Paragraph D states clearly: "From a young age, women are judged on their appearance, and men on skills and abilities."',
+                explVi: 'Đoạn D nêu rõ: "From a young age, women are judged on their appearance, and men on skills and abilities." Phụ nữ bị đánh giá qua vẻ ngoài, đàn ông qua kỹ năng -> Paragraph D.',
+                synonyms: [
+                    { q: 'form opinions / using criteria', p: 'judged on' },
+                    { q: 'males and females', p: 'women / men' }
+                ]
+            },
+            {
+                id: 'q4',
+                num: '4',
+                type: 'Matching Information',
+                ansKey: 'Paragraph B',
+                badgeColor: 'bg-pink-600',
+                prompt: 'A person wearing specially designed clothes made a more positive impression.',
+                explEn: 'Paragraph B details an experiment where a man wearing "a suit made especially for him" was judged to be "more confident, successful and a higher earner" than in an off-the-rack suit.',
+                explVi: 'Đoạn B mô tả thí nghiệm xem ảnh một người mặc "a suit made especially for him" được nhận định là tự tin hơn, thành đạt hơn và có thu nhập cao hơn -> Paragraph B.',
+                synonyms: [
+                    { q: 'specially designed clothes', p: 'suit made especially for him' },
+                    { q: 'more positive impression', p: 'more confident, successful and a higher earner' }
+                ]
+            },
+            {
+                id: 'q5',
+                num: '5',
+                type: 'Matching Information',
+                ansKey: 'Paragraph B',
+                badgeColor: 'bg-purple-600',
+                prompt: 'We use looks to make a judgement about someone’s personality almost immediately.',
+                explEn: 'Paragraph B states: "We make decisions based on a person’s appearance within a second. Clothing style gives information about a person’s character, sociability and intelligence."',
+                explVi: 'Đoạn B khẳng định: "We make decisions based on a person’s appearance within a second..." Chúng ta nhận định về tính cách chỉ trong 1 giây -> Paragraph B.',
+                synonyms: [
+                    { q: 'use looks / personality', p: 'appearance / character, sociability and intelligence' },
+                    { q: 'almost immediately', p: 'within a second' }
+                ]
+            },
+            {
+                id: 'q6',
+                num: '6',
+                type: 'Matching Information',
+                ansKey: 'Paragraph E',
+                badgeColor: 'bg-orange-600',
+                prompt: 'The clothes we wear can help us focus better.',
+                explEn: 'Paragraph E proves that wearing a doctor\'s coat "increased performance on attention-related tasks" and "sustained attention increased even more" (enclothed cognition).',
+                explVi: 'Đoạn E chứng minh việc mặc áo blouse giúp tăng hiệu suất các tác vụ chú ý và sự tập trung bền vững ("sustained attention increased even more") -> Paragraph E.',
+                synonyms: [
+                    { q: 'help us focus better', p: 'performance on attention-related tasks / sustained attention' }
+                ]
+            },
+            {
+                id: 'q7',
+                num: '7',
+                type: 'Yes/No/Not Given',
+                ansKey: 'YES',
+                badgeColor: 'bg-teal-600',
+                prompt: 'The clothes we wear do more than send messages to people.',
+                explEn: 'Paragraph A confirms fashion offers visual communication, but author adds: "I would suggest it is also about decision-making, performance and fitting into society."',
+                explVi: 'Đoạn A xác nhận thời trang không chỉ mang thông điệp thị giác mà còn liên quan đến ra quyết định, hiệu suất và hòa nhập xã hội -> YES.',
+                synonyms: [
+                    { q: 'do more than send messages', p: 'visual communication ... also about decision-making, performance' }
+                ]
+            },
+            {
+                id: 'q8',
+                num: '8',
+                type: 'Yes/No/Not Given',
+                ansKey: 'YES',
+                badgeColor: 'bg-amber-600',
+                prompt: 'We assume that good-looking people have better personal qualities.',
+                explEn: 'Paragraph B explains the halo effect: "...makes us believe everything connected with that person is positive... think attractive people are more intelligent, healthy and sociable..."',
+                explVi: 'Đoạn B mô tả hiệu ứng hào quang khiến ta nghĩ người ưa nhìn thông minh, khỏe mạnh và hòa đồng hơn -> YES.',
+                synonyms: [
+                    { q: 'good-looking / better personal qualities', p: 'attractive / more intelligent, healthy and sociable' }
+                ]
+            },
+            {
+                id: 'q9',
+                num: '9',
+                type: 'Yes/No/Not Given',
+                ansKey: 'NO',
+                badgeColor: 'bg-rose-600',
+                prompt: 'When we regret buying something, we stop shopping.',
+                explEn: 'Paragraph C refutes this: "You’d think that buyer’s guilt would stop us shopping but it doesn’t. In fact, psychologists found that feeling guilty often pushes us to shop more."',
+                explVi: 'Đoạn C bác bỏ: Cảm giác tội lỗi/hối hận khi mua hàng KHÔNG làm chúng ta dừng mua mà còn thúc đẩy mua nhiều hơn -> NO.',
+                synonyms: [
+                    { q: 'regret buying / stop shopping', p: 'buyer’s guilt would stop us ... but it doesn’t' }
+                ]
+            },
+            {
+                id: 'q10',
+                num: '10',
+                type: 'Yes/No/Not Given',
+                ansKey: 'NO',
+                badgeColor: 'bg-indigo-600',
+                prompt: 'The way men and women look for things has changed over the years.',
+                explEn: 'Paragraph D compares modern shopping to prehistoric hunting/foraging patterns and states: "...we can see shopping is the same."',
+                explVi: 'Đoạn D đối chiếu với thời tiền sử và kết luận thói quen tìm đồ vẫn giữ nguyên ("shopping is the same"), không hề thay đổi -> NO.',
+                synonyms: [
+                    { q: 'has changed over the years', p: 'contradicts: "we can see shopping is the same"' }
+                ]
+            },
+            {
+                id: 'q11',
+                num: '11',
+                type: 'Yes/No/Not Given',
+                ansKey: 'NOT GIVEN',
+                badgeColor: 'bg-slate-600',
+                prompt: 'Medical workers like to be recognised in their uniforms.',
+                explEn: 'Paragraph E discusses the psychological impact of wearing a doctor\'s coat on cognitive performance, but there is no mention of whether doctors or medical workers enjoy being recognised in uniforms.',
+                explVi: 'Đoạn E nhắc đến áo blouse bác sĩ trong nghiên cứu nhận thức nhưng hoàn toàn không nói nhân viên y tế có thích được nhận ra khi mặc đồng phục hay không -> NOT GIVEN.',
+                synonyms: [
+                    { q: 'medical workers like to be recognised', p: 'Not mentioned in passage' }
+                ]
+            },
+            {
+                id: 'q12',
+                num: '12',
+                type: 'Yes/No/Not Given',
+                ansKey: 'YES',
+                badgeColor: 'bg-fuchsia-600',
+                prompt: 'Most people choose to wear fashion so they can look like others.',
+                explEn: 'Paragraph F explains: "Our desire to be part of the group will influence the way we dress... once an item becomes fashionable, it is no longer different."',
+                explVi: 'Đoạn F khẳng định mong muốn thuộc về một nhóm khiến người ta chạy theo xu hướng để giống với mọi người trong nhóm -> YES.',
+                synonyms: [
+                    { q: 'look like others', p: 'be part of the group / no longer different' }
+                ]
+            }
+        ];
+
+        const vocabList = [
+            {
+                word: 'enclothed cognition',
+                phonetic: '/ɪnˈkloʊðd kɒɡˈnɪʃ.ən/',
+                vi: 'Nhận thức qua trang phục',
+                enDef: 'The systematic influence that clothes have on the wearer\'s psychological processes and cognitive performance.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'Psychologists call this effect ‘enclothed cognition’.',
+                collocation: 'study enclothed cognition / psychological phenomenon'
+            },
+            {
+                word: 'halo effect',
+                phonetic: '/ˈheɪ.loʊ ɪˌfekt/',
+                vi: 'Hiệu ứng hào quang',
+                enDef: 'A cognitive bias in which our overall impression of a person influences how we feel and think about their character.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'Attractive people generate a ‘halo effect’, making us believe everything connected with them is positive.',
+                collocation: 'generate a halo effect / cognitive bias'
+            },
+            {
+                word: 'sociability',
+                phonetic: '/ˌsoʊ.ʃəˈbɪl.ə.t̬i/',
+                vi: 'Tính hòa đồng / Khả năng giao tiếp xã hội',
+                enDef: 'The quality of being friendly, open, and enjoying the company of others.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'Clothing style gives information about a person’s character, sociability and intelligence.',
+                collocation: 'high sociability / interpersonal sociability'
+            },
+            {
+                word: 'buyer’s guilt',
+                phonetic: '/ˈbaɪ.ərz ɡɪlt/',
+                vi: 'Cảm giác tội lỗi sau khi mua sắm',
+                enDef: 'A feeling of remorse, regret, or anxiety after making a purchase, especially an expensive one.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'You’d think that buyer’s guilt would stop us shopping but it doesn’t.',
+                collocation: 'experience buyer’s guilt / overcome guilt'
+            },
+            {
+                word: 'dopamine',
+                phonetic: '/ˈdoʊ.pə.miːn/',
+                vi: 'Chất dẫn truyền thần kinh tạo cảm giác hưng phấn',
+                enDef: 'A neurotransmitter in the brain associated with reward, motivation, and feelings of pleasure.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'The longer it takes us to find what we want, the more dopamine our brain releases.',
+                collocation: 'dopamine release / surge of dopamine'
+            },
+            {
+                word: 'sustained attention',
+                phonetic: '/səˈsteɪnd əˈten.ʃən/',
+                vi: 'Sự chú ý bền vững / Tập trung liên tục',
+                enDef: 'The ability to maintain focus and concentration on a continuous task over a prolonged period.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'When described as a doctor’s coat, sustained attention increased even more.',
+                collocation: 'improve sustained attention / attention span'
+            },
+            {
+                word: 'bespoke / made especially',
+                phonetic: '/bɪˈspoʊk/',
+                vi: 'Được may đo riêng / Thiết kế theo yêu cầu',
+                enDef: 'Custom-made to the specific requirements of an individual customer.',
+                type: 'adjective',
+                category: 'adjective',
+                context: 'The first image showed him in a suit made especially for him.',
+                collocation: 'bespoke tailoring / custom-made suit'
+            },
+            {
+                word: 'self-identity',
+                phonetic: '/ˌself.aɪˈden.t̬ə.t̬i/',
+                vi: 'Bản sắc cá nhân / Nhận thức về bản thân',
+                enDef: 'The recognition of one\'s potential and qualities as an individual.',
+                type: 'noun',
+                category: 'psychology',
+                context: 'Fashion can be used to change appearance, self-identity and boost confidence.',
+                collocation: 'shape self-identity / boost self-identity'
+            },
+            {
+                word: 'foraging',
+                phonetic: '/ˈfɔːr.ɪ.dʒɪŋ/',
+                vi: 'Hành vi hái lượm / Tìm kiếm thức ăn',
+                enDef: 'The act of searching for food and provisions in nature.',
+                type: 'noun',
+                category: 'verb',
+                context: 'Women spent time with each other selecting berries, nuts and vegetables.',
+                collocation: 'foraging pattern / prehistoric foraging'
+            }
+        ];
+
+        const app = {
+            currentLang: 'en',
+            fontSize: 16,
+            showArrows: true,
+            activeTab: 'analysis',
+            fcIndex: 0,
+            fcFlipped: false,
+            arrowAnimFrame: null,
+
+            init() {
+                this.bindEvents();
+                this.renderPassage();
+                this.renderExplanations();
+                this.bindTargetEvents();
+                this.renderVocabGrid();
+                this.setupFlashcard();
+                this.setupQuiz();
+            },
+
+            bindEvents() {
+                // Language Switcher
+                document.querySelectorAll('#lang-switcher .lang-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#lang-switcher .lang-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.currentLang = e.currentTarget.dataset.lang;
+                        this.renderPassage();
+                        this.renderExplanations();
+                        this.bindTargetEvents();
+                        setTimeout(() => this.drawConnections(), 60);
+                    });
+                });
+
+                // Font Resizing
+                document.getElementById('btn-inc-font').addEventListener('click', () => {
+                    if (this.fontSize < 24) {
+                        this.fontSize += 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+                document.getElementById('btn-dec-font').addEventListener('click', () => {
+                    if (this.fontSize > 13) {
+                        this.fontSize -= 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+
+                // Arrow Toggle
+                document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
+                    this.showArrows = !this.showArrows;
+                    e.currentTarget.classList.toggle('bg-indigo-600');
+                    e.currentTarget.classList.toggle('bg-slate-300');
+                    e.currentTarget.classList.toggle('text-slate-700');
+                    if (!this.showArrows) {
+                        this.clearCanvas();
+                    } else {
+                        this.drawConnections();
+                    }
+                });
+
+                // Scroll sync for real-time arrow alignment
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+                if (leftPane) leftPane.addEventListener('scroll', () => this.drawConnections());
+                if (rightPane) rightPane.addEventListener('scroll', () => this.drawConnections());
+
+                // Navigation Tabs
+                document.querySelectorAll('#nav-tabs .tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#nav-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        const tab = e.currentTarget.dataset.tab;
+                        this.activeTab = tab;
+
+                        document.getElementById('tab-analysis-content').classList.toggle('hidden', tab !== 'analysis');
+                        document.getElementById('tab-vocabulary-content').classList.toggle('hidden', tab !== 'vocabulary');
+                        document.getElementById('tab-flashcards-content').classList.toggle('hidden', tab !== 'flashcards');
+
+                        if (tab !== 'analysis') this.clearCanvas();
+                        else setTimeout(() => this.drawConnections(), 100);
+                    });
+                });
+
+                // Vocab Search & Filter
+                document.getElementById('vocab-search').addEventListener('input', () => this.filterVocab());
+                document.getElementById('vocab-filter').addEventListener('change', () => this.filterVocab());
+
+                // Flashcard Flip & Nav
+                document.getElementById('flashcard-wrapper').addEventListener('click', () => {
+                    this.fcFlipped = !this.fcFlipped;
+                    document.getElementById('flashcard-inner').classList.toggle('rotate-y-180', this.fcFlipped);
+                });
+                document.getElementById('btn-fc-prev').addEventListener('click', () => {
+                    if (this.fcIndex > 0) {
+                        this.fcIndex--;
+                        this.updateFlashcard();
+                    }
+                });
+                document.getElementById('btn-fc-next').addEventListener('click', () => {
+                    if (this.fcIndex < vocabList.length - 1) {
+                        this.fcIndex++;
+                        this.updateFlashcard();
+                    }
+                });
+
+                // Tab 3 Mode Switcher
+                document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-indigo-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-indigo-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('flashcard-view').classList.remove('hidden');
+                    document.getElementById('quiz-view').classList.add('hidden');
+                });
+                document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-indigo-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-indigo-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('quiz-view').classList.remove('hidden');
+                    document.getElementById('flashcard-view').classList.add('hidden');
+                });
+
+                window.addEventListener('resize', () => this.drawConnections());
+            },
+
+            renderPassage() {
+                const container = document.getElementById('passage-container');
+                let html = `
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">Clothes and Identity: We Are What We Wear</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Fashion as visual communication, cognitive psychology, and social signaling.</p>
+                `;
+
+                passageData.forEach(p => {
+                    if (this.currentLang === 'en') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.en}</p>`;
+                    } else if (this.currentLang === 'vi') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.vi}</p>`;
+                    } else if (this.currentLang === 'dual') {
+                        html += `
+                            <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                                <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
+                                    <strong class="text-xs font-bold text-indigo-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    ${p.en}
+                                </div>
+                                <div class="text-slate-600 text-sm leading-relaxed pt-1">
+                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
+                                    ${p.vi}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                container.innerHTML = html;
+            },
+
+            renderExplanations() {
+                const container = document.getElementById('explanations-list');
+                let html = `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+                        <div class="flex items-center space-x-2 text-indigo-700 font-bold text-xs uppercase tracking-wide mb-1">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>Comprehensive Rationale & Paraphrase Mapping</span>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-slate-900">Clothes and Identity — Phân Tích Đáp Án & Từ Đồng Nghĩa</h2>
+                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                    </div>
+                `;
+
+                questionsData.forEach(q => {
+                    html += `
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-indigo-400" id="q-card-${q.id}">
+                            <div class="flex items-start justify-between">
+                                <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
+                                    Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <button class="jump-btn bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs px-2.5 py-1 rounded-md border border-indigo-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                        <i class="fa-solid fa-location-dot"></i> Xem bài đọc
+                                    </button>
+                                    <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
+                                        Đáp án: ${q.ansKey}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-slate-800 leading-relaxed">${q.prompt}</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
+                                <div class="flex items-center text-indigo-700 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-circle-check mr-1.5"></i>
+                                    <span>Giải thích chi tiết (Rationale):</span>
+                                </div>
+                                <p class="leading-relaxed font-medium text-slate-800">${this.currentLang === 'vi' ? q.explVi : q.explEn}</p>
+                            </div>
+
+                            ${q.synonyms ? `
+                                <div class="pt-2 border-t border-slate-100">
+                                    <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-indigo-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                    </h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-indigo-50/70 text-indigo-900 font-semibold border-b border-indigo-100">
+                                                    <th class="p-2">Từ khóa trong Câu hỏi</th>
+                                                    <th class="p-2">Từ tương đương trong Bài đọc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                                ${q.synonyms.map(s => `
+                                                    <tr>
+                                                        <td class="p-2 font-medium text-slate-700">${s.q}</td>
+                                                        <td class="p-2 font-semibold text-indigo-700">${s.p}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            },
+
+            bindTargetEvents() {
+                const targets = document.querySelectorAll('.ans-target');
+                const qCards = document.querySelectorAll('.q-card');
+                const jumpBtns = document.querySelectorAll('.jump-btn');
+
+                const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-indigo-600', 'bg-indigo-50/40', 'border-indigo-400'));
+
+                    if (targetEl) {
+                        targetEl.classList.add('active-target');
+                        if (scrollLeft) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+
+                    if (cardEl) {
+                        cardEl.classList.add('ring-2', 'ring-indigo-600', 'bg-indigo-50/40', 'border-indigo-400');
+                        if (scrollRight) {
+                            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+
+                    this.startSmoothTracking();
+                };
+
+                const deactivateAll = () => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-indigo-600', 'bg-indigo-50/40', 'border-indigo-400'));
+                    this.clearCanvas();
+                };
+
+                targets.forEach(target => {
+                    const qId = target.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+
+                    target.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    target.addEventListener('mouseleave', deactivateAll);
+                    target.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        activatePair(target, qCard, false, true);
+                    });
+                });
+
+                qCards.forEach(qCard => {
+                    const qId = qCard.id.replace('q-card-', '');
+                    const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+
+                    qCard.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    qCard.addEventListener('mouseleave', deactivateAll);
+                    qCard.addEventListener('click', (e) => {
+                        if (e.target.closest('.jump-btn')) return;
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+
+                jumpBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const qId = btn.dataset.q;
+                        const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+                        const qCard = document.getElementById(`q-card-${qId}`);
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+            },
+
+            startSmoothTracking() {
+                if (this.arrowAnimFrame) cancelAnimationFrame(this.arrowAnimFrame);
+                const startTime = performance.now();
+                const duration = 800;
+
+                const step = (now) => {
+                    this.drawConnections();
+                    if (now - startTime < duration) {
+                        this.arrowAnimFrame = requestAnimationFrame(step);
+                    }
+                };
+                this.arrowAnimFrame = requestAnimationFrame(step);
+            },
+
+            drawConnections() {
+                const activeTarget = document.querySelector('.ans-target.active-target');
+                if (activeTarget && this.showArrows) {
+                    const qId = activeTarget.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+                    if (qCard) {
+                        this.drawArrow(activeTarget, qCard);
+                        return;
+                    }
+                }
+                this.clearCanvas();
+            },
+
+            drawArrow(fromEl, toEl) {
+                if (!fromEl || !toEl || window.innerWidth < 1024 || !this.showArrows) {
+                    this.clearCanvas();
+                    return;
+                }
+                
+                const svg = document.getElementById('svg-canvas');
+                const wrapper = document.getElementById('main-wrapper');
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+
+                if (!svg || !wrapper || !leftPane || !rightPane) return;
+
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const leftPaneRect = leftPane.getBoundingClientRect();
+                const rightPaneRect = rightPane.getBoundingClientRect();
+
+                const clientRects = fromEl.getClientRects();
+                let fromRect = fromEl.getBoundingClientRect();
+                if (clientRects.length > 0) {
+                    fromRect = clientRects[clientRects.length - 1];
+                }
+                const toRect = toEl.getBoundingClientRect();
+
+                const isFromVisible = (fromRect.bottom >= leftPaneRect.top && fromRect.top <= leftPaneRect.bottom);
+                const isToVisible = (toRect.bottom >= rightPaneRect.top && toRect.top <= rightPaneRect.bottom);
+
+                if (!isFromVisible || !isToVisible) {
+                    this.clearCanvas();
+                    return;
+                }
+
+                const x1 = Math.min(fromRect.right - wrapperRect.left, leftPaneRect.right - wrapperRect.left - 8);
+                const y1 = fromRect.top + (fromRect.height / 2) - wrapperRect.top;
+                
+                const x2 = toRect.left - wrapperRect.left;
+                const y2 = toRect.top + Math.min(36, toRect.height / 2) - wrapperRect.top;
+
+                const dx = Math.max(30, (x2 - x1) * 0.45);
+                const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+                svg.innerHTML = `
+                    <defs>
+                        <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#4f46e5" />
+                            <stop offset="100%" stop-color="#6366f1" />
+                        </linearGradient>
+                        <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#4f46e5" flood-opacity="0.4"/>
+                        </filter>
+                        <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#6366f1" />
+                        </marker>
+                    </defs>
+                    <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#4f46e5" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#6366f1" />
+                `;
+            },
+
+            clearCanvas() {
+                const svg = document.getElementById('svg-canvas');
+                if (svg) svg.innerHTML = '';
+            },
+
+            renderVocabGrid() {
+                this.filterVocab();
+            },
+
+            filterVocab() {
+                const search = document.getElementById('vocab-search').value.toLowerCase();
+                const filter = document.getElementById('vocab-filter').value;
+                const grid = document.getElementById('vocab-cards-grid');
+
+                const filtered = vocabList.filter(item => {
+                    const matchSearch = item.word.toLowerCase().includes(search) || item.vi.toLowerCase().includes(search);
+                    const matchFilter = filter === 'all' || item.category === filter || item.type === filter;
+                    return matchSearch && matchFilter;
+                });
+
+                let html = '';
+                filtered.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-indigo-400 transition-all space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-indigo-600 transition-colors" title="Nghe phát âm">
+                                        <i class="fa-solid fa-volume-high text-sm"></i>
+                                    </button>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
+                                <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
+                                <p class="text-sm font-bold text-indigo-700 bg-indigo-50/50 p-2 rounded-lg border border-indigo-100 mb-3">${item.vi}</p>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-slate-400">Context trong bài đọc:</span>
+                                    <p class="text-slate-600 italic">"${item.context}"</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-indigo-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-indigo-900">${item.collocation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html || `<p class="text-sm text-slate-500 col-span-full text-center py-8">Không tìm thấy từ vựng phù hợp với bộ lọc.</p>`;
+            },
+
+            speakWord(word) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(word);
+                    u.lang = 'en-GB';
+                    u.rate = 0.9;
+                    window.speechSynthesis.speak(u);
+                }
+            },
+
+            setupFlashcard() {
+                this.updateFlashcard();
+            },
+
+            updateFlashcard() {
+                const item = vocabList[this.fcIndex];
+                this.fcFlipped = false;
+                document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+                document.getElementById('fc-category').textContent = `${item.type.toUpperCase()} • ${item.category.toUpperCase()}`;
+                document.getElementById('fc-word').textContent = item.word;
+                document.getElementById('fc-phonetic').textContent = item.phonetic;
+                document.getElementById('fc-meaning').textContent = item.vi;
+                document.getElementById('fc-context').textContent = `"${item.context}"`;
+                document.getElementById('fc-counter').textContent = `${this.fcIndex + 1} / ${vocabList.length}`;
+            },
+
+            setupQuiz() {
+                const quizBox = document.getElementById('quiz-box');
+                const sampleQuestions = [
+                    {
+                        q: "Which term refers to 'the systematic influence of clothes on the wearer’s psychological processes'?",
+                        options: ["Halo effect", "Enclothed cognition", "Buyer’s guilt", "Self-identity"],
+                        ans: 1,
+                        expl: "Enclothed cognition (nhận thức qua trang phục) là thuật ngữ mô tả cách quần áo tác động đến hiệu suất nhận thức và tâm lý của người mặc."
+                    },
+                    {
+                        q: "What is the 'halo effect' in psychology?",
+                        options: [
+                            "Feeling guilty after shopping",
+                            "Believing attractive people have positive qualities in all aspects",
+                            "The dopamine surge during fashion search",
+                            "Dressing uniformly like leaders"
+                        ],
+                        ans: 1,
+                        expl: "Halo effect (Hiệu ứng hào quang) là thiên kiến nhận thức khiến chúng ta nghĩ người có ngoại hình đẹp sẽ thông minh, khỏe mạnh và tốt tính hơn."
+                    },
+                    {
+                        q: "Which neurotransmitter is released in the brain and gives pleasure during shopping?",
+                        options: ["Melatonin", "Insulin", "Dopamine", "Adrenaline"],
+                        ans: 2,
+                        expl: "Dopamine là chất dẫn truyền thần kinh tạo cảm giác hưng phấn, thỏa mãn và được tiết ra khi tìm kiếm món đồ mong muốn."
+                    }
+                ];
+
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-indigo-600"></i> IELTS Vocab Challenge — Clothes & Identity</h3>`;
+                sampleQuestions.forEach((q, idx) => {
+                    html += `
+                        <div class="space-y-3 pt-2" id="quiz-q-${idx}">
+                            <p class="text-sm font-bold text-slate-800">${idx + 1}. ${q.q}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${q.options.map((opt, oIdx) => `
+                                    <button onclick="app.checkQuiz(${idx}, ${oIdx}, ${q.ans})" class="quiz-opt-btn text-left p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+                                        ${String.fromCharCode(65 + oIdx)}. ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="quiz-feedback hidden text-xs p-3 rounded-xl"></div>
+                        </div>
+                    `;
+                });
+
+                quizBox.innerHTML = html;
+            },
+
+            checkQuiz(qIdx, selected, correct) {
+                const qDiv = document.getElementById(`quiz-q-${qIdx}`);
+                const btns = qDiv.querySelectorAll('.quiz-opt-btn');
+                const feedback = qDiv.querySelector('.quiz-feedback');
+
+                btns.forEach((btn, idx) => {
+                    btn.disabled = true;
+                    if (idx === correct) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-xs";
+                    } else if (idx === selected) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-red-400 bg-red-50 text-red-900 font-bold text-xs";
+                    }
+                });
+
+                feedback.classList.remove('hidden');
+                if (selected === correct) {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 font-bold border border-emerald-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Chính xác! Tuyệt vời.`;
+                } else {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-red-100 text-red-900 font-bold border border-red-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chính xác. Đáp án đúng là ${String.fromCharCode(65 + correct)}.`;
+                }
+            }
+        };
+
+        window.onload = () => app.init();
+    </script>
+</body>
+</html>

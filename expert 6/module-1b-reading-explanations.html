@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Reading Online May Be Slowing Your Brain Down — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --app-font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: var(--app-font-size);
+            overflow-x: hidden;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 2.15;
+            color: #334155;
+        }
+        .reading-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.25rem;
+        }
+        .reading-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .paragraph-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
+            color: #0284c7;
+            background-color: #e0f2fe;
+            border: 1px solid #bae6fd;
+            text-indent: 0;
+            vertical-align: middle;
+        }
+
+        /* Highlight Targets & Interactive States */
+        .ans-target {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            position: relative;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            text-indent: 0;
+        }
+
+        /* Question Target Color Themes */
+        .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
+        .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
+        .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
+        .ans-target-q4 { background-color: #fbcfe8; border-bottom: 2px solid #db2777; color: #9d174d; }
+        .ans-target-q5 { background-color: #ddd6fe; border-bottom: 2px solid #7c3aed; color: #5b21b6; }
+        .ans-target-q6 { background-color: #fed7aa; border-bottom: 2px solid #ea580c; color: #9a3412; }
+        .ans-target-q7 { background-color: #ccfbf1; border-bottom: 2px solid #0d9488; color: #115e59; }
+        .ans-target-q8 { background-color: #fef3c7; border-bottom: 2px solid #d97706; color: #92400e; }
+        .ans-target-q9 { background-color: #e0e7ff; border-bottom: 2px solid #4f46e5; color: #3730a3; }
+        .ans-target-q10 { background-color: #fae8ff; border-bottom: 2px solid #c026d3; color: #86198f; }
+
+        .q-badge {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72em;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: baseline;
+            line-height: 1.2;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-indent: 0;
+            user-select: none;
+        }
+
+        .ans-target:hover, .ans-target.active-target {
+            outline: 3px solid #0284c7;
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+            filter: brightness(0.96);
+            z-index: 20;
+        }
+
+        /* Floating Tooltip Popover */
+        .explanation-popover {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            width: 320px;
+            background-color: #0f172a;
+            color: #f8fafc;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+            transition: all 0.25s ease;
+            pointer-events: none;
+            line-height: 1.5;
+            font-weight: normal;
+        }
+        .explanation-popover::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+        }
+        .ans-target:hover .explanation-popover, .ans-target.active-target .explanation-popover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* SVG Overlay Canvas */
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        .tab-btn.active {
+            background-color: #0284c7;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3);
+        }
+
+        @keyframes arrowFlow {
+            from { stroke-dashoffset: 26; }
+            to { stroke-dashoffset: 0; }
+        }
+        .animated-arrow-line {
+            animation: arrowFlow 1s linear infinite;
+        }
+
+        .lang-btn.active {
+            background-color: #0f172a;
+            color: white;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col bg-slate-100">
+
+    <!-- Header Bar -->
+    <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
+        <div class="flex items-center space-x-3">
+            <div class="bg-sky-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-brain text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-slate-800">Why reading online may be slowing your brain down</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Band 7.0–9.0 Vocabulary</p>
+            </div>
+        </div>
+
+        <!-- Controls: Language Switcher, Font Resize & Arrows Toggle -->
+        <div class="flex items-center space-x-3 flex-wrap gap-y-2">
+            <!-- Language Switcher -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" id="lang-switcher">
+                <button class="lang-btn active px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="en">EN</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="vi">VIE</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="dual">Parallel (EN/VIE)</button>
+            </div>
+
+            <!-- Font Resizer -->
+            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button id="btn-dec-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Giảm cỡ chữ">A-</button>
+                <button id="btn-inc-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Tăng cỡ chữ">A+</button>
+            </div>
+
+            <!-- Toggle Arrow Canvas -->
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sky-600 text-white border border-sky-600 font-medium text-xs hover:bg-sky-700 transition-colors shadow-xs">
+                <i class="fa-solid fa-route"></i>
+                <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
+        <div class="flex space-x-2 min-w-max" id="nav-tabs">
+            <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Q1–Q10)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. IELTS Vocabulary Suite (Band 7.0–9.0)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
+                <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="flex-1 overflow-hidden relative" id="main-wrapper">
+        <svg id="svg-canvas"></svg>
+
+        <!-- TAB 1: Passage & Question Analysis -->
+        <div id="tab-analysis-content" class="h-full grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
+            <!-- Left Pane: Passage View -->
+            <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3 py-1 rounded-md border border-sky-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — Online Reading & Brain Impact
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
+                    </div>
+
+                    <div id="passage-container" class="reading-text text-base leading-relaxed text-slate-700 space-y-4">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Pane: Questions & Explanations -->
+            <section id="right-pane" class="lg:col-span-6 bg-slate-50 overflow-y-auto p-6 lg:p-10">
+                <div class="max-w-2xl mx-auto space-y-6" id="explanations-list">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: Vocabulary Suite -->
+        <div id="tab-vocabulary-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-sky-600"></i> Essential IELTS Reading Vocabulary — Neuroscience & Digital Media
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Key terminology for cognitive health, digital reading habits, neuroplasticity, and information psychology.</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <div class="relative flex-1 md:w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-sky-600">
+                        </div>
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600">
+                            <option value="all">Tất cả từ loại</option>
+                            <option value="noun">Danh từ (Nouns)</option>
+                            <option value="verb">Động từ (Verbs)</option>
+                            <option value="adjective">Tính từ (Adjectives)</option>
+                            <option value="neuroscience">Thần kinh & Nhận thức</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="vocab-cards-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Vocab Flashcards & Practice Quiz -->
+        <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="flex justify-center space-x-3">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-sky-600 text-white shadow-sm transition-all">
+                        <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
+                    </button>
+                    <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-circle-question mr-2"></i> Quick Quiz Mode
+                    </button>
+                </div>
+
+                <!-- Flashcard View -->
+                <div id="flashcard-view" class="flex flex-col items-center space-y-6">
+                    <p class="text-xs text-slate-500 font-semibold">Nhấp vào thẻ để lật xem định nghĩa và giải thích tiếng Việt</p>
+                    
+                    <div class="w-full max-w-md h-72 perspective-1000 cursor-pointer" id="flashcard-wrapper">
+                        <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
+                            <!-- Front -->
+                            <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">Category</span>
+                                <div>
+                                    <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
+                                    <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
+                                </div>
+                                <span class="text-xs font-bold text-sky-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-sky-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <div>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-sky-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="btn-fc-prev" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span id="fc-counter" class="text-xs font-bold text-slate-600 px-4 py-2 bg-white rounded-xl border border-slate-200">1 / 8</span>
+                        <button id="btn-fc-next" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz View -->
+                <div id="quiz-view" class="hidden space-y-6">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6" id="quiz-box">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passageData = [
+            {
+                pNum: 'A',
+                en: `If the person reading this article were reading online, I would need to keep things brief. A lot of you would have left already. For every 150 ‘readers’ who open an article on the internet, <span class="ans-target ans-target-q7" data-q="q7"><span class="q-badge bg-teal-700">Q7</span>one in three of them will leave within seconds<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q7 Evidence (Sentence Completion)</strong>Around a third (one in three) of internet surfers stay on a page for seconds.</span></span>. Of the 100 who stay, only 95 will be able to concentrate and look beyond the photograph and headline at the top. Even fewer will get to even the middle of the article. Put simply, only a very small number of people actually read articles on the web.`,
+                vi: `Nếu người đọc bài viết này đang đọc trực tuyến, tôi sẽ cần phải viết thật ngắn gọn. Rất nhiều người trong số các bạn có lẽ đã rời đi rồi. Cứ 150 'độc giả' mở một bài viết trên internet, <span class="ans-target ans-target-q7" data-q="q7"><span class="q-badge bg-teal-700">Q7</span>cứ 3 người thì có 1 người sẽ rời đi chỉ trong vài giây (seconds)<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 7</strong>Khoảng 1/3 người dùng (one in three) chỉ ở lại trang web trong vài giây ('within seconds').</span></span>. Trong số 100 người ở lại, chỉ có 95 người có thể tập trung và nhìn xa hơn bức ảnh cùng tiêu đề ở đầu trang. Thậm chí còn ít người hơn đọc tới được phần giữa của bài viết. Nói một cách đơn giản, chỉ một số lượng rất nhỏ mọi người thực sự đọc các bài báo trên mạng.`
+            },
+            {
+                pNum: 'B',
+                en: `Not being able to stay focused is a problem. Deeper levels of thinking and understanding may be something we are losing now much of our reading is going online. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>A. V. Kak found in one study that people were able to remember more information from an article that they read on paper, than a similar group who read the same article online. Imagine the effect of this on a medical student who only studies papers online. Surfing the internet may seem like an efficient way of reading, but getting the physical text out of the library means you’re less likely to forget<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Heading vi)</strong>Reading on physical paper produces longer-lasting memories than reading online.</span></span>.`,
+                vi: `Không thể duy trì sự tập trung là một vấn đề nghiêm trọng. Các mức độ tư duy sâu và thấu hiểu có thể là thứ chúng ta đang đánh mất khi phần lớn việc đọc đang chuyển dần lên mạng trực tuyến. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>A. V. Kak đã phát hiện trong một nghiên cứu rằng mọi người có thể ghi nhớ nhiều thông tin hơn từ một bài báo đọc trên giấy, so với một nhóm tương đương đọc chính bài báo đó trên mạng. Hãy thử tưởng tượng ảnh hưởng của điều này đối với một sinh viên y khoa chỉ nghiên cứu tài liệu trực tuyến. Lướt web có vẻ là một cách đọc hiệu quả, nhưng việc lấy tài liệu giấy từ thư viện có nghĩa là bạn ít có khả năng quên hơn<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Heading vi)</strong>Đọc sách/giấy mang lại khả năng ghi nhớ lâu dài hơn so với đọc trực tuyến.</span></span>.`
+            },
+            {
+                pNum: 'C',
+                en: `Even more dispiriting is the way these poor understandings are being passed on to others. Evidence suggests that people are creating links to articles they have not fully read, and even adding comments before getting to the end. Josh Schartz, a data expert, studies the reading styles of people online. Data was not available on the exact moment when a person stopped reading and then left a recommendation. <span class="ans-target ans-target-q8" data-q="q8"><span class="q-badge bg-amber-700">Q8</span>However, his research suggests that the overall number of comments and the number of people who scrolled down to the end of the article did not match<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q8 Evidence (Sentence Completion)</strong>The number of people who leave comments is greater than the number of people who scroll down to the end of the article to finish reading.</span></span>. <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>This suggests that there is a very loose relationship between reading to the end and commenting. Commenting without reading everything only creates more and more misinformation<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Heading i)</strong>People comment and share articles without fully reading them, spreading half-understood ideas and misinformation.</span></span>.`,
+                vi: `Điều đáng nản lòng hơn nữa là cách mà những sự hiểu biết nông cạn này đang được lan truyền cho người khác. Bằng chứng cho thấy mọi người đang chia sẻ đường dẫn đến những bài viết mà họ chưa hề đọc hết, và thậm chí thêm bình luận trước khi đọc đến cuối. Josh Schartz, một chuyên gia dữ liệu, nghiên cứu về phong cách đọc của mọi người trên mạng. Không có dữ liệu về thời điểm chính xác khi một người ngừng đọc và sau đó để lại lời giới thiệu/đánh giá. <span class="ans-target ans-target-q8" data-q="q8"><span class="q-badge bg-amber-700">Q8</span>Tuy nhiên, nghiên cứu của ông chỉ ra rằng tổng số bình luận (comments) và số lượng người cuộn chuột xuống cuối bài viết không hề khớp nhau<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 8</strong>Số lượng người để lại bình luận (comments) cao hơn số người cuộn chuột đọc đến cuối bài.</span></span>. <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>Điều này cho thấy có một mối quan hệ rất lỏng lẻo giữa việc đọc hết bài và việc bình luận. Việc bình luận mà không đọc hết mọi thứ chỉ tạo ra ngày càng nhiều thông tin sai lệch<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Heading i)</strong>Chia sẻ và bình luận những ý tưởng chỉ mới hiểu một nửa ('Sharing half-understood ideas').</span></span>.`
+            },
+            {
+                pNum: 'D',
+                en: `Studies of the brain have suggested that we should be more concerned about this than we are. <span class="ans-target ans-target-q9" data-q="q9"><span class="q-badge bg-indigo-700">Q9</span>Michael Merzenich has long argued against the argument that the brain is formed in the early years of childhood, then remains stable<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q9 Evidence (Sentence Completion)</strong>Merzenich proved brains continue re-wiring and changing after childhood.</span></span>. Many believed that, once damaged, parts of the brain would never recover again. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>In fact, the brain is constantly changing and re-organizing itself, losing the connections that it does not need. As people spend less time thinking for longer periods of time, their brains react by re-wiring, deleting the bits associated with careful thought, making it much harder in the future to think hard about issues<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Heading x)</strong>The physical/biological neural response of the brain: pruning synapses and re-wiring due to skimming habits.</span></span>.`,
+                vi: `Các nghiên cứu về não bộ chỉ ra rằng chúng ta nên lo ngại về điều này nhiều hơn mức hiện tại. <span class="ans-target ans-target-q9" data-q="q9"><span class="q-badge bg-indigo-700">Q9</span>Michael Merzenich từ lâu đã phản bác lại lập luận cho rằng não bộ chỉ được hình thành trong những năm đầu thời thơ ấu (childhood), sau đó giữ nguyên trạng thái ổn định<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 9</strong>Não bộ vẫn tiếp tục thay đổi sau khi giai đoạn thời thơ ấu (childhood) kết thúc.</span></span>. Nhiều người từng tin rằng một khi bị tổn thương, các phần của não sẽ không bao giờ phục hồi lại được. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Trên thực tế, não bộ liên tục thay đổi và tự tổ chức lại, loại bỏ các kết nối mà nó không cần đến. Khi mọi người dành ít thời gian hơn cho việc suy nghĩ sâu trong thời gian dài, bộ não của họ phản ứng bằng cách tự tái cấu trúc mạch thần kinh (re-wiring), xóa đi các phần liên kết với tư duy cẩn trọng, khiến việc suy nghĩ sâu sắc về các vấn đề trong tương lai trở nên khó khăn hơn rất nhiều<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Heading x)</strong>Phản ứng sinh học của não bộ trước thói quen đọc lướt ('A biological response to habits').</span></span>.`
+            },
+            {
+                pNum: 'E',
+                en: `<span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Many have argued that this is nothing new. People have always started novels and not finished them. Even films, which require a relatively short commitment of only an hour or so of our time, are sometimes unable to keep our attention to the end. However, Alvin Toffler argued that the amount of free information that is thrown at us every day is different from anything that came before. We now have so much choice that many people refuse to waste their time on anything unless something is truly fascinating<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Heading ii)</strong>Inattention is an old phenomenon (novels, films) that has become vastly more intense due to modern digital data overload.</span></span>.`,
+                vi: `<span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Nhiều người lập luận rằng điều này chẳng có gì mới. Mọi người từ xưa đến nay luôn bắt đầu đọc những cuốn tiểu thuyết và không bao giờ đọc hết chúng. Ngay cả những bộ phim, vốn chỉ đòi hỏi một sự tập trung tương đối ngắn khoảng một giờ hoặc lâu hơn một chút, đôi khi cũng không thể giữ được sự chú ý của chúng ta đến cuối cùng. Tuy nhiên, Alvin Toffler lập luận rằng lượng thông tin miễn phí đổ dồn vào chúng ta mỗi ngày khác xa so với bất kỳ điều gì từng xuất hiện trước đây. Hiện nay chúng ta có quá nhiều sự lựa chọn đến mức nhiều người từ chối lãng phí thời gian vào bất cứ thứ gì trừ khi nó thực sự hấp dẫn<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Heading ii)</strong>Một tình trạng đã có từ lâu nhưng nay trở nên dữ dội hơn do bùng nổ thông tin ('An old situation that’s now more intense').</span></span>.`
+            },
+            {
+                pNum: 'F',
+                en: `The problem is even worse when you consider the kind of things we read online. <span class="ans-target ans-target-q10" data-q="q10"><span class="q-badge bg-fuchsia-700">Q10</span>Unfortunately, just as our bodies are programmed to want to eat fats and sugars, things which we know are not good for us, our brains prefer to read things that are shocking, such as gossiping, describing the embarrassment of others or just looking at attractive people<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q10 Evidence (Sentence Completion)</strong>'Psychological obesity' refers to our brains' preference to read shocking <strong>things / content</strong> (such as gossiping, scandals).</span></span>. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>In other words, we read things we know we should not. Some experts have referred to this as ‘psychological obesity’<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Heading v)</strong>Brain cravings for junk digital content (gossip, scandals) analogous to eating unhealthy fats and sugars.</span></span>.`,
+                vi: `Vấn đề thậm chí còn tồi tệ hơn khi bạn xem xét những loại nội dung mà chúng ta đọc trên mạng. <span class="ans-target ans-target-q10" data-q="q10"><span class="q-badge bg-fuchsia-700">Q10</span>Thật không may, cũng giống như cơ thể chúng ta được lập trình để thèm ăn chất béo và đường - những thứ mà chúng ta biết là không tốt cho sức khỏe - bộ não của chúng ta lại thích đọc những thứ gây sốc (things that are shocking / shocking things / content), chẳng hạn như chuyện phiếm, sự bối rối của người khác hoặc ngắm nhìn người hấp dẫn<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 10</strong>Thuật ngữ 'chứng béo phì tâm lý' chỉ sự ưa thích tự nhiên đối với những thứ / nội dung gây sốc ('things / content').</span></span>. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>Nói cách khác, chúng ta đọc những thứ mà chúng ta biết là mình không nên đọc. Một số chuyên gia gọi hiện tượng này là 'chứng béo phì tâm lý' (psychological obesity)<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Heading v)</strong>Tìm kiếm niềm vui trong những nội dung không lành mạnh ('Pleasure in unhealthy content').</span></span>.`
+            },
+            {
+                pNum: 'G',
+                en: `Editors of respectable newspapers are aware that this kind of content is popular, but they put important news stories on the front cover anyway. They know that unpleasant stories, such as the events in war-torn areas, or poverty, matter and people should know about things beyond their daily lives. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Online news sites only recommend articles on things we have shown an interest in before. In other words, what Nicholas Negroponte called the ‘The Daily Me’, bringing personalized content, also means that you miss being introduced to new concepts. With modern online news providers, you could exist quite happily never knowing what is happening outside of your personal interests<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Heading viii)</strong>Personalized algorithmic content cuts readers off from outside realities, trapping them in an echo chamber.</span></span>.`,
+                vi: `Các biên tập viên của các tờ báo uy tín đều nhận thức được rằng loại nội dung giật gân này rất phổ biến, nhưng dù sao họ vẫn đưa những câu chuyện thời sự quan trọng lên trang nhất. Họ biết rằng những câu chuyện không mấy dễ chịu, chẳng hạn như các sự kiện ở các khu vực bị tàn phá bởi chiến tranh, hoặc nạn đói nghèo, đều rất quan trọng và mọi người cần phải biết về những điều nằm ngoài cuộc sống thường nhật của họ. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Các trang tin tức trực tuyến chỉ đề xuất các bài báo về những chủ đề mà chúng ta đã từng thể hiện sự quan tâm trước đó. Nói cách khác, điều mà Nicholas Negroponte gọi là 'The Daily Me' (Trang báo cá nhân hàng ngày của tôi), mang lại nội dung cá nhân hóa, cũng đồng nghĩa với việc bạn bỏ lỡ cơ hội được tiếp cận với các khái niệm mới. Với các nhà cung cấp tin tức trực tuyến hiện đại, bạn có thể sống rất vui vẻ mà không bao giờ biết được những gì đang xảy ra bên ngoài phạm vi sở thích cá nhân của mình<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Heading viii)</strong>Sống trong thế giới cô lập của riêng mình do các thuật toán cá nhân hóa ('Living in a world of your own').</span></span>.`
+            }
+        ];
+
+        const questionsData = [
+            {
+                id: 'q1',
+                num: '1',
+                type: 'Matching Headings',
+                ansKey: 'Heading vi',
+                ansTitle: 'Longer-lasting memories from books',
+                badgeColor: 'bg-yellow-600',
+                prompt: 'Paragraph B',
+                explEn: 'Paragraph B cites A. V. Kak’s research showing people remember more information from paper than online: "getting the physical text out of the library means you’re less likely to forget". Thus, reading from physical books yields longer-lasting retention.',
+                explVi: 'Đoạn B trích dẫn nghiên cứu của A. V. Kak chứng minh người đọc tài liệu trên giấy ghi nhớ nhiều thông tin hơn so với đọc trực tuyến: "getting the physical text out of the library means you’re less likely to forget" -> Heading vi.',
+                synonyms: [
+                    { q: 'longer-lasting memories', p: 'remember more information / less likely to forget' },
+                    { q: 'from books', p: 'read on paper / physical text out of library' }
+                ]
+            },
+            {
+                id: 'q2',
+                num: '2',
+                type: 'Matching Headings',
+                ansKey: 'Heading i',
+                ansTitle: 'Sharing half-understood ideas',
+                badgeColor: 'bg-sky-600',
+                prompt: 'Paragraph C',
+                explEn: 'Paragraph C highlights how people link to and comment on articles before reading to the end: "Commenting without reading everything only creates more and more misinformation". They share ideas they only half-comprehend.',
+                explVi: 'Đoạn C nhấn mạnh việc mọi người bình luận và chia sẻ bài viết khi chưa hề đọc hết bài, gây lan truyền thông tin sai lệch: "Commenting without reading everything only creates misinformation" -> Heading i.',
+                synonyms: [
+                    { q: 'sharing half-understood ideas', p: 'adding comments before getting to the end / loose relationship between reading and commenting' }
+                ]
+            },
+            {
+                id: 'q3',
+                num: '3',
+                type: 'Matching Headings',
+                ansKey: 'Heading x',
+                ansTitle: 'A biological response to habits',
+                badgeColor: 'bg-emerald-600',
+                prompt: 'Paragraph D',
+                explEn: 'Paragraph D describes neuroplasticity: the brain reacts to shallow online reading by "re-wiring, deleting the bits associated with careful thought", which is an organic/biological neural adaptation.',
+                explVi: 'Đoạn D mô tả tính mềm dẻo của não bộ: não bộ phản ứng sinh học trước thói quen đọc lướt bằng cách tự tái cấu trúc mạch thần kinh và xóa bỏ các liên kết tư duy sâu ("brains react by re-wiring") -> Heading x.',
+                synonyms: [
+                    { q: 'biological response', p: 'brain is constantly changing / react by re-wiring' },
+                    { q: 'habits', p: 'spend less time thinking for longer periods' }
+                ]
+            },
+            {
+                id: 'q4',
+                num: '4',
+                type: 'Matching Headings',
+                ansKey: 'Heading ii',
+                ansTitle: 'An old situation that’s now more intense',
+                badgeColor: 'bg-pink-600',
+                prompt: 'Paragraph E',
+                explEn: 'Paragraph E explains that inattention is "nothing new" (people historically abandoned novels and films), but today’s flood of free digital content makes the choice overload far more severe and intense.',
+                explVi: 'Đoạn E giải thích rằng việc bỏ dở tác phẩm "chẳng có gì mới" (đã có từ thời tiểu thuyết, phim ảnh), nhưng lượng thông tin miễn phí bùng nổ hiện nay khiến tình trạng này dữ dội hơn rất nhiều -> Heading ii.',
+                synonyms: [
+                    { q: 'old situation', p: 'this is nothing new / people have always started novels and not finished them' },
+                    { q: 'now more intense', p: 'amount of free information thrown at us is different from anything before' }
+                ]
+            },
+            {
+                id: 'q5',
+                num: '5',
+                type: 'Matching Headings',
+                ansKey: 'Heading v',
+                ansTitle: 'Pleasure in unhealthy content',
+                badgeColor: 'bg-purple-600',
+                prompt: 'Paragraph F',
+                explEn: 'Paragraph F compares reading sensational gossip/embarrassments to our primal cravings for unhealthy fats and sugars, labeling this digital junk craving as "psychological obesity".',
+                explVi: 'Đoạn F so sánh sự thèm đọc tin tức giật gân, thị phi với sự thèm ăn chất béo và đường không lành mạnh, gọi đây là "chứng béo phì tâm lý" -> Heading v.',
+                synonyms: [
+                    { q: 'pleasure in unhealthy content', p: 'prefer to read things that are shocking / psychological obesity' }
+                ]
+            },
+            {
+                id: 'q6',
+                num: '6',
+                type: 'Matching Headings',
+                ansKey: 'Heading viii',
+                ansTitle: 'Living in a world of your own',
+                badgeColor: 'bg-orange-600',
+                prompt: 'Paragraph G',
+                explEn: 'Paragraph G discusses algorithmic filter bubbles ("The Daily Me") that feed users only what matches prior interests, causing readers to "exist quite happily never knowing what is happening outside".',
+                explVi: 'Đoạn G bàn về hiện tượng thuật toán cá nhân hóa ("The Daily Me") giam cầm người đọc trong buồng vang thông tin, khiến họ sống trong thế giới cô lập của riêng mình -> Heading viii.',
+                synonyms: [
+                    { q: 'living in a world of your own', p: 'never knowing what is happening outside of your personal interests / The Daily Me' }
+                ]
+            },
+            {
+                id: 'q7',
+                num: '7',
+                type: 'Sentence Completion',
+                ansKey: 'seconds',
+                ansTitle: 'seconds',
+                badgeColor: 'bg-teal-600',
+                prompt: 'Around a third of internet surfers stay on a page for ____________.',
+                explEn: 'Paragraph A states: "For every 150 ‘readers’ who open an article on the internet, one in three of them will leave within seconds."',
+                explVi: 'Đoạn A ghi rõ: "Cứ 150 độc giả mở một bài viết trên internet, 1 trong 3 người (one in three = around a third) sẽ rời đi trong vòng vài giây (within seconds)".',
+                synonyms: [
+                    { q: 'around a third', p: 'one in three' },
+                    { q: 'stay on a page for', p: 'leave within' }
+                ]
+            },
+            {
+                id: 'q8',
+                num: '8',
+                type: 'Sentence Completion',
+                ansKey: 'comments',
+                ansTitle: 'comments',
+                badgeColor: 'bg-amber-600',
+                prompt: 'According to Josh Schartz, the number of people who leave ____________ is greater than the number who finish reading.',
+                explEn: 'Paragraph C explains that people add comments before finishing articles: "...his research suggests that the overall number of comments and the number of people who scrolled down to the end of the article did not match." Thus, people who leave <strong>comments</strong> exceed those who finish reading.',
+                explVi: 'Đoạn C giải thích: "...tổng số bình luận (comments) và số lượng người cuộn chuột xuống cuối bài viết không hề khớp nhau. Điều này cho thấy mối quan hệ rất lỏng lẻo giữa việc đọc hết bài và việc bình luận." Do đó, số người để lại bình luận (<strong>comments</strong>) nhiều hơn số người thực sự đọc đến hết bài.',
+                synonyms: [
+                    { q: 'leave ____________', p: 'adding comments / overall number of comments' },
+                    { q: 'finish reading', p: 'scrolled down to the end of the article / reading to the end' }
+                ]
+            },
+            {
+                id: 'q9',
+                num: '9',
+                type: 'Sentence Completion',
+                ansKey: 'childhood',
+                ansTitle: 'childhood',
+                badgeColor: 'bg-indigo-600',
+                prompt: 'Michael Merzenich found that brains still changed after the period of ____________ came to an end.',
+                explEn: 'Paragraph D states: "Michael Merzenich has long argued against the argument that the brain is formed in the early years of childhood, then remains stable."',
+                explVi: 'Đoạn D giải thích Merzenich bác bỏ quan niệm não bộ ngừng biến đổi sau những năm đầu thời thơ ấu (early years of childhood).',
+                synonyms: [
+                    { q: 'period of ____________ came to an end', p: 'early years of childhood, then remains stable' }
+                ]
+            },
+            {
+                id: 'q10',
+                num: '10',
+                type: 'Sentence Completion',
+                ansKey: 'things / content',
+                ansTitle: 'things (hoặc content)',
+                badgeColor: 'bg-fuchsia-600',
+                prompt: '‘Psychological obesity’ is the natural preference for shocking ____________ in articles.',
+                explEn: 'Paragraph F explains: "...our brains prefer to read things that are shocking, such as gossiping, describing the embarrassment of others... In other words, we read things we know we should not. Some experts have referred to this as ‘psychological obesity’." The noun modified by "shocking" is <strong>things</strong> (or <strong>content</strong> from the context of digital reading).',
+                explVi: 'Đoạn F viết: "...our brains prefer to read <strong>things that are shocking</strong>, such as gossiping... In other words, we read <strong>things</strong> we know we should not. Some experts have referred to this as ‘psychological obesity’." Từ đứng sau tính từ "shocking" trong cấu trúc câu hỏi là danh từ <strong>things</strong> (hoặc <strong>content</strong> / loại nội dung giật gân, còn "gossiping" chỉ là ví dụ liệt kê sau "such as").',
+                synonyms: [
+                    { q: 'preference for shocking ____________', p: 'prefer to read things that are shocking / this kind of content' },
+                    { q: 'in articles / digital media', p: 'the kind of things we read online / read things' }
+                ]
+            }
+        ];
+
+        const vocabList = [
+            {
+                word: 'psychological obesity',
+                phonetic: '/ˌsaɪ.kəlˈɒdʒ.ɪ.kəl oʊˈbiː.sə.t̬i/',
+                vi: 'Chứng béo phì tâm lý (Quá tải rác thông tin)',
+                enDef: 'A state where the mind is overloaded with sensationalist, shallow, or junk digital information analogous to consuming junk food.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'Some experts have referred to this digital junk consumption as ‘psychological obesity’.',
+                collocation: 'suffer from psychological obesity / consume digital junk'
+            },
+            {
+                word: 'neuroplasticity / re-wiring',
+                phonetic: '/ˌnjʊə.rəʊ.plæsˈtɪs.ə.ti/',
+                vi: 'Tính mềm dẻo của não bộ / Tái cấu trúc mạch thần kinh',
+                enDef: 'The brain\'s ability to adapt, reorganize neural pathways, and form new synaptic connections throughout life.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'The brain is constantly changing and re-wiring, deleting the bits associated with careful thought.',
+                collocation: 'neural re-wiring / brain neuroplasticity'
+            },
+            {
+                word: 'dispiriting',
+                phonetic: '/dɪˈspɪr.ɪ.tɪŋ/',
+                vi: 'Làm nản lòng / Gây thoái chí',
+                enDef: 'Causing someone to lose enthusiasm, hope, or energy; discouraging.',
+                type: 'adjective',
+                category: 'adjective',
+                context: 'Even more dispiriting is the way these poor understandings are being passed on to others.',
+                collocation: 'dispiriting result / dispiriting trend'
+            },
+            {
+                word: 'misinformation',
+                phonetic: '/ˌmɪs.ɪn.fəˈmeɪ.ʃən/',
+                vi: 'Thông tin sai lệch / Tin giả vô ý',
+                enDef: 'False or inaccurate information, especially that which is deliberately or inadvertently intended to deceive.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'Commenting without reading everything only creates more and more misinformation.',
+                collocation: 'spread misinformation / combat misinformation'
+            },
+            {
+                word: 'information overload',
+                phonetic: '/ˌɪn.fəˈmeɪ.ʃən ˈoʊ.və.ləʊd/',
+                vi: 'Quá tải thông tin',
+                enDef: 'Exposure to or provision of too much information or data that impairs decision-making and deep focus.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'The amount of free information thrown at us every day causes severe cognitive distraction.',
+                collocation: 'suffer from information overload / filter information'
+            },
+            {
+                word: 'echo chamber / The Daily Me',
+                phonetic: '/ˈek.oʊ ˌtʃeɪm.bər/',
+                vi: 'Hiệu ứng buồng vang thông tin / Báo cá nhân hóa',
+                enDef: 'An environment where a person only encounters information or opinions that reflect and reinforce their own.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'What Nicholas Negroponte called ‘The Daily Me’ means you miss being introduced to new concepts.',
+                collocation: 'algorithmic echo chamber / filter bubble'
+            },
+            {
+                word: 'cognitive capacity',
+                phonetic: '/ˈkɒɡ.nə.tɪv kəˈpæs.ə.ti/',
+                vi: 'Năng lực nhận thức và tư duy sâu',
+                enDef: 'The total amount of information the brain can process and retain for analytical reasoning.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'Deeper levels of thinking and understanding may be lost as reading moves online.',
+                collocation: 'diminish cognitive capacity / enhance cognition'
+            },
+            {
+                word: 'retention',
+                phonetic: '/rɪˈten.ʃən/',
+                vi: 'Khả năng lưu giữ / Ghi nhớ thông tin',
+                enDef: 'The continued possession, use, or control of something; specifically memory retention over time.',
+                type: 'noun',
+                category: 'neuroscience',
+                context: 'Getting physical text out of the library means you are less likely to forget.',
+                collocation: 'memory retention / long-term retention'
+            }
+        ];
+    </script>
+
+    <script>
+        const app = {
+            currentLang: 'en',
+            fontSize: 16,
+            showArrows: true,
+            activeTab: 'analysis',
+            fcIndex: 0,
+            fcFlipped: false,
+            arrowAnimFrame: null,
+
+            init() {
+                this.bindEvents();
+                this.renderPassage();
+                this.renderExplanations();
+                this.bindTargetEvents();
+                this.renderVocabGrid();
+                this.setupFlashcard();
+                this.setupQuiz();
+            },
+
+            bindEvents() {
+                // Language Switcher
+                document.querySelectorAll('#lang-switcher .lang-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#lang-switcher .lang-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.currentLang = e.currentTarget.dataset.lang;
+                        this.renderPassage();
+                        this.renderExplanations();
+                        this.bindTargetEvents();
+                        setTimeout(() => this.drawConnections(), 60);
+                    });
+                });
+
+                // Font Resizing
+                document.getElementById('btn-inc-font').addEventListener('click', () => {
+                    if (this.fontSize < 24) {
+                        this.fontSize += 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+                document.getElementById('btn-dec-font').addEventListener('click', () => {
+                    if (this.fontSize > 13) {
+                        this.fontSize -= 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+
+                // Arrow Toggle
+                document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
+                    this.showArrows = !this.showArrows;
+                    e.currentTarget.classList.toggle('bg-sky-600');
+                    e.currentTarget.classList.toggle('bg-slate-300');
+                    e.currentTarget.classList.toggle('text-slate-700');
+                    if (!this.showArrows) {
+                        this.clearCanvas();
+                    } else {
+                        this.drawConnections();
+                    }
+                });
+
+                // Scroll synchronization
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+                if (leftPane) leftPane.addEventListener('scroll', () => this.drawConnections());
+                if (rightPane) rightPane.addEventListener('scroll', () => this.drawConnections());
+
+                // Navigation Tabs
+                document.querySelectorAll('#nav-tabs .tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#nav-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        const tab = e.currentTarget.dataset.tab;
+                        this.activeTab = tab;
+
+                        document.getElementById('tab-analysis-content').classList.toggle('hidden', tab !== 'analysis');
+                        document.getElementById('tab-vocabulary-content').classList.toggle('hidden', tab !== 'vocabulary');
+                        document.getElementById('tab-flashcards-content').classList.toggle('hidden', tab !== 'flashcards');
+
+                        if (tab !== 'analysis') this.clearCanvas();
+                        else setTimeout(() => this.drawConnections(), 100);
+                    });
+                });
+
+                // Vocab Search & Filter
+                document.getElementById('vocab-search').addEventListener('input', () => this.filterVocab());
+                document.getElementById('vocab-filter').addEventListener('change', () => this.filterVocab());
+
+                // Flashcard Flip & Nav
+                document.getElementById('flashcard-wrapper').addEventListener('click', () => {
+                    this.fcFlipped = !this.fcFlipped;
+                    document.getElementById('flashcard-inner').classList.toggle('rotate-y-180', this.fcFlipped);
+                });
+                document.getElementById('btn-fc-prev').addEventListener('click', () => {
+                    if (this.fcIndex > 0) {
+                        this.fcIndex--;
+                        this.updateFlashcard();
+                    }
+                });
+                document.getElementById('btn-fc-next').addEventListener('click', () => {
+                    if (this.fcIndex < vocabList.length - 1) {
+                        this.fcIndex++;
+                        this.updateFlashcard();
+                    }
+                });
+
+                // Flashcards vs Quiz Mode Switcher
+                document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('flashcard-view').classList.remove('hidden');
+                    document.getElementById('quiz-view').classList.add('hidden');
+                });
+                document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('quiz-view').classList.remove('hidden');
+                    document.getElementById('flashcard-view').classList.add('hidden');
+                });
+
+                window.addEventListener('resize', () => this.drawConnections());
+            },
+
+            renderPassage() {
+                const container = document.getElementById('passage-container');
+                let html = `
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">Why reading online may be slowing your brain down</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Investigating cognitive changes, skimming habits, and digital neuroplasticity.</p>
+                `;
+
+                passageData.forEach(p => {
+                    if (this.currentLang === 'en') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.en}</p>`;
+                    } else if (this.currentLang === 'vi') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.vi}</p>`;
+                    } else if (this.currentLang === 'dual') {
+                        html += `
+                            <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                                <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
+                                    <strong class="text-xs font-bold text-sky-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    ${p.en}
+                                </div>
+                                <div class="text-slate-600 text-sm leading-relaxed pt-1">
+                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
+                                    ${p.vi}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                container.innerHTML = html;
+            },
+
+            renderExplanations() {
+                const container = document.getElementById('explanations-list');
+                let html = `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+                        <div class="flex items-center space-x-2 text-sky-700 font-bold text-xs uppercase tracking-wide mb-1">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>Matching Headings & Sentence Completion Guide</span>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-slate-900">Reading Online & Brain Impact — Phân Tích Q1–Q10</h2>
+                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                    </div>
+
+                    <!-- List of Headings Reference Box -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                        <h4 class="text-xs font-bold text-sky-900 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-heading mr-1.5 text-sky-600"></i> List of Headings Reference
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">i.</strong> Sharing half-understood ideas</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">ii.</strong> An old situation that’s now more intense</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">iii.</strong> Too much knowledge can be bad</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100 opacity-60"><strong class="text-slate-500">iv.</strong> Statistics showing how people read (Ex: A)</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">v.</strong> Pleasure in unhealthy content</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">vi.</strong> Longer-lasting memories from books</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">vii.</strong> Increased capacity for critical thought</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">viii.</strong> Living in a world of your own</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">ix.</strong> Only reading the reviews</div>
+                            <div class="bg-slate-50 p-2 rounded-lg border border-slate-100"><strong class="text-sky-700">x.</strong> A biological response to habits</div>
+                        </div>
+                    </div>
+                `;
+
+                questionsData.forEach(q => {
+                    html += `
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-sky-400" id="q-card-${q.id}">
+                            <div class="flex items-start justify-between">
+                                <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
+                                    Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <button class="jump-btn bg-sky-50 hover:bg-sky-100 text-sky-700 font-bold text-xs px-2.5 py-1 rounded-md border border-sky-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                        <i class="fa-solid fa-location-dot"></i> Xem bài đọc
+                                    </button>
+                                    <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
+                                        ${q.ansKey}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-slate-800 leading-relaxed">${q.prompt}: <span class="text-sky-700 font-extrabold">${q.ansTitle}</span></p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
+                                <div class="flex items-center text-sky-700 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-circle-check mr-1.5"></i>
+                                    <span>Giải thích chi tiết (Rationale):</span>
+                                </div>
+                                <p class="leading-relaxed font-medium text-slate-800">${this.currentLang === 'vi' ? q.explVi : q.explEn}</p>
+                            </div>
+
+                            ${q.synonyms ? `
+                                <div class="pt-2 border-t border-slate-100">
+                                    <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-sky-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                    </h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-sky-50/70 text-sky-900 font-semibold border-b border-sky-100">
+                                                    <th class="p-2">Từ khóa trong Câu hỏi / Tiêu đề</th>
+                                                    <th class="p-2">Từ tương đương trong Bài đọc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                                ${q.synonyms.map(s => `
+                                                    <tr>
+                                                        <td class="p-2 font-medium text-slate-700">${s.q}</td>
+                                                        <td class="p-2 font-semibold text-sky-700">${s.p}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            },
+
+            bindTargetEvents() {
+                const targets = document.querySelectorAll('.ans-target');
+                const qCards = document.querySelectorAll('.q-card');
+                const jumpBtns = document.querySelectorAll('.jump-btn');
+
+                const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+
+                    if (targetEl) {
+                        targetEl.classList.add('active-target');
+                        if (scrollLeft) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+
+                    if (cardEl) {
+                        cardEl.classList.add('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400');
+                        if (scrollRight) {
+                            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+
+                    this.startSmoothTracking();
+                };
+
+                const deactivateAll = () => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+                    this.clearCanvas();
+                };
+
+                targets.forEach(target => {
+                    const qId = target.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+
+                    target.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    target.addEventListener('mouseleave', deactivateAll);
+                    target.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        activatePair(target, qCard, false, true);
+                    });
+                });
+
+                qCards.forEach(qCard => {
+                    const qId = qCard.id.replace('q-card-', '');
+                    const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+
+                    qCard.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    qCard.addEventListener('mouseleave', deactivateAll);
+                    qCard.addEventListener('click', (e) => {
+                        if (e.target.closest('.jump-btn')) return;
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+
+                jumpBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const qId = btn.dataset.q;
+                        const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+                        const qCard = document.getElementById(`q-card-${qId}`);
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+            },
+
+            startSmoothTracking() {
+                if (this.arrowAnimFrame) cancelAnimationFrame(this.arrowAnimFrame);
+                const startTime = performance.now();
+                const duration = 800;
+
+                const step = (now) => {
+                    this.drawConnections();
+                    if (now - startTime < duration) {
+                        this.arrowAnimFrame = requestAnimationFrame(step);
+                    }
+                };
+                this.arrowAnimFrame = requestAnimationFrame(step);
+            },
+
+            drawConnections() {
+                const activeTarget = document.querySelector('.ans-target.active-target');
+                if (activeTarget && this.showArrows) {
+                    const qId = activeTarget.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+                    if (qCard) {
+                        this.drawArrow(activeTarget, qCard);
+                        return;
+                    }
+                }
+                this.clearCanvas();
+            },
+
+            drawArrow(fromEl, toEl) {
+                if (!fromEl || !toEl || window.innerWidth < 1024 || !this.showArrows) {
+                    this.clearCanvas();
+                    return;
+                }
+                
+                const svg = document.getElementById('svg-canvas');
+                const wrapper = document.getElementById('main-wrapper');
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+
+                if (!svg || !wrapper || !leftPane || !rightPane) return;
+
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const leftPaneRect = leftPane.getBoundingClientRect();
+                const rightPaneRect = rightPane.getBoundingClientRect();
+
+                const clientRects = fromEl.getClientRects();
+                let fromRect = fromEl.getBoundingClientRect();
+                if (clientRects.length > 0) {
+                    fromRect = clientRects[clientRects.length - 1];
+                }
+                const toRect = toEl.getBoundingClientRect();
+
+                const isFromVisible = (fromRect.bottom >= leftPaneRect.top && fromRect.top <= leftPaneRect.bottom);
+                const isToVisible = (toRect.bottom >= rightPaneRect.top && toRect.top <= rightPaneRect.bottom);
+
+                if (!isFromVisible || !isToVisible) {
+                    this.clearCanvas();
+                    return;
+                }
+
+                const x1 = Math.min(fromRect.right - wrapperRect.left, leftPaneRect.right - wrapperRect.left - 8);
+                const y1 = fromRect.top + (fromRect.height / 2) - wrapperRect.top;
+                
+                const x2 = toRect.left - wrapperRect.left;
+                const y2 = toRect.top + Math.min(36, toRect.height / 2) - wrapperRect.top;
+
+                const dx = Math.max(30, (x2 - x1) * 0.45);
+                const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+                svg.innerHTML = `
+                    <defs>
+                        <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0284c7" />
+                            <stop offset="100%" stop-color="#38bdf8" />
+                        </linearGradient>
+                        <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0284c7" flood-opacity="0.4"/>
+                        </filter>
+                        <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#38bdf8" />
+                        </marker>
+                    </defs>
+                    <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#0284c7" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#38bdf8" />
+                `;
+            },
+
+            clearCanvas() {
+                const svg = document.getElementById('svg-canvas');
+                if (svg) svg.innerHTML = '';
+            },
+
+            renderVocabGrid() {
+                this.filterVocab();
+            },
+
+            filterVocab() {
+                const search = document.getElementById('vocab-search').value.toLowerCase();
+                const filter = document.getElementById('vocab-filter').value;
+                const grid = document.getElementById('vocab-cards-grid');
+
+                const filtered = vocabList.filter(item => {
+                    const matchSearch = item.word.toLowerCase().includes(search) || item.vi.toLowerCase().includes(search);
+                    const matchFilter = filter === 'all' || item.category === filter || item.type === filter;
+                    return matchSearch && matchFilter;
+                });
+
+                let html = '';
+                filtered.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-sky-400 transition-all space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-md border border-sky-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-sky-600 transition-colors" title="Nghe phát âm">
+                                        <i class="fa-solid fa-volume-high text-sm"></i>
+                                    </button>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
+                                <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
+                                <p class="text-sm font-bold text-sky-700 bg-sky-50/50 p-2 rounded-lg border border-sky-100 mb-3">${item.vi}</p>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-slate-400">Context trong bài đọc:</span>
+                                    <p class="text-slate-600 italic">"${item.context}"</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-sky-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-sky-900">${item.collocation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html || `<p class="text-sm text-slate-500 col-span-full text-center py-8">Không tìm thấy từ vựng phù hợp với bộ lọc.</p>`;
+            },
+
+            speakWord(word) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(word);
+                    u.lang = 'en-GB';
+                    u.rate = 0.9;
+                    window.speechSynthesis.speak(u);
+                }
+            },
+
+            setupFlashcard() {
+                this.updateFlashcard();
+            },
+
+            updateFlashcard() {
+                const item = vocabList[this.fcIndex];
+                this.fcFlipped = false;
+                document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+                document.getElementById('fc-category').textContent = `${item.type.toUpperCase()} • ${item.category.toUpperCase()}`;
+                document.getElementById('fc-word').textContent = item.word;
+                document.getElementById('fc-phonetic').textContent = item.phonetic;
+                document.getElementById('fc-meaning').textContent = item.vi;
+                document.getElementById('fc-context').textContent = `"${item.context}"`;
+                document.getElementById('fc-counter').textContent = `${this.fcIndex + 1} / ${vocabList.length}`;
+            },
+
+            setupQuiz() {
+                const quizBox = document.getElementById('quiz-box');
+                const sampleQuestions = [
+                    {
+                        q: "Which term describes 'the brain overloading on shallow, sensational digital content similar to junk food'?",
+                        options: ["Cognitive capacity", "Psychological obesity", "Information overload", "Echo chamber"],
+                        ans: 1,
+                        expl: "Psychological obesity (béo phì tâm lý) mô tả việc não tiêu thụ quá nhiều rác thông tin độc hại/giật gân."
+                    },
+                    {
+                        q: "What does 'neuroplasticity / neural re-wiring' refer to?",
+                        options: [
+                            "The permanent loss of memory after injury",
+                            "The brain's lifelong ability to reorganize and delete unused neural connections",
+                            "A fixed brain structure after early childhood",
+                            "A mechanical computer processor upgrade"
+                        ],
+                        ans: 1,
+                        expl: "Neuroplasticity là khả năng tự tái cấu trúc mạch và loại bỏ các liên kết thần kinh không dùng của não bộ."
+                    },
+                    {
+                        q: "What concept does 'The Daily Me / echo chamber' describe?",
+                        options: [
+                            "Reading newspapers in the morning with coffee",
+                            "Algorithmic personalization that isolates readers from opposing views and new concepts",
+                            "Sharing accurate scientific papers on social media",
+                            "Deep memorization from library books"
+                        ],
+                        ans: 1,
+                        expl: "The Daily Me / Echo chamber chỉ thuật toán cá nhân hóa khiến người dùng sống trong thế giới thông tin cô lập của riêng mình."
+                    }
+                ];
+
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-sky-600"></i> Cognitive Psychology & Digital Reading Vocab Challenge</h3>`;
+                sampleQuestions.forEach((q, idx) => {
+                    html += `
+                        <div class="space-y-3 pt-2" id="quiz-q-${idx}">
+                            <p class="text-sm font-bold text-slate-800">${idx + 1}. ${q.q}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${q.options.map((opt, oIdx) => `
+                                    <button onclick="app.checkQuiz(${idx}, ${oIdx}, ${q.ans})" class="quiz-opt-btn text-left p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+                                        ${String.fromCharCode(65 + oIdx)}. ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="quiz-feedback hidden text-xs p-3 rounded-xl"></div>
+                        </div>
+                    `;
+                });
+
+                quizBox.innerHTML = html;
+            },
+
+            checkQuiz(qIdx, selected, correct) {
+                const qDiv = document.getElementById(`quiz-q-${qIdx}`);
+                const btns = qDiv.querySelectorAll('.quiz-opt-btn');
+                const feedback = qDiv.querySelector('.quiz-feedback');
+
+                btns.forEach((btn, idx) => {
+                    btn.disabled = true;
+                    if (idx === correct) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-xs";
+                    } else if (idx === selected) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-red-400 bg-red-50 text-red-900 font-bold text-xs";
+                    }
+                });
+
+                feedback.classList.remove('hidden');
+                if (selected === correct) {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 font-bold border border-emerald-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Chính xác! Tuyệt vời.`;
+                } else {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-red-100 text-red-900 font-bold border border-red-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chính xác. Đáp án đúng là ${String.fromCharCode(65 + correct)}.`;
+                }
+            }
+        };
+
+        window.onload = () => app.init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "neo-expert-ielts",
+  "version": "1.0.0",
+  "description": "Expert for IELTS online courses and practice materials",
+  "scripts": {
+    "update:expert5": "node scripts/update-expert-5.js",
+    "update:expert6": "node scripts/update-expert-6.js",
+    "update:expert75": "node scripts/update-expert-75.js",
+    "update:all": "node scripts/update-all.js"
+  },
+  "keywords": [
+    "ielts",
+    "reading",
+    "writing",
+    "grammar"
+  ],
+  "author": "",
+  "license": "ISC"
+}
