@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleft Sentences & Rhetorical Focus Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(124, 58, 237, 0.18);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(124, 58, 237, 0.4); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3); }
+            70% { border-color: rgba(124, 58, 237, 0); box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
+            100% { border-color: rgba(124, 58, 237, 0); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-purple-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Module 6 Focus Masterclass: Advanced Syntax
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Cleft Sentences & Rhetorical Focus</h1>
+                <p class="text-purple-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master *It-Clefts*, *Wh- / Pseudo-Clefts*, Reverse Clefts, Action Emphasis, Question-Word Clefts, and Band 8.5+ Essay Thesis Constructions for Academic Stance.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-purple-600 border-b-4 border-purple-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-it-clefts')">
+                    1. It-Cleft Studio 🎯
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-wh-clefts')">
+                    2. Wh- & Pseudo-Clefts ⚡
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-advanced-clefts')">
+                    3. Academic Thesis Clefts 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-transformer-lab')">
+                    4. Interactive Cleft Transformer 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Cleft Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: IT-CLEFTS STUDIO -->
+            <div id="tab-it-clefts" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2"></circle>
+                            <circle cx="12" cy="12" r="6" stroke-width="2"></circle>
+                            <circle cx="12" cy="12" r="2" stroke-width="2"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">It-Cleft Sentences & Element Spotlight</h3>
+                        <p class="text-sm text-slate-600 font-medium">Learn how <code class="font-mono text-purple-700 font-bold">It + be + [emphasized item] + that/who...</code> splits a sentence to highlight specific elements.</p>
+                    </div>
+                </div>
+
+                <!-- Formula Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">The Master It-Cleft Formula</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center text-xs font-mono font-bold">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-purple-400 block text-[10px] uppercase">1. Dummy Subject & Verb</span>
+                            <span class="text-white text-sm">It + is / was</span>
+                        </div>
+                        <div class="bg-purple-900/80 p-3 rounded-xl border border-purple-500 text-purple-200">
+                            <span class="text-amber-400 block text-[10px] uppercase font-black">2. EMPHASIZED ELEMENT ★</span>
+                            <span class="text-white font-extrabold text-sm">IN FRANCE</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-sky-400 block text-[10px] uppercase">3. Relative Pronoun</span>
+                            <span class="text-white text-sm">that / who</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-emerald-400 block text-[10px] uppercase">4. Remaining Clause</span>
+                            <span class="text-white text-sm">I learned how to sail</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center italic pt-1">
+                        &rarr; Combined Output: "It was <strong class="text-amber-300">in France</strong> that I learned how to sail."
+                    </p>
+                </div>
+
+                <!-- Interactive Element Spotlight Tool -->
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    <div class="flex items-center justify-between border-b border-purple-100 pb-4">
+                        <h4 class="font-extrabold text-slate-900 text-lg">Interactive It-Cleft Focus Spotlight</h4>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold uppercase">Dynamic Focus Shift</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 font-medium">
+                        Standard Base Sentence: <strong class="text-slate-900 font-bold italic">"Professor Aris published the climate report in Geneva last month."</strong>
+                    </p>
+
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">Select Which Element to Emphasize:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="itElementPills">
+                            <button onclick="selectItFocus('subject')" id="itp-subject" class="py-3 px-3 rounded-xl text-xs font-bold transition-all bg-purple-600 text-white shadow-xs">Subject Focus</button>
+                            <button onclick="selectItFocus('object')" id="itp-object" class="py-3 px-3 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Direct Object</button>
+                            <button onclick="selectItFocus('place')" id="itp-place" class="py-3 px-3 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Place Adverbial</button>
+                            <button onclick="selectItFocus('time')" id="itp-time" class="py-3 px-3 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Time Adverbial</button>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div id="itFocusOutputBox" class="bg-purple-50/70 p-6 rounded-2xl border border-purple-100 space-y-3">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Key Rules Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Tense Agreement</span>
+                        <h4 class="font-bold text-slate-900 text-base">Match 'be' with Main Verb</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            If the base sentence is past tense (*published*), use <strong>was</strong>. If present (*publishes*), use <strong>is</strong>.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Pronoun Selection</span>
+                        <h4 class="font-bold text-slate-900 text-base">That vs. Who / Whom</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>That</strong> can replace places, things, time, and people. <strong>Who</strong> is used specifically when emphasizing human subjects.
+                        </p>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Pronoun Case Rule</span>
+                        <h4 class="font-bold text-slate-900 text-base">Subject / Object Pronouns</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Formal academic style uses subject pronouns: <em>"It was <strong>she</strong> who designed the protocol"</em> (informal: <em>"It was her..."</em>).
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: WH- & PSEUDO-CLEFTS -->
+            <div id="tab-wh-clefts" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Wh- & Pseudo-Cleft Sentences</h3>
+                        <p class="text-sm text-slate-600 font-medium">Package actions and concepts into <code class="font-mono text-indigo-700 font-bold">What + S + V + is/was + [emphasized item]</code> or reverse pseudo-cleft structures.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Standard Wh-Cleft -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Standard Wh-Cleft</span>
+                            <span class="text-xs font-bold text-purple-700">End-Focus ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">What + Subject + Verb + is/was</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Pushes the new, emphasized noun phrase or clause to the end of the sentence following <em>is/was</em>.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100">
+                                <span class="text-purple-900 font-bold block mb-0.5">Standard Uncleft:</span>
+                                <p class="text-slate-800">"I need to focus on my research proposal."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100">
+                                <span class="text-purple-900 font-bold block mb-0.5">✔️ Wh-Cleft Form:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-purple-700">What I need to focus on is</strong> my research proposal."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reverse Wh-Cleft -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Reverse Pseudo-Cleft</span>
+                            <span class="text-xs font-bold text-indigo-700">Front-Focus ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">[Emphasized Item] + is/was + what...</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Places the key concept at the absolute front of the sentence for immediate dramatic emphasis.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Standard Uncleft:</span>
+                                <p class="text-slate-800">"We require a comprehensive green energy policy."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">✔️ Reverse Cleft Form:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">A comprehensive green energy policy is what</strong> we require."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Action Emphasis Pseudo-Clefts -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Action Emphasis Pseudo-Clefts (Emphasizing Verbs)</h4>
+                    <p class="text-xs text-slate-600">
+                        To emphasize an entire verb action or event, use <code class="font-mono text-purple-700 font-bold">What + Subject + do/did + is/was + (to) + bare infinitive</code>:
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-purple-800 block">Past Action Emphasis</span>
+                            <p class="text-slate-700 font-medium">Base: "The committee approved the budget proposal."</p>
+                            <p class="text-slate-900 font-bold">
+                                "<strong class="text-purple-700">What the committee did was (to) approve</strong> the budget proposal."
+                            </p>
+                        </div>
+
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 space-y-2">
+                            <span class="text-[10px] font-extrabold uppercase text-indigo-800 block">All-Cleft (Exclusive Action)</span>
+                            <p class="text-slate-700 font-medium">Base: "I only requested a brief summary."</p>
+                            <p class="text-slate-900 font-bold">
+                                "<strong class="text-indigo-700">All that I did was (to) request</strong> a brief summary."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: ACADEMIC THESIS CLEFTS -->
+            <div id="tab-advanced-clefts" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Thesis Clefts for IELTS Task 2</h3>
+                        <p class="text-sm text-slate-600 font-medium">Elevate topic sentences and thesis statements using specialized rhetorical cleft frameworks.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Causal Thesis</span>
+                        <h4 class="font-bold text-slate-900 text-lg">The reason why... is that</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Highlights the underlying cause of an issue before delivering the main explanation.
+                        </p>
+
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <span class="text-indigo-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">The primary reason why renewable adoption lags is that</strong> initial infrastructure costs remain high."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Solution Thesis</span>
+                        <h4 class="font-bold text-slate-900 text-lg">It is only by / through... that</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Establishes an indispensable prerequisite method for solving a problem.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-purple-700">It is only through decisive legislative reform that</strong> wealth inequality can be curtailed."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Minimalist Thesis</span>
+                        <h4 class="font-bold text-slate-900 text-lg">All that is needed is...</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Demonstrates that a complex problem requires a simple, single key action.
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700">All that is required to stimulate innovation is</strong> targeted grant funding for research universities."</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: INTERACTIVE CLEFT TRANSFORMER -->
+            <div id="tab-transformer-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Cleft Transformer Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a base academic sentence to generate all cleft focus variations live in real time.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">Select Context Scenario:</label>
+                        <select id="transformerContextSelect" onchange="renderTransformerLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                            <option value="energy">Scenario 1: Governments must invest in renewable energy to fight climate change.</option>
+                            <option value="flaw">Scenario 2: The research team discovered a major flaw during initial testing.</option>
+                            <option value="tuition">Scenario 3: Escalating tuition fees prevent underprivileged students from attending college.</option>
+                        </select>
+                    </div>
+
+                    <!-- Rendered Variations Display Grid -->
+                    <div id="transformerOutputGrid" class="space-y-4 pt-4 border-t border-slate-100">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-purple-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Cleft Sentences Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your mastery of It-clefts, Wh-clefts, reverse clefts, and thesis structures.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct It-cleft sentence emphasizing the place "in France" for: "I learned how to sail in France."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'It was in France that...\' puts the prepositional place phrase in the emphasized spotlight.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">It was in France that I learned how to sail.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This is a Wh-cleft, not an It-cleft.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">Where I learned how to sail was in France.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Incorrect pronoun choice and structure.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">It is France where I learned how to sail.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Where is the emphasized new information located in a standard **Wh- / Pseudo-cleft** sentence (e.g. "What I need to focus on is <span class="text-purple-600 underline">my research proposal</span>")?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. It-clefts put emphasized info right after \'It\', but Wh-clefts push it to the end.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">At the very start of the sentence right after 'What'.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Standard Wh-clefts push the emphasized item to the end after is/was.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">In the final noun phrase/clause following is/was.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the correct Action-Emphasis Wh-cleft for: "The committee approved the proposal."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Action clefts use \'What + S + did + was + (to) + bare verb\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">What the committee did was (to) approve the proposal.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Missing verb \'did\' required for action clefts.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">What the committee approved was the proposal.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Select the Band 8.5+ Solution Thesis Cleft structure:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'It is only through... that...\' creates an authoritative solution thesis.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">It is only through decisive legislative reform that inequality can be curtailed.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Standard sentence lacks rhetorical cleft emphasis.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">Decisive legislative reform can curtail inequality.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Rhetorical Focus Suite</span>
+            <span>Module 6 Extension: Cleft Sentences Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-purple-600', 'text-purple-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-purple-600', 'text-purple-600');
+                }
+            }
+        }
+
+        const itFocusData = {
+            subject: {
+                badge: "Emphasizing Subject (Professor Aris)",
+                sentence: "It was Professor Aris who/that published the climate report in Geneva last month.",
+                rule: "Focuses on WHO performed the action. Use 'who' or 'that'."
+            },
+            object: {
+                badge: "Emphasizing Direct Object (the climate report)",
+                sentence: "It was the climate report that Professor Aris published in Geneva last month.",
+                rule: "Focuses on WHAT was published. Use 'that' (or 'which')."
+            },
+            place: {
+                badge: "Emphasizing Place Adverbial (in Geneva)",
+                sentence: "It was in Geneva that Professor Aris published the climate report last month.",
+                rule: "Focuses on WHERE the action occurred. Preposition 'in' remains with the place phrase."
+            },
+            time: {
+                badge: "Emphasizing Time Adverbial (last month)",
+                sentence: "It was last month that Professor Aris published the climate report in Geneva.",
+                rule: "Focuses on WHEN the event took place."
+            }
+        };
+
+        function selectItFocus(focusKey) {
+            ['subject', 'object', 'place', 'time'].forEach(k => {
+                const btn = document.getElementById(`itp-${k}`);
+                if (k === focusKey) {
+                    btn.className = "py-3 px-3 rounded-xl text-xs font-bold transition-all bg-purple-600 text-white shadow-xs";
+                } else {
+                    btn.className = "py-3 px-3 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+                }
+            });
+
+            const data = itFocusData[focusKey];
+            document.getElementById('itFocusOutputBox').innerHTML = `
+                <span class="px-2.5 py-1 bg-purple-200 text-purple-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max">${data.badge}</span>
+                <p class="text-base sm:text-lg font-bold text-purple-950 pt-2 font-mono">"${data.sentence}"</p>
+                <p class="text-xs text-slate-600 pt-1">&rarr; ${data.rule}</p>
+            `;
+        }
+
+        const transformerScenarios = {
+            energy: {
+                base: "Governments must invest in renewable energy to fight climate change.",
+                clefts: [
+                    { type: "It-Cleft (Subject)", text: "It is governments that must invest in renewable energy to fight climate change." },
+                    { type: "It-Cleft (Prepositional Purpose)", text: "It is to fight climate change that governments must invest in renewable energy." },
+                    { type: "Wh-Cleft (Direct Object)", text: "What governments must invest in to fight climate change is renewable energy." },
+                    { type: "Reverse Pseudo-Cleft", text: "Renewable energy is what governments must invest in to fight climate change." },
+                    { type: "All-Cleft (Exclusive Action)", text: "All that governments must do to fight climate change is (to) invest in renewable energy." }
+                ]
+            },
+            flaw: {
+                base: "The research team discovered a major flaw during initial testing.",
+                clefts: [
+                    { type: "It-Cleft (Subject)", text: "It was the research team that discovered a major flaw during initial testing." },
+                    { type: "It-Cleft (Time)", text: "It was during initial testing that the research team discovered a major flaw." },
+                    { type: "Wh-Cleft (Direct Object)", text: "What the research team discovered during initial testing was a major flaw." },
+                    { type: "Reverse Pseudo-Cleft", text: "A major flaw was what the research team discovered during initial testing." },
+                    { type: "Action Cleft", text: "What the research team did during initial testing was (to) discover a major flaw." }
+                ]
+            },
+            tuition: {
+                base: "Escalating tuition fees prevent underprivileged students from attending college.",
+                clefts: [
+                    { type: "It-Cleft (Cause)", text: "It is escalating tuition fees that prevent underprivileged students from attending college." },
+                    { type: "Wh-Cleft (Object)", text: "What prevents underprivileged students from attending college is escalating tuition fees." },
+                    { type: "Reverse Pseudo-Cleft", text: "Escalating tuition fees are what prevents underprivileged students from attending college." },
+                    { type: "Academic Cleft Thesis", text: "The primary reason why underprivileged students cannot attend college is that tuition fees are escalating." }
+                ]
+            }
+        };
+
+        function renderTransformerLab() {
+            const scKey = document.getElementById('transformerContextSelect').value;
+            const data = transformerScenarios[scKey];
+
+            const grid = document.getElementById('transformerOutputGrid');
+            grid.innerHTML = data.clefts.map(c => `
+                <div class="bg-purple-50/60 p-4 rounded-2xl border border-purple-100 space-y-1">
+                    <span class="px-2 py-0.5 bg-purple-200 text-purple-900 rounded font-extrabold text-[10px] uppercase">${c.type}</span>
+                    <p class="text-sm font-bold text-purple-950 pt-1">"${c.text}"</p>
+                </div>
+            `).join('');
+        }
+
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            selectItFocus('subject');
+            renderTransformerLab();
+        };
+    </script>
+</body>
+</html>

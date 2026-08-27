@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passive Voice & Academic Structures Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <!-- Main Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Module 2 Extension: Voice & Academic Syntax
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Passive Voice Masterclass</h1>
+                <p class="text-indigo-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master active-to-passive transformations across all tenses, impersonal reporting verbs, causative structures, and IELTS Task 1 process diagram rules.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-matrix')">
+                    1. Passive Tense Matrix 🔄
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-converter-lab')">
+                    2. Voice Transformation Lab 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-impersonal')">
+                    3. Impersonal & Reporting Passives 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-academic-rules')">
+                    4. IELTS Task 1 & Intransitive Traps ⚙️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Passive Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: PASSIVE TENSE MATRIX -->
+            <div id="tab-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Passive Voice System Across All Tenses</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a tense category to explore how the auxiliary verb <em>BE</em> combines with the <em>Past Participle (V3)</em>.</p>
+                    </div>
+                </div>
+
+                <!-- Tense Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Tense Group:</span>
+                    <div class="flex flex-wrap gap-2" id="passiveTenseFilters">
+                        <button onclick="filterPassiveMatrix('all')" id="pf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All Tense Forms</button>
+                        <button onclick="filterPassiveMatrix('simple')" id="pf-simple" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Simple Tenses</button>
+                        <button onclick="filterPassiveMatrix('continuous')" id="pf-continuous" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Continuous Tenses</button>
+                        <button onclick="filterPassiveMatrix('perfect')" id="pf-perfect" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Perfect Tenses</button>
+                        <button onclick="filterPassiveMatrix('modal')" id="pf-modal" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Modals & Infinitives</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Grid Display -->
+                <div id="passiveMatrixGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- JavaScript populates passive matrix cards here -->
+                </div>
+
+                <!-- Passive Detail Inspector Box -->
+                <div id="passiveInspector" class="bg-indigo-950 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-indigo-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorTitle" class="text-xl font-bold">Passive Structure Inspector</h4>
+                        </div>
+                        <span id="inspectorFormula" class="px-3 py-1 bg-indigo-800 text-sky-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorContent" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Active Input Sentence</strong>
+                            <p id="inspectorActive" class="text-slate-200">Click a card to inspect transformation details.</p>
+                        </div>
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Passive Transformation Output</strong>
+                            <p id="inspectorPassive" class="text-slate-200">Highlights auxiliary BE + Past Participle V3.</p>
+                        </div>
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Academic Usage & Agent Rule</strong>
+                            <p id="inspectorUsage" class="text-slate-200">When to include or omit the 'by + agent' phrase.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: VOICE TRANSFORMATION LAB -->
+            <div id="tab-converter-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Voice Transformation Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Configure subject-verb contexts and watch live conversions between Active and Passive voice.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Scenario Context:</label>
+                            <select id="converterContext" onchange="renderVoiceLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="report">Active: The committee / write / the annual report</option>
+                                <option value="rice">Active: Asian farmers / cultivate / rice</option>
+                                <option value="policy">Active: The government / enact / new environmental laws</option>
+                                <option value="study">Active: Medical scientists / discover / a breakthrough cure</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Tense Aspect:</label>
+                            <select id="converterTense" onchange="renderVoiceLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="pres_simple">Present Simple</option>
+                                <option value="past_simple">Past Simple</option>
+                                <option value="pres_cont">Present Continuous</option>
+                                <option value="past_cont">Past Continuous</option>
+                                <option value="pres_perf">Present Perfect</option>
+                                <option value="past_perf">Past Perfect</option>
+                                <option value="future_simple">Future Simple (Will)</option>
+                                <option value="modal">Modal (Should)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">3. Agent Mention Option:</label>
+                            <div class="flex gap-2">
+                                <button onclick="setAgentInclusion(true)" id="agent-yes" class="flex-1 py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">With Agent (by...)</button>
+                                <button onclick="setAgentInclusion(false)" id="agent-no" class="flex-1 py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Omit Agent</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparative Transformation Display Box -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <!-- Active Box -->
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Active Voice Structure</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p class="text-xs text-slate-400 font-bold uppercase mb-1">Subject + Active Verb + Object</p>
+                                <p id="activeOutputText" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Focus: Direct attention is on the <strong>Doer / Agent</strong> executing the action.</p>
+                        </div>
+
+                        <!-- Passive Box -->
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider">Passive Voice Structure</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p class="text-xs text-slate-400 font-bold uppercase mb-1">Receiver + Auxiliary BE + Past Participle (V3)</p>
+                                <p id="passiveOutputText" class="text-base sm:text-lg font-bold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Focus: Direct attention is shifted to the <strong>Receiver / Result / Product</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Formula Breakdown Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Passive Conversion Rule Breakdown:</strong>
+                        <p id="passiveFormulaBreakdown" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: IMPERSONAL & REPORTING PASSIVES -->
+            <div id="tab-impersonal" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Band 8.0+ Impersonal & Reporting Passives</h3>
+                        <p class="text-sm text-slate-600 font-medium">Elevate informal opinion statements into formal academic claims using reporting passives and causative forms.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Pattern 1: It is + V3 + that -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Pattern 1: Impersonal Dummy 'It'</span>
+                        <h4 class="font-bold text-slate-900 text-lg">It + is/was + Past Participle + that clause</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Avoids subjective phrases like <em>"I think"</em> or informal generalizations like <em>"People say"</em>.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Low-Band / Informal:</span>
+                                <p class="text-slate-700">"People believe that global warming affects weather."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Band 8.0+ Academic Form:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">It is widely believed that</strong> global warming affects weather patterns."</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-600">
+                            <strong>Key Reporting Verbs:</strong> <em>argued, asserted, claimed, estimated, hypothesized, recognized, acknowledged</em>.
+                        </div>
+                    </div>
+
+                    <!-- Pattern 2: Subject + is + V3 + to infinitive -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Pattern 2: Subject Fronting</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Subject + is/was + V3 + to + Infinitive</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Places the central topic at the start of the sentence for academic prominence.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-700 font-bold block mb-0.5">Present / General Claims:</span>
+                                <p class="text-slate-900 font-semibold">"Renewable energy <strong class="text-purple-700">is considered to be</strong> the most sustainable solution."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Completed Historical Claims (to have + V3):</span>
+                                <p class="text-slate-900 font-semibold">"Deforestation <strong class="text-purple-700">is estimated to have contributed</strong> to carbon levels."</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-600">
+                            <strong>Infinitive Choice:</strong> Use <em>to + V1</em> for present state; use <em>to have + V3</em> for past completions.
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Causative Passive & Prepositional Passives Matrix -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Additional Advanced Passive Structures</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <!-- Causative Passive -->
+                        <div class="bg-amber-50/60 p-4 rounded-xl border border-amber-100 space-y-2">
+                            <span class="px-2 py-0.5 bg-amber-200 text-amber-900 rounded font-bold uppercase text-[10px]">Causative Passive</span>
+                            <h5 class="font-bold text-slate-900 text-sm">Have / Get something done</h5>
+                            <p class="text-slate-700">Used when arranging for a third party or specialist to perform a task for you.</p>
+                            <p class="bg-white p-2.5 rounded-lg border border-amber-200 text-slate-900 italic font-semibold">
+                                "The university <strong class="text-amber-800">had the laboratory equipment calibrated</strong> by technicians."
+                            </p>
+                        </div>
+
+                        <!-- Prepositional Passive -->
+                        <div class="bg-sky-50/60 p-4 rounded-xl border border-sky-100 space-y-2">
+                            <span class="px-2 py-0.5 bg-sky-200 text-sky-900 rounded font-bold uppercase text-[10px]">Prepositional Passive</span>
+                            <h5 class="font-bold text-slate-900 text-sm">Verbs with Mandatory Prepositions</h5>
+                            <p class="text-slate-700">When phrasal or prepositional verbs become passive, the preposition stays directly attached to the verb.</p>
+                            <p class="bg-white p-2.5 rounded-lg border border-sky-200 text-slate-900 italic font-semibold">
+                                "The proposed proposal was <strong class="text-sky-800">objected to</strong> by community leaders."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 4: IELTS TASK 1 & INTRANSITIVE TRAPS -->
+            <div id="tab-academic-rules" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-teal-100 p-3.5 rounded-2xl text-teal-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Process Protocols & Common Traps</h3>
+                        <p class="text-sm text-slate-600 font-medium">Rules for IELTS Task 1 process diagrams and intransitive verb limitations.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- IELTS Task 1 Process Rules -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[11px] font-bold uppercase tracking-wider">IELTS Task 1 Standard</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Describing Industrial & Natural Processes</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Man-made processes (factory production, recycling) require <strong>Present Simple Passive</strong> because humans perform the steps:
+                        </p>
+
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="bg-teal-50/60 p-2.5 rounded-xl border border-teal-100">
+                                <strong>Step 1 (Raw Material):</strong> "Raw limestone <strong class="text-teal-800">is crushed</strong> into fine powder."
+                            </li>
+                            <li class="bg-teal-50/60 p-2.5 rounded-xl border border-teal-100">
+                                <strong>Step 2 (Heating/Treatment):</strong> "The mixture <strong class="text-teal-800">is heated</strong> in a high-temperature kiln."
+                            </li>
+                            <li class="bg-teal-50/60 p-2.5 rounded-xl border border-teal-100">
+                                <strong>Step 3 (Packaging):</strong> "Finally, the cement <strong class="text-teal-800">is packaged</strong> into bags."
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Intransitive Grammar Trap -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Grammar Trap</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Intransitive Verbs CANNOT Be Passive</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Intransitive verbs do not take a direct object. Therefore, they <strong>never</strong> have a passive form!
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <p class="text-rose-700 line-through">❌ The accident was happened yesterday.</p>
+                                <p class="text-emerald-700 font-bold">✔️ The accident happened yesterday.</p>
+                            </div>
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <p class="text-rose-700 line-through">❌ The sun is risen in the east.</p>
+                                <p class="text-emerald-700 font-bold">✔️ The sun rises in the east.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-900 text-white rounded-xl text-[11px] space-y-1">
+                            <strong class="text-amber-400 block font-bold">Intransitive Blacklist:</strong>
+                            <p class="text-slate-300"><em>happen, occur, exist, arise, collapse, die, fall, rise, disappear, emerge</em>.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Passive Voice Mastery Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your skills in tense transformations, impersonal reporting passives, and intransitive verb traps.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Convert to Present Perfect Passive: "Scientists <span class="text-indigo-600 underline">have discovered</span> a new vaccine."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'was discovered\' is Past Simple Passive.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">A new vaccine was discovered by scientists.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Present Perfect Passive formula is has/have + been + past participle (has been discovered).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">A new vaccine has been discovered by scientists.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'is discovered\' is Present Simple Passive.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">A new vaccine is discovered by scientists.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Identify the grammatically INCORRECT passive sentence:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This sentence is grammatically correct (Present Continuous Passive).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The report is being reviewed by the director.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Happen\' is an intransitive verb and CANNOT be used in the passive voice!')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">An unexpected error was happened during testing.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This sentence is grammatically correct (Modal Passive).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The regulations should be updated immediately.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the Band 8.0+ Impersonal Reporting Passive form for: "People claim that the economic crisis started in 2008."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Subject fronting for historical completed events requires \'to have + V3\' (to have started).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The economic crisis is claimed to start in 2008.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Historical claims take \'is claimed to have + V3\' (to have started).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The economic crisis is claimed to have started in 2008.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Uses active voice instead of reporting passive.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">People claim that the crisis has started in 2008.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. In IELTS Writing Task 1, why is Present Simple Passive required when describing a man-made manufacturing process?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Manufacturing steps focus objectively on what happens to materials rather than the worker actions.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Because the steps focus on the materials/product, not individual workers.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Passive voice is longer than active voice.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Because active voice is forbidden in all IELTS writing.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Process steps are general facts/routines, so past tense is inaccurate.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Because process steps always occurred in the past.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Grammar & Passive Syntax Suite</span>
+            <span>Module Extension: Passive Voice Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Passive Matrix Tense Data */
+        const passiveMatrixData = [
+            {
+                id: "pres_simple", group: "simple", name: "Present Simple Passive",
+                formula: "am / is / are + V3", aux: "am/is/are + V3",
+                active: "Asian countries grow rice.", passive: "Rice is grown in Asian countries.",
+                usage: "Habits, general scientific facts, industrial process steps.",
+                agent: "Omit agent if obvious or generic (e.g., 'in Asia')."
+            },
+            {
+                id: "past_simple", group: "simple", name: "Past Simple Passive",
+                formula: "was / were + V3", aux: "was/were + V3",
+                active: "Our manager wrote the report.", passive: "The report was written by our manager.",
+                usage: "Completed past actions where focus is on result/product.",
+                agent: "Include 'by our manager' because specific doer matters."
+            },
+            {
+                id: "future_simple", group: "simple", name: "Future Simple Passive",
+                formula: "will be + V3", aux: "will be + V3",
+                active: "The council will approve the budget.", passive: "The budget will be approved by the council.",
+                usage: "Future predictions, official decisions, promises.",
+                agent: "Optional depending on context."
+            },
+            {
+                id: "pres_cont", group: "continuous", name: "Present Continuous Passive",
+                formula: "am / is / are + being + V3", aux: "is/are being + V3",
+                active: "They are repairing the bridge.", passive: "The bridge is being repaired right now.",
+                usage: "Ongoing activity in progress right around now.",
+                agent: "Usually omitted."
+            },
+            {
+                id: "past_cont", group: "continuous", name: "Past Continuous Passive",
+                formula: "was / were + being + V3", aux: "was/were being + V3",
+                active: "Technicians were updating systems.", passive: "Systems were being updated at 3 PM.",
+                usage: "Ongoing action in progress at a specific past moment.",
+                agent: "Omitted unless relevant."
+            },
+            {
+                id: "pres_perf", group: "perfect", name: "Present Perfect Passive",
+                formula: "have / has + been + V3", aux: "has/have been + V3",
+                active: "Scientists have discovered a cure.", passive: "A cure has been discovered by scientists.",
+                usage: "Completed action with present result or relevance.",
+                agent: "Include 'by scientists' to give professional credit."
+            },
+            {
+                id: "past_perf", group: "perfect", name: "Past Perfect Passive",
+                formula: "had + been + V3", aux: "had been + V3",
+                active: "They had built the lab before 2010.", passive: "The lab had been built before 2010.",
+                usage: "Action completed before another past event.",
+                agent: "Omitted."
+            },
+            {
+                id: "future_perf", group: "perfect", name: "Future Perfect Passive",
+                formula: "will have + been + V3", aux: "will have been + V3",
+                active: "They will have finished it by May.", passive: "It will have been finished by May.",
+                usage: "Action completed prior to a future deadline.",
+                agent: "Omitted."
+            },
+            {
+                id: "modal", group: "modal", name: "Modal Passive",
+                formula: "modal + be + V3", aux: "must/should/can + be + V3",
+                active: "We must protect the forest.", passive: "The forest must be protected.",
+                usage: "Necessity, recommendation, or obligation.",
+                agent: "Omitted for general moral rules."
+            }
+        ];
+
+        /* Render Filtered Matrix */
+        function filterPassiveMatrix(group) {
+            const pills = document.querySelectorAll('#passiveTenseFilters button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`pf-${group}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('passiveMatrixGrid');
+            const filtered = group === 'all' ? passiveMatrixData : passiveMatrixData.filter(t => t.group === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectPassive('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-indigo-100 text-indigo-800">${t.group}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.aux}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs font-mono font-bold text-indigo-600 mb-2">${t.formula}</p>
+                        <p class="text-xs text-slate-600 italic mb-1">"${t.passive}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* Inspect Passive Card */
+        function inspectPassive(id) {
+            const data = passiveMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorTitle').innerText = data.name;
+            document.getElementById('inspectorFormula').innerText = `Formula: ${data.formula}`;
+            document.getElementById('inspectorActive').innerHTML = `"${data.active}"`;
+            document.getElementById('inspectorPassive').innerHTML = `"${data.passive}"`;
+            document.getElementById('inspectorUsage').innerHTML = `<strong>Usage:</strong> ${data.usage}<br><strong>Agent Rule:</strong> ${data.agent}`;
+        }
+
+        /* Converter Lab State & Logic */
+        let includeAgent = true;
+
+        function setAgentInclusion(val) {
+            includeAgent = val;
+            const yesBtn = document.getElementById('agent-yes');
+            const noBtn = document.getElementById('agent-no');
+
+            if (val) {
+                yesBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                noBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                yesBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                noBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+            }
+            renderVoiceLab();
+        }
+
+        const contextDatabase = {
+            report: {
+                subj: "The committee", obj: "the annual report", agent: "by the committee",
+                tenses: {
+                    pres_simple: { active: "The committee writes the annual report.", passiveBe: "is written", breakdown: "Object (the annual report) + Present BE (is) + V3 (written)" },
+                    past_simple: { active: "The committee wrote the annual report.", passiveBe: "was written", breakdown: "Object (the annual report) + Past BE (was) + V3 (written)" },
+                    pres_cont: { active: "The committee is writing the annual report.", passiveBe: "is being written", breakdown: "Object + Present BE (is) + being + V3 (written)" },
+                    past_cont: { active: "The committee was writing the annual report.", passiveBe: "was being written", breakdown: "Object + Past BE (was) + being + V3 (written)" },
+                    pres_perf: { active: "The committee has written the annual report.", passiveBe: "has been written", breakdown: "Object + has + been + V3 (written)" },
+                    past_perf: { active: "The committee had written the annual report.", passiveBe: "had been written", breakdown: "Object + had + been + V3 (written)" },
+                    future_simple: { active: "The committee will write the annual report.", passiveBe: "will be written", breakdown: "Object + will be + V3 (written)" },
+                    modal: { active: "The committee should write the annual report.", passiveBe: "should be written", breakdown: "Object + should be + V3 (written)" }
+                }
+            },
+            rice: {
+                subj: "Asian farmers", obj: "rice", agent: "by Asian farmers",
+                tenses: {
+                    pres_simple: { active: "Asian farmers cultivate rice.", passiveBe: "is cultivated", breakdown: "Object (rice) + Present BE (is) + V3 (cultivated)" },
+                    past_simple: { active: "Asian farmers cultivated rice.", passiveBe: "was cultivated", breakdown: "Object (rice) + Past BE (was) + V3 (cultivated)" },
+                    pres_cont: { active: "Asian farmers are cultivating rice.", passiveBe: "is being cultivated", breakdown: "Object + Present BE (is) + being + V3 (cultivated)" },
+                    past_cont: { active: "Asian farmers were cultivating rice.", passiveBe: "was being cultivated", breakdown: "Object + Past BE (was) + being + V3 (cultivated)" },
+                    pres_perf: { active: "Asian farmers have cultivated rice.", passiveBe: "has been cultivated", breakdown: "Object + has + been + V3 (cultivated)" },
+                    past_perf: { active: "Asian farmers had cultivated rice.", passiveBe: "had been cultivated", breakdown: "Object + had + been + V3 (cultivated)" },
+                    future_simple: { active: "Asian farmers will cultivate rice.", passiveBe: "will be cultivated", breakdown: "Object + will be + V3 (cultivated)" },
+                    modal: { active: "Asian farmers should cultivate rice.", passiveBe: "should be cultivated", breakdown: "Object + should be + V3 (cultivated)" }
+                }
+            },
+            policy: {
+                subj: "The government", obj: "new environmental laws", agent: "by the government",
+                tenses: {
+                    pres_simple: { active: "The government enacts new environmental laws.", passiveBe: "are enacted", breakdown: "Plural Object (laws) + Present BE (are) + V3 (enacted)" },
+                    past_simple: { active: "The government enacted new environmental laws.", passiveBe: "were enacted", breakdown: "Plural Object (laws) + Past BE (were) + V3 (enacted)" },
+                    pres_cont: { active: "The government is enacting new environmental laws.", passiveBe: "are being enacted", breakdown: "Plural Object + are + being + V3 (enacted)" },
+                    past_cont: { active: "The government was enacting new environmental laws.", passiveBe: "were being enacted", breakdown: "Plural Object + were + being + V3 (enacted)" },
+                    pres_perf: { active: "The government has enacted new environmental laws.", passiveBe: "have been enacted", breakdown: "Plural Object + have + been + V3 (enacted)" },
+                    past_perf: { active: "The government had enacted new environmental laws.", passiveBe: "had been enacted", breakdown: "Plural Object + had + been + V3 (enacted)" },
+                    future_simple: { active: "The government will enact new environmental laws.", passiveBe: "will be enacted", breakdown: "Plural Object + will be + V3 (enacted)" },
+                    modal: { active: "The government should enact new environmental laws.", passiveBe: "should be enacted", breakdown: "Plural Object + should be + V3 (enacted)" }
+                }
+            },
+            study: {
+                subj: "Medical scientists", obj: "a breakthrough cure", agent: "by medical scientists",
+                tenses: {
+                    pres_simple: { active: "Medical scientists discover a breakthrough cure.", passiveBe: "is discovered", breakdown: "Object + Present BE (is) + V3 (discovered)" },
+                    past_simple: { active: "Medical scientists discovered a breakthrough cure.", passiveBe: "was discovered", breakdown: "Object + Past BE (was) + V3 (discovered)" },
+                    pres_cont: { active: "Medical scientists are discovering a breakthrough cure.", passiveBe: "is being discovered", breakdown: "Object + is + being + V3 (discovered)" },
+                    past_cont: { active: "Medical scientists were discovering a breakthrough cure.", passiveBe: "was being discovered", breakdown: "Object + was + being + V3 (discovered)" },
+                    pres_perf: { active: "Medical scientists have discovered a breakthrough cure.", passiveBe: "has been discovered", breakdown: "Object + has + been + V3 (discovered)" },
+                    past_perf: { active: "Medical scientists had discovered a breakthrough cure.", passiveBe: "had been discovered", breakdown: "Object + had + been + V3 (discovered)" },
+                    future_simple: { active: "Medical scientists will discover a breakthrough cure.", passiveBe: "will be discovered", breakdown: "Object + will be + V3 (discovered)" },
+                    modal: { active: "Medical scientists should discover a breakthrough cure.", passiveBe: "should be discovered", breakdown: "Object + should be + V3 (discovered)" }
+                }
+            }
+        };
+
+        function renderVoiceLab() {
+            const ctxKey = document.getElementById('converterContext').value;
+            const tenseKey = document.getElementById('converterTense').value;
+            const data = contextDatabase[ctxKey];
+            const tData = data.tenses[tenseKey];
+
+            document.getElementById('activeOutputText').innerText = tData.active;
+            
+            const objectCapitalized = data.obj.charAt(0).toUpperCase() + data.obj.slice(1);
+            const agentStr = includeAgent ? ` ${data.agent}` : '';
+            document.getElementById('passiveOutputText').innerText = `${objectCapitalized} ${tData.passiveBe}${agentStr}.`;
+            
+            document.getElementById('passiveFormulaBreakdown').innerText = tData.breakdown + (includeAgent ? " + Agent Phrase" : " (Agent Omitted)");
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* On Page Load Initialization */
+        window.onload = function() {
+            filterPassiveMatrix('all');
+            inspectPassive('pres_simple');
+            renderVoiceLab();
+        };
+    </script>
+</body>
+</html>

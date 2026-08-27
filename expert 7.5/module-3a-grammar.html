@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditionals & Inversion Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 3 Masterclass: Conditionals & Syntax Inversion
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Conditionals & Inversion Masterclass</h1>
+                <p class="text-indigo-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Real vs. Unreal Conditionals, Mixed Conditionals (Past-Present & Present-Past), Alternative Connectors (*Unless, Supposing, Provided that, As long as*), and Band 8.0+ Grammatical Inversions (*Should / Were / Had*).
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-matrix')">
+                    1. Conditional Matrix 🔀
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-connectors-lab')">
+                    2. Connectors Laboratory 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-inversion-studio')">
+                    3. Band 8.0+ Inversion Studio ⚡
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-mixed-hypotheses')">
+                    4. Mixed & Hypotheses 🔄
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Conditionals Quiz 🎯
+                </button>
+            </div>
+
+            <div id="tab-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Conditionals Matrix: Real, Unreal & Mixed</h3>
+                        <p class="text-sm text-slate-600 font-medium">Filter by conditional types to inspect clause formulas, speaker stance (factual vs. hypothetical), and time frame references.</p>
+                    </div>
+                </div>
+
+                <!-- Conditional Category Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Conditional Group:</span>
+                    <div class="flex flex-wrap gap-2" id="conditionalFilters">
+                        <button onclick="filterConditionalMatrix('all')" id="cf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All Types</button>
+                        <button onclick="filterConditionalMatrix('real')" id="cf-real" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Real Conditionals (0 & 1)</button>
+                        <button onclick="filterConditionalMatrix('unreal')" id="cf-unreal" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Unreal Conditionals (2 & 3)</button>
+                        <button onclick="filterConditionalMatrix('mixed')" id="cf-mixed" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Mixed Conditionals</button>
+                    </div>
+                </div>
+
+                <!-- Grid Display -->
+                <div id="conditionalGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- JavaScript populates conditional matrix cards -->
+                </div>
+
+                <!-- Conditional Inspector Box -->
+                <div id="conditionalInspector" class="bg-indigo-950 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-indigo-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorCondTitle" class="text-xl font-bold">Conditional Inspector</h4>
+                        </div>
+                        <span id="inspectorCondFormula" class="px-3 py-1 bg-indigo-800 text-sky-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorCondContent" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">If-Clause Formula</strong>
+                            <p id="inspectorIfClause" class="text-slate-200">Click a card to inspect clause structure.</p>
+                        </div>
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Main Result Clause</strong>
+                            <p id="inspectorMainClause" class="text-slate-200">Shows modal auxiliary + verb form.</p>
+                        </div>
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Speaker Stance & Reality</strong>
+                            <p id="inspectorReality" class="text-slate-200">Factual truth vs. hypothetical counterfactual.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-connectors-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Alternative Connectors Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Transform standard <em>IF</em> clauses into specialized academic conjunctions: <em>Unless, Otherwise, Supposing, Provided that, As long as</em>, and <em>In case</em>.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Context Scenario:</label>
+                            <select id="labContextSelect" onchange="renderConnectorsLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="rainforest">Rainforest Protection (Unless / If not)</option>
+                                <option value="education">Government Education Policy (Supposing / Suppose)</option>
+                                <option value="biodiversity">Biodiversity Conservation (Provided that / On condition that)</option>
+                                <option value="transport">Cycling Infrastructure (Otherwise)</option>
+                                <option value="incase">Emergency Backup Protocol (In case vs If)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Connector Alternative:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="setLabTransformMode('connector')" id="mode-connector-btn" class="py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Alternative Connector</button>
+                                <button onclick="setLabTransformMode('academic')" id="mode-academic-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Academic Formal Shift</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparative Transformation Output Box -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Standard 'IF' Syntax</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labStandardText" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Standard conditional clause with explicit <em>if</em> conjunction.</p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labTransformedBadge">Transformed Academic Output</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="labTransformedText" class="text-base sm:text-lg font-bold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labTransformedDesc">Streamlined high-band syntactic variation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanation Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Grammatical Connector Mechanism:</strong>
+                        <p id="labExplanationText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-inversion-studio" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-amber-100 p-3.5 rounded-2xl text-amber-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Band 8.0+ Grammatical Inversion Studio</h3>
+                        <p class="text-sm text-slate-600 font-medium">Elevate conditional sentences by dropping <em>'if'</em> and fronting auxiliary verbs (*Should*, *Were*, *Had*) for Band 8.0+ writing range.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Type 1 Inversion -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Type 1 Inversion</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Should + Subject + Base Verb</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Replaces Real First Conditionals (*If + Present Simple / Should*).</p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">Standard Form:</span>
+                                <p class="text-slate-700">"If economic conditions should deteriorate further, governments will act."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Band 8.0+ Inverted Form:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">Should economic conditions deteriorate</strong> further, governments will act."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type 2 Inversion -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Type 2 Inversion</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Were + Subject + to + Infinitive</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Replaces Unreal Second Conditionals (*If + Past Simple / Were*).</p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">Standard Form:</span>
+                                <p class="text-slate-700">"If the government were to increase taxes, public backlash would follow."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">✔️ Band 8.0+ Inverted Form:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-purple-700">Were the government to increase</strong> taxes, public backlash would follow."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type 3 Inversion -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Type 3 Inversion</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Had + Subject + Past Participle (V3)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Replaces Counterfactual Third Conditionals (*If + Past Perfect*).</p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">Standard Form:</span>
+                                <p class="text-slate-700">"If policies had been enacted earlier, species loss would have been prevented."</p>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <span class="text-teal-800 font-bold block mb-0.5">✔️ Band 8.0+ Inverted Form:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-teal-800">Had policies been enacted</strong> earlier, species loss would have been prevented."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Inversion Converter Dashboard -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+                    <h4 class="font-bold text-indigo-300 text-lg">Interactive Inversion Syntax Switcher</h4>
+                    <p class="text-xs text-slate-300">Select a conditional context below to see standard vs inverted syntax transformations live:</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <button onclick="switchInversionContext('type1')" id="inv-btn-type1" class="p-3.5 rounded-xl border border-indigo-500 bg-indigo-900/50 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-indigo-400 uppercase block mb-1">Type 1 Real</span>
+                            <span class="font-bold text-white">Should + S + Base Verb</span>
+                        </button>
+                        <button onclick="switchInversionContext('type2')" id="inv-btn-type2" class="p-3.5 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Type 2 Unreal</span>
+                            <span class="font-bold text-white">Were + S + to + Infinitive</span>
+                        </button>
+                        <button onclick="switchInversionContext('type3')" id="inv-btn-type3" class="p-3.5 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Type 3 Counterfactual</span>
+                            <span class="font-bold text-white">Had + S + Past Participle</span>
+                        </button>
+                    </div>
+
+                    <div id="inversionOutputBox" class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3 text-xs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-mixed-hypotheses" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Mixed Conditionals & Hypothetical Structures</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master complex cross-time conditionals and advanced hypothetical grammar (*Wish*, *If only*, *It's time*, *Would rather*).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Mixed Type A -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Mixed Type A</span>
+                            <span class="text-xs font-bold text-indigo-600">Past &rarr; Present</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">If + Past Perfect, Would + Base Verb</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            A completed past action or decision creates an ongoing state or result in the present time.
+                        </p>
+
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 text-xs space-y-2">
+                            <p class="text-slate-900 font-bold">"If I <strong class="text-indigo-700">had studied</strong> economics in university, I <strong class="text-indigo-700">would understand</strong> this financial report today."</p>
+                            <p class="text-[11px] text-slate-500 italic">&rarr; Reality: I didn't study economics in the past, so I don't understand the report now.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mixed Type B -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Mixed Type B</span>
+                            <span class="text-xs font-bold text-purple-600">Present &rarr; Past</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">If + Past Simple, Would have + V3</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            A permanent present trait or condition affected a specific completed action in the past.
+                        </p>
+
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-xs space-y-2">
+                            <p class="text-slate-900 font-bold">"If I <strong class="text-purple-700">were</strong> more confident, I <strong class="text-purple-700">would have applied</strong> for that grant last month."</p>
+                            <p class="text-[11px] text-slate-500 italic">&rarr; Reality: I am generally not confident, so I didn't apply for the grant last month.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Hypothetical Structures Toolkit -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Hypothetical Grammar Expansion Toolkit</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-emerald-700 font-bold block text-sm">Wish / If only</strong>
+                            <p class="text-slate-700 font-semibold">Wish + Past Simple (Present regret)<br>Wish + Past Perfect (Past regret)</p>
+                            <p class="text-slate-500 text-[11px]">"I <strong class="underline">wish governments prioritized</strong> clean energy."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-sky-700 font-bold block text-sm">It's high time...</strong>
+                            <p class="text-slate-700 font-semibold">It's high time + Subject + Past Simple</p>
+                            <p class="text-slate-500 text-[11px]">"It is high time humanity <strong class="underline">took</strong> decisive climate action."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-purple-700 font-bold block text-sm">Would rather...</strong>
+                            <p class="text-slate-700 font-semibold">Would rather + Subject + Past Simple</p>
+                            <p class="text-slate-500 text-[11px]">"I would rather municipalities <strong class="underline">invested</strong> in cycling."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Conditionals & Syntax Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your skills in real vs. unreal conditionals, inverted structures, alternative connectors, and mixed conditional forms.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the grammatically correct Band 8.0+ INVERTED form for: "If economic conditions should deteriorate further..."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Inversion drops \'if\' entirely.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">If should economic conditions deteriorate...</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Type 1 inversion drops \'if\' and front-places modal \'Should\' before subject.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Should economic conditions deteriorate further...</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Were is used for Type 2 hypothetical inversion.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Were economic conditions deteriorate further...</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Choose the correct connector: "<span class="text-indigo-600 underline">______</span> something is done to protect rainforests, they will disappear."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Unless\' means \'if... not\'. Since the main clause is negative, \'Unless something is done\' = \'If something is NOT done\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Unless</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Otherwise requires a prerequisite preceding clause.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Otherwise</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Provided that means \'on condition that\', which reverses the intended meaning.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Provided that</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the correct MIXED CONDITIONAL structure (Past action &rarr; Present result):
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This is Third Conditional (Past action -> Past result).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">If I had studied economics, I would have understood the report then.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Past Perfect in if-clause + would + base verb in main clause shows past action affecting present reality.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">If I had studied economics in university, I would understand this report now.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This is Second Conditional (Present unreal -> Present result).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">If I study economics in university, I understand this report now.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete with the correct Type 3 Inverted conditional: "<span class="text-indigo-600 underline">______</span> earlier, biodiversity loss would have been mitigated."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Were policies to be enacted is Type 2 unreal inversion.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Were proactive policies to be enacted</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Type 3 inversion uses \'Had + Subject + Past Participle\' (Had proactive policies been enacted).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Had proactive policies been enacted</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Should policies be enacted is Type 1 real inversion.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Should proactive policies be enacted</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            5. Complete with hypothetical past simple syntax: "It is high time governments <span class="text-indigo-600 underline">______</span> decisive measures on emission limits."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Base verb take is incorrect after It\'s high time + subject.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">take</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'It is high time + subject\' requires Past Simple (took) to express present urgency/regret.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">took</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Will take is ungrammatical after It\'s high time.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">will take</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Grammar & Syntax Suite</span>
+            <span>Module 3: Conditionals & Inversion Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        const conditionalMatrixData = [
+            {
+                id: "type_0", group: "real", name: "Zero Conditional",
+                formula: "If + Present Simple, Present Simple",
+                ifClause: "Present Simple (e.g., 'If temperature drops below 0°C')",
+                mainClause: "Present Simple (e.g., 'water freezes')",
+                stance: "Factual Truth / Universal Scientific Law",
+                example: "If temperature drops below 0°C, water freezes."
+            },
+            {
+                id: "type_1", group: "real", name: "First Conditional",
+                formula: "If + Present Simple, Will + V1",
+                ifClause: "Present Simple (e.g., 'If I save money every month')",
+                mainClause: "Will / Can / May + V1 (e.g., 'I will afford to move')",
+                stance: "Real & Highly Probable Future Condition",
+                example: "If I save money every month, I will afford to move."
+            },
+            {
+                id: "type_2", group: "unreal", name: "Second Conditional",
+                formula: "If + Past Simple, Would + V1",
+                ifClause: "Past Simple / Were (e.g., 'If the government wanted')",
+                mainClause: "Would / Could / Might + V1 (e.g., 'they would invest')",
+                stance: "Unreal / Hypothetical / Unlikely Present or Future",
+                example: "If the government wanted to improve education, they would invest heavily."
+            },
+            {
+                id: "type_3", group: "unreal", name: "Third Conditional",
+                formula: "If + Past Perfect, Would have + V3",
+                ifClause: "Past Perfect (e.g., 'If proactive policies had been enacted')",
+                mainClause: "Would have / Could have + V3 (e.g., 'loss would have been mitigated')",
+                stance: "Unreal Counterfactual Past (Cannot be changed)",
+                example: "If proactive policies had been enacted earlier, loss would have been mitigated."
+            },
+            {
+                id: "mixed_past_present", group: "mixed", name: "Mixed Conditional (Past &rarr; Present)",
+                formula: "If + Past Perfect, Would + V1",
+                ifClause: "Past Perfect (e.g., 'If I had studied economics in university')",
+                mainClause: "Would + V1 (e.g., 'I would understand this policy today')",
+                stance: "Past action affecting current present reality",
+                example: "If I had studied economics, I would understand this report now."
+            },
+            {
+                id: "mixed_present_past", group: "mixed", name: "Mixed Conditional (Present &rarr; Past)",
+                formula: "If + Past Simple, Would have + V3",
+                ifClause: "Past Simple State (e.g., 'If I were more confident')",
+                mainClause: "Would have + V3 (e.g., 'I would have applied for the grant')",
+                stance: "Permanent present state affecting past event outcome",
+                example: "If I were more confident, I would have applied for the grant last month."
+            }
+        ];
+
+        function filterConditionalMatrix(group) {
+            const pills = document.querySelectorAll('#conditionalFilters button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`cf-${group}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('conditionalGrid');
+            const filtered = group === 'all' ? conditionalMatrixData : conditionalMatrixData.filter(t => t.group === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectConditional('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded ${t.group === 'real' ? 'bg-indigo-100 text-indigo-800' : t.group === 'unreal' ? 'bg-purple-100 text-purple-800' : 'bg-emerald-100 text-emerald-800'}">${t.group}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.id}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs font-mono font-bold text-indigo-600 mb-2">${t.formula}</p>
+                        <p class="text-xs text-slate-600 italic">"${t.example}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function inspectConditional(id) {
+            const data = conditionalMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorCondTitle').innerText = data.name;
+            document.getElementById('inspectorCondFormula').innerText = `Formula: ${data.formula}`;
+            document.getElementById('inspectorIfClause').innerText = data.ifClause;
+            document.getElementById('inspectorMainClause').innerText = data.mainClause;
+            document.getElementById('inspectorReality').innerText = data.stance;
+        }
+
+        let currentLabMode = 'connector';
+
+        function setLabTransformMode(mode) {
+            currentLabMode = mode;
+            const connectorBtn = document.getElementById('mode-connector-btn');
+            const academicBtn = document.getElementById('mode-academic-btn');
+
+            if (mode === 'connector') {
+                connectorBtn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                academicBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                academicBtn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                connectorBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderConnectorsLab();
+        }
+
+        const connectorsDatabase = {
+            rainforest: {
+                standard: "If something is not done to protect rainforests, they will disappear.",
+                connector: "Unless something is done to protect rainforests, they will disappear.",
+                academic: "Provided that active conservation measures are maintained, rainforest ecosystems will survive.",
+                connExplanation: "Replaces negative 'if... not' with 'Unless + positive verb form'.",
+                acadExplanation: "Shift to positive prerequisite connector 'Provided that' with formal nominalization."
+            },
+            education: {
+                standard: "If the government wanted to improve education, they would invest heavily.",
+                connector: "Supposing the government wanted to improve education, they would invest heavily.",
+                academic: "On condition that education receives adequate funding, systemic improvements will materialize.",
+                connExplanation: "Replaces 'if' with 'Supposing' to frame a hypothetical scenario.",
+                acadExplanation: "Uses formal prepositional conjunction 'On condition that'."
+            },
+            biodiversity: {
+                standard: "If proactive policies had been enacted earlier, biodiversity loss would have been mitigated.",
+                connector: "Provided that proactive policies had been enacted earlier, biodiversity loss would have been mitigated.",
+                academic: "As long as proactive environmental frameworks are enforced, species degradation remains manageable.",
+                connExplanation: "Replaces 'if' with prerequisite connector 'Provided that'.",
+                acadExplanation: "Uses temporal condition connector 'As long as'."
+            },
+            transport: {
+                standard: "If municipalities do not invest in cycling infrastructure, congestion will increase.",
+                connector: "Municipalities need to invest in cycling infrastructure, otherwise congestion will increase.",
+                academic: "Urban centers must expand cycling networks; otherwise, traffic congestion will escalate.",
+                connExplanation: "Connects requirement to negative consequence using 'Otherwise'.",
+                acadExplanation: "Links independent academic clauses using 'otherwise'."
+            },
+            incase: {
+                standard: "If power fails unexpectedly, backup generators will turn on.",
+                connector: "Backup generators are installed in case power fails unexpectedly.",
+                academic: "Precautionary backup generators are maintained in case of sudden electrical outages.",
+                connExplanation: "'In case' expresses preparation for a potential future contingency, whereas 'If' expresses a direct reaction.",
+                acadExplanation: "Uses 'In case of + Noun Phrase' for high-band conciseness."
+            }
+        };
+
+        function renderConnectorsLab() {
+            const ctxKey = document.getElementById('labContextSelect').value;
+            const data = connectorsDatabase[ctxKey];
+
+            document.getElementById('labStandardText').innerText = data.standard;
+
+            if (currentLabMode === 'connector') {
+                document.getElementById('labTransformedBadge').innerText = "Alternative Connector Syntax";
+                document.getElementById('labTransformedText').innerText = data.connector;
+                document.getElementById('labTransformedDesc').innerText = "Streamlined clause connection using specialized conditional conjunctions.";
+                document.getElementById('labExplanationText').innerText = data.connExplanation;
+            } else {
+                document.getElementById('labTransformedBadge').innerText = "Band 8.0+ Formal Academic Shift";
+                document.getElementById('labTransformedText').innerText = data.academic;
+                document.getElementById('labTransformedDesc').innerText = "Formal academic register utilizing precise conditional frameworks.";
+                document.getElementById('labExplanationText').innerText = data.acadExplanation;
+            }
+        }
+
+        const inversionData = {
+            type1: {
+                type: "Type 1 Real Inversion (Should)",
+                standard: "If economic conditions should deteriorate further, central banks will intervene.",
+                inverted: "Should economic conditions deteriorate further, central banks will intervene.",
+                mechanism: "Omit 'if' and front-place modal auxiliary 'Should' before the subject."
+            },
+            type2: {
+                type: "Type 2 Unreal Inversion (Were)",
+                standard: "If municipalities were to invest heavily in cycling infrastructure, congestion would drop.",
+                inverted: "Were municipalities to invest heavily in cycling infrastructure, congestion would drop.",
+                mechanism: "Omit 'if' and front-place 'Were + Subject + to-infinitive'."
+            },
+            type3: {
+                type: "Type 3 Counterfactual Inversion (Had)",
+                standard: "If proactive policies had been enacted earlier, species loss would have been mitigated.",
+                inverted: "Had proactive policies been enacted earlier, species loss would have been mitigated.",
+                mechanism: "Omit 'if' and front-place past auxiliary 'Had' before the subject."
+            }
+        };
+
+        function switchInversionContext(typeKey) {
+            ['type1', 'type2', 'type3'].forEach(t => {
+                const btn = document.getElementById(`inv-btn-${t}`);
+                if (t === typeKey) {
+                    btn.className = "p-3.5 rounded-xl border border-indigo-500 bg-indigo-900/50 text-left transition-all";
+                } else {
+                    btn.className = "p-3.5 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all";
+                }
+            });
+
+            const data = inversionData[typeKey];
+            document.getElementById('inversionOutputBox').innerHTML = `
+                <div>
+                    <span class="text-[10px] font-extrabold uppercase text-amber-400 block mb-1">Standard 'If' Sentence</span>
+                    <p class="text-slate-300 italic font-semibold">"${data.standard}"</p>
+                </div>
+                <div class="pt-2 border-t border-slate-800">
+                    <span class="text-[10px] font-extrabold uppercase text-emerald-400 block mb-1">Inverted Band 8.0+ Structure</span>
+                    <p class="text-emerald-300 font-bold text-sm">"${data.inverted}"</p>
+                </div>
+                <p class="text-[11px] text-slate-400 pt-1 font-mono">&rarr; ${data.mechanism}</p>
+            `;
+        }
+
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        window.onload = function() {
+            filterConditionalMatrix('all');
+            inspectConditional('type_1');
+            renderConnectorsLab();
+            switchInversionContext('type1');
+        };
+    </script>
+</body>
+</html>

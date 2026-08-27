@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Forms Review Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 8 Extension: Future Tense Aspects & Projections
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Future Forms & Predictive Aspect Masterclass</h1>
+                <p class="text-indigo-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master all 9 Future Aspect Variations, Speculative Probability Structures (*likely to, bound to*), Future in the Past (*would, was going to*), and Band 8.0+ Task 1 Forecasting Formulas.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-aspects-matrix')">
+                    1. 9-Future Aspects Matrix 🚀
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-future-lab')">
+                    2. Future Aspect Transformer Lab 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-probability-engine')">
+                    3. Probability & Future in Past 🎯
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-task1-projections')">
+                    4. Task 1 Forecasting Toolkit 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Future Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: 9-FUTURE ASPECTS MATRIX -->
+            <div id="tab-aspects-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">The Complete Future System Matrix</h3>
+                        <p class="text-sm text-slate-600 font-medium">Filter by category to inspect formula mechanics, speaker stance, and usage rules across all future aspects.</p>
+                    </div>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Aspect Category:</span>
+                    <div class="flex flex-wrap gap-2" id="futureMatrixFilters">
+                        <button onclick="filterFutureMatrix('all')" id="fmf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All 9 Aspects</button>
+                        <button onclick="filterFutureMatrix('schedules')" id="fmf-schedules" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Timetables & Plans</button>
+                        <button onclick="filterFutureMatrix('continuous')" id="fmf-continuous" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Continuous Progress</button>
+                        <button onclick="filterFutureMatrix('perfect')" id="fmf-perfect" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Completed Benchmarks</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Grid Display -->
+                <div id="futureMatrixGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Future Inspector Box -->
+                <div id="futureInspector" class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorFutureTitle" class="text-xl font-bold">Future Inspector</h4>
+                        </div>
+                        <span id="inspectorFutureBadge" class="px-3 py-1 bg-indigo-900 text-indigo-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorFutureBody" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Grammatical Auxiliary Formula</strong>
+                            <p id="inspectorFormula" class="text-slate-300">Click a card above to inspect details.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Contextual Sentence Example</strong>
+                            <p id="inspectorExample" class="text-slate-300">Displays authentic usage example.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Speaker Stance & Time Marker</strong>
+                            <p id="inspectorStance" class="text-slate-300">Rules regarding time reference.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: FUTURE ASPECT TRANSFORMER LAB -->
+            <div id="tab-future-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Future Aspect Transformer</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a core scenario and toggle between spontaneous decision (*will*), prior plan (*going to*), completed benchmark (*future perfect*), and continuous progress (*will be -ing*).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Target Scenario Context:</label>
+                            <select id="labScenarioSelect" onchange="renderFutureLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="study">Scenario A: Higher Education & Degree Course</option>
+                                <option value="career">Scenario B: Corporate Career & Project Milestone</option>
+                                <option value="energy">Scenario C: Clean Energy Infrastructure</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Aspect Variation:</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button onclick="setLabAspect('will')" id="asp-will-btn" class="py-2.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Will (Offer/Decision)</button>
+                                <button onclick="setLabAspect('goingto')" id="asp-goingto-btn" class="py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Going to (Plan)</button>
+                                <button onclick="setLabAspect('perf')" id="asp-perf-btn" class="py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Future Perfect</button>
+                                <button onclick="setLabAspect('cont')" id="asp-cont-btn" class="py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Future Continuous</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Displays -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labActiveBadge">Will (Spontaneous Decision)</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labTransformedText" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labTransformedDesc">Auxiliary formula and function.</p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider">Time Frame & Benchmark Focus</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="labTimeBenchmarkText" class="text-sm font-extrabold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Specific time marker required for grammatical accuracy.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Grammatical Aspect Breakdown:</strong>
+                        <p id="labExplanationText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: PROBABILITY & FUTURE IN PAST -->
+            <div id="tab-probability-engine" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Future Probability & Future in the Past</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master likelihood structures (*bound to, likely to, unlikely to*) and past perspective future intentions (*would, was/were going to*).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Probability Matrix Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Probability Scale</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Likelihood & Certainty Structures</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Replace simple predictions (*will / might*) with precise probability adjectives followed by to-infinitives.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-900 font-bold block mb-0.5">90–100% Inevitability (bound to / certain to):</span>
+                                <p class="text-slate-900 font-semibold">"With glowing reviews, the movie <strong class="text-emerald-700 underline">is bound to be</strong> a major success."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-900 font-bold block mb-0.5">70–80% Probability (likely to):</span>
+                                <p class="text-slate-900 font-semibold">"Living costs in urban hubs <strong class="text-emerald-700 underline">are likely to escalate</strong> further."</p>
+                            </div>
+                            <div class="bg-rose-50 p-3.5 rounded-xl border border-rose-100">
+                                <span class="text-rose-900 font-bold block mb-0.5">10–20% Unlikelihood (unlikely to / doubtful whether):</span>
+                                <p class="text-slate-900 font-semibold">"Unfunded research initiatives <strong class="text-rose-700 underline">are unlikely to yield</strong> immediate breakthroughs."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future in the Past Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Retrospective View</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Future in the Past Mechanics</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Expressing a future action or intention viewed from a past vantage point (frequently unfulfilled or interrupted).
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Past Intention (was / were going to + V1):</span>
+                                <p class="text-slate-900 font-semibold">"They <strong class="text-indigo-700 underline">were going to fly</strong> to Paris, but flight cancellations forced a delay."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Past Belief (would + V1):</span>
+                                <p class="text-slate-900 font-semibold">"She assumed she <strong class="text-indigo-700 underline">would accept</strong> the corporate offer before changing her mind."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: TASK 1 FORECASTING TOOLKIT -->
+            <div id="tab-task1-projections" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">IELTS Task 1 Future Forecasting Toolkit</h3>
+                        <p class="text-sm text-slate-600 font-medium">Elevate graph descriptions extending into future years (e.g. up to 2040 or 2050) using passive predictive formulas.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Formula 1</span>
+                        <h4 class="font-bold text-slate-900 text-lg">is / are projected to + V1</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Reports statistical model forecasts with high academic neutrality.
+                        </p>
+
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <span class="text-indigo-800 font-bold block mb-0.5">Sample Graph Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"Solar power generation <strong class="text-indigo-700">is projected to climb</strong> to 45% by 2040."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Formula 2</span>
+                        <h4 class="font-bold text-slate-900 text-lg">is / are set to / on track to</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Highlights an ongoing trend moving steadily toward a expected future outcome.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Graph Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"Electric vehicle adoption <strong class="text-purple-700">is set to surpass</strong> traditional engines by 2035."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Formula 3</span>
+                        <h4 class="font-bold text-slate-900 text-lg">By [Year] + Subject + will have V3</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Establishes a completed benchmark quantity prior to a specific cutoff year.
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Graph Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700">By 2050, the urban population will have doubled</strong> in comparison to 2010 metrics."</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Future Forms Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your mastery of future aspects, future benchmarks, probabilities, and future in the past.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct Future Perfect Simple form: "By December 2030, researchers <span class="text-indigo-600 underline">______</span> the multi-stage trial."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Will complete is simple future, but \'By + future date\' requires Future Perfect.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">will complete</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'By + future time\' signals benchmark completion using Future Perfect Simple (will have completed).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">will have completed</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Will be completing is Future Continuous.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">will be completing</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Identify the structure in: "She thought she <span class="text-indigo-600 underline">would accept</span> the offer, but changed her mind."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'would + base verb\' expresses a past expectation/belief about a future outcome (Future in the Past).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Future in the Past</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Future Passive uses will/would + be + past participle.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Future Passive</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Future Perfect uses will + have + V3.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Future Perfect</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the best Band 8.0+ Task 1 forecasting formula: "Solar adoption <span class="text-indigo-600 underline">______</span> to reach 50% by 2040."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'is projected to\' is a standard academic passive forecasting formula for IELTS Task 1.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">is projected</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Is projecting is active voice.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">is projecting</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Choose the high-probability structure: "Given glowing critical reviews, the new documentary <span class="text-indigo-600 underline">______</span> win awards."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'is bound to\' indicates near-certain inevitability based on strong evidence.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">is bound to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Might indicates weak speculative possibility.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">might</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Is unlikely to indicates low probability.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">is unlikely to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Future Aspects Suite</span>
+            <span>Module 8: Future Forms Review Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Tab 1: Future Matrix Data */
+        const futureMatrixData = [
+            {
+                id: "pres_simple", group: "schedules", name: "Present Simple (Timetables)",
+                formula: "Verb / Verb + -s (Timetables)",
+                example: "The international flight departs at 08:30 AM tomorrow.",
+                stance: "Fixed official calendar event or timetable."
+            },
+            {
+                id: "pres_cont", group: "schedules", name: "Present Continuous (Arrangements)",
+                formula: "am / is / are + V-ing",
+                example: "The delegates are meeting with the minister on Friday.",
+                stance: "Definite personal arrangement with fixed time/place."
+            },
+            {
+                id: "going_to", group: "schedules", name: "be + going to + Verb (Intentions)",
+                formula: "am / is / are + going to + V1",
+                example: "The university is going to launch a new green campus.",
+                stance: "Prior intention, decision, or evidence-based prediction."
+            },
+            {
+                id: "will_simple", group: "schedules", name: "Future Simple (Will / Won't)",
+                formula: "will / won't + Base Verb",
+                example: "I will assist you with the laboratory setup.",
+                stance: "Spontaneous decision, offer, promise, or subjective belief."
+            },
+            {
+                id: "fut_cont", group: "continuous", name: "Future Continuous",
+                formula: "will + be + V-ing",
+                example: "At 10 AM tomorrow, the team will be conducting tests.",
+                stance: "Action in progress at a specific future moment."
+            },
+            {
+                id: "fut_passive", group: "continuous", name: "Future Passive",
+                formula: "will + be + Past Participle (V3)",
+                example: "The new guidelines will be published next week.",
+                stance: "Future action where object/result is emphasized."
+            },
+            {
+                id: "fut_perf", group: "perfect", name: "Future Perfect Simple",
+                formula: "will + have + Past Participle (V3)",
+                example: "By 2030, the company will have built five facilities.",
+                stance: "Action completed before a future benchmark time."
+            },
+            {
+                id: "fut_perf_cont", group: "perfect", name: "Future Perfect Continuous",
+                formula: "will + have + been + V-ing",
+                example: "By December, she will have been teaching for 20 years.",
+                stance: "Continuous duration benchmarked at a future point."
+            },
+            {
+                id: "fut_past", group: "perfect", name: "Future in the Past",
+                formula: "would + V1 / was-were going to + V1",
+                example: "She believed she would pass the exam with ease.",
+                stance: "Future expectation viewed retrospectively from past."
+            }
+        ];
+
+        function filterFutureMatrix(group) {
+            const pills = document.querySelectorAll('#futureMatrixFilters button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`fmf-${group}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('futureMatrixGrid');
+            const filtered = group === 'all' ? futureMatrixData : futureMatrixData.filter(t => t.group === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectFuture('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-indigo-100 text-indigo-800">${t.group}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.id}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs text-slate-600 italic mb-2">"${t.example}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function inspectFuture(id) {
+            const data = futureMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorFutureTitle').innerText = data.name;
+            document.getElementById('inspectorFutureBadge').innerText = `Category: ${data.group}`;
+            document.getElementById('inspectorFormula').innerText = data.formula;
+            document.getElementById('inspectorExample').innerText = `"${data.example}"`;
+            document.getElementById('inspectorStance').innerText = data.stance;
+        }
+
+        /* Tab 2: Future Lab Transformer Logic */
+        let currentLabAspect = 'will';
+
+        function setLabAspect(asp) {
+            currentLabAspect = asp;
+            ['will', 'goingto', 'perf', 'cont'].forEach(a => {
+                const btn = document.getElementById(`asp-${a}-btn`);
+                if (a === asp) {
+                    btn.className = "py-2.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                } else {
+                    btn.className = "py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                }
+            });
+            renderFutureLab();
+        }
+
+        const futureLabScenarios = {
+            study: {
+                will: {
+                    badge: "Will (Spontaneous Decision / Offer)",
+                    text: "I will enroll in the advanced economics course next term.",
+                    benchmark: "Time Marker: 'next term' (Spontaneous commitment)",
+                    explanation: "Expresses a decision made at the moment of speaking or a voluntary offer."
+                },
+                goingto: {
+                    badge: "Going to (Prior Intention)",
+                    text: "I am going to enroll in the advanced economics course next term.",
+                    benchmark: "Time Marker: 'next term' (Pre-planned intent)",
+                    explanation: "Expresses a prior intention or plan decided before the moment of speaking."
+                },
+                perf: {
+                    badge: "Future Perfect Simple (Completed Benchmark)",
+                    text: "By next term, I will have completed my preliminary coursework.",
+                    benchmark: "Time Marker: 'By + next term' (Completion deadline)",
+                    explanation: "Establishes a completed benchmark action prior to a specific future time cutoff."
+                },
+                cont: {
+                    badge: "Future Continuous (Ongoing Activity)",
+                    text: "This time next term, I will be attending daily economics lectures.",
+                    benchmark: "Time Marker: 'This time next term' (Active progress)",
+                    explanation: "Highlights an action that will be actively in progress at a specific future moment."
+                }
+            },
+            career: {
+                will: {
+                    badge: "Will (Spontaneous Decision)",
+                    text: "The director will approve the project proposal tomorrow.",
+                    benchmark: "Time Marker: 'tomorrow' (Prediction/Decision)",
+                    explanation: "Future Simple prediction based on personal judgment or decision."
+                },
+                goingto: {
+                    badge: "Going to (Evidence-Based Prediction)",
+                    text: "The director is going to approve the project proposal tomorrow.",
+                    benchmark: "Time Marker: 'tomorrow' (Present evidence exists)",
+                    explanation: "Prediction based on clear present evidence (e.g. positive budget reviews)."
+                },
+                perf: {
+                    badge: "Future Perfect Simple (Benchmark)",
+                    text: "By tomorrow evening, the director will have approved the project proposal.",
+                    benchmark: "Time Marker: 'By + tomorrow evening'",
+                    explanation: "Action will be fully finished prior to the evening cutoff."
+                },
+                cont: {
+                    badge: "Future Continuous (In Progress)",
+                    text: "Tomorrow at 3 PM, the director will be reviewing the project proposal.",
+                    benchmark: "Time Marker: 'Tomorrow at 3 PM'",
+                    explanation: "Highlights that the review activity will be actively happening at 3 PM."
+                }
+            },
+            energy: {
+                will: {
+                    badge: "Will (Future Assertion)",
+                    text: "Engineers will construct a new offshore wind farm.",
+                    benchmark: "Time Marker: 'in 2030'",
+                    explanation: "Simple future prediction regarding infrastructure."
+                },
+                goingto: {
+                    badge: "Going to (Planned Project)",
+                    text: "Engineers are going to construct a new offshore wind farm.",
+                    benchmark: "Time Marker: 'near future'",
+                    explanation: "Reflects an official planned development with allocated funds."
+                },
+                perf: {
+                    badge: "Future Perfect Simple (Benchmark)",
+                    text: "By 2030, engineers will have constructed the new offshore wind farm.",
+                    benchmark: "Time Marker: 'By 2030' (Target year)",
+                    explanation: "Construction will be fully completed before 2030."
+                },
+                cont: {
+                    badge: "Future Continuous (Ongoing In-Progress)",
+                    text: "Throughout 2029, engineers will be constructing the offshore wind farm.",
+                    benchmark: "Time Marker: 'Throughout 2029'",
+                    explanation: "Focuses on the continuous ongoing construction process during 2029."
+                }
+            }
+        };
+
+        function renderFutureLab() {
+            const scKey = document.getElementById('labScenarioSelect').value;
+            const data = futureLabScenarios[scKey][currentLabAspect];
+
+            document.getElementById('labActiveBadge').innerText = data.badge;
+            document.getElementById('labTransformedText').innerText = `"${data.text}"`;
+            document.getElementById('labTimeBenchmarkText').innerText = data.benchmark;
+            document.getElementById('labExplanationText').innerText = data.explanation;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            filterFutureMatrix('all');
+            inspectFuture('pres_simple');
+            renderFutureLab();
+        };
+    </script>
+</body>
+</html>

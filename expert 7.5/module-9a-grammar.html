@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Describing Mechanisms & Physical Appearance Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.4a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    </svg>
+                    Module 9 Extension: Technical Description & Spatial Language
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Describing Mechanisms & Physical Appearance</h1>
+                <p class="text-indigo-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Functional Mechanism Definitions (*the part which/that is used to...*), Physical Appearance Descriptors (*structure, dimensions, materials, form*), Estimation & Approximation Language, and IELTS Task 1 Process Protocols.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-mechanism-lab')">
+                    1. Mechanism & Function Lab ⚙️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-physical-appearance')">
+                    2. Physical Appearance Toolkit 📐
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-estimation-lab')">
+                    3. Estimation & Approximation 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-task1-process')">
+                    4. Task 1 Process Blueprints 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Mechanism Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: MECHANISM & FUNCTION LAB -->
+            <div id="tab-mechanism-lab" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Functional Mechanism Sentence Blueprints</h3>
+                        <p class="text-sm text-slate-600 font-medium">Learn how defining relative clauses (*which / that*) combine with functional verbs to describe mechanical operations accurately.</p>
+                    </div>
+                </div>
+
+                <!-- Master Blueprint Formula Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">The Master Mechanism Blueprint</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center text-xs font-mono font-bold">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-indigo-400 block text-[10px] uppercase">1. Component Noun</span>
+                            <span class="text-white text-sm">The part / device / valve</span>
+                        </div>
+                        <div class="bg-purple-900/80 p-3 rounded-xl border border-purple-500 text-purple-200">
+                            <span class="text-amber-400 block text-[10px] uppercase font-black">2. RELATIVE PRONOUN</span>
+                            <span class="text-white font-extrabold text-sm">which / that</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-emerald-400 block text-[10px] uppercase">3. Functional Verb Phrase</span>
+                            <span class="text-white text-sm">is used to filter / regulates</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-sky-400 block text-[10px] uppercase">4. Operational Target</span>
+                            <span class="text-white text-sm">water impurities / pressure</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center italic pt-1">
+                        &rarr; Combined Output: "The valve <strong class="text-amber-300">which regulates</strong> fluid pressure..."
+                    </p>
+                </div>
+
+                <!-- Interactive Mechanism Builder Tool -->
+                <div class="bg-white border-2 border-indigo-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    <div class="flex items-center justify-between border-b border-indigo-100 pb-4">
+                        <h4 class="font-extrabold text-slate-900 text-lg">Interactive Mechanism Sentence Builder</h4>
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-bold uppercase">Dynamic Technical Shift</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Target Machinery Component:</label>
+                            <select id="labMechComponentSelect" onchange="renderMechanismLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="filter">Filter Assembly (Cleaning / Separation)</option>
+                                <option value="turbine">Turbine Rotor (Power Generation)</option>
+                                <option value="sensor">Thermal Sensor (Temperature Monitoring)</option>
+                                <option value="piston">Hydraulic Piston (Pressure Compression)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Functional Verb Pattern:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="setMechVerbPattern('passive_purpose')" id="mvp-passive-btn" class="py-3 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-xs">is used to + V1</button>
+                                <button onclick="setMechVerbPattern('active_verb')" id="mvp-active-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Active Verb + Object</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div id="mechLabOutputBox" class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                        <!-- JS populates content -->
+                    </div>
+
+                    <!-- Explanatory Rule Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Technical Functional Verb Formulas:</strong>
+                        <p id="mechRuleExplanation" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+                </div>
+
+                <!-- 4 Functional Verb Patterns Matrix Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Pattern 1: Purpose</span>
+                        <h4 class="font-bold text-slate-900 text-base">is used to / is designed to + V1</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Passive purpose formulation focusing on the intended engineering role of the component.
+                        </p>
+                        <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 text-xs">
+                            <p class="text-slate-900 font-semibold">"The condenser is a device <strong class="text-indigo-700">which is designed to convert</strong> steam back into liquid."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Pattern 2: Capability</span>
+                        <h4 class="font-bold text-slate-900 text-base">allows / enables + Object + to + V1</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Describes how a specific mechanism facilitates subsequent operational steps.
+                        </p>
+                        <div class="bg-purple-50 p-3 rounded-xl border border-purple-100 text-xs">
+                            <p class="text-slate-900 font-semibold">"The pressure valve <strong class="text-purple-700">allows excess gas to escape</strong> safely from the chamber."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: PHYSICAL APPEARANCE TOOLKIT -->
+            <div id="tab-physical-appearance" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Physical Appearance Vocabulary Toolkit</h3>
+                        <p class="text-sm text-slate-600 font-medium">Categorized terminology for describing object Structure, Dimensions, Material Composition, and Geometric Form.</p>
+                    </div>
+                </div>
+
+                <!-- 4 Physical Category Deep Dive Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- 1. Structure -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">1. Structure</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">Component Assembly</h4>
+                            <ul class="space-y-2 text-xs text-slate-700">
+                                <li class="bg-indigo-50/70 p-2.5 rounded-xl border border-indigo-100">
+                                    <strong class="text-indigo-800 font-bold block">consists of / comprises:</strong>
+                                    "The unit comprises three main sections."
+                                </li>
+                                <li class="bg-indigo-50/70 p-2.5 rounded-xl border border-indigo-100">
+                                    <strong class="text-indigo-800 font-bold block">incorporates / features:</strong>
+                                    "It incorporates a cooling coil."
+                                </li>
+                                <li class="bg-indigo-50/70 p-2.5 rounded-xl border border-indigo-100">
+                                    <strong class="text-indigo-800 font-bold block">is divided into:</strong>
+                                    "The tank is divided into compartments."
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 italic">
+                            💡 Rule: 'comprises' DOES NOT take 'of'!
+                        </div>
+                    </div>
+
+                    <!-- 2. Dimensions -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">2. Size & Scale</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">Physical Measurement</h4>
+                            <ul class="space-y-2 text-xs text-slate-700">
+                                <li class="bg-purple-50/70 p-2.5 rounded-xl border border-purple-100">
+                                    <strong class="text-purple-800 font-bold block">in diameter / height / width:</strong>
+                                    "It measures 15 cm in diameter."
+                                </li>
+                                <li class="bg-purple-50/70 p-2.5 rounded-xl border border-purple-100">
+                                    <strong class="text-purple-800 font-bold block">magnified / to scale:</strong>
+                                    "Shown on a magnified scale."
+                                </li>
+                                <li class="bg-purple-50/70 p-2.5 rounded-xl border border-purple-100">
+                                    <strong class="text-purple-800 font-bold block">elongated / reduced:</strong>
+                                    "An elongated steel cylinder."
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 italic">
+                            💡 Use prepositions 'in' before dimension nouns.
+                        </div>
+                    </div>
+
+                    <!-- 3. Material -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">3. Material</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">Composition Terms</h4>
+                            <ul class="space-y-2 text-xs text-slate-700">
+                                <li class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100">
+                                    <strong class="text-emerald-800 font-bold block">constructed from / made of:</strong>
+                                    "Constructed from reinforced alloy."
+                                </li>
+                                <li class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100">
+                                    <strong class="text-emerald-800 font-bold block">formed by / constituted of:</strong>
+                                    "Formed by layers of fiberglass."
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 italic">
+                            💡 Use 'made of' for intact raw substances.
+                        </div>
+                    </div>
+
+                    <!-- 4. Form -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-amber-100 text-amber-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">4. Form & Shape</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">Geometric Appearance</h4>
+                            <ul class="space-y-2 text-xs text-slate-700">
+                                <li class="bg-amber-50/70 p-2.5 rounded-xl border border-amber-100">
+                                    <strong class="text-amber-800 font-bold block">shaped like / resembles:</strong>
+                                    "It resembles a hollow funnel."
+                                </li>
+                                <li class="bg-amber-50/70 p-2.5 rounded-xl border border-amber-100">
+                                    <strong class="text-amber-800 font-bold block">cylindrical / spherical / conical:</strong>
+                                    "A cylindrical storage vessel."
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 italic">
+                            💡 Use adjective forms ending in '-ical' or '-shaped'.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: ESTIMATION & APPROXIMATION -->
+            <div id="tab-estimation-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Estimation & Approximation Language</h3>
+                        <p class="text-sm text-slate-600 font-medium">Phrases for approximating quantities, open series (*and so on*), and categorical expressions (*kinds of / types of*).</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Approximation Switcher Engine -->
+                <div class="bg-white border-2 border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Data Context:</label>
+                            <select id="labEstimationContextSelect" onchange="renderEstimationLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-sky-500 focus:border-sky-500">
+                                <option value="temp">Operating Temperature (100°C)</option>
+                                <option value="list">Processed Recycled Materials (Metal, plastic, glass)</option>
+                                <option value="similar">Experimental Prototypes Comparison</option>
+                                <option value="category">Renewable Energy Systems Evaluation</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Toggle Academic Approximation:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="setEstimationMode('exact')" id="est-exact-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Exact / Raw Claim</button>
+                                <button onclick="setEstimationMode('approx')" id="est-approx-btn" class="py-3 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs">Academic Approximation</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Unmodified Base Sentence</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labExactOutput" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Raw claim stating absolute figures or rigid lists.</p>
+                        </div>
+
+                        <div class="bg-sky-50/70 p-6 rounded-2xl border border-sky-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-sky-200 text-sky-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labApproxBadge">Academic Approximation</span>
+                            <div class="bg-white p-4 rounded-xl border border-sky-100 shadow-2xs">
+                                <p id="labApproxOutput" class="text-base sm:text-lg font-bold text-sky-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labApproxDesc">Hedged data analysis using estimation vocabulary.</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule Explanation -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Estimation Phrase Mechanics:</strong>
+                        <p id="labEstimationRuleText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 4: TASK 1 PROCESS BLUEPRINTS -->
+            <div id="tab-task1-process" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-teal-100 p-3.5 rounded-2xl text-teal-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">IELTS Task 1 Technical Process Blueprints</h3>
+                        <p class="text-sm text-slate-600 font-medium">Standardized blueprints for describing industrial manufacturing, water treatment, and mechanical process diagrams.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 1</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Initial Stage Ingestion</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Describes raw material intake into the initial mechanical component.
+                        </p>
+
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <span class="text-indigo-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">In the initial stage, raw limestone is fed into a grinding mill which crushes</strong> the rock into powder."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 2</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Sequential Participle Linking</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Links two consecutive mechanical steps using passive past participle fronting.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-purple-700">Having been heated in a high-temperature kiln, the liquid compound is directed to</strong> cooling chambers."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 3</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Component Purpose Link</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Integrates physical appearance descriptors with operational function.
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700">The mixture enters a cylindrical chamber, which incorporates rotating blades designed to</strong> homogenize the liquid."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Mechanism & Description Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to construct functional relative clauses, apply physical description vocabulary, and use estimation phrases.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct defining relative clause describing a component's mechanical function:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'which is used to filter...\' forms a defining relative clause explaining functional purpose.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The valve is a device which is used to regulate gas pressure.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Missing relative pronoun and verb structure.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The valve is a device regulating gas pressure.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Non-defining clause with commas is not used for defining functional definitions.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The valve, which regulates gas pressure, is small.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Identify the grammatically INCORRECT sentence regarding the verb **comprise**:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Comprise\' DOES NOT take the preposition \'of\'. (Write \'The unit comprises three parts\', NOT \'comprises of\').')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The assembly unit comprises of three distinct modules.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This sentence is grammatically correct.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The assembly unit comprises three distinct modules.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'consists of\' is grammatically correct.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The assembly unit consists of three distinct modules.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the correct estimation modifier for placing BEFORE a number (e.g. 100°C):
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Approximately\', \'about\', and \'around\' are placed before numbers to show estimation.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">approximately 100°C</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'and so on\' is placed at the end of a series list.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">100°C and so on</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'kinds of\' modifies category nouns, not numeric measurements.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">kinds of 100°C</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. What does the open series phrase **and so on** indicate at the end of a list?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'and so on\' signifies that additional unlisted items exist in the same category.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">It indicates that further unlisted examples exist in the series.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. It does not state an exact mathematical figure.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">It states an exact mathematical measurement.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Technical & Spatial Suite</span>
+            <span>Module 9 Extension: Describing Mechanisms Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Tab 1: Mechanism Lab Logic */
+        let currentMechVerbPattern = 'passive_purpose';
+
+        function setMechVerbPattern(pat) {
+            currentMechVerbPattern = pat;
+            const passiveBtn = document.getElementById('mvp-passive-btn');
+            const activeBtn = document.getElementById('mvp-active-btn');
+
+            if (pat === 'passive_purpose') {
+                passiveBtn.className = "py-3 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-xs";
+                activeBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                activeBtn.className = "py-3 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-xs";
+                passiveBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderMechanismLab();
+        }
+
+        const mechanismData = {
+            filter: {
+                passive_purpose: {
+                    sentence: "The filter assembly is a vital component which is used to remove solid impurities from the water.",
+                    desc: "Passive Purpose: Relative pronoun 'which' + passive 'is used to' + base verb 'remove'.",
+                    rule: "Formula: Component Noun + which/that + is used to + V1"
+                },
+                active_verb: {
+                    sentence: "The filter assembly is a vital component which removes solid impurities from the water.",
+                    desc: "Active Verb: Relative pronoun 'which' + active present simple verb 'removes'.",
+                    rule: "Formula: Component Noun + which/that + Present Simple Verb"
+                }
+            },
+            turbine: {
+                passive_purpose: {
+                    sentence: "The turbine rotor is a mechanical device which is designed to convert steam energy into rotational power.",
+                    desc: "Passive Purpose: 'which is designed to convert'.",
+                    rule: "Formula: Device Noun + which/that + is designed to + V1"
+                },
+                active_verb: {
+                    sentence: "The turbine rotor is a mechanical device which drives the generator to produce electricity.",
+                    desc: "Active Verb: 'which drives the generator'.",
+                    rule: "Formula: Device Noun + which/that + Action Verb"
+                }
+            },
+            sensor: {
+                passive_purpose: {
+                    sentence: "The thermal sensor is an electronic unit which is calibrated to monitor real-time chamber temperature.",
+                    desc: "Passive Purpose: 'which is calibrated to monitor'.",
+                    rule: "Formula: Unit Noun + which/that + is calibrated/intended to + V1"
+                },
+                active_verb: {
+                    sentence: "The thermal sensor is an electronic unit which detects thermal spikes before overheating occurs.",
+                    desc: "Active Verb: 'which detects thermal spikes'.",
+                    rule: "Formula: Unit Noun + which/that + Detect/Measure Verb"
+                }
+            },
+            piston: {
+                passive_purpose: {
+                    sentence: "The hydraulic piston is a cylindrical component which is engineered to compress hydraulic fluid.",
+                    desc: "Passive Purpose: 'which is engineered to compress'.",
+                    rule: "Formula: Component Noun + which/that + is engineered to + V1"
+                },
+                active_verb: {
+                    sentence: "The hydraulic piston is a cylindrical component which exerts pressure onto the fluid chamber.",
+                    desc: "Active Verb: 'which exerts pressure'.",
+                    rule: "Formula: Component Noun + which/that + Transitive Action Verb"
+                }
+            }
+        };
+
+        function renderMechanismLab() {
+            const compKey = document.getElementById('labMechComponentSelect').value;
+            const data = mechanismData[compKey][currentMechVerbPattern];
+
+            document.getElementById('mechLabOutputBox').innerHTML = `
+                <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max">Generated Technical Definition</span>
+                <p class="text-base sm:text-lg font-bold text-slate-900 pt-2 font-mono">"${data.sentence}"</p>
+                <p class="text-xs text-slate-600 pt-1">&rarr; ${data.desc}</p>
+            `;
+            document.getElementById('mechRuleExplanation').innerText = data.rule;
+        }
+
+        /* Tab 3: Estimation Lab Logic */
+        let currentEstimationMode = 'approx';
+
+        function setEstimationMode(mode) {
+            currentEstimationMode = mode;
+            const exactBtn = document.getElementById('est-exact-btn');
+            const approxBtn = document.getElementById('est-approx-btn');
+
+            if (mode === 'exact') {
+                exactBtn.className = "py-3 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs";
+                approxBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                approxBtn.className = "py-3 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs";
+                exactBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderEstimationLab();
+        }
+
+        const estimationScenarios = {
+            temp: {
+                exact: "The chamber temperature reached 100°C during the second phase.",
+                approx: "The chamber temperature reached approximately / about / around 100°C during the second phase.",
+                rule: "Place 'approximately', 'about', or 'around' directly BEFORE numbers or measurements to state an estimate."
+            },
+            list: {
+                exact: "The machine processes metal, plastic, and glass [end of list].",
+                approx: "The machine processes metal, plastic, glass and so on.",
+                rule: "Place 'and so on' (or 'etc.') at the END of a list to indicate further unlisted examples in the series."
+            },
+            similar: {
+                exact: "The two experimental prototypes are identical in design.",
+                approx: "The two experimental prototypes are more or less identical in design.",
+                rule: "Place 'more or less' BEFORE an adjective or noun phrase to convey approximate similarity."
+            },
+            category: {
+                exact: "The survey evaluated renewable energy systems.",
+                approx: "The survey evaluated several kinds of / types of renewable energy systems.",
+                rule: "Place 'kinds of' or 'types of' BEFORE a noun to indicate categorical classification."
+            }
+        };
+
+        function renderEstimationLab() {
+            const ctxKey = document.getElementById('labEstimationContextSelect').value;
+            const data = estimationScenarios[ctxKey];
+
+            document.getElementById('labExactOutput').innerText = `"${data.exact}"`;
+            document.getElementById('labApproxOutput').innerText = `"${data.approx}"`;
+            document.getElementById('labEstimationRuleText').innerText = data.rule;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            renderMechanismLab();
+            renderEstimationLab();
+        };
+    </script>
+</body>
+</html>

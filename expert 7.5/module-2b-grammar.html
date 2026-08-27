@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Clauses & Clause Reduction Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-teal-950 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                    Module 2 Extension: Complex Syntax & Conciseness
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Relative Clauses & Clause Reduction</h1>
+                <p class="text-teal-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Defining vs. Non-Defining Clause Rules, Preposition Fronting (*to which*, *in which*), and Participle/Infinitive Clause Reductions for Band 8.0+ Academic Writing.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-pronouns-matrix')">
+                    1. Relative Pronoun Matrix 🔗
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-defining-types')">
+                    2. Defining vs Non-Defining ⚖️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-reduction-lab')">
+                    3. Live Reduction Lab ✂️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-preposition-fronting')">
+                    4. Preposition Fronting 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Syntax Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <div id="tab-pronouns-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Relative Pronouns & Relative Adverbs Reference</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a pronoun element to inspect antecedents, grammatical roles (Subject vs Object), and academic usage rules.</p>
+                    </div>
+                </div>
+
+                <!-- Pronoun Category Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Element Type:</span>
+                    <div class="flex flex-wrap gap-2" id="pronounFilters">
+                        <button onclick="filterPronounMatrix('all')" id="prf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All Relative Forms</button>
+                        <button onclick="filterPronounMatrix('people')" id="prf-people" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">People (Who/Whom/Whose)</button>
+                        <button onclick="filterPronounMatrix('things')" id="prf-things" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Things/Concepts (Which/That)</button>
+                        <button onclick="filterPronounMatrix('adverbs')" id="prf-adverbs" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Adverbs (Where/When/Why)</button>
+                    </div>
+                </div>
+
+                <div id="pronounGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Pronoun Inspector Box -->
+                <div id="pronounInspector" class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorPronounTitle" class="text-xl font-bold">Pronoun Inspector</h4>
+                        </div>
+                        <span id="inspectorRoleBadge" class="px-3 py-1 bg-indigo-900 text-indigo-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorPronounBody" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Target Antecedent & Function</strong>
+                            <p id="inspectorAntecedent" class="text-slate-300">Click a card to inspect grammar details.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Standard Sentence Example</strong>
+                            <p id="inspectorExample" class="text-slate-300">Displays contextual usage.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Omission & Formal Rules</strong>
+                            <p id="inspectorRule" class="text-slate-300">When the pronoun can be omitted or substituted.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-defining-types" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-teal-100 p-3.5 rounded-2xl text-teal-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Defining vs Non-Defining Clauses</h3>
+                        <p class="text-sm text-slate-600 font-medium">Side-by-side comparative mechanics: essential identification vs. incidental extra information.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Defining Card -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-extrabold uppercase tracking-wider">Essential Clause</span>
+                            <span class="text-xs font-bold text-indigo-600">No Commas ❌</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Defining Relative Clauses</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Provides essential identification. Removing this clause alters the sentence core or leaves it ambiguous.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-800 font-bold block mb-0.5">Subject Pronoun Example:</span>
+                                <p class="text-slate-900 font-semibold">"This is the research report <strong class="text-indigo-700 underline">that was published yesterday</strong>."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-800 font-bold block mb-0.5">Object Pronoun Omission (Contact Clause):</span>
+                                <p class="text-slate-900 font-semibold">"The professor <strong class="text-indigo-700 underline">[whom] we interviewed</strong> was very knowledgeable."</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-600 space-y-1">
+                            <p>✔️ <strong>'That' Substitution:</strong> Fully permitted for both <em>who</em> and <em>which</em>.</p>
+                            <p>✔️ <strong>Object Omission:</strong> Allowed when the pronoun acts as the object of the clause.</p>
+                        </div>
+                    </div>
+
+                    <!-- Non-Defining Card -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-extrabold uppercase tracking-wider">Non-Essential Detail</span>
+                            <span class="text-xs font-bold text-purple-600">Requires Commas ✔️</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Non-Defining Relative Clauses</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Adds extra, non-essential commentary. The antecedent is already fully identified; removing the clause leaves a complete, unambiguous sentence.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Extra Info Example:</span>
+                                <p class="text-slate-900 font-semibold">"The new facility<strong class="text-purple-700">, which cost $5 million,</strong> will open next month."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Sentential 'Which' (Modifies Whole Clause):</span>
+                                <p class="text-slate-900 font-semibold">"The policy was approved unanimously<strong class="text-purple-700">, which surprised everyone</strong>."</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-600 space-y-1">
+                            <p>❌ <strong>'That' Substitution:</strong> FORBIDDEN! Never replace <em>which</em> or <em>who</em> with <em>that</em> in non-defining clauses.</p>
+                            <p>❌ <strong>Pronoun Omission:</strong> FORBIDDEN! Relative pronouns can NEVER be dropped.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-reduction-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 0L5 5m4.121 4.121L5 19"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Clause Reduction Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a full relative clause context and toggle between full syntax and reduced participle/infinitive structures.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Target Context:</label>
+                            <select id="reductionContextSelect" onchange="renderReductionLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="active_participle">Active Participle (-ing): "Students who study daily..."</option>
+                                <option value="passive_participle">Passive Participle (V3): "The report which was written..."</option>
+                                <option value="adj_phrase">Adjective Phrase: "The manager who is responsible..."</option>
+                                <option value="infinitive_duty">Infinitive (to + V1): "The person who you should talk to..."</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Toggle Clause Density:</label>
+                            <div class="flex gap-2">
+                                <button onclick="setReductionState(false)" id="red-full-btn" class="flex-1 py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Full Relative Clause</button>
+                                <button onclick="setReductionState(true)" id="red-reduced-btn" class="flex-1 py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Reduced Concise Form</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparative Display Box -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Full Sentence Syntax</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="fullOutputText" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Contains explicit relative pronoun + finite auxiliary/main verb.</p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider">Reduced Output Structure</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="reducedOutputText" class="text-base sm:text-lg font-bold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Streamlined academic non-finite or adjective phrase.</p>
+                        </div>
+                    </div>
+
+                    <!-- Grammatical Mechanism Explanation Box -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Reduction Mechanism Breakdown:</strong>
+                        <p id="reductionMechanismText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-preposition-fronting" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Band 8.0+ Preposition Fronting</h3>
+                        <p class="text-sm text-slate-600 font-medium">Elevate informal "dangling prepositions" into formal academic fronted structures (*to which*, *in which*, *upon which*).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Preposition Pattern 1 -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Degree & Extent</span>
+                        <h4 class="font-bold text-slate-900 text-lg">The degree / extent to which...</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Replaces informal ending prepositions like <em>"the extent that it works to"</em>.</p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Informal / Dangling:</span>
+                                <p class="text-slate-700">"This shows the degree that technology changes society <strong class="underline font-bold">to</strong>."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Band 8.0+ Fronted Form:</span>
+                                <p class="text-slate-900 font-semibold">"This illustrates <strong class="text-indigo-700">the degree to which</strong> technology transforms society."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preposition Pattern 2 -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Foundation & Basis</span>
+                        <h4 class="font-bold text-slate-900 text-lg">The basis / platform upon which...</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Replaces informal endings like <em>"the idea they built it on"</em>.</p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Informal / Dangling:</span>
+                                <p class="text-slate-700">"These are the principles that democratic systems rely <strong class="underline font-bold">on</strong>."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">✔️ Band 8.0+ Fronted Form:</span>
+                                <p class="text-slate-900 font-semibold">"These are the core principles <strong class="text-purple-700">upon which</strong> democratic systems rely."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preposition Pattern 3 -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Means & Instrument</span>
+                        <h4 class="font-bold text-slate-900 text-lg">The means by which...</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Replaces informal phrases like <em>"the way that they fix it by"</em>.</p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Informal / Dangling:</span>
+                                <p class="text-slate-700">"We need a method that we can measure progress <strong class="underline font-bold">by</strong>."</p>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <span class="text-teal-800 font-bold block mb-0.5">✔️ Band 8.0+ Fronted Form:</span>
+                                <p class="text-slate-900 font-semibold">"We require a valid metric <strong class="text-teal-800">by which to measure</strong> progress."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Relative Syntax Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to handle defining vs non-defining punctuation, clause reductions, and preposition fronting.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Which sentence is grammatically correct for a NON-DEFINING relative clause?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Non-defining clauses cannot use \'that\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The project, that was started in 2020, failed.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Non-defining relative clauses must use commas and \'which\' (never \'that\').')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The project, which was started in 2020, failed.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Missing mandatory commas enclosing non-defining information.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The project which was started in 2020 failed.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Reduce this clause: "The reason <span class="text-indigo-600 underline">which was given</span> for the delay was unacceptable."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Drop relative pronoun \'which\' and auxiliary \'was\', leaving the past participle \'given\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The reason given for the delay was unacceptable.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Adding \'giving\' changes the passive sense to active.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The reason giving for the delay was unacceptable.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Unnecessary inclusion of \'being\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The reason being given for the delay was unacceptable.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the Band 8.0+ preposition-fronted equivalent for: "The topic that we talked about."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Preposition fronting cannot use \'that\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The topic about that we talked.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Preposition fronting places preposition before \'which\' (about which we spoke).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The topic about which we spoke.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Leaving preposition at the end is dangling/informal.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">The topic which we spoke about.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. When can a relative pronoun be completely OMITTED from a defining relative clause?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Object relative pronouns (contact clauses) can be omitted when the subject follows them.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">When the relative pronoun acts as the OBJECT of the relative clause.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. If the pronoun is the SUBJECT, dropping it leaves an ungrammatical verb without a subject.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">When the relative pronoun acts as the SUBJECT of the relative clause.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Pronouns in non-defining clauses can never be omitted.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">When the sentence has commas enclosing it.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Grammar & Syntax Suite</span>
+            <span>Module 2 Extension: Relative Clauses & Reduction</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        const pronounMatrixData = [
+            {
+                id: "who", group: "people", name: "Who",
+                antecedent: "People (Subject Role)", role: "Subject of Clause",
+                example: "The scientist who won the Nobel Prize delivered a lecture.",
+                omission: "Cannot be omitted when acting as subject. Can be replaced by 'that' in defining clauses.",
+                formal: "Preferred in formal academic register over 'that' for human subjects."
+            },
+            {
+                id: "whom", group: "people", name: "Whom",
+                antecedent: "People (Object Role)", role: "Object of Clause or Preposition",
+                example: "The researcher whom we interviewed provided invaluable data.",
+                omission: "Can be omitted in informal defining clauses. Mandatory after prepositions (e.g., 'to whom').",
+                formal: "Essential in formal academic preposition fronting."
+            },
+            {
+                id: "whose", group: "people", name: "Whose",
+                antecedent: "Possessive (People or Things)", role: "Possessive Determiner",
+                example: "Countries whose economies depend on oil face severe risks.",
+                omission: "Cannot be omitted under any circumstances.",
+                formal: "Applies to both human individuals and inanimate entities/countries."
+            },
+            {
+                id: "which", group: "things", name: "Which",
+                antecedent: "Things, Concepts, or Whole Clauses", role: "Subject or Object",
+                example: "The policy, which was enacted last year, reduced emissions.",
+                omission: "Omittable if object in defining clause. Cannot be omitted in non-defining clauses.",
+                formal: "Mandatory in non-defining clauses and preposition fronting."
+            },
+            {
+                id: "that", group: "things", name: "That",
+                antecedent: "People or Things (Defining Only)", role: "Subject or Object",
+                example: "The data that was collected supports our primary hypothesis.",
+                omission: "Omittable if object of defining clause. FORBIDDEN in non-defining clauses with commas.",
+                formal: "Informal for people; standard for restrictive defining clauses."
+            },
+            {
+                id: "where", group: "adverbs", name: "Where",
+                antecedent: "Place / Location", role: "Relative Adverb (= in/at which)",
+                example: "The laboratory where the experiments took place is modern.",
+                omission: "Can be replaced by 'in which' or 'at which' for formal academic style.",
+                formal: "Use 'in which' or 'at which' for rigorous formal publication."
+            },
+            {
+                id: "when", group: "adverbs", name: "When",
+                antecedent: "Time / Period", role: "Relative Adverb (= on/in/at which)",
+                example: "The decade when industrial growth peaked was the 1990s.",
+                omission: "Can be replaced by 'in/during which' in academic contexts.",
+                formal: "Use 'during which' or 'in which' for temporal precision."
+            },
+            {
+                id: "why", group: "adverbs", name: "Why",
+                antecedent: "Reason", role: "Relative Adverb (= for which)",
+                example: "The reason why the experiment failed remains uncertain.",
+                omission: "Often omitted or replaced by 'that' or 'for which'.",
+                formal: "Use 'for which' in formal academic writing."
+            }
+        ];
+
+        function filterPronounMatrix(group) {
+            const pills = document.querySelectorAll('#pronounFilters button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`prf-${group}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('pronounGrid');
+            const filtered = group === 'all' ? pronounMatrixData : pronounMatrixData.filter(t => t.group === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectPronoun('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-indigo-100 text-indigo-800">${t.group}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.role}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-1">${t.name}</h4>
+                        <p class="text-xs text-slate-600 italic mb-2">"${t.example}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function inspectPronoun(id) {
+            const data = pronounMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorPronounTitle').innerText = `Pronoun: ${data.name}`;
+            document.getElementById('inspectorRoleBadge').innerText = `Role: ${data.role}`;
+            document.getElementById('inspectorAntecedent').innerText = data.antecedent;
+            document.getElementById('inspectorExample').innerText = `"${data.example}"`;
+            document.getElementById('inspectorRule').innerHTML = `<strong>Omission:</strong> ${data.omission}<br><strong>Academic Style:</strong> ${data.formal}`;
+        }
+
+        let isReduced = false;
+
+        function setReductionState(val) {
+            isReduced = val;
+            const fullBtn = document.getElementById('red-full-btn');
+            const reducedBtn = document.getElementById('red-reduced-btn');
+
+            if (val) {
+                reducedBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                fullBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                fullBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                reducedBtn.className = "flex-1 py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderReductionLab();
+        }
+
+        const reductionDatabase = {
+            active_participle: {
+                full: "Students who study daily achieve higher academic results.",
+                reduced: "Students studying daily achieve higher academic results.",
+                mechanism: "Drop relative pronoun ('who') + convert active finite verb ('study') into active present participle ('studying')."
+            },
+            passive_participle: {
+                full: "The report which was written by our manager contained key findings.",
+                reduced: "The report written by our manager contained key findings.",
+                mechanism: "Drop relative pronoun ('which') + auxiliary verb ('was'). Keep passive past participle ('written')."
+            },
+            adj_phrase: {
+                full: "The manager who is responsible for the project scheduled a meeting.",
+                reduced: "The manager responsible for the project scheduled a meeting.",
+                mechanism: "Drop relative pronoun ('who') + auxiliary 'be' verb ('is'), converting clause into an adjective phrase."
+            },
+            infinitive_duty: {
+                full: "The representative who you should speak to is the director.",
+                reduced: "The representative to speak to is the director.",
+                mechanism: "Replace relative modal clause ('who you should speak to') with infinitive phrase of obligation ('to speak to')."
+            }
+        };
+
+        function renderReductionLab() {
+            const ctxKey = document.getElementById('reductionContextSelect').value;
+            const data = reductionDatabase[ctxKey];
+
+            document.getElementById('fullOutputText').innerText = data.full;
+            document.getElementById('reducedOutputText').innerText = isReduced ? data.reduced : data.full;
+            document.getElementById('reductionMechanismText').innerText = data.mechanism;
+        }
+
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        window.onload = function() {
+            filterPronounMatrix('all');
+            inspectPronoun('who');
+            renderReductionLab();
+        };
+    </script>
+</body>
+</html>

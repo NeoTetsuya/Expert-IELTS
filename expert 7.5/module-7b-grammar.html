@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepositional Relationships & Functions Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(13, 148, 136, 0.18);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(13, 148, 136, 0.4); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.3); }
+            70% { border-color: rgba(13, 148, 136, 0); box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+            100% { border-color: rgba(13, 148, 136, 0); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-teal-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-teal-950 to-indigo-950 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    Module 7 Extension: Prepositional Syntax & Precision
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Prepositional Relationships Masterclass</h1>
+                <p class="text-teal-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master the 8 Grammatical Functional Categories (*Comparison, Direction, Place, Possession, Purpose, Time, Agency, Source*), Task 1 Data Prepositions (*increase by vs. rise to*), and Academic Dependent Collocations.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 border-b-4 border-teal-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-category-matrix')">
+                    1. 8-Category Matrix 🧭
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-preposition-lab')">
+                    2. Preposition Switcher Lab 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-task1-prepositions')">
+                    3. Task 1 Data Prepositions 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-dependent-collocations')">
+                    4. Dependent Collocations 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Prepositions Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: 8-CATEGORY MATRIX -->
+            <div id="tab-category-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-teal-100 p-3.5 rounded-2xl text-teal-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">8 Functional Prepositional Categories</h3>
+                        <p class="text-sm text-slate-600 font-medium">Click on any category pill or card to inspect key prepositions, grammatical rules, and academic examples.</p>
+                    </div>
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Category:</span>
+                    <div class="flex flex-wrap gap-2" id="prepMatrixFilters">
+                        <button onclick="filterPrepMatrix('all')" id="pmf-all" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-teal-600 text-white shadow-xs">All 8 Categories</button>
+                        <button onclick="filterPrepMatrix('comparison')" id="pmf-comparison" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Comparison</button>
+                        <button onclick="filterPrepMatrix('direction')" id="pmf-direction" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Direction</button>
+                        <button onclick="filterPrepMatrix('place')" id="pmf-place" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Place</button>
+                        <button onclick="filterPrepMatrix('possession')" id="pmf-possession" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Possession</button>
+                        <button onclick="filterPrepMatrix('purpose')" id="pmf-purpose" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Purpose</button>
+                        <button onclick="filterPrepMatrix('time')" id="pmf-time" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Time</button>
+                        <button onclick="filterPrepMatrix('agency')" id="pmf-agency" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Agency</button>
+                        <button onclick="filterPrepMatrix('source')" id="pmf-source" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Source</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Grid Display -->
+                <div id="prepMatrixGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Inspector Box -->
+                <div id="prepInspector" class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-teal-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorPrepTitle" class="text-xl font-bold">Category Inspector</h4>
+                        </div>
+                        <span id="inspectorPrepBadge" class="px-3 py-1 bg-teal-900 text-teal-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorPrepBody" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-teal-400 block font-bold text-sm">Key Preposition Terms</strong>
+                            <p id="inspectorTerms" class="text-slate-300">Click a card to inspect details.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Contextual Sentence Example</strong>
+                            <p id="inspectorExample" class="text-slate-300">Displays authentic usage example.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Academic Usage Rule</strong>
+                            <p id="inspectorRule" class="text-slate-300">Specific rule or pitfall to avoid.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: PREPOSITION SWITCHER LAB -->
+            <div id="tab-preposition-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Preposition Switcher Transformer</h3>
+                        <p class="text-sm text-slate-600 font-medium">Toggle switches on each card to compare subtle meaning shifts when swapping prepositional functions.</p>
+                    </div>
+                </div>
+
+                <div class="border-2 border-teal-200 rounded-3xl bg-teal-50/30 overflow-hidden shadow-sm p-6 space-y-5">
+                    
+                    <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs flex items-start gap-3">
+                        <div class="p-1.5 bg-teal-100 rounded-full text-teal-700 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">Preposition Shift Trick</p>
+                            <p class="text-xs sm:text-sm font-bold text-teal-900">
+                                Toggle the switches to observe how changing prepositions alters <span class="text-indigo-600">Direction vs. Static Location</span>, <span class="text-purple-600">Agency vs. Means</span>, or <span class="text-teal-700">Role vs. Resemblance</span>!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 1: Direction vs Place (into vs in) -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                        <div id="prepText1" class="text-sm sm:text-base font-semibold text-slate-800">
+                            "The scientist walked <span class="px-2 py-0.5 bg-teal-100 text-teal-800 rounded font-bold">into</span> the laboratory."
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                            <span id="prepStatus1" class="text-xs font-bold text-teal-700 uppercase tracking-wider">DIRECTION (MOVEMENT ACROSS BOUNDARY)</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-slate-400">TOGGLE STATIC PLACE</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" onchange="togglePrepCard(1, this.checked)">
+                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Agency vs Means (by vs with) -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                        <div id="prepText2" class="text-sm sm:text-base font-semibold text-slate-800">
+                            "The archaeological document was written <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">by senior scholars</span>."
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                            <span id="prepStatus2" class="text-xs font-bold text-indigo-700 uppercase tracking-wider">AGENCY (HUMAN DOER / AUTHOR)</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-slate-400">TOGGLE INSTRUMENT ('WITH')</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" onchange="togglePrepCard(2, this.checked)">
+                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Role vs Resemblance (as vs like) -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                        <div id="prepText3" class="text-sm sm:text-base font-semibold text-slate-800">
+                            "She works <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">as</span> a lead environmental engineer."
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                            <span id="prepStatus3" class="text-xs font-bold text-purple-700 uppercase tracking-wider">REAL FUNCTION / ROLE ('AS')</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-slate-400">TOGGLE COMPARISON ('LIKE')</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" onchange="togglePrepCard(3, this.checked)">
+                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Purpose (for + noun vs to + infinitive) -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+                        <div id="prepText4" class="text-sm sm:text-base font-semibold text-slate-800">
+                            "The funding was allocated <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">for medical research</span>."
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                            <span id="prepStatus4" class="text-xs font-bold text-amber-700 uppercase tracking-wider">PURPOSE WITH NOUN PHRASE ('FOR')</span>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-slate-400">TOGGLE INFINITIVE ('TO')</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" onchange="togglePrepCard(4, this.checked)">
+                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-teal-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: TASK 1 DATA PREPOSITIONS -->
+            <div id="tab-task1-prepositions" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-teal-100 p-3.5 rounded-2xl text-teal-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">IELTS Task 1 Data Prepositions Masterclass</h3>
+                        <p class="text-sm text-slate-600 font-medium">Using incorrect prepositions when reporting numerical trends completely changes factual meaning and reduces Task Achievement scores.</p>
+                    </div>
+                </div>
+
+                <!-- Data Preposition Formula Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                    
+                    <!-- 1. Difference (by) -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-teal-100 text-teal-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">1. Difference / Margin</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">increased BY 15%</h4>
+                            <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                                Indicates the net mathematical margin of change between the start and end values.
+                            </p>
+                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-100 text-xs font-semibold text-slate-800">
+                                "Sales increased <strong class="text-teal-700 underline">by 15%</strong> (from 50% to 65%)."
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-teal-700 font-bold">
+                            Formula: Verb + BY + Amount
+                        </div>
+                    </div>
+
+                    <!-- 2. Endpoint (to) -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">2. Final Endpoint</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">rose TO 65%</h4>
+                            <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                                Identifies the final destination figure reached after the trend completed.
+                            </p>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 text-xs font-semibold text-slate-800">
+                                "Sales rose <strong class="text-indigo-700 underline">to 65%</strong> in 2020."
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-indigo-700 font-bold">
+                            Formula: Verb + TO + Final Number
+                        </div>
+                    </div>
+
+                    <!-- 3. Noun Margin (of) -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">3. Noun Margin</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">a surge OF 2,000</h4>
+                            <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                                Follows trend nouns (*increase, surge, drop, decline, rise*) to express the numerical gap.
+                            </p>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100 text-xs font-semibold text-slate-800">
+                                "There was a surge <strong class="text-purple-700 underline">of 2,000 units</strong>."
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-purple-700 font-bold">
+                            Formula: Noun + OF + Number
+                        </div>
+                    </div>
+
+                    <!-- 4. Specific Point (at) -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 bg-amber-100 text-amber-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max mb-3">4. Exact Static Point</span>
+                            <h4 class="font-bold text-slate-900 text-base mb-1">peaked AT 92%</h4>
+                            <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                                Pinpoints static landmarks or high/low points (*peaked, stood, plateaued, started*).
+                            </p>
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 text-xs font-semibold text-slate-800">
+                                "Consumption peaked <strong class="text-amber-800 underline">at 92%</strong>."
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-amber-800 font-bold">
+                            Formula: Static Verb + AT + Number
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Data Preposition Builder -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+                    <h4 class="font-bold text-teal-300 text-lg">Interactive Task 1 Data Preposition Matrix</h4>
+                    <p class="text-xs text-slate-300">Select a trend scenario below to compare exact prepositional shifts:</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <button onclick="switchDataPrep('increase')" id="dp-btn-increase" class="p-3.5 rounded-xl border border-teal-500 bg-teal-900/50 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-teal-400 uppercase block mb-1">Scenario A</span>
+                            <span class="font-bold text-white">Upward Surge (50% &rarr; 70%)</span>
+                        </button>
+                        <button onclick="switchDataPrep('decline')" id="dp-btn-decline" class="p-3.5 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Scenario B</span>
+                            <span class="font-bold text-white">Downward Plunge (80% &rarr; 30%)</span>
+                        </button>
+                        <button onclick="switchDataPrep('peak')" id="dp-btn-peak" class="p-3.5 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Scenario C</span>
+                            <span class="font-bold text-white">Peak & Stabilization (95%)</span>
+                        </button>
+                    </div>
+
+                    <div id="dataPrepOutputBox" class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3 text-xs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 4: DEPENDENT COLLOCATIONS -->
+            <div id="tab-dependent-collocations" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Dependent Preposition Collocations</h3>
+                        <p class="text-sm text-slate-600 font-medium">Certain verbs, adjectives, and nouns require specific dependent prepositions in formal academic prose.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Verb + Preposition -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Verbs + Preposition</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Dependent Verb Patterns</h4>
+                        
+                        <ul class="space-y-2 text-xs">
+                            <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">attribute TO / ascribe TO:</strong>
+                                <p class="text-slate-800">"Scholars <strong class="text-indigo-700">attribute the surge to</strong> technological advancement."</p>
+                            </li>
+                            <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">correlate WITH:</strong>
+                                <p class="text-slate-800">"Urban density <strong class="text-indigo-700">correlates with</strong> public transport usage."</p>
+                            </li>
+                            <li class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">result IN (Cause) / result FROM (Effect):</strong>
+                                <p class="text-slate-800">"Emissions <strong class="text-indigo-700">result in</strong> warming."</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Adjective + Preposition -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Adjectives + Preposition</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Dependent Adjective Patterns</h4>
+                        
+                        <ul class="space-y-2 text-xs">
+                            <li class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <strong class="text-purple-800 font-bold block mb-0.5">susceptible TO / vulnerable TO:</strong>
+                                <p class="text-slate-800">"Coastal zones are <strong class="text-purple-700">susceptible to</strong> sea-level rise."</p>
+                            </li>
+                            <li class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <strong class="text-purple-800 font-bold block mb-0.5">compatible WITH / aligned WITH:</strong>
+                                <p class="text-slate-800">"The policy is <strong class="text-purple-700">compatible with</strong> green targets."</p>
+                            </li>
+                            <li class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <strong class="text-purple-800 font-bold block mb-0.5">inherent IN / intrinsic TO:</strong>
+                                <p class="text-slate-800">"Financial risks are <strong class="text-purple-700">inherent in</strong> speculation."</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Noun + Preposition -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Nouns + Preposition</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Dependent Noun Patterns</h4>
+                        
+                        <ul class="space-y-2 text-xs">
+                            <li class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <strong class="text-teal-800 font-bold block mb-0.5">impact ON / influence ON:</strong>
+                                <p class="text-slate-800">"Tax reform has a direct <strong class="text-teal-700">impact on</strong> inflation."</p>
+                            </li>
+                            <li class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <strong class="text-teal-800 font-bold block mb-0.5">insight INTO / inquiry INTO:</strong>
+                                <p class="text-slate-800">"The trial offers key <strong class="text-teal-700">insight into</strong> cell behavior."</p>
+                            </li>
+                            <li class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <strong class="text-teal-800 font-bold block mb-0.5">solution TO / remedy FOR:</strong>
+                                <p class="text-slate-800">"Solar energy is a viable <strong class="text-teal-700">solution to</strong> power deficits."</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Prepositional Relationships Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your mastery of functional categories, Task 1 data prepositions, and dependent collocations.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct IELTS Task 1 data preposition for net margin: "Sales expanded <span class="text-teal-600 underline">______</span> 20% (rising from 40% to 60%)."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'by\' introduces the margin/difference of change.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs" data-correct="true">by</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'to\' introduces the final endpoint.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'at\' is used with static peak figures.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">at</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Identify the correct prepositional functional category for **by** in: "The research paper was authored <span class="text-teal-600 underline">by</span> Dr. Smith."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'by\' identifies the human doer or author under the Agency category.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs" data-correct="true">Agency</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Source uses prepositions like \'from\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">Source</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Comparison uses prepositions like \'like\' or \'as\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">Comparison</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the correct dependent preposition: "Low-lying coastal regions are highly susceptible <span class="text-teal-600 underline">______</span> severe flooding."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'susceptible TO\' is a mandatory dependent adjective collocation.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs" data-correct="true">to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Susceptible for is ungrammatical.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">for</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Susceptible with is ungrammatical.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">with</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete for static landmark figures: "In 2020, production peaked <span class="text-teal-600 underline">______</span> 95% before dropping."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'peaked AT\' pinpoints exact static high points.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs" data-correct="true">at</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'by\' introduces margin of change, not peak landmark.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">by</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'to\' introduces direction toward an endpoint, not a peak state.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-teal-100 text-slate-700 text-xs">to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Prepositional Syntax Suite</span>
+            <span>Module 7 Extension: Prepositional Relationships Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-teal-600', 'text-teal-600', 'border-indigo-600', 'text-indigo-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                clickedBtn.classList.add('border-teal-600', 'text-teal-600');
+            }
+        }
+
+        /* Tab 1: Preposition Matrix Data & Inspector */
+        const prepMatrixData = [
+            {
+                id: "comparison", name: "1. Comparison", preps: "like, as",
+                example: "She works as an environmental scientist.",
+                terms: "like, as, compared to",
+                rule: "Use 'as' for actual roles/functions; use 'like' for similarity comparisons."
+            },
+            {
+                id: "direction", name: "2. Direction", preps: "through, towards, into, onto, across",
+                example: "The water flows through the pipe and into the turbine.",
+                terms: "through, towards, into, onto, across",
+                rule: "Essential for movement descriptions in Task 1 process diagrams."
+            },
+            {
+                id: "place", name: "3. Place / Location", preps: "on, near, at, under, behind, in",
+                example: "The campus is situated near the river at the edge of town.",
+                terms: "on, near, at, in, under, adjacent to",
+                rule: "Use 'at' for specific points, 'on' for surfaces, and 'in' for enclosed areas."
+            },
+            {
+                id: "possession", name: "4. Possession", preps: "of, belonging to, with",
+                example: "The findings of the study were published in the journal of medicine.",
+                terms: "of, with, belonging to",
+                rule: "Forms formal complex noun phrases in academic writing."
+            },
+            {
+                id: "purpose", name: "5. Purpose", preps: "to, for, with a view to",
+                example: "Funding was allocated for research to improve battery life.",
+                terms: "to, for, with a view to",
+                rule: "Use 'for' + noun phrase / gerund; use 'to' + infinitive verb."
+            },
+            {
+                id: "time", name: "6. Time", preps: "before, at, during, prior to, until",
+                example: "All assignments must be submitted prior to noon.",
+                terms: "before, at, during, prior to, until, by",
+                rule: "Crucial for timelines and chronological Task 1 reports."
+            },
+            {
+                id: "agency", name: "7. Agency", preps: "by, through the agency of",
+                example: "The paper was written by international scholars.",
+                terms: "by, through",
+                rule: "Standardly identifies the doer/author in passive sentences."
+            },
+            {
+                id: "source", name: "8. Source", preps: "from, out of, originating in",
+                example: "Data gathered from census archives revealed new trends.",
+                terms: "from, out of, originating in",
+                rule: "Identifies origin of statistics, quotes, or raw materials."
+            }
+        ];
+
+        function filterPrepMatrix(group) {
+            const pills = document.querySelectorAll('#prepMatrixFilters button');
+            pills.forEach(p => p.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`pmf-${group}`);
+            if (activePill) activePill.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-teal-600 text-white shadow-xs";
+
+            const grid = document.getElementById('prepMatrixGrid');
+            const filtered = group === 'all' ? prepMatrixData : prepMatrixData.filter(t => t.id === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectPrepCategory('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-teal-500 cursor-pointer rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-teal-100 text-teal-800 block w-max mb-2">${t.id}</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs font-mono font-bold text-teal-600 mb-2">${t.preps}</p>
+                        <p class="text-xs text-slate-600 italic">"${t.example}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-teal-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function inspectPrepCategory(id) {
+            const data = prepMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorPrepTitle').innerText = data.name;
+            document.getElementById('inspectorPrepBadge').innerText = `Category: ${data.id}`;
+            document.getElementById('inspectorTerms').innerText = data.terms;
+            document.getElementById('inspectorExample').innerText = `"${data.example}"`;
+            document.getElementById('inspectorRule').innerText = data.rule;
+        }
+
+        /* Tab 2: Preposition Switcher Cards Logic */
+        function togglePrepCard(cardNum, isChecked) {
+            const textEl = document.getElementById(`prepText${cardNum}`);
+            const statusEl = document.getElementById(`prepStatus${cardNum}`);
+            if (!textEl || !statusEl) return;
+
+            if (cardNum === 1) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The scientist worked <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">in</span> the laboratory."`;
+                    statusEl.innerText = "STATIC PLACE / LOCATION (INSIDE ENCLOSED SPACE)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The scientist walked <span class="px-2 py-0.5 bg-teal-100 text-teal-800 rounded font-bold">into</span> the laboratory."`;
+                    statusEl.innerText = "DIRECTION (MOVEMENT ACROSS BOUNDARY)";
+                    statusEl.className = "text-xs font-bold text-teal-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 2) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The archaeological document was written <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">with a fountain pen</span>."`;
+                    statusEl.innerText = "INSTRUMENT / MEANS ('WITH' + TOOL)";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The archaeological document was written <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded font-bold">by senior scholars</span>."`;
+                    statusEl.innerText = "AGENCY (HUMAN DOER / AUTHOR)";
+                    statusEl.className = "text-xs font-bold text-indigo-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 3) {
+                if (isChecked) {
+                    textEl.innerHTML = `"She solves problems <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">like</span> a lead environmental engineer."`;
+                    statusEl.innerHTML = "RESEMBLANCE / COMPARISON ('LIKE')";
+                    statusEl.className = "text-xs font-bold text-amber-800 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"She works <span class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded font-bold">as</span> a lead environmental engineer."`;
+                    statusEl.innerText = "REAL FUNCTION / ROLE ('AS')";
+                    statusEl.className = "text-xs font-bold text-purple-700 uppercase tracking-wider";
+                }
+            } else if (cardNum === 4) {
+                if (isChecked) {
+                    textEl.innerHTML = `"The funding was allocated <span class="px-2 py-0.5 bg-teal-100 text-teal-800 rounded font-bold">to support medical research</span>."`;
+                    statusEl.innerText = "PURPOSE WITH INFINITIVE VERB ('TO + V1')";
+                    statusEl.className = "text-xs font-bold text-teal-700 uppercase tracking-wider";
+                } else {
+                    textEl.innerHTML = `"The funding was allocated <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded font-bold">for medical research</span>."`;
+                    statusEl.innerText = "PURPOSE WITH NOUN PHRASE ('FOR')";
+                    statusEl.className = "text-xs font-bold text-amber-700 uppercase tracking-wider";
+                }
+            }
+        }
+
+        /* Tab 3: Data Preposition Matrix Data */
+        const dataPrepScenarios = {
+            increase: {
+                margin: "Sales increased BY 20%.",
+                endpoint: "Sales rose TO 70%.",
+                noun: "There was an increase OF 20% in sales.",
+                rule: "BY introduces the gap/margin of change; TO introduces the final number reached."
+            },
+            decline: {
+                margin: "Production dropped BY 50%.",
+                endpoint: "Production fell TO 30%.",
+                noun: "The chart records a plunge OF 50% in production.",
+                rule: "OF connects trend nouns (drop, decline, plunge) directly to the numerical amount."
+            },
+            peak: {
+                margin: "Adoption started AT 10% and peaked AT 95%.",
+                endpoint: "Adoption leveled off AT 95%.",
+                noun: "There was a plateau AT 95% for three consecutive years.",
+                rule: "AT marks static landmark points (peaked at, started at, stood at, plateaued at)."
+            }
+        };
+
+        function switchDataPrep(scKey) {
+            ['increase', 'decline', 'peak'].forEach(s => {
+                const btn = document.getElementById(`dp-btn-${s}`);
+                if (s === scKey) {
+                    btn.className = "p-3.5 rounded-xl border border-teal-500 bg-teal-900/50 text-left transition-all";
+                } else {
+                    btn.className = "p-3.5 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all";
+                }
+            });
+
+            const data = dataPrepScenarios[scKey];
+            document.getElementById('dataPrepOutputBox').innerHTML = `
+                <div>
+                    <span class="text-[10px] font-extrabold uppercase text-teal-400 block mb-1">Difference / Margin Formula (BY)</span>
+                    <p class="text-white font-bold text-sm">"${data.margin}"</p>
+                </div>
+                <div class="pt-2 border-t border-slate-800">
+                    <span class="text-[10px] font-extrabold uppercase text-indigo-400 block mb-1">Endpoint Formula (TO / AT)</span>
+                    <p class="text-white font-bold text-sm">"${data.endpoint}"</p>
+                </div>
+                <div class="pt-2 border-t border-slate-800">
+                    <span class="text-[10px] font-extrabold uppercase text-purple-400 block mb-1">Noun Margin Formula (OF)</span>
+                    <p class="text-white font-bold text-sm">"${data.noun}"</p>
+                </div>
+                <p class="text-[11px] text-slate-400 pt-1 font-sans italic">&rarr; ${data.rule}</p>
+            `;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            filterPrepMatrix('all');
+            inspectPrepCategory('comparison');
+            switchDataPrep('increase');
+        };
+    </script>
+</body>
+</html>

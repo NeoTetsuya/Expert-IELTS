@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noun Phrases & Academic Nominalization Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(16, 185, 129, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+            70% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-emerald-950 to-teal-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M7 7h10M7 12h10m-7 5h7"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h10m-7 5h7"></path>
+                    </svg>
+                    Module 5 Masterclass: Academic Syntax & Lexical Density
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Noun Phrases & Nominalization</h1>
+                <p class="text-emerald-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Pre-modification, Post-modification (Prepositional, Relative, Participle, Appositive), Quantity/Data Noun Phrases for IELTS Task 1, and Band 8.0+ Academic Nominalization.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-emerald-600 border-b-4 border-emerald-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-architecture')">
+                    1. NP Architecture 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-expansion-lab')">
+                    2. Expansion Lab 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-quantity-data')">
+                    3. Data & Quantity Phrases 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-nominalization-studio')">
+                    4. Nominalization Studio 🏗️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Noun Phrase Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: NOUN PHRASE ARCHITECTURE -->
+            <div id="tab-architecture" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Anatomy of an Academic Noun Phrase</h3>
+                        <p class="text-sm text-slate-600 font-medium">Explore how Determiners, Pre-modifiers, Head Nouns, and Post-modifiers assemble into dense academic structures.</p>
+                    </div>
+                </div>
+
+                <!-- Visual Formula Banner -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">The Master Noun Phrase Formula</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-center text-xs font-mono font-bold">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-amber-400 block text-[10px] uppercase">1. Determiner / Quantifier</span>
+                            <span class="text-slate-200">The / A majority of / These</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-indigo-400 block text-[10px] uppercase">2. Pre-Modifier(s)</span>
+                            <span class="text-slate-200">unprecedented financial</span>
+                        </div>
+                        <div class="bg-emerald-900/80 p-3 rounded-xl border border-emerald-500 text-emerald-300">
+                            <span class="text-emerald-400 block text-[10px] uppercase font-black">3. HEAD NOUN ★</span>
+                            <span class="text-white font-extrabold text-sm">DISPARITY</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-sky-400 block text-[10px] uppercase">4. Post-Modifier(s)</span>
+                            <span class="text-slate-200">between urban and rural districts</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center italic pt-1">
+                        &rarr; Combined Output: "The unprecedented financial <strong>disparity</strong> between urban and rural districts..."
+                    </p>
+                </div>
+
+                <!-- 4 Modifier Category Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Pre-modification -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Pre-Modification Types</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Modifying Before the Head Noun</h4>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 block font-bold mb-0.5">Adjective Pre-modifier:</strong>
+                                <p class="text-slate-800">"<strong class="underline text-indigo-700">Prominent</strong> positions are held by leaders."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 block font-bold mb-0.5">Noun Modifier (Compound Noun):</strong>
+                                <p class="text-slate-800">"A <strong class="underline text-indigo-700">database</strong> designer was hired."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 block font-bold mb-0.5">Participle Pre-modifier (-ing / -ed):</strong>
+                                <p class="text-slate-800">"<strong class="underline text-indigo-700">Groundbreaking</strong> research yielded <strong class="underline text-indigo-700">unexpected</strong> results."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post-modification -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Post-Modification Types</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Modifying After the Head Noun</h4>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <strong class="text-purple-800 block font-bold mb-0.5">Prepositional Phrase Post-modifier:</strong>
+                                <p class="text-slate-800">"The participants <strong class="underline text-purple-700">in the study</strong> answered questions."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <strong class="text-purple-800 block font-bold mb-0.5">Relative Clause Post-modifier:</strong>
+                                <p class="text-slate-800">"Houses <strong class="underline text-purple-700">which are located in low land</strong> face risks."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <strong class="text-purple-800 block font-bold mb-0.5">Appositive Noun Post-modifier:</strong>
+                                <p class="text-slate-800">"Dr. Aris, <strong class="underline text-purple-700">a leading climatologist</strong>, presented data."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 2: EXPANSION LAB -->
+            <div id="tab-expansion-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Noun Phrase Expansion Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a simple base head noun and watch it expand step-by-step into a Band 8.0+ complex academic noun phrase.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Core Head Noun Context:</label>
+                            <select id="labHeadSelect" onchange="renderExpansionLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="policy">Head Noun: Policy (Government / Energy)</option>
+                                <option value="disparity">Head Noun: Disparity (Income / Regional)</option>
+                                <option value="research">Head Noun: Research (Clinical / Medical)</option>
+                                <option value="infrastructure">Head Noun: Infrastructure (Cycling / Transport)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Expansion Depth Level:</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="setExpansionLevel('base')" id="exp-base-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Level 1: Base Noun</button>
+                                <button onclick="setExpansionLevel('pre')" id="exp-pre-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Level 2: + Pre-mod</button>
+                                <button onclick="setExpansionLevel('full')" id="exp-full-btn" class="py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Level 3: Full Complex NP</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Displays -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Base Informal Form</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labBaseSentence" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Basic conversational sentence with simple un-modified noun.</p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labExpansionBadge">Expanded Academic Form</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="labExpandedSentence" class="text-base sm:text-lg font-bold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labExpansionDesc">Densely modified Band 8.0+ Noun Phrase.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Noun Phrase Breakdown:</strong>
+                        <p id="labBreakdownText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: DATA & QUANTITY PHRASES -->
+            <div id="tab-quantity-data" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Quantity & Statistical Data Noun Phrases</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master exact noun phrase formulas for reporting statistics, fractions, majorities, and survey trends in IELTS Task 1.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Fraction Pattern -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Fraction Formula</span>
+                            <span class="text-xs font-bold text-amber-700">A (fraction) + of + Category</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Fractional Noun Phrases</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Combines an indefinite article or determiner with a fractional noun phrase before a prepositional category.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-100">
+                                <span class="text-amber-900 font-bold block mb-0.5">20% Sample:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-amber-700">A fifth of homeowners</strong> wanted to relocate."</p>
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-100">
+                                <span class="text-amber-900 font-bold block mb-0.5">75% Sample:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-amber-700">Three-quarters of respondents</strong> supported the policy."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Majority / Minority Pattern -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Proportion Formula</span>
+                            <span class="text-xs font-bold text-teal-700">The/A (majority/minority) + of + Category</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Majority & Minority Noun Phrases</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Modifies proportional nouns (*majority, minority, proportion, percentage*) with descriptive adjectives.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <span class="text-teal-900 font-bold block mb-0.5">Dominant Share (>75%):</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-teal-700">The vast majority of young adults</strong> favor remote work."</p>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-xl border border-teal-100">
+                                <span class="text-teal-900 font-bold block mb-0.5">Minimal Share (<10%):</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-teal-700">A negligible minority of participants</strong> opposed the change."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Trend & Change Noun Phrases Toolkit -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Task 1 Trend & Change Noun Phrase Toolkit</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-emerald-700 font-bold block text-sm">Upward Movements</strong>
+                            <p class="text-slate-700 font-semibold">a sharp surge in, a steady increase of, a marked growth in</p>
+                            <p class="text-slate-500 text-[11px]">"There was <strong class="underline">a sharp surge in demand</strong>."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-rose-700 font-bold block text-sm">Downward Movements</strong>
+                            <p class="text-slate-700 font-semibold">a precipitous drop in, a gradual decline of, a plunge in</p>
+                            <p class="text-slate-500 text-[11px]">"The chart shows <strong class="underline">a gradual decline of 15%</strong>."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-purple-700 font-bold block text-sm">Fluctuations & Volatility</strong>
+                            <p class="text-slate-700 font-semibold">wild fluctuations in, a period of instability for</p>
+                            <p class="text-slate-500 text-[11px]">"Data indicates <strong class="underline">wild fluctuations in price</strong>."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 4: NOMINALIZATION STUDIO -->
+            <div id="tab-nominalization-studio" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Nominalization Studio</h3>
+                        <p class="text-sm text-slate-600 font-medium">Transform wordy verbal clauses into compact, authoritative noun phrases to increase informational density.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Conversational Style</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Verbal Clause Form (Low Band)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Relies heavily on active/passive verb phrases and adverbial conjunctions (*because, when, if*).
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3.5 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Conversational Draft 1:</span>
+                                <p class="text-slate-800 font-medium">"Because technology <strong class="underline">developed rapidly</strong>, people <strong class="underline">communicated faster</strong>."</p>
+                            </div>
+                            <div class="bg-rose-50 p-3.5 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Conversational Draft 2:</span>
+                                <p class="text-slate-800 font-medium">"If the government <strong class="underline">invests heavily</strong> in healthcare, public health will <strong class="underline">improve greatly</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Band 8.0+ Precision</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Nominalized Noun Phrase (High Band)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Packages actions into abstract head nouns modified by pre/post-modifiers.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Band 8.0+ Nominalization 1:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700 underline">The rapid development of technology</strong> led to <strong class="text-emerald-700 underline">faster communication</strong>."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Band 8.0+ Nominalization 2:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700 underline">Heavy government investment in healthcare</strong> precipitates <strong class="text-emerald-700 underline">a significant improvement in public health</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Noun Phrase Mastery Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to construct complex pre/post-modified noun phrases, quantity formulas, and nominalized structures.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Identify the noun phrase structure in: "<strong>Prominent positions</strong> are held by industry leaders."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Prominent\' is an adjective modifying the head noun \'positions\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Adjective + Noun (Pre-modification)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Prominent is an adjective, not a noun.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Noun + Noun (Compound Noun)</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. There is no relative pronoun (who/which) in this phrase.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Noun + Relative Clause</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Select the correctly formatted Quantity Noun Phrase formula for reporting 20% in IELTS Task 1:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Follows the formula: A (fraction) + of + Category (A fifth of homeowners).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">A fifth of homeowners</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Missing the required preposition \'of\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">A fifth homeowners</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Missing the indefinite determiner \'A\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Fifth of homeowners</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the best Band 8.0+ nominalized version for: "Because technology developed rapidly, people communicated much faster."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Leaving the sentence as an adverbial clause is conversational.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Because technology developed rapidly, people communicated much faster.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Nominalizes \'technology developed rapidly\' into \'The rapid development of technology\' and \'communicated faster\' into \'faster communication\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">The rapid development of technology led to faster communication.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Identify the post-modification type in: "The participants <span class="text-indigo-600 underline">in the clinical study</span> received placebo."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'in the clinical study\' is a prepositional phrase modifying the head noun \'participants\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Prepositional Phrase Post-modifier</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. There is no relative pronoun (who/which) present.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Relative Clause Post-modifier</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Noun Phrase & Syntax Suite</span>
+            <span>Module 5 Extension: Noun Phrases & Nominalization</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-emerald-600', 'text-emerald-600');
+                }
+            }
+        }
+
+        /* Expansion Lab Logic */
+        let currentExpansionLevel = 'full';
+
+        function setExpansionLevel(level) {
+            currentExpansionLevel = level;
+            ['base', 'pre', 'full'].forEach(l => {
+                const btn = document.getElementById(`exp-${l}-btn`);
+                if (l === level) {
+                    btn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                } else {
+                    btn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                }
+            });
+            renderExpansionLab();
+        }
+
+        const expansionDatabase = {
+            policy: {
+                baseSentence: "The government enacted a policy yesterday.",
+                levels: {
+                    base: "a policy",
+                    pre: "a comprehensive green energy policy",
+                    full: "a comprehensive green energy policy aimed at lowering urban carbon emissions"
+                },
+                breakdown: "Determiner (a) + Pre-modifiers (comprehensive green energy) + HEAD NOUN (policy) + Post-modifier participle phrase (aimed at lowering urban carbon emissions)."
+            },
+            disparity: {
+                baseSentence: "A disparity exists between regions.",
+                levels: {
+                    base: "a disparity",
+                    pre: "a widening financial disparity",
+                    full: "a widening financial disparity between urban and rural educational districts"
+                },
+                breakdown: "Determiner (a) + Pre-modifiers (widening financial) + HEAD NOUN (disparity) + Post-modifier prepositional phrase (between urban and rural educational districts)."
+            },
+            research: {
+                baseSentence: "Scientists completed research recently.",
+                levels: {
+                    base: "research",
+                    pre: "groundbreaking clinical research",
+                    full: "groundbreaking clinical research conducted by multi-institutional university teams"
+                },
+                breakdown: "Pre-modifiers (groundbreaking clinical) + HEAD NOUN (research) + Post-modifier passive participle clause (conducted by multi-institutional university teams)."
+            },
+            infrastructure: {
+                baseSentence: "Cities require infrastructure.",
+                levels: {
+                    base: "infrastructure",
+                    pre: "modern cycling infrastructure",
+                    full: "modern cycling infrastructure which connects suburban residential zones directly to downtown hubs"
+                },
+                breakdown: "Pre-modifiers (modern cycling) + HEAD NOUN (infrastructure) + Post-modifier relative clause (which connects suburban residential zones directly to downtown hubs)."
+            }
+        };
+
+        function renderExpansionLab() {
+            const headKey = document.getElementById('labHeadSelect').value;
+            const data = expansionDatabase[headKey];
+
+            document.getElementById('labBaseSentence').innerText = data.baseSentence;
+            document.getElementById('labExpandedSentence').innerText = `"${data.levels[currentExpansionLevel]}"`;
+            document.getElementById('labBreakdownText').innerText = data.breakdown;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            renderExpansionLab();
+        };
+    </script>
+</body>
+</html>

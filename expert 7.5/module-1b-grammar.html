@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete English Tense System Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .timeline-line {
+            background: linear-gradient(90deg, #6366f1 0%, #06b6d4 50%, #10b981 100%);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <!-- Main Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-sky-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 8s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 1 Extension: Grammatical Aspect & Verb Tenses
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">English Tense System Masterclass</h1>
+                <p class="text-sky-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master all 12 verb tenses, time markers, stative verb nuances, and academic context rules. Compare aspects side-by-side and transform live sentence structures.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-matrix')">
+                    1. Interactive Tense Matrix ⏱️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-comparisons')">
+                    2. Aspect Comparison Engine ⚖️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-sentence-lab')">
+                    3. Live Sentence Transformer 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-academic-context')">
+                    4. Academic & Task Strategies 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Tense Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: INTERACTIVE TENSE MATRIX -->
+            <div id="tab-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">12-Tense Interactive Matrix</h3>
+                        <p class="text-sm text-slate-600 font-medium">Filter by Time (Past, Present, Future) and Aspect (Simple, Continuous, Perfect, Perfect Continuous) to explore complete structural formulas.</p>
+                    </div>
+                </div>
+
+                <!-- Time Category Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Select Time Era:</span>
+                    <div class="flex flex-wrap gap-2" id="timeFilterPills">
+                        <button onclick="filterTenseMatrix('all')" id="tf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All 12 Tenses</button>
+                        <button onclick="filterTenseMatrix('past')" id="tf-past" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Past Tenses ⏪</button>
+                        <button onclick="filterTenseMatrix('present')" id="tf-present" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Present Tenses ⏹️</button>
+                        <button onclick="filterTenseMatrix('future')" id="tf-future" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Future Tenses ⏩</button>
+                    </div>
+                </div>
+
+                <!-- Interactive Matrix Grid Display -->
+                <div id="tenseMatrixGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Modal / Expanded Tense Inspector Box -->
+                <div id="tenseInspector" class="bg-indigo-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-indigo-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorTitle" class="text-xl font-bold">Tense Detail Inspector</h4>
+                        </div>
+                        <span id="inspectorFormula" class="px-3 py-1 bg-indigo-800 text-sky-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorContent" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-indigo-950/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Positive (+) Structure</strong>
+                            <p id="inspectorPos" class="text-slate-200">Click a tense card above to view formula & examples.</p>
+                        </div>
+                        <div class="bg-indigo-950/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-rose-400 block font-bold text-sm">Negative (-) Structure</strong>
+                            <p id="inspectorNeg" class="text-slate-200">Includes auxiliary verbs (do, be, have, will).</p>
+                        </div>
+                        <div class="bg-indigo-950/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Signal Words / Time Markers</strong>
+                            <p id="inspectorSignals" class="text-slate-200">Keywords to watch out for in exams.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: ASPECT COMPARISON ENGINE -->
+            <div id="tab-comparisons" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Aspect Comparison Engine</h3>
+                        <p class="text-sm text-slate-600 font-medium">Side-by-side comparative analysis of commonly confused English verb tense pairings.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Switcher Controls -->
+                <div class="bg-white border-2 border-sky-100 rounded-3xl p-6 shadow-xs space-y-6">
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase text-slate-500 mb-3 tracking-wider">Select Confusing Tense Pair to Compare:</label>
+                        <div class="flex flex-wrap gap-2" id="comparisonPairPills">
+                            <button onclick="loadComparisonPair('ps_vs_pp')" id="cp-ps_vs_pp" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-md">Past Simple vs. Present Perfect</button>
+                            <button onclick="loadComparisonPair('pr_s_vs_pr_c')" id="cp-pr_s_vs_pr_c" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Present Simple vs. Present Continuous</button>
+                            <button onclick="loadComparisonPair('ps_vs_pc')" id="cp-ps_vs_pc" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Past Simple vs. Past Continuous</button>
+                            <button onclick="loadComparisonPair('will_vs_goingto')" id="cp-will_vs_goingto" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Future: Will vs. Be Going To</button>
+                            <button onclick="loadComparisonPair('ppc_vs_pp')" id="cp-ppc_vs_pp" class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200">Present Perfect vs. Pres. Perf. Continuous</button>
+                        </div>
+                    </div>
+
+                    <!-- Side-by-Side Dynamic Comparison Cards -->
+                    <div id="comparisonDisplay" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: LIVE SENTENCE TRANSFORMER LAB -->
+            <div id="tab-sentence-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Live Sentence Transformer Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a base subject-verb pair and instantly shift it across all 12 tenses with highlighted auxiliary verb changes.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Choose Base Sentence Context:</label>
+                            <select id="baseSentenceSelect" onchange="renderSentenceTransformer()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="research">Subject: The researchers / Verb: conduct the study</option>
+                                <option value="student">Subject: Mariella / Verb: study English</option>
+                                <option value="government">Subject: The government / Verb: implement new policy</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Choose Sentence Polarity:</label>
+                            <div class="flex gap-2">
+                                <button onclick="setPolarity('positive')" id="pol-pos" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Positive (+)</button>
+                                <button onclick="setPolarity('negative')" id="pol-neg" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Negative (-)</button>
+                                <button onclick="setPolarity('question')" id="pol-que" class="flex-1 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Question (?)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rendered 12 Tense Variations Box -->
+                    <div id="sentenceTransformerOutput" class="space-y-3 pt-4 border-t border-slate-100">
+                        <!-- Dynamic rendered list of all 12 tenses -->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: ACADEMIC CONTEXT & TASK STRATEGIES -->
+            <div id="tab-academic-context" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic & IELTS Tense Rules</h3>
+                        <p class="text-sm text-slate-600 font-medium">Specific tense protocols for IELTS Academic Writing Task 1, Task 2 essays, and Stative Verb exceptions.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Task 1 Rules -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">IELTS Task 1 Data</span>
+                        <h4 class="font-bold text-slate-900 text-base">Temporal Graphs & Charts</h4>
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="bg-emerald-50/50 p-2.5 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800">Past Dates (e.g. 1990–2010):</strong> Use <em>Past Simple</em> ("The percentage rose sharply in 2005").
+                            </li>
+                            <li class="bg-emerald-50/50 p-2.5 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800">Unspecified / Up to Present:</strong> Use <em>Present Perfect</em> ("Sales have increased since last year").
+                            </li>
+                            <li class="bg-emerald-50/50 p-2.5 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800">Future Projections:</strong> Use passive future forms ("is predicted to increase", "will have reached").
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Task 2 Rules -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">IELTS Task 2 Essays</span>
+                        <h4 class="font-bold text-slate-900 text-base">Academic Argumentation</h4>
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800">General Truths & Opinions:</strong> Use <em>Present Simple</em> ("Many educators argue that...").
+                            </li>
+                            <li class="bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800">Recent Scientific Developments:</strong> Use <em>Present Perfect</em> ("Recent studies have demonstrated...").
+                            </li>
+                            <li class="bg-indigo-50/50 p-2.5 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800">Hypothetical Consequences:</strong> Use second conditional ("If governments invested...").
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Stative Verbs -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-amber-100 text-amber-900 rounded-md text-[11px] font-bold uppercase tracking-wider">Grammar Trap</span>
+                        <h4 class="font-bold text-slate-900 text-base">Stative vs. Dynamic Verbs</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Stative verbs (mental states, feelings, senses) normally <strong>cannot</strong> be used in Continuous tenses:
+                        </p>
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 text-xs">
+                            <p class="text-rose-700 line-through">❌ I am knowing the answer.</p>
+                            <p class="text-emerald-700 font-bold">✔️ I know the answer.</p>
+                            <p class="text-slate-500 text-[11px] mt-1">Stative List: <em>know, believe, belong, understand, prefer, contain, exist</em>.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Tense Mastery Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to identify tense aspects, handle stative verbs, and select precise time auxiliaries.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <!-- Q1 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct tense: "By December 2030, scientists <span class="text-indigo-600 underline">______</span> a cure for the virus."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'Will discover\' is simple future, but \'By + future time\' requires Future Perfect for completion.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">will discover</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'By + future time\' signals Future Perfect (will have + past participle).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">will have discovered</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Future Continuous indicates an action in progress, not completed prior to a deadline.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">will be discovering</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Identify the grammatically correct sentence involving stative verbs:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'Belong\' is a stative verb and cannot take continuous form.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">This book is belonging to the university library.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Belong\' is stative, so simple present \'belongs\' is mandatory.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">This book belongs to the university library.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'Has been belonging\' uses continuous aspect incorrectly with a stative verb.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">This book has been belonging to the library.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. "Mariella <span class="text-indigo-600 underline">______</span> for three hours before she finally understood the formula."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Present Perfect Continuous connects to NOW, but \'understood\' is in the past.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">has been studying</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Past Perfect Continuous (had been studying) describes a continuous action prior to a completed past event.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">had been studying</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Was studying is Past Continuous, but \'for three hours\' emphasizes ongoing duration before the past point.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">was studying</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. In IELTS Writing Task 1, which tense MUST be used to describe general overview statements about a chart layout?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Sentence descriptions of what a diagram shows or illustrates always use Present Simple.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Present Simple ("The chart illustrates...")</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Past Simple is only used for historical data points within the graph.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Past Simple ("The chart illustrated...")</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Present Continuous is inappropriate for static academic overviews.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Present Continuous ("The chart is illustrating...")</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Grammar & Tense Mastery Suite</span>
+            <span>Module Extension: Verb Tense Reference</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* 12 Tenses Data Object for Matrix */
+        const tenseMatrixData = [
+            {
+                id: "pres_simple", era: "present", name: "Present Simple",
+                formula: "Base Verb (+ -s/-es)", aux: "do / does",
+                pos: "Researchers conduct studies daily.", neg: "They do not conduct studies on weekends.",
+                signals: "always, usually, daily, every year, in general",
+                summary: "Habits, general truths, static facts."
+            },
+            {
+                id: "pres_cont", era: "present", name: "Present Continuous",
+                formula: "am / is / are + V-ing", aux: "am / is / are",
+                pos: "The economy is growing rapidly.", neg: "Prices are not falling currently.",
+                signals: "now, currently, at the moment, this year",
+                summary: "Ongoing actions around the present moment."
+            },
+            {
+                id: "pres_perf", era: "present", name: "Present Perfect",
+                formula: "have / has + V3 (Past Participle)", aux: "have / has",
+                pos: "Scientists have discovered a new vaccine.", neg: "Huan hasn't completed his report yet.",
+                signals: "already, yet, recently, so far, since 2010",
+                summary: "Past actions with current relevance or unspecified time."
+            },
+            {
+                id: "pres_perf_cont", era: "present", name: "Present Perfect Continuous",
+                formula: "have / has + been + V-ing", aux: "have / has + been",
+                pos: "She has been studying for five hours.", neg: "Daniel hasn't been attending lectures.",
+                signals: "for, since, all morning, how long",
+                summary: "Continuous duration leading up to present moment."
+            },
+            {
+                id: "past_simple", era: "past", name: "Past Simple",
+                formula: "Past Verb (V2)", aux: "did",
+                pos: "The empire collapsed in 1453.", neg: "They didn't record the temperature yesterday.",
+                signals: "yesterday, in 1999, 2 days ago, last week",
+                summary: "Single completed actions at a specific past time."
+            },
+            {
+                id: "past_cont", era: "past", name: "Past Continuous",
+                formula: "was / were + V-ing", aux: "was / were",
+                pos: "The team was conducting research at 3 PM.", neg: "Ahmet wasn't sleeping when I called.",
+                signals: "while, as, at 5 o'clock yesterday",
+                summary: "Ongoing action interrupted or occurring at a past moment."
+            },
+            {
+                id: "past_perf", era: "past", name: "Past Perfect",
+                formula: "had + V3 (Past Participle)", aux: "had",
+                pos: "They had left before the storm started.", neg: "I hadn't learnt Greek prior to visiting Athens.",
+                signals: "by the time, before, prior to, already",
+                summary: "Action completed before another past action or reference."
+            },
+            {
+                id: "past_perf_cont", era: "past", name: "Past Perfect Continuous",
+                formula: "had + been + V-ing", aux: "had + been",
+                pos: "Mariella had been working hard before she passed.", neg: "They hadn't been practicing enough.",
+                signals: "for 3 years before, up until that point",
+                summary: "Ongoing past action prior to a subsequent past outcome."
+            },
+            {
+                id: "future_simple", era: "future", name: "Future Simple",
+                formula: "will + Base Verb", aux: "will",
+                pos: "Technology will revolutionize education.", neg: "Governments won't eliminate tax easily.",
+                signals: "tomorrow, next year, in 2050, probably",
+                summary: "Future predictions, instant decisions, promises."
+            },
+            {
+                id: "future_cont", era: "future", name: "Future Continuous",
+                formula: "will be + V-ing", aux: "will be",
+                pos: "In 2070, humans will be living on Mars.", neg: "We won't be using paper money in 10 years.",
+                signals: "this time next week, at 8 PM tomorrow",
+                summary: "Action in progress at a specific future moment."
+            },
+            {
+                id: "future_perf", era: "future", name: "Future Perfect",
+                formula: "will have + V3", aux: "will have",
+                pos: "By next year, my class will have graduated.", neg: "Scientists won't have cured all diseases by then.",
+                signals: "by, by the time, by December",
+                summary: "Action that will be completed prior to a future deadline."
+            },
+            {
+                id: "future_perf_cont", era: "future", name: "Future Perfect Continuous",
+                formula: "will have been + V-ing", aux: "will have been",
+                pos: "By 2030, she will have been teaching for 40 years.", neg: "He won't have been living there for long.",
+                signals: "by next year... for 5 years",
+                summary: "Duration of ongoing action benchmarked at a future point."
+            }
+        ];
+
+        /* Render Filtered Tense Matrix */
+        function filterTenseMatrix(era) {
+            const pills = document.querySelectorAll('#timeFilterPills button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`tf-${era}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('tenseMatrixGrid');
+            const filtered = era === 'all' ? tenseMatrixData : tenseMatrixData.filter(t => t.era === era);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectTense('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded ${t.era === 'past' ? 'bg-indigo-100 text-indigo-800' : t.era === 'present' ? 'bg-sky-100 text-sky-800' : 'bg-emerald-100 text-emerald-800'}">${t.era}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.aux}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs font-mono font-bold text-indigo-600 mb-2">${t.formula}</p>
+                        <p class="text-xs text-slate-600 line-clamp-2">${t.summary}</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* Inspect Specific Tense Card */
+        function inspectTense(tenseId) {
+            const data = tenseMatrixData.find(t => t.id === tenseId);
+            if (!data) return;
+
+            document.getElementById('inspectorTitle').innerText = data.name;
+            document.getElementById('inspectorFormula').innerText = `Formula: ${data.formula}`;
+            document.getElementById('inspectorPos').innerHTML = `<strong>Example:</strong> "${data.pos}"`;
+            document.getElementById('inspectorNeg').innerHTML = `<strong>Example:</strong> "${data.neg}"`;
+            document.getElementById('inspectorSignals').innerHTML = `<strong>Time Signals:</strong> ${data.signals}`;
+        }
+
+        /* Comparison Engine Data */
+        const comparisonPairs = {
+            'ps_vs_pp': {
+                t1: { name: "Past Simple", focus: "Definite, Completed Past Time", example: "I lived in London in 2015. (Finished time period, I no longer live there)" },
+                t2: { name: "Present Perfect", focus: "Unspecified Past / Connection to Present", example: "I have lived in London for 5 years. (Unfinished, I still live there now)" },
+                takeaway: "Use Past Simple when a specific finished time (yesterday, in 2010) is stated. Use Present Perfect when time is unspecified or ongoing."
+            },
+            'pr_s_vs_pr_c': {
+                t1: { name: "Present Simple", focus: "Permanent Habit / General Truth", example: "Water boils at 100 degrees Celsius. / She works at a bank." },
+                t2: { name: "Present Continuous", focus: "Temporary Action / Currently in Progress", example: "Water is boiling on the stove. / She is working from home today." },
+                takeaway: "Present Simple states permanent conditions. Present Continuous highlights temporary activities right around now."
+            },
+            'ps_vs_pc': {
+                t1: { name: "Past Simple", focus: "Completed Interrupting Action", example: "The phone rang while I was studying." },
+                t2: { name: "Past Continuous", focus: "Ongoing Background Activity", example: "I was studying when the phone rang." },
+                takeaway: "Past Continuous forms the long background context; Past Simple represents the quick interrupting event."
+            },
+            'will_vs_goingto': {
+                t1: { name: "Future: Will", focus: "Spontaneous Decision / Prediction without Present Evidence", example: "I think it will rain tomorrow. / I'll help you with that box!" },
+                t2: { name: "Future: Be Going To", focus: "Pre-planned Intention / Evidence-based Prediction", example: "Look at those black clouds! It is going to rain." },
+                takeaway: "Use 'be going to' for clear visual evidence or prior plans; use 'will' for instant decisions or subjective belief."
+            },
+            'ppc_vs_pp': {
+                t1: { name: "Present Perfect Continuous", focus: "Emphasizes Process & Continuous Duration", example: "He has been writing his dissertation all day. (Focus on time spent)" },
+                t2: { name: "Present Perfect Simple", focus: "Emphasizes Result & Quantity Completed", example: "He has written three chapters today. (Focus on completed output)" },
+                takeaway: "Continuous emphasizes 'how long'; Simple emphasizes 'how many' or finished result."
+            }
+        };
+
+        function loadComparisonPair(key) {
+            const pills = document.querySelectorAll('#comparisonPairPills button');
+            pills.forEach(p => p.className = "px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200");
+
+            const activePill = document.getElementById(`cp-${key}`);
+            if (activePill) activePill.className = "px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow-md";
+
+            const data = comparisonPairs[key];
+            const display = document.getElementById('comparisonDisplay');
+
+            display.innerHTML = `
+                <div class="bg-sky-50/60 p-5 rounded-2xl border border-sky-100 space-y-3">
+                    <span class="px-2.5 py-1 bg-sky-200 text-sky-900 rounded-md text-[11px] font-bold uppercase tracking-wider">${data.t1.name}</span>
+                    <h5 class="font-extrabold text-slate-900 text-base">${data.t1.focus}</h5>
+                    <p class="text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-200 italic">"${data.t1.example}"</p>
+                </div>
+
+                <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-100 space-y-3">
+                    <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-bold uppercase tracking-wider">${data.t2.name}</span>
+                    <h5 class="font-extrabold text-slate-900 text-base">${data.t2.focus}</h5>
+                    <p class="text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-200 italic">"${data.t2.example}"</p>
+                </div>
+
+                <div class="md:col-span-2 bg-slate-900 text-white p-4 rounded-xl text-xs space-y-1">
+                    <strong class="text-amber-400 block font-bold text-sm">💡 Strategic Rule of Thumb:</strong>
+                    <p class="text-slate-300 leading-relaxed">${data.takeaway}</p>
+                </div>
+            `;
+        }
+
+        /* Live Sentence Transformer Logic */
+        let currentPolarity = 'positive';
+
+        function setPolarity(pol) {
+            currentPolarity = pol;
+            ['pos', 'neg', 'que'].forEach(p => {
+                const btn = document.getElementById(`pol-${p}`);
+                if (p === pol.substring(0,3)) {
+                    btn.className = "flex-1 py-2.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                } else {
+                    btn.className = "flex-1 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                }
+            });
+            renderSentenceTransformer();
+        }
+
+        const sentenceContexts = {
+            research: {
+                subj: "The researchers",
+                tenses: {
+                    pres_simple: { pos: "The researchers conduct the study.", neg: "The researchers do not conduct the study.", que: "Do the researchers conduct the study?" },
+                    pres_cont: { pos: "The researchers are conducting the study.", neg: "The researchers are not conducting the study.", que: "Are the researchers conducting the study?" },
+                    pres_perf: { pos: "The researchers have conducted the study.", neg: "The researchers have not conducted the study.", que: "Have the researchers conducted the study?" },
+                    pres_perf_cont: { pos: "The researchers have been conducting the study.", neg: "The researchers have not been conducting the study.", que: "Have the researchers been conducting the study?" },
+                    past_simple: { pos: "The researchers conducted the study.", neg: "The researchers did not conduct the study.", que: "Did the researchers conduct the study?" },
+                    past_cont: { pos: "The researchers were conducting the study.", neg: "The researchers were not conducting the study.", que: "Were the researchers conducting the study?" },
+                    past_perf: { pos: "The researchers had conducted the study.", neg: "The researchers had not conducted the study.", que: "Had the researchers conducted the study?" },
+                    past_perf_cont: { pos: "The researchers had been conducting the study.", neg: "The researchers had not been conducting the study.", que: "Had the researchers been conducting the study?" },
+                    future_simple: { pos: "The researchers will conduct the study.", neg: "The researchers will not conduct the study.", que: "Will the researchers conduct the study?" },
+                    future_cont: { pos: "The researchers will be conducting the study.", neg: "The researchers will not be conducting the study.", que: "Will the researchers be conducting the study?" },
+                    future_perf: { pos: "The researchers will have conducted the study.", neg: "The researchers will not have conducted the study.", que: "Will the researchers have conducted the study?" },
+                    future_perf_cont: { pos: "The researchers will have been conducting the study.", neg: "The researchers will not have been conducting the study.", que: "Will the researchers have been conducting the study?" }
+                }
+            },
+            student: {
+                subj: "Mariella",
+                tenses: {
+                    pres_simple: { pos: "Mariella studies English.", neg: "Mariella does not study English.", que: "Does Mariella study English?" },
+                    pres_cont: { pos: "Mariella is studying English.", neg: "Mariella is not studying English.", que: "Is Mariella studying English?" },
+                    pres_perf: { pos: "Mariella has studied English.", neg: "Mariella has not studied English.", que: "Has Mariella studied English?" },
+                    pres_perf_cont: { pos: "Mariella has been studying English.", neg: "Mariella has not been studying English.", que: "Has Mariella been studying English?" },
+                    past_simple: { pos: "Mariella studied English.", neg: "Mariella did not study English.", que: "Did Mariella study English?" },
+                    past_cont: { pos: "Mariella was studying English.", neg: "Mariella was not studying English.", que: "Was Mariella studying English?" },
+                    past_perf: { pos: "Mariella had studied English.", neg: "Mariella had not studied English.", que: "Had Mariella studied English?" },
+                    past_perf_cont: { pos: "Mariella had been studying English.", neg: "Mariella had not been studying English.", que: "Had Mariella been studying English?" },
+                    future_simple: { pos: "Mariella will study English.", neg: "Mariella will not study English.", que: "Will Mariella study English?" },
+                    future_cont: { pos: "Mariella will be studying English.", neg: "Mariella will not be studying English.", que: "Will Mariella be studying English?" },
+                    future_perf: { pos: "Mariella will have studied English.", neg: "Mariella will not have studied English.", que: "Will Mariella have studied English?" },
+                    future_perf_cont: { pos: "Mariella will have been studying English.", neg: "Mariella will not have been studying English.", que: "Will Mariella have been studying English?" }
+                }
+            },
+            government: {
+                subj: "The government",
+                tenses: {
+                    pres_simple: { pos: "The government implements new policy.", neg: "The government does not implement new policy.", que: "Does the government implement new policy?" },
+                    pres_cont: { pos: "The government is implementing new policy.", neg: "The government is not implementing new policy.", que: "Is the government implementing new policy?" },
+                    pres_perf: { pos: "The government has implemented new policy.", neg: "The government has not implemented new policy.", que: "Has the government implemented new policy?" },
+                    pres_perf_cont: { pos: "The government has been implementing new policy.", neg: "The government has not been implementing new policy.", que: "Has the government been implementing new policy?" },
+                    past_simple: { pos: "The government implemented new policy.", neg: "The government did not implement new policy.", que: "Did the government implement new policy?" },
+                    past_cont: { pos: "The government was implementing new policy.", neg: "The government was not implementing new policy.", que: "Was the government implementing new policy?" },
+                    past_perf: { pos: "The government had implemented new policy.", neg: "The government had not implemented new policy.", que: "Had the government implemented new policy?" },
+                    past_perf_cont: { pos: "The government had been implementing new policy.", neg: "The government had not been implementing new policy.", que: "Had the government been implementing new policy?" },
+                    future_simple: { pos: "The government will implement new policy.", neg: "The government will not implement new policy.", que: "Will the government implement new policy?" },
+                    future_cont: { pos: "The government will be implementing new policy.", neg: "The government will not be implementing new policy.", que: "Will the government be implementing new policy?" },
+                    future_perf: { pos: "The government will have implemented new policy.", neg: "The government will not have implemented new policy.", que: "Will the government have implemented new policy?" },
+                    future_perf_cont: { pos: "The government will have been implementing new policy.", neg: "The government will not have been implementing new policy.", que: "Will the government have been implementing new policy?" }
+                }
+            }
+        };
+
+        function renderSentenceTransformer() {
+            const ctxKey = document.getElementById('baseSentenceSelect').value;
+            const context = sentenceContexts[ctxKey];
+            const output = document.getElementById('sentenceTransformerOutput');
+
+            const polKey = currentPolarity === 'positive' ? 'pos' : currentPolarity === 'negative' ? 'neg' : 'que';
+
+            output.innerHTML = tenseMatrixData.map(t => {
+                const sentence = context.tenses[t.id][polKey];
+                return `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-slate-50 rounded-xl border border-slate-200 gap-2">
+                        <span class="text-xs font-bold text-indigo-700 w-44 font-mono">${t.name}</span>
+                        <span class="text-xs sm:text-sm font-semibold text-slate-800 flex-1">${sentence}</span>
+                        <span class="text-[10px] uppercase font-bold px-2 py-1 rounded bg-slate-200 text-slate-600">${t.era}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* On Page Load Initialization */
+        window.onload = function() {
+            filterTenseMatrix('all');
+            inspectTense('pres_simple');
+            loadComparisonPair('ps_vs_pp');
+            renderSentenceTransformer();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Forms & Epistemic Certainty Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(16, 185, 129, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+            70% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100 my-4">
+        
+        <!-- Main Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-emerald-950 to-teal-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="12 6 12 12 16 14"></polygon>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 3 Extension: Epistemic Modality & Logical Deduction
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Modal Certainty & Epistemic Scale</h1>
+                <p class="text-emerald-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Modal Verbs of Deduction across Present, Future, and Past time frames. Explore Epistemic vs. Deontic functions, Past Modal Investigations, and Academic Hedging.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-emerald-600 border-b-4 border-emerald-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-radar')">
+                    1. Certainty Dial Engine 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-epistemic-deontic')">
+                    2. Epistemic vs Deontic ⚖️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-past-deduction')">
+                    3. Past Deduction Lab 🔍
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-hedging-studio')">
+                    4. Academic Hedging 🛡️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <div id="tab-radar" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Epistemic Certainty Dial</h3>
+                        <p class="text-sm text-slate-600 font-medium">Adjust probability levels and time aspects to observe live modal auxiliary choices and structural formulas.</p>
+                    </div>
+                </div>
+
+                <!-- Dial Controls & Output Dashboard -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-6">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Controls -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-extrabold uppercase text-emerald-400 mb-2">1. Select Target Time Aspect:</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button onclick="setTimeAspect('present')" id="aspect-present-btn" class="py-2.5 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-xs">Present</button>
+                                    <button onclick="setTimeAspect('continuous')" id="aspect-continuous-btn" class="py-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300">Continuous</button>
+                                    <button onclick="setTimeAspect('past')" id="aspect-past-btn" class="py-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300">Past V3</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-xs font-extrabold uppercase text-emerald-400">2. Adjust Logical Certainty Slider:</label>
+                                    <span id="sliderPctLabel" class="text-xs font-mono font-bold text-amber-400">95% (Strong Positive)</span>
+                                </div>
+                                <input type="range" id="certaintyRange" min="0" max="100" value="95" step="5" oninput="handleRangeInput(this.value)" class="w-full h-3 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                                <div class="flex justify-between text-[10px] font-bold text-slate-400 mt-1">
+                                    <span>0% Impossibility</span>
+                                    <span>40% Speculation</span>
+                                    <span>75% Expectation</span>
+                                    <span>100% Certainty</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gauge Box -->
+                        <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700 flex flex-col justify-between space-y-3">
+                            <div class="flex justify-between items-center border-b border-slate-700 pb-3">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Modal Formula</span>
+                                <span id="radarFormulaBadge" class="px-3 py-1 bg-emerald-500/20 text-emerald-300 font-mono text-xs rounded-lg font-bold">must + V1</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-extrabold uppercase text-amber-400 block mb-1">Speaker Evidence Assessment</span>
+                                <p id="radarEvidenceDesc" class="text-xs text-slate-300">Supported by direct, conclusive evidence leaving almost zero room for doubt.</p>
+                            </div>
+                            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                                <span class="text-[10px] text-slate-500 uppercase font-bold block mb-0.5">Live Generated Sentence</span>
+                                <p id="radarGeneratedSentence" class="text-sm font-bold text-emerald-400">"The researcher must be in the laboratory based on the signed logbook."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Node Buttons -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-slate-800">
+                        <button onclick="handleRangeInput(0)" class="bg-slate-800 hover:bg-slate-700 p-3 rounded-xl border border-slate-700 text-left transition-colors">
+                            <span class="text-[10px] font-bold text-rose-400 uppercase block">0% Impossibility</span>
+                            <span class="text-xs font-bold text-white">Can't / Couldn't</span>
+                        </button>
+                        <button onclick="handleRangeInput(40)" class="bg-slate-800 hover:bg-slate-700 p-3 rounded-xl border border-slate-700 text-left transition-colors">
+                            <span class="text-[10px] font-bold text-amber-400 uppercase block">30–50% Speculation</span>
+                            <span class="text-xs font-bold text-white">Might / May / Could</span>
+                        </button>
+                        <button onclick="handleRangeInput(75)" class="bg-slate-800 hover:bg-slate-700 p-3 rounded-xl border border-slate-700 text-left transition-colors">
+                            <span class="text-[10px] font-bold text-sky-400 uppercase block">70–80% Probability</span>
+                            <span class="text-xs font-bold text-white">Should / Ought to</span>
+                        </button>
+                        <button onclick="handleRangeInput(95)" class="bg-slate-800 hover:bg-slate-700 p-3 rounded-xl border border-slate-700 text-left transition-colors">
+                            <span class="text-[10px] font-bold text-emerald-400 uppercase block">90–100% Deduction</span>
+                            <span class="text-xs font-bold text-white">Must</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-epistemic-deontic" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Epistemic vs. Deontic Modality Classifier</h3>
+                        <p class="text-sm text-slate-600 font-medium">Learn how the same modal auxiliary verb shifts meaning from <strong>Logical Deduction (Epistemic)</strong> to <strong>Obligation/Permission (Deontic)</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Epistemic Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-extrabold uppercase tracking-wider">Epistemic Modality</span>
+                            <span class="text-xs font-bold text-emerald-600">Knowledge & Belief 🧠</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Logical Deduction & Likelihood</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Reflects the speaker's judgment about the truth or probability of a proposition based on available evidence.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">Deduction (Must):</span>
+                                <p class="text-slate-900 font-semibold">"She <strong class="text-emerald-700 underline">must be</strong> in her office because the lights are on."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Speaker concludes it is logically 95% certain.</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">Speculation (May/Might):</span>
+                                <p class="text-slate-900 font-semibold">"It <strong class="text-emerald-700 underline">might rain</strong> later, so bring an umbrella."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Speaker assesses a 30-50% chance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deontic Card -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-extrabold uppercase tracking-wider">Deontic Modality</span>
+                            <span class="text-xs font-bold text-purple-600">Obligation & Rules 📜</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Duty, Permission & Social Rules</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Reflects social obligations, prohibitions, official rules, permissions, or personal commitments to act.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Obligation (Must):</span>
+                                <p class="text-slate-900 font-semibold">"You <strong class="text-purple-700 underline">must submit</strong> the essay by Friday midnight."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Official deadline requirement.</p>
+                            </div>
+                            <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Permission (May/Can):</span>
+                                <p class="text-slate-900 font-semibold">"Students <strong class="text-purple-700 underline">may leave</strong> the exam room after 60 minutes."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Official institutional permission granted.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Sentence Function Classifier -->
+                <div class="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Modal Meaning Switcher</h4>
+                    <p class="text-xs text-slate-600">Select a sentence below to inspect whether the modal auxiliary operates as Epistemic (Deduction) or Deontic (Rule/Obligation):</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <button onclick="classifyModal('m1')" id="mc-m1" class="p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-emerald-800 uppercase block mb-1">Sentence 1</span>
+                            <p class="text-slate-900 font-bold">"The professor must be at the conference today."</p>
+                        </button>
+                        <button onclick="classifyModal('m2')" id="mc-m2" class="p-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Sentence 2</span>
+                            <p class="text-slate-900 font-bold">"You must wear safety goggles in the lab."</p>
+                        </button>
+                    </div>
+
+                    <div id="classifierOutput" class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <span class="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded font-bold uppercase text-[10px]">Epistemic Deduction</span>
+                        <p class="text-slate-200 text-sm font-semibold">"The professor must be at the conference today."</p>
+                        <p class="text-slate-400">Meaning: Based on the schedule evidence, the speaker deduces a 95% likelihood that the professor is there.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-past-deduction" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Past Modal Deduction Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Investigate completed historical mysteries using past perfect modal auxiliaries (`modal + have + V3`).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Investigation Case Study:</label>
+                            <select id="caseStudySelect" onchange="renderPastLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-sky-500 focus:border-sky-500">
+                                <option value="blackout">Case A: The Lab Power Outage</option>
+                                <option value="fossil">Case B: The Missing Archaeological Artifact</option>
+                                <option value="exam">Case C: The Unexpected Exam Results</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Select Speaker Evidence Level:</label>
+                            <select id="caseEvidenceSelect" onchange="renderPastLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-sky-500 focus:border-sky-500">
+                                <option value="certain_pos">95% Positive Proof (Must have + V3)</option>
+                                <option value="certain_neg">0% Impossibility (Can't have + V3)</option>
+                                <option value="possible">30–50% Speculation (Might / Could have + V3)</option>
+                                <option value="expectation">75% Expected Past Outcome (Should have + V3)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div class="p-6 rounded-2xl bg-slate-900 text-white space-y-4 shadow-xl">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-300 border border-sky-500/40 rounded-md text-[11px] font-bold uppercase tracking-wider" id="labCaseBadge">Investigation Evidence</span>
+                            <span class="font-mono text-xs text-amber-400 font-bold" id="labFormulaTag">must have + past participle</span>
+                        </div>
+
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <span class="text-[10px] font-bold uppercase text-slate-400 block">Uncovered Clue / Background</span>
+                            <p id="labClueText" class="text-xs sm:text-sm text-slate-200 italic font-semibold"></p>
+                        </div>
+
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                            <span class="text-[10px] font-bold uppercase text-emerald-400 block">Synthesized Past Deduction</span>
+                            <p id="labDeductionSentence" class="text-base sm:text-lg font-bold text-emerald-300"></p>
+                        </div>
+
+                        <p id="labExplanation" class="text-xs text-slate-400 leading-relaxed"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-hedging-studio" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-amber-100 p-3.5 rounded-2xl text-amber-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Hedging & Tone Softening Studio</h3>
+                        <p class="text-sm text-slate-600 font-medium">Prevent Task Achievement score reductions in IELTS Task 2 by applying epistemic modals and hedging verbs.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Low-Band Trap</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Categorical / Overgeneralized Claims</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Stating conclusions as 100% absolute facts without scientific proof leads to examiner penalties for unhedged generalizations.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Dogmatic Claim 1:</span>
+                                <p class="text-slate-800 font-semibold">"Artificial intelligence will replace all human teachers by 2040."</p>
+                            </div>
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Dogmatic Claim 2:</span>
+                                <p class="text-slate-800 font-semibold">"Urban migration causes crime rates to spike in major cities."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Band 8.0+ Precision</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Scientifically Hedged Writing</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Combining epistemic modals (*may, could*) with softening verbs (*suggest, tend to*) demonstrates academic restraint.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Hedged Form 1:</span>
+                                <p class="text-slate-900 font-semibold">"It is conceivable that artificial intelligence <strong class="text-emerald-700">could potentially automate</strong> certain instructional roles by 2040."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Hedged Form 2:</span>
+                                <p class="text-slate-900 font-semibold">"Studies indicate that rapid urban migration <strong class="text-emerald-700">tends to correlate with</strong> increased municipal challenges."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Hedging Toolkit Reference -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Academic Softening Vocabulary Toolkit</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-emerald-700 font-bold block text-sm">Epistemic Modals</strong>
+                            <p class="text-slate-700 font-semibold">may, might, could, can</p>
+                            <p class="text-slate-500 text-[11px]">"This policy <strong class="underline">could lead</strong> to improved outcomes."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-sky-700 font-bold block text-sm">Softening Verbs</strong>
+                            <p class="text-slate-700 font-semibold">suggest, indicate, appear to, tend to</p>
+                            <p class="text-slate-500 text-[11px]">"Data <strong class="underline">appears to indicate</strong> a gradual rise."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-purple-700 font-bold block text-sm">Probability Adverbs</strong>
+                            <p class="text-slate-700 font-semibold">presumably, arguably, conceivably, highly likely</p>
+                            <p class="text-slate-500 text-[11px]">"It is <strong class="underline">arguably</strong> the most viable alternative."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Epistemic Modality Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to deduce certainty levels, construct past modal forms, and apply academic hedging.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct PAST modal deduction (0% impossibility): "Daniel <span class="text-emerald-600 underline">______</span> the window, because he was out of the country."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Couldn\'t break is present/future form.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">couldn't break</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Past negative impossibility uses \'can\'t have broken\' or \'couldn\'t have broken\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs" data-correct="true">can't have broken</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Must have broken indicates 95% positive deduction.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">must have broken</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Which sentence represents an EPISTEMIC modal function (Logical Deduction)?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Expresses deontic obligation/rule.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">You must sign in at the front desk upon arrival.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Based on evidence (lights on), speaker deduces presence logically.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs" data-correct="true">The professor must be in her office because the lights are on.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Expresses deontic permission.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">Candidates may turn over their test papers now.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the best Band 8.0+ hedged academic rewrite for: "Technology makes people lazy."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Still dogmatic and absolute.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">Technology definitely makes people lazy.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Combines epistemic modal \'may\' with softening verb \'tend to\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs" data-correct="true">Evidence indicates that overuse of technology may tend to reduce physical activity.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Uses must incorrectly as an absolute rule.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">Technology must make people lazy every day.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. What does "should have + V3" express when reflecting on a past event?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Should have + V3\' expresses an expected past outcome or regret over an unfulfilled duty.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs" data-correct="true">An expected past outcome or a criticism/regret regarding an unfulfilled action.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Impossibility uses can\'t have + V3.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">Absolute 100% past physical impossibility.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Continuous present deduction uses must be + -ing.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-emerald-100 text-slate-700 text-xs">A present continuous action in progress right now.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Epistemic Modality Suite</span>
+            <span>Module 3 Extension: Modal Certainty Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-emerald-600', 'text-emerald-600');
+                }
+            }
+        }
+
+        /* Radar Dial Logic */
+        let currentAspect = 'present';
+        let currentCertaintyVal = 95;
+
+        function setTimeAspect(aspect) {
+            currentAspect = aspect;
+            ['present', 'continuous', 'past'].forEach(a => {
+                const btn = document.getElementById(`aspect-${a}-btn`);
+                if (a === aspect) {
+                    btn.className = "py-2.5 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-xs";
+                } else {
+                    btn.className = "py-2.5 rounded-xl text-xs font-bold bg-slate-800 text-slate-300";
+                }
+            });
+            updateRadarDisplay();
+        }
+
+        function handleRangeInput(val) {
+            currentCertaintyVal = parseInt(val, 10);
+            document.getElementById('certaintyRange').value = val;
+            updateRadarDisplay();
+        }
+
+        const radarData = {
+            present: {
+                0: { formula: "can't / couldn't + V1", label: "0% Negative Impossibility", evidence: "Supported by solid physical facts proving an impossibility.", sentence: "The result can't be correct because the raw sample was contaminated." },
+                40: { formula: "might / may / could + V1", label: "30–50% Speculative Possibility", evidence: "Recognizes a realistic possibility without decisive proof.", sentence: "The team might be close to discovering a workable alternative." },
+                75: { formula: "should / ought to + V1", label: "70–80% Expected Probability", evidence: "Based on normal expectations or reasonable schedules.", sentence: "The new guidelines should improve laboratory safety standards." },
+                95: { formula: "must + V1", label: "95–100% Positive Deduction", evidence: "Supported by overwhelming logical clues leaving almost zero doubt.", sentence: "The researcher must be in the laboratory based on the signed logbook." }
+            },
+            continuous: {
+                0: { formula: "can't be + V-ing", label: "0% Continuous Impossibility", evidence: "Direct evidence proves an ongoing action cannot be happening now.", sentence: "He can't be working in office today as he is attending a conference." },
+                40: { formula: "might / may / could be + V-ing", label: "30–50% Ongoing Speculation", evidence: "Speculating on what someone is currently doing around now.", sentence: "They may be conducting the second phase of trials right now." },
+                75: { formula: "should be + V-ing", label: "70–80% Expected Continuous State", evidence: "Expected ongoing action according to standard schedule.", sentence: "The system should be processing the data batch right now." },
+                95: { formula: "must be + V-ing", label: "95–100% Certain Ongoing Deduction", evidence: "Overwhelming evidence indicates an active ongoing state.", sentence: "The machinery must be running because we can hear the engine noise." }
+            },
+            past: {
+                0: { formula: "can't have / couldn't have + V3", label: "0% Past Impossibility", evidence: "Conclusive historical proof that a past event was impossible.", sentence: "Daniel couldn't have committed the breach as he was hospitalized." },
+                40: { formula: "might / may / could have + V3", label: "30–50% Past Speculation", evidence: "Uncertain speculation regarding a completed historical event.", sentence: "The artifact might have been damaged during transportation." },
+                75: { formula: "should have + V3", label: "70–80% Past Unfulfilled Expectation", evidence: "Expected past outcome that either failed or was overlooked.", sentence: "The technician should have checked the temperature gauges earlier." },
+                95: { formula: "must have + V3", label: "95–100% Past Positive Deduction", evidence: "Overwhelming historical evidence pointing to a past truth.", sentence: "The flood must have destroyed the ancient bridge centuries ago." }
+            }
+        };
+
+        function updateRadarDisplay() {
+            let bucket = 95;
+            if (currentCertaintyVal <= 15) bucket = 0;
+            else if (currentCertaintyVal <= 60) bucket = 40;
+            else if (currentCertaintyVal <= 85) bucket = 75;
+            else bucket = 95;
+
+            const data = radarData[currentAspect][bucket];
+
+            document.getElementById('sliderPctLabel').innerText = `${currentCertaintyVal}% (${data.label})`;
+            document.getElementById('radarFormulaBadge').innerText = data.formula;
+            document.getElementById('radarEvidenceDesc').innerText = data.evidence;
+            document.getElementById('radarGeneratedSentence').innerText = `"${data.sentence}"`;
+        }
+
+        /* Classifier Logic */
+        const modalClassificationData = {
+            m1: {
+                badge: "Epistemic Deduction (Logical Degree)",
+                badgeClass: "px-2.5 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded font-bold uppercase text-[10px]",
+                sentence: "The professor must be at the conference today.",
+                explanation: "Meaning: Epistemic Modality. Based on the schedule evidence, the speaker deduces a 95% probability that the professor is there."
+            },
+            m2: {
+                badge: "Deontic Obligation (Official Rule)",
+                badgeClass: "px-2.5 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/40 rounded font-bold uppercase text-[10px]",
+                sentence: "You must wear safety goggles in the lab.",
+                explanation: "Meaning: Deontic Modality. This is an institutional safety rule imposing a direct obligation on individuals."
+            }
+        };
+
+        function classifyModal(id) {
+            ['m1', 'm2'].forEach(m => {
+                const btn = document.getElementById(`mc-${m}`);
+                if (m === id) {
+                    btn.className = "p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 text-left transition-all";
+                } else {
+                    btn.className = "p-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-left transition-all";
+                }
+            });
+
+            const data = modalClassificationData[id];
+            document.getElementById('classifierOutput').innerHTML = `
+                <span class="${data.badgeClass}">${data.badge}</span>
+                <p class="text-slate-200 text-sm font-semibold">${data.sentence}</p>
+                <p class="text-slate-400">${data.explanation}</p>
+            `;
+        }
+
+        /* Past Lab Logic */
+        const pastLabCases = {
+            blackout: {
+                certain_pos: {
+                    clue: "Clue: Backup generator logs show power dropped exactly at 03:00 AM after a lightning surge.",
+                    sentence: "A severe lightning strike must have damaged the main power grid.",
+                    formula: "must have + V3 (95% Past Deduction)",
+                    desc: "Overwhelming physical logs prove the power outage was caused by lightning."
+                },
+                certain_neg: {
+                    clue: "Clue: Uninterrupted battery units were operating normally and logged no manual shutdowns.",
+                    sentence: "The technician can't have shut off the generator intentionally.",
+                    formula: "can't have + V3 (0% Past Impossibility)",
+                    desc: "Logged evidence makes intentional human sabotage impossible."
+                },
+                possible: {
+                    clue: "Clue: Wiring in Building B was old, but no scorched mark was found.",
+                    sentence: "An internal short circuit might have caused the fuse to blow.",
+                    formula: "might / could have + V3 (30-50% Speculation)",
+                    desc: "One plausible historical hypothesis among several possibilities."
+                },
+                expectation: {
+                    clue: "Clue: Maintenance protocol requires battery replacements every 6 months, but it was skipped.",
+                    sentence: "The maintenance team should have replaced the battery backups in January.",
+                    formula: "should have + V3 (75% Past Unfulfilled Duty)",
+                    desc: "Reflects a required past duty that was neglected."
+                }
+            },
+            fossil: {
+                certain_pos: {
+                    clue: "Clue: High security glass was cut from the outside using laser tools.",
+                    sentence: "Experienced thieves must have stolen the fossil overnight.",
+                    formula: "must have + V3 (95% Past Deduction)",
+                    desc: "Sophisticated laser cuts prove professional involvement."
+                },
+                certain_neg: {
+                    clue: "Clue: Motion sensors near the floor were never triggered.",
+                    sentence: "The intruder can't have entered through the main hallway doors.",
+                    formula: "can't have + V3 (0% Past Impossibility)",
+                    desc: "Sensors prove doorway entry was factually impossible."
+                },
+                possible: {
+                    clue: "Clue: An overhead vent cover was found unscrewed.",
+                    sentence: "The intruder could have dropped down from the ceiling vents.",
+                    formula: "could / might have + V3 (30-50% Speculation)",
+                    desc: "Plausible entry method under active investigation."
+                },
+                expectation: {
+                    clue: "Clue: Night guards turned off CCTV cameras for a scheduled update that took 3 hours.",
+                    sentence: "The security team should have kept human guards in the vault during the CCTV reboot.",
+                    formula: "should have + V3 (75% Past Expectation)",
+                    desc: "Criticism of an unfulfilled security protocol."
+                }
+            },
+            exam: {
+                certain_pos: {
+                    clue: "Clue: Student scored 99% after studying 8 hours daily for 3 months.",
+                    sentence: "Mariella must have prepared exhaustively for the final exam.",
+                    formula: "must have + V3 (95% Past Deduction)",
+                    desc: "High score combined with study hours guarantees intense preparation."
+                },
+                certain_neg: {
+                    clue: "Clue: Exam contained advanced quantum mechanics questions not covered in high school.",
+                    sentence: "An unprepared student couldn't have passed without university preparation.",
+                    formula: "couldn't have + V3 (0% Past Impossibility)",
+                    desc: "Exam complexity makes passing without preparation impossible."
+                },
+                possible: {
+                    clue: "Clue: Test questions were very similar to last year's practice paper.",
+                    sentence: "She may have practiced the exact past paper questions prior to the test.",
+                    formula: "may / might have + V3 (30-50% Speculation)",
+                    desc: "Speculative reason explaining the top performance."
+                },
+                expectation: {
+                    clue: "Clue: Exam results were promised for Monday, but were posted on Wednesday.",
+                    sentence: "The examination board should have released the results on Monday.",
+                    formula: "should have + V3 (75% Past Schedule Expectation)",
+                    desc: "Points out a delayed schedule expectation."
+                }
+            }
+        };
+
+        function renderPastLab() {
+            const caseKey = document.getElementById('caseStudySelect').value;
+            const evidenceKey = document.getElementById('caseEvidenceSelect').value;
+            const data = pastLabCases[caseKey][evidenceKey];
+
+            document.getElementById('labClueText').innerText = data.clue;
+            document.getElementById('labDeductionSentence').innerText = `"${data.sentence}"`;
+            document.getElementById('labFormulaTag').innerText = data.formula;
+            document.getElementById('labExplanation').innerText = data.desc;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        window.onload = function() {
+            setTimeAspect('present');
+            handleRangeInput(95);
+            classifyModal('m1');
+            renderPastLab();
+        };
+    </script>
+</body>
+</html>

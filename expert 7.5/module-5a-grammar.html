@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reported Speech Patterns & Exceptions Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                    </svg>
+                    Module 5 Masterclass: Indirect Discourse
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Reported Speech & Syntax Patterns</h1>
+                <p class="text-indigo-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Backshifting Transformations, Non-Backshifting Exceptions (Future Facts & Universal Laws), Reporting Verb Syntactic Structures, and Band 8.0+ Evaluative Academic Stance Verbs.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-backshift-matrix')">
+                    1. Backshift & Shift Matrix ⏱️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-verb-patterns')">
+                    2. Reporting Verb Syntax Lab 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-exceptions')">
+                    3. Non-Backshifting Exceptions ⚡
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-evaluative-verbs')">
+                    4. Band 8.0+ Evaluative Verbs 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Reported Speech Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: BACKSHIFT & SHIFT MATRIX -->
+            <div id="tab-backshift-matrix" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Backshifting & Deictic Shift Matrix</h3>
+                        <p class="text-sm text-slate-600 font-medium">Filter by tense categories to inspect direct quote verb forms, backshifted reported forms, pronoun changes, and time/place adverb shifts.</p>
+                    </div>
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Tense Group:</span>
+                    <div class="flex flex-wrap gap-2" id="backshiftFilters">
+                        <button onclick="filterBackshiftMatrix('all')" id="bf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All Tenses</button>
+                        <button onclick="filterBackshiftMatrix('present')" id="bf-present" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Present Forms</button>
+                        <button onclick="filterBackshiftMatrix('past')" id="bf-past" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Past Forms</button>
+                        <button onclick="filterBackshiftMatrix('modals')" id="bf-modals" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Modal Auxiliaries</button>
+                    </div>
+                </div>
+
+                <!-- Grid Display -->
+                <div id="backshiftGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Inspector Box -->
+                <div id="backshiftInspector" class="bg-indigo-950 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-indigo-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorBackshiftTitle" class="text-xl font-bold">Transformation Inspector</h4>
+                        </div>
+                        <span id="inspectorBackshiftRuleBadge" class="px-3 py-1 bg-indigo-800 text-indigo-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorBackshiftBody" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Direct Quote Sentence</strong>
+                            <p id="inspectorDirectQuote" class="text-slate-200">Click a card above to inspect.</p>
+                        </div>
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Reported Backshifted Output</strong>
+                            <p id="inspectorReportedOutput" class="text-slate-200">Shows backshifted verb + pronoun shift.</p>
+                        </div>
+                        <div class="bg-indigo-900/70 p-4 rounded-xl border border-indigo-800 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Time & Place Reference Shift</strong>
+                            <p id="inspectorDeicticShift" class="text-slate-200">Adverbial shifts (today &rarr; that day).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deictic Shifts Reference Table -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">Time, Place & Pronoun Reference Deictic Shift Table</h4>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            <span class="text-indigo-600 font-bold block mb-1">Time Markers</span>
+                            <p class="text-slate-700">now &rarr; <strong>then / at that time</strong></p>
+                            <p class="text-slate-700">today &rarr; <strong>that day</strong></p>
+                            <p class="text-slate-700">tonight &rarr; <strong>that night</strong></p>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            <span class="text-indigo-600 font-bold block mb-1">Past References</span>
+                            <p class="text-slate-700">yesterday &rarr; <strong>the day before</strong></p>
+                            <p class="text-slate-700">last week &rarr; <strong>the previous week</strong></p>
+                            <p class="text-slate-700">days ago &rarr; <strong>days before</strong></p>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            <span class="text-indigo-600 font-bold block mb-1">Future References</span>
+                            <p class="text-slate-700">tomorrow &rarr; <strong>the next day</strong></p>
+                            <p class="text-slate-700">next year &rarr; <strong>the following year</strong></p>
+                        </div>
+                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                            <span class="text-indigo-600 font-bold block mb-1">Place & Pointers</span>
+                            <p class="text-slate-700">here &rarr; <strong>there</strong></p>
+                            <p class="text-slate-700">this &rarr; <strong>that / the</strong></p>
+                            <p class="text-slate-700">these &rarr; <strong>those / the</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: REPORTING VERB SYNTAX LAB -->
+            <div id="tab-verb-patterns" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Reporting Verb Syntax Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a verb category pattern to configure scenario statements into grammatically correct reported clause formulas.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Reporting Verb Syntax Pattern:</label>
+                            <select id="labPatternSelect" onchange="renderVerbLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="pattern_A">Pattern A: Verb + (that) + Clause (say, claim, admit, deny)</option>
+                                <option value="pattern_B">Pattern B: Verb + TO + Object + Clause (explain to, suggest to)</option>
+                                <option value="pattern_C">Pattern C: Verb + Object + TO-Infinitive (tell, advise, warn)</option>
+                                <option value="pattern_D">Pattern D: Verb + Gerund / Preposition + -ing (insist on, apologize for)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Select Scenario Context:</label>
+                            <select id="labContextSelect" onchange="renderVerbLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="meeting">Scenario 1: Meeting Reschedule</option>
+                                <option value="policy">Scenario 2: Energy Policy Reform</option>
+                                <option value="study">Scenario 3: University Study Abroad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Output Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Direct Speaker Statement</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labDirectText" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Original direct quote spoken in first-person context.</p>
+                        </div>
+
+                        <div class="bg-purple-50/70 p-6 rounded-2xl border border-purple-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-purple-200 text-purple-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labPatternBadge">Reported Syntax Pattern</span>
+                            <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs">
+                                <p id="labReportedText" class="text-base sm:text-lg font-bold text-purple-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labPatternDesc">Syntactically precise reported verb construction.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Grammatical Pattern Mechanics:</strong>
+                        <p id="labExplanationText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: NON-BACKSHIFTING EXCEPTIONS -->
+            <div id="tab-exceptions" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-amber-100 p-3.5 rounded-2xl text-amber-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Non-Backshifting Exceptions Studio</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master the four crucial scenarios where tense backshifting is grammatically unnecessary or forbidden.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Exception Case 1 -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Exception 1</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Future Facts Still True at Reporting Time</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            When the reported situation is still in the future or remains currently true, backshifting the future tense is optional and often avoided.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">Direct Quote:</span>
+                                <p class="text-slate-800">Karen: "I’ll be able to retire in 2050."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Reported Without Backshift:</span>
+                                <p class="text-slate-900 font-semibold">"Karen said she <strong class="text-indigo-700">'ll be able to retire</strong> in 2050."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Since 2050 is still in the future, 'will' remains unchanged.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exception Case 2 -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Exception 2</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Universal Scientific Facts & Permanent Truths</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Scientific laws, mathematical truths, and permanent facts remain in the Present Simple tense in reported speech.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">Direct Quote:</span>
+                                <p class="text-slate-800">Professor: "Water boils at 100 degrees Celsius."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">✔️ Reported Without Backshift:</span>
+                                <p class="text-slate-900 font-semibold">"The professor stated that water <strong class="text-purple-700">boils</strong> at 100 degrees Celsius."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Scientific laws retain Present Simple.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exception Case 3 -->
+                    <div class="interactive-card bg-white border-2 border-teal-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Exception 3</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Modal Verbs That DO NOT Backshift</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            While <em>can &rarr; could</em> and <em>will &rarr; would</em>, secondary modals remain unchanged in indirect speech.
+                        </p>
+
+                        <div class="bg-teal-50/70 p-4 rounded-xl border border-teal-100 text-xs space-y-2">
+                            <span class="text-teal-900 font-bold block">Unchanged Modals List:</span>
+                            <div class="flex flex-wrap gap-2 text-mono font-bold">
+                                <span class="px-2 py-1 bg-white rounded border border-teal-200 text-teal-800">should</span>
+                                <span class="px-2 py-1 bg-white rounded border border-teal-200 text-teal-800">would</span>
+                                <span class="px-2 py-1 bg-white rounded border border-teal-200 text-teal-800">might</span>
+                                <span class="px-2 py-1 bg-white rounded border border-teal-200 text-teal-800">could</span>
+                                <span class="px-2 py-1 bg-white rounded border border-teal-200 text-teal-800">ought to</span>
+                                <span class="px-2 py-1 bg-white rounded border border-teal-200 text-teal-800">needn't</span>
+                            </div>
+                            <p class="text-slate-700 pt-1">Example: "You <strong class="underline">should study</strong> hard" &rarr; She advised that I <strong class="underline">should study</strong> hard.</p>
+                        </div>
+                    </div>
+
+                    <!-- Exception Case 4 -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Exception 4</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Present Reporting Verbs (Says, Claims, Reports)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            When the reporting verb itself is in the <strong>Present Simple</strong> (e.g. <em>The author claims that...</em>), no backshifting occurs in the dependent clause!
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">Present Reporting Verb:</span>
+                                <p class="text-slate-900 font-semibold">"The director <strong class="text-emerald-700">states</strong> that the budget <strong class="text-emerald-700">is</strong> adequate."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Reporting verb 'states' is present, so 'is' does NOT shift to 'was'.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: BAND 8.0+ EVALUATIVE VERBS -->
+            <div id="tab-evaluative-verbs" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Band 8.0+ Academic Evaluative Verbs Toolkit</h3>
+                        <p class="text-sm text-slate-600 font-medium">Elevate generic reporting verbs (*said, told, thought*) into precise evaluative verbs that signal scientific stance.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Strong Assertion</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Contend / Maintain / Assert</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Signals that the original speaker holds a firm, argumentative stance supported by strong conviction.
+                        </p>
+
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <span class="text-indigo-800 font-bold block mb-0.5">Sample Sentences:</span>
+                            <p class="text-slate-900 font-semibold">"Proponents <strong class="text-indigo-700">contend that</strong> renewable energy is economically viable."</p>
+                            <p class="text-slate-900 font-semibold">"The author <strong class="text-indigo-700">maintains that</strong> policy reform is overdue."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Tentative Hypothesis</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Postulate / Hypothesize / Suggest</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Signals academic caution or an unproven working hypothesis under investigation.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Sentences:</span>
+                            <p class="text-slate-900 font-semibold">"Sociologists <strong class="text-purple-700">postulate that</strong> urbanization alters family dynamics."</p>
+                            <p class="text-slate-900 font-semibold">"Data <strong class="text-purple-700">suggests that</strong> early intervention yields positive results."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Concession & Rebuttal</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Concede / Acknowledge / Refute</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Signals partial agreement (*concede, acknowledge*) or direct counter-argumentation (*refute, rebut*).
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Sentences:</span>
+                            <p class="text-slate-900 font-semibold">"Economists <strong class="text-emerald-700">concede that</strong> inflation has dropped."</p>
+                            <p class="text-slate-900 font-semibold">"Researchers <strong class="text-emerald-700">refute claims that</strong> the trial failed."</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Reported Speech Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to apply backshifting rules, prepositional reporting verb patterns, and exception rules.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Complete the reported sentence: Aunt: "I’ve never been on a plane before." &rarr; "My aunt said that she <span class="text-indigo-600 underline">______</span> on a plane before."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Present perfect \'ve never been backshifts to past perfect.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">has never been</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Present perfect backshifts to past perfect (had never been).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">had never been</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Was never being is continuous past.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">was never being</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Choose the syntactically correct sentence for the reporting verb <strong>explain</strong>:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Explain requires the preposition \'to\' before the listener object.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">"The manager explained me that the offer had expired."</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Explain follows Pattern B: Verb + TO + Object + Clause (explained to me that).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">"The manager explained to me that the offer had expired."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Why does the future verb NOT backshift in: "Karen said she’ll be able to retire in 2050"?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Tenses do not backshift when the reported event is still true and in the future at the time of reporting.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Because 2050 is still in the future and the statement remains true.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Will can backshift to would, but in future-fact contexts it is optional.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Because future verbs can never backshift in English.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete with the correct reporting pattern for <strong>advise</strong>: "The doctor <span class="text-indigo-600 underline">______</span> more water."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Advise follows Pattern C: Verb + Object + TO-Infinitive (advised me to drink).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">advised me to drink</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Advise to me drinking is ungrammatical.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">advised to me drinking</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Reported Speech Suite</span>
+            <span>Module 5: Reported Speech Patterns & Exceptions</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Tab 1: Backshift Data & Filter Logic */
+        const backshiftMatrixData = [
+            {
+                id: "pres_simple_shift", group: "present", name: "Present Simple &rarr; Past Simple",
+                direct: '"I want to study abroad."',
+                reported: 'She said that she wanted to study abroad.',
+                deictic: 'Pronoun "I" shifts to "she". Verb "want" backshifts to "wanted".'
+            },
+            {
+                id: "pres_cont_shift", group: "present", name: "Present Continuous &rarr; Past Continuous",
+                direct: '"We are working on the project today."',
+                reported: 'They said that they were working on the project that day.',
+                deictic: 'Pronoun "We" &rarr; "they". Verb "are working" &rarr; "were working". Time "today" &rarr; "that day".'
+            },
+            {
+                id: "pres_perf_shift", group: "present", name: "Present Perfect &rarr; Past Perfect",
+                direct: '"I have completed the research."',
+                reported: 'He stated that he had completed the research.',
+                deictic: 'Pronoun "I" &rarr; "he". Auxiliary "have completed" &rarr; "had completed".'
+            },
+            {
+                id: "past_simple_shift", group: "past", name: "Past Simple &rarr; Past Perfect",
+                direct: '"I met the manager yesterday."',
+                reported: 'She mentioned that she had met the manager the day before.',
+                deictic: 'Verb "met" &rarr; "had met". Time "yesterday" &rarr; "the day before".'
+            },
+            {
+                id: "will_would_shift", group: "modals", name: "Modal WILL &rarr; WOULD",
+                direct: '"I will send the report tomorrow."',
+                reported: 'He promised that he would send the report the next day.',
+                deictic: 'Modal "will" &rarr; "would". Time "tomorrow" &rarr; "the next day".'
+            },
+            {
+                id: "can_could_shift", group: "modals", name: "Modal CAN &rarr; COULD",
+                direct: '"We can deliver the goods here."',
+                reported: 'They confirmed that they could deliver the goods there.',
+                deictic: 'Modal "can" &rarr; "could". Place "here" &rarr; "there".'
+            }
+        ];
+
+        function filterBackshiftMatrix(group) {
+            const pills = document.querySelectorAll('#backshiftFilters button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`bf-${group}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('backshiftGrid');
+            const filtered = group === 'all' ? backshiftMatrixData : backshiftMatrixData.filter(t => t.group === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectBackshift('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-indigo-100 text-indigo-800">${t.group}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.id}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs font-semibold text-slate-500 italic mb-1">${t.direct}</p>
+                        <p class="text-xs text-indigo-700 font-bold">${t.reported}</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function inspectBackshift(id) {
+            const data = backshiftMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorBackshiftTitle').innerText = data.name;
+            document.getElementById('inspectorBackshiftRuleBadge').innerText = `Category: ${data.group}`;
+            document.getElementById('inspectorDirectQuote').innerText = data.direct;
+            document.getElementById('inspectorReportedOutput').innerText = data.reported;
+            document.getElementById('inspectorDeicticShift').innerText = data.deictic;
+        }
+
+        /* Tab 2: Reporting Verb Syntax Lab Logic */
+        const verbLabScenarios = {
+            pattern_A: {
+                meeting: {
+                    direct: 'Aunt: "I did not alter the meeting schedule."',
+                    reported: 'She denied that she had altered the meeting schedule.',
+                    badge: 'Pattern A: Verb + (that) + Clause',
+                    desc: 'No object noun/pronoun required after reporting verb "deny".',
+                    explanation: 'Verbs like deny, admit, claim, say, and state link directly to a that-clause without requiring a direct listener object.'
+                },
+                policy: {
+                    direct: 'Minister: "The energy policy is effective."',
+                    reported: 'The minister claimed that the energy policy was effective.',
+                    badge: 'Pattern A: Verb + (that) + Clause',
+                    desc: 'Direct backshifted that-clause.',
+                    explanation: 'Claim takes a direct clause without listener object.'
+                },
+                study: {
+                    direct: 'Student: "I have submitted the application."',
+                    reported: 'The student admitted that she had submitted the application.',
+                    badge: 'Pattern A: Verb + (that) + Clause',
+                    desc: 'Direct backshifted that-clause.',
+                    explanation: 'Admit connects directly to a clause.'
+                }
+            },
+            pattern_B: {
+                meeting: {
+                    direct: 'Manager: "The meeting offer has expired."',
+                    reported: 'The manager explained to me that the offer had expired.',
+                    badge: 'Pattern B: Verb + TO + Object + Clause',
+                    desc: 'Mandatory preposition "to" before listener object "me".',
+                    explanation: 'Verbs like explain, suggest, and point out REQUIRE the preposition "to" before the object listener!'
+                },
+                policy: {
+                    direct: 'Director: "Subsidies will decrease next year."',
+                    reported: 'The director pointed out to the committee that subsidies would decrease.',
+                    badge: 'Pattern B: Verb + TO + Object + Clause',
+                    desc: 'Mandatory preposition "to the committee".',
+                    explanation: 'Pointed out requires "to + object" before the reported clause.'
+                },
+                study: {
+                    direct: 'Advisor: "We should apply for the grant early."',
+                    reported: 'The advisor suggested to us that we should apply early.',
+                    badge: 'Pattern B: Verb + TO + Object + Clause',
+                    desc: 'Mandatory preposition "to us".',
+                    explanation: 'Suggest requires "to + object" when a personal listener is mentioned.'
+                }
+            },
+            pattern_C: {
+                meeting: {
+                    direct: 'Colleague: "You should attend the briefing."',
+                    reported: 'My colleague advised me to attend the briefing.',
+                    badge: 'Pattern C: Verb + Object + TO-Infinitive',
+                    desc: 'Direct listener object + to-infinitive.',
+                    explanation: 'Verbs like tell, advise, warn, encourage, and instruct take a direct object followed by an infinitive phrase.'
+                },
+                policy: {
+                    direct: 'Official: "Do not violate the new regulations."',
+                    reported: 'The official warned us not to violate the new regulations.',
+                    badge: 'Pattern C: Verb + Object + Negative Infinitive',
+                    desc: 'Direct object + not to-infinitive.',
+                    explanation: 'Warn takes a direct object + negative infinitive (warned us not to...).'
+                },
+                study: {
+                    direct: 'Professor: "Apply for the university exchange program!"',
+                    reported: 'The professor urged students to apply for the program.',
+                    badge: 'Pattern C: Verb + Object + TO-Infinitive',
+                    desc: 'Direct object + to-infinitive.',
+                    explanation: 'Urge takes a direct listener object followed by to-infinitive.'
+                }
+            },
+            pattern_D: {
+                meeting: {
+                    direct: 'Speaker: "I am sorry for coming late."',
+                    reported: 'The speaker apologized for arriving late.',
+                    badge: 'Pattern D: Verb + Preposition + Gerund (-ing)',
+                    desc: 'Preposition "for" + gerund "arriving".',
+                    explanation: 'Apologize requires the preposition "for" followed by a gerund noun phrase.'
+                },
+                policy: {
+                    direct: 'Protester: "We must implement clean energy now!"',
+                    reported: 'The protester insisted on implementing clean energy immediately.',
+                    badge: 'Pattern D: Verb + Preposition + Gerund (-ing)',
+                    desc: 'Preposition "on" + gerund "implementing".',
+                    explanation: 'Insist requires preposition "on" followed by a gerund.'
+                },
+                study: {
+                    direct: 'Student: "I did not cheat on the exam!"',
+                    reported: 'The student denied cheating on the exam.',
+                    badge: 'Pattern D: Verb + Direct Gerund (-ing)',
+                    desc: 'Direct gerund "cheating".',
+                    explanation: 'Deny can take a direct gerund (-ing) as a concise alternative to a that-clause.'
+                }
+            }
+        };
+
+        function renderVerbLab() {
+            const patKey = document.getElementById('labPatternSelect').value;
+            const ctxKey = document.getElementById('labContextSelect').value;
+            const data = verbLabScenarios[patKey][ctxKey];
+
+            document.getElementById('labDirectText').innerText = data.direct;
+            document.getElementById('labReportedText').innerText = data.reported;
+            document.getElementById('labPatternBadge').innerText = data.badge;
+            document.getElementById('labPatternDesc').innerText = data.desc;
+            document.getElementById('labExplanationText').innerText = data.explanation;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            filterBackshiftMatrix('all');
+            inspectBackshift('pres_simple_shift');
+            renderVerbLab();
+        };
+    </script>
+</body>
+</html>

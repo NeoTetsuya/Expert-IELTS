@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypotheticals, Regrets & Precautionary Expressions Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(124, 58, 237, 0.18);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(124, 58, 237, 0.4); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.3); }
+            70% { border-color: rgba(124, 58, 237, 0); box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
+            100% { border-color: rgba(124, 58, 237, 0); box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-purple-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Module 10 Extension: Counterfactuals & Precautionary Grammar
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Hypotheticals, Regrets & Precautionary Expressions</h1>
+                <p class="text-purple-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Wish & If Only Regrets (*Past Simple vs Past Perfect*), Precautionary Measures (*In case vs If*), Urgent Imperatives (*It's high time*), Preferred Alternatives (*Would rather*), and Band 8.5+ Retrospective Critique Formulas.
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="p-4 sm:p-10">
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-purple-600 border-b-4 border-purple-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-regrets-wish')">
+                    1. Wish & Regrets Studio 💫
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-precautionary-lab')">
+                    2. Precautionary & Imperatives 🛡️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-supposing-bridging')">
+                    3. Supposing & Time-Bridging 🔄
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-academic-critique')">
+                    4. Academic Retrospective Rhetoric 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Assessment Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: WISH & REGRETS STUDIO -->
+            <div id="tab-regrets-wish" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Wish & If Only Regrets Architecture</h3>
+                        <p class="text-sm text-slate-600 font-medium">Observe how time-reference shifts determine whether you use Past Simple (*Present Desire*) or Past Perfect (*Past Historical Regret*).</p>
+                    </div>
+                </div>
+
+                <!-- Fact vs Hypothetical Contrast Banner -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">💡 The Hypothetical Reality Truth Test</span>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Unreal conditional and wish structures state the <strong class="text-white">exact opposite</strong> of what is or was real. Compare the grammar form against the actual real-world facts:
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-medium pt-2">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
+                            <span class="text-purple-400 font-bold uppercase tracking-wider block">Hypothetical Form (Unreal Grammar)</span>
+                            <p class="text-white text-sm font-bold">"I wish I had accepted that university scholarship."</p>
+                            <p class="text-purple-300 font-bold">"If only we hadn't delayed our green infrastructure funding!"</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
+                            <span class="text-emerald-400 font-bold uppercase tracking-wider block">Real-World Fact (Historical Reality)</span>
+                            <p class="text-slate-300 text-sm">❌ Fact: I <strong class="text-rose-400">did not accept</strong> the scholarship in the past.</p>
+                            <p class="text-slate-300 text-sm">❌ Fact: We <strong class="text-rose-400">did delay</strong> the green infrastructure funding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Regret & Wish Transformer Lab -->
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    <div class="flex items-center justify-between border-b border-purple-100 pb-4">
+                        <h4 class="font-extrabold text-slate-900 text-lg">Interactive Regret & Wish Transformer</h4>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-bold uppercase">Dynamic Time Shift</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Target Scenario Context:</label>
+                            <select id="labRegretContextSelect" onchange="renderRegretLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="capital">Scenario A: Financial Allocation & Capital</option>
+                                <option value="policy">Scenario B: Legislative Reform & Enactment</option>
+                                <option value="career">Scenario C: Career Path & Specialization</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Time-Frame Focus:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="setRegretTimeFrame('present')" id="rtf-present-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Present Desire (+ Past Simple)</button>
+                                <button onclick="setRegretTimeFrame('past')" id="rtf-past-btn" class="py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Past Regret (+ Past Perfect)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Card Display -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labRegretBadge">Past Regret Form</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labRegretOutputText" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labRegretDesc">Tense formula and verb structure.</p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider">Real-World Fact Contrast</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="labRegretFactText" class="text-sm font-extrabold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">The actual historical truth of the situation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Rule Breakdown Box -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Grammatical Wish / If Only Formulas:</strong>
+                        <p id="labRegretRuleText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+                </div>
+
+                <!-- Deep-Dive Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Present Desire</span>
+                        <h4 class="font-bold text-slate-900 text-base">Wish / If Only + Past Simple</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Expresses dissatisfaction with a current present state or situation that cannot be immediately changed.
+                        </p>
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <p class="text-slate-900 font-semibold">"I wish municipalities <strong class="text-purple-700">had</strong> more resources for renewable energy."</p>
+                            <p class="text-slate-500 text-[11px] italic">&rarr; Present Fact: Municipalities currently lack adequate resources.</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-3">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider block w-max">Past Historical Regret</span>
+                        <h4 class="font-bold text-slate-900 text-base">Wish / If Only + Past Perfect (had + V3)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Reflects on completed historical events or decisions with a desire that they had unfolded differently.
+                        </p>
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <p class="text-slate-900 font-semibold">"If only decision-makers <strong class="text-indigo-700">had recognized</strong> the environmental risks in 2010."</p>
+                            <p class="text-slate-500 text-[11px] italic">&rarr; Past Fact: Decision-makers failed to recognize the risks in 2010.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: PRECAUTIONARY & IMPERATIVES -->
+            <div id="tab-precautionary-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Precautionary Measures & Urgent Imperatives</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master the critical distinction between precautionary preparation (*In case*) vs reactive conditionals (*If*), alongside *It's (high) time* and *Would rather*.</p>
+                    </div>
+                </div>
+
+                <!-- In Case vs If Interactive Comparison Matrix -->
+                <div class="bg-white border-2 border-emerald-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    <div class="flex items-center justify-between border-b border-emerald-100 pb-4">
+                        <h4 class="font-extrabold text-slate-900 text-lg">In Case (Preparation) vs. If (Reaction) Explorer</h4>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold uppercase">Precautionary Contrast</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- In Case Card -->
+                        <div class="interactive-card bg-emerald-50/70 border-2 border-emerald-200 rounded-2xl p-6 shadow-xs space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max">Precaution / Preparation</span>
+                            <h4 class="font-bold text-slate-900 text-lg">In Case + Clause</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Action is taken <strong class="text-emerald-950">BEFOREHAND</strong> as a precautionary step, regardless of whether the event actually happens or not.
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-200 text-xs space-y-2">
+                                <p class="text-slate-900 font-bold">"Engineers installed backup generators <strong class="text-emerald-700 underline">in case</strong> the power grid fails."</p>
+                                <p class="text-slate-600 italic text-[11px]">&rarr; Action Timeline: Generators were installed FIRST. They exist ready whether power fails or not.</p>
+                            </div>
+                        </div>
+
+                        <!-- If Card -->
+                        <div class="interactive-card bg-indigo-50/70 border-2 border-indigo-200 rounded-2xl p-6 shadow-xs space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider block w-max">Reactive Condition</span>
+                            <h4 class="font-bold text-slate-900 text-lg">If + Clause</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Action is taken <strong class="text-indigo-950">AFTER / ONLY WHEN</strong> the condition actually occurs.
+                            </p>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-200 text-xs space-y-2">
+                                <p class="text-slate-900 font-bold">"Engineers will turn on the generators <strong class="text-indigo-700 underline">if</strong> the power grid fails."</p>
+                                <p class="text-slate-600 italic text-[11px]">&rarr; Action Timeline: Engineers wait FIRST. They turn on generators ONLY after failure occurs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Urgent Imperatives: It's High Time & Would Rather -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- It's High Time -->
+                    <div class="interactive-card bg-white border-2 border-amber-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-amber-100 text-amber-900 rounded-md text-[11px] font-bold uppercase tracking-wider">Urgent Imperative</span>
+                        <h4 class="font-bold text-slate-900 text-lg">It’s (high / about) time + Subject + Past Simple</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Expresses that an action is already overdue and should happen immediately.
+                        </p>
+
+                        <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 text-xs space-y-2">
+                            <span class="text-amber-900 font-bold block">Formula: It's high time + S + V2 (Past Simple)</span>
+                            <p class="text-slate-900 font-bold">"It is high time municipalities <strong class="text-amber-800 underline">invested</strong> in green public transport."</p>
+                            <p class="text-slate-600 text-[11px] italic">&rarr; Meaning: Municipalities should have invested earlier; doing so now is overdue!</p>
+                        </div>
+                    </div>
+
+                    <!-- Would Rather -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Hypothetical Preference</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Would rather + Subject + Past Simple</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Expresses a strong preference regarding someone else's action or state.
+                        </p>
+
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-xs space-y-2">
+                            <span class="text-purple-900 font-bold block">Formula: S1 + would rather + S2 + V2 (Past Simple)</span>
+                            <p class="text-slate-900 font-bold">"Civic leaders would rather central governments <strong class="text-purple-700 underline">allocated</strong> grants directly."</p>
+                            <p class="text-slate-600 text-[11px] italic">&rarr; Meaning: Leaders prefer that central governments take this action now.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: SUPPOSING & TIME-BRIDGING -->
+            <div id="tab-supposing-bridging" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Supposing, What If & Mixed Time-Bridging</h3>
+                        <p class="text-sm text-slate-600 font-medium">Explore hypothetical brainstorming connectors (*Suppose / What if*) and cross-time mixed conditionals linking past events to present realities.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Suppose & What If -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Brainstorming Connectors</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Suppose / Supposing / What if</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Invites the reader or listener to imagine a hypothetical scenario and its probable consequences.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Present Hypothetical (+ Past Simple):</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">Suppose / What if</strong> we <strong class="text-indigo-700">had</strong> unlimited clean energy today?"</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Past Counterfactual (+ Past Perfect):</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">Supposing</strong> the government <strong class="text-indigo-700">had enacted</strong> strict carbon limits in 2000?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mixed Conditionals Time-Bridging -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Time-Bridging Syntax</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Mixed Conditionals (Past &rarr; Present)</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Connects an unfulfilled past action directly to an ongoing present consequence.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-2">
+                            <span class="text-purple-900 font-bold block">Formula: If + Past Perfect, Subject + would + V1</span>
+                            <p class="text-slate-900 font-bold">"If the municipal council <strong class="text-purple-700 underline">had upgraded</strong> the drainage network in 2015, the city <strong class="text-purple-700 underline">would not experience</strong> severe urban flooding today."</p>
+                            <p class="text-slate-600 text-[11px] italic">&rarr; Past Cause: Council failed to upgrade in 2015. Present Result: City suffers flooding today.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: ACADEMIC RETROSPECTIVE RHETORIC -->
+            <div id="tab-academic-critique" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Retrospective Critique Formulas</h3>
+                        <p class="text-sm text-slate-600 font-medium">Standardized sentence blueprints for evaluating past policy failures and advocating urgent reform in IELTS Task 2.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 1</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Inverted Counterfactual Thesis</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Highlights historical policy omissions using fronted inversion (*Had...*).
+                        </p>
+
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <span class="text-indigo-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">Had governments prioritized solar subsidies earlier, reliance on fossil fuels would have been mitigated.</strong>"</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 2</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Urgent Reform Imperative</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Advocates overdue legislative action using *It is high time*.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-purple-700">It is high time international bodies enacted binding carbon neutrality targets.</strong>"</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 3</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Precautionary Recommendation</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Recommends protective measures using *In case of*.
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Essay Sentence:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700">Municipalities must construct seawalls in case of future sea-level rise.</strong>"</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-purple-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Hypotheticals & Precaution Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your mastery of Wish regrets, In case precautions, It's time imperatives, and Third Conditionals.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct form for expressing a past regret: "I wish I <span class="text-purple-600 underline">______</span> more time preparing for the exam."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Expressing regrets about past events requires Past Perfect (had spent).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">had spent</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Spent is Past Simple, which expresses a present hypothetical desire.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">spent</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Have spent is Present Perfect, which cannot follow wish.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">have spent</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Complete the precautionary sentence: "Take a flashlight <span class="text-purple-600 underline">______</span> the power cuts out during the storm."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'in case\' expresses taking a precautionary action beforehand.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">in case</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'if\' expresses waiting until after the power cuts out.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">if</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'unless\' means if... not.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">unless</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the correct verb form for: "It is high time the government <span class="text-purple-600 underline">______</span> stricter carbon limits."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'It is (high) time + Subject\' requires Past Simple (enacted) to express an urgent overdue action.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">enacted</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Enacts is present tense.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">enacts</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Will enact is future tense.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">will enact</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete the Mixed Conditional (Past Cause &rarr; Present Result): "If I <span class="text-purple-600 underline">______</span> French in school, I <span class="text-purple-600 underline">______</span> this document now."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Past cause (had studied, Past Perfect) links to present result (could translate, would + V1).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs" data-correct="true">had studied / could translate</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. This forms a standard Third Conditional for past results only.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-purple-100 text-slate-700 text-xs">had studied / could have translated</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Grammar & Rhetoric Suite</span>
+            <span>Module 10 Extension: Hypotheticals, Regrets & Precautionary Expressions</span>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-purple-600', 'text-purple-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-purple-600', 'text-purple-600');
+                }
+            }
+        }
+
+        /* Tab 1: Regret & Wish Lab Logic */
+        let currentRegretTimeFrame = 'past';
+
+        function setRegretTimeFrame(tf) {
+            currentRegretTimeFrame = tf;
+            const presBtn = document.getElementById('rtf-present-btn');
+            const pastBtn = document.getElementById('rtf-past-btn');
+
+            if (tf === 'present') {
+                presBtn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                pastBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                pastBtn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                presBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderRegretLab();
+        }
+
+        const regretScenarios = {
+            capital: {
+                present: {
+                    badge: "Present Desire (+ Past Simple)",
+                    output: "I wish our company had more capital for green expansion.",
+                    fact: "Present Fact: The company currently lacks sufficient capital.",
+                    desc: "Uses Past Simple 'had' to express dissatisfaction with a present state.",
+                    rule: "Formula: Wish / If only + Subject + Past Simple Verb"
+                },
+                past: {
+                    badge: "Past Historical Regret (+ Past Perfect)",
+                    output: "I wish our company had allocated capital for green expansion last year.",
+                    fact: "Past Fact: The company did not allocate capital last year.",
+                    desc: "Uses Past Perfect 'had allocated' to express regret over a completed past event.",
+                    rule: "Formula: Wish / If only + Subject + Past Perfect (had + V3)"
+                }
+            },
+            policy: {
+                present: {
+                    badge: "Present Desire (+ Past Simple)",
+                    output: "If only decision-makers recognized the urgency of climate reform.",
+                    fact: "Present Fact: Decision-makers currently fail to recognize the urgency.",
+                    desc: "Uses Past Simple 'recognized' for present hypothetical desire.",
+                    rule: "Formula: If only + Subject + Past Simple Verb"
+                },
+                past: {
+                    badge: "Past Historical Regret (+ Past Perfect)",
+                    output: "If only decision-makers had recognized the urgency in 2010.",
+                    fact: "Past Fact: Decision-makers failed to recognize the urgency in 2010.",
+                    desc: "Uses Past Perfect 'had recognized' for historical regret.",
+                    rule: "Formula: If only + Subject + Past Perfect (had + V3)"
+                }
+            },
+            career: {
+                present: {
+                    badge: "Present Desire (+ Past Simple)",
+                    output: "I wish I worked in environmental engineering.",
+                    fact: "Present Fact: I do not currently work in environmental engineering.",
+                    desc: "Uses Past Simple 'worked' for present desire.",
+                    rule: "Formula: Wish + Subject + Past Simple Verb"
+                },
+                past: {
+                    badge: "Past Historical Regret (+ Past Perfect)",
+                    output: "I wish I had chosen environmental engineering in university.",
+                    fact: "Past Fact: I chose a different field in university.",
+                    desc: "Uses Past Perfect 'had chosen' for past regret.",
+                    rule: "Formula: Wish + Subject + Past Perfect (had + V3)"
+                }
+            }
+        };
+
+        function renderRegretLab() {
+            const ctxKey = document.getElementById('labRegretContextSelect').value;
+            const data = regretScenarios[ctxKey][currentRegretTimeFrame];
+
+            document.getElementById('labRegretBadge').innerText = data.badge;
+            document.getElementById('labRegretOutputText').innerText = `"${data.output}"`;
+            document.getElementById('labRegretFactText').innerText = data.fact;
+            document.getElementById('labRegretDesc').innerText = data.desc;
+            document.getElementById('labRegretRuleText').innerText = data.rule;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            renderRegretLab();
+        };
+    </script>
+</body>
+</html>

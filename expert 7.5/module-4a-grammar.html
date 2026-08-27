@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forming Clauses & Sentence Mechanics Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(99, 102, 241, 0.15);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+            70% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+            100% { border-color: rgba(99, 102, 241, 0); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-indigo-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                    Module 4 Masterclass: Clause Syntax & Structure
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Forming Clauses & Sentence Mechanics</h1>
+                <p class="text-indigo-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Independent vs. Dependent Clauses, Coordinating (FANBOYS) & Subordinating Conjunction Punctuation, Opinion 'That' Clauses, Comma Splice Elimination, and Adverbial Clause Synthesis.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-indigo-600 border-b-4 border-indigo-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-clause-types')">
+                    1. Clause Types & Conjunctions 🧩
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-conjunction-lab')">
+                    2. Conjunction & Punctuation Lab ⚡
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-that-clauses')">
+                    3. Stance 'That' Clauses & Splices 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-adverbial-synthesis')">
+                    4. Adverbial Clauses & Synthesis 🏗️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Clause Mastery Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: CLAUSE TYPES & CONJUNCTIONS -->
+            <div id="tab-clause-types" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Clause Types & Conjunction Mechanics</h3>
+                        <p class="text-sm text-slate-600 font-medium">Filter clause elements to inspect grammatical formulas, subject-verb requirements, and comma placement rules.</p>
+                    </div>
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter Element Group:</span>
+                    <div class="flex flex-wrap gap-2" id="clauseTypeFilters">
+                        <button onclick="filterClauseMatrix('all')" id="ctf-all" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs">All Types</button>
+                        <button onclick="filterClauseMatrix('main')" id="ctf-main" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Main Clauses</button>
+                        <button onclick="filterClauseMatrix('coordinating')" id="ctf-coordinating" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Coordinating (FANBOYS)</button>
+                        <button onclick="filterClauseMatrix('subordinating')" id="ctf-subordinating" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100">Subordinating Clauses</button>
+                    </div>
+                </div>
+
+                <!-- Grid Display -->
+                <div id="clauseTypeGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Javascript populates cards -->
+                </div>
+
+                <!-- Inspector Box -->
+                <div id="clauseInspector" class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-600 rounded-xl">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </span>
+                            <h4 id="inspectorClauseTitle" class="text-xl font-bold">Clause Inspector</h4>
+                        </div>
+                        <span id="inspectorClauseRuleBadge" class="px-3 py-1 bg-indigo-900 text-indigo-300 font-mono text-xs rounded-lg font-bold">Select any card above to inspect</span>
+                    </div>
+
+                    <div id="inspectorClauseBody" class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-emerald-400 block font-bold text-sm">Structure & Syntax Formula</strong>
+                            <p id="inspectorClauseFormula" class="text-slate-300">Click a card to view structure details.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-amber-400 block font-bold text-sm">Sentence Context Example</strong>
+                            <p id="inspectorClauseExample" class="text-slate-300">Displays contextual sentence example.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-sky-400 block font-bold text-sm">Punctuation & Comma Rules</strong>
+                            <p id="inspectorClausePunctuation" class="text-slate-300">Rules regarding comma placement.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: CONJUNCTION & PUNCTUATION LAB -->
+            <div id="tab-conjunction-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Conjunction & Punctuation Laboratory</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a scenario context and toggle between coordinating conjunctions, subordinating middle positioning, and subordinating front positioning to observe live comma behavior.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Context Scenario:</label>
+                            <select id="labConjunctionContext" onchange="renderConjunctionLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="spelling">Spelling Rules (Contrast: but / although)</option>
+                                <option value="waste">Meal Planning & Food Waste (Contrast: while / whereas)</option>
+                                <option value="skiing">Learning a Skill (Concession: but / even though)</option>
+                                <option value="health">Dietary Choices (Cause/Result: so / because)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Syntactic Arrangement:</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="setLabArrangement('coordinating')" id="arr-coord-btn" class="py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Coordinating (and/but/so)</button>
+                                <button onclick="setLabArrangement('sub_mid')" id="arr-mid-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Subordinate (Middle)</button>
+                                <button onclick="setLabArrangement('sub_front')" id="arr-front-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Subordinate (Front)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labModeBadge">Active Mode</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labSentenceOutput" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labSentenceDesc"></p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider">Punctuation Indicator</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="labPunctuationRule" class="text-sm font-extrabold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Grammatical rule governing comma usage for this combination.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Punctuation Key:</strong>
+                        <p id="labPunctuationKeyText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: STANCE 'THAT' CLAUSES & SPLICES -->
+            <div id="tab-that-clauses" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Subordinating 'That' Clauses & Comma Splice Elimination</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master academic reporting stance with <em>that</em> clauses, and learn 3 strategies to fix comma splices in Task 2 essays.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Reporting That Clauses Card -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Academic Stance</span>
+                            <span class="text-xs font-bold text-emerald-600">No Comma Needed ❌</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Subordinating 'That' Clauses</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            A subordinating <em>that</em> clause cannot stand alone as a sentence. It acts as the object of reporting or stance verbs (*agree, argue, assert, claim, report, think*).
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">Expert Consensus Form:</span>
+                                <p class="text-slate-900 font-semibold">"Many medical experts agree <strong class="text-emerald-700 underline">that excessive sugar consumption poses serious health risks</strong>."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">Student Belief Form:</span>
+                                <p class="text-slate-900 font-semibold">"Most candidates believed <strong class="text-emerald-700 underline">that the university entrance examination was fair</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comma Splice Repair Card -->
+                    <div class="interactive-card bg-white border-2 border-rose-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Band 8.0+ Repair</span>
+                            <span class="text-xs font-bold text-rose-600">Comma Splice Trap ⚠️</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Eliminating Comma Splices</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Joining two independent clauses with only a comma creates a major grammatical error known as a comma splice.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-rose-50 p-3 rounded-xl border border-rose-100">
+                                <span class="text-rose-700 font-bold block mb-0.5">❌ Comma Splice Error:</span>
+                                <p class="text-slate-700">"Tuition fees are escalating rapidly, many students cannot afford university."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-800 font-bold block mb-0.5">✔️ Repaired with Subordination:</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700">Because tuition fees are escalating rapidly,</strong> many students cannot afford university."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 3 Methods to Repair Comma Splices Matrix -->
+                <div class="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
+                    <h4 class="font-extrabold text-slate-900 text-lg">3 High-Band Fixes for Comma Splices</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-indigo-700 font-bold block text-sm">Method 1: Subordination</strong>
+                            <p class="text-slate-700 font-semibold">Add a subordinating conjunction (*because, although, since*).</p>
+                            <p class="text-slate-500 text-[11px]">"<strong class="underline">Because fees are rising</strong>, students struggle."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-purple-700 font-bold block text-sm">Method 2: Semicolon + Adverb</strong>
+                            <p class="text-slate-700 font-semibold">Use semicolon + transitional adverb (*consequently, therefore*).</p>
+                            <p class="text-slate-500 text-[11px]">"...escalating rapidly<strong class="underline">; consequently,</strong> students..."</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+                            <strong class="text-emerald-700 font-bold block text-sm">Method 3: Participle Clause</strong>
+                            <p class="text-slate-700 font-semibold">Convert second clause to active present participle (*preventing*).</p>
+                            <p class="text-slate-500 text-[11px]">"...escalating rapidly, <strong class="underline">preventing many from</strong>..."</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 4: ADVERBIAL CLAUSES & SENTENCE SYNTHESIS -->
+            <div id="tab-adverbial-synthesis" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Adverbial Clauses & Complex Sentence Synthesis</h3>
+                        <p class="text-sm text-slate-600 font-medium">Synthesize independent thoughts into logical complex sentences using adverbial clauses of Time, Cause, Contrast, Purpose, and Result.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Adverbial Category Card 1 -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Cause & Reason</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Because / Since / As / Given that</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Connects an outcome directly to its motivating cause or underlying reason.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-800 font-bold block mb-0.5">Front Position (Comma Required):</span>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">Given that public transport is heavily subsidized,</strong> urban commute times have decreased."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-800 font-bold block mb-0.5">Middle Position (No Comma):</span>
+                                <p class="text-slate-900 font-semibold">"Urban commute times have decreased <strong class="text-indigo-700">since public transport is heavily subsidized</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adverbial Category Card 2 -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Purpose & Result</span>
+                        <h4 class="font-bold text-slate-900 text-lg">So that / In order that / So... that</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Expresses the intended goal (*so that*) or the degree of an outcome (*so... that* / *such... that*).
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Purpose Clause (Target Goal):</span>
+                                <p class="text-slate-900 font-semibold">"Governments tax sugary drinks <strong class="text-purple-700">so that citizens consume healthier alternatives</strong>."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-800 font-bold block mb-0.5">Degree Result Clause (So + Adj + That):</span>
+                                <p class="text-slate-900 font-semibold">"The inflation rate was <strong class="text-purple-700">so high that consumers reduced spending</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Adverbial Clause Interactive Builder Dashboard -->
+                <div class="bg-slate-900 text-white p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+                    <h4 class="font-bold text-indigo-300 text-lg">Adverbial Conjunction Selector & Syntax Matrix</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Select an adverbial relation below to inspect target conjunctions, fronted vs. middle positioning, and comma rules:
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <button onclick="switchAdverbialCategory('contrast')" id="adv-btn-contrast" class="p-3 rounded-xl border border-indigo-500 bg-indigo-900/50 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-indigo-400 uppercase block mb-1">Contrast</span>
+                            <span class="font-bold text-white">Although / Whereas</span>
+                        </button>
+                        <button onclick="switchAdverbialCategory('time')" id="adv-btn-time" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Time</span>
+                            <span class="font-bold text-white">As soon as / Until</span>
+                        </button>
+                        <button onclick="switchAdverbialCategory('reason')" id="adv-btn-reason" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Reason</span>
+                            <span class="font-bold text-white">Because / Since</span>
+                        </button>
+                        <button onclick="switchAdverbialCategory('purpose')" id="adv-btn-purpose" class="p-3 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all">
+                            <span class="text-[10px] font-extrabold text-slate-400 uppercase block mb-1">Purpose</span>
+                            <span class="font-bold text-white">So that / In order that</span>
+                        </button>
+                    </div>
+
+                    <div id="adverbialOutputBox" class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3 text-xs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Forming Clauses & Syntax Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your skills in clause mechanics, subordinating conjunction punctuation, comma splice fixes, and adverbial clause synthesis.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Is a comma required before a subordinating conjunction located in the MIDDLE of a sentence? (e.g., "Some people plan meals <span class="text-indigo-600 underline">while</span> others waste food.")
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Subordinating conjunctions in the middle of a sentence do NOT use a comma.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">No, subordinating conjunctions in the middle do not use a comma.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Commas are used before coordinating conjunctions (and, but, so), but NOT middle subordinating conjunctions.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Yes, a comma is always required.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Choose the correctly punctuated coordinating sentence:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Coordinating conjunctions (and, but, so) connecting independent main clauses require a comma before the conjunction.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">"There are many spelling rules in English, but they are not impossible to learn."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Coordinating conjunctions like \'but\' need a comma preceding them when joining main clauses.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">"There are many spelling rules in English but they are not impossible to learn."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the best Band 8.0+ repair for this comma splice: "Tuition fees are escalating, many students cannot afford college."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Leaving the comma splice unchanged is ungrammatical.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Tuition fees are escalating, many students cannot afford college.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Adding subordinating \'Because\' turns the first clause into a dependent clause, fixing the comma splice.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Because tuition fees are escalating, many students cannot afford college.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Adding \'consequently\' without a semicolon or period still results in a comma splice.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Tuition fees are escalating, consequently many students cannot afford college.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete with the correct adverbial conjunction of purpose: "Municipalities built dedicated cycle lanes <span class="text-indigo-600 underline">______</span> commuters could travel safely."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'because\' indicates reason/cause, not intended purpose.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">because</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! \'so that\' introduces an adverbial clause of purpose followed by a subject and modal verb (commuters could travel).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">so that</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'although\' introduces concession/contrast.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">although</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            5. Choose the correctly punctuated sentence when placing a subordinating clause at the FRONT of a sentence:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! Fronted dependent clauses require a comma before the main clause begins.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">"Although the exam was challenging, most candidates achieved high marks."</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Fronted dependent clauses MUST be followed by a comma before the main clause.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">"Although the exam was challenging most candidates achieved high marks."</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Grammar & Syntax Suite</span>
+            <span>Module 4: Forming Clauses Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-indigo-600', 'text-indigo-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                }
+            }
+        }
+
+        /* Tab 1: Clause Types Data */
+        const clauseMatrixData = [
+            {
+                id: "main_clause", group: "main", name: "Independent Main Clause",
+                formula: "Subject + Verb (+ Object / Complement)",
+                example: "Spelling rules exist in English.",
+                punctuation: "Can stand alone as a complete sentence with a period.",
+                rule: "Expresses a complete thought independently."
+            },
+            {
+                id: "coord_but", group: "coordinating", name: "Coordinating 'BUT' (Contrast)",
+                formula: "Main Clause + , but + Main Clause",
+                example: "Spelling rules exist, but they are manageable to learn.",
+                punctuation: "Requires a comma BEFORE 'but' when joining independent clauses.",
+                rule: "Joins two equal independent clauses showing contrast."
+            },
+            {
+                id: "coord_and", group: "coordinating", name: "Coordinating 'AND' (Addition)",
+                formula: "Main Clause + , and + Main Clause",
+                example: "Some people plan meals, and they avoid wasting food.",
+                punctuation: "Requires a comma BEFORE 'and' when joining independent clauses.",
+                rule: "Joins two equal clauses adding related information."
+            },
+            {
+                id: "sub_mid", group: "subordinating", name: "Subordinate Clause (Middle Position)",
+                formula: "Main Clause + Subordinating Conjunction + Dependent Clause",
+                example: "Some people plan meals carefully while others end up throwing food away.",
+                punctuation: "NO COMMA before subordinating conjunctions in middle position.",
+                rule: "Connects dependent clause to main clause without comma."
+            },
+            {
+                id: "sub_front", group: "subordinating", name: "Subordinate Clause (Front Position)",
+                formula: "Subordinating Conjunction + Dependent Clause + , + Main Clause",
+                example: "While others end up throwing food away, some people plan meals carefully.",
+                punctuation: "MANDATORY COMMA after the front dependent clause.",
+                rule: "Fronts subordinate clause for stylistic emphasis."
+            },
+            {
+                id: "that_stance", group: "subordinating", name: "Subordinating 'THAT' Clause",
+                formula: "Reporting Verb + that + Subject + Verb",
+                example: "Many medical experts agree that sugar poses a threat.",
+                punctuation: "NO COMMA before 'that' clause following reporting verbs.",
+                rule: "Acts as direct object expressing academic stance/opinion."
+            }
+        ];
+
+        function filterClauseMatrix(group) {
+            const pills = document.querySelectorAll('#clauseTypeFilters button');
+            pills.forEach(p => p.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white border border-slate-200 text-slate-700 hover:bg-slate-100");
+            
+            const activePill = document.getElementById(`ctf-${group}`);
+            if (activePill) activePill.className = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-xs";
+
+            const grid = document.getElementById('clauseTypeGrid');
+            const filtered = group === 'all' ? clauseMatrixData : clauseMatrixData.filter(t => t.group === group);
+
+            grid.innerHTML = filtered.map(t => `
+                <div onclick="inspectClause('${t.id}')" class="interactive-card bg-white border-2 border-slate-100 hover:border-indigo-500 cursor-pointer rounded-2xl p-5 shadow-xs flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase rounded bg-indigo-100 text-indigo-800">${t.group}</span>
+                            <span class="text-[11px] font-mono font-bold text-slate-400">${t.id}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-base mb-1">${t.name}</h4>
+                        <p class="text-xs font-mono font-bold text-indigo-600 mb-2">${t.formula}</p>
+                        <p class="text-xs text-slate-600 italic">"${t.example}"</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 text-[11px] text-indigo-600 font-bold flex items-center justify-between">
+                        <span>Click to inspect &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function inspectClause(id) {
+            const data = clauseMatrixData.find(t => t.id === id);
+            if (!data) return;
+
+            document.getElementById('inspectorClauseTitle').innerText = data.name;
+            document.getElementById('inspectorClauseRuleBadge').innerText = `Type: ${data.group}`;
+            document.getElementById('inspectorClauseFormula').innerText = data.formula;
+            document.getElementById('inspectorClauseExample').innerText = `"${data.example}"`;
+            document.getElementById('inspectorClausePunctuation').innerText = data.punctuation;
+        }
+
+        /* Tab 2: Conjunction Laboratory Data & Logic */
+        let currentArrangement = 'coordinating';
+
+        function setLabArrangement(mode) {
+            currentArrangement = mode;
+            ['coord', 'mid', 'front'].forEach(m => {
+                const btn = document.getElementById(`arr-${m}-btn`);
+                if (m === mode.replace('sub_', '')) {
+                    btn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                } else {
+                    btn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                }
+            });
+            renderConjunctionLab();
+        }
+
+        const conjunctionLabScenarios = {
+            spelling: {
+                coordinating: {
+                    sentence: "There are many spelling rules in English, but they are not impossible to learn.",
+                    badge: "Coordinating Conjunction (FANBOYS)",
+                    desc: "Main Clause + , but + Main Clause.",
+                    rule: "COMMA MANDATORY before 'but' when joining two full independent clauses.",
+                    key: "Coordinating conjunctions (and, but, so) require a comma before them when connecting complete main clauses."
+                },
+                sub_mid: {
+                    sentence: "Spelling rules in English are manageable to learn although there are many exception cases.",
+                    badge: "Subordinating Conjunction (Middle)",
+                    desc: "Main Clause + although + Subordinate Clause.",
+                    rule: "NO COMMA before 'although' when subordinate clause is in middle/end position.",
+                    key: "When a subordinating conjunction (although, while, because) appears in the middle, DO NOT place a comma before it."
+                },
+                sub_front: {
+                    sentence: "Although there are many spelling rules in English, they are not impossible to learn.",
+                    badge: "Subordinating Conjunction (Front)",
+                    desc: "Although + Subordinate Clause + , + Main Clause.",
+                    rule: "COMMA MANDATORY at the end of the fronted subordinate clause.",
+                    key: "When a subordinating conjunction begins the sentence, you MUST place a comma after the dependent clause."
+                }
+            },
+            waste: {
+                coordinating: {
+                    sentence: "Some people plan their meals carefully, and they avoid wasting food.",
+                    badge: "Coordinating Conjunction (FANBOYS)",
+                    desc: "Main Clause + , and + Main Clause.",
+                    rule: "COMMA MANDATORY before 'and' when joining independent clauses.",
+                    key: "Use comma + 'and' to connect two complete sentences."
+                },
+                sub_mid: {
+                    sentence: "Some people plan their meals carefully while other people end up throwing food away.",
+                    badge: "Subordinating Conjunction (Middle)",
+                    desc: "Main Clause + while + Subordinate Clause.",
+                    rule: "NO COMMA before 'while' in middle contrast position.",
+                    key: "Middle subordinating conjunctions link seamlessly without preceding commas."
+                },
+                sub_front: {
+                    sentence: "While other people end up throwing food away, some people plan their meals carefully.",
+                    badge: "Subordinating Conjunction (Front)",
+                    desc: "While + Subordinate Clause + , + Main Clause.",
+                    rule: "COMMA MANDATORY separating front clause from main clause.",
+                    key: "Fronted subordinating clauses require a comma before the main clause begins."
+                }
+            },
+            skiing: {
+                coordinating: {
+                    sentence: "Skiing looks extremely difficult, but anyone can learn it after lessons.",
+                    badge: "Coordinating Conjunction (FANBOYS)",
+                    desc: "Main Clause + , but + Main Clause.",
+                    rule: "COMMA MANDATORY before 'but'.",
+                    key: "Joins two independent thoughts of equal weight."
+                },
+                sub_mid: {
+                    sentence: "Anyone can learn skiing even though it looks extremely difficult.",
+                    badge: "Subordinating Conjunction (Middle)",
+                    desc: "Main Clause + even though + Subordinate Clause.",
+                    rule: "NO COMMA before 'even though' in middle position.",
+                    key: "Middle subordinating concession clauses require no punctuation breaks."
+                },
+                sub_front: {
+                    sentence: "Even though skiing looks extremely difficult, anyone can learn it after lessons.",
+                    badge: "Subordinating Conjunction (Front)",
+                    desc: "Even though + Subordinate Clause + , + Main Clause.",
+                    rule: "COMMA MANDATORY after front concession clause.",
+                    key: "Fronting places initial emphasis on the concession before resolving in the main clause."
+                }
+            },
+            health: {
+                coordinating: {
+                    sentence: "Excessive sugar harms cardiovascular health, so governments should tax soft drinks.",
+                    badge: "Coordinating Conjunction (FANBOYS)",
+                    desc: "Main Clause + , so + Main Clause.",
+                    rule: "COMMA MANDATORY before 'so'.",
+                    key: "'So' introduces direct result with a preceding comma."
+                },
+                sub_mid: {
+                    sentence: "Governments should tax soft drinks because excessive sugar harms cardiovascular health.",
+                    badge: "Subordinating Conjunction (Middle)",
+                    desc: "Main Clause + because + Subordinate Clause.",
+                    rule: "NO COMMA before 'because' in middle cause position.",
+                    key: "'Because' in middle position connects cause without commas."
+                },
+                sub_front: {
+                    sentence: "Because excessive sugar harms cardiovascular health, governments should tax soft drinks.",
+                    badge: "Subordinating Conjunction (Front)",
+                    desc: "Because + Subordinate Clause + , + Main Clause.",
+                    rule: "COMMA MANDATORY separating front cause clause from main result clause.",
+                    key: "Fronted cause clauses demand a comma before the result clause."
+                }
+            }
+        };
+
+        function renderConjunctionLab() {
+            const ctxKey = document.getElementById('labConjunctionContext').value;
+            const data = conjunctionLabScenarios[ctxKey][currentArrangement];
+
+            document.getElementById('labModeBadge').innerText = data.badge;
+            document.getElementById('labSentenceOutput').innerText = `"${data.sentence}"`;
+            document.getElementById('labSentenceDesc').innerText = data.desc;
+            document.getElementById('labPunctuationRule').innerText = data.rule;
+            document.getElementById('labPunctuationKeyText').innerText = data.key;
+        }
+
+        /* Tab 4: Adverbial Clauses Data & Switcher Logic */
+        const adverbialData = {
+            contrast: {
+                type: "Contrast & Concession (Although, Even though, Whereas, While)",
+                front: "Although renewable energy requires high initial investment, it reduces long-term carbon emissions.",
+                middle: "Renewable energy reduces long-term carbon emissions although it requires high initial investment.",
+                punctuation: "Front position requires a comma after the dependent clause. Middle position requires NO comma.",
+                rule: "Connects two contrasting statements, giving precedence to the main clause assertion."
+            },
+            time: {
+                type: "Time Relations (As soon as, Before, After, Until, Whenever)",
+                front: "As soon as the policy was enacted, air quality metrics improved substantially.",
+                middle: "Air quality metrics improved substantially as soon as the policy was enacted.",
+                punctuation: "Mandatory comma after fronted time clause. No comma when time clause is placed second.",
+                rule: "Establishes a precise chronological sequence between events."
+            },
+            reason: {
+                type: "Cause & Reason (Because, Since, As, Given that)",
+                front: "Given that deforestation threatens local ecosystems, conservation laws must be strictly enforced.",
+                middle: "Conservation laws must be strictly enforced since deforestation threatens local ecosystems.",
+                punctuation: "Comma required after fronted cause clause. No comma before middle cause conjunction.",
+                rule: "Explains the underlying justification or reason for the main clause action."
+            },
+            purpose: {
+                type: "Goal & Purpose (So that, In order that)",
+                front: "In order that urban centers may reduce traffic congestion, municipalities build cycling networks.",
+                middle: "Municipalities build cycling networks so that urban centers may reduce traffic congestion.",
+                punctuation: "Fronted purpose clauses take a trailing comma; middle purpose clauses link seamlessly without commas.",
+                rule: "Introduces the intended objective or goal behind an action."
+            }
+        };
+
+        function switchAdverbialCategory(catKey) {
+            ['contrast', 'time', 'reason', 'purpose'].forEach(c => {
+                const btn = document.getElementById(`adv-btn-${c}`);
+                if (c === catKey) {
+                    btn.className = "p-3 rounded-xl border border-indigo-500 bg-indigo-900/50 text-left transition-all";
+                } else {
+                    btn.className = "p-3 rounded-xl border border-slate-700 bg-slate-800 text-left transition-all";
+                }
+            });
+
+            const data = adverbialData[catKey];
+            document.getElementById('adverbialOutputBox').innerHTML = `
+                <div>
+                    <span class="text-[10px] font-extrabold uppercase text-amber-400 block mb-1">Conjunction Category</span>
+                    <p class="text-white font-bold text-sm">${data.type}</p>
+                </div>
+                <div class="pt-2 border-t border-slate-800 space-y-2">
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase text-indigo-400 block mb-0.5">Front Position (Comma Required)</span>
+                        <p class="text-emerald-300 font-semibold italic">"${data.front}"</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase text-purple-400 block mb-0.5">Middle Position (No Comma)</span>
+                        <p class="text-slate-200 font-semibold italic">"${data.middle}"</p>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-400 pt-1 font-mono">&rarr; Punctuation: ${data.punctuation}</p>
+            `;
+        }
+
+        /* Tab 5 Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            filterClauseMatrix('all');
+            inspectClause('main_clause');
+            renderConjunctionLab();
+            switchAdverbialCategory('contrast');
+        };
+    </script>
+</body>
+</html>

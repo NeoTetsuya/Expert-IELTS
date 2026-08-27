@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimation & Indication Language Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(14, 165, 233, 0.18);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(14, 165, 233, 0.4); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.3); }
+            70% { border-color: rgba(14, 165, 233, 0); box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+            100% { border-color: rgba(14, 165, 233, 0); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-sky-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-indigo-950 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Module 9 Masterclass: Quantitative Precision & Data Stance
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Estimation & Indication Language</h1>
+                <p class="text-sky-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Numerical Approximation Modifiers (*approximately, roughly, in the region of*), Categorization & Open Series Expressions (*kinds of, types of, and so on*), and Data Indication Verbs (*indicates, demonstrates, points to*) for Band 8.0+ Academic Register.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-sky-600 border-b-4 border-sky-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-approximation-modifiers')">
+                    1. Approximation Modifiers 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-categorization-series')">
+                    2. Categorization & Open Series 🗂️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-indication-verbs')">
+                    3. Data Indication Verbs 📈
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-estimation-lab')">
+                    4. Interactive Estimation Lab 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Estimation Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: APPROXIMATION MODIFIERS -->
+            <div id="tab-approximation-modifiers" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Numerical Approximation & Range Modifiers</h3>
+                        <p class="text-sm text-slate-600 font-medium">Learn how to place numerical approximation modifiers directly before data points, metrics, and measurements to express hedged scientific claims.</p>
+                    </div>
+                </div>
+
+                <!-- Master Blueprint Formula Box -->
+                <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">The Master Approximation Formula</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center text-xs font-mono font-bold">
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-sky-400 block text-[10px] uppercase">1. Approximation Modifier</span>
+                            <span class="text-white text-sm">approximately / roughly / in the region of</span>
+                        </div>
+                        <div class="bg-sky-900/80 p-3 rounded-xl border border-sky-500 text-sky-200">
+                            <span class="text-amber-400 block text-[10px] uppercase font-black">2. DATA POINT / NUMBER ★</span>
+                            <span class="text-white font-extrabold text-sm">100°C / 45% / 2,500 UNITS</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <span class="text-emerald-400 block text-[10px] uppercase">3. Temporal / Context Scope</span>
+                            <span class="text-white text-sm">during the second trial phase</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 text-center italic pt-1">
+                        &rarr; Combined Output: "The chamber reached <strong class="text-amber-300">in the region of 100°C</strong> during the second trial phase."
+                    </p>
+                </div>
+
+                <!-- 4 Approximation Category Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- 1. Direct Numerical Approximators -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-sky-100 text-sky-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Before Numbers</span>
+                            <span class="text-xs font-bold text-sky-700">PRE-NUMERICAL POSITION ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">approximately / about / around / roughly</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Positioned directly before a numeric metric or measurement to signal that the figure is close but not exact.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-sky-50 p-3 rounded-xl border border-sky-100">
+                                <span class="text-sky-900 font-bold block mb-0.5">Temperature Measurement:</span>
+                                <p class="text-slate-900 font-semibold">"The core temperature stabilized at <strong class="text-sky-700 underline">approximately 100°C</strong>."</p>
+                            </div>
+                            <div class="bg-sky-50 p-3 rounded-xl border border-sky-100">
+                                <span class="text-sky-900 font-bold block mb-0.5">Proportional Percentage:</span>
+                                <p class="text-slate-900 font-semibold">"Revenues expanded by <strong class="text-sky-700 underline">roughly 25%</strong> over the fiscal year."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Complex Prepositional Approximators -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Academic Register</span>
+                            <span class="text-xs font-bold text-indigo-700">BAND 8.0+ FORMULA ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">in the region of / in the vicinity of / on the order of</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Sophisticated prepositional phrases used in formal scientific and economic reports to frame large estimates.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">High-Value Financial Metric:</span>
+                                <p class="text-slate-900 font-semibold">"Capital allocation was <strong class="text-indigo-700 underline">in the region of $5 million</strong>."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Large Population Metric:</span>
+                                <p class="text-slate-900 font-semibold">"Annual urban migration is <strong class="text-indigo-700 underline">in the vicinity of 500,000 residents</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Boundary Directional Approximators -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Directional Margin</span>
+                            <span class="text-xs font-bold text-emerald-700">UPPER / LOWER LIMITS ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">just under / just over / well below / marginally above</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Specifies whether an estimated value falls slightly above, slightly below, or substantially beneath a landmark figure.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-900 font-bold block mb-0.5">Slightly Below Target (49%):</span>
+                                <p class="text-slate-900 font-semibold">"Adoption rates reached <strong class="text-emerald-700 underline">just under 50%</strong> by Q4."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <span class="text-emerald-900 font-bold block mb-0.5">Slightly Above Target (51%):</span>
+                                <p class="text-slate-900 font-semibold">"Expenditure rose <strong class="text-emerald-700 underline">marginally above $10,000</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Qualitative Similarity Approximators -->
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Qualitative Modifier</span>
+                            <span class="text-xs font-bold text-purple-700">ATTRIBUTE MODIFIER ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">more or less / virtually / essentially / to a large extent</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Modifies adjectives or state descriptions to indicate near-total equivalence or substantial alignment.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-900 font-bold block mb-0.5">Near Equivalence:</span>
+                                <p class="text-slate-900 font-semibold">"The two experimental prototypes are <strong class="text-purple-700 underline">more or less identical</strong> in output."</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                                <span class="text-purple-900 font-bold block mb-0.5">Near Completion:</span>
+                                <p class="text-slate-900 font-semibold">"The infrastructural overhaul is <strong class="text-purple-700 underline">virtually complete</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 2: CATEGORIZATION & OPEN SERIES -->
+            <div id="tab-categorization-series" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-indigo-100 p-3.5 rounded-2xl text-indigo-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Categorization & Open Series Language</h3>
+                        <p class="text-sm text-slate-600 font-medium">Phrases for signaling unlisted continuation (*and so on, etc.*) and framing taxonomy classifications (*kinds of, types of, varieties of*).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Open Series Extensions -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">End-of-List Markers</span>
+                            <span class="text-xs font-bold text-indigo-700">SERIES CONTINUATION ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">and so on / etc. / among others / and the like</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Signifies at the conclusion of a list that additional unlisted examples exist within the same categorical grouping.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">End-of-List Extension:</span>
+                                <p class="text-slate-900 font-semibold">"The recycling plant processes glass, paper, aluminum, <strong class="text-indigo-700 underline">and so on</strong>."</p>
+                                <p class="text-[11px] text-slate-500 mt-1 italic">&rarr; Indicates that other recyclable materials belong to the series.</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <span class="text-indigo-900 font-bold block mb-0.5">Prepositional Sample Insertion:</span>
+                                <p class="text-slate-900 font-semibold">"The study evaluated major European cities, <strong class="text-indigo-700 underline">among others</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categorization Framing -->
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-sky-100 text-sky-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Pre-Noun Framing</span>
+                            <span class="text-xs font-bold text-sky-700">CLASSIFICATION ★</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">kinds of / types of / categories of / varieties of</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Placed before a general noun to indicate that the topic encompasses multiple subtypes or sub-classifications.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-sky-50 p-3.5 rounded-xl border border-sky-100">
+                                <span class="text-sky-900 font-bold block mb-0.5">General Subtype Framing:</span>
+                                <p class="text-slate-900 font-semibold">"The survey evaluated several <strong class="text-sky-700 underline">kinds of / types of</strong> renewable energy installations."</p>
+                            </div>
+                            <div class="bg-sky-50 p-3.5 rounded-xl border border-sky-100">
+                                <span class="text-sky-900 font-bold block mb-0.5">Formal Taxonomy Framing:</span>
+                                <p class="text-slate-900 font-semibold">"Researchers categorized the subjects into distinct <strong class="text-sky-700 underline">categories of</strong> demographic profiles."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Academic Usage Rules Box -->
+                <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-3">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">💡 Stylistic Rules for Lists & Categorization</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-rose-400 font-bold block mb-1">❌ Avoid Redundant List Markers</strong>
+                            <p class="text-slate-300">Do NOT combine <em>"for example, X, Y, etc."</em> in the same sentence. Choose EITHER <em>"for example, X and Y"</em> OR <em>"X, Y, etc."</em></p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-1">
+                            <strong class="text-emerald-400 font-bold block mb-1">✔️ Prefer 'and so on' or 'among others'</strong>
+                            <p class="text-slate-300">In formal academic writing, <em>"and so on"</em> or <em>"among others"</em> is often preferred over the abbreviation <em>"etc."</em></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: DATA INDICATION VERBS -->
+            <div id="tab-indication-verbs" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Academic Data Indication & Representation Verbs</h3>
+                        <p class="text-sm text-slate-600 font-medium">Replace generic reporting words (*shows*) with precise indicative verbs (*indicates, demonstrates, illustrates, highlights, conveys*).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-sky-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-sky-100 text-sky-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Primary Data Linking</span>
+                        <h4 class="font-bold text-slate-900 text-lg">indicate / suggest / point to</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Connects empirical data directly to a logical inference or underlying trend.
+                        </p>
+
+                        <div class="bg-sky-50 p-3.5 rounded-xl border border-sky-100 text-xs space-y-1">
+                            <span class="text-sky-800 font-bold block mb-0.5">Sample Essay Formula:</span>
+                            <p class="text-slate-900 font-semibold">"The survey results <strong class="text-sky-700">indicate that</strong> consumer confidence is recovering."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Visual Representation</span>
+                        <h4 class="font-bold text-slate-900 text-lg">illustrate / demonstrate / depict</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Used in IELTS Task 1 overviews to describe what a graph, chart, or process diagram shows visually.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Overview Formula:</span>
+                            <p class="text-slate-900 font-semibold">"The diagram <strong class="text-purple-700">illustrates</strong> the multi-stage desalination process."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Key Feature Emphasis</span>
+                        <h4 class="font-bold text-slate-900 text-lg">highlight / underscore / accentuate</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Draws explicit attention to the most prominent feature, peak, or outlier in a dataset.
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Detail Formula:</span>
+                            <p class="text-slate-900 font-semibold">"The metrics <strong class="text-emerald-700">highlight</strong> a sharp surge in solar power adoption after 2020."</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: INTERACTIVE ESTIMATION LAB -->
+            <div id="tab-estimation-lab" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Interactive Estimation & Indication Transformer</h3>
+                        <p class="text-sm text-slate-600 font-medium">Select a raw data scenario and toggle between unhedged absolute statements and academic estimation/indication structures.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Target Data Context:</label>
+                            <select id="labContextSelect" onchange="renderEstimationLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-sky-500 focus:border-sky-500">
+                                <option value="temp">Operating Temperature Metric (100°C)</option>
+                                <option value="materials">Industrial Recycled Output List (Metal, plastic, glass)</option>
+                                <option value="prototypes">Experimental Prototype Comparison (Identical design)</option>
+                                <option value="energy">Renewable Energy Systems Evaluation (Categories)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Toggle Academic Stance:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="setLabMode('raw')" id="lab-raw-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Raw / Rigid Claim</button>
+                                <button onclick="setLabMode('academic')" id="lab-acad-btn" class="py-3 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs">Academic Estimation</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider">Raw Unmodified Claim</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labRawOutput" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Rigid statement without estimation hedging or indication framing.</p>
+                        </div>
+
+                        <div class="bg-sky-50/70 p-6 rounded-2xl border border-sky-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-sky-200 text-sky-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labAcadBadge">Academic Estimation Form</span>
+                            <div class="bg-white p-4 rounded-xl border border-sky-100 shadow-2xs">
+                                <p id="labAcadOutput" class="text-base sm:text-lg font-bold text-sky-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labAcadDesc">Appropriately framed academic statement using estimation modifiers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Estimation Phrase Mechanics:</strong>
+                        <p id="labMechanismRuleText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Estimation & Indication Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your mastery of approximation pre-modifiers, list markers, categorization, and indication verbs.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct estimation modifier for placement directly BEFORE a number (e.g., 100°C):
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Approximately\', \'about\', and \'around\' are placed before numbers to show estimation.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">approximately 100°C</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'and so on\' is placed at the end of a series list.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">100°C and so on</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'kinds of\' modifies category nouns, not numeric measurements.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">kinds of 100°C</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. What does the open series phrase **and so on** indicate at the end of a list?
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'and so on\' signifies that additional unlisted items exist in the same category.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">It signifies that additional unlisted examples exist in the series.</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. It does not state an exact mathematical figure.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">It states an exact mathematical measurement.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the Band 8.0+ data indication verb for: "The survey results <span class="text-sky-600 underline">______</span> consumer confidence is recovering."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'indicate\' or \'suggest\' links data directly to a logical inference.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">indicate that</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. In the region of is an approximation phrase for numbers.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">are in the region of</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete for category framing: "The study evaluated several <span class="text-sky-600 underline">______</span> renewable energy systems."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'kinds of\' or \'types of\' frames sub-classifications before a noun phrase.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">types of</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'and so on\' is placed at the end of a list.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">and so on</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. \'marginally above\' modifies numbers.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">marginally above</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Quantitative & Indication Suite</span>
+            <span>Module 9 Extension: Estimation & Indication Masterclass</span>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-sky-600', 'text-sky-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-sky-600', 'text-sky-600');
+                }
+            }
+        }
+
+        /* Estimation Lab Logic */
+        let currentLabMode = 'academic';
+
+        function setLabMode(mode) {
+            currentLabMode = mode;
+            const rawBtn = document.getElementById('lab-raw-btn');
+            const acadBtn = document.getElementById('lab-acad-btn');
+
+            if (mode === 'raw') {
+                rawBtn.className = "py-3 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs";
+                acadBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                acadBtn.className = "py-3 rounded-xl text-xs font-bold bg-sky-600 text-white shadow-xs";
+                rawBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderEstimationLab();
+        }
+
+        const estimationScenarios = {
+            temp: {
+                raw: "The chamber temperature reached 100°C during the second phase.",
+                academic: "The chamber temperature reached approximately / in the region of 100°C during the second phase.",
+                mechanism: "Place 'approximately', 'about', or 'in the region of' directly BEFORE numbers/metrics to state a hedged estimate."
+            },
+            materials: {
+                raw: "The machine processes metal, plastic, and glass [end of list].",
+                academic: "The machine processes metal, plastic, glass and so on.",
+                mechanism: "Place 'and so on' (or 'etc.') at the END of a list to indicate further unlisted examples in the series."
+            },
+            prototypes: {
+                raw: "The two experimental prototypes are identical in design.",
+                academic: "The two experimental prototypes are more or less / virtually identical in design.",
+                mechanism: "Place 'more or less' or 'virtually' BEFORE an adjective or noun phrase to convey approximate similarity."
+            },
+            energy: {
+                raw: "The survey evaluated renewable energy systems.",
+                academic: "The survey evaluated several kinds of / types of renewable energy systems.",
+                mechanism: "Place 'kinds of' or 'types of' BEFORE a noun phrase to indicate categorical classification."
+            }
+        };
+
+        function renderEstimationLab() {
+            const ctxKey = document.getElementById('labContextSelect').value;
+            const data = estimationScenarios[ctxKey];
+
+            document.getElementById('labRawOutput').innerText = `"${data.raw}"`;
+            document.getElementById('labAcadOutput').innerText = `"${data.academic}"`;
+            document.getElementById('labMechanismRuleText').innerText = data.mechanism;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            renderEstimationLab();
+        };
+    </script>
+</body>
+</html>

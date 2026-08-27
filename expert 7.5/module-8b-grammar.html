@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cause & Effect Linking Structures Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .interactive-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .interactive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -6px rgba(16, 185, 129, 0.18);
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pulse-border {
+            animation: pulseBorder 2.5s infinite;
+        }
+        @keyframes pulseBorder {
+            0% { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+            70% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { border-color: rgba(16, 185, 129, 0); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen p-3 sm:p-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] flex items-center justify-center">
+
+    <div class="max-w-6xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-emerald-100 my-4">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-br from-slate-900 via-emerald-950 to-teal-900 text-white p-6 sm:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10 transform translate-x-1/4 -translate-y-1/4 pointer-events-none">
+                <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-widest mb-4">
+                    <svg class="w-4 h-4 animate-spin" style="animation-duration: 9s;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Module 8 Extension: Causal Reasoning & Sentence Connectivity
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-extrabold mb-3 tracking-tight">Cause & Effect Linking Masterclass</h1>
+                <p class="text-emerald-200 max-w-3xl text-sm sm:text-lg font-medium leading-relaxed">
+                    Master Clause Linkers (*because, since, given that*), Prepositional Noun Phrase Linkers (*due to, owing to, as a result of*), Transition Adverbs (*consequently, therefore, thus*), Band 8.0+ Causal Verbs (*precipitate, stem from*), and IELTS Essay Formulas.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-4 sm:p-10">
+            <div class="flex border-b-2 border-slate-100 mb-8 overflow-x-auto hide-scroll-bar gap-1" role="tablist">
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-emerald-600 border-b-4 border-emerald-600 focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-clause-vs-noun')">
+                    1. Clause vs. Noun Transformer 🧪
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-adverbs-punctuation')">
+                    2. Transition Adverbs & Punctuation ⚖️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-causal-verbs')">
+                    3. Band 8.0+ Causal Verbs 🏛️
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-semibold text-slate-400 hover:text-slate-700 border-b-4 border-transparent focus:outline-none transition-all text-sm" onclick="openTab(event, 'tab-essay-formulas')">
+                    4. IELTS Essay Causal Formulas 📊
+                </button>
+                <button class="tab-btn whitespace-nowrap px-5 py-3.5 font-bold text-teal-600 hover:text-teal-700 border-b-4 border-transparent focus:outline-none transition-all text-sm flex items-center gap-1.5" onclick="openTab(event, 'tab-quiz')">
+                    5. Cause & Effect Quiz 🎯
+                </button>
+            </div>
+
+            <!-- TAB 1: CLAUSE VS NOUN TRANSFORMER -->
+            <div id="tab-clause-vs-noun" class="tab-content active space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-emerald-100 p-3.5 rounded-2xl text-emerald-800 pulse-border">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Clause Linkers vs. Prepositional Noun Phrase Linkers</h3>
+                        <p class="text-sm text-slate-600 font-medium">Observe how cause/reason structures shift between full clauses (+ S + V) and prepositional noun phrases (+ Noun / Gerund / nominalization).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-emerald-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">1. Select Target Scenario Context:</label>
+                            <select id="transformerContextSelect" onchange="renderClauseVsNounLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-emerald-500 focus:border-emerald-500">
+                                <option value="education">Scenario A: Higher Education & Tuition Fees</option>
+                                <option value="energy">Scenario B: Clean Energy Infrastructure Investment</option>
+                                <option value="health">Scenario C: Public Health & Dietary Regulations</option>
+                                <option value="traffic">Scenario D: Urban Traffic Congestion</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">2. Target Linker Category:</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="setTransformerCategory('clause')" id="trf-clause-btn" class="py-3 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-xs">Clause Linker (+ S + V)</button>
+                                <button onclick="setTransformerCategory('noun')" id="trf-noun-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Preposition (+ Noun)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Displays -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                        <div class="bg-indigo-50/70 p-6 rounded-2xl border border-indigo-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-indigo-200 text-indigo-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="labActiveLinkerBadge">Clause Linker Structure</span>
+                            <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-2xs">
+                                <p id="labTransformedSentence" class="text-base sm:text-lg font-bold text-slate-900"></p>
+                            </div>
+                            <p class="text-xs text-slate-600" id="labLinkerPatternDesc">Grammatical formula and required elements.</p>
+                        </div>
+
+                        <div class="bg-emerald-50/70 p-6 rounded-2xl border border-emerald-100 space-y-3">
+                            <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded-md text-[11px] font-black uppercase tracking-wider">Target Linker Options</span>
+                            <div class="bg-white p-4 rounded-xl border border-emerald-100 shadow-2xs">
+                                <p id="labLinkerOptionsList" class="text-sm font-extrabold text-emerald-950"></p>
+                            </div>
+                            <p class="text-xs text-slate-600">Interchangeable connectors within this structural class.</p>
+                        </div>
+                    </div>
+
+                    <!-- Explanatory Banner -->
+                    <div class="bg-slate-900 text-white p-5 rounded-2xl space-y-2 text-xs">
+                        <strong class="text-amber-400 block text-sm font-bold">💡 Grammatical Rule Key:</strong>
+                        <p id="labRuleExplanationText" class="text-slate-300 leading-relaxed font-mono"></p>
+                    </div>
+
+                </div>
+
+                <!-- Deep Dive Matrix Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Clause Connectors</span>
+                            <span class="text-xs font-bold text-indigo-700">+ SUBJECT + VERB ✔️</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Subordinating Cause Clauses</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Connects an outcome directly to a complete subordinating clause containing a subject and conjugated verb.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">because / as / since:</strong>
+                                <p class="text-slate-900 font-semibold">"Students struggle <strong class="text-indigo-700">because tuition fees are rising</strong>."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">given that / seeing that (Academic):</strong>
+                                <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">Given that renewable infrastructure requires capital</strong>, subsidies are vital."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Prepositional Connectors</span>
+                            <span class="text-xs font-bold text-emerald-700">+ NOUN / GERUND ✔️</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg">Prepositional Cause Phrases</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Requires a noun phrase, gerund (-ing), or nominalized noun phrase. CANNOT take a full finite verb directly unless followed by <em>the fact that</em>.
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800 font-bold block mb-0.5">because of / due to / owing to:</strong>
+                                <p class="text-slate-900 font-semibold">"Students struggle <strong class="text-emerald-700">because of escalating tuition fees</strong>."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800 font-bold block mb-0.5">due to the fact that (+ Clause Bridge):</strong>
+                                <p class="text-slate-900 font-semibold">"Students struggle <strong class="text-emerald-700">due to the fact that tuition fees are escalating</strong>."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 2: TRANSITION ADVERBS & PUNCTUATION -->
+            <div id="tab-adverbs-punctuation" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-purple-100 p-3.5 rounded-2xl text-purple-700">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Result Transitions & Punctuation Mechanics</h3>
+                        <p class="text-sm text-slate-600 font-medium">Master punctuation arrangements for transition adverbs (*Consequently, Therefore, As a result, Thus, Hence*) to eliminate comma splices.</p>
+                    </div>
+                </div>
+
+                <!-- Interactive Punctuation Engine -->
+                <div class="bg-white border-2 border-purple-100 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">Select Result Transition Word:</label>
+                            <select id="punctWordSelect" onchange="renderPunctuationLab()" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm font-bold rounded-xl p-3 focus:ring-purple-500 focus:border-purple-500">
+                                <option value="consequently">Consequently</option>
+                                <option value="therefore">Therefore</option>
+                                <option value="as_a_result">As a result</option>
+                                <option value="thus">Thus</option>
+                                <option value="hence">Hence</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-500 mb-2">Select Punctuation Arrangement:</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="setPunctuationFormat('period')" id="pf-period-btn" class="py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs">Period + Transition</button>
+                                <button onclick="setPunctuationFormat('semi')" id="pf-semi-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Semicolon + Lowercase</button>
+                                <button onclick="setPunctuationFormat('coord')" id="pf-coord-btn" class="py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700">Coordinating (so)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Box -->
+                    <div class="bg-purple-50/70 p-6 rounded-2xl border border-purple-100 space-y-3">
+                        <span class="px-2.5 py-1 bg-purple-200 text-purple-900 rounded-md text-[11px] font-black uppercase tracking-wider" id="punctFormatBadge">Period + Transition</span>
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-2xs font-mono">
+                            <p id="punctSentenceOutput" class="text-base sm:text-lg font-bold text-purple-950"></p>
+                        </div>
+                        <p class="text-xs text-slate-600" id="punctRuleDesc"></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 3: BAND 8.0+ ACADEMIC CAUSAL VERBS -->
+            <div id="tab-causal-verbs" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-amber-100 p-3.5 rounded-2xl text-amber-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">Band 8.0+ Academic Causal Verbs Toolkit</h3>
+                        <p class="text-sm text-slate-600 font-medium">Replace basic transition words with sophisticated causal verbs to elevate Task 2 essay sophistication.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Forward Causal Verbs -->
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Cause &rarr; Effect Direction</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Active Forward Causal Verbs</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Subject (Cause) performs an action that triggers or produces the Object (Effect).
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">precipitate / give rise to / engender:</strong>
+                                <p class="text-slate-900 font-semibold">"Uncontrolled urban sprawl <strong class="text-indigo-700">precipitates / gives rise to</strong> severe traffic gridlock."</p>
+                            </div>
+                            <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100">
+                                <strong class="text-indigo-800 font-bold block mb-0.5">trigger / result in / lead to:</strong>
+                                <p class="text-slate-900 font-semibold">"Heavy industrial emissions <strong class="text-indigo-700">result in</strong> environmental degradation."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reverse Causal Verbs -->
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Effect &larr; Cause Direction</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Reverse Origin Causal Verbs</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Subject (Effect) originates from or is attributed to the Object (Cause).
+                        </p>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800 font-bold block mb-0.5">stem from / originate in / result from:</strong>
+                                <p class="text-slate-900 font-semibold">"The current educational crisis <strong class="text-emerald-700">stems from</strong> prolonged budget cuts."</p>
+                            </div>
+                            <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100">
+                                <strong class="text-emerald-800 font-bold block mb-0.5">be attributed to / be ascribed to:</strong>
+                                <p class="text-slate-900 font-semibold">"The decline in crime can <strong class="text-emerald-700">be attributed to</strong> improved community policing."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 4: IELTS ESSAY CAUSAL FORMULAS -->
+            <div id="tab-essay-formulas" class="tab-content space-y-8">
+                
+                <div class="flex items-center gap-4">
+                    <div class="bg-sky-100 p-3.5 rounded-2xl text-sky-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-extrabold text-slate-900">IELTS Task 2 Causal Essay Formulas</h3>
+                        <p class="text-sm text-slate-600 font-medium">Standardized high-band sentence blueprints for Cause & Solution or Cause & Effect essay types.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="interactive-card bg-white border-2 border-indigo-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 1</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Causal Topic Sentence</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Establishes the primary cause at the start of a body paragraph.
+                        </p>
+
+                        <div class="bg-indigo-50 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-1">
+                            <span class="text-indigo-800 font-bold block mb-0.5">Sample Essay Formula:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-indigo-700">The primary factor responsible for [Issue] lies in</strong> [Cause Noun Phrase]."</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-purple-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 2</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Elaboration / Chain Effect</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Explains how the cause leads step-by-step to subsequent consequences.
+                        </p>
+
+                        <div class="bg-purple-50 p-3.5 rounded-xl border border-purple-100 text-xs space-y-1">
+                            <span class="text-purple-800 font-bold block mb-0.5">Sample Essay Formula:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-purple-700">As a direct consequence of [Cause], [Effect Clause], thereby [Gerund Effect].</strong>"</p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-card bg-white border-2 border-emerald-100 rounded-2xl p-6 shadow-xs space-y-4">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md text-[11px] font-bold uppercase tracking-wider">Blueprint 3</span>
+                        <h4 class="font-bold text-slate-900 text-lg">Solution Remedy Link</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Links targeted government intervention to reversing the negative cause.
+                        </p>
+
+                        <div class="bg-emerald-50 p-3.5 rounded-xl border border-emerald-100 text-xs space-y-1">
+                            <span class="text-emerald-800 font-bold block mb-0.5">Sample Essay Formula:</span>
+                            <p class="text-slate-900 font-semibold">"<strong class="text-emerald-700">By implementing [Solution], governments can effectively counteract</strong> [Negative Effect]."</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TAB 5: PRACTICE QUIZ -->
+            <div id="tab-quiz" class="tab-content space-y-6">
+                
+                <div class="bg-gradient-to-r from-teal-500/10 via-sky-500/10 to-teal-500/10 rounded-2xl p-8 border border-teal-200 text-center mb-6">
+                    <h3 class="text-3xl font-black text-teal-950 mb-2">Cause & Effect Logic Assessment</h3>
+                    <p class="text-teal-800 text-sm font-medium">Test your ability to apply clause linkers, prepositional phrases, result punctuation, and causal verbs.</p>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            1. Select the correct linker to complete: "We are studying English <span class="text-indigo-600 underline">______</span> its importance for our future."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'because of\' is a prepositional linker followed by noun phrase \'its importance\'.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">because of</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Because must be followed by a full clause with subject and verb.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">because</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Since requires a full clause.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">since</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            2. Choose the correctly punctuated sentence for a result transition adverb:
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Placing only a comma between two independent sentences creates a comma splice.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Import tariffs were raised, consequently consumer demand plunged.</button>
+                            <button onclick="checkAnswer(this, true, 'Correct! Sentence-initial transition adverbs require a period or semicolon preceding them and a comma following.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Import tariffs were raised. Consequently, consumer demand plunged.</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            3. Select the Band 8.0+ causal verb expressing reverse origin: "The educational deficit <span class="text-indigo-600 underline">______</span> prolonged budget cuts."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'stems from\' indicates that the subject (effect) originates in the object (cause).')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">stems from</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Precipitates means \'causes\', which reverses the cause-and-effect relationship here.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">precipitates</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Gives rise to means \'causes\', reversing the intended meaning.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">gives rise to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                    <div class="quiz-question bg-white border-2 border-slate-100 rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow">
+                        <p class="text-base font-bold text-slate-800 mb-4">
+                            4. Complete with the correct bridge phrase: "<span class="text-indigo-600 underline">______</span> she was kind, she was always popular."
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="checkAnswer(this, true, 'Correct! \'Due to the fact that\' connects the prepositional phrase \'Due to\' to a full clause (\'she was kind\').')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs" data-correct="true">Due to the fact that</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Due to must be followed directly by a noun phrase, not a full clause.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Due to</button>
+                            <button onclick="checkAnswer(this, false, 'Incorrect. Owing to must be followed by a noun phrase.')" class="px-4 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-indigo-100 text-slate-700 text-xs">Owing to</button>
+                        </div>
+                        <div class="feedback hidden mt-4 p-4 rounded-xl text-xs border-l-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs font-semibold text-slate-500 gap-2">
+            <span>Advanced English Cohesion & Reasoning Suite</span>
+            <span>Module 8 Extension: Cause & Effect Linking Masterclass</span>
+        </div>
+    </div>
+
+    <script>
+        /* Tab Navigation Logic */
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-emerald-600', 'text-emerald-600', 'border-teal-600', 'text-teal-600');
+                btn.classList.add('border-transparent', 'text-slate-400', 'font-semibold');
+                btn.classList.remove('font-bold');
+            });
+
+            const targetTab = document.getElementById(tabName);
+            if (targetTab) targetTab.classList.add('active');
+            
+            const clickedBtn = evt.currentTarget;
+            if (clickedBtn) {
+                clickedBtn.classList.remove('border-transparent', 'text-slate-400', 'font-semibold');
+                clickedBtn.classList.add('font-bold');
+                
+                if(tabName === 'tab-quiz') {
+                    clickedBtn.classList.add('border-teal-600', 'text-teal-700');
+                } else {
+                    clickedBtn.classList.add('border-emerald-600', 'text-emerald-600');
+                }
+            }
+        }
+
+        /* Tab 1: Clause vs Noun Transformer Logic */
+        let currentTransformerCategory = 'clause';
+
+        function setTransformerCategory(cat) {
+            currentTransformerCategory = cat;
+            const clauseBtn = document.getElementById('trf-clause-btn');
+            const nounBtn = document.getElementById('trf-noun-btn');
+
+            if (cat === 'clause') {
+                clauseBtn.className = "py-3 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-xs";
+                nounBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            } else {
+                nounBtn.className = "py-3 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-xs";
+                clauseBtn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+            }
+            renderClauseVsNounLab();
+        }
+
+        const transformerScenarios = {
+            education: {
+                clause: {
+                    badge: "Clause Linker (+ Subject + Verb)",
+                    sentence: "Many underprivileged students struggle to attend university because tuition fees are escalating rapidly.",
+                    options: "because, as, since, seeing that, given that",
+                    desc: "Requires a complete clause with subject ('tuition fees') and verb ('are escalating').",
+                    rule: "Clause linkers connect cause and effect using finite verbs. When placed at the front, a comma is required after the cause clause."
+                },
+                noun: {
+                    badge: "Prepositional Noun Linker (+ Noun Phrase)",
+                    sentence: "Many underprivileged students struggle to attend university due to escalating tuition fees.",
+                    options: "because of, due to, owing to, as a result of, on account of",
+                    desc: "Requires a nominalized noun phrase ('escalating tuition fees').",
+                    rule: "Prepositional linkers require a noun phrase or gerund (-ing). To connect a full clause, append 'the fact that' (e.g. 'due to the fact that...')."
+                }
+            },
+            energy: {
+                clause: {
+                    badge: "Clause Linker (+ Subject + Verb)",
+                    sentence: "Carbon emissions have dropped substantially since governments subsidized renewable energy.",
+                    options: "since, because, as, given that",
+                    desc: "Requires a subject ('governments') and verb ('subsidized').",
+                    rule: "Conjunction 'since' directly subordinates the cause clause to the main effect."
+                },
+                noun: {
+                    badge: "Prepositional Noun Linker (+ Noun Phrase)",
+                    sentence: "Carbon emissions have dropped substantially as a result of renewable energy subsidies.",
+                    options: "as a result of, owing to, because of, thanks to",
+                    desc: "Requires a noun phrase ('renewable energy subsidies').",
+                    rule: "Replaces the verbal clause with a compact prepositional noun phrase."
+                }
+            },
+            health: {
+                clause: {
+                    badge: "Clause Linker (+ Subject + Verb)",
+                    sentence: "Public obesity rates declined as municipalities introduced taxes on sugary beverages.",
+                    options: "as, because, since, given that",
+                    desc: "Requires subject ('municipalities') and verb ('introduced').",
+                    rule: "Clause linker 'as' expresses direct cause and effect relationship."
+                },
+                noun: {
+                    badge: "Prepositional Noun Linker (+ Noun Phrase)",
+                    sentence: "Public obesity rates declined owing to the introduction of taxes on sugary beverages.",
+                    options: "owing to, due to, because of, as a result of",
+                    desc: "Requires a nominalized noun phrase ('the introduction of taxes...').",
+                    rule: "Transforms the action verb 'introduced' into nominalized noun 'introduction'."
+                }
+            },
+            traffic: {
+                clause: {
+                    badge: "Clause Linker (+ Subject + Verb)",
+                    sentence: "Commute times decreased given that dedicated cycling infrastructure was expanded.",
+                    options: "given that, seeing that, because, as, since",
+                    desc: "Requires subject ('dedicated cycling infrastructure') and passive verb ('was expanded').",
+                    rule: "'Given that' is an authoritative academic clause linker."
+                },
+                noun: {
+                    badge: "Prepositional Noun Linker (+ Noun Phrase)",
+                    sentence: "Commute times decreased on account of the expansion of dedicated cycling infrastructure.",
+                    options: "on account of, due to, owing to, because of",
+                    desc: "Requires a nominalized noun phrase ('the expansion of...').",
+                    rule: "Converts passive clause into a formal prepositional phrase."
+                }
+            }
+        };
+
+        function renderClauseVsNounLab() {
+            const ctxKey = document.getElementById('transformerContextSelect').value;
+            const data = transformerScenarios[ctxKey][currentTransformerCategory];
+
+            document.getElementById('labActiveLinkerBadge').innerText = data.badge;
+            document.getElementById('labTransformedSentence').innerText = `"${data.sentence}"`;
+            document.getElementById('labLinkerPatternDesc').innerText = data.desc;
+            document.getElementById('labLinkerOptionsList').innerText = data.options;
+            document.getElementById('labRuleExplanationText').innerText = data.rule;
+        }
+
+        /* Tab 2: Punctuation Engine Logic */
+        let currentPunctFormat = 'period';
+
+        function setPunctuationFormat(fmt) {
+            currentPunctFormat = fmt;
+            ['period', 'semi', 'coord'].forEach(f => {
+                const btn = document.getElementById(`pf-${f}-btn`);
+                if (f === fmt) {
+                    btn.className = "py-3 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-xs";
+                } else {
+                    btn.className = "py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700";
+                }
+            });
+            renderPunctuationLab();
+        }
+
+        const punctuationData = {
+            consequently: {
+                period: {
+                    sentence: "Import tariffs were raised significantly. Consequently, consumer demand plunged.",
+                    desc: "Period ends Cause Clause &rarr; Capitalized 'Consequently' + MANDATORY COMMA &rarr; Effect Clause.",
+                    badge: "Period + Transition Adverb"
+                },
+                semi: {
+                    sentence: "Import tariffs were raised significantly; consequently, consumer demand plunged.",
+                    desc: "Cause Clause &rarr; SEMICOLON &rarr; Lowercase 'consequently' + MANDATORY COMMA &rarr; Effect Clause.",
+                    badge: "Semicolon + Transition Adverb"
+                },
+                coord: {
+                    sentence: "Import tariffs were raised significantly, so consumer demand plunged.",
+                    desc: "Coordinating Conjunction 'so' preceded by a comma links independent clauses directly.",
+                    badge: "Coordinating Conjunction (so)"
+                }
+            },
+            therefore: {
+                period: {
+                    sentence: "Renewable energy costs have dropped. Therefore, adoption rates are accelerating.",
+                    desc: "Period ends cause sentence &rarr; Therefore + comma &rarr; Result sentence.",
+                    badge: "Period + Transition Adverb"
+                },
+                semi: {
+                    sentence: "Renewable energy costs have dropped; therefore, adoption rates are accelerating.",
+                    desc: "Semicolon links cause and result clauses smoothly before 'therefore,'.",
+                    badge: "Semicolon + Transition Adverb"
+                },
+                coord: {
+                    sentence: "Renewable energy costs have dropped, so adoption rates are accelerating.",
+                    desc: "Coordinating 'so' with preceding comma.",
+                    badge: "Coordinating Conjunction (so)"
+                }
+            },
+            as_a_result: {
+                period: {
+                    sentence: "Infrastructure funding was reduced. As a result, road quality deteriorated.",
+                    desc: "Period &rarr; As a result + comma.",
+                    badge: "Period + Transition Adverb"
+                },
+                semi: {
+                    sentence: "Infrastructure funding was reduced; as a result, road quality deteriorated.",
+                    desc: "Semicolon + as a result + comma.",
+                    badge: "Semicolon + Transition Adverb"
+                },
+                coord: {
+                    sentence: "Infrastructure funding was reduced, so road quality deteriorated.",
+                    desc: "Coordinating 'so' with preceding comma.",
+                    badge: "Coordinating Conjunction (so)"
+                }
+            },
+            thus: {
+                period: {
+                    sentence: "Automation lowers production overheads. Thus, profit margins expand.",
+                    desc: "Period &rarr; Thus + optional/standard comma.",
+                    badge: "Period + Transition Adverb"
+                },
+                semi: {
+                    sentence: "Automation lowers production overheads; thus, profit margins expand.",
+                    desc: "Semicolon + thus + comma.",
+                    badge: "Semicolon + Transition Adverb"
+                },
+                coord: {
+                    sentence: "Automation lowers production overheads, so profit margins expand.",
+                    desc: "Coordinating 'so'.",
+                    badge: "Coordinating Conjunction (so)"
+                }
+            },
+            hence: {
+                period: {
+                    sentence: "The trial yielded flawed data. Hence, the study was halted.",
+                    desc: "Period &rarr; Hence + comma.",
+                    badge: "Period + Transition Adverb"
+                },
+                semi: {
+                    sentence: "The trial yielded flawed data; hence, the study was halted.",
+                    desc: "Semicolon + hence + comma.",
+                    badge: "Semicolon + Transition Adverb"
+                },
+                coord: {
+                    sentence: "The trial yielded flawed data, so the study was halted.",
+                    desc: "Coordinating 'so'.",
+                    badge: "Coordinating Conjunction (so)"
+                }
+            }
+        };
+
+        function renderPunctuationLab() {
+            const wordKey = document.getElementById('punctWordSelect').value;
+            const data = punctuationData[wordKey][currentPunctFormat];
+
+            document.getElementById('punctFormatBadge').innerText = data.badge;
+            document.getElementById('punctSentenceOutput').innerText = `"${data.sentence}"`;
+            document.getElementById('punctRuleDesc').innerText = data.desc;
+        }
+
+        /* Quiz Logic */
+        function checkAnswer(btn, isCorrect, explanation) {
+            const container = btn.closest('.quiz-question');
+            const buttons = container.querySelectorAll('button');
+            const feedback = container.querySelector('.feedback');
+            
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            
+            btn.classList.remove('opacity-50');
+            
+            if (isCorrect) {
+                btn.classList.replace('bg-slate-100', 'bg-teal-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-teal-700 font-bold text-sm block mb-1">Correct!</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-teal-50', 'border-teal-500');
+            } else {
+                btn.classList.replace('bg-slate-100', 'bg-rose-500');
+                btn.classList.replace('text-slate-700', 'text-white');
+                feedback.innerHTML = `<span class="text-rose-700 font-bold text-sm block mb-1">Incorrect.</span> <span class="text-slate-700">${explanation}</span>`;
+                feedback.classList.remove('hidden');
+                feedback.classList.add('bg-rose-50', 'border-rose-500');
+                
+                const correctBtn = container.querySelector('[data-correct="true"]');
+                if (correctBtn) {
+                    correctBtn.classList.remove('opacity-50');
+                    correctBtn.classList.replace('bg-slate-100', 'bg-teal-100');
+                    correctBtn.classList.add('border-teal-500', 'text-teal-900');
+                }
+            }
+        }
+
+        /* Initializer */
+        window.onload = function() {
+            renderClauseVsNounLab();
+            renderPunctuationLab();
+        };
+    </script>
+</body>
+</html>
