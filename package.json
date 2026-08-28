@@ -6,7 +6,9 @@
     "update:expert5": "node scripts/update-expert-5.js",
     "update:expert6": "node scripts/update-expert-6.js",
     "update:expert75": "node scripts/update-expert-75.js",
-    "update:all": "node scripts/update-all.js"
+    "update:all": "node scripts/update-all.js",
+    "apply:mobile": "node scripts/apply-mobile-script.js",
+    "apply:image-viewer": "node scripts/apply-image-viewer.js"
   },
   "keywords": [
     "ielts",

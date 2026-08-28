@@ -31,6 +31,8 @@ neo-expert-ielts/
 ├── css/
 │   └── styles.css                       # Global design system, badges, & layout styles
 ├── js/
+│   ├── mobile.js                        # Responsive mobile UI engine (tabs, back-to-top, vh fix)
+│   ├── image-viewer.js                  # Pan, drag, pinch-to-zoom, and lightbox modal engine
 │   ├── render-materials.js              # Dynamically renders cards into skill folders
 │   ├── file-sorter.js                   # Handles search, skill filtering, & A-Z sorting
 │   └── data/
@@ -51,6 +53,8 @@ neo-expert-ielts/
 │   └── module-*.html                    # Grammar, reading, and writing modules
 ├── scripts/
 │   ├── indexer-core.js                  # Core metadata extractor & auto-indexer engine
+│   ├── apply-mobile-script.js           # Backs up & links mobile.js across all HTML files
+│   ├── apply-image-viewer.js            # Backs up & links image-viewer.js across all HTML files
 │   ├── update-expert-5.js               # Dedicated update runner for Expert 5
 │   ├── update-expert-6.js               # Dedicated update runner for Expert 6
 │   ├── update-expert-75.js              # Dedicated update runner for Expert 7.5
