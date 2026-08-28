@@ -220,6 +220,7 @@
 
       const isDone = isModuleCompleted(levelKey, url);
       card.classList.toggle('is-module-completed', isDone);
+      card.classList.add('has-progress-btn');
 
       // Check if check button already exists
       let checkBtn = card.querySelector('.module-complete-toggle');
@@ -288,35 +289,28 @@
   // 4. BOOTSTRAPPER
   // =========================================================================
   function init() {
-    const levelKey = getCurrentLevelKey();
-    if (!levelKey) return;
+    try {
+      const levelKey = getCurrentLevelKey();
+      if (!levelKey) return;
 
-    const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/').toLowerCase();
-    const filename = path.split('/').pop() || 'index.html';
-    const isDashboard = filename === 'index.html' || filename === '';
+      const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/').toLowerCase();
+      const filename = path.split('/').pop() || 'index.html';
+      const isDashboard = filename === 'index.html' || filename === '';
 
-    if (isDashboard) {
-      renderDashboardProgressWidget(levelKey);
-      syncMaterialCardsProgress(levelKey);
-
-      // Re-sync when materials are dynamically populated or filtered
-      window.addEventListener('study-progress-updated', () => {
+      if (isDashboard) {
         renderDashboardProgressWidget(levelKey);
         syncMaterialCardsProgress(levelKey);
-      });
 
-      // Hook after render-materials finishes
-      const observer = new MutationObserver(() => {
-        if (document.querySelector('.material-card:not(.has-progress-btn)')) {
+        // Re-sync when materials are dynamically populated or filtered
+        window.addEventListener('study-progress-updated', () => {
+          renderDashboardProgressWidget(levelKey);
           syncMaterialCardsProgress(levelKey);
-        }
-      });
-      const container = document.getElementById('materials-folders');
-      if (container) {
-        observer.observe(container, { childList: true, subtree: true });
+        });
+      } else {
+        initLessonPageTracker(levelKey, filename);
       }
-    } else {
-      initLessonPageTracker(levelKey, filename);
+    } catch (err) {
+      console.warn('StudyProgress initialization error:', err);
     }
   }
 
