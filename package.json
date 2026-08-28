@@ -11,7 +11,8 @@
     "apply:image-viewer": "node scripts/apply-image-viewer.js",
     "check:protection": "node scripts/sync-reading-protection.js --check-only",
     "sync:protection": "node scripts/sync-reading-protection.js",
-    "apply:protection": "node scripts/sync-reading-protection.js"
+    "apply:protection": "node scripts/sync-reading-protection.js",
+    "apply:progress": "node scripts/apply-study-progress.js"
   },
   "keywords": [
     "ielts",

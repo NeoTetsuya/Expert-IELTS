@@ -92,6 +92,11 @@
         countBadge.textContent = `${count} ${count === 1 ? 'Module' : 'Modules'}`;
       }
     });
+
+    // Notify StudyProgress if available
+    if (window.StudyProgress && typeof window.StudyProgress.refreshUI === 'function') {
+      window.StudyProgress.refreshUI();
+    }
   }
 
   // Execute immediately if DOM is already parsed, or on DOMContentLoaded
