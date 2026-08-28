@@ -180,6 +180,41 @@ When committing and pushing this repository to GitHub, **do NOT upload the follo
 
 > 💡 **Tip**: All these exclusions are configured in the root [`.gitignore`](.gitignore) file. Git will automatically ignore them when you run `git add .` and `git push`.
 
+## 🔐 8. Reading Explanations Password Protection System
+
+To prevent students from reading full analyses, translations, and answer keys prior to class sessions, all **Reading Explanations** modules are protected with a client-side access control modal.
+
+### How It Works:
+1. **Instant Lockdown**: When a student opens a reading explanation page, page content is blurred and interaction is blocked immediately.
+2. **Individual Passwords**: Each module has a specific password configured in `js/reading-protection.js`.
+3. **Teacher Master Override**: The master password `neo-teacher-access` can unlock any reading explanation across all levels.
+4. **Session Persistence**: Once unlocked in class, access is remembered in `sessionStorage` for the duration of the browser session. A floating **"Khóa tài liệu"** button allows re-locking at any time.
+
+### Current Default Passwords:
+
+| Level | Module File | Default Password |
+| :--- | :--- | :--- |
+| **Expert 5** | `module-4a-reading-explanations.html` | `exp5-r4a` |
+| **Expert 5** | `module-4b-reading-explanations.html` | `exp5-r4b` |
+| **Expert 5** | `module-5a-reading-explanations.html` | `exp5-r5a` |
+| **Expert 5** | `module-5b-reading-explanations.html` | `exp5-r5b` |
+| **Expert 6** | `module-1a-reading-explanations.html` | `exp6-r1a` |
+| **Expert 6** | `module-1b-reading-explanations.html` | `exp6-r1b` |
+| **Expert 6** | `module-2a-reading-explanations.html` | `exp6-r2a` |
+| **Expert 6** | `module-2b-reading-explanations.html` | `exp6-r2b` |
+| **All Levels** | *Master Teacher Password* | `neo-teacher-access` |
+
+### Customizing Passwords:
+You can directly edit passwords inside `js/reading-protection.js` under the `window.EXPERT_READING_PASSWORDS` registry.
+
+### Adding New Reading Explanations in the Future:
+When you create a new reading explanation file in any level:
+- Run `npm run check:protection` to check status and see if any new files need protection.
+- Run `npm run sync:protection` (or 1-click `scripts/sync-passwords.bat`) to automatically:
+  1. Create a safety backup in `_backups/`.
+  2. Generate and register a default password in `js/reading-protection.js`.
+  3. Inject `<script src="../js/reading-protection.js" defer></script>` into the new HTML file.
+
 ---
 
-*Last Updated: 2026-08-27*
+*Last Updated: 2026-08-28*

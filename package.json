@@ -8,7 +8,10 @@
     "update:expert75": "node scripts/update-expert-75.js",
     "update:all": "node scripts/update-all.js",
     "apply:mobile": "node scripts/apply-mobile-script.js",
-    "apply:image-viewer": "node scripts/apply-image-viewer.js"
+    "apply:image-viewer": "node scripts/apply-image-viewer.js",
+    "check:protection": "node scripts/sync-reading-protection.js --check-only",
+    "sync:protection": "node scripts/sync-reading-protection.js",
+    "apply:protection": "node scripts/sync-reading-protection.js"
   },
   "keywords": [
     "ielts",
