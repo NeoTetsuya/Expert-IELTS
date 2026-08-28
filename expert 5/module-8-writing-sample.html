@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Task 2 Problem-Solution Essay - Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#7c3aed',
+                            headerDark: '#6d28d9',
+                            accent: '#8b5cf6',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script src="../js/mobile.js" defer></script>
+    <script src="../js/image-viewer.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-purple-700 text-white flex items-center justify-center font-bold text-xl shadow">
+                8
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 8</h1>
+                <p class="text-xs text-slate-500">Problem-Solution Essay (Physical Inactivity) • Interactive Study Guide for Band 5 &amp; 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 5 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Problem &amp; Solution Signposting Frames
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Health, Lifestyle &amp; Sports Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-purple-700 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-purple-700 uppercase">Module 8</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Problem-solution essay</h2>
+            </div>
+            <div class="bg-purple-50 border-l-4 border-purple-700 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-purple-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-purple-700" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>This is the problem you need to consider.</strong></p>
+                    <p>• There are two parts to the question: <strong>reasons for the problem</strong> and <strong>solutions to the problem</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-8 bg-purple-50/50 border-l-4 border-purple-600 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-purple-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-purple-700 text-white rounded text-xs">Task</span>
+                IELTS Writing Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-purple-200 font-semibold text-slate-900 shadow-sm">
+                    <p class="italic">"Many adults nowadays do no physical activity in their free time.</p>
+                    <p class="italic text-purple-900 mt-1">Why do you think this is happening? What can we do to solve the problem?"</p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-purple-700 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">265 words • Band 7.5+ Sample calibrated for Band 5 mastery</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Essay, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Prompt in Intro -->
+                <div id="note-left-1" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-700"></span>
+                        Introduction Strategy
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Introduce the problem in your own words.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700 font-sans">
+                        💡 <em>Replaces: "Many adults do no physical activity in free time" with "It is a sad fact that many people today do no sport or other physical exercise in their spare time."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Body Paragraph Topic Sentences -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Topic Sentences &amp; Body
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Begin your main body paragraphs with a topic sentence.</strong>
+                        <span class="block mt-1 font-semibold text-slate-700">Write two or three main body paragraphs.</span>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>Para 2: Entertainment distractions.<br>Para 3: Work fatigue &amp; commute.<br>Para 4: School guidance &amp; public funding.</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Solution Vocabulary -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Solution Phrases
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        Use appropriate phrases to refer to solutions:
+                        <span class="block font-bold text-emerald-800 mt-1">• find a solution</span>
+                        <span class="block font-bold text-emerald-800">• provide a solution</span>
+                        <span class="block font-bold text-emerald-800">• one solution might be</span>
+                        <span class="block font-bold text-emerald-800">• another possible solution</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Problem Stance)</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('It is a sad fact that...', 'Impersonal problem frame', 'A strong opening to introduce serious social or health concerns.')">It is a sad fact that</span> 
+                            many people today 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('do no sport or other physical exercise', 'Paraphrase collocation', 'Replaces prompt keywords physical activity with specific sports and exercise.')">do no sport or other physical exercise</span> 
+                            in their 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('spare time', 'Synonym collocation', 'Natural synonym for free time / leisure time.')">spare time</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: REASON 1 (SEDENTARY ENTERTAINMENT & DISTRACTIONS) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Cause 1 (Modern Temptations &amp; Screen Time)</span>
+                    <p>
+                        <span id="target-reason-1" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('One reason for this is that...', 'Topic sentence frame', 'Essential Band 5 starter for the first cause/reason paragraph.')">One reason for this is that</span> 
+                            there are 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('so many other tempting things to do', 'Descriptive collocation', 'Attractive sedentary alternatives that take away motivation.')">so many other tempting things for people to do</span>.
+                        </span> 
+                        <span id="target-home-entertainment">
+                            At home there are 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('hundreds of different TV channels', 'Concrete example', 'Specific modern digital entertainment option.')">hundreds of different TV channels to watch</span>, 
+                            there are 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('exciting computer games to play', 'Digital collocation', 'Gaming activity replacing physical outdoors play.')">lots of exciting computer games to play</span> 
+                            or you can easily 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('spend hours on social networking sites', 'Digital habit collocation', 'Prolonged screen-time habit.')">spend hours on social networking sites</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('If you are out, ...', 'Conditional contrast frame', 'Extends the argument from home life to external entertainment.')">If you are out</span>, 
+                            there are cafés, cinemas and shops to 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('keep you away from the gym', 'Idiomatic phrase', 'Prevent someone from exercising regularly.')">keep you away from the gym</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: REASON 2 (LONG WORK HOURS & COMMUTE FATIGUE) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Cause 2 (Overwork &amp; Exhaustion)</span>
+                    <p>
+                        <span id="target-reason-2" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('A further reason is that...', 'Secondary cause frame', 'Signals the second major cause cleanly and clearly.')">A further reason is that</span> 
+                            people have to 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('work very long hours', 'Workplace collocation', 'Work extended shifts beyond normal schedules.')">work very long hours</span> 
+                            these days. 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('The journey to work', 'Commute noun phrase', 'Daily travel/commute between home and office.')">The journey to work</span> 
+                            is also 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('longer and more stressful', 'Comparative adjective pair', 'Describes higher mental and physical strain in modern commuting.')">longer and more stressful</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('than it was for most people in the past', 'Historical comparison frame', 'Contrasts modern lifestyle pressure with previous eras.')">than it was for most people in the past</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('As a result, ...', 'Cause-and-effect linker', 'Connects heavy work/commute to lack of energy.')">As a result</span>, 
+                            people 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('do not have enough energy', 'Collocation', 'Lacking physical stamina due to daily exhaustion.')">do not have enough energy</span> 
+                            to 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('go for a run or a game of tennis', 'Physical activity collocations', 'Specific recreational exercise forms.')">go for a run or a game of tennis</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('when they eventually get home from work', 'Time clause', 'Emphasizes late and tired arrival at home.')">when they eventually get home from work</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: SOLUTIONS (SCHOOLS & GOVERNMENT FUNDING) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Solutions (Education &amp; Public Sports Funding)</span>
+                    <p>
+                        <span id="target-solution-1" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('It will not be easy to find a solution to this problem.', 'Solution transition frame', 'Acknowledges the complexity of the challenge before proposing measures.')">It will not be easy to find a solution to this problem</span>. 
+                            I think schools have a 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('have a key role to play', 'Academic idiom/collocation', 'To hold a fundamental responsibility or pivotal function.')">key role to play</span>. 
+                            Young children need to learn how 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('important and enjoyable physical activity is', 'Educational goal phrase', 'Fostering positive lifelong exercise attitudes.')">important and how enjoyable physical activity is</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('In addition, ...', 'Additive linker', 'Adds a secondary educational solution.')">In addition</span>, 
+                            teachers should help each student 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('find a sport they can enjoy', 'Personalized sports concept', 'Matching students to suitable athletic disciplines.')">find a sport they can enjoy</span>. 
+                            Not everyone likes football or tennis, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('..., for example; ...', 'Exemplification device', 'Illustrates varied sports preferences cleanly.')">for example</span>; 
+                            some will find 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('swimming or athletics', 'Sport category nouns', 'Alternative individual athletic pursuits.')">swimming or athletics</span> 
+                            more fun.
+                        </span> 
+                        <span id="target-solution-2" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Funding can also help provide a solution.', 'Government solution frame', 'Introduces financial and civic support from authorities.')">Funding can also help provide a solution</span>. 
+                            The government should 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('fund sports centres', 'Policy collocation', 'Financially support community athletic facilities.')">fund sports centres</span> 
+                            to make it possible for everyone to 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('participate in sport', 'High-level collocation', 'Take part in physical athletic activities.')">participate in sport</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('even if they do not have much money', 'Inclusivity condition', 'Ensuring low-income citizens also have gym/sports access.')">even if they do not have much money</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 5: CONCLUSION -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 5: Conclusion (Summary of Urgency &amp; Impact)</span>
+                    <p>
+                        <span id="target-conclusion" class="hl-connector" data-note="note-right-3">
+                            <span class="hl-band5-vocab" onclick="showWordDetail('Lack of activity is a serious problem', 'Summary statement', 'Re-states the gravity of the sedentary health epidemic.')">Lack of activity is a serious problem</span> 
+                            for the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('health of many people', 'Health impact phrase', 'The physical well-being of the population.')">health of many people</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('but the solutions suggested above could...', 'Conclusion synthesis frame', 'Refers back to earlier proposals with confident modal verbs.')">but the solutions suggested above could</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('do a great deal to help solve it', 'Idiomatic collocation', 'Make a major positive contribution to resolving the issue.')">do a great deal to help solve it</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Linking devices -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Cohesion &amp; Linking
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Use linking words and phrases.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700">
+                        💡 <em>"One reason for this is...", "A further reason is...", "As a result", "In addition", "for example".</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Explaining Solutions -->
+                <div id="note-right-2" class="bg-teal-50 border-2 border-teal-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-teal-400">
+                    <div class="flex items-center gap-1.5 text-teal-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                        Elaborating Solutions
+                    </div>
+                    <p class="text-teal-950 font-medium leading-relaxed">
+                        <strong class="text-teal-700">Explain how your solutions might help.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-teal-200/70 text-[11px] text-teal-700">
+                        ⭐ <em>Shows the mechanism: funding sports centres makes exercise accessible to low-income adults.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Proofreading & Organization -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Review &amp; Edit Checklist
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Re-read your essay.</strong> Check that your ideas are organised well. Then check your use of language and your spelling.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 8 • Task 2: Problem-solution essay</span>
+            <span class="font-bold text-slate-600 text-sm">207</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-purple-100 text-purple-800">
+                        Problem-Solution Frame
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        One reason for this is that...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps Band 5 Learners:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Gives your cause paragraph an immediate, clean topic sentence to avoid fragmented thoughts.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 5 &rarr; Band 6+ Upgrade Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "One primary reason for this inactivity is the increasing prevalence of sedentary desk jobs."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 5 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-purple-700 rounded-full"></span>
+                Band 5 Problem-Solution Toolkit (Module 8)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-purple-700 mb-2">1. Problem-Solution Essay Skeleton (Causes &amp; Solutions)</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-purple-50 rounded-lg border border-purple-200">
+                        <strong class="text-purple-900 block font-semibold">Introduction:</strong>
+                        <p class="text-slate-700 mt-0.5">It is a sad fact that [paraphrase problem topic] in their [spare/free time].</p>
+                    </div>
+                    <div class="p-2.5 bg-purple-50 rounded-lg border border-purple-200">
+                        <strong class="text-purple-900 block font-semibold">Body 1 (Cause 1 - Distractions/Lifestyle):</strong>
+                        <p class="text-slate-700 mt-0.5">One reason for this is that [Cause 1]. At home there are [sedentary entertainment examples]. If people are out, there are [distractions] to keep them away from [healthy activity].</p>
+                    </div>
+                    <div class="p-2.5 bg-purple-50 rounded-lg border border-purple-200">
+                        <strong class="text-purple-900 block font-semibold">Body 2 (Cause 2 - Work &amp; Fatigue):</strong>
+                        <p class="text-slate-700 mt-0.5">A further reason is that [Cause 2: long work hours/stressful commute]. As a result, people do not have enough energy to [exercise] when they get home.</p>
+                    </div>
+                    <div class="p-2.5 bg-purple-50 rounded-lg border border-purple-200">
+                        <strong class="text-purple-900 block font-semibold">Body 3 (Solutions - Schools &amp; Funding):</strong>
+                        <p class="text-slate-700 mt-0.5">It will not be easy to find a solution to this problem. I think [Entity 1: schools] have a key role to play by [Action]. Funding can also help provide a solution: the government should [Action 2].</p>
+                    </div>
+                    <div class="p-2.5 bg-purple-50 rounded-lg border border-purple-200">
+                        <strong class="text-purple-900 block font-semibold">Conclusion:</strong>
+                        <p class="text-slate-700 mt-0.5">Lack of [activity] is a serious problem for [health], but the solutions suggested above could do a great deal to help solve it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Health, Lifestyle &amp; Sports Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">physical exercise / activity</span>
+                        <span class="text-slate-500">sports, workouts</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">spare time / leisure time</span>
+                        <span class="text-slate-500">free hours</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">keep you away from</span>
+                        <span class="text-slate-500">distract from</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">work very long hours</span>
+                        <span class="text-slate-500">overworking</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">have a key role to play</span>
+                        <span class="text-slate-500">have major responsibility</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">provide a solution</span>
+                        <span class="text-slate-500">resolve the difficulty</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">participate in sport</span>
+                        <span class="text-slate-500">take part in games</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">do a great deal to</span>
+                        <span class="text-slate-500">help significantly</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#7c3aed' },
+                { note: 'note-left-2', target: 'target-reason-1', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-solution-1', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-reason-2', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-solution-2', side: 'right', color: '#0d9488' },
+                { note: 'note-right-3', target: 'target-conclusion', side: 'right', color: '#e11d48' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in essay context: Using "${title}" provides structured cause-and-solution linkage in IELTS Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model essay
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `It is a sad fact that many people today do no sport or other physical exercise in their spare time. One reason for this is that there are so many other tempting things for people to do. At home there are hundreds of different TV channels to watch, there are lots of exciting computer games to play or you can easily spend hours on social networking sites. If you are out, there are cafes, cinemas and shops to keep you away from the gym. A further reason is that people have to work very long hours these days. The journey to work is also longer and more stressful than it was for most people in the past. As a result, people do not have enough energy to go for a run or a game of tennis when they eventually get home from work. It will not be easy to find a solution to this problem. I think schools have a key role to play. Young children need to learn how important and how enjoyable physical activity is. In addition, teachers should help each student find a sport they can enjoy. Not everyone likes football or tennis, for example; some will find swimming or athletics more fun. Funding can also help provide a solution. The government should fund sports centres to make it possible for everyone to participate in sport even if they do not have much money. Lack of activity is a serious problem for the health of many people, but the solutions suggested above could do a great deal to help solve it.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

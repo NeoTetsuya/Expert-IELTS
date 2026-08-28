@@ -21,7 +21,9 @@
         "module-4a-reading-explanations.html": "exp5-r4a",
         "module-4b-reading-explanations.html": "exp5-r4b",
         "module-5a-reading-explanations.html": "exp5-r5a",
-        "module-5b-reading-explanations.html": "exp5-r5b"
+        "module-5b-reading-explanations.html": "exp5-r5b",
+        "module-6a-reading-explanations.html": "exp5-r6a",
+        "module-6b-reading-explanations.html": "exp5-r6b"
       },
       "expert 6": {
         "module-1a-reading-explanations.html": "exp6-r1a",
@@ -99,7 +101,7 @@
       } else {
         sessionStorage.removeItem(getSessionStorageKey(levelFolder, filename));
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // =========================================================================
@@ -326,15 +328,15 @@
       const requiredPassword = getRequiredPassword(levelFolder, filename);
       const masterPassword = (window.EXPERT_READING_PASSWORDS && window.EXPERT_READING_PASSWORDS.masterPassword) || 'neo-teacher-access';
 
-      const isMatch = (entered === requiredPassword) || 
-                      (entered.toLowerCase() === (requiredPassword ? requiredPassword.toLowerCase() : '')) || 
-                      (entered === masterPassword);
+      const isMatch = (entered === requiredPassword) ||
+        (entered.toLowerCase() === (requiredPassword ? requiredPassword.toLowerCase() : '')) ||
+        (entered === masterPassword);
 
       if (isMatch) {
         // Success
         errorMsg.classList.add('hidden');
         pwdInput.classList.remove('border-rose-500', 'ring-2', 'ring-rose-500');
-        
+
         lockIcon.className = 'fa-solid fa-lock-open text-2xl text-emerald-400';
         submitBtn.className = 'w-full py-3.5 px-4 rounded-xl bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-default';
         submitBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> <span>Mở khóa thành công!</span>';
@@ -355,7 +357,7 @@
         errorMsg.classList.remove('hidden');
         pwdInput.classList.add('border-rose-500', 'ring-2', 'ring-rose-500');
         modal.querySelector('.relative.w-full.max-w-md').classList.add('shake-animation');
-        
+
         setTimeout(() => {
           modal.querySelector('.relative.w-full.max-w-md').classList.remove('shake-animation');
         }, 500);

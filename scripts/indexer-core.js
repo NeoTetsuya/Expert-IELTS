@@ -102,9 +102,13 @@ function parseHtmlMetadata(filePath, filename) {
 
   // Determine status & explanation flag
   const isExplanation = lowerFile.includes('explanation') || lowerFile.includes('analysis') || lowerTitle.includes('analysis') || lowerTitle.includes('translation & vocabulary');
+  const isWritingSample = lowerFile.includes('writing-sample') || lowerTitle.includes('model answer') || lowerFile.includes('sample');
+
   let status = 'Active Exercise';
   if (isExplanation) {
     status = 'Active Analysis';
+  } else if (isWritingSample) {
+    status = 'Active Model Answer';
   } else if (skill === 'grammar') {
     status = badge === 'Reference' ? 'Active Reference' : 'Active Lesson';
   } else if (skill === 'writing') {
@@ -113,15 +117,15 @@ function parseHtmlMetadata(filePath, filename) {
 
   // Extract topic from title or h1
   let topic = '';
-  // Try extracting topic from pattern: "<Topic> — IELTS Reading Analysis..."
   if (isExplanation && rawTitle.includes('—')) {
     topic = rawTitle.split('—')[0].trim();
+  } else if (isWritingSample) {
+    let cleanT = rawTitle.replace(/^Module\s*\d+[ab]?\s*[:—\-]?\s*/i, '').trim();
+    cleanT = cleanT.replace(/\s*-\s*Model Answer[\s\S]*$/i, '').trim();
+    topic = cleanT;
   } else if (rawTitle.includes('—')) {
     const parts = rawTitle.split('—');
     topic = parts.slice(1).join('—').trim();
-  } else if (rawTitle.includes('-')) {
-    const parts = rawTitle.split('-');
-    topic = parts.slice(1).join('-').trim();
   } else if (rawTitle.includes(':')) {
     const parts = rawTitle.split(':');
     topic = parts.slice(1).join(':').trim();
@@ -140,7 +144,6 @@ function parseHtmlMetadata(filePath, filename) {
 
   // If topic is still empty or looks like default template
   if (!topic || topic.includes('${TASK_CONFIG') || topic.length < 2) {
-    // derive friendly name from filename
     topic = filename
       .replace(/^module[_-]\d+[ab]?[_-]/i, '')
       .replace(/\.html$/i, '')
@@ -163,6 +166,9 @@ function parseHtmlMetadata(filePath, filename) {
   } else if (isExplanation) {
     displayTitle = `${badge} ${skillName} Analysis — ${topic}`;
     dataTitle = `${badge} ${skillName} Analysis & Explanations — ${topic}`;
+  } else if (isWritingSample) {
+    displayTitle = `${badge} ${skillName} — ${topic} (Model Answer &amp; Annotations)`;
+    dataTitle = `${badge} ${skillName} — ${topic} Model Answer & Annotations`;
   } else {
     // Check if filename had "extra" or single digit module
     if (filename.match(/module-\d+-reading\.html/i) && !topic.toLowerCase().startsWith('extra')) {
@@ -175,7 +181,7 @@ function parseHtmlMetadata(filePath, filename) {
   }
 
   // Escape HTML entities if any
-  const escapedTitle = displayTitle.replace(/&/g, '&amp;');
+  const escapedTitle = displayTitle.replace(/&/g, '&amp;').replace(/&amp;amp;/g, '&amp;');
 
   return {
     url: filename,
@@ -278,7 +284,9 @@ function updateLevel(levelKey, options = {}) {
     processedUrls.add(filename);
     const filePath = path.join(folderPath, filename);
 
-    if (existingMap.has(filename)) {
+    const isForced = options.force || process.argv.includes('--force');
+
+    if (existingMap.has(filename) && !isForced) {
       // Existing file - keep existing configuration
       const existing = existingMap.get(filename);
       updatedDataset.push({
@@ -291,10 +299,12 @@ function updateLevel(levelKey, options = {}) {
         status: existing.status || 'Active Exercise'
       });
     } else {
-      // New file detected! Parse metadata automatically
+      // New file or forced reindex! Parse metadata automatically
       const parsed = parseHtmlMetadata(filePath, filename);
       parsed.badgeClass = config.badgeClass;
-      newItems.push(parsed);
+      if (!existingMap.has(filename)) {
+        newItems.push(parsed);
+      }
       updatedDataset.push(parsed);
     }
   });

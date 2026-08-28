@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Task 1 Describe a Graph - Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script src="../js/mobile.js" defer></script>
+    <script src="../js/image-viewer.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                5
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 1 • Module 5</h1>
+                <p class="text-xs text-slate-500">Describe a Line Graph (UK Fuel &amp; Tax Prices 1999–2009) • Interactive Study Guide for Band 5 &amp; 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 5 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Task 1 Signposting &amp; Trend Linkers
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Fuel, Price Fluctuations &amp; Proportion Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 5</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 1: Describe a graph</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Look at the graph carefully:</strong> What do the numbers on the x and y axes represent?</p>
+                    <p>• <strong>Identify overall trends</strong> before selecting specific peak and low data points.</p>
+                    <p>• Always note the <strong>relationship between lines</strong> (e.g. including vs. excluding tax).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-sky-50/50 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Task 1 Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The graph below gives information about petrol and diesel prices in the UK.</p>
+                <div class="bg-white p-3 rounded border border-sky-200 text-slate-900 shadow-sm font-sans text-xs sm:text-sm">
+                    <p class="font-semibold text-slate-800">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                    <p class="text-slate-500 italic mt-0.5">Write at least 150 words.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Line Graph Component with Original Textbook Annotations -->
+        <section class="mb-8 p-4 sm:p-6 bg-amber-50/40 rounded-2xl border border-amber-200 shadow-sm relative">
+            <div class="text-center mb-2">
+                <h4 class="font-bold text-sm sm:text-base text-slate-900 font-sans tracking-tight">
+                    Unleaded petrol and diesel prices, United Kingdom (1999–2009)
+                </h4>
+            </div>
+
+            <!-- Responsive Graph SVG Container -->
+            <div class="relative w-full max-w-4xl mx-auto pt-2 pb-2">
+                
+                <!-- Chart Callout: "What does each line show?" -->
+                <div class="hidden md:block absolute right-4 top-2 max-w-[210px] bg-rose-50 border-2 border-rose-400 p-2.5 rounded-lg shadow-md z-10 text-[11px] text-rose-950 font-sans">
+                    <strong class="text-rose-800 block mb-0.5">Observation Question:</strong>
+                    What does each line show?
+                    <div class="absolute -left-2 top-1/2 w-2 h-0.5 bg-rose-400"></div>
+                </div>
+
+                <!-- Chart Callout: "Axes interpretation" -->
+                <div class="hidden md:block absolute left-2 bottom-12 max-w-[210px] bg-indigo-50 border-2 border-indigo-400 p-2 rounded-lg shadow-md z-10 text-[11px] text-indigo-950 font-sans">
+                    <strong class="text-indigo-800 block mb-0.5">Axes Guide:</strong>
+                    Y-axis: Pence per litre (0–140)<br>X-axis: Year (1999–2009)
+                </div>
+
+                <!-- SVG Graph Graphic -->
+                <svg viewBox="0 0 760 380" class="w-full h-auto bg-amber-100/40 rounded-xl border border-amber-300 p-2 font-sans select-none">
+                    <!-- Grid horizontal lines -->
+                    <line x1="60" y1="40" x2="720" y2="40" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="84" x2="720" y2="84" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="128" x2="720" y2="128" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="172" x2="720" y2="172" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="216" x2="720" y2="216" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="260" x2="720" y2="260" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="304" x2="720" y2="304" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="60" y1="348" x2="720" y2="348" stroke="#475569" stroke-width="2" />
+
+                    <!-- Y-Axis line -->
+                    <line x1="60" y1="30" x2="60" y2="348" stroke="#475569" stroke-width="2" />
+
+                    <!-- Y-Axis Labels -->
+                    <text x="50" y="44" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">140</text>
+                    <text x="50" y="88" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">120</text>
+                    <text x="50" y="132" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">100</text>
+                    <text x="50" y="176" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">80</text>
+                    <text x="50" y="220" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">60</text>
+                    <text x="50" y="264" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">40</text>
+                    <text x="50" y="308" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">20</text>
+                    <text x="50" y="352" font-size="11" font-weight="bold" fill="#475569" text-anchor="end">0</text>
+
+                    <!-- Y-Axis Title -->
+                    <text x="-190" y="18" font-size="11" font-weight="bold" fill="#334155" transform="rotate(-90)" text-anchor="middle">Pence per litre</text>
+
+                    <!-- X-Axis Labels (1999 to 2009) -->
+                    <!-- 11 points: x = 60 + i * 66 -->
+                    <text x="60" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">1999</text>
+                    <text x="126" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2000</text>
+                    <text x="192" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2001</text>
+                    <text x="258" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2002</text>
+                    <text x="324" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2003</text>
+                    <text x="390" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2004</text>
+                    <text x="456" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2005</text>
+                    <text x="522" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2006</text>
+                    <text x="588" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2007</text>
+                    <text x="654" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2008</text>
+                    <text x="720" y="366" font-size="11" font-weight="bold" fill="#475569" text-anchor="middle">2009</text>
+
+                    <!-- X-Axis Title -->
+                    <text x="390" y="378" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">Year</text>
+
+                    <!-- Line 1: Diesel including tax (Teal / Cyan curve) -->
+                    <!-- Points mapped to approx values: 1999:66, 2000:81, 2001:77, 2002:75, 2003:78, 2004:83, 2005:92, 2006:97, 2007:95, 2008:135 (peak), 2009:104 -->
+                    <path d="M 60 203 Q 93 175, 126 170 T 192 185 T 258 186 T 324 180 T 390 166 T 456 148 T 522 138 T 588 141 T 654 51 T 720 120" 
+                          fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round" />
+
+                    <!-- Line 2: Unleaded petrol including tax (Orange / Gold curve) -->
+                    <!-- Points mapped: 1999:63, 2000:80, 2001:75, 2002:72, 2003:76, 2004:81, 2005:88, 2006:94, 2007:90, 2008:120 (peak), 2009:98 -->
+                    <path d="M 60 210 Q 93 182, 126 173 T 192 190 T 258 193 T 324 184 T 390 170 T 456 156 T 522 144 T 588 152 T 654 84 T 720 132" 
+                          fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" />
+
+                    <!-- Line 3: Diesel excluding tax (Dark Navy Blue curve) -->
+                    <!-- Points mapped: 1999:11, 2000:22, 2001:19, 2002:18, 2003:22, 2004:26, 2005:35, 2006:37, 2007:34, 2008:62 (peak), 2009:38 -->
+                    <path d="M 60 324 Q 93 304, 126 300 T 192 306 T 258 308 T 324 300 T 390 291 T 456 271 T 522 267 T 588 273 T 654 212 T 720 264" 
+                          fill="none" stroke="#1e3a8a" stroke-width="2.5" stroke-linecap="round" />
+
+                    <!-- Line 4: Unleaded petrol excluding tax (Brown / Amber curve) -->
+                    <!-- Points mapped: 1999:10, 2000:20, 2001:16, 2002:15, 2003:19, 2004:23, 2005:30, 2006:33, 2007:29, 2008:50 (peak), 2009:32 -->
+                    <path d="M 60 326 Q 93 308, 126 304 T 192 313 T 258 315 T 324 306 T 390 298 T 456 282 T 522 276 T 588 284 T 654 238 T 720 278" 
+                          fill="none" stroke="#9a3412" stroke-width="2" stroke-linecap="round" />
+
+                    <!-- Legend Box -->
+                    <g transform="translate(85, 45)">
+                        <rect x="0" y="0" width="220" height="92" rx="6" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1" />
+                        
+                        <line x1="12" y1="18" x2="38" y2="18" stroke="#0284c7" stroke-width="3" />
+                        <text x="44" y="21" font-size="10" font-weight="bold" fill="#0f172a">Diesel including tax</text>
+
+                        <line x1="12" y1="38" x2="38" y2="38" stroke="#d97706" stroke-width="2.5" />
+                        <text x="44" y="41" font-size="10" font-weight="bold" fill="#0f172a">Unleaded petrol including tax</text>
+
+                        <line x1="12" y1="58" x2="38" y2="58" stroke="#1e3a8a" stroke-width="2.5" />
+                        <text x="44" y="61" font-size="10" font-weight="bold" fill="#0f172a">Diesel excluding tax</text>
+
+                        <line x1="12" y1="78" x2="38" y2="78" stroke="#9a3412" stroke-width="2" />
+                        <text x="44" y="81" font-size="10" font-weight="bold" fill="#0f172a">Unleaded petrol excluding tax</text>
+                    </g>
+                </svg>
+
+                <!-- Legend Key Callout below chart -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                    <div class="bg-rose-50 border border-rose-300 p-2.5 rounded-lg text-xs text-rose-950 flex items-start gap-2 shadow-sm">
+                        <span class="text-rose-600 font-bold">👉</span>
+                        <div>
+                            <strong>Tax Impact:</strong> The huge gap between upper curves (including tax) and lower curves (excluding tax) illustrates that tax accounts for more than half of fuel prices.
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 border border-indigo-300 p-2.5 rounded-lg text-xs text-indigo-950 flex items-start gap-2 shadow-sm">
+                        <span class="text-indigo-600 font-bold">🔍</span>
+                        <div>
+                            <strong>2008 Fuel Peak:</strong> Both petrol (120p) and diesel (135p) reached their highest historic prices in 2008 before falling sharply in 2009.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">176 words • Band 7.5+ Sample calibrated for Band 5 mastery</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Report, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Intro -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Introduction Strategy
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Start by introducing the topic of the graph</strong> but paraphrase the sentence in the writing task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>Replaces: "petrol and diesel prices in the UK" with "changes in the cost of fuel in the United Kingdom over the decade 1999-2009".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: General Trends -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        General Trends
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Identify some general trends in the graph.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>"prices fluctuated considerably over the period but generally showed an upward trend."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Specific Examples with Figures -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Data &amp; Figures Precision
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Give specific examples, using figures,</strong> to illustrate the trends you describe.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>Quotes exact peak values (120p petrol, 135p diesel in 2008) and start values (65p in 1999).</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION & OVERVIEW -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction &amp; General Trend Overview</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The graph shows [changes in topic]...', 'Graph Introduction Frame', 'Standard academic opener defining graph subject, parameters, location, and timeframe.')">The graph shows changes in</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('the cost of fuel in the United Kingdom', 'Paraphrase collocation', 'Natural, clear paraphrase for petrol and diesel prices in the UK.')">the cost of fuel in the United Kingdom</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('over the decade [Year]-[Year]', 'Time span phrase', 'Professional academic phrasing for a 10-year period.')">over the decade 1999-2009</span>. 
+                            It shows the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('cost in pence of a litre of unleaded petrol', 'Data unit phrase', 'Clear identification of the y-axis currency and measurement units.')">cost in pence of a litre of unleaded petrol</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('compared to [Category B]', 'Comparison linker', 'Connects two related data series cleanly.')">compared to a litre of diesel</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('It also indicates how much of...', 'Additive feature frame', 'Introduces the third dimension of the graph (taxation).')">It also indicates</span> 
+                            how much of the price is tax.
+                        </span> 
+                        <span id="target-overview" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('We can see from the data that...', 'Overview Signposting Frame', 'High-scoring, clear formula to present the general trend for Task 1.')">We can see from the data that</span> 
+                            prices 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('fluctuated considerably over the period', 'Trend collocation', 'Moved up and down repeatedly over the timeline.')">fluctuated considerably over the period</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('but generally showed an upward trend', 'General trend summary', 'Essential Band 5/6 summary phrase for overall trajectory.')">but generally showed an upward trend</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: PEAK & LOW EXTREMES (2008 & 1999) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Specific Figures (Historic Peaks &amp; Starting Lows)</span>
+                    <p>
+                        <span id="target-peaks-lows" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('There was a peak in [Year], when...', 'Peak trend sentence frame', 'Decisive way to report the highest extreme data point on a line graph.')">There was a peak in 2008</span>, 
+                            when 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('unleaded petrol cost a high of [X]', 'Data reporting collocation', 'Describes the maximum cost reached by unleaded fuel.')">unleaded petrol cost a high of 120 pence per litre</span> 
+                            and diesel cost 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('approximately 135 pence per litre', 'Approximation data phrase', 'Precise estimation of non-exact graphical coordinate.')">approximately 135 pence per litre</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The lowest price was at the beginning of the period, in [Year]', 'Lowest point framing phrase', 'Signals the minimum endpoint across the 10-year span.')">The lowest price was at the beginning of the period, in 1999</span>, 
+                            when 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('both types of fuel cost around [X]', 'Combined reporting collocation', 'Summarizes two nearly identical fuel data points together.')">both types of fuel cost around 65 pence a litre</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: CONSISTENT RELATIONSHIPS & TAX SHARE -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Key Relationships &amp; Tax Proportion</span>
+                    <p>
+                        <span id="target-consistent-patterns" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Two things are consistent over the period. One is that... The other is that...', 'Comparative enumeration frame', 'Excellent structure to present two enduring parallel characteristics.')">Two things are consistent over the period</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('One is that...', 'First point marker', 'Introduces the first constant observation.')">One is that</span> 
+                            unleaded petrol is 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('always either slightly cheaper than or costs the same as diesel', 'Comparative collocation', 'Accurately describes the persistent gap between petrol and diesel.')">always either slightly cheaper than or costs the same as diesel</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The other is that...', 'Second point marker', 'Introduces the second constant observation.')">The other is that</span> 
+                            tax on a litre of fuel 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('accounts for at least half of the price', 'Proportion collocation', 'High-value Task 1 phrase expressing fractional dominance.')">accounts for at least half of the price</span>.
+                        </span> 
+                        <span id="target-tax-example" class="hl-connector" data-note="note-right-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('For example, without tax, [X] would only have cost [Y]', 'Hypothetical subtraction illustration', 'Powerful comparative sentence demonstrating the tax burden quantitatively.')">For example, without tax, the 65-pence a litre fuel in 1999 would only have cost 10 pence</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Overview Rule -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Overview Requirement
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Give an overview of the graph.</strong> What is the main thing you learn?
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700">
+                        ⚠️ <em>Band 5 &rarr; 6 rule: An overview summarizing overall upward trajectory and fluctuations is essential.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Detailed Paragraphing -->
+                <div id="note-right-2" class="bg-teal-50 border-2 border-teal-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-teal-400">
+                    <div class="flex items-center gap-1.5 text-teal-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                        Detailed Information
+                    </div>
+                    <p class="text-teal-950 font-medium leading-relaxed">
+                        <strong class="text-teal-700">Give more detailed information</strong> in the following paragraphs (such as consistent differences and tax ratios).
+                    </p>
+                </div>
+
+                <!-- Right Note 3: Accuracy & Verification -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Data Verification Checklist
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Check your work carefully.</strong> Make sure the information from the graph is correct.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-rose-200/70 text-[11px] text-rose-700">
+                        ✏️ <em>Verify units (pence per litre, not pounds) and correct timeline bounds (1999 to 2009).</em>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 5 • Task 1: Describe a graph</span>
+            <span class="font-bold text-slate-600 text-sm">204</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-800">
+                        Task 1 Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        There was a peak in [Year], when...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps Band 5 Learners:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Helps you pinpoint the highest numeric peak in a line graph cleanly without making tense or preposition errors.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 5 &rarr; Band 6+ Upgrade Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "Fuel expenditure reached an all-time high of 135 pence per litre in mid-2008 before experiencing a sharp downturn."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 5 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 5 Line Graph Toolkit (Module 5)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Line Graph Report Skeleton (Multi-Line Trends)</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction &amp; Overview:</strong>
+                        <p class="text-slate-700 mt-0.5">The graph shows changes in [topic] in [Location] over [time period]. It shows [Metric A] compared to [Metric B]. It also indicates [additional variable]. We can see from the data that [overall trend].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Extremes - Peaks &amp; Lows):</strong>
+                        <p class="text-slate-700 mt-0.5">There was a peak in [Year], when [Category A] cost a high of [X] and [Category B] cost approximately [Y]. The lowest price was at the beginning of the period, in [Year], when both cost around [Z].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Consistent Patterns &amp; Comparisons):</strong>
+                        <p class="text-slate-700 mt-0.5">Two things are consistent over the period. One is that [Category A] is always [cheaper/higher than] [Category B]. The other is that [tax/variable] accounts for [proportion]. For example, without [variable], [example figure].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Trend Fluctuations, Extremes &amp; Taxes</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">fluctuated considerably</span>
+                        <span class="text-slate-500">repeated rises and falls</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">showed an upward trend</span>
+                        <span class="text-slate-500">overall increase over time</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">there was a peak in</span>
+                        <span class="text-slate-500">reached the highest level</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">cost a high of [X]</span>
+                        <span class="text-slate-500">peaked at [X]</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">at the beginning of the period</span>
+                        <span class="text-slate-500">in the initial year</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">consistent over the period</span>
+                        <span class="text-slate-500">remained steady/constant</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">accounts for at least half</span>
+                        <span class="text-slate-500">makes up &ge; 50%</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-overview', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-peaks-lows', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-overview', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-consistent-patterns', side: 'right', color: '#0d9488' },
+                { note: 'note-right-3', target: 'target-tax-example', side: 'right', color: '#e11d48' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in report context: Using "${title}" provides structured trend analysis and lexical variation in IELTS Writing Task 1.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model report
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The graph shows changes in the cost of fuel in the United Kingdom over the decade 1999 to 2009. It shows the cost in pence of a litre of unleaded petrol compared to a litre of diesel. It also indicates how much of the price is tax. We can see from the data that prices fluctuated considerably over the period but generally showed an upward trend. There was a peak in 2008, when unleaded petrol cost a high of 120 pence per litre and diesel cost approximately 135 pence per litre. The lowest price was at the beginning of the period, in 1999, when both types of fuel cost around 65 pence a litre. Two things are consistent over the period. One is that unleaded petrol is always either slightly cheaper than or costs the same as diesel. The other is that tax on a litre of fuel accounts for at least half of the price. For example, without tax, the 65-pence a litre fuel in 1999 would only have cost 10 pence.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

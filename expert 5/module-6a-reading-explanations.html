@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Different Way to See the World — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <title>The Future of Food — IELTS Reading Analysis, Translation & Vocabulary</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,9 +43,9 @@
             font-weight: 800;
             font-size: 0.85rem;
             margin-right: 0.4rem;
-            color: #0369a1;
-            background-color: #e0f2fe;
-            border: 1px solid #bae6fd;
+            color: #047857;
+            background-color: #d1fae5;
+            border: 1px solid #a7f3d0;
             text-indent: 0;
             vertical-align: middle;
         }
@@ -64,7 +64,7 @@
             text-indent: 0;
         }
 
-        /* Question target color themes */
+        /* Color classes for each question target */
         .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
         .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
         .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
@@ -89,13 +89,13 @@
         }
 
         .ans-target:hover, .ans-target.active-target {
-            outline: 3px solid #0284c7;
-            box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+            outline: 3px solid #059669;
+            box-shadow: 0 0 15px rgba(5, 150, 105, 0.4);
             filter: brightness(0.96);
             z-index: 20;
         }
 
-        /* Floating Evidence Popover */
+        /* Floating Explanation Popover */
         .explanation-popover {
             position: absolute;
             bottom: 125%;
@@ -139,7 +139,7 @@
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
 
-        /* SVG Canvas */
+        /* SVG Canvas Overlay */
         #svg-canvas {
             position: absolute;
             top: 0;
@@ -156,9 +156,9 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 
         .tab-btn.active {
-            background-color: #0284c7;
+            background-color: #059669;
             color: white;
-            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
         }
 
         @keyframes arrowFlow {
@@ -183,12 +183,12 @@
     <!-- Header Bar -->
     <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
         <div class="flex items-center space-x-3">
-            <div class="bg-sky-600 text-white p-2.5 rounded-xl shadow-sm">
-                <i class="fa-solid fa-bicycle text-lg"></i>
+            <div class="bg-emerald-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-seedling text-lg"></i>
             </div>
             <div>
-                <h1 class="text-lg font-bold text-slate-800">A Different Way to See the World</h1>
-                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Adventure Vocab Suite</p>
+                <h1 class="text-lg font-bold text-slate-800">The Future of Food?</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Food Technology Vocab Suite</p>
             </div>
         </div>
 
@@ -208,7 +208,7 @@
             </div>
 
             <!-- Toggle Arrow Canvas -->
-            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sky-600 text-white border border-sky-600 font-medium text-xs hover:bg-sky-700 transition-colors shadow-xs">
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white border border-emerald-600 font-medium text-xs hover:bg-emerald-700 transition-colors shadow-xs">
                 <i class="fa-solid fa-route"></i>
                 <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
             </button>
@@ -219,10 +219,10 @@
     <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
         <div class="flex space-x-2 min-w-max" id="nav-tabs">
             <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
-                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Matching Information Q1–Q6)
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Summary Completion Q1–Q6)
             </button>
             <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
-                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Travel & Geography Vocab Suite
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Food Tech, Agronomy & Nutrition Vocab Suite
             </button>
             <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
                 <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
@@ -240,8 +240,8 @@
             <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
                 <div class="max-w-3xl mx-auto">
                     <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
-                        <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3 py-1 rounded-md border border-sky-200">
-                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — A Different Way to See the World
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-md border border-emerald-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — The Future of Food?
                         </span>
                         <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
                     </div>
@@ -266,22 +266,22 @@
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                            <i class="fa-solid fa-book-bookmark text-sky-600"></i> Essential IELTS Reading Vocabulary — Global Journeys & Expeditions
+                            <i class="fa-solid fa-book-bookmark text-emerald-600"></i> Essential IELTS Reading Vocabulary — High-Tech Food & Sustainable Nutrition
                         </h2>
-                        <p class="text-xs text-slate-500 mt-1">High-yield terminology for long-distance travel, geographical landscapes, cycling logistics, and human culture.</p>
+                        <p class="text-xs text-slate-500 mt-1">Key academic terminology for artificial nutrition, lab-grown meat, agricultural sustainability, and consumer food safety.</p>
                     </div>
 
                     <div class="flex items-center space-x-3 w-full md:w-auto">
                         <div class="relative flex-1 md:w-64">
                             <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
-                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-sky-600">
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600">
                         </div>
-                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600">
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-600">
                             <option value="all">Tất cả từ loại</option>
                             <option value="noun">Danh từ (Nouns)</option>
                             <option value="verb">Động từ (Verbs)</option>
                             <option value="adjective">Tính từ (Adjectives)</option>
-                            <option value="travel">Du lịch & Thám hiểm</option>
+                            <option value="foodtech">Công nghệ Thực phẩm & Dinh dưỡng</option>
                         </select>
                     </div>
                 </div>
@@ -296,7 +296,7 @@
         <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
             <div class="max-w-3xl mx-auto space-y-8">
                 <div class="flex justify-center space-x-3">
-                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-sky-600 text-white shadow-sm transition-all">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-emerald-600 text-white shadow-sm transition-all">
                         <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
                     </button>
                     <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
@@ -312,18 +312,18 @@
                         <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
                             <!-- Front -->
                             <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
-                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">Category</span>
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Category</span>
                                 <div>
                                     <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
                                     <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
                                 </div>
-                                <span class="text-xs font-bold text-sky-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                                <span class="text-xs font-bold text-emerald-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
                             </div>
                             <!-- Back -->
                             <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
-                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-sky-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-emerald-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
                                 <div>
-                                    <h4 id="fc-meaning" class="text-2xl font-bold text-sky-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-emerald-400 mb-3">Nghĩa tiếng Việt</h4>
                                     <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
                                 </div>
                                 <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
@@ -355,39 +355,29 @@
     <script>
         const passageData = [
             {
-                pNum: 'A',
-                en: `An extraordinary cyclist, Mark Beaumont, has completed a number of amazing long distance trips on his bike. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>In 2008, for example, he rode for 18,296 miles around the world. Two years later he made a 13,080 mile journey through the Americas. In 2015 he cycled 6,762 miles from Cairo to Cape Town<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Paragraph A)</strong>A description of the vast scale and extent of Mark's travels: 18,296 miles around the globe, 13,080 miles through the Americas, and 6,762 miles from Cairo to Cape Town.</span></span>.`,
-                vi: `Một vận động viên đua xe đạp phi thường, Mark Beaumont, đã hoàn thành nhiều chuyến đi đường dài đáng kinh ngạc trên chiếc xe đạp của mình. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Chẳng hạn vào năm 2008, anh đã đạp xe 18.296 dặm vòng quanh thế giới. Hai năm sau, anh thực hiện hành trình 13.080 dặm xuyên qua châu Mỹ. Đến năm 2015, anh đạp xe 6.762 dặm từ Cairo đến Cape Town<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Đoạn A)</strong>Mô tả quy mô và phạm vi hành trình của Mark: 18.296 dặm vòng quanh thế giới, 13.080 dặm xuyên châu Mỹ và 6.762 dặm xuyên châu Phi.</span></span>.`
+                pNum: '1',
+                en: `Studies suggest that, over the next 25 years or so, the population of the world will grow by more than 25 percent. This means that there will be 9 billion people on earth by then. We must, therefore, change the systems we use to produce food or it will not be possible to feed a population of this size.`,
+                vi: `Các nghiên cứu chỉ ra rằng trong khoảng 25 năm tới, dân số thế giới sẽ tăng hơn 25%. Điều này đồng nghĩa với việc sẽ có 9 tỷ người sinh sống trên trái đất vào thời điểm đó. Do đó, chúng ta buộc phải thay đổi các hệ thống sản xuất lương thực thực phẩm, nếu không sẽ không thể nuôi sống một quy mô dân số khổng lồ như vậy.`
             },
             {
-                pNum: 'B',
-                en: `On that last journey Mark succeeded in breaking – by as much as 17 days – the world record for cycling across Africa. To do this, he rode 160 miles a day. He explains that it was certainly not easy to keep up this speed. There were, for example, <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>long delays at border crossings and queues of traffic often stopped him from travelling fast. Broken roads caused problems and the weather also affected how fast he could go<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Paragraph B)</strong>Lists specific reasons why making fast progress was difficult: border delays, traffic jams, broken roads, and bad weather conditions.</span></span>.`,
-                vi: `Trong chuyến hành trình cuối cùng đó, Mark đã thành công trong việc phá kỷ lục thế giới về việc đạp xe xuyên châu Phi – sớm hơn tới 17 ngày. Để làm được điều này, anh đã đạp xe 160 dặm mỗi ngày. Anh giải thích rằng chắc chắn không hề dễ dàng để duy trì tốc độ này. Chẳng hạn, <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>sự chậm trễ kéo dài tại các cửa khẩu biên giới và những đoàn xe ùn tắc giao thông thường ngăn cản anh di chuyển nhanh. Đường sá hư hỏng gây ra nhiều trở ngại và thời tiết cũng ảnh hưởng đến tốc độ di chuyển của anh<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Đoạn B)</strong>Nêu các lý do khiến việc di chuyển tiến độ gặp khó khăn: ách tắc tại cửa khẩu, kẹt xe, đường hư hỏng và thời tiết khắc nghiệt.</span></span>.`
+                pNum: '2',
+                en: `With this in mind, business people and <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>governments are investing in a range of unusual new ways of producing food<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Paragraph 2)</strong>Both companies (business people) and <strong>governments</strong> are putting money into (investing in) high-tech food production.</span></span>. Some companies, for example, are using technology to develop new artificial food products. One such business is Modern Meadow, which <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>develops meat that does not involve killing animals. What that actually means is that scientists are working in the company’s lab to find ways to create something that looks and tastes like meat<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Paragraph 2)</strong>Aiming to create meat in a <strong>lab</strong> (or laboratory) without hurting/killing animals.</span></span>. Another company called Beyond Meat already has such products in shops in the US. Its range includes ‘burgers’, ‘chicken’ strips and ‘beef’ for stews. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Although they are actually made out of plant proteins, these products are almost impossible to distinguish from meat<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Paragraph 2)</strong>Products that resemble meat (impossible to distinguish) are actually made from <strong>plant proteins</strong> (or proteins).</span></span> and shoppers find them on the same supermarket shelves as the genuine meat products. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Another company, Hampton Creek, sells products that are made with man-made eggs. The main ingredient is a type of pea<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Paragraph 2)</strong>Produces food using artificial / man-made <strong>eggs</strong> (or artificial ingredients based on peas).</span></span>. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>Hampton Creek is already selling its foods to US hospitals, retirement homes, universities and other institutions<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Paragraph 2)</strong>Selling foods to educational (universities) and health organizations (hospitals) and other <strong>institutions</strong>.</span></span>.`,
+                vi: `Trước thực tế này, giới doanh nhân và <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>các chính phủ (governments) đang đầu tư vào hàng loạt phương thức sản xuất thực phẩm mới lạ<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Đoạn 2)</strong>Cả các công ty (business people) và <strong>chính phủ (governments)</strong> đều đang đổ tiền đầu tư (investing in) vào việc sản xuất thực phẩm nhân tạo công nghệ cao.</span></span>. Chẳng hạn, một số công ty đang ứng dụng công nghệ để phát triển các sản phẩm thực phẩm nhân tạo mới. Một trong những doanh nghiệp như vậy là Modern Meadow, công ty <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>phát triển thịt mà không cần giết mổ động vật. Điều đó thực sự có nghĩa là các nhà khoa học đang làm việc trong phòng thí nghiệm (lab) của công ty để tìm cách tạo ra thứ có hình thức và hương vị giống hệt như thịt<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Đoạn 2)</strong>Mục tiêu là tạo ra thịt nuôi cấy trong <strong>phòng thí nghiệm (lab / laboratory)</strong> mà không làm tổn hại đến động vật.</span></span>. Một công ty khác có tên Beyond Meat đã bày bán các sản phẩm như vậy tại các cửa hàng ở Mỹ. Danh mục sản phẩm bao gồm ‘thịt burger’, thịt gà dải và ‘thịt bò’ cho món hầm. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Mặc dù chúng thực sự được làm từ protein thực vật (plant proteins), các sản phẩm này gần như không thể phân biệt được với thịt thật<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Đoạn 2)</strong>Sản phẩm trông giống hệt thịt thật nhưng thực chất được làm từ <strong>protein thực vật (plant proteins / proteins)</strong>.</span></span> và người mua sắm có thể tìm thấy chúng ngay trên cùng các kệ hàng siêu thị với các sản phẩm thịt tự nhiên. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Một công ty khác, Hampton Creek, bán các sản phẩm được làm từ trứng nhân tạo (man-made eggs). Thành phần chính là một loại đậu Hà Lan<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Đoạn 2)</strong>Sản xuất thực phẩm bằng cách sử dụng <strong>trứng nhân tạo (eggs / man-made eggs)</strong> hoặc nguyên liệu nhân tạo từ đậu.</span></span>. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>Hampton Creek hiện đã và đang bán thực phẩm của mình cho các bệnh viện, viện dưỡng lão, trường đại học và các tổ chức/cơ quan (institutions) khác ở Hoa Kỳ<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Đoạn 2)</strong>Bán cho các cơ sở giáo dục (trường đại học) và y tế (bệnh viện) cùng các <strong>tổ chức/cơ quan (institutions)</strong> khác.</span></span>.`
             },
             {
-                pNum: 'C',
-                en: `On all his journeys Mark has been interested by the landscapes he has seen. He says these often differ from what he expected. 'When people think about Patagonia, for instance, they imagine the beautiful mountains and lakes you see in holiday brochures; but when I cycled there, I realised that large parts of it are just miles and miles of grassland. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>What is romantic and exciting for most holidaymakers can become very boring when you see nothing else for several days<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Paragraph C)</strong>An example of a place (Patagonia) where Mark felt bored due to endless, monotonous miles of grassland for days.</span></span>.'`,
-                vi: `Trong tất cả các chuyến đi của mình, Mark luôn bị cuốn hút bởi những cảnh quan thiên nhiên mà anh đã chiêm ngưỡng. Anh cho biết chúng thường khác xa so với những gì anh từng kỳ vọng. 'Chẳng hạn khi mọi người nghĩ về vùng Patagonia, họ thường hình dung ra những ngọn núi hùng vĩ và những hồ nước thơ mộng như trong tờ gấp quảng cáo du lịch; nhưng khi tôi đạp xe qua đó, tôi nhận ra rằng phần lớn diện tích chỉ là những dải đồng cỏ trải dài ngút ngàn. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Những điều lãng mạn và thú vị đối với hầu hết du khách có thể trở nên vô cùng nhàm chán khi bạn chẳng nhìn thấy gì khác ngoài đồng cỏ trong suốt nhiều ngày liên tục<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Đoạn C)</strong>Ví dụ về một địa điểm (Patagonia) nơi Mark cảm thấy buồn chán vì cảnh quan đồng cỏ đơn điệu kéo dài nhiều ngày.</span></span>.'`
+                pNum: '3',
+                en: `A more extreme approach to dealing with the problem of getting enough food to feed the world involves drinking a special drink and not eating any food at all. Every day a businessman called Rob Rhinehart drinks three glasses of a thick, brownish liquid, which he says has all the nutrients the body needs. He has put his drink on sale and it is doing surprisingly well. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Rhinehart says that this type of product will not only help to deal with food shortages but will also provide people with more time<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Paragraph 3)</strong>A drink on the market that helps consumers save time and tackle food <strong>shortages</strong> (or food deficit).</span></span>. ‘There’s no need to waste time cooking. I drink a litre of my liquid every day and don’t even need to stop what I’m doing.’`,
+                vi: `Một cách tiếp cận có phần cực đoan hơn để giải quyết vấn đề đảm bảo đủ lương thực nuôi sống thế giới liên quan đến việc uống một loại đồ uống đặc biệt và không cần ăn bất kỳ thức ăn dạng rắn nào. Hàng ngày, một doanh nhân tên là Rob Rhinehart uống ba ly chất lỏng màu nâu, đặc sệt, thứ mà anh cho biết chứa đầy đủ các chất dinh dưỡng mà cơ thể cần. Anh đã tung loại đồ uống này ra thị trường và nó đang bán chạy một cách đáng kinh ngạc. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Rhinehart khẳng định rằng loại sản phẩm này không chỉ giúp giải quyết tình trạng thiếu hụt lương thực (food shortages) mà còn mang lại cho con người nhiều thời gian hơn<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Đoạn 3)</strong>Loại đồ uống giúp tiết kiệm thời gian nấu nướng và giải quyết triệt để tình trạng <strong>thiếu hụt lương thực (shortages / food shortages)</strong>.</span></span>. ‘Không cần phải lãng phí thời gian nấu nướng. Tôi uống một lít chất lỏng mỗi ngày và thậm chí không cần phải dừng công việc mình đang làm.’`
             },
             {
-                pNum: 'D',
-                en: `Of all the landscapes he has seen, Mark has particularly enjoyed some of the wild parts of Texas and the Deep South of the USA. 'I remember waking before daylight. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>I had to remove the ice from my tent when it was still dark<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Paragraph D)</strong>Reference to severe freezing cold weather: Mark had to scrape ice off his tent before daylight in the desert.</span></span>. Then I set out on roads with absolutely no one else around. I was in the middle of this enormous desert and all I could hear was the sound of animals calling. When I look back now, it was one of my favourite times: to be totally alone in that environment.'`,
-                vi: `Trong số tất cả những cảnh quan từng đi qua, Mark đặc biệt yêu thích một số vùng hoang dã của bang Texas và miền Nam nước Mỹ. 'Tôi nhớ mình đã thức dậy trước khi bình minh ló rạng. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Tôi đã phải gạt lớp băng đá đóng trên lều của mình khi trời vẫn còn tối đen<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Đoạn D)</strong>Đề cập đến thời tiết lạnh giá khắc nghiệt: Mark phải gạt băng đóng trên lều trước khi trời sáng giữa sa mạc.</span></span>. Sau đó, tôi bắt đầu lên đường trên những cung đường hoàn toàn không có một bóng người xung quanh. Tôi ở giữa sa mạc rộng lớn này và tất cả những gì tôi có thể nghe thấy là tiếng kêu của muôn loài động vật. Khi nhìn lại bây giờ, đó là một trong những khoảnh khắc yêu thích nhất của tôi: được hoàn toàn một mình giữa môi trường đó.'`
+                pNum: '4',
+                en: `However, the high-tech solutions that Rhinehart, Modern Meadows and others are suggesting worry many people. Food writer Joanna Blythman, for example, does not like the idea of eating things that we do not know enough about. She even worries about foods that are already familiar to us. Packets of salad leaves, for example, can be weeks old but still look fresh because of the chemicals on them. These chemicals are not always named on the label because they are not food. So consumers have no idea what they are eating. Blythman says, ‘There are many examples of products we once thought were safe and then later discovered they weren’t.’ She prefers to cook her family meals using locally produced natural food that people have eaten for centuries. ‘It’s tried and tested, and we know it’s healthy.’`,
+                vi: `Tuy nhiên, các giải pháp công nghệ cao mà Rhinehart, Modern Meadows và những người khác đề xuất khiến nhiều người lo ngại. Chẳng hạn, nhà văn chuyên về ẩm thực Joanna Blythman không thích ý tưởng ăn những thứ mà chúng ta chưa hiểu biết tường tận. Bà thậm chí còn lo lắng về những loại thực phẩm đã quen thuộc với chúng ta. Ví dụ, những gói rau xà lách có thể đã để hàng tuần nhưng vẫn trông tươi ngon nhờ hóa chất phủ trên chúng. Những hóa chất này không phải lúc nào cũng được ghi tên trên nhãn mác vì chúng không phải là thực phẩm. Do đó, người tiêu dùng không hề biết mình đang ăn gì. Blythman nhận xét: ‘Có rất nhiều ví dụ về các sản phẩm chúng ta từng nghĩ là an toàn và sau đó phát hiện ra chúng không hề an toàn.’ Bà thích nấu các bữa ăn gia đình bằng thực phẩm tự nhiên được sản xuất tại địa phương mà con người đã ăn suốt nhiều thế kỷ. ‘Đó là những thứ đã qua thử thách và kiểm chứng, và chúng ta biết chắc chắn nó tốt cho sức khỏe.’`
             },
             {
-                pNum: 'E',
-                en: `His travels have also taught Mark about how differently people around the world view cycling. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>In Europe, North America and Australia, cycling is a sport which people do mainly to keep fit and have fun. But in many places Mark visited, a bicycle is something rather different. It is a type of transport that many people dream of getting one day. People who are used to walking everywhere wish they had enough money to buy a bike in order to get from A to B much more quickly and easily<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Paragraph E)</strong>Contrasting attitudes towards bicycles: Western countries view cycling as fitness/recreation, while poorer communities view it as a coveted, life-changing means of daily transport.</span></span>. People who see a bicycle that way often found it hard to understand why Mark wanted to cycle such long distances for no obvious reason.`,
-                vi: `Những chuyến đi cũng đã dạy cho Mark về cách nhìn nhận rất khác nhau của mọi người trên khắp thế giới đối với việc đạp xe. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Ở Châu Âu, Bắc Mỹ và Úc, đạp xe là một môn thể thao mà mọi người tập luyện chủ yếu để giữ gìn vóc dáng và giải trí. Nhưng ở nhiều nơi Mark từng đặt chân tới, chiếc xe đạp lại mang một ý nghĩa rất khác. Đó là một phương tiện giao thông mà nhiều người mơ ước một ngày nào đó sẽ sở hữu. Những người đã quen với việc đi bộ khắp nơi chỉ mong có đủ tiền mua một chiếc xe đạp để đi lại từ điểm A đến điểm B nhanh chóng và dễ dàng hơn nhiều<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Đoạn E)</strong>Các thái độ khác nhau đối với xe đạp: phương Tây coi là thể thao rèn luyện sức khỏe, còn các nước nghèo coi là phương tiện di chuyển thiết yếu đáng mơ ước.</span></span>. Những người nhìn nhận xe đạp theo cách đó thường cảm thấy khó hiểu tại sao Mark lại muốn đạp xe những quãng đường dài như vậy mà không vì bất kỳ lý do thiết thực rõ ràng nào.`
-            },
-            {
-                pNum: 'F',
-                en: `But for Mark, cycling is by far the best way to see the world. 'It's never boring when you're cycling. You notice everything, especially when riding alone. When you cycle, you get a wonderful view of the world. It is amazing to see how the people and cultures change from one place to the next.' The kindness of the people Mark met was what impressed him most. 'Even in the poorest countries, I never had to ask a second person for a place to stay.'`,
-                vi: `Nhưng đối với Mark, đạp xe cho đến nay vẫn là cách tốt nhất để khám phá thế giới. 'Đạp xe không bao giờ mang lại cảm giác nhàm chán. Bạn nhận thấy mọi chi tiết, đặc biệt là khi đi một mình. Khi đạp xe, bạn có được một góc nhìn tuyệt vời về thế giới. Thật tuyệt vời khi được chứng kiến con người và văn hóa thay đổi như thế nào từ vùng đất này sang vùng đất khác.' Sự tử tế của những con người Mark gặp là điều khiến anh ấn tượng sâu sắc nhất. 'Ngay cả ở những quốc gia nghèo nhất, tôi chưa bao giờ phải hỏi đến người thứ hai để tìm được một chỗ nghỉ chân qua đêm.'`
-            },
-            {
-                pNum: 'G',
-                en: `So how does Mark feel at the end of one of his big adventures? He says that, <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>because the projects involve huge effort, time and costs, his main emotion is relief that he has completed the trip successfully<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Paragraph G)</strong>A comment on the huge expense and financial costs associated with planning and organising a global cycling expedition.</span></span>. 'It is not until later that you have time to think about what the journey meant, the landscapes you saw and the people you met. And then you start thinking about where you might go next.'`,
-                vi: `Vậy Mark cảm thấy thế nào khi kết thúc một trong những chuyến phiêu lưu vĩ đại của mình? Anh chia sẻ rằng, <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>bởi vì các dự án đòi hỏi nỗ lực, thời gian và chi phí tiền bạc khổng lồ, cảm xúc chính của anh là sự nhẹ nhõm khi đã hoàn thành chuyến đi một cách thành công<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Đoạn G)</strong>Bình luận về sự tốn kém và chi phí tài chính khổng lồ (costs/expenses) khi tổ chức một chuyến đạp xe thám hiểm.</span></span>. 'Mãi đến sau này bạn mới có thời gian suy ngẫm về ý nghĩa thực sự của hành trình, những cảnh quan bạn đã chiêm ngưỡng và những con người bạn đã gặp. Và rồi bạn bắt đầu nghĩ về điểm đến tiếp theo của mình.'`
+                pNum: '5',
+                en: `It is easy to understand this point of view, but it is still very important to find some way to solve the problem of feeding the world. The answer must be to make sure we check very carefully the quality and safety of the high-tech solutions that scientists are developing.`,
+                vi: `Thật dễ hiểu cho quan điểm này, nhưng việc tìm ra giải pháp nào đó để giải quyết bài toán lương thực nuôi sống thế giới vẫn là điều tối quan trọng. Câu trả lời thỏa đáng nhất là phải đảm bảo chúng ta kiểm tra thật cẩn trọng chất lượng và độ an toàn của các giải pháp công nghệ cao mà các nhà khoa học đang phát triển.`
             }
         ];
 
@@ -395,175 +385,175 @@
             {
                 id: 'q1',
                 num: '1',
-                type: 'Matching Information',
-                ansKey: 'Paragraph C',
-                ansTitle: 'an example of a place where Mark felt bored',
+                type: 'Summary Completion (NO MORE THAN TWO WORDS)',
+                ansKey: 'governments',
+                ansTitle: 'governments',
                 badgeColor: 'bg-yellow-600',
-                prompt: 'an example of a place where Mark felt bored',
-                explEn: 'Paragraph C gives the example of Patagonia: while tourists imagine idyllic mountains and lakes from holiday brochures, cycling through endless grasslands for days became very boring ("can become very boring when you see nothing else for several days").',
-                explVi: 'Đoạn C đưa ra ví dụ về địa danh Patagonia: trong khi khách du lịch nghĩ đến núi và hồ thơ mộng, việc đạp xe qua hàng dặm đồng cỏ đơn điệu suốt nhiều ngày khiến Mark cảm thấy vô cùng nhàm chán -> Paragraph C.',
+                prompt: 'Both companies and 1 _________________ are putting money into developing high-tech ways of producing artificial foods.',
+                explEn: 'Paragraph 2 states: "With this in mind, business people and governments are investing in a range of unusual new ways of producing food." "Business people" matches "companies", "investing in" matches "putting money into", so the missing word is "governments".',
+                explVi: 'Đoạn 2 chỉ ra: "business people and governments are investing in a range of unusual new ways of producing food." Cụm "business people" tương đương "companies", "investing in" tương đương "putting money into", do đó từ còn thiếu là danh từ "governments" (chính phủ).',
                 synonyms: [
-                    { q: 'felt bored', p: 'can become very boring when you see nothing else' },
-                    { q: 'an example of a place', p: 'Patagonia / miles and miles of grassland' }
+                    { q: 'Both companies and...', p: 'business people and governments' },
+                    { q: 'putting money into', p: 'investing in' }
                 ]
             },
             {
                 id: 'q2',
                 num: '2',
-                type: 'Matching Information',
-                ansKey: 'Paragraph G',
-                ansTitle: 'a comment on the expense of organising a cycle trip',
+                type: 'Summary Completion (NO MORE THAN TWO WORDS)',
+                ansKey: 'lab / laboratory',
+                ansTitle: 'lab (hoặc laboratory)',
                 badgeColor: 'bg-sky-600',
-                prompt: 'a comment on the expense of organising a cycle trip',
-                explEn: 'Paragraph G discusses the enormous financial and personal toll of these expeditions: "because the projects involve huge effort, time and costs, his main emotion is relief..."',
-                explVi: 'Đoạn G bình luận về chi phí tài chính và công sức to lớn: "vì các dự án đòi hỏi nỗ lực, thời gian và chi phí tiền bạc khổng lồ (huge costs), cảm xúc chính của anh là nhẹ nhõm" -> Paragraph G.',
+                prompt: 'One such business says that its aim is to create meat in a 2 _________________ without hurting animals.',
+                explEn: 'Paragraph 2 describes Modern Meadow: "...scientists are working in the company’s lab to find ways to create something that looks and tastes like meat" which "does not involve killing animals".',
+                explVi: 'Đoạn 2 miêu tả công ty Modern Meadow sản xuất thịt nhân tạo: "...scientists are working in the company’s lab to find ways to create something that looks and tastes like meat" mà "không cần giết hại động vật" -> từ cần điền là "lab" (hoặc "laboratory").',
                 synonyms: [
-                    { q: 'expense', p: 'costs / involve huge costs' },
-                    { q: 'organising a cycle trip', p: 'the projects / completed the trip' }
+                    { q: 'create meat in a...', p: 'working in the company’s lab to create something that looks and tastes like meat' },
+                    { q: 'without hurting animals', p: 'does not involve killing animals' }
                 ]
             },
             {
                 id: 'q3',
                 num: '3',
-                type: 'Matching Information',
-                ansKey: 'Paragraph A',
-                ansTitle: 'a description of the extent of Mark’s travels',
+                type: 'Summary Completion (NO MORE THAN TWO WORDS)',
+                ansKey: 'plant proteins / proteins',
+                ansTitle: 'plant proteins (hoặc proteins)',
                 badgeColor: 'bg-emerald-600',
-                prompt: 'a description of the extent of Mark’s travels',
-                explEn: 'Paragraph A details the massive distances and routes Mark covered: 18,296 miles around the world (2008), 13,080 miles across the Americas (2010), and 6,762 miles from Cairo to Cape Town (2015).',
-                explVi: 'Đoạn A miêu tả cụ thể phạm vi và độ dài quãng đường Mark đã đi: 18.296 dặm vòng quanh thế giới, 13.080 dặm xuyên châu Mỹ và 6.762 dặm xuyên châu Phi -> Paragraph A.',
+                prompt: 'Another is already selling products that resemble meat but are actually made from 3 _________________ from plants.',
+                explEn: 'Paragraph 2 describes Beyond Meat: "Although they are actually made out of plant proteins, these products are almost impossible to distinguish from meat..."',
+                explVi: 'Đoạn 2 nêu rõ sản phẩm Beyond Meat: "Mặc dù chúng thực sự được làm từ protein thực vật (plant proteins), các sản phẩm này gần như không thể phân biệt được với thịt thật" -> từ cần điền là "plant proteins" (hoặc "proteins").',
                 synonyms: [
-                    { q: 'extent of Mark’s travels', p: '18,296 miles around the world / 13,080 mile journey / 6,762 miles' },
-                    { q: 'long distance trips', p: 'travels' }
+                    { q: 'resemble meat', p: 'almost impossible to distinguish from meat' },
+                    { q: 'made from... from plants', p: 'made out of plant proteins' }
                 ]
             },
             {
                 id: 'q4',
                 num: '4',
-                type: 'Matching Information',
-                ansKey: 'Paragraph D',
-                ansTitle: 'a reference to how cold the weather was',
+                type: 'Summary Completion (NO MORE THAN TWO WORDS)',
+                ansKey: 'eggs / man-made eggs',
+                ansTitle: 'eggs (hoặc man-made eggs / ingredients)',
                 badgeColor: 'bg-pink-600',
-                prompt: 'a reference to how cold the weather was',
-                explEn: 'Paragraph D refers to extreme freezing temperatures in the desert: "I had to remove the ice from my tent when it was still dark" before setting off at dawn.',
-                explVi: 'Đoạn D đề cập đến thời tiết đóng băng giá rét khi Mark phải gạt lớp băng đá đóng trên lều của mình lúc trời còn tối trước khi đạp xe ("remove the ice from my tent") -> Paragraph D.',
+                prompt: 'A third company produces food using artificial 4 _________________.',
+                explEn: 'Paragraph 2 highlights Hampton Creek: "...sells products that are made with man-made eggs. The main ingredient is a type of pea." "Artificial" paraphrases "man-made", so the noun is "eggs".',
+                explVi: 'Đoạn 2 nhắc đến Hampton Creek: "bán các sản phẩm được làm từ trứng nhân tạo (man-made eggs). Thành phần chính là một loại đậu." Từ "artificial" tương đương với "man-made", do đó từ cần điền là "eggs".',
                 synonyms: [
-                    { q: 'how cold the weather was', p: 'remove the ice from my tent when it was still dark' },
-                    { q: 'reference to cold weather', p: 'ice on tent / freezing desert night' }
+                    { q: 'artificial', p: 'man-made' },
+                    { q: 'produces food using artificial...', p: 'sells products that are made with man-made eggs' }
                 ]
             },
             {
                 id: 'q5',
                 num: '5',
-                type: 'Matching Information',
-                ansKey: 'Paragraph B',
-                ansTitle: 'some reasons why making progress can be difficult',
+                type: 'Summary Completion (NO MORE THAN TWO WORDS)',
+                ansKey: 'institutions',
+                ansTitle: 'institutions',
                 badgeColor: 'bg-purple-600',
-                prompt: 'some reasons why making progress can be difficult',
-                explEn: 'Paragraph B lists the various obstacles that slowed Mark down across Africa: long delays at border checkpoints, dense traffic queues, broken unpaved roads, and adverse weather.',
-                explVi: 'Đoạn B liệt kê hàng loạt nguyên nhân cản trở tốc độ di chuyển: chờ đợi ở cửa khẩu, kẹt xe, đường sá bị hỏng và thời tiết cản trở ("long delays at border crossings, queues of traffic, broken roads") -> Paragraph B.',
+                prompt: 'This company’s products are already selling to educational and health 5 _________________ in the USA.',
+                explEn: 'Paragraph 2 notes Hampton Creek sells foods to "US hospitals [health], retirement homes, universities [educational] and other institutions."',
+                explVi: 'Đoạn 2 viết: công ty bán thực phẩm cho các bệnh viện (y tế), trường đại học (giáo dục) và "other institutions" (các cơ quan, tổ chức khác) tại Mỹ -> từ cần điền là "institutions".',
                 synonyms: [
-                    { q: 'making progress can be difficult', p: 'not easy to keep up this speed / stopped him from travelling fast' },
-                    { q: 'reasons', p: 'delays at border crossings / queues of traffic / broken roads / weather' }
+                    { q: 'educational and health...', p: 'hospitals [health], universities [educational]' },
+                    { q: 'organizations', p: 'institutions' }
                 ]
             },
             {
                 id: 'q6',
                 num: '6',
-                type: 'Matching Information',
-                ansKey: 'Paragraph E',
-                ansTitle: 'examples of different attitudes towards the bicycle',
+                type: 'Summary Completion (NO MORE THAN TWO WORDS)',
+                ansKey: 'shortages',
+                ansTitle: 'shortages (hoặc food shortages)',
                 badgeColor: 'bg-orange-600',
-                prompt: 'examples of different attitudes towards the bicycle',
-                explEn: 'Paragraph E compares how people in Western countries treat cycling as a leisure sport/fitness activity, whereas residents in developing nations view a bicycle as a prized, life-enhancing utility vehicle.',
-                explVi: 'Đoạn E so sánh các thái độ khác nhau: người phương Tây coi xe đạp là thể thao và giải trí, trong khi người dân nghèo xem xe đạp là phương tiện đi lại đáng mơ ước để tiết kiệm thời gian đi bộ -> Paragraph E.',
+                prompt: 'There is also a business which has put an unusual drink on the market to help consumers save time and tackle food 6 _________________.',
+                explEn: 'Paragraph 3 notes Rob Rhinehart’s drink will "not only help to deal with food shortages but will also provide people with more time." "Tackle" matches "deal with", so the missing word is "shortages".',
+                explVi: 'Đoạn 3 cho biết đồ uống dinh dưỡng tổng hợp của Rob Rhinehart "không chỉ giúp giải quyết tình trạng thiếu lương thực (deal with food shortages) mà còn mang lại nhiều thời gian hơn." "Tackle" tương đương "deal with", từ cần điền là "shortages".',
                 synonyms: [
-                    { q: 'different attitudes towards the bicycle', p: 'sport to keep fit and have fun vs. type of transport many dream of getting' },
-                    { q: 'view cycling', p: 'attitudes towards the bicycle' }
+                    { q: 'tackle food...', p: 'deal with food shortages' },
+                    { q: 'save time', p: 'provide people with more time / no need to waste time cooking' }
                 ]
             }
         ];
 
         const vocabList = [
             {
-                word: 'expedition',
-                phonetic: '/ˌek.spəˈdɪʃ.ən/',
-                vi: 'Cuộc thám hiểm / Chuyến hành trình gian nan',
-                enDef: 'A journey undertaken by a group of people or an individual with a particular purpose, especially exploration or scientific research.',
+                word: 'artificial food',
+                phonetic: '/ˌɑː.tɪˈfɪʃ.əl fuːd/',
+                vi: 'Thực phẩm nhân tạo / Thực phẩm tổng hợp',
+                enDef: 'Food products synthesized or engineered using scientific and technological methods rather than conventional livestock farming or agriculture.',
                 type: 'noun',
-                category: 'travel',
-                context: 'Mark Beaumont has completed a number of amazing long-distance expeditions on his bike.',
-                collocation: 'go on an expedition / cycling expedition'
+                category: 'foodtech',
+                context: 'Some companies are using technology to develop new artificial food products.',
+                collocation: 'develop artificial food / artificial ingredients'
             },
             {
-                word: 'break a record',
-                phonetic: '/breɪk ə ˈrek.ɔːd/',
-                vi: 'Phá kỷ lục (thế giới)',
-                enDef: 'To perform better or faster than the best previously recorded achievement in a sport or activity.',
+                word: 'plant proteins',
+                phonetic: '/plɑːnt ˈprəʊ.tiːnz/',
+                vi: 'Chất đạm / Protein có nguồn gốc thực vật',
+                enDef: 'Protein derived directly from plants such as peas, soybeans, and grains, used as a substitute for animal meat.',
+                type: 'noun',
+                category: 'foodtech',
+                context: 'Although they are actually made out of plant proteins, these products are almost impossible to distinguish from meat.',
+                collocation: 'rich in plant proteins / plant-based protein isolate'
+            },
+            {
+                word: 'food shortages',
+                phonetic: '/fuːd ˈʃɔː.tɪ.dʒɪz/',
+                vi: 'Tình trạng khan hiếm / Thiếu hụt lương thực',
+                enDef: 'A severe situation where the supply of food in a region or globally is insufficient to meet the nutritional needs of the population.',
+                type: 'noun',
+                category: 'foodtech',
+                context: 'This type of product will not only help to deal with food shortages but will also provide people with more time.',
+                collocation: 'tackle food shortages / acute food shortages'
+            },
+            {
+                word: 'distinguish',
+                phonetic: '/dɪˈstɪŋ.ɡwɪʃ/',
+                vi: 'Phân biệt / Nhận diện sự khác nhau',
+                enDef: 'To recognize or point out a difference between people, objects, or sensory characteristics.',
                 type: 'verb',
                 category: 'verb',
-                context: 'Mark succeeded in breaking the world record for cycling across Africa by 17 days.',
-                collocation: 'break the world record / hold a record'
+                context: 'These products are almost impossible to distinguish from genuine meat products.',
+                collocation: 'distinguish between / impossible to distinguish'
             },
             {
-                word: 'border crossing',
-                phonetic: '/ˈbɔː.dər ˌkrɒs.ɪŋ/',
-                vi: 'Cửa khẩu / Điểm qua biên giới',
-                enDef: 'A checkpoint where travellers or vehicles pass between two adjacent countries.',
-                type: 'noun',
-                category: 'travel',
-                context: 'There were long delays at border crossings that stopped him from travelling fast.',
-                collocation: 'border crossing delays / passport control'
+                word: 'tried and tested',
+                phonetic: '/traɪd ænd ˈtes.tɪd/',
+                vi: 'Đã qua thử thách và kiểm chứng an toàn',
+                enDef: 'Reliable, proven effective, safe, or trustworthy through long-term experience and usage.',
+                type: 'adjective',
+                category: 'adjective',
+                context: 'She prefers local natural food that is tried and tested for centuries.',
+                collocation: 'tried and tested method / tried and tested recipe'
             },
             {
-                word: 'holiday brochure',
-                phonetic: '/ˈhɒl.ə.deɪ ˌbrəʊ.ʃər/',
-                vi: 'Tờ gấp / Sách quảng cáo du lịch',
-                enDef: 'A promotional magazine or pamphlet containing photos and descriptions of holiday destinations.',
-                type: 'noun',
-                category: 'travel',
-                context: 'They imagine the beautiful mountains and lakes you see in holiday brochures.',
-                collocation: 'travel brochure / glossy holiday brochure'
+                word: 'locally produced',
+                phonetic: '/ˈləʊ.kəl.i prəˈdʒuːst/',
+                vi: 'Được sản xuất / Canh tác tại địa phương',
+                enDef: 'Grown, harvested, or manufactured within the local geographic community, minimizing transport emissions.',
+                type: 'adjective',
+                category: 'foodtech',
+                context: 'She prefers to cook her family meals using locally produced natural food.',
+                collocation: 'locally produced food / local farmers market'
             },
             {
-                word: 'grassland',
-                phonetic: '/ˈɡrɑːs.lænd/',
-                vi: 'Đồng cỏ thảo nguyên ngút ngàn',
-                enDef: 'A large, open area of country covered with grass, especially one used for grazing.',
+                word: 'nutrients',
+                phonetic: '/ˈnjuː.tri.ənts/',
+                vi: 'Chất dinh dưỡng vi lượng & đa lượng',
+                enDef: 'Substances that provide nourishment essential for the maintenance of life and for healthy growth.',
                 type: 'noun',
-                category: 'travel',
-                context: 'I realised that large parts of Patagonia are just miles and miles of grassland.',
-                collocation: 'open grassland / vast grasslands'
+                category: 'foodtech',
+                context: 'A thick, brownish liquid which has all the nutrients the human body needs.',
+                collocation: 'essential nutrients / absorb nutrients'
             },
             {
-                word: 'freezing temperature',
-                phonetic: '/ˈfriː.zɪŋ ˈtem.prə.tʃər/',
-                vi: 'Nhiệt độ đóng băng / Giá rét buốt',
-                enDef: 'A temperature at or below 0°C (32°F) where moisture turns into frost or solid ice.',
+                word: 'institution',
+                phonetic: '/ˌɪn.stɪˈtʃuː.ʃən/',
+                vi: 'Tổ chức / Cơ quan / Cơ sở công cộng',
+                enDef: 'A large organization founded for a religious, educational, professional, healthcare, or social purpose.',
                 type: 'noun',
-                category: 'travel',
-                context: 'I had to remove the ice from my tent in freezing temperatures before daylight.',
-                collocation: 'sub-zero temperatures / freezing cold'
-            },
-            {
-                word: 'means of transport',
-                phonetic: '/miːnz əv ˈtræn.spɔːt/',
-                vi: 'Phương tiện đi lại / Giao thông',
-                enDef: 'Any vehicle or system used for carrying passengers or goods from one location to another.',
-                type: 'noun',
-                category: 'travel',
-                context: 'A bicycle is a type of transport that many people in rural areas dream of owning.',
-                collocation: 'essential means of transport / public transport'
-            },
-            {
-                word: 'relief',
-                phonetic: '/rɪˈliːf/',
-                vi: 'Sự nhẹ nhõm / Trút bỏ gánh nặng',
-                enDef: 'A feeling of reassurance and relaxation following release from anxiety, distress, or extreme physical exertion.',
-                type: 'noun',
-                category: 'travel',
-                context: 'Because the projects involve huge effort and costs, his main emotion is relief.',
-                collocation: 'breathe a sigh of relief / sense of relief'
+                category: 'foodtech',
+                context: 'Hampton Creek is already selling its foods to hospitals, universities and other institutions.',
+                collocation: 'educational institutions / healthcare institutions'
             }
         ];
     </script>
@@ -621,7 +611,7 @@
                 // Arrow Toggle
                 document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
                     this.showArrows = !this.showArrows;
-                    e.currentTarget.classList.toggle('bg-sky-600');
+                    e.currentTarget.classList.toggle('bg-emerald-600');
                     e.currentTarget.classList.toggle('bg-slate-300');
                     e.currentTarget.classList.toggle('text-slate-700');
                     if (!this.showArrows) {
@@ -678,17 +668,17 @@
 
                 // Flashcards vs Quiz Mode Switcher
                 document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
-                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('bg-white', 'bg-emerald-600');
                     e.target.classList.replace('text-slate-700', 'text-white');
-                    document.getElementById('btn-mode-quiz').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-emerald-600', 'bg-white');
                     document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
                     document.getElementById('flashcard-view').classList.remove('hidden');
                     document.getElementById('quiz-view').classList.add('hidden');
                 });
                 document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
-                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('bg-white', 'bg-emerald-600');
                     e.target.classList.replace('text-slate-700', 'text-white');
-                    document.getElementById('btn-mode-flashcard').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-emerald-600', 'bg-white');
                     document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
                     document.getElementById('quiz-view').classList.remove('hidden');
                     document.getElementById('flashcard-view').classList.add('hidden');
@@ -700,8 +690,8 @@
             renderPassage() {
                 const container = document.getElementById('passage-container');
                 let html = `
-                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">A Different Way to See the World</h2>
-                    <p class="text-xs text-center text-slate-500 italic mb-6">Mark Beaumont found that many countries look different from a bicycle. Our reporter writes about Mark's experience of cycling round the world.</p>
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">The Future of Food?</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Investigating high-tech artificial meat, plant-based proteins, meal replacement liquids, and food safety standards.</p>
                 `;
 
                 passageData.forEach(p => {
@@ -713,7 +703,7 @@
                         html += `
                             <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
                                 <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
-                                    <strong class="text-xs font-bold text-sky-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    <strong class="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
                                     ${p.en}
                                 </div>
                                 <div class="text-slate-600 text-sm leading-relaxed pt-1">
@@ -732,24 +722,24 @@
                 const container = document.getElementById('explanations-list');
                 let html = `
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
-                        <div class="flex items-center space-x-2 text-sky-700 font-bold text-xs uppercase tracking-wide mb-1">
+                        <div class="flex items-center space-x-2 text-emerald-700 font-bold text-xs uppercase tracking-wide mb-1">
                             <i class="fa-solid fa-list-check"></i>
-                            <span>Matching Information Rationale & Evidence Guide</span>
+                            <span>Summary Completion Rationale & Evidence Guide</span>
                         </div>
-                        <h2 class="text-xl font-extrabold text-slate-900">A Different Way to See the World — Phân Tích Câu 1–6</h2>
-                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                        <h2 class="text-xl font-extrabold text-slate-900">Developments in High-Tech Food — Câu 1–6</h2>
+                        <p class="text-xs text-slate-500 mt-1">Hoàn thành tóm tắt bằng cách sử dụng <strong>KHÔNG QUÁ HAI TỪ (NO MORE THAN TWO WORDS)</strong> từ bài đọc. Click "Xem bài đọc" để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
                     </div>
                 `;
 
                 questionsData.forEach(q => {
                     html += `
-                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-sky-400" id="q-card-${q.id}">
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-emerald-400" id="q-card-${q.id}">
                             <div class="flex items-start justify-between">
                                 <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
                                     Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
                                 </span>
                                 <div class="flex items-center space-x-2">
-                                    <button class="jump-btn bg-sky-50 hover:bg-sky-100 text-sky-700 font-bold text-xs px-2.5 py-1 rounded-md border border-sky-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                    <button class="jump-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-xs px-2.5 py-1 rounded-md border border-emerald-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
                                         <i class="fa-solid fa-location-dot"></i> Xem bài đọc
                                     </button>
                                     <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
@@ -763,7 +753,7 @@
                             </div>
 
                             <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
-                                <div class="flex items-center text-sky-700 font-bold text-xs uppercase tracking-wider">
+                                <div class="flex items-center text-emerald-700 font-bold text-xs uppercase tracking-wider">
                                     <i class="fa-solid fa-circle-check mr-1.5"></i>
                                     <span>Giải thích chi tiết (Rationale):</span>
                                 </div>
@@ -773,13 +763,13 @@
                             ${q.synonyms ? `
                                 <div class="pt-2 border-t border-slate-100">
                                     <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
-                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-sky-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-emerald-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
                                     </h5>
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-xs text-left border-collapse">
                                             <thead>
-                                                <tr class="bg-sky-50/70 text-sky-900 font-semibold border-b border-sky-100">
-                                                    <th class="p-2">Từ khóa trong Câu hỏi</th>
+                                                <tr class="bg-emerald-50/70 text-emerald-900 font-semibold border-b border-emerald-100">
+                                                    <th class="p-2">Từ khóa trong Bản tóm tắt</th>
                                                     <th class="p-2">Từ tương đương trong Bài đọc</th>
                                                 </tr>
                                             </thead>
@@ -787,7 +777,7 @@
                                                 ${q.synonyms.map(s => `
                                                     <tr>
                                                         <td class="p-2 font-medium text-slate-700">${s.q}</td>
-                                                        <td class="p-2 font-semibold text-sky-700">${s.p}</td>
+                                                        <td class="p-2 font-semibold text-emerald-700">${s.p}</td>
                                                     </tr>
                                                 `).join('')}
                                             </tbody>
@@ -809,7 +799,7 @@
 
                 const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
                     document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
-                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50/40', 'border-emerald-400'));
 
                     if (targetEl) {
                         targetEl.classList.add('active-target');
@@ -819,7 +809,7 @@
                     }
 
                     if (cardEl) {
-                        cardEl.classList.add('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400');
+                        cardEl.classList.add('ring-2', 'ring-emerald-600', 'bg-emerald-50/40', 'border-emerald-400');
                         if (scrollRight) {
                             cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }
@@ -830,7 +820,7 @@
 
                 const deactivateAll = () => {
                     document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
-                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50/40', 'border-emerald-400'));
                     this.clearCanvas();
                 };
 
@@ -941,19 +931,19 @@
                 svg.innerHTML = `
                     <defs>
                         <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#0284c7" />
-                            <stop offset="100%" stop-color="#38bdf8" />
+                            <stop offset="0%" stop-color="#059669" />
+                            <stop offset="100%" stop-color="#34d399" />
                         </linearGradient>
                         <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
-                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0284c7" flood-opacity="0.4"/>
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#059669" flood-opacity="0.4"/>
                         </filter>
                         <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
-                            <polygon points="0 0, 9 3.5, 0 7" fill="#38bdf8" />
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#34d399" />
                         </marker>
                     </defs>
                     <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
-                    <circle cx="${x1}" cy="${y1}" r="4" fill="#0284c7" />
-                    <circle cx="${x2}" cy="${y2}" r="4" fill="#38bdf8" />
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#059669" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#34d399" />
                 `;
             },
 
@@ -980,17 +970,17 @@
                 let html = '';
                 filtered.forEach(item => {
                     html += `
-                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-sky-400 transition-all space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-emerald-400 transition-all space-y-4">
                             <div>
                                 <div class="flex items-center justify-between mb-2">
-                                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-md border border-sky-200">${item.type}</span>
-                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-sky-600 transition-colors" title="Nghe phát âm">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-emerald-600 transition-colors" title="Nghe phát âm">
                                         <i class="fa-solid fa-volume-high text-sm"></i>
                                     </button>
                                 </div>
                                 <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
                                 <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
-                                <p class="text-sm font-bold text-sky-700 bg-sky-50/50 p-2 rounded-lg border border-sky-100 mb-3">${item.vi}</p>
+                                <p class="text-sm font-bold text-emerald-700 bg-emerald-50/50 p-2 rounded-lg border border-emerald-100 mb-3">${item.vi}</p>
                                 <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
                             </div>
 
@@ -1000,8 +990,8 @@
                                     <p class="text-slate-600 italic">"${item.context}"</p>
                                 </div>
                                 <div>
-                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-sky-700">Collocation thường gặp:</span>
-                                    <p class="font-semibold text-sky-900">${item.collocation}</p>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-emerald-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-emerald-900">${item.collocation}</p>
                                 </div>
                             </div>
                         </div>
@@ -1042,36 +1032,36 @@
                 const quizBox = document.getElementById('quiz-box');
                 const sampleQuestions = [
                     {
-                        q: "Which term refers to 'a long and difficult journey undertaken for exploration or endurance'?",
-                        options: ["Border crossing", "Expedition", "Grassland", "Holiday brochure"],
+                        q: "Which term refers to 'food products synthesized or engineered using scientific methods rather than livestock farming'?",
+                        options: ["Locally produced food", "Artificial food", "Tried and tested recipe", "Agricultural biodiversity"],
                         ans: 1,
-                        expl: "Expedition (danh từ) = Cuộc thám hiểm, chuyến hành trình dài ngày mang tính chất khám phá hoặc vượt qua thử thách."
+                        expl: "Artificial food (thực phẩm nhân tạo / tổng hợp) là thực phẩm được tạo ra từ phòng thí nghiệm hoặc kỹ thuật công nghệ thay vì chăn nuôi gia súc."
                     },
                     {
-                        q: "What emotion did Mark Beaumont describe feeling most upon finishing his huge projects?",
+                        q: "What does 'tried and tested' mean in the context of traditional food safety?",
                         options: [
-                            "Frustration at border delays",
-                            "Relief that he completed the trip successfully",
-                            "Anger at bad weather",
-                            "Sadness from being alone"
+                            "Experimental and unproven",
+                            "Reliable and proven healthy through long-term traditional use",
+                            "Produced exclusively with synthetic chemicals",
+                            "Created in a high-tech modern lab"
                         ],
                         ans: 1,
-                        expl: "Relief (sự nhẹ nhõm) là cảm xúc chủ đạo của Mark khi hoàn thành xuất sắc chuyến đi tốn kém nhiều công sức và tài chính."
+                        expl: "Tried and tested (tính từ) = Đã qua kiểm chứng và thử thách qua thời gian dài, chứng minh độ an toàn và đáng tin cậy."
                     },
                     {
-                        q: "How do attitudes towards bicycles differ between Western countries and poorer developing nations in the passage?",
+                        q: "Why did Rob Rhinehart create a meal replacement drink?",
                         options: [
-                            "Westerners use bikes for long expeditions only; poor people refuse to ride them",
-                            "Westerners use bikes for fitness and fun; poor people dream of owning one as essential transport",
-                            "Westerners consider bikes outdated; poor people use them for racing",
-                            "Both groups share identical views"
+                            "To replace water in agricultural fields",
+                            "To save time cooking and help address global food shortages",
+                            "To feed livestock without plant proteins",
+                            "To sell exclusively in luxury supermarkets"
                         ],
                         ans: 1,
-                        expl: "Ở các nước phát triển, xe đạp là môn thể thao giữ dáng và giải trí; trong khi ở các nước nghèo, đó là phương tiện di chuyển thiết yếu đáng mơ ước."
+                        expl: "Đoạn 3 chỉ rõ: Đồ uống của Rob Rhinehart nhằm mục đích giúp tiết kiệm thời gian nấu nướng và hỗ trợ giải quyết tình trạng thiếu hụt lương thực toàn cầu."
                     }
                 ];
 
-                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-sky-600"></i> A Different Way to See the World Vocab Challenge</h3>`;
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-emerald-600"></i> The Future of Food Vocab Challenge</h3>`;
                 sampleQuestions.forEach((q, idx) => {
                     html += `
                         <div class="space-y-3 pt-2" id="quiz-q-${idx}">

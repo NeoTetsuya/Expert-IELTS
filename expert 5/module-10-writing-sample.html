@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 10: Task 2 Opinion Essay - Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0ea5e9',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script src="../js/mobile.js" defer></script>
+    <script src="../js/image-viewer.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                10
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 10</h1>
+                <p class="text-xs text-slate-500">Opinion Essay (Global English & Endangered Languages) • Interactive Study Guide for Band 5 &amp; 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 5 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Opinion Stance &amp; Example Linking Phrases
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Language, Culture &amp; Globalisation Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 10</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Opinion essay</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• There are two parts to this statement that you need to think about: <strong>English becoming more widely spoken</strong> and <strong>other languages dying out</strong>.</p>
+                    <p>• You <strong>must say if you agree or disagree</strong> with the statement and give reasons.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-8 bg-sky-50/50 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-sky-200 font-semibold text-slate-900 shadow-sm">
+                    <p class="italic">"Soon almost everyone in the world will speak English and most other languages will die out.</p>
+                    <p class="italic text-sky-900 mt-1">To what extent do you agree with this point of view?"</p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">264 words • Band 7.5+ Sample calibrated for Band 5 mastery</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Essay, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Stating Opinion in First Body Paragraph -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Stance Placement
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">You can start your first body paragraph by stating your opinion.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>"I partly agree with their opinion. It is clearly true that English is becoming widely spoken all over the world."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: New Paragraph for Second Part -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Two-Part Question Balance
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Start a new paragraph to discuss the second part of the statement.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>Para 2 covers English expansion; Para 3 addresses whether native languages will disappear.</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: State Opinion in Conclusion -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Conclusion Strategy
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">State your opinion in the conclusion.</strong>
+                        <span class="block mt-1 text-slate-700">Synthesize both perspectives into a clear final judgment.</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Prompt Paraphrase)</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Some people say that...', 'Impersonal reporting opener', 'A clean, natural way to present public views without repetitive I think.')">Some people say that</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('it will not be long before...', 'Time forecast idiom', 'Expresses that an event is approaching in the near future.')">it will not be long before</span> 
+                            English is 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('spoken everywhere in the world', 'Paraphrase collocation', 'Replaces prompt keywords almost everyone will speak English.')">spoken everywhere in the world</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('They believe that...', 'Attribution frame', 'Clearly attributes the second part of the claim to other people.')">They believe that</span> 
+                            the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('majority of other languages', 'Quantifier collocation', 'Band 5/6 phrasing for most other languages.')">majority of other languages</span> 
+                            will 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('become extinct', 'Formal synonym', 'Academic replacement for die out or disappear.')">become extinct</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (PART 1 - GLOBAL DOMINANCE OF ENGLISH) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (Agreed Part - Rise of Global English)</span>
+                    <p>
+                        <span id="target-partly-agree" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('I partly agree with their opinion.', 'Balanced opinion stance', 'Crucial Band 5/6 formula for nuanced questions with two distinct propositions.')">I partly agree with their opinion</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('It is clearly true that...', 'Fact validation frame', 'Emphasizes an undeniable fact or reality.')">It is clearly true that</span> 
+                            English is 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('becoming widely spoken all over the world', 'High-level collocation', 'Spread of an international lingua franca across continents.')">becoming widely spoken all over the world</span>.
+                        </span> 
+                        <span class="hl-band5-phrase" onclick="showWordDetail('Everywhere you go now, you see...', 'Everyday observation frame', 'Introduces observable daily evidence.')">Everywhere you go now you see English</span>. 
+                        <span id="target-give-examples" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Even in countries where English is not the native language, ...', 'Contrast conditional frame', 'Shows the broad reach of English beyond English-speaking nations.')">Even in countries where English is not the native language</span>, 
+                            you often find that 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('menus, tourist brochures and street signs', 'Concrete everyday examples', 'Specific visible evidence of English in daily public spaces.')">menus, tourist brochures and street signs are in English</span>. 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('Many international businesses', 'Corporate collocation', 'Multinational corporations operating worldwide.')">Many international businesses</span> 
+                            use English in their offices even when those offices are in 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('Switzerland, Delhi or Hong Kong', 'Global geographical examples', 'Concrete international cities illustrating commercial lingua franca.')">Switzerland, Delhi or Hong Kong</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('When a [Nationality A] meets a [Nationality B], ...', 'Hypothetical communication scenario', 'Clear illustration of cross-cultural communication in English.')">When a Chinese person meets a Brazilian</span>, 
+                            they will probably talk to each other in English 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('rather than [Language A] or [Language B]', 'Comparative preference phrase', 'Shows why English is preferred over native tongues in global encounters.')">rather than Chinese or Portuguese</span>.
+                        </span> 
+                        That is the situation now and 
+                        <span class="hl-band5-phrase" onclick="showWordDetail('I think English will become even more important in the next few years.', 'Future prediction of importance', 'Projects current momentum into future decades.')">I think English will become even more important in the next few years</span>.
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (PART 2 - SURVIVAL & HERITAGE OF NATIVE TONGUES) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (Disagreed Part - Cultural Value of Native Tongues)</span>
+                    <p>
+                        <span id="target-second-part" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('However, I do not think that...', 'Contrast opinion frame', 'Transitions sharply to the second part where the writer disagrees.')">However, I do not think that</span> 
+                            most other languages will 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('disappear', 'Topic verb', 'Die out or cease to exist.')">disappear</span>.
+                        </span> 
+                        <span id="target-opinion-language" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('In my opinion,', 'Personal stance marker', 'Standard, clear marker of personal perspective.')">In my opinion</span>, 
+                            people will still 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('speak their native languages', 'Linguistic collocation', 'Use their mother tongue / first language.')">speak their native languages</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('when they are at home', 'Domain condition', 'Separates private home life from international business.')">when they are at home</span>.
+                        </span> 
+                        Most people are 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('proud of their own language', 'Emotional collocation', 'Feeling deep cultural value and self-respect in one’s heritage.')">proud of their own language</span>. 
+                        They want to 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('pass it on to the next generation', 'Key idiomatic collocation', 'To transmit cultural traditions, skills, or language to children.')">pass it on to the next generation</span>. 
+                        A language is not just words &mdash; 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('it is also stories and songs and poetry', 'Cultural definition phrase', 'Highlights the artistic and emotional heritage embedded in language.')">it is also stories and songs and poetry</span>. 
+                        Parents will always want to 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('share these aspects of their language culture', 'Academic collocation', 'Transmitting folklore, identity, and shared customs.')">share these aspects of their language culture with their children</span> 
+                        and they will want schools to 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('teach their children their own language as well as English', 'Bilingual education collocation', 'Promoting bilingualism rather than linguistic replacement.')">teach their children their own language as well as English</span>.
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: CONCLUSION -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Conclusion (Balanced Synthesis)</span>
+                    <p>
+                        <span id="target-conclusion" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('In conclusion,', 'Conclusion transition', 'Essential Band 5 transition phrase to signal the final summary.')">In conclusion</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('I agree that [Point A], but I do not believe that [Point B]', 'Balanced concluding frame', 'Perfect formula for two-part opinion questions summarizing partial agreement.')">I agree that</span> 
+                            English will become 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('more and more important', 'Comparative intensification', 'Growing continuously in global significance.')">more and more important</span> 
+                            as the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('international language of business and travel', 'High-scoring topic collocation', 'Global communication medium for commerce and tourism.')">international language of business and travel</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('But I do not believe that this will lead to...', 'Final refutation linker', 'Firmly rejects the doom-laden prediction that other languages will perish.')">But I do not believe that this will lead to</span> 
+                            the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('death of other languages', 'Metaphorical collocation', 'Linguistic extinction.')">death of other languages</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Give Examples to Clarify -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Exemplification
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Give examples to help make your ideas clear.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700">
+                        💡 <em>Menus and street signs; offices in Switzerland, Delhi, and Hong Kong; Chinese person talking to a Brazilian.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Language of Opinion -->
+                <div id="note-right-2" class="bg-teal-50 border-2 border-teal-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-teal-400">
+                    <div class="flex items-center gap-1.5 text-teal-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                        Language of Opinion
+                    </div>
+                    <p class="text-teal-950 font-medium leading-relaxed">
+                        <strong class="text-teal-700">Use the language of opinion:</strong>
+                        <span class="block mt-1 font-semibold text-teal-900">• I partly agree with...</span>
+                        <span class="block font-semibold text-teal-900">• It is clearly true that...</span>
+                        <span class="block font-semibold text-teal-900">• In my opinion...</span>
+                        <span class="block font-semibold text-teal-900">• I do not believe that...</span>
+                    </p>
+                </div>
+
+                <!-- Right Note 3: Proofreading & Checking Time -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Exam Time Management
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Allow time to check your work carefully.</strong>
+                        <span class="block mt-1 text-slate-700">Reserve 3–5 minutes at the end to correct spelling, subject-verb agreement, and punctuation.</span>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 10 • Task 2: Opinion essay</span>
+            <span class="font-bold text-slate-600 text-sm">209</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-800">
+                        Opinion Device
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        I partly agree with their opinion...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps Band 5 Learners:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Enables you to handle prompts with two separate claims without writing a confusing all-or-nothing response.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 5 &rarr; Band 6+ Upgrade Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "While I concur that English dominates international business, I strongly disagree that regional languages will become extinct."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 5 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 5 Two-Part Opinion Toolkit (Module 10)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Two-Part Opinion Essay Skeleton (Balanced Stance)</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction:</strong>
+                        <p class="text-slate-700 mt-0.5">Some people say that [Part 1: English spread]. They believe that [Part 2: other languages will become extinct].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Agreed Part - English in Global Sphere):</strong>
+                        <p class="text-slate-700 mt-0.5">I partly agree with their opinion. It is clearly true that English is becoming widely spoken. Everywhere you go, you see [Examples: signs, business offices, international meetings]. I think English will become even more important.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Disagreed Part - Heritage & Home Life):</strong>
+                        <p class="text-slate-700 mt-0.5">However, I do not think that [languages will disappear]. In my opinion, people will still speak native languages at home. Most people are proud of their language and want to pass it on to the next generation because [stories/culture].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Conclusion:</strong>
+                        <p class="text-slate-700 mt-0.5">In conclusion, I agree that English will become more important as the language of business, but I do not believe this will lead to the death of other languages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Language, Culture &amp; Globalisation Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">native language / mother tongue</span>
+                        <span class="text-slate-500">first language</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">widely spoken all over the world</span>
+                        <span class="text-slate-500">global lingua franca</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">become extinct / die out</span>
+                        <span class="text-slate-500">vanish completely</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">pass it on to the next generation</span>
+                        <span class="text-slate-500">transmit heritage</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">language of business and travel</span>
+                        <span class="text-slate-500">commercial medium</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">proud of their own language</span>
+                        <span class="text-slate-500">cultural pride</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">lead to the death of</span>
+                        <span class="text-slate-500">cause destruction of</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-partly-agree', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-second-part', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-conclusion', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-give-examples', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-opinion-language', side: 'right', color: '#0d9488' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in essay context: Using "${title}" provides structured opinion signposting and lexical accuracy in Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model essay
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `Some people say that it will not be long before English is spoken everywhere in the world. They believe that the majority of other languages will become extinct. I partly agree with their opinion. It is clearly true that English is becoming widely spoken all over the world. Everywhere you go now you see English. Even in countries where English is not the native language, you often find that menus, tourist brochures and street signs are in English. Many international businesses use English in their offices even when those offices are in Switzerland, Delhi or Hong Kong. When a Chinese person meets a Brazilian, they will probably talk to each other in English rather than Chinese or Portuguese. That is the situation now and I think English will become even more important in the next few years. However, I do not think that most other languages will disappear. In my opinion, people will still speak their native languages when they are at home. Most people are proud of their own language. They want to pass it on to the next generation. A language is not just words - it is also stories and songs and poetry. Parents will always want to share these aspects of their language culture with their children and they will want schools to teach their children their own language as well as English. In conclusion, I agree that English will become more and more important as the international language of business and travel. But I do not believe that this will lead to the death of other languages.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

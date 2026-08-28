@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 9: Task 1 Describe a Chart - Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#4f46e5',
+                            headerDark: '#4338ca',
+                            accent: '#6366f1',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script src="../js/mobile.js" defer></script>
+    <script src="../js/image-viewer.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                9
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 1 • Module 9</h1>
+                <p class="text-xs text-slate-500">Describe a Chart (World's Media Consumption 2012–2015) • Interactive Study Guide for Band 5 &amp; 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-violet-50 text-violet-700 border border-violet-200 hover:bg-violet-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 5 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Task 1 Signposting, Reference &amp; Comparison Linkers
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Media Trends, Approximation &amp; Regional Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0891b2" />
+                </marker>
+            </defs>
+        </svg>
+
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-indigo-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-indigo-600 uppercase">Module 9</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 1: Describe a chart</h2>
+            </div>
+            <div class="bg-indigo-50 border-l-4 border-indigo-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-indigo-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Read the task carefully.</strong> It will help you to understand the data.</p>
+                    <p>• <strong>Study the graphs carefully before you start writing.</strong> Look for differences and connections between the two graphs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-indigo-50/50 border-l-4 border-indigo-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-indigo-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-indigo-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Task 1 Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The world's media consumption</p>
+                <div class="bg-white p-3 rounded border border-indigo-200 text-slate-900 shadow-sm font-sans text-xs sm:text-sm">
+                    <p class="font-semibold text-slate-800">The graphs below give information about how many hours people spent every day using different media and how many hours they spent using the media in different parts of the world from 2012 to 2015.</p>
+                    <p class="mt-1">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                    <p class="text-slate-500 italic mt-0.5">Write at least 150 words.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8 p-4 sm:p-6 bg-amber-50/40 rounded-2xl border border-amber-200 shadow-sm relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Graph 1: By Source -->
+                <div class="bg-white p-3.5 rounded-xl border border-amber-300/80 shadow-sm">
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900 font-sans text-center mb-2">
+                        Hours spent using media per day, average, by source
+                    </h4>
+                    <svg viewBox="0 0 340 220" class="w-full h-auto font-sans select-none bg-amber-50/30 rounded-lg p-1">
+                        <!-- Grid lines -->
+                        <line x1="45" y1="25" x2="320" y2="25" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="65" x2="320" y2="65" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="105" x2="320" y2="105" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="145" x2="320" y2="145" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="185" x2="320" y2="185" stroke="#64748b" stroke-width="1.5" />
+                        
+                        <!-- Y-Axis line -->
+                        <line x1="45" y1="20" x2="45" y2="185" stroke="#64748b" stroke-width="1.5" />
+
+                        <!-- Y-Axis labels (0 to 4.0) -->
+                        <text x="38" y="29" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">4.0</text>
+                        <text x="38" y="69" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">3.0</text>
+                        <text x="38" y="109" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">2.0</text>
+                        <text x="38" y="149" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">1.0</text>
+                        <text x="38" y="188" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">0</text>
+
+                        <!-- X-Axis labels (2012 to 2015) -->
+                        <!-- 4 points: x = 60, 140, 220, 300 -->
+                        <text x="60" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2012</text>
+                        <text x="140" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2013</text>
+                        <text x="220" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2014</text>
+                        <text x="300" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2015</text>
+
+                        <!-- Curves -->
+                        <!-- 1. TV (Slate Dark curve, starts ~3.2, slight decline to ~3.0) -->
+                        <!-- 2012: 57, 2013: 60, 2014: 63, 2015: 65 -->
+                        <path d="M 60 57 L 140 60 L 220 63 L 300 65" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" />
+                        <text x="304" y="67" font-size="9.5" font-weight="bold" fill="#1e293b">TV</text>
+
+                        <!-- 2. Online (Blue curve, starts ~2.5 (85), rises to 3.3 (53), crosses TV in 2014) -->
+                        <!-- 2012: 85, 2013: 73, 2014: 61, 2015: 53 -->
+                        <path d="M 60 85 L 140 73 L 220 61 L 300 53" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" />
+                        <text x="304" y="52" font-size="9.5" font-weight="bold" fill="#2563eb">Online</text>
+
+                        <!-- 3. Radio (Amber curve, starts ~1.3, slight decline ~1.2) -->
+                        <!-- 2012: 133, 2013: 135, 2014: 136, 2015: 138 -->
+                        <path d="M 60 133 L 140 135 L 220 136 L 300 138" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" />
+                        <text x="304" y="140" font-size="9.5" font-weight="bold" fill="#d97706">Radio</text>
+
+                        <!-- 4. Print (Rose/Brown curve, starts ~0.7, slight decline ~0.5) -->
+                        <!-- 2012: 157, 2013: 160, 2014: 162, 2015: 165 -->
+                        <path d="M 60 157 L 140 160 L 220 162 L 300 165" fill="none" stroke="#9a3412" stroke-width="2" stroke-linecap="round" />
+                        <text x="304" y="167" font-size="9.5" font-weight="bold" fill="#9a3412">Print</text>
+                    </svg>
+                    <div class="mt-2 text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200">
+                        <strong class="text-blue-700">Key Milestone:</strong> Online media grew from ~2.5 hrs to ~3.3 hrs, overtaking TV in 2014.
+                    </div>
+                </div>
+
+                <!-- Graph 2: By Region -->
+                <div class="bg-white p-3.5 rounded-xl border border-amber-300/80 shadow-sm">
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900 font-sans text-center mb-2">
+                        Hours spent using media per day, average, by region
+                    </h4>
+                    <svg viewBox="0 0 340 220" class="w-full h-auto font-sans select-none bg-amber-50/30 rounded-lg p-1">
+                        <!-- Grid lines -->
+                        <!-- Y range: 6 to 14. delta = 8. Height 160 px -> 20 px per 1 unit -->
+                        <!-- 14: y=25, 12: y=65, 10: y=105, 8: y=145, 6: y=185 -->
+                        <line x1="45" y1="25" x2="320" y2="25" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="65" x2="320" y2="65" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="105" x2="320" y2="105" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="145" x2="320" y2="145" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
+                        <line x1="45" y1="185" x2="320" y2="185" stroke="#64748b" stroke-width="1.5" />
+                        
+                        <!-- Y-Axis line -->
+                        <line x1="45" y1="20" x2="45" y2="185" stroke="#64748b" stroke-width="1.5" />
+
+                        <!-- Y-Axis labels (6 to 14) -->
+                        <text x="38" y="29" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">14</text>
+                        <text x="38" y="69" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">12</text>
+                        <text x="38" y="109" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">10</text>
+                        <text x="38" y="149" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">8</text>
+                        <text x="38" y="188" font-size="10" font-weight="bold" fill="#64748b" text-anchor="end">6</text>
+
+                        <!-- X-Axis labels (2012 to 2015) -->
+                        <text x="60" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2012</text>
+                        <text x="140" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2013</text>
+                        <text x="220" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2014</text>
+                        <text x="300" y="200" font-size="10" font-weight="bold" fill="#64748b" text-anchor="middle">2015</text>
+
+                        <!-- Curves -->
+                        <!-- 1. United States: 11 (y=85) to 12 (y=65) -->
+                        <path d="M 60 85 L 140 78 L 220 71 L 300 65" fill="none" stroke="#4f46e5" stroke-width="2.5" stroke-linecap="round" />
+                        <text x="270" y="58" font-size="8.5" font-weight="bold" fill="#4f46e5">United States</text>
+
+                        <!-- 2. Latin America: ~8.2 to 8.8 (y=141 to 129) -->
+                        <path d="M 60 141 L 140 137 L 220 133 L 300 129" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" />
+                        <text x="235" y="125" font-size="8.5" font-weight="bold" fill="#059669">Latin America</text>
+
+                        <!-- 3. Europe: ~8.0 to 8.4 (y=145 to 137) -->
+                        <path d="M 60 145 L 140 143 L 220 140 L 300 137" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" />
+                        <text x="200" y="152" font-size="8.5" font-weight="bold" fill="#d97706">Europe</text>
+
+                        <!-- 4. Asia: ~7.0 to 7.5 (y=165 to 155) -->
+                        <path d="M 60 165 L 140 162 L 220 158 L 300 155" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" />
+                        <text x="280" y="170" font-size="8.5" font-weight="bold" fill="#e11d48">Asia</text>
+                    </svg>
+                    <div class="mt-2 text-[11px] text-slate-600 bg-slate-50 p-2 rounded border border-slate-200">
+                        <strong class="text-indigo-700">Regional Gap:</strong> US media consumption (11–12h) was more than 4 hours higher than Asia (&lt;8h).
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-indigo-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">178 words • Band 7.5+ Sample calibrated for Band 5 mastery</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Say what graphs show & paraphrase -->
+                <div id="note-left-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Introduction Paraphrase
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Start by saying what the graphs show,</strong> but paraphrase the writing task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>Replaces: "how many hours people spent every day using different media" with "data about the use of different media in different areas of the world".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Approximation language -->
+                <div id="note-left-2" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Approximation Language
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Use approximately or about</strong> when you are not sure of exact figures.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        ⭐ <em>"from approximately 2.5 hours per day to about 3.3 hours per day."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Comparative & Superlative forms -->
+                <div id="note-left-3" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Comparative &amp; Superlative
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Use comparative and superlative forms.</strong>
+                        <span class="block mt-1 font-semibold text-slate-700">Use figures from the graphs to illustrate the points you make.</span>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        💡 <em>"spent the most hours per day... spent the least time... averaging over four hours per day less than US citizens."</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Dual Graph Paraphrase)</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The charts provide data about...', 'Dual Chart Opener Frame', 'Academic opening frame for tasks displaying two related graphs.')">The charts provide data about</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('the use of different media in different areas of the world', 'Prompt Paraphrase Collocation', 'Natural paraphrase for media consumption across global regions.')">the use of different media in different areas of the world</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('over the period [Year]-[Year]', 'Time period phrase', 'Standard time descriptor for multi-year trends.')">over the period 2012-2015</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('They compare [A] with [B]...', 'Comparative Overview Frame', 'Defines the distinct categories analysed in the first graph.')">They compare online use with use of TV, radio and print media</span> 
+                            over the period. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('They also show [variable] in [locations]...', 'Secondary Graph Connector Frame', 'Introduces the second chart describing geographical variation.')">They also show the average hours spent per day on media use</span> 
+                            in the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('USA, Latin America, Europe and Asia', 'Geographical listing', 'Enumerates the target regions clearly.')">USA, Latin America, Europe and Asia</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: GRAPH 1 (SOURCES & ONLINE OVERTAKING TV) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Graph 1 Features (Online Surge &amp; Traditional Media Decline)</span>
+                    <p>
+                        <span id="target-graph-1-details" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('We can see from the data that...', 'Overview Signposting Frame', 'High-scoring, clear formula to present general trend observations.')">We can see from the data that</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('online consumption increased over the period', 'Trend collocation', 'Describes the rapid growth of digital media usage.')">online consumption increased over the period</span> 
+                            <span id="target-approx-figures" class="hl-connector" data-note="note-left-2">
+                                <span class="hl-band5-phrase" onclick="showWordDetail('from approximately [X] to about [Y]', 'Approximation framing phrase', 'Essential Band 5 phrase when coordinates fall between axis grid lines.')">from approximately 2.5 hours per day to about 3.3 hours per day</span>.
+                            </span> 
+                            <span id="target-refer-back" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band5-phrase" onclick="showWordDetail('This meant that in [Year], ...', 'Anaphoric cohesion / Result frame', 'Uses this to refer back to the preceding trend sentence and explain its significance.')">This meant that in 2014</span>, 
+                                <span class="hl-band5-vocab" onclick="showWordDetail('going online overtook TV', 'Milestone trend collocation', 'One category surpassing another in ranking/time.')">going online overtook TV</span> 
+                                as the 
+                                <span class="hl-band5-vocab" onclick="showWordDetail('the type of media people gave most time to', 'Superlative description phrase', 'Category capturing the highest user attention.')">type of media people gave most time to</span>.
+                            </span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('TV, radio and print all showed a very slight decline', 'Collective trend collocation', 'Groups three downward variables smoothly in a single sentence.')">TV, radio and print all showed a very slight decline</span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('between [Year] and [Year] in terms of...', 'Category bound phrase', 'Defines the timeline and measurement dimension precisely.')">between 2012 and 2015 in terms of hours spent per day on them</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: GRAPH 2 (REGIONAL COMPARISON: USA VS. ASIA) -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Graph 2 Features (Superlatives, Regional Peaks &amp; Differences)</span>
+                    <p>
+                        <span id="target-graph-2-details" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Of the four geographical areas illustrated in the charts, ...', 'Category selection frame', 'Professional way to introduce the regional comparison paragraph.')">Of the four geographical areas illustrated in the charts</span>, 
+                            people in the USA 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('spent the most hours per day using media', 'Superlative frequency collocation', 'Highest numerical group among all regions.')">spent the most hours per day using media</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('rising from [X] to [Y] over the period', 'Participle trend clause', 'Concise grammatical structure reporting an increase.')">rising from 11 to 12 hours per day over the period</span>. 
+                            People in Asia 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('spent the least time on media', 'Superlative minimum collocation', 'Lowest numerical consumption category.')">spent the least time on media</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('averaging over [X] less than [Category B]', 'Comparative calculation participle', 'Advanced Task 1 mathematical comparison showing the exact gap.')">averaging over four hours per day less than US citizens</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Cohesion with this and that -->
+                <div id="note-right-1" class="bg-cyan-50 border-2 border-cyan-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-cyan-400">
+                    <div class="flex items-center gap-1.5 text-cyan-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-cyan-600"></span>
+                        Referencing &amp; Cohesion
+                    </div>
+                    <p class="text-cyan-950 font-medium leading-relaxed">
+                        <strong class="text-cyan-700">Use words like this and that</strong> to refer back to ideas.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-cyan-200/70 text-[11px] text-cyan-700 font-sans">
+                        💡 <em>"This meant that in 2014, going online overtook TV..."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Separate paragraph for each graph -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Paragraph Structure
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">You can write a separate paragraph</strong> about each of the graphs.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>Para 2 handles Media Source trends; Para 3 handles Regional differences.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Data Precision & Units -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Time &amp; Units Precision
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Always mention the exact units:</strong> <em>hours per day</em> and years (<em>2012–2015</em>).
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 9 • Task 1: Describe a chart</span>
+            <span class="font-bold text-slate-600 text-sm">208</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-indigo-100 text-indigo-800">
+                        Task 1 Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        from approximately 2.5 hours per day to about 3.3 hours per day
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps Band 5 Learners:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Shows examiners you can report estimated values naturally using "approximately" and "about" without making rigid factual errors.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 5 &rarr; Band 6+ Upgrade Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "Internet usage climbed steadily from roughly 2.5 hours to nearly 3.3 hours per day over the four-year timeframe."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 5 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-indigo-600 rounded-full"></span>
+                Band 5 Dual-Graph Toolkit (Module 9)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-indigo-700 mb-2">1. Dual-Graph Report Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <strong class="text-indigo-900 block font-semibold">Paragraph 1 (Intro &amp; Graph Scopes):</strong>
+                        <p class="text-slate-700 mt-0.5">The charts provide data about [topic] in [regions] over [time period]. They compare [Graph 1 variables]. They also show [Graph 2 variables].</p>
+                    </div>
+                    <div class="p-2.5 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <strong class="text-indigo-900 block font-semibold">Paragraph 2 (Graph 1 - Main Trends &amp; Milestones):</strong>
+                        <p class="text-slate-700 mt-0.5">We can see from the data that [Variable A] increased from approximately [X] to about [Y]. This meant that in [Year], [Variable A] overtook [Variable B]. [Other variables] showed a slight decline.</p>
+                    </div>
+                    <div class="p-2.5 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <strong class="text-indigo-900 block font-semibold">Paragraph 3 (Graph 2 - Regional Extremes &amp; Gap):</strong>
+                        <p class="text-slate-700 mt-0.5">Of the [number] areas illustrated, people in [Region A] spent the most [units], rising from [X] to [Y]. People in [Region B] spent the least time, averaging [Z] less than [Region A].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Approximation, Superlatives &amp; Comparison</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">approximately / about</span>
+                        <span class="text-slate-500">roughly / estimated</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">overtook</span>
+                        <span class="text-slate-500">surpassed / went above</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">slight decline</span>
+                        <span class="text-slate-500">minor decrease / fall</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">spent the most hours</span>
+                        <span class="text-slate-500">highest consumer group</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">spent the least time</span>
+                        <span class="text-slate-500">lowest consumer group</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">averaging [X] less than</span>
+                        <span class="text-slate-500">mathematical gap</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">this meant that</span>
+                        <span class="text-slate-500">consequence linker</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#4f46e5' },
+                { note: 'note-left-2', target: 'target-approx-figures', side: 'left', color: '#059669' },
+                { note: 'note-left-3', target: 'target-graph-2-details', side: 'left', color: '#d97706' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-refer-back', side: 'right', color: '#0891b2' },
+                { note: 'note-right-2', target: 'target-graph-1-details', side: 'right', color: '#7c3aed' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in report context: Using "${title}" provides structured trend analysis, approximation accuracy, and lexical variation in IELTS Writing Task 1.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model report
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The charts provide data about the use of different media in different areas of the world over the period 2012 to 2015. They compare online use with use of TV, radio and print media over the period. They also show the average hours spent per day on media use in the USA, Latin America, Europe and Asia. We can see from the data that online consumption increased over the period from approximately 2.5 hours per day to about 3.3 hours per day. This meant that in 2014, going online overtook TV as the type of media people gave most time to. TV, radio and print all showed a very slight decline between 2012 and 2015 in terms of hours spent per day on them. Of the four geographical areas illustrated in the charts, people in the USA spent the most hours per day using media, rising from 11 to 12 hours per day over the period. People in Asia spent the least time on media, averaging over four hours per day less than US citizens.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Task 1 Describe a Table - Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#d9534f',
+                            headerDark: '#c9302c',
+                            accent: '#f59e0b',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script src="../js/mobile.js" defer></script>
+    <script src="../js/image-viewer.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                7
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 1 • Module 7</h1>
+                <p class="text-xs text-slate-500">Describe a Table (UK Independent Films) • Interactive Study Guide for Band 5 &amp; 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 5 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Task 1 Signposting &amp; Data Linkers
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Table Reporting Collocations &amp; Synonyms
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#b45309" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-amber-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-amber-600 uppercase">Module 7</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 1: Describe a table</h2>
+            </div>
+            <div class="bg-amber-50 border-l-4 border-amber-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-amber-800 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Read the task carefully</strong> as it summarises what the table shows.</p>
+                    <p>• <strong>Remember:</strong> you have to write about the main points, not every detail.</p>
+                    <p>• Make comparisons where relevant and highlight key anomalies or trends.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-amber-50/50 border-l-4 border-amber-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-amber-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-amber-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Task 1 Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The table below gives information about UK independent films.</p>
+                <div class="bg-white p-3 rounded border border-amber-200 text-slate-900 shadow-sm font-sans text-xs sm:text-sm">
+                    <p class="font-semibold text-slate-800">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                    <p class="text-slate-500 italic mt-0.5">Write at least 150 words.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Table: Independent Films in UK and Republic of Ireland 2012 -->
+        <div class="mb-8 overflow-x-auto bg-white rounded-xl border border-slate-300 shadow-sm p-4">
+            <div class="flex items-center justify-between mb-3 border-b border-slate-200 pb-2">
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base font-serif italic text-center w-full">
+                    Independent films released in the UK and Republic of Ireland by genre, 2012
+                </h4>
+            </div>
+            <table class="w-full text-xs sm:text-sm text-left border-collapse">
+                <thead>
+                    <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-300">
+                        <th class="py-2.5 px-3">Genre</th>
+                        <th class="py-2.5 px-3 text-center">Number of releases</th>
+                        <th class="py-2.5 px-3 text-center">% of all releases</th>
+                        <th class="py-2.5 px-3 text-center">% of income from ticket sales</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-sans">
+                    <tr class="hover:bg-amber-50/60 transition bg-amber-50/30 font-semibold">
+                        <td class="py-2 px-3 text-slate-900 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Comedy
+                        </td>
+                        <td class="py-2 px-3 text-center">26</td>
+                        <td class="py-2 px-3 text-center">17.6</td>
+                        <td class="py-2 px-3 text-center text-emerald-700 font-bold">45.4</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-2 px-3 text-slate-800">Horror</td>
+                        <td class="py-2 px-3 text-center">14</td>
+                        <td class="py-2 px-3 text-center">9.5</td>
+                        <td class="py-2 px-3 text-center">20.2</td>
+                    </tr>
+                    <tr class="hover:bg-amber-50/60 transition bg-amber-50/30 font-semibold">
+                        <td class="py-2 px-3 text-slate-900 flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Biopic
+                        </td>
+                        <td class="py-2 px-3 text-center">1</td>
+                        <td class="py-2 px-3 text-center">0.7</td>
+                        <td class="py-2 px-3 text-center text-emerald-700 font-bold">9.1</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50/50 transition">
+                        <td class="py-2 px-3 text-slate-800">Drama</td>
+                        <td class="py-2 px-3 text-center font-bold text-blue-700">35</td>
+                        <td class="py-2 px-3 text-center">23.6</td>
+                        <td class="py-2 px-3 text-center">8.3</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-2 px-3 text-slate-800">Crime</td>
+                        <td class="py-2 px-3 text-center">7</td>
+                        <td class="py-2 px-3 text-center">4.7</td>
+                        <td class="py-2 px-3 text-center">4.7</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-2 px-3 text-slate-800">Action</td>
+                        <td class="py-2 px-3 text-center">4</td>
+                        <td class="py-2 px-3 text-center">2.7</td>
+                        <td class="py-2 px-3 text-center">4.1</td>
+                    </tr>
+                    <tr class="hover:bg-blue-50/50 transition">
+                        <td class="py-2 px-3 text-slate-800">Documentary</td>
+                        <td class="py-2 px-3 text-center font-bold text-blue-700">35</td>
+                        <td class="py-2 px-3 text-center">23.6</td>
+                        <td class="py-2 px-3 text-center text-rose-700">2.9</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-2 px-3 text-slate-800">Thriller</td>
+                        <td class="py-2 px-3 text-center">13</td>
+                        <td class="py-2 px-3 text-center">8.8</td>
+                        <td class="py-2 px-3 text-center">1.3</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-2 px-3 text-slate-800">Romance</td>
+                        <td class="py-2 px-3 text-center">5</td>
+                        <td class="py-2 px-3 text-center">3.4</td>
+                        <td class="py-2 px-3 text-center">0.8</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-2 px-3 text-slate-800">Other</td>
+                        <td class="py-2 px-3 text-center">8</td>
+                        <td class="py-2 px-3 text-center">5.4</td>
+                        <td class="py-2 px-3 text-center">3.2</td>
+                    </tr>
+                    <tr class="bg-slate-200 text-slate-900 font-bold border-t-2 border-slate-400">
+                        <td class="py-2.5 px-3">Total</td>
+                        <td class="py-2.5 px-3 text-center">148</td>
+                        <td class="py-2.5 px-3 text-center">100.0</td>
+                        <td class="py-2.5 px-3 text-center">100.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-amber-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">165 words • Band 7.5+ Sample calibrated for Band 5 mastery</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Report, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Planning & Vocabulary Variation) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Planning -->
+                <div id="note-left-1" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Planning Strategy
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Spend time planning your answer before you start writing.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700 font-sans">
+                        💡 <em>Identify key patterns: high releases vs. low income (Drama/Doc) and low releases vs. huge income (Comedy/Biopic).</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Vocabulary Variety -->
+                <div id="note-left-2" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Synonym Variation
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong>Avoid repeating words where possible</strong>; say <strong class="text-emerald-700">type</strong>, <strong class="text-emerald-700">kind</strong> or <strong class="text-emerald-700">sort of film</strong> instead of always <em class="text-slate-600">genre</em> as in the table.
+                    </p>
+                </div>
+
+                <!-- Left Note 3: Linking words -->
+                <div id="note-left-3" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Linking Devices
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        Linking words and phrases like <strong class="text-sky-700">for example</strong> and <strong class="text-sky-700">however</strong> help the reader understand your line of thinking.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Table Paraphrase)</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The table provides information about...', 'Table Introduction Frame', 'Standard academic opener to define the subject, location, and timeframe.')">The table provides information about</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('different types of [category]', 'Synonym variety', 'Replaces repeated use of the prompt word genre.')">different types of independent films</span> 
+                            released in the UK and the Republic of Ireland in 2012. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('It indicates [X] and also shows [Y]...', 'Additive overview frame', 'Combines multiple table columns clearly in one compound sentence.')">It indicates</span> 
+                            how many films of different 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('genres', 'Topic noun', 'Categories of artistic composition.')">genres</span> 
+                            were made and also shows 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('what proportion of total ticket sales', 'Statistical collocation', 'High-scoring phrase for percentage of total revenue.')">what proportion of total ticket sales</span> 
+                            was made by each 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('kind of film', 'Synonym variety', 'Synonym for genre / category.')">kind of film</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: OVERVIEW & CONTRASTING KEY TRENDS -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Overview &amp; Contrast (Volume vs. Revenue)</span>
+                    <p>
+                        <span id="target-overview-trend" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The table makes it very clear that...', 'Overview transition frame', 'Crystal-clear way to signal the main general trend in Task 1.')">The table makes it very clear that</span> 
+                            there is 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('no correlation between [A] and [B]', 'Analytical collocation', 'Indicates that two variables do not match or follow each other.')">no correlation between</span> 
+                            the number of films made in any category and the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('proportion of ticket sales earned', 'Collocation', 'Share of revenue generated.')">proportion of ticket sales earned</span> 
+                            by that 
+                            <span id="target-synonyms" class="hl-connector" data-note="note-left-2">
+                                <span class="hl-band5-vocab" onclick="showWordDetail('sort of film', 'Synonym variety', 'Varied phrasing for category or genre.')">sort of film</span>.
+                            </span>
+                        </span> 
+                        <span id="target-linkers" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('For example, ...', 'Exemplification linker', 'Introduces specific data to prove the general trend.')">For example</span>, 
+                            the 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('largest numbers of films', 'Superlative data phrase', 'Identifies the highest quantity in the dataset.')">largest numbers of films</span> 
+                            were made in the Drama and Documentary categories &mdash; 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('35 of each of these were released', 'Data reporting structure', 'Concise phrasing to describe two identical quantities.')">35 of each of these were released</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('However, they earned only...', 'Contrast connector', 'Highlights surprisingly low revenue despite high production numbers.')">However, they earned only</span> 
+                            8.3 and 2.9 percent of total ticket sales 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('respectively', 'Academic adverb', 'Relating to each of the two items in the order mentioned.')">respectively</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: KEY SUCCESSES (COMEDY & BIOPIC) -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Key Outliers (High Financial Yields)</span>
+                    <p>
+                        <span id="target-interesting-data" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-vocab" onclick="showWordDetail('Comedy films were the most financially successful', 'Superlative evaluation', 'Clear identification of the highest grossing genre.')">Comedy films were the most financially successful</span>: 
+                            26 films, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('out of a total of [X]', 'Fractional data phrase', 'Clarifies the subset out of the entire total releases.')">out of a total of 148</span>, 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('earned [X] percent of all the income', 'Revenue reporting phrase', 'Describes the exact financial share from sales.')">earned 45.4 percent of all the income</span> 
+                            from ticket sales.
+                        </span> 
+                        <span id="target-punctuation" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Another very successful type of film in [Year] was...', 'Transition to secondary highlight', 'Links smoothly to the next notable category.')">Another very successful type of film in 2012 was</span> 
+                            the biopic. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Although only [X], it accounted for [Y]', 'Complex contrast clause', 'Highlights an extreme contrast between single release and huge market share.')">Although only one of these was released</span>, 
+                            it 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('accounted for [X] percent of ticket sales', 'Key Task 1 collocation', 'Represented or comprised a specific proportion.')">accounted for 9.1 percent of ticket sales</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Select Main Features -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Key Feature Selection
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Write about the information in the table that you find the most interesting.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700">
+                        ⭐ <em>Focus on the biggest contrasts: Comedy (nearly half of all earnings) and Biopic (just 1 film earning 9.1%).</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Correct Punctuation -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Accuracy &amp; Punctuation
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Make sure you use correct punctuation.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ✏️ <em>Uses colons for lists/details, dashes for extra numeric information, and commas around introductory adverbs and clauses.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Overview Guidance -->
+                <div id="note-right-3" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Overview Rule
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        Always provide an overall general summary sentence (e.g. <em>"no correlation between the number of films and income"</em>).
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 7 • Task 1: Describe a table</span>
+            <span class="font-bold text-slate-600 text-sm">206</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-amber-100 text-amber-800">
+                        Task 1 Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        The table provides information about...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps Band 5 Learners:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Helps paraphrase the prompt without copying word-for-word, immediately showing grammatical control.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 5 &rarr; Band 6+ Upgrade Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "The chart illustrates the proportion of revenue generated by various film categories in 2012."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 5 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-amber-600 rounded-full"></span>
+                Band 5 Table Description Toolkit (Module 7)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-amber-700 mb-2">1. Task 1 Table Report Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Introduction:</strong>
+                        <p class="text-slate-700 mt-0.5">The table provides information about [different types of X] in [Location] in [Year]. It indicates [Metric 1] and also shows [Metric 2].</p>
+                    </div>
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Overview &amp; Main Contrast:</strong>
+                        <p class="text-slate-700 mt-0.5">The table makes it very clear that there is no correlation between [Metric 1] and [Metric 2]. For example, the largest numbers were in [Category A and B]. However, they earned only [Low %] respectively.</p>
+                    </div>
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Key Highlights &amp; High Yields:</strong>
+                        <p class="text-slate-700 mt-0.5">[Category C] films were the most financially successful: [Number], out of a total of [Total], earned [High %]. Another very successful type was [Category D]. Although only [Number] was released, it accounted for [High %].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Statistical &amp; Category Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">type / kind / sort of film</span>
+                        <span class="text-slate-500">synonyms for genre</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">proportion of ticket sales</span>
+                        <span class="text-slate-500">share of total income</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">no correlation between</span>
+                        <span class="text-slate-500">no matching pattern</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">respectively</span>
+                        <span class="text-slate-500">in the same order given</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">out of a total of</span>
+                        <span class="text-slate-500">part of the overall sum</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">accounted for [X]%</span>
+                        <span class="text-slate-500">represented / made up</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">financially successful</span>
+                        <span class="text-slate-500">made large profit</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#d97706' },
+                { note: 'note-left-2', target: 'target-synonyms', side: 'left', color: '#059669' },
+                { note: 'note-left-3', target: 'target-linkers', side: 'left', color: '#0284c7' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-overview-trend', side: 'right', color: '#6366f1' },
+                { note: 'note-right-2', target: 'target-punctuation', side: 'right', color: '#9333ea' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in report context: Using "${title}" provides accurate data reporting and lexical variety in IELTS Writing Task 1.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model report
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The table provides information about different types of independent films released in the UK and the Republic of Ireland in 2012. It indicates how many films of different genres were made and also shows what proportion of total ticket sales was made by each kind of film. The table makes it very clear that there is no correlation between the number of films made in any category and the proportion of ticket sales earned by that sort of film. For example, the largest numbers of films were made in the Drama and Documentary categories - 35 of each of these were released. However, they earned only 8.3 and 2.9 percent of total ticket sales respectively. Comedy films were the most financially successful: 26 films, out of a total of 148, earned 45.4 percent of all the income from ticket sales. Another very successful type of film in 2012 was the biopic. Although only one of these was released, it accounted for 9.1 percent of ticket sales.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

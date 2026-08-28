@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Different Way to See the World — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <title>Word-of-Mouth Marketing — IELTS Reading Analysis, Translation & Vocabulary</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,9 +43,9 @@
             font-weight: 800;
             font-size: 0.85rem;
             margin-right: 0.4rem;
-            color: #0369a1;
-            background-color: #e0f2fe;
-            border: 1px solid #bae6fd;
+            color: #0d9488;
+            background-color: #ccfbf1;
+            border: 1px solid #99f6e4;
             text-indent: 0;
             vertical-align: middle;
         }
@@ -64,13 +64,15 @@
             text-indent: 0;
         }
 
-        /* Question target color themes */
+        /* Color classes for each question target */
         .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
         .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
         .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
         .ans-target-q4 { background-color: #fbcfe8; border-bottom: 2px solid #db2777; color: #9d174d; }
         .ans-target-q5 { background-color: #ddd6fe; border-bottom: 2px solid #7c3aed; color: #5b21b6; }
         .ans-target-q6 { background-color: #fed7aa; border-bottom: 2px solid #ea580c; color: #9a3412; }
+        .ans-target-q7 { background-color: #ccfbf1; border-bottom: 2px solid #0d9488; color: #115e59; }
+        .ans-target-q8 { background-color: #fecdd3; border-bottom: 2px solid #e11d48; color: #9f1239; }
 
         .q-badge {
             display: inline-block;
@@ -89,13 +91,13 @@
         }
 
         .ans-target:hover, .ans-target.active-target {
-            outline: 3px solid #0284c7;
-            box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+            outline: 3px solid #0d9488;
+            box-shadow: 0 0 15px rgba(13, 148, 136, 0.4);
             filter: brightness(0.96);
             z-index: 20;
         }
 
-        /* Floating Evidence Popover */
+        /* Floating Explanation Popover */
         .explanation-popover {
             position: absolute;
             bottom: 125%;
@@ -139,7 +141,7 @@
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
 
-        /* SVG Canvas */
+        /* SVG Canvas Overlay */
         #svg-canvas {
             position: absolute;
             top: 0;
@@ -156,9 +158,9 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 
         .tab-btn.active {
-            background-color: #0284c7;
+            background-color: #0d9488;
             color: white;
-            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.3);
         }
 
         @keyframes arrowFlow {
@@ -183,12 +185,12 @@
     <!-- Header Bar -->
     <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
         <div class="flex items-center space-x-3">
-            <div class="bg-sky-600 text-white p-2.5 rounded-xl shadow-sm">
-                <i class="fa-solid fa-bicycle text-lg"></i>
+            <div class="bg-teal-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-comments-dollar text-lg"></i>
             </div>
             <div>
-                <h1 class="text-lg font-bold text-slate-800">A Different Way to See the World</h1>
-                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Adventure Vocab Suite</p>
+                <h1 class="text-lg font-bold text-slate-800">Word-of-Mouth Marketing (WOMM)</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Consumer Behavior Vocab Suite</p>
             </div>
         </div>
 
@@ -208,7 +210,7 @@
             </div>
 
             <!-- Toggle Arrow Canvas -->
-            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sky-600 text-white border border-sky-600 font-medium text-xs hover:bg-sky-700 transition-colors shadow-xs">
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-teal-600 text-white border border-teal-600 font-medium text-xs hover:bg-teal-700 transition-colors shadow-xs">
                 <i class="fa-solid fa-route"></i>
                 <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
             </button>
@@ -219,10 +221,10 @@
     <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
         <div class="flex space-x-2 min-w-max" id="nav-tabs">
             <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
-                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Matching Information Q1–Q6)
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Summary with Word Bank Q1–Q8)
             </button>
             <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
-                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Travel & Geography Vocab Suite
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Marketing & Consumer Psychology Vocab Suite
             </button>
             <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
                 <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
@@ -240,8 +242,8 @@
             <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
                 <div class="max-w-3xl mx-auto">
                     <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
-                        <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3 py-1 rounded-md border border-sky-200">
-                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — A Different Way to See the World
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-3 py-1 rounded-md border border-teal-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — Word-of-Mouth Marketing
                         </span>
                         <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
                     </div>
@@ -266,22 +268,22 @@
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                            <i class="fa-solid fa-book-bookmark text-sky-600"></i> Essential IELTS Reading Vocabulary — Global Journeys & Expeditions
+                            <i class="fa-solid fa-book-bookmark text-teal-600"></i> Essential IELTS Reading Vocabulary — Marketing & Consumer Behavior
                         </h2>
-                        <p class="text-xs text-slate-500 mt-1">High-yield terminology for long-distance travel, geographical landscapes, cycling logistics, and human culture.</p>
+                        <p class="text-xs text-slate-500 mt-1">High-yield terminology for organic word-of-mouth marketing, customer trust, social proof, and retail advertising.</p>
                     </div>
 
                     <div class="flex items-center space-x-3 w-full md:w-auto">
                         <div class="relative flex-1 md:w-64">
                             <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
-                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-sky-600">
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-teal-600">
                         </div>
-                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600">
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600">
                             <option value="all">Tất cả từ loại</option>
                             <option value="noun">Danh từ (Nouns)</option>
                             <option value="verb">Động từ (Verbs)</option>
                             <option value="adjective">Tính từ (Adjectives)</option>
-                            <option value="travel">Du lịch & Thám hiểm</option>
+                            <option value="marketing">Marketing & Kinh doanh</option>
                         </select>
                     </div>
                 </div>
@@ -296,7 +298,7 @@
         <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
             <div class="max-w-3xl mx-auto space-y-8">
                 <div class="flex justify-center space-x-3">
-                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-sky-600 text-white shadow-sm transition-all">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-teal-600 text-white shadow-sm transition-all">
                         <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
                     </button>
                     <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
@@ -312,18 +314,18 @@
                         <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
                             <!-- Front -->
                             <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
-                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">Category</span>
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">Category</span>
                                 <div>
                                     <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
                                     <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
                                 </div>
-                                <span class="text-xs font-bold text-sky-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                                <span class="text-xs font-bold text-teal-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
                             </div>
                             <!-- Back -->
                             <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
-                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-sky-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-teal-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
                                 <div>
-                                    <h4 id="fc-meaning" class="text-2xl font-bold text-sky-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-teal-400 mb-3">Nghĩa tiếng Việt</h4>
                                     <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
                                 </div>
                                 <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
@@ -355,215 +357,249 @@
     <script>
         const passageData = [
             {
-                pNum: 'A',
-                en: `An extraordinary cyclist, Mark Beaumont, has completed a number of amazing long distance trips on his bike. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>In 2008, for example, he rode for 18,296 miles around the world. Two years later he made a 13,080 mile journey through the Americas. In 2015 he cycled 6,762 miles from Cairo to Cape Town<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Paragraph A)</strong>A description of the vast scale and extent of Mark's travels: 18,296 miles around the globe, 13,080 miles through the Americas, and 6,762 miles from Cairo to Cape Town.</span></span>.`,
-                vi: `Một vận động viên đua xe đạp phi thường, Mark Beaumont, đã hoàn thành nhiều chuyến đi đường dài đáng kinh ngạc trên chiếc xe đạp của mình. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Chẳng hạn vào năm 2008, anh đã đạp xe 18.296 dặm vòng quanh thế giới. Hai năm sau, anh thực hiện hành trình 13.080 dặm xuyên qua châu Mỹ. Đến năm 2015, anh đạp xe 6.762 dặm từ Cairo đến Cape Town<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Đoạn A)</strong>Mô tả quy mô và phạm vi hành trình của Mark: 18.296 dặm vòng quanh thế giới, 13.080 dặm xuyên châu Mỹ và 6.762 dặm xuyên châu Phi.</span></span>.`
+                pNum: '1',
+                en: `A business can make the best product in the world but if no one knows about it, they cannot sell it. To tell customers about their products and to persuade them to buy them, all businesses need marketing. One of the most powerful forms of marketing is WOMM: word-of-mouth marketing. <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>This is when people tell their family and friends about a product<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Option I: buyers)</strong>Word-of-mouth marketing is simply a matter of <strong>buyers / people</strong> passing on information to family and friends.</span></span> – and the growth of social media means it has become even more effective.`,
+                vi: `Một doanh nghiệp có thể tạo ra sản phẩm tốt nhất trên thế giới, nhưng nếu không ai biết về nó, họ sẽ không thể bán được hàng. Để giới thiệu cho khách hàng về sản phẩm và thuyết phục họ mua, mọi doanh nghiệp đều cần đến marketing. Một trong những hình thức marketing quyền năng nhất là WOMM: marketing truyền miệng (word-of-mouth marketing). <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>Đây là khi mọi người (người mua / buyers) kể cho gia đình và bạn bè nghe về một sản phẩm<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Option I: buyers)</strong>Marketing truyền miệng đơn giản là việc những <strong>người mua hàng / người tiêu dùng (buyers)</strong> truyền tai nhau thông tin sản phẩm.</span></span> – và sự phát triển của mạng xã hội khiến hình thức này thậm chí còn trở nên hiệu quả hơn bao giờ hết.`
             },
             {
-                pNum: 'B',
-                en: `On that last journey Mark succeeded in breaking – by as much as 17 days – the world record for cycling across Africa. To do this, he rode 160 miles a day. He explains that it was certainly not easy to keep up this speed. There were, for example, <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>long delays at border crossings and queues of traffic often stopped him from travelling fast. Broken roads caused problems and the weather also affected how fast he could go<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Paragraph B)</strong>Lists specific reasons why making fast progress was difficult: border delays, traffic jams, broken roads, and bad weather conditions.</span></span>.`,
-                vi: `Trong chuyến hành trình cuối cùng đó, Mark đã thành công trong việc phá kỷ lục thế giới về việc đạp xe xuyên châu Phi – sớm hơn tới 17 ngày. Để làm được điều này, anh đã đạp xe 160 dặm mỗi ngày. Anh giải thích rằng chắc chắn không hề dễ dàng để duy trì tốc độ này. Chẳng hạn, <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>sự chậm trễ kéo dài tại các cửa khẩu biên giới và những đoàn xe ùn tắc giao thông thường ngăn cản anh di chuyển nhanh. Đường sá hư hỏng gây ra nhiều trở ngại và thời tiết cũng ảnh hưởng đến tốc độ di chuyển của anh<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Đoạn B)</strong>Nêu các lý do khiến việc di chuyển tiến độ gặp khó khăn: ách tắc tại cửa khẩu, kẹt xe, đường hư hỏng và thời tiết khắc nghiệt.</span></span>.`
+                pNum: '2',
+                en: `Word-of-mouth marketing has both advantages and disadvantages for businesses. Firstly, a main advantage is that <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>it costs the business nothing. If a customer likes a product or service, he or she just tells their friends and family about it without getting or expecting any payment<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Option L: money)</strong>A big advantage is that no <strong>money</strong> is involved (it costs the business nothing / without any payment).</span></span>. So, <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>word-of-mouth marketing has always been especially useful for small and local businesses, which may have small advertising budgets<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Option B: value)</strong>This zero-cost feature has particular <strong>value</strong> (especially useful) for small local enterprises with limited budgets.</span></span>.`,
+                vi: `Marketing truyền miệng mang lại cả những ưu điểm lẫn nhược điểm đối với các doanh nghiệp. Trước hết, lợi thế chính là <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>nó hoàn toàn không tốn kém bất kỳ chi phí nào của doanh nghiệp (no money). Nếu một khách hàng ưng ý một sản phẩm hay dịch vụ, họ chỉ việc kể lại cho bạn bè và người thân mà không nhận hay đòi hỏi bất kỳ khoản thù lao nào<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Option L: money)</strong>Lợi thế lớn nhất là không liên quan đến <strong>tiền bạc (money)</strong> (doanh nghiệp không mất tiền / không phải chi trả).</span></span>. Do đó, <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>marketing truyền miệng luôn mang lại giá trị đặc biệt (particular value) cho các doanh nghiệp nhỏ và địa phương, những nơi vốn có ngân sách quảng cáo hạn hẹp<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Option B: value)</strong>Đặc điểm không mất phí này có <strong>giá trị (value)</strong> đặc biệt (đặc biệt hữu ích) cho các cơ sở kinh doanh nhỏ lẻ.</span></span>.`
             },
             {
-                pNum: 'C',
-                en: `On all his journeys Mark has been interested by the landscapes he has seen. He says these often differ from what he expected. 'When people think about Patagonia, for instance, they imagine the beautiful mountains and lakes you see in holiday brochures; but when I cycled there, I realised that large parts of it are just miles and miles of grassland. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>What is romantic and exciting for most holidaymakers can become very boring when you see nothing else for several days<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Paragraph C)</strong>An example of a place (Patagonia) where Mark felt bored due to endless, monotonous miles of grassland for days.</span></span>.'`,
-                vi: `Trong tất cả các chuyến đi của mình, Mark luôn bị cuốn hút bởi những cảnh quan thiên nhiên mà anh đã chiêm ngưỡng. Anh cho biết chúng thường khác xa so với những gì anh từng kỳ vọng. 'Chẳng hạn khi mọi người nghĩ về vùng Patagonia, họ thường hình dung ra những ngọn núi hùng vĩ và những hồ nước thơ mộng như trong tờ gấp quảng cáo du lịch; nhưng khi tôi đạp xe qua đó, tôi nhận ra rằng phần lớn diện tích chỉ là những dải đồng cỏ trải dài ngút ngàn. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Những điều lãng mạn và thú vị đối với hầu hết du khách có thể trở nên vô cùng nhàm chán khi bạn chẳng nhìn thấy gì khác ngoài đồng cỏ trong suốt nhiều ngày liên tục<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Đoạn C)</strong>Ví dụ về một địa điểm (Patagonia) nơi Mark cảm thấy buồn chán vì cảnh quan đồng cỏ đơn điệu kéo dài nhiều ngày.</span></span>.'`
+                pNum: '3',
+                en: `There are other benefits to word-of-mouth marketing. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>People trust a friend’s recommendation more than an advertisement<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Option G: faith)</strong>People have more <strong>faith</strong> (trust) in a friend’s recommendation than in commercial advertisements.</span></span>. Magazine and television advertising is based on the idea of reaching a lot of customers and <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>hoping that some of them will buy the product. In contrast, although one happy customer can only tell their friends about a positive experience with a business, a personal recommendation from a friend has more influence than a professional advertisement<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Option E: sales)</strong>Personal recommendation is often more likely to lead to <strong>sales</strong> (buying the product) than broadcast advertising.</span></span>.`,
+                vi: `Còn có những lợi ích khác của marketing truyền miệng. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Mọi người đặt niềm tin (faith / trust) vào lời giới thiệu của một người bạn nhiều hơn là vào một mẩu quảng cáo thương mại<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Option G: faith)</strong>Người tiêu dùng có nhiều <strong>niềm tin (faith)</strong> vào người thân quen hơn là các chiến dịch quảng cáo truyền thông.</span></span>. Quảng cáo trên tạp chí và truyền hình dựa trên ý tưởng tiếp cận một lượng lớn khách hàng và <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>hy vọng rằng một số người trong số họ sẽ mua sản phẩm (lead to sales). Ngược lại, mặc dù một khách hàng hài lòng chỉ có thể kể với bạn bè về trải nghiệm tích cực, lời giới thiệu mang tính cá nhân từ một người bạn lại có sức ảnh hưởng vượt trội hơn so với một mẩu quảng cáo chuyên nghiệp<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Option E: sales)</strong>Khả năng biến lời giới thiệu thành <strong>doanh số bán hàng (sales)</strong> cao hơn so với quảng cáo đại trà.</span></span>.`
             },
             {
-                pNum: 'D',
-                en: `Of all the landscapes he has seen, Mark has particularly enjoyed some of the wild parts of Texas and the Deep South of the USA. 'I remember waking before daylight. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>I had to remove the ice from my tent when it was still dark<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Paragraph D)</strong>Reference to severe freezing cold weather: Mark had to scrape ice off his tent before daylight in the desert.</span></span>. Then I set out on roads with absolutely no one else around. I was in the middle of this enormous desert and all I could hear was the sound of animals calling. When I look back now, it was one of my favourite times: to be totally alone in that environment.'`,
-                vi: `Trong số tất cả những cảnh quan từng đi qua, Mark đặc biệt yêu thích một số vùng hoang dã của bang Texas và miền Nam nước Mỹ. 'Tôi nhớ mình đã thức dậy trước khi bình minh ló rạng. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Tôi đã phải gạt lớp băng đá đóng trên lều của mình khi trời vẫn còn tối đen<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Đoạn D)</strong>Đề cập đến thời tiết lạnh giá khắc nghiệt: Mark phải gạt băng đóng trên lều trước khi trời sáng giữa sa mạc.</span></span>. Sau đó, tôi bắt đầu lên đường trên những cung đường hoàn toàn không có một bóng người xung quanh. Tôi ở giữa sa mạc rộng lớn này và tất cả những gì tôi có thể nghe thấy là tiếng kêu của muôn loài động vật. Khi nhìn lại bây giờ, đó là một trong những khoảnh khắc yêu thích nhất của tôi: được hoàn toàn một mình giữa môi trường đó.'`
+                pNum: '4',
+                en: `However, there are, of course, problems with word-of-mouth advertising and the main one is that <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>companies cannot manage it. For example, they cannot increase it nor can they control what people say<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Option K: influence)</strong>Firms have no <strong>influence</strong> (cannot manage or control) over what is organically said.</span></span>. <span class="ans-target ans-target-q7" data-q="q7"><span class="q-badge bg-teal-600">Q7</span>Customers may say negative things about the products<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q7 Evidence (Option D: dislike)</strong>Buyers may share their <strong>dislike</strong> (say negative things) of an item.</span></span> and <span class="ans-target ans-target-q8" data-q="q8"><span class="q-badge bg-rose-600">Q8</span>this can discourage people from buying them<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q8 Evidence (Option A: problem)</strong>Discouraging purchases creates a major <strong>problem</strong> for businesses.</span></span>.`,
+                vi: `Tuy nhiên, tất nhiên cũng tồn tại những mặt trái đối với quảng cáo truyền miệng và điều mấu chốt là <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>các công ty hoàn toàn không thể quản lý hay kiểm soát được nó (no influence). Chẳng hạn, họ không thể thúc ép tăng lượng truyền miệng cũng như không thể kiểm soát những gì mọi người sẽ nói<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Option K: influence)</strong>Doanh nghiệp không có <strong>tầm ảnh hưởng / quyền kiểm soát (influence)</strong> đối với những gì khách hàng phát biểu.</span></span>. <span class="ans-target ans-target-q7" data-q="q7"><span class="q-badge bg-teal-600">Q7</span>Khách hàng có thể lan truyền những đánh giá tiêu cực (share dislike) về sản phẩm<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 7 (Option D: dislike)</strong>Người mua chia sẻ <strong>sự không hài lòng / ác cảm (dislike)</strong> khi có trải nghiệm không tốt.</span></span> và <span class="ans-target ans-target-q8" data-q="q8"><span class="q-badge bg-rose-600">Q8</span>điều này có thể làm nản lòng những người có ý định mua hàng, tạo nên một vấn đề nan giải (major problem) cho doanh nghiệp<span class="explanation-popover"><strong class="text-teal-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 8 (Option A: problem)</strong>Việc khách hàng bị nản lòng không mua tạo ra một <strong>vấn đề lớn (problem)</strong> đối với doanh nghiệp.</span></span>.`
             },
             {
-                pNum: 'E',
-                en: `His travels have also taught Mark about how differently people around the world view cycling. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>In Europe, North America and Australia, cycling is a sport which people do mainly to keep fit and have fun. But in many places Mark visited, a bicycle is something rather different. It is a type of transport that many people dream of getting one day. People who are used to walking everywhere wish they had enough money to buy a bike in order to get from A to B much more quickly and easily<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Paragraph E)</strong>Contrasting attitudes towards bicycles: Western countries view cycling as fitness/recreation, while poorer communities view it as a coveted, life-changing means of daily transport.</span></span>. People who see a bicycle that way often found it hard to understand why Mark wanted to cycle such long distances for no obvious reason.`,
-                vi: `Những chuyến đi cũng đã dạy cho Mark về cách nhìn nhận rất khác nhau của mọi người trên khắp thế giới đối với việc đạp xe. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Ở Châu Âu, Bắc Mỹ và Úc, đạp xe là một môn thể thao mà mọi người tập luyện chủ yếu để giữ gìn vóc dáng và giải trí. Nhưng ở nhiều nơi Mark từng đặt chân tới, chiếc xe đạp lại mang một ý nghĩa rất khác. Đó là một phương tiện giao thông mà nhiều người mơ ước một ngày nào đó sẽ sở hữu. Những người đã quen với việc đi bộ khắp nơi chỉ mong có đủ tiền mua một chiếc xe đạp để đi lại từ điểm A đến điểm B nhanh chóng và dễ dàng hơn nhiều<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Đoạn E)</strong>Các thái độ khác nhau đối với xe đạp: phương Tây coi là thể thao rèn luyện sức khỏe, còn các nước nghèo coi là phương tiện di chuyển thiết yếu đáng mơ ước.</span></span>. Những người nhìn nhận xe đạp theo cách đó thường cảm thấy khó hiểu tại sao Mark lại muốn đạp xe những quãng đường dài như vậy mà không vì bất kỳ lý do thiết thực rõ ràng nào.`
+                pNum: '5',
+                en: `Interactive and social media have made word-of-mouth marketing much more powerful. When someone tells a friend in a coffee shop about the wonderful new phone they’ve just bought, they are speaking to one person. When they write about it on their social network page, they are telling all their friends. If they mention it on a blog or on YouTube, they are telling anyone with web access. The impact of this can be enormous.`,
+                vi: `Các phương tiện truyền thông tương tác và mạng xã hội đã khiến marketing truyền miệng trở nên mạnh mẽ hơn gấp bội. Khi ai đó nói với bạn bè trong quán cà phê về chiếc điện thoại mới tuyệt vời mà họ vừa mua, họ chỉ đang nói với một người. Nhưng khi họ viết về nó trên trang mạng xã hội cá nhân, họ đang chia sẻ cho tất cả bạn bè của mình. Nếu họ nhắc đến nó trên một blog hoặc trên YouTube, họ đang truyền tải thông điệp tới bất kỳ ai có kết nối internet. Tác động của điều này có thể vô cùng to lớn.`
             },
             {
-                pNum: 'F',
-                en: `But for Mark, cycling is by far the best way to see the world. 'It's never boring when you're cycling. You notice everything, especially when riding alone. When you cycle, you get a wonderful view of the world. It is amazing to see how the people and cultures change from one place to the next.' The kindness of the people Mark met was what impressed him most. 'Even in the poorest countries, I never had to ask a second person for a place to stay.'`,
-                vi: `Nhưng đối với Mark, đạp xe cho đến nay vẫn là cách tốt nhất để khám phá thế giới. 'Đạp xe không bao giờ mang lại cảm giác nhàm chán. Bạn nhận thấy mọi chi tiết, đặc biệt là khi đi một mình. Khi đạp xe, bạn có được một góc nhìn tuyệt vời về thế giới. Thật tuyệt vời khi được chứng kiến con người và văn hóa thay đổi như thế nào từ vùng đất này sang vùng đất khác.' Sự tử tế của những con người Mark gặp là điều khiến anh ấn tượng sâu sắc nhất. 'Ngay cả ở những quốc gia nghèo nhất, tôi chưa bao giờ phải hỏi đến người thứ hai để tìm được một chỗ nghỉ chân qua đêm.'`
-            },
-            {
-                pNum: 'G',
-                en: `So how does Mark feel at the end of one of his big adventures? He says that, <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>because the projects involve huge effort, time and costs, his main emotion is relief that he has completed the trip successfully<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Paragraph G)</strong>A comment on the huge expense and financial costs associated with planning and organising a global cycling expedition.</span></span>. 'It is not until later that you have time to think about what the journey meant, the landscapes you saw and the people you met. And then you start thinking about where you might go next.'`,
-                vi: `Vậy Mark cảm thấy thế nào khi kết thúc một trong những chuyến phiêu lưu vĩ đại của mình? Anh chia sẻ rằng, <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>bởi vì các dự án đòi hỏi nỗ lực, thời gian và chi phí tiền bạc khổng lồ, cảm xúc chính của anh là sự nhẹ nhõm khi đã hoàn thành chuyến đi một cách thành công<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Đoạn G)</strong>Bình luận về sự tốn kém và chi phí tài chính khổng lồ (costs/expenses) khi tổ chức một chuyến đạp xe thám hiểm.</span></span>. 'Mãi đến sau này bạn mới có thời gian suy ngẫm về ý nghĩa thực sự của hành trình, những cảnh quan bạn đã chiêm ngưỡng và những con người bạn đã gặp. Và rồi bạn bắt đầu nghĩ về điểm đến tiếp theo của mình.'`
+                pNum: '6',
+                en: `Of course, the trust that people have in a friend’s recommendation is stronger than their trust in a review that a stranger posts online. Even so, there is evidence to show that online reviews frequently determine the decision: to buy or not to buy.`,
+                vi: `Tất nhiên, sự tin tưởng mà mọi người dành cho lời khuyên của một người bạn vẫn mạnh mẽ hơn niềm tin vào một bài đánh giá do một người xa lạ đăng tải trực tuyến. Dù vậy, vẫn có bằng chứng rõ ràng chỉ ra rằng các bài đánh giá trực tuyến thường xuyên đóng vai trò quyết định: mua hay không mua.`
             }
+        ];
+
+        const wordBankList = [
+            { key: 'A', text: 'problem' },
+            { key: 'B', text: 'value' },
+            { key: 'C', text: 'companies' },
+            { key: 'D', text: 'dislike' },
+            { key: 'E', text: 'sales' },
+            { key: 'F', text: 'dangers' },
+            { key: 'G', text: 'faith' },
+            { key: 'I', text: 'buyers' },
+            { key: 'K', text: 'influence' },
+            { key: 'L', text: 'money' }
         ];
 
         const questionsData = [
             {
                 id: 'q1',
                 num: '1',
-                type: 'Matching Information',
-                ansKey: 'Paragraph C',
-                ansTitle: 'an example of a place where Mark felt bored',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'L',
+                ansTitle: 'money',
                 badgeColor: 'bg-yellow-600',
-                prompt: 'an example of a place where Mark felt bored',
-                explEn: 'Paragraph C gives the example of Patagonia: while tourists imagine idyllic mountains and lakes from holiday brochures, cycling through endless grasslands for days became very boring ("can become very boring when you see nothing else for several days").',
-                explVi: 'Đoạn C đưa ra ví dụ về địa danh Patagonia: trong khi khách du lịch nghĩ đến núi và hồ thơ mộng, việc đạp xe qua hàng dặm đồng cỏ đơn điệu suốt nhiều ngày khiến Mark cảm thấy vô cùng nhàm chán -> Paragraph C.',
+                prompt: 'A big advantage of word-of-mouth marketing is that no 1 _________________ is involved.',
+                explEn: 'Paragraph 2 highlights: "...a main advantage is that it costs the business nothing. If a customer likes a product... he or she just tells their friends... without getting or expecting any payment." Thus, no "money" (L) is involved.',
+                explVi: 'Đoạn 2 nêu rõ: "lợi thế chính là nó không làm doanh nghiệp tốn xu nào (costs the business nothing... without getting or expecting any payment)" -> Không liên quan đến tiền bạc: Option L (money).',
                 synonyms: [
-                    { q: 'felt bored', p: 'can become very boring when you see nothing else' },
-                    { q: 'an example of a place', p: 'Patagonia / miles and miles of grassland' }
+                    { q: 'no money is involved', p: 'costs the business nothing / without any payment' },
+                    { q: 'big advantage', p: 'main advantage' }
                 ]
             },
             {
                 id: 'q2',
                 num: '2',
-                type: 'Matching Information',
-                ansKey: 'Paragraph G',
-                ansTitle: 'a comment on the expense of organising a cycle trip',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'I',
+                ansTitle: 'buyers',
                 badgeColor: 'bg-sky-600',
-                prompt: 'a comment on the expense of organising a cycle trip',
-                explEn: 'Paragraph G discusses the enormous financial and personal toll of these expeditions: "because the projects involve huge effort, time and costs, his main emotion is relief..."',
-                explVi: 'Đoạn G bình luận về chi phí tài chính và công sức to lớn: "vì các dự án đòi hỏi nỗ lực, thời gian và chi phí tiền bạc khổng lồ (huge costs), cảm xúc chính của anh là nhẹ nhõm" -> Paragraph G.',
+                prompt: 'It is simply a matter of 2 _________________ passing on information.',
+                explEn: 'Paragraph 1 explains WOMM occurs when: "...people tell their family and friends about a product". "People / customers" who bought the item matches "buyers" (I).',
+                explVi: 'Đoạn 1 giải thích: "đó là khi mọi người (người tiêu dùng/khách hàng) kể cho gia đình và bạn bè nghe về sản phẩm" -> Việc những người mua hàng (buyers) truyền tai thông tin: Option I (buyers).',
                 synonyms: [
-                    { q: 'expense', p: 'costs / involve huge costs' },
-                    { q: 'organising a cycle trip', p: 'the projects / completed the trip' }
+                    { q: 'buyers passing on information', p: 'people / customers tell family and friends about a product' }
                 ]
             },
             {
                 id: 'q3',
                 num: '3',
-                type: 'Matching Information',
-                ansKey: 'Paragraph A',
-                ansTitle: 'a description of the extent of Mark’s travels',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'B',
+                ansTitle: 'value',
                 badgeColor: 'bg-emerald-600',
-                prompt: 'a description of the extent of Mark’s travels',
-                explEn: 'Paragraph A details the massive distances and routes Mark covered: 18,296 miles around the world (2008), 13,080 miles across the Americas (2010), and 6,762 miles from Cairo to Cape Town (2015).',
-                explVi: 'Đoạn A miêu tả cụ thể phạm vi và độ dài quãng đường Mark đã đi: 18.296 dặm vòng quanh thế giới, 13.080 dặm xuyên châu Mỹ và 6.762 dặm xuyên châu Phi -> Paragraph A.',
+                prompt: 'This feature has particular 3 _________________ for small businesses.',
+                explEn: 'Paragraph 2 states: "...word-of-mouth marketing has always been especially useful for small and local businesses, which may have small advertising budgets." "Especially useful" corresponds to having particular "value" (B).',
+                explVi: 'Đoạn 2 ghi: "marketing truyền miệng luôn đặc biệt hữu ích (especially useful) cho các doanh nghiệp nhỏ..." -> Mang lại giá trị (value) đặc biệt: Option B (value).',
                 synonyms: [
-                    { q: 'extent of Mark’s travels', p: '18,296 miles around the world / 13,080 mile journey / 6,762 miles' },
-                    { q: 'long distance trips', p: 'travels' }
+                    { q: 'has particular value', p: 'especially useful' },
+                    { q: 'small businesses', p: 'small and local businesses with small advertising budgets' }
                 ]
             },
             {
                 id: 'q4',
                 num: '4',
-                type: 'Matching Information',
-                ansKey: 'Paragraph D',
-                ansTitle: 'a reference to how cold the weather was',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'G',
+                ansTitle: 'faith',
                 badgeColor: 'bg-pink-600',
-                prompt: 'a reference to how cold the weather was',
-                explEn: 'Paragraph D refers to extreme freezing temperatures in the desert: "I had to remove the ice from my tent when it was still dark" before setting off at dawn.',
-                explVi: 'Đoạn D đề cập đến thời tiết đóng băng giá rét khi Mark phải gạt lớp băng đá đóng trên lều của mình lúc trời còn tối trước khi đạp xe ("remove the ice from my tent") -> Paragraph D.',
+                prompt: 'People have more 4 _________________ in friends than adverts.',
+                explEn: 'Paragraph 3 notes: "People trust a friend’s recommendation more than an advertisement." Having "trust" directly matches having "faith" (G).',
+                explVi: 'Đoạn 3 chỉ rõ: "Mọi người tin tưởng (trust) vào lời giới thiệu của bạn bè hơn là quảng cáo" -> Có nhiều niềm tin (faith) hơn: Option G (faith).',
                 synonyms: [
-                    { q: 'how cold the weather was', p: 'remove the ice from my tent when it was still dark' },
-                    { q: 'reference to cold weather', p: 'ice on tent / freezing desert night' }
+                    { q: 'have more faith in', p: 'trust a friend’s recommendation more' },
+                    { q: 'adverts', p: 'an advertisement' }
                 ]
             },
             {
                 id: 'q5',
                 num: '5',
-                type: 'Matching Information',
-                ansKey: 'Paragraph B',
-                ansTitle: 'some reasons why making progress can be difficult',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'E',
+                ansTitle: 'sales',
                 badgeColor: 'bg-purple-600',
-                prompt: 'some reasons why making progress can be difficult',
-                explEn: 'Paragraph B lists the various obstacles that slowed Mark down across Africa: long delays at border checkpoints, dense traffic queues, broken unpaved roads, and adverse weather.',
-                explVi: 'Đoạn B liệt kê hàng loạt nguyên nhân cản trở tốc độ di chuyển: chờ đợi ở cửa khẩu, kẹt xe, đường sá bị hỏng và thời tiết cản trở ("long delays at border crossings, queues of traffic, broken roads") -> Paragraph B.',
+                prompt: 'It is often more likely to lead to 5 _________________.',
+                explEn: 'Paragraph 3 contrasts broad TV advertising with peer recommendations, which have "more influence than a professional advertisement" in making people "buy the product" (generating "sales" - E).',
+                explVi: 'Đoạn 3 đối chiếu: lời giới thiệu cá nhân có sức ảnh hưởng vượt trội khiến người nghe quyết định mua hàng ("buy the product"), từ đó thúc đẩy doanh số bán hàng: Option E (sales).',
                 synonyms: [
-                    { q: 'making progress can be difficult', p: 'not easy to keep up this speed / stopped him from travelling fast' },
-                    { q: 'reasons', p: 'delays at border crossings / queues of traffic / broken roads / weather' }
+                    { q: 'lead to sales', p: 'buy the product / more influence than a professional advertisement' }
                 ]
             },
             {
                 id: 'q6',
                 num: '6',
-                type: 'Matching Information',
-                ansKey: 'Paragraph E',
-                ansTitle: 'examples of different attitudes towards the bicycle',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'K',
+                ansTitle: 'influence',
                 badgeColor: 'bg-orange-600',
-                prompt: 'examples of different attitudes towards the bicycle',
-                explEn: 'Paragraph E compares how people in Western countries treat cycling as a leisure sport/fitness activity, whereas residents in developing nations view a bicycle as a prized, life-enhancing utility vehicle.',
-                explVi: 'Đoạn E so sánh các thái độ khác nhau: người phương Tây coi xe đạp là thể thao và giải trí, trong khi người dân nghèo xem xe đạp là phương tiện đi lại đáng mơ ước để tiết kiệm thời gian đi bộ -> Paragraph E.',
+                prompt: 'Disadvantages are that firms have no 6 _________________ over what is said…',
+                explEn: 'Paragraph 4 laments: "...companies cannot manage it. For example, they cannot increase it nor can they control what people say." Having no control or management means having no "influence" (K).',
+                explVi: 'Đoạn 4 nêu nhược điểm: "các công ty không thể quản lý hay kiểm soát những gì mọi người nói (cannot manage it / cannot control what people say)" -> Không có tầm ảnh hưởng hay quyền chi phối: Option K (influence).',
                 synonyms: [
-                    { q: 'different attitudes towards the bicycle', p: 'sport to keep fit and have fun vs. type of transport many dream of getting' },
-                    { q: 'view cycling', p: 'attitudes towards the bicycle' }
+                    { q: 'have no influence over', p: 'cannot manage / cannot control what people say' },
+                    { q: 'firms', p: 'companies' }
+                ]
+            },
+            {
+                id: 'q7',
+                num: '7',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'D',
+                ansTitle: 'dislike',
+                badgeColor: 'bg-teal-600',
+                prompt: '…and buyers may share their 7 _________________ of an item,…',
+                explEn: 'Paragraph 4 states: "Customers may say negative things about the products..." Sharing negative opinions about an item means sharing their "dislike" (D).',
+                explVi: 'Đoạn 4 cảnh báo: "Khách hàng có thể nói những điều tiêu cực về sản phẩm (say negative things about the products)" -> Chia sẻ sự không ưa / ác cảm đối với món đồ: Option D (dislike).',
+                synonyms: [
+                    { q: 'share their dislike', p: 'say negative things about the products' }
+                ]
+            },
+            {
+                id: 'q8',
+                num: '8',
+                type: 'Summary Completion with Word Bank',
+                ansKey: 'A',
+                ansTitle: 'problem',
+                badgeColor: 'bg-rose-600',
+                prompt: '…creating a major 8 _________________ for business.',
+                explEn: 'Paragraph 4 concludes: "...and this can discourage people from buying them." Turning potential buyers away presents a severe "problem" (A) for the business.',
+                explVi: 'Đoạn 4 kết luận: điều này khiến người khác nản lòng không mua hàng ("discourage people from buying them"), tạo ra một trở ngại / rắc rối lớn cho doanh nghiệp: Option A (problem).',
+                synonyms: [
+                    { q: 'creating a major problem for business', p: 'discourage people from buying them / problems with word-of-mouth' }
                 ]
             }
         ];
 
         const vocabList = [
             {
-                word: 'expedition',
-                phonetic: '/ˌek.spəˈdɪʃ.ən/',
-                vi: 'Cuộc thám hiểm / Chuyến hành trình gian nan',
-                enDef: 'A journey undertaken by a group of people or an individual with a particular purpose, especially exploration or scientific research.',
+                word: 'word-of-mouth marketing',
+                phonetic: '/wɜːd əv ˈmaʊθ ˈmɑː.kɪ.tɪŋ/',
+                vi: 'Marketing truyền miệng (WOMM)',
+                enDef: 'An unpaid form of promotion in which satisfied customers tell other people how much they like a business, product, or service.',
                 type: 'noun',
-                category: 'travel',
-                context: 'Mark Beaumont has completed a number of amazing long-distance expeditions on his bike.',
-                collocation: 'go on an expedition / cycling expedition'
+                category: 'marketing',
+                context: 'One of the most powerful forms of marketing is word-of-mouth marketing (WOMM).',
+                collocation: 'harness word-of-mouth marketing / organic word-of-mouth'
             },
             {
-                word: 'break a record',
-                phonetic: '/breɪk ə ˈrek.ɔːd/',
-                vi: 'Phá kỷ lục (thế giới)',
-                enDef: 'To perform better or faster than the best previously recorded achievement in a sport or activity.',
+                word: 'peer recommendation',
+                phonetic: '/pɪər ˌrek.ə.menˈdeɪ.ʃən/',
+                vi: 'Lời khuyên / Giới thiệu từ bạn bè đồng trang lứa',
+                enDef: 'An endorsement or suggestion made by an acquaintance or friend rather than a commercial advertisement.',
+                type: 'noun',
+                category: 'marketing',
+                context: 'People trust a friend’s recommendation more than a commercial advertisement.',
+                collocation: 'rely on peer recommendation / personal recommendation'
+            },
+            {
+                word: 'advertising budget',
+                phonetic: '/ˈæd.və.taɪ.zɪŋ ˈbʌdʒ.ɪt/',
+                vi: 'Ngân sách dành cho quảng cáo',
+                enDef: 'The estimated amount of money a company plans to spend on promotional activities over a specific timeframe.',
+                type: 'noun',
+                category: 'marketing',
+                context: 'Word-of-mouth marketing is especially useful for small businesses with small advertising budgets.',
+                collocation: 'allocate an advertising budget / limited advertising budget'
+            },
+            {
+                word: 'social proof',
+                phonetic: '/ˈsəʊ.ʃəl pruːf/',
+                vi: 'Bằng chứng xã hội / Hiệu ứng số đông',
+                enDef: 'A psychological phenomenon where people copy the actions or purchasing decisions of others in an attempt to undertake correct behavior.',
+                type: 'noun',
+                category: 'marketing',
+                context: 'Online reviews provide crucial social proof that frequently determines purchasing decisions.',
+                collocation: 'compelling social proof / customer testimonials'
+            },
+            {
+                word: 'brand credibility',
+                phonetic: '/brænd ˌkred.əˈbɪl.ə.ti/',
+                vi: 'Độ uy tín / Mức độ đáng tin cậy của thương hiệu',
+                enDef: 'The believability and trustworthiness of product claims delivered by a brand.',
+                type: 'noun',
+                category: 'marketing',
+                context: 'Organic consumer praise strengthens brand credibility much more effectively than paid adverts.',
+                collocation: 'enhance brand credibility / damage brand credibility'
+            },
+            {
+                word: 'discourage',
+                phonetic: '/dɪˈskʌr.ɪdʒ/',
+                vi: 'Làm nản lòng / Ngăn cản ý định',
+                enDef: 'To cause someone to lose enthusiasm or confidence; to deter from a course of action.',
                 type: 'verb',
                 category: 'verb',
-                context: 'Mark succeeded in breaking the world record for cycling across Africa by 17 days.',
-                collocation: 'break the world record / hold a record'
+                context: 'Negative feedback can easily discourage prospective consumers from purchasing an item.',
+                collocation: 'discourage from buying / discourage potential buyers'
             },
             {
-                word: 'border crossing',
-                phonetic: '/ˈbɔː.dər ˌkrɒs.ɪŋ/',
-                vi: 'Cửa khẩu / Điểm qua biên giới',
-                enDef: 'A checkpoint where travellers or vehicles pass between two adjacent countries.',
+                word: 'viral impact',
+                phonetic: '/ˈvaɪə.rəl ˈɪm.pækt/',
+                vi: 'Tác động lan truyền nhanh chóng trên mạng',
+                enDef: 'The rapid and widespread circulation of information, reviews, or media across online networks.',
                 type: 'noun',
-                category: 'travel',
-                context: 'There were long delays at border crossings that stopped him from travelling fast.',
-                collocation: 'border crossing delays / passport control'
+                category: 'marketing',
+                context: 'If someone posts a review on YouTube or TikTok, the viral impact can be enormous.',
+                collocation: 'generate viral impact / viral marketing campaign'
             },
             {
-                word: 'holiday brochure',
-                phonetic: '/ˈhɒl.ə.deɪ ˌbrəʊ.ʃər/',
-                vi: 'Tờ gấp / Sách quảng cáo du lịch',
-                enDef: 'A promotional magazine or pamphlet containing photos and descriptions of holiday destinations.',
+                word: 'consumer trust',
+                phonetic: '/kənˈsjuː.mər trʌst/',
+                vi: 'Niềm tin của người tiêu dùng',
+                enDef: 'The confidence that customers have in the reliability, honesty, and quality of a company or product.',
                 type: 'noun',
-                category: 'travel',
-                context: 'They imagine the beautiful mountains and lakes you see in holiday brochures.',
-                collocation: 'travel brochure / glossy holiday brochure'
-            },
-            {
-                word: 'grassland',
-                phonetic: '/ˈɡrɑːs.lænd/',
-                vi: 'Đồng cỏ thảo nguyên ngút ngàn',
-                enDef: 'A large, open area of country covered with grass, especially one used for grazing.',
-                type: 'noun',
-                category: 'travel',
-                context: 'I realised that large parts of Patagonia are just miles and miles of grassland.',
-                collocation: 'open grassland / vast grasslands'
-            },
-            {
-                word: 'freezing temperature',
-                phonetic: '/ˈfriː.zɪŋ ˈtem.prə.tʃər/',
-                vi: 'Nhiệt độ đóng băng / Giá rét buốt',
-                enDef: 'A temperature at or below 0°C (32°F) where moisture turns into frost or solid ice.',
-                type: 'noun',
-                category: 'travel',
-                context: 'I had to remove the ice from my tent in freezing temperatures before daylight.',
-                collocation: 'sub-zero temperatures / freezing cold'
-            },
-            {
-                word: 'means of transport',
-                phonetic: '/miːnz əv ˈtræn.spɔːt/',
-                vi: 'Phương tiện đi lại / Giao thông',
-                enDef: 'Any vehicle or system used for carrying passengers or goods from one location to another.',
-                type: 'noun',
-                category: 'travel',
-                context: 'A bicycle is a type of transport that many people in rural areas dream of owning.',
-                collocation: 'essential means of transport / public transport'
-            },
-            {
-                word: 'relief',
-                phonetic: '/rɪˈliːf/',
-                vi: 'Sự nhẹ nhõm / Trút bỏ gánh nặng',
-                enDef: 'A feeling of reassurance and relaxation following release from anxiety, distress, or extreme physical exertion.',
-                type: 'noun',
-                category: 'travel',
-                context: 'Because the projects involve huge effort and costs, his main emotion is relief.',
-                collocation: 'breathe a sigh of relief / sense of relief'
+                category: 'marketing',
+                context: 'People have significantly higher consumer trust in organic friend reviews than corporate campaigns.',
+                collocation: 'build consumer trust / earn consumer trust'
             }
         ];
     </script>
@@ -621,7 +657,7 @@
                 // Arrow Toggle
                 document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
                     this.showArrows = !this.showArrows;
-                    e.currentTarget.classList.toggle('bg-sky-600');
+                    e.currentTarget.classList.toggle('bg-teal-600');
                     e.currentTarget.classList.toggle('bg-slate-300');
                     e.currentTarget.classList.toggle('text-slate-700');
                     if (!this.showArrows) {
@@ -678,17 +714,17 @@
 
                 // Flashcards vs Quiz Mode Switcher
                 document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
-                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('bg-white', 'bg-teal-600');
                     e.target.classList.replace('text-slate-700', 'text-white');
-                    document.getElementById('btn-mode-quiz').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-teal-600', 'bg-white');
                     document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
                     document.getElementById('flashcard-view').classList.remove('hidden');
                     document.getElementById('quiz-view').classList.add('hidden');
                 });
                 document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
-                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('bg-white', 'bg-teal-600');
                     e.target.classList.replace('text-slate-700', 'text-white');
-                    document.getElementById('btn-mode-flashcard').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-teal-600', 'bg-white');
                     document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
                     document.getElementById('quiz-view').classList.remove('hidden');
                     document.getElementById('flashcard-view').classList.add('hidden');
@@ -700,8 +736,8 @@
             renderPassage() {
                 const container = document.getElementById('passage-container');
                 let html = `
-                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">A Different Way to See the World</h2>
-                    <p class="text-xs text-center text-slate-500 italic mb-6">Mark Beaumont found that many countries look different from a bicycle. Our reporter writes about Mark's experience of cycling round the world.</p>
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">Word-of-Mouth Marketing (WOMM)</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Investigating the psychological mechanism, cost benefits, lack of control, and social media viral power of peer recommendations.</p>
                 `;
 
                 passageData.forEach(p => {
@@ -713,11 +749,11 @@
                         html += `
                             <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
                                 <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
-                                    <strong class="text-xs font-bold text-sky-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
                                     ${p.en}
                                 </div>
                                 <div class="text-slate-600 text-sm leading-relaxed pt-1">
-                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
+                                    <strong class="text-xs font-bold text-teal-800 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
                                     ${p.vi}
                                 </div>
                             </div>
@@ -732,28 +768,43 @@
                 const container = document.getElementById('explanations-list');
                 let html = `
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
-                        <div class="flex items-center space-x-2 text-sky-700 font-bold text-xs uppercase tracking-wide mb-1">
+                        <div class="flex items-center space-x-2 text-teal-700 font-bold text-xs uppercase tracking-wide mb-1">
                             <i class="fa-solid fa-list-check"></i>
-                            <span>Matching Information Rationale & Evidence Guide</span>
+                            <span>Summary Completion with Word Bank Guide</span>
                         </div>
-                        <h2 class="text-xl font-extrabold text-slate-900">A Different Way to See the World — Phân Tích Câu 1–6</h2>
-                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                        <h2 class="text-xl font-extrabold text-slate-900">Word-of-Mouth Marketing — Câu 1–8</h2>
+                        <p class="text-xs text-slate-500 mt-1">Hoàn thành đoạn tóm tắt bằng cách chọn từ trong <strong>Hộp Từ Vựng (Word Bank A–L)</strong>. Click "Xem bài đọc" để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                    </div>
+
+                    <!-- Word Bank Reference Card -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                        <h4 class="text-xs font-bold text-teal-900 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-box-archive mr-1.5 text-teal-600"></i> Hộp Từ Vựng Tham Khảo (Word Bank A–L)
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs text-slate-700">
+                            ${wordBankList.map(item => `
+                                <div class="flex items-center space-x-2 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="bg-teal-100 text-teal-800 font-extrabold px-2 py-0.5 rounded text-xs shrink-0">${item.key}</span>
+                                    <span class="font-bold text-slate-800">${item.text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
                 `;
 
                 questionsData.forEach(q => {
                     html += `
-                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-sky-400" id="q-card-${q.id}">
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-teal-400" id="q-card-${q.id}">
                             <div class="flex items-start justify-between">
                                 <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
                                     Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
                                 </span>
                                 <div class="flex items-center space-x-2">
-                                    <button class="jump-btn bg-sky-50 hover:bg-sky-100 text-sky-700 font-bold text-xs px-2.5 py-1 rounded-md border border-sky-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                    <button class="jump-btn bg-teal-50 hover:bg-teal-100 text-teal-700 font-bold text-xs px-2.5 py-1 rounded-md border border-teal-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
                                         <i class="fa-solid fa-location-dot"></i> Xem bài đọc
                                     </button>
                                     <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
-                                        Đáp án: ${q.ansKey}
+                                        Đáp án: ${q.ansKey} (${q.ansTitle})
                                     </span>
                                 </div>
                             </div>
@@ -763,7 +814,7 @@
                             </div>
 
                             <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
-                                <div class="flex items-center text-sky-700 font-bold text-xs uppercase tracking-wider">
+                                <div class="flex items-center text-teal-700 font-bold text-xs uppercase tracking-wider">
                                     <i class="fa-solid fa-circle-check mr-1.5"></i>
                                     <span>Giải thích chi tiết (Rationale):</span>
                                 </div>
@@ -773,13 +824,13 @@
                             ${q.synonyms ? `
                                 <div class="pt-2 border-t border-slate-100">
                                     <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
-                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-sky-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-teal-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
                                     </h5>
                                     <div class="overflow-x-auto">
                                         <table class="w-full text-xs text-left border-collapse">
                                             <thead>
-                                                <tr class="bg-sky-50/70 text-sky-900 font-semibold border-b border-sky-100">
-                                                    <th class="p-2">Từ khóa trong Câu hỏi</th>
+                                                <tr class="bg-teal-50/70 text-teal-900 font-semibold border-b border-teal-100">
+                                                    <th class="p-2">Từ khóa trong Bản tóm tắt</th>
                                                     <th class="p-2">Từ tương đương trong Bài đọc</th>
                                                 </tr>
                                             </thead>
@@ -787,7 +838,7 @@
                                                 ${q.synonyms.map(s => `
                                                     <tr>
                                                         <td class="p-2 font-medium text-slate-700">${s.q}</td>
-                                                        <td class="p-2 font-semibold text-sky-700">${s.p}</td>
+                                                        <td class="p-2 font-semibold text-teal-700">${s.p}</td>
                                                     </tr>
                                                 `).join('')}
                                             </tbody>
@@ -809,7 +860,7 @@
 
                 const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
                     document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
-                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-teal-600', 'bg-teal-50/40', 'border-teal-400'));
 
                     if (targetEl) {
                         targetEl.classList.add('active-target');
@@ -819,7 +870,7 @@
                     }
 
                     if (cardEl) {
-                        cardEl.classList.add('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400');
+                        cardEl.classList.add('ring-2', 'ring-teal-600', 'bg-teal-50/40', 'border-teal-400');
                         if (scrollRight) {
                             cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }
@@ -830,7 +881,7 @@
 
                 const deactivateAll = () => {
                     document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
-                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-teal-600', 'bg-teal-50/40', 'border-teal-400'));
                     this.clearCanvas();
                 };
 
@@ -941,19 +992,19 @@
                 svg.innerHTML = `
                     <defs>
                         <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#0284c7" />
-                            <stop offset="100%" stop-color="#38bdf8" />
+                            <stop offset="0%" stop-color="#0d9488" />
+                            <stop offset="100%" stop-color="#2dd4bf" />
                         </linearGradient>
                         <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
-                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0284c7" flood-opacity="0.4"/>
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0d9488" flood-opacity="0.4"/>
                         </filter>
                         <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
-                            <polygon points="0 0, 9 3.5, 0 7" fill="#38bdf8" />
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#2dd4bf" />
                         </marker>
                     </defs>
                     <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
-                    <circle cx="${x1}" cy="${y1}" r="4" fill="#0284c7" />
-                    <circle cx="${x2}" cy="${y2}" r="4" fill="#38bdf8" />
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#0d9488" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#2dd4bf" />
                 `;
             },
 
@@ -980,17 +1031,17 @@
                 let html = '';
                 filtered.forEach(item => {
                     html += `
-                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-sky-400 transition-all space-y-4">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-teal-400 transition-all space-y-4">
                             <div>
                                 <div class="flex items-center justify-between mb-2">
-                                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-md border border-sky-200">${item.type}</span>
-                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-sky-600 transition-colors" title="Nghe phát âm">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md border border-teal-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-teal-600 transition-colors" title="Nghe phát âm">
                                         <i class="fa-solid fa-volume-high text-sm"></i>
                                     </button>
                                 </div>
                                 <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
                                 <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
-                                <p class="text-sm font-bold text-sky-700 bg-sky-50/50 p-2 rounded-lg border border-sky-100 mb-3">${item.vi}</p>
+                                <p class="text-sm font-bold text-teal-700 bg-teal-50/50 p-2 rounded-lg border border-teal-100 mb-3">${item.vi}</p>
                                 <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
                             </div>
 
@@ -1000,8 +1051,8 @@
                                     <p class="text-slate-600 italic">"${item.context}"</p>
                                 </div>
                                 <div>
-                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-sky-700">Collocation thường gặp:</span>
-                                    <p class="font-semibold text-sky-900">${item.collocation}</p>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-teal-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-teal-900">${item.collocation}</p>
                                 </div>
                             </div>
                         </div>
@@ -1042,36 +1093,36 @@
                 const quizBox = document.getElementById('quiz-box');
                 const sampleQuestions = [
                     {
-                        q: "Which term refers to 'a long and difficult journey undertaken for exploration or endurance'?",
-                        options: ["Border crossing", "Expedition", "Grassland", "Holiday brochure"],
+                        q: "Which term refers to 'an unpaid form of promotion where satisfied customers tell acquaintances how much they like a business'?",
+                        options: ["Advertising budget", "Word-of-mouth marketing (WOMM)", "Brand credibility", "Paid commercial billboard"],
                         ans: 1,
-                        expl: "Expedition (danh từ) = Cuộc thám hiểm, chuyến hành trình dài ngày mang tính chất khám phá hoặc vượt qua thử thách."
+                        expl: "Word-of-mouth marketing (WOMM - Marketing truyền miệng) là hình thức quảng bá tự nhiên không mất phí khi khách hàng tự nguyện giới thiệu sản phẩm cho bạn bè, người thân."
                     },
                     {
-                        q: "What emotion did Mark Beaumont describe feeling most upon finishing his huge projects?",
+                        q: "Why is word-of-mouth marketing especially beneficial for small and local businesses?",
                         options: [
-                            "Frustration at border delays",
-                            "Relief that he completed the trip successfully",
-                            "Anger at bad weather",
-                            "Sadness from being alone"
+                            "It requires massive multi-million dollar budgets",
+                            "It costs the business nothing and bypasses small advertising budgets",
+                            "It guarantees 100% control over all media broadcasts",
+                            "It eliminates the need for product development"
                         ],
                         ans: 1,
-                        expl: "Relief (sự nhẹ nhõm) là cảm xúc chủ đạo của Mark khi hoàn thành xuất sắc chuyến đi tốn kém nhiều công sức và tài chính."
+                        expl: "Đoạn 2 chỉ rõ: Marketing truyền miệng hoàn toàn không mất chi phí (costs nothing), do đó đặc biệt hữu ích cho các doanh nghiệp nhỏ có ngân sách eo hẹp."
                     },
                     {
-                        q: "How do attitudes towards bicycles differ between Western countries and poorer developing nations in the passage?",
+                        q: "What is cited as a major disadvantage of word-of-mouth marketing for companies?",
                         options: [
-                            "Westerners use bikes for long expeditions only; poor people refuse to ride them",
-                            "Westerners use bikes for fitness and fun; poor people dream of owning one as essential transport",
-                            "Westerners consider bikes outdated; poor people use them for racing",
-                            "Both groups share identical views"
+                            "It cannot be used on social media platforms",
+                            "Firms have no influence or control over what customers organically say",
+                            "It is too expensive compared to TV commercials",
+                            "It only works in remote rural villages"
                         ],
                         ans: 1,
-                        expl: "Ở các nước phát triển, xe đạp là môn thể thao giữ dáng và giải trí; trong khi ở các nước nghèo, đó là phương tiện di chuyển thiết yếu đáng mơ ước."
+                        expl: "Đoạn 4 nêu rõ: Nhược điểm lớn nhất là các công ty hoàn toàn không thể quản lý hoặc kiểm soát những gì người tiêu dùng phát biểu (cannot manage it nor control what people say)."
                     }
                 ];
 
-                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-sky-600"></i> A Different Way to See the World Vocab Challenge</h3>`;
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-teal-600"></i> Word-of-Mouth Marketing Vocab Challenge</h3>`;
                 sampleQuestions.forEach((q, idx) => {
                     html += `
                         <div class="space-y-3 pt-2" id="quiz-q-${idx}">
@@ -1099,7 +1150,7 @@
                 btns.forEach((btn, idx) => {
                     btn.disabled = true;
                     if (idx === correct) {
-                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-xs";
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-teal-500 bg-teal-50 text-teal-900 font-bold text-xs";
                     } else if (idx === selected) {
                         btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-red-400 bg-red-50 text-red-900 font-bold text-xs";
                     }
@@ -1107,7 +1158,7 @@
 
                 feedback.classList.remove('hidden');
                 if (selected === correct) {
-                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 font-bold border border-emerald-200";
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-teal-100 text-teal-900 font-bold border border-teal-200";
                     feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Chính xác! Tuyệt vời.`;
                 } else {
                     feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-red-100 text-red-900 font-bold border border-red-200";

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: Task 2 Opinion Essay - Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#d9534f',
+                            headerDark: '#c9302c',
+                            accent: '#337ab7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                            noteLeft: '#f0f9ff',
+                            noteRight: '#fefce8',
+                            purpleNote: '#faf5ff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles for textbook authenticity */
+        .textbook-border {
+            border: 2px solid #2b2b2b;
+        }
+        .header-stripe {
+            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 50%, #991b1b 100%);
+        }
+        .expert-box {
+            background-color: #f3f4f6;
+            border-left: 4px solid #ef4444;
+        }
+        
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+    <script src="../js/mobile.js" defer></script>
+    <script src="../js/image-viewer.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                4
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 4</h1>
+                <p class="text-xs text-slate-500">Interactive Study Guide for Band 5 &amp; Band 6 Learners</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 5 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Band 5 High-Value Linking Phrases
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Essential Topic Vocabulary &amp; Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Teacher's Guide Connection Points
+        </span>
+    </div>
+
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner (Mimicking the Original Book) -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-red-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-red-600 uppercase">Module 4</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Opinion essay</h2>
+            </div>
+            <div class="expert-box rounded-r-lg p-3 max-w-sm shadow-sm">
+                <div class="flex items-center gap-1.5 text-red-700 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing tip
+                </div>
+                <p class="text-xs text-slate-700 mt-1 font-medium leading-relaxed">
+                    You need to decide which side is stronger &mdash; the advantages or the disadvantages &mdash; and explain your opinion clearly throughout.
+                </p>
+            </div>
+        </div>
+
+        <section class="mb-8 bg-amber-50/70 border-l-4 border-amber-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-amber-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-amber-500 text-white rounded text-xs">Task</span>
+                IELTS Writing Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-amber-200 font-semibold text-slate-900 shadow-sm">
+                    <p class="italic">"Some people believe it is wrong to keep animals in zoos.</p>
+                    <p class="italic text-red-700 mt-1">Do you think the advantages of keeping animals in zoos outweigh the disadvantages?"</p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-red-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">262 words • Band 7.5+ Sample calibrated for Band 5 mastery</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1 -->
+                <div id="note-left-1" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Introduction Strategy
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        Introduce the topic by <strong class="text-rose-700">explaining it in your own words</strong> (paraphrasing the prompt).
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-rose-200/70 text-[11px] text-rose-700 font-sans">
+                        💡 <em>Replaces: "it is wrong to keep animals" with "cruel and unnecessary to keep animals in captivity"</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2 -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Signposting / Cohesion
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        Use phrases like:
+                        <span class="block font-bold text-amber-800 mt-1">• The main advantage is...</span>
+                        <span class="block font-bold text-amber-800">• A further advantage is...</span>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>Guarantees clear paragraph progression for Coherence &amp; Cohesion (Band 5 &rarr; 6).</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3 -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Supporting Ideas
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong>Give examples</strong> to support the points you make.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>"Children in Europe, for example, can see elephants..."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 4 -->
+                <div id="note-left-4" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Concluding Phrase
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">"In conclusion"</strong> is the safest, most useful phrase to introduce your final paragraph.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-6 bg-amber-50/20 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            Some people argue that it is 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('cruel and unnecessary', 'Adjective pair', 'Very mean and not needed. Band 5 learners can replace simple words like bad with this phrase.')">cruel and unnecessary</span> 
+                            to keep 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('animals in captivity', 'Collocation', 'Animals kept in cages or enclosures instead of the wild (paraphrase for animals in zoos).')">animals in captivity</span>.
+                        </span>
+                        <span id="target-intro-opinion" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('In my opinion,', 'Linking phrase', 'Used at the start of a sentence to state your personal belief clearly.')">In my opinion</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('although [A], [B]', 'Complex sentence connector', 'Shows two opposite sides in one sentence. Essential for Band 6+ Task Response.')">although</span> 
+                            zoos have both 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('good and bad points', 'Topic vocabulary', 'Simple clear way to state advantages and disadvantages.')">good and bad points</span>, 
+                            the advantages are greater than the disadvantages.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: ADVANTAGES (STRONGER SIDE) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Advantage 1 (Conservation) &amp; Advantage 2 (Education)</span>
+                    <p>
+                        <span id="target-advantage-1" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The main advantage of [X] is that...', 'Signposting sentence frame', 'Use this to start your main body paragraph clearly and decisively.')">The main advantage of zoos is that</span> 
+                            they help to protect some animals that are 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('in danger of becoming extinct', 'Idiomatic collocation', 'Animals that might die out completely. High-scoring vocabulary for animal topics.')">in danger of becoming extinct</span>.
+                        </span>
+                        They give them the chance to 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('produce young', 'Collocation', 'To have babies / reproduce.')">produce young</span> 
+                        and to survive in a 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('safe environment', 'Collocation', 'A place where they are protected from hunters and predators.')">safe environment</span>. 
+                        <span class="hl-band5-phrase" onclick="showWordDetail('This means that...', 'Cause and effect linker', 'Explains the result or consequence of the previous sentence.')">This means that</span> 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('future generations', 'Collocation', 'Children and grandchildren who will live in the future.')">future generations</span> 
+                        will be able to enjoy looking at and learning about more of the wonderful animals that live on our planet.
+                    </p>
+                    <p class="mt-3">
+                        <span id="target-advantage-2" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('A further advantage is that...', 'Signposting sentence frame', 'Use this to introduce your second supporting point cleanly.')">A further advantage is that</span> 
+                            zoos make it possible to see animals that come from very different places.
+                        </span>
+                        <span id="target-examples" class="hl-connector" data-note="note-left-3">
+                            Children in Europe, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('..., for example, ...', 'Exemplification device', 'Inserted between commas inside a sentence to give concrete examples.')">for example</span>, 
+                            can see elephants and giraffes and children in Brazil can enjoy watching kangaroos and emus.
+                        </span>
+                        <span class="hl-band5-phrase" onclick="showWordDetail('I believe this is...', 'Personal stance marker', 'Reinforces your evaluation of the evidence.')">I believe this is</span> 
+                        a very special and important experience for young people.
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: DISADVANTAGES & COUNTER-ARGUMENT -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Counter-argument (Disadvantages &amp; Rebuttal)</span>
+                    <p>
+                        <span id="target-counter-argue" class="hl-connector" data-note="note-right-3">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('However, there are disadvantages to...', 'Transition phrase', 'Introduces the opposing viewpoint smoothly.')">However, there are disadvantages to zoos</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The main one is that...', 'Focus phrase', 'Refers back to disadvantages and highlights the primary one.')">The main one is that</span> 
+                            the animals that live there are 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('not free', 'Vocabulary', 'Restricted in cages.')">not free</span>. 
+                            They are not living in a 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('totally natural way', 'Phrase', 'Living in the wild as nature intended.')">totally natural way</span>, 
+                            able to go where they want when they want. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Many people believe that...', 'Impersonal reporting phrase', 'Describes the general public opinion without saying I.')">Many people believe that</span> 
+                            it is not right to keep animals in this kind of prison.
+                        </span>
+                    </p>
+                    <p class="mt-3">
+                        <span class="hl-band5-phrase" onclick="showWordDetail('But you can also argue that...', 'Counter-rebuttal phrase', 'Presents the counter-reasoning why the wild is also dangerous.')">But you can also argue that</span> 
+                        the <span class="hl-band5-vocab" onclick="showWordDetail('natural world', 'Collocation', 'Nature / the wild wilderness.')">natural world</span> is a cruel place for wild animals. It is hard for them to find food and they are 
+                        <span class="hl-band5-phrase" onclick="showWordDetail('are likely to [verb]', 'Probability phrase', 'Expresses high possibility (band 6+ modal hedging).')">likely to be attacked</span> 
+                        by other animals. They 
+                        <span class="hl-band5-phrase" onclick="showWordDetail('may well [verb]', 'Modality phrase', 'High probability modal phrase useful for essays.')">may well</span> 
+                        live longer in a zoo than in their 
+                        <span class="hl-band5-vocab" onclick="showWordDetail('natural environment', 'Collocation', 'Their original habitat in nature.')">natural environment</span>.
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: CONCLUSION -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Conclusion</span>
+                    <p>
+                        <span id="target-conclusion" class="hl-connector" data-note="note-right-4">
+                            <span id="target-in-conclusion" class="hl-band5-phrase" onclick="showWordDetail('In conclusion,', 'Conclusion transition', 'Essential Band 5 transition phrase to signal the final summary.')">In conclusion</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('I am in favour of [X]', 'Opinion collocation', 'Means I support / I agree with.')">I am in favour of zoos</span>. 
+                            I believe the benefits they bring us are 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('more important than any disadvantages', 'Comparative summary phrase', 'Directly answers the outweigh question prompt.')">more important than any disadvantages</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1 -->
+                <div id="note-right-1" class="bg-blue-50 border-2 border-blue-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-blue-400">
+                    <div class="flex items-center gap-1.5 text-blue-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                        Clear Position
+                    </div>
+                    <p class="text-blue-950 font-medium leading-relaxed">
+                        <strong class="text-blue-700">Summarise your own view</strong> clearly in the introduction.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-blue-200/70 text-[11px] text-blue-700">
+                        ⚠️ <em>Band 5 requirement: The examiner must see your opinion from the start, not just at the end.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2 -->
+                <div id="note-right-2" class="bg-teal-50 border-2 border-teal-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-teal-400">
+                    <div class="flex items-center gap-1.5 text-teal-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                        Elaboration &amp; Relevance
+                    </div>
+                    <p class="text-teal-950 font-medium leading-relaxed">
+                        <strong>Explain the main point in more detail</strong> and give examples where possible. Make sure all the information is relevant.
+                    </p>
+                </div>
+
+                <!-- Right Note 3 -->
+                <div id="note-right-3" class="bg-orange-50 border-2 border-orange-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-orange-400">
+                    <div class="flex items-center gap-1.5 text-orange-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-orange-600"></span>
+                        Essay Weighting
+                    </div>
+                    <p class="text-orange-950 font-medium leading-relaxed">
+                        <strong>Write more about the side that you think is stronger.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-orange-200/70 text-[11px] text-orange-700">
+                        💡 <em>Here, advantages = 2 points + examples (105 words); disadvantages = counter-balanced (75 words).</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 4 -->
+                <div id="note-right-4" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Conclusion Strategy
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong>Give your opinion in the conclusion</strong>, summarising the reasons and directly answering whether advantages outweigh disadvantages.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 4 • Opinion Essay Writing</span>
+            <span class="font-bold text-slate-600 text-sm">203</span>
+        </div>
+
+    </main>
+
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-blue-100 text-blue-800">
+                        Linking Phrase
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        The main advantage of [X] is that...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps Band 5 Learners:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Gives your paragraph an immediate, crystal-clear topic sentence so the examiner immediately knows your main idea.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 5 &rarr; Band 6 Upgrade Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "The main advantage of public transport is that it reduces traffic jams in big cities."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-blue-600 rounded-full"></span>
+                Band 5 Essential Toolkit
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1 -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-blue-700 mb-2">1. Essential Essay Skeleton (Band 5)</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-blue-50 rounded-lg border border-blue-200">
+                        <strong class="text-blue-900 block font-semibold">Introduction:</strong>
+                        <p class="text-slate-700 mt-0.5">Some people argue that [paraphrase prompt]. In my opinion, although [topic] has both good and bad points, the advantages are greater than the disadvantages.</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50 rounded-lg border border-blue-200">
+                        <strong class="text-blue-900 block font-semibold">Body 1 (Advantages):</strong>
+                        <p class="text-slate-700 mt-0.5">The main advantage of [X] is that [Reason 1]. This means that [Result]. A further advantage is that [Reason 2]. For example, [Example].</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50 rounded-lg border border-blue-200">
+                        <strong class="text-blue-900 block font-semibold">Body 2 (Disadvantages):</strong>
+                        <p class="text-slate-700 mt-0.5">However, there are disadvantages to [X]. The main one is that [Disadvantage]. But you can also argue that [Counter-rebuttal].</p>
+                    </div>
+                    <div class="p-2.5 bg-blue-50 rounded-lg border border-blue-200">
+                        <strong class="text-blue-900 block font-semibold">Conclusion:</strong>
+                        <p class="text-slate-700 mt-0.5">In conclusion, I am in favour of [X]. I believe the benefits they bring us are more important than any disadvantages.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Animal &amp; Zoo Collocations List</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">animals in captivity</span>
+                        <span class="text-slate-500">zoos / cages</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">in danger of extinction</span>
+                        <span class="text-slate-500">endangered</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">safe environment</span>
+                        <span class="text-slate-500">protected habitat</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">future generations</span>
+                        <span class="text-slate-500">posterity / children</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">cruel and unnecessary</span>
+                        <span class="text-slate-500">inhumane</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    // keep defs
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#dc2626' },
+                { note: 'note-left-2', target: 'target-advantage-1', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-examples', side: 'left', color: '#059669' },
+                { note: 'note-left-4', target: 'target-in-conclusion', side: 'left', color: '#9333ea' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-intro-opinion', side: 'right', color: '#2563eb' },
+                { note: 'note-right-2', target: 'target-advantage-2', side: 'right', color: '#0d9488' },
+                { note: 'note-right-3', target: 'target-counter-argue', side: 'right', color: '#ea580c' },
+                { note: 'note-right-4', target: 'target-conclusion', side: 'right', color: '#4f46e5' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            // Context example builder
+            const exampleText = `Example in essay context: "${title}" helps establish proper band progression and academic tone.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model essay
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `Some people argue that it is cruel and unnecessary to keep animals in captivity. In my opinion, although zoos have both good and bad points, the advantages are greater than the disadvantages. The main advantage of zoos is that they help to protect some animals that are in danger of becoming extinct. They give them the chance to produce young and to survive in a safe environment. This means that future generations will be able to enjoy looking at and learning about more of the wonderful animals that live on our planet. A further advantage is that zoos make it possible to see animals that come from very different places. Children in Europe, for example, can see elephants and giraffes and children in Brazil can enjoy watching kangaroos and emus. I believe this is a very special and important experience for young people. However, there are disadvantages to zoos. The main one is that the animals that live there are not free. They are not living in a totally natural way, able to go where they want when they want. Many people believe that it is not right to keep animals in this kind of prison. But you can also argue that the natural world is a cruel place for wild animals. It is hard for them to find food and they are likely to be attacked by other animals. They may well live longer in a zoo than in their natural environment. In conclusion, I am in favour of zoos. I believe the benefits they bring us are more important that any disadvantages.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92; // slightly slower for language learners
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Re-draw on scroll or layout shifts
+        window.addEventListener('scroll', () => {
+            // Keep paths updated if layout changes
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
