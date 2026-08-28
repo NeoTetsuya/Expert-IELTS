@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Different Way to See the World — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --app-font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: var(--app-font-size);
+            overflow-x: hidden;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 2.15;
+            color: #334155;
+        }
+        .reading-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.25rem;
+        }
+        .reading-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .paragraph-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
+            color: #0369a1;
+            background-color: #e0f2fe;
+            border: 1px solid #bae6fd;
+            text-indent: 0;
+            vertical-align: middle;
+        }
+
+        /* Highlight Targets & Interactive States */
+        .ans-target {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            position: relative;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            text-indent: 0;
+        }
+
+        /* Question target color themes */
+        .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
+        .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
+        .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
+        .ans-target-q4 { background-color: #fbcfe8; border-bottom: 2px solid #db2777; color: #9d174d; }
+        .ans-target-q5 { background-color: #ddd6fe; border-bottom: 2px solid #7c3aed; color: #5b21b6; }
+        .ans-target-q6 { background-color: #fed7aa; border-bottom: 2px solid #ea580c; color: #9a3412; }
+
+        .q-badge {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72em;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: baseline;
+            line-height: 1.2;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-indent: 0;
+            user-select: none;
+        }
+
+        .ans-target:hover, .ans-target.active-target {
+            outline: 3px solid #0284c7;
+            box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+            filter: brightness(0.96);
+            z-index: 20;
+        }
+
+        /* Floating Evidence Popover */
+        .explanation-popover {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            width: 320px;
+            background-color: #0f172a;
+            color: #f8fafc;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+            transition: all 0.25s ease;
+            pointer-events: none;
+            line-height: 1.5;
+            font-weight: normal;
+        }
+        .explanation-popover::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+        }
+        .ans-target:hover .explanation-popover, .ans-target.active-target .explanation-popover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* SVG Canvas */
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        .tab-btn.active {
+            background-color: #0284c7;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3);
+        }
+
+        @keyframes arrowFlow {
+            from { stroke-dashoffset: 26; }
+            to { stroke-dashoffset: 0; }
+        }
+        .animated-arrow-line {
+            animation: arrowFlow 1s linear infinite;
+        }
+
+        .lang-btn.active {
+            background-color: #0f172a;
+            color: white;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col bg-slate-100">
+
+    <!-- Header Bar -->
+    <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
+        <div class="flex items-center space-x-3">
+            <div class="bg-sky-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-bicycle text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-slate-800">A Different Way to See the World</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Adventure Vocab Suite</p>
+            </div>
+        </div>
+
+        <!-- Controls: Language Switcher, Font Resize & Arrows Toggle -->
+        <div class="flex items-center space-x-3 flex-wrap gap-y-2">
+            <!-- Language Switcher -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" id="lang-switcher">
+                <button class="lang-btn active px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="en">EN</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="vi">VIE</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="dual">Parallel (EN/VIE)</button>
+            </div>
+
+            <!-- Font Resizer -->
+            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button id="btn-dec-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Giảm cỡ chữ">A-</button>
+                <button id="btn-inc-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Tăng cỡ chữ">A+</button>
+            </div>
+
+            <!-- Toggle Arrow Canvas -->
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sky-600 text-white border border-sky-600 font-medium text-xs hover:bg-sky-700 transition-colors shadow-xs">
+                <i class="fa-solid fa-route"></i>
+                <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
+        <div class="flex space-x-2 min-w-max" id="nav-tabs">
+            <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Matching Information Q1–Q6)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Travel & Geography Vocab Suite
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
+                <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="flex-1 overflow-hidden relative" id="main-wrapper">
+        <svg id="svg-canvas"></svg>
+
+        <!-- TAB 1: Passage & Question Analysis -->
+        <div id="tab-analysis-content" class="h-full grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
+            <!-- Left Pane: Passage View -->
+            <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-3 py-1 rounded-md border border-sky-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — A Different Way to See the World
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
+                    </div>
+
+                    <div id="passage-container" class="reading-text text-base leading-relaxed text-slate-700 space-y-4">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Pane: Questions & Explanations -->
+            <section id="right-pane" class="lg:col-span-6 bg-slate-50 overflow-y-auto p-6 lg:p-10">
+                <div class="max-w-2xl mx-auto space-y-6" id="explanations-list">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: Vocabulary Suite -->
+        <div id="tab-vocabulary-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-sky-600"></i> Essential IELTS Reading Vocabulary — Global Journeys & Expeditions
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">High-yield terminology for long-distance travel, geographical landscapes, cycling logistics, and human culture.</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <div class="relative flex-1 md:w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-sky-600">
+                        </div>
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-600">
+                            <option value="all">Tất cả từ loại</option>
+                            <option value="noun">Danh từ (Nouns)</option>
+                            <option value="verb">Động từ (Verbs)</option>
+                            <option value="adjective">Tính từ (Adjectives)</option>
+                            <option value="travel">Du lịch & Thám hiểm</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="vocab-cards-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Vocab Flashcards & Practice Quiz -->
+        <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="flex justify-center space-x-3">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-sky-600 text-white shadow-sm transition-all">
+                        <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
+                    </button>
+                    <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-circle-question mr-2"></i> Quick Quiz Mode
+                    </button>
+                </div>
+
+                <!-- Flashcard View -->
+                <div id="flashcard-view" class="flex flex-col items-center space-y-6">
+                    <p class="text-xs text-slate-500 font-semibold">Nhấp vào thẻ để lật xem định nghĩa và giải thích tiếng Việt</p>
+                    
+                    <div class="w-full max-w-md h-72 perspective-1000 cursor-pointer" id="flashcard-wrapper">
+                        <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
+                            <!-- Front -->
+                            <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">Category</span>
+                                <div>
+                                    <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
+                                    <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
+                                </div>
+                                <span class="text-xs font-bold text-sky-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-sky-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <div>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-sky-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="btn-fc-prev" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span id="fc-counter" class="text-xs font-bold text-slate-600 px-4 py-2 bg-white rounded-xl border border-slate-200">1 / 8</span>
+                        <button id="btn-fc-next" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz View -->
+                <div id="quiz-view" class="hidden space-y-6">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6" id="quiz-box">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passageData = [
+            {
+                pNum: 'A',
+                en: `An extraordinary cyclist, Mark Beaumont, has completed a number of amazing long distance trips on his bike. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>In 2008, for example, he rode for 18,296 miles around the world. Two years later he made a 13,080 mile journey through the Americas. In 2015 he cycled 6,762 miles from Cairo to Cape Town<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Paragraph A)</strong>A description of the vast scale and extent of Mark's travels: 18,296 miles around the globe, 13,080 miles through the Americas, and 6,762 miles from Cairo to Cape Town.</span></span>.`,
+                vi: `Một vận động viên đua xe đạp phi thường, Mark Beaumont, đã hoàn thành nhiều chuyến đi đường dài đáng kinh ngạc trên chiếc xe đạp của mình. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Chẳng hạn vào năm 2008, anh đã đạp xe 18.296 dặm vòng quanh thế giới. Hai năm sau, anh thực hiện hành trình 13.080 dặm xuyên qua châu Mỹ. Đến năm 2015, anh đạp xe 6.762 dặm từ Cairo đến Cape Town<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Đoạn A)</strong>Mô tả quy mô và phạm vi hành trình của Mark: 18.296 dặm vòng quanh thế giới, 13.080 dặm xuyên châu Mỹ và 6.762 dặm xuyên châu Phi.</span></span>.`
+            },
+            {
+                pNum: 'B',
+                en: `On that last journey Mark succeeded in breaking – by as much as 17 days – the world record for cycling across Africa. To do this, he rode 160 miles a day. He explains that it was certainly not easy to keep up this speed. There were, for example, <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>long delays at border crossings and queues of traffic often stopped him from travelling fast. Broken roads caused problems and the weather also affected how fast he could go<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Paragraph B)</strong>Lists specific reasons why making fast progress was difficult: border delays, traffic jams, broken roads, and bad weather conditions.</span></span>.`,
+                vi: `Trong chuyến hành trình cuối cùng đó, Mark đã thành công trong việc phá kỷ lục thế giới về việc đạp xe xuyên châu Phi – sớm hơn tới 17 ngày. Để làm được điều này, anh đã đạp xe 160 dặm mỗi ngày. Anh giải thích rằng chắc chắn không hề dễ dàng để duy trì tốc độ này. Chẳng hạn, <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>sự chậm trễ kéo dài tại các cửa khẩu biên giới và những đoàn xe ùn tắc giao thông thường ngăn cản anh di chuyển nhanh. Đường sá hư hỏng gây ra nhiều trở ngại và thời tiết cũng ảnh hưởng đến tốc độ di chuyển của anh<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Đoạn B)</strong>Nêu các lý do khiến việc di chuyển tiến độ gặp khó khăn: ách tắc tại cửa khẩu, kẹt xe, đường hư hỏng và thời tiết khắc nghiệt.</span></span>.`
+            },
+            {
+                pNum: 'C',
+                en: `On all his journeys Mark has been interested by the landscapes he has seen. He says these often differ from what he expected. 'When people think about Patagonia, for instance, they imagine the beautiful mountains and lakes you see in holiday brochures; but when I cycled there, I realised that large parts of it are just miles and miles of grassland. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>What is romantic and exciting for most holidaymakers can become very boring when you see nothing else for several days<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Paragraph C)</strong>An example of a place (Patagonia) where Mark felt bored due to endless, monotonous miles of grassland for days.</span></span>.'`,
+                vi: `Trong tất cả các chuyến đi của mình, Mark luôn bị cuốn hút bởi những cảnh quan thiên nhiên mà anh đã chiêm ngưỡng. Anh cho biết chúng thường khác xa so với những gì anh từng kỳ vọng. 'Chẳng hạn khi mọi người nghĩ về vùng Patagonia, họ thường hình dung ra những ngọn núi hùng vĩ và những hồ nước thơ mộng như trong tờ gấp quảng cáo du lịch; nhưng khi tôi đạp xe qua đó, tôi nhận ra rằng phần lớn diện tích chỉ là những dải đồng cỏ trải dài ngút ngàn. <span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Những điều lãng mạn và thú vị đối với hầu hết du khách có thể trở nên vô cùng nhàm chán khi bạn chẳng nhìn thấy gì khác ngoài đồng cỏ trong suốt nhiều ngày liên tục<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Đoạn C)</strong>Ví dụ về một địa điểm (Patagonia) nơi Mark cảm thấy buồn chán vì cảnh quan đồng cỏ đơn điệu kéo dài nhiều ngày.</span></span>.'`
+            },
+            {
+                pNum: 'D',
+                en: `Of all the landscapes he has seen, Mark has particularly enjoyed some of the wild parts of Texas and the Deep South of the USA. 'I remember waking before daylight. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>I had to remove the ice from my tent when it was still dark<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Paragraph D)</strong>Reference to severe freezing cold weather: Mark had to scrape ice off his tent before daylight in the desert.</span></span>. Then I set out on roads with absolutely no one else around. I was in the middle of this enormous desert and all I could hear was the sound of animals calling. When I look back now, it was one of my favourite times: to be totally alone in that environment.'`,
+                vi: `Trong số tất cả những cảnh quan từng đi qua, Mark đặc biệt yêu thích một số vùng hoang dã của bang Texas và miền Nam nước Mỹ. 'Tôi nhớ mình đã thức dậy trước khi bình minh ló rạng. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Tôi đã phải gạt lớp băng đá đóng trên lều của mình khi trời vẫn còn tối đen<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Đoạn D)</strong>Đề cập đến thời tiết lạnh giá khắc nghiệt: Mark phải gạt băng đóng trên lều trước khi trời sáng giữa sa mạc.</span></span>. Sau đó, tôi bắt đầu lên đường trên những cung đường hoàn toàn không có một bóng người xung quanh. Tôi ở giữa sa mạc rộng lớn này và tất cả những gì tôi có thể nghe thấy là tiếng kêu của muôn loài động vật. Khi nhìn lại bây giờ, đó là một trong những khoảnh khắc yêu thích nhất của tôi: được hoàn toàn một mình giữa môi trường đó.'`
+            },
+            {
+                pNum: 'E',
+                en: `His travels have also taught Mark about how differently people around the world view cycling. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>In Europe, North America and Australia, cycling is a sport which people do mainly to keep fit and have fun. But in many places Mark visited, a bicycle is something rather different. It is a type of transport that many people dream of getting one day. People who are used to walking everywhere wish they had enough money to buy a bike in order to get from A to B much more quickly and easily<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Paragraph E)</strong>Contrasting attitudes towards bicycles: Western countries view cycling as fitness/recreation, while poorer communities view it as a coveted, life-changing means of daily transport.</span></span>. People who see a bicycle that way often found it hard to understand why Mark wanted to cycle such long distances for no obvious reason.`,
+                vi: `Những chuyến đi cũng đã dạy cho Mark về cách nhìn nhận rất khác nhau của mọi người trên khắp thế giới đối với việc đạp xe. <span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Ở Châu Âu, Bắc Mỹ và Úc, đạp xe là một môn thể thao mà mọi người tập luyện chủ yếu để giữ gìn vóc dáng và giải trí. Nhưng ở nhiều nơi Mark từng đặt chân tới, chiếc xe đạp lại mang một ý nghĩa rất khác. Đó là một phương tiện giao thông mà nhiều người mơ ước một ngày nào đó sẽ sở hữu. Những người đã quen với việc đi bộ khắp nơi chỉ mong có đủ tiền mua một chiếc xe đạp để đi lại từ điểm A đến điểm B nhanh chóng và dễ dàng hơn nhiều<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Đoạn E)</strong>Các thái độ khác nhau đối với xe đạp: phương Tây coi là thể thao rèn luyện sức khỏe, còn các nước nghèo coi là phương tiện di chuyển thiết yếu đáng mơ ước.</span></span>. Những người nhìn nhận xe đạp theo cách đó thường cảm thấy khó hiểu tại sao Mark lại muốn đạp xe những quãng đường dài như vậy mà không vì bất kỳ lý do thiết thực rõ ràng nào.`
+            },
+            {
+                pNum: 'F',
+                en: `But for Mark, cycling is by far the best way to see the world. 'It's never boring when you're cycling. You notice everything, especially when riding alone. When you cycle, you get a wonderful view of the world. It is amazing to see how the people and cultures change from one place to the next.' The kindness of the people Mark met was what impressed him most. 'Even in the poorest countries, I never had to ask a second person for a place to stay.'`,
+                vi: `Nhưng đối với Mark, đạp xe cho đến nay vẫn là cách tốt nhất để khám phá thế giới. 'Đạp xe không bao giờ mang lại cảm giác nhàm chán. Bạn nhận thấy mọi chi tiết, đặc biệt là khi đi một mình. Khi đạp xe, bạn có được một góc nhìn tuyệt vời về thế giới. Thật tuyệt vời khi được chứng kiến con người và văn hóa thay đổi như thế nào từ vùng đất này sang vùng đất khác.' Sự tử tế của những con người Mark gặp là điều khiến anh ấn tượng sâu sắc nhất. 'Ngay cả ở những quốc gia nghèo nhất, tôi chưa bao giờ phải hỏi đến người thứ hai để tìm được một chỗ nghỉ chân qua đêm.'`
+            },
+            {
+                pNum: 'G',
+                en: `So how does Mark feel at the end of one of his big adventures? He says that, <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>because the projects involve huge effort, time and costs, his main emotion is relief that he has completed the trip successfully<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Paragraph G)</strong>A comment on the huge expense and financial costs associated with planning and organising a global cycling expedition.</span></span>. 'It is not until later that you have time to think about what the journey meant, the landscapes you saw and the people you met. And then you start thinking about where you might go next.'`,
+                vi: `Vậy Mark cảm thấy thế nào khi kết thúc một trong những chuyến phiêu lưu vĩ đại của mình? Anh chia sẻ rằng, <span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>bởi vì các dự án đòi hỏi nỗ lực, thời gian và chi phí tiền bạc khổng lồ, cảm xúc chính của anh là sự nhẹ nhõm khi đã hoàn thành chuyến đi một cách thành công<span class="explanation-popover"><strong class="text-sky-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Đoạn G)</strong>Bình luận về sự tốn kém và chi phí tài chính khổng lồ (costs/expenses) khi tổ chức một chuyến đạp xe thám hiểm.</span></span>. 'Mãi đến sau này bạn mới có thời gian suy ngẫm về ý nghĩa thực sự của hành trình, những cảnh quan bạn đã chiêm ngưỡng và những con người bạn đã gặp. Và rồi bạn bắt đầu nghĩ về điểm đến tiếp theo của mình.'`
+            }
+        ];
+
+        const questionsData = [
+            {
+                id: 'q1',
+                num: '1',
+                type: 'Matching Information',
+                ansKey: 'Paragraph C',
+                ansTitle: 'an example of a place where Mark felt bored',
+                badgeColor: 'bg-yellow-600',
+                prompt: 'an example of a place where Mark felt bored',
+                explEn: 'Paragraph C gives the example of Patagonia: while tourists imagine idyllic mountains and lakes from holiday brochures, cycling through endless grasslands for days became very boring ("can become very boring when you see nothing else for several days").',
+                explVi: 'Đoạn C đưa ra ví dụ về địa danh Patagonia: trong khi khách du lịch nghĩ đến núi và hồ thơ mộng, việc đạp xe qua hàng dặm đồng cỏ đơn điệu suốt nhiều ngày khiến Mark cảm thấy vô cùng nhàm chán -> Paragraph C.',
+                synonyms: [
+                    { q: 'felt bored', p: 'can become very boring when you see nothing else' },
+                    { q: 'an example of a place', p: 'Patagonia / miles and miles of grassland' }
+                ]
+            },
+            {
+                id: 'q2',
+                num: '2',
+                type: 'Matching Information',
+                ansKey: 'Paragraph G',
+                ansTitle: 'a comment on the expense of organising a cycle trip',
+                badgeColor: 'bg-sky-600',
+                prompt: 'a comment on the expense of organising a cycle trip',
+                explEn: 'Paragraph G discusses the enormous financial and personal toll of these expeditions: "because the projects involve huge effort, time and costs, his main emotion is relief..."',
+                explVi: 'Đoạn G bình luận về chi phí tài chính và công sức to lớn: "vì các dự án đòi hỏi nỗ lực, thời gian và chi phí tiền bạc khổng lồ (huge costs), cảm xúc chính của anh là nhẹ nhõm" -> Paragraph G.',
+                synonyms: [
+                    { q: 'expense', p: 'costs / involve huge costs' },
+                    { q: 'organising a cycle trip', p: 'the projects / completed the trip' }
+                ]
+            },
+            {
+                id: 'q3',
+                num: '3',
+                type: 'Matching Information',
+                ansKey: 'Paragraph A',
+                ansTitle: 'a description of the extent of Mark’s travels',
+                badgeColor: 'bg-emerald-600',
+                prompt: 'a description of the extent of Mark’s travels',
+                explEn: 'Paragraph A details the massive distances and routes Mark covered: 18,296 miles around the world (2008), 13,080 miles across the Americas (2010), and 6,762 miles from Cairo to Cape Town (2015).',
+                explVi: 'Đoạn A miêu tả cụ thể phạm vi và độ dài quãng đường Mark đã đi: 18.296 dặm vòng quanh thế giới, 13.080 dặm xuyên châu Mỹ và 6.762 dặm xuyên châu Phi -> Paragraph A.',
+                synonyms: [
+                    { q: 'extent of Mark’s travels', p: '18,296 miles around the world / 13,080 mile journey / 6,762 miles' },
+                    { q: 'long distance trips', p: 'travels' }
+                ]
+            },
+            {
+                id: 'q4',
+                num: '4',
+                type: 'Matching Information',
+                ansKey: 'Paragraph D',
+                ansTitle: 'a reference to how cold the weather was',
+                badgeColor: 'bg-pink-600',
+                prompt: 'a reference to how cold the weather was',
+                explEn: 'Paragraph D refers to extreme freezing temperatures in the desert: "I had to remove the ice from my tent when it was still dark" before setting off at dawn.',
+                explVi: 'Đoạn D đề cập đến thời tiết đóng băng giá rét khi Mark phải gạt lớp băng đá đóng trên lều của mình lúc trời còn tối trước khi đạp xe ("remove the ice from my tent") -> Paragraph D.',
+                synonyms: [
+                    { q: 'how cold the weather was', p: 'remove the ice from my tent when it was still dark' },
+                    { q: 'reference to cold weather', p: 'ice on tent / freezing desert night' }
+                ]
+            },
+            {
+                id: 'q5',
+                num: '5',
+                type: 'Matching Information',
+                ansKey: 'Paragraph B',
+                ansTitle: 'some reasons why making progress can be difficult',
+                badgeColor: 'bg-purple-600',
+                prompt: 'some reasons why making progress can be difficult',
+                explEn: 'Paragraph B lists the various obstacles that slowed Mark down across Africa: long delays at border checkpoints, dense traffic queues, broken unpaved roads, and adverse weather.',
+                explVi: 'Đoạn B liệt kê hàng loạt nguyên nhân cản trở tốc độ di chuyển: chờ đợi ở cửa khẩu, kẹt xe, đường sá bị hỏng và thời tiết cản trở ("long delays at border crossings, queues of traffic, broken roads") -> Paragraph B.',
+                synonyms: [
+                    { q: 'making progress can be difficult', p: 'not easy to keep up this speed / stopped him from travelling fast' },
+                    { q: 'reasons', p: 'delays at border crossings / queues of traffic / broken roads / weather' }
+                ]
+            },
+            {
+                id: 'q6',
+                num: '6',
+                type: 'Matching Information',
+                ansKey: 'Paragraph E',
+                ansTitle: 'examples of different attitudes towards the bicycle',
+                badgeColor: 'bg-orange-600',
+                prompt: 'examples of different attitudes towards the bicycle',
+                explEn: 'Paragraph E compares how people in Western countries treat cycling as a leisure sport/fitness activity, whereas residents in developing nations view a bicycle as a prized, life-enhancing utility vehicle.',
+                explVi: 'Đoạn E so sánh các thái độ khác nhau: người phương Tây coi xe đạp là thể thao và giải trí, trong khi người dân nghèo xem xe đạp là phương tiện đi lại đáng mơ ước để tiết kiệm thời gian đi bộ -> Paragraph E.',
+                synonyms: [
+                    { q: 'different attitudes towards the bicycle', p: 'sport to keep fit and have fun vs. type of transport many dream of getting' },
+                    { q: 'view cycling', p: 'attitudes towards the bicycle' }
+                ]
+            }
+        ];
+
+        const vocabList = [
+            {
+                word: 'expedition',
+                phonetic: '/ˌek.spəˈdɪʃ.ən/',
+                vi: 'Cuộc thám hiểm / Chuyến hành trình gian nan',
+                enDef: 'A journey undertaken by a group of people or an individual with a particular purpose, especially exploration or scientific research.',
+                type: 'noun',
+                category: 'travel',
+                context: 'Mark Beaumont has completed a number of amazing long-distance expeditions on his bike.',
+                collocation: 'go on an expedition / cycling expedition'
+            },
+            {
+                word: 'break a record',
+                phonetic: '/breɪk ə ˈrek.ɔːd/',
+                vi: 'Phá kỷ lục (thế giới)',
+                enDef: 'To perform better or faster than the best previously recorded achievement in a sport or activity.',
+                type: 'verb',
+                category: 'verb',
+                context: 'Mark succeeded in breaking the world record for cycling across Africa by 17 days.',
+                collocation: 'break the world record / hold a record'
+            },
+            {
+                word: 'border crossing',
+                phonetic: '/ˈbɔː.dər ˌkrɒs.ɪŋ/',
+                vi: 'Cửa khẩu / Điểm qua biên giới',
+                enDef: 'A checkpoint where travellers or vehicles pass between two adjacent countries.',
+                type: 'noun',
+                category: 'travel',
+                context: 'There were long delays at border crossings that stopped him from travelling fast.',
+                collocation: 'border crossing delays / passport control'
+            },
+            {
+                word: 'holiday brochure',
+                phonetic: '/ˈhɒl.ə.deɪ ˌbrəʊ.ʃər/',
+                vi: 'Tờ gấp / Sách quảng cáo du lịch',
+                enDef: 'A promotional magazine or pamphlet containing photos and descriptions of holiday destinations.',
+                type: 'noun',
+                category: 'travel',
+                context: 'They imagine the beautiful mountains and lakes you see in holiday brochures.',
+                collocation: 'travel brochure / glossy holiday brochure'
+            },
+            {
+                word: 'grassland',
+                phonetic: '/ˈɡrɑːs.lænd/',
+                vi: 'Đồng cỏ thảo nguyên ngút ngàn',
+                enDef: 'A large, open area of country covered with grass, especially one used for grazing.',
+                type: 'noun',
+                category: 'travel',
+                context: 'I realised that large parts of Patagonia are just miles and miles of grassland.',
+                collocation: 'open grassland / vast grasslands'
+            },
+            {
+                word: 'freezing temperature',
+                phonetic: '/ˈfriː.zɪŋ ˈtem.prə.tʃər/',
+                vi: 'Nhiệt độ đóng băng / Giá rét buốt',
+                enDef: 'A temperature at or below 0°C (32°F) where moisture turns into frost or solid ice.',
+                type: 'noun',
+                category: 'travel',
+                context: 'I had to remove the ice from my tent in freezing temperatures before daylight.',
+                collocation: 'sub-zero temperatures / freezing cold'
+            },
+            {
+                word: 'means of transport',
+                phonetic: '/miːnz əv ˈtræn.spɔːt/',
+                vi: 'Phương tiện đi lại / Giao thông',
+                enDef: 'Any vehicle or system used for carrying passengers or goods from one location to another.',
+                type: 'noun',
+                category: 'travel',
+                context: 'A bicycle is a type of transport that many people in rural areas dream of owning.',
+                collocation: 'essential means of transport / public transport'
+            },
+            {
+                word: 'relief',
+                phonetic: '/rɪˈliːf/',
+                vi: 'Sự nhẹ nhõm / Trút bỏ gánh nặng',
+                enDef: 'A feeling of reassurance and relaxation following release from anxiety, distress, or extreme physical exertion.',
+                type: 'noun',
+                category: 'travel',
+                context: 'Because the projects involve huge effort and costs, his main emotion is relief.',
+                collocation: 'breathe a sigh of relief / sense of relief'
+            }
+        ];
+    </script>
+
+    <script>
+        const app = {
+            currentLang: 'en',
+            fontSize: 16,
+            showArrows: true,
+            activeTab: 'analysis',
+            fcIndex: 0,
+            fcFlipped: false,
+            arrowAnimFrame: null,
+
+            init() {
+                this.bindEvents();
+                this.renderPassage();
+                this.renderExplanations();
+                this.bindTargetEvents();
+                this.renderVocabGrid();
+                this.setupFlashcard();
+                this.setupQuiz();
+            },
+
+            bindEvents() {
+                // Language Switcher
+                document.querySelectorAll('#lang-switcher .lang-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#lang-switcher .lang-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.currentLang = e.currentTarget.dataset.lang;
+                        this.renderPassage();
+                        this.renderExplanations();
+                        this.bindTargetEvents();
+                        setTimeout(() => this.drawConnections(), 60);
+                    });
+                });
+
+                // Font Resizing
+                document.getElementById('btn-inc-font').addEventListener('click', () => {
+                    if (this.fontSize < 24) {
+                        this.fontSize += 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+                document.getElementById('btn-dec-font').addEventListener('click', () => {
+                    if (this.fontSize > 13) {
+                        this.fontSize -= 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+
+                // Arrow Toggle
+                document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
+                    this.showArrows = !this.showArrows;
+                    e.currentTarget.classList.toggle('bg-sky-600');
+                    e.currentTarget.classList.toggle('bg-slate-300');
+                    e.currentTarget.classList.toggle('text-slate-700');
+                    if (!this.showArrows) {
+                        this.clearCanvas();
+                    } else {
+                        this.drawConnections();
+                    }
+                });
+
+                // Scroll synchronization
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+                if (leftPane) leftPane.addEventListener('scroll', () => this.drawConnections());
+                if (rightPane) rightPane.addEventListener('scroll', () => this.drawConnections());
+
+                // Navigation Tabs
+                document.querySelectorAll('#nav-tabs .tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#nav-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        const tab = e.currentTarget.dataset.tab;
+                        this.activeTab = tab;
+
+                        document.getElementById('tab-analysis-content').classList.toggle('hidden', tab !== 'analysis');
+                        document.getElementById('tab-vocabulary-content').classList.toggle('hidden', tab !== 'vocabulary');
+                        document.getElementById('tab-flashcards-content').classList.toggle('hidden', tab !== 'flashcards');
+
+                        if (tab !== 'analysis') this.clearCanvas();
+                        else setTimeout(() => this.drawConnections(), 100);
+                    });
+                });
+
+                // Vocab Search & Filter
+                document.getElementById('vocab-search').addEventListener('input', () => this.filterVocab());
+                document.getElementById('vocab-filter').addEventListener('change', () => this.filterVocab());
+
+                // Flashcard Flip & Nav
+                document.getElementById('flashcard-wrapper').addEventListener('click', () => {
+                    this.fcFlipped = !this.fcFlipped;
+                    document.getElementById('flashcard-inner').classList.toggle('rotate-y-180', this.fcFlipped);
+                });
+                document.getElementById('btn-fc-prev').addEventListener('click', () => {
+                    if (this.fcIndex > 0) {
+                        this.fcIndex--;
+                        this.updateFlashcard();
+                    }
+                });
+                document.getElementById('btn-fc-next').addEventListener('click', () => {
+                    if (this.fcIndex < vocabList.length - 1) {
+                        this.fcIndex++;
+                        this.updateFlashcard();
+                    }
+                });
+
+                // Flashcards vs Quiz Mode Switcher
+                document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('flashcard-view').classList.remove('hidden');
+                    document.getElementById('quiz-view').classList.add('hidden');
+                });
+                document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-sky-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-sky-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('quiz-view').classList.remove('hidden');
+                    document.getElementById('flashcard-view').classList.add('hidden');
+                });
+
+                window.addEventListener('resize', () => this.drawConnections());
+            },
+
+            renderPassage() {
+                const container = document.getElementById('passage-container');
+                let html = `
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">A Different Way to See the World</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Mark Beaumont found that many countries look different from a bicycle. Our reporter writes about Mark's experience of cycling round the world.</p>
+                `;
+
+                passageData.forEach(p => {
+                    if (this.currentLang === 'en') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.en}</p>`;
+                    } else if (this.currentLang === 'vi') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.vi}</p>`;
+                    } else if (this.currentLang === 'dual') {
+                        html += `
+                            <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                                <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
+                                    <strong class="text-xs font-bold text-sky-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    ${p.en}
+                                </div>
+                                <div class="text-slate-600 text-sm leading-relaxed pt-1">
+                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
+                                    ${p.vi}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                container.innerHTML = html;
+            },
+
+            renderExplanations() {
+                const container = document.getElementById('explanations-list');
+                let html = `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+                        <div class="flex items-center space-x-2 text-sky-700 font-bold text-xs uppercase tracking-wide mb-1">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>Matching Information Rationale & Evidence Guide</span>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-slate-900">A Different Way to See the World — Phân Tích Câu 1–6</h2>
+                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                    </div>
+                `;
+
+                questionsData.forEach(q => {
+                    html += `
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-sky-400" id="q-card-${q.id}">
+                            <div class="flex items-start justify-between">
+                                <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
+                                    Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <button class="jump-btn bg-sky-50 hover:bg-sky-100 text-sky-700 font-bold text-xs px-2.5 py-1 rounded-md border border-sky-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                        <i class="fa-solid fa-location-dot"></i> Xem bài đọc
+                                    </button>
+                                    <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
+                                        Đáp án: ${q.ansKey}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-slate-800 leading-relaxed">${q.prompt}</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
+                                <div class="flex items-center text-sky-700 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-circle-check mr-1.5"></i>
+                                    <span>Giải thích chi tiết (Rationale):</span>
+                                </div>
+                                <p class="leading-relaxed font-medium text-slate-800">${this.currentLang === 'vi' ? q.explVi : q.explEn}</p>
+                            </div>
+
+                            ${q.synonyms ? `
+                                <div class="pt-2 border-t border-slate-100">
+                                    <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-sky-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                    </h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-sky-50/70 text-sky-900 font-semibold border-b border-sky-100">
+                                                    <th class="p-2">Từ khóa trong Câu hỏi</th>
+                                                    <th class="p-2">Từ tương đương trong Bài đọc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                                ${q.synonyms.map(s => `
+                                                    <tr>
+                                                        <td class="p-2 font-medium text-slate-700">${s.q}</td>
+                                                        <td class="p-2 font-semibold text-sky-700">${s.p}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            },
+
+            bindTargetEvents() {
+                const targets = document.querySelectorAll('.ans-target');
+                const qCards = document.querySelectorAll('.q-card');
+                const jumpBtns = document.querySelectorAll('.jump-btn');
+
+                const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+
+                    if (targetEl) {
+                        targetEl.classList.add('active-target');
+                        if (scrollLeft) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+
+                    if (cardEl) {
+                        cardEl.classList.add('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400');
+                        if (scrollRight) {
+                            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+
+                    this.startSmoothTracking();
+                };
+
+                const deactivateAll = () => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-sky-600', 'bg-sky-50/40', 'border-sky-400'));
+                    this.clearCanvas();
+                };
+
+                targets.forEach(target => {
+                    const qId = target.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+
+                    target.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    target.addEventListener('mouseleave', deactivateAll);
+                    target.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        activatePair(target, qCard, false, true);
+                    });
+                });
+
+                qCards.forEach(qCard => {
+                    const qId = qCard.id.replace('q-card-', '');
+                    const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+
+                    qCard.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    qCard.addEventListener('mouseleave', deactivateAll);
+                    qCard.addEventListener('click', (e) => {
+                        if (e.target.closest('.jump-btn')) return;
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+
+                jumpBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const qId = btn.dataset.q;
+                        const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+                        const qCard = document.getElementById(`q-card-${qId}`);
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+            },
+
+            startSmoothTracking() {
+                if (this.arrowAnimFrame) cancelAnimationFrame(this.arrowAnimFrame);
+                const startTime = performance.now();
+                const duration = 800;
+
+                const step = (now) => {
+                    this.drawConnections();
+                    if (now - startTime < duration) {
+                        this.arrowAnimFrame = requestAnimationFrame(step);
+                    }
+                };
+                this.arrowAnimFrame = requestAnimationFrame(step);
+            },
+
+            drawConnections() {
+                const activeTarget = document.querySelector('.ans-target.active-target');
+                if (activeTarget && this.showArrows) {
+                    const qId = activeTarget.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+                    if (qCard) {
+                        this.drawArrow(activeTarget, qCard);
+                        return;
+                    }
+                }
+                this.clearCanvas();
+            },
+
+            drawArrow(fromEl, toEl) {
+                if (!fromEl || !toEl || window.innerWidth < 1024 || !this.showArrows) {
+                    this.clearCanvas();
+                    return;
+                }
+                
+                const svg = document.getElementById('svg-canvas');
+                const wrapper = document.getElementById('main-wrapper');
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+
+                if (!svg || !wrapper || !leftPane || !rightPane) return;
+
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const leftPaneRect = leftPane.getBoundingClientRect();
+                const rightPaneRect = rightPane.getBoundingClientRect();
+
+                const clientRects = fromEl.getClientRects();
+                let fromRect = fromEl.getBoundingClientRect();
+                if (clientRects.length > 0) {
+                    fromRect = clientRects[clientRects.length - 1];
+                }
+                const toRect = toEl.getBoundingClientRect();
+
+                const isFromVisible = (fromRect.bottom >= leftPaneRect.top && fromRect.top <= leftPaneRect.bottom);
+                const isToVisible = (toRect.bottom >= rightPaneRect.top && toRect.top <= rightPaneRect.bottom);
+
+                if (!isFromVisible || !isToVisible) {
+                    this.clearCanvas();
+                    return;
+                }
+
+                const x1 = Math.min(fromRect.right - wrapperRect.left, leftPaneRect.right - wrapperRect.left - 8);
+                const y1 = fromRect.top + (fromRect.height / 2) - wrapperRect.top;
+                
+                const x2 = toRect.left - wrapperRect.left;
+                const y2 = toRect.top + Math.min(36, toRect.height / 2) - wrapperRect.top;
+
+                const dx = Math.max(30, (x2 - x1) * 0.45);
+                const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+                svg.innerHTML = `
+                    <defs>
+                        <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0284c7" />
+                            <stop offset="100%" stop-color="#38bdf8" />
+                        </linearGradient>
+                        <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0284c7" flood-opacity="0.4"/>
+                        </filter>
+                        <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#38bdf8" />
+                        </marker>
+                    </defs>
+                    <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#0284c7" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#38bdf8" />
+                `;
+            },
+
+            clearCanvas() {
+                const svg = document.getElementById('svg-canvas');
+                if (svg) svg.innerHTML = '';
+            },
+
+            renderVocabGrid() {
+                this.filterVocab();
+            },
+
+            filterVocab() {
+                const search = document.getElementById('vocab-search').value.toLowerCase();
+                const filter = document.getElementById('vocab-filter').value;
+                const grid = document.getElementById('vocab-cards-grid');
+
+                const filtered = vocabList.filter(item => {
+                    const matchSearch = item.word.toLowerCase().includes(search) || item.vi.toLowerCase().includes(search);
+                    const matchFilter = filter === 'all' || item.category === filter || item.type === filter;
+                    return matchSearch && matchFilter;
+                });
+
+                let html = '';
+                filtered.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-sky-400 transition-all space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded-md border border-sky-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-sky-600 transition-colors" title="Nghe phát âm">
+                                        <i class="fa-solid fa-volume-high text-sm"></i>
+                                    </button>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
+                                <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
+                                <p class="text-sm font-bold text-sky-700 bg-sky-50/50 p-2 rounded-lg border border-sky-100 mb-3">${item.vi}</p>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-slate-400">Context trong bài đọc:</span>
+                                    <p class="text-slate-600 italic">"${item.context}"</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-sky-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-sky-900">${item.collocation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html || `<p class="text-sm text-slate-500 col-span-full text-center py-8">Không tìm thấy từ vựng phù hợp với bộ lọc.</p>`;
+            },
+
+            speakWord(word) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(word);
+                    u.lang = 'en-GB';
+                    u.rate = 0.9;
+                    window.speechSynthesis.speak(u);
+                }
+            },
+
+            setupFlashcard() {
+                this.updateFlashcard();
+            },
+
+            updateFlashcard() {
+                const item = vocabList[this.fcIndex];
+                this.fcFlipped = false;
+                document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+                document.getElementById('fc-category').textContent = `${item.type.toUpperCase()} • ${item.category.toUpperCase()}`;
+                document.getElementById('fc-word').textContent = item.word;
+                document.getElementById('fc-phonetic').textContent = item.phonetic;
+                document.getElementById('fc-meaning').textContent = item.vi;
+                document.getElementById('fc-context').textContent = `"${item.context}"`;
+                document.getElementById('fc-counter').textContent = `${this.fcIndex + 1} / ${vocabList.length}`;
+            },
+
+            setupQuiz() {
+                const quizBox = document.getElementById('quiz-box');
+                const sampleQuestions = [
+                    {
+                        q: "Which term refers to 'a long and difficult journey undertaken for exploration or endurance'?",
+                        options: ["Border crossing", "Expedition", "Grassland", "Holiday brochure"],
+                        ans: 1,
+                        expl: "Expedition (danh từ) = Cuộc thám hiểm, chuyến hành trình dài ngày mang tính chất khám phá hoặc vượt qua thử thách."
+                    },
+                    {
+                        q: "What emotion did Mark Beaumont describe feeling most upon finishing his huge projects?",
+                        options: [
+                            "Frustration at border delays",
+                            "Relief that he completed the trip successfully",
+                            "Anger at bad weather",
+                            "Sadness from being alone"
+                        ],
+                        ans: 1,
+                        expl: "Relief (sự nhẹ nhõm) là cảm xúc chủ đạo của Mark khi hoàn thành xuất sắc chuyến đi tốn kém nhiều công sức và tài chính."
+                    },
+                    {
+                        q: "How do attitudes towards bicycles differ between Western countries and poorer developing nations in the passage?",
+                        options: [
+                            "Westerners use bikes for long expeditions only; poor people refuse to ride them",
+                            "Westerners use bikes for fitness and fun; poor people dream of owning one as essential transport",
+                            "Westerners consider bikes outdated; poor people use them for racing",
+                            "Both groups share identical views"
+                        ],
+                        ans: 1,
+                        expl: "Ở các nước phát triển, xe đạp là môn thể thao giữ dáng và giải trí; trong khi ở các nước nghèo, đó là phương tiện di chuyển thiết yếu đáng mơ ước."
+                    }
+                ];
+
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-sky-600"></i> A Different Way to See the World Vocab Challenge</h3>`;
+                sampleQuestions.forEach((q, idx) => {
+                    html += `
+                        <div class="space-y-3 pt-2" id="quiz-q-${idx}">
+                            <p class="text-sm font-bold text-slate-800">${idx + 1}. ${q.q}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${q.options.map((opt, oIdx) => `
+                                    <button onclick="app.checkQuiz(${idx}, ${oIdx}, ${q.ans})" class="quiz-opt-btn text-left p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+                                        ${String.fromCharCode(65 + oIdx)}. ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="quiz-feedback hidden text-xs p-3 rounded-xl"></div>
+                        </div>
+                    `;
+                });
+
+                quizBox.innerHTML = html;
+            },
+
+            checkQuiz(qIdx, selected, correct) {
+                const qDiv = document.getElementById(`quiz-q-${qIdx}`);
+                const btns = qDiv.querySelectorAll('.quiz-opt-btn');
+                const feedback = qDiv.querySelector('.quiz-feedback');
+
+                btns.forEach((btn, idx) => {
+                    btn.disabled = true;
+                    if (idx === correct) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-xs";
+                    } else if (idx === selected) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-red-400 bg-red-50 text-red-900 font-bold text-xs";
+                    }
+                });
+
+                feedback.classList.remove('hidden');
+                if (selected === correct) {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 font-bold border border-emerald-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Chính xác! Tuyệt vời.`;
+                } else {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-red-100 text-red-900 font-bold border border-red-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chính xác. Đáp án đúng là ${String.fromCharCode(65 + correct)}.`;
+                }
+            }
+        };
+
+        window.onload = () => app.init();
+    </script>
+</body>
+</html>

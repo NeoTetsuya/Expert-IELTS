@@ -210,6 +210,24 @@ window.EXPERT_5_MODULES = [
     "status": "Active Exercise"
   },
   {
+    "url": "module-4a-reading-explanations.html",
+    "dataTitle": "Module 4a Reading Analysis & Explanations — Monitoring Fitness",
+    "skill": "reading",
+    "badge": "Module 4a",
+    "title": "Module 4a Reading Analysis — Monitoring Fitness",
+    "status": "Active Analysis",
+    "badgeClass": "badge-band5"
+  },
+  {
+    "url": "module-4b-reading-explanations.html",
+    "dataTitle": "Module 4b Reading Analysis & Explanations — Remedies from Nature",
+    "skill": "reading",
+    "badge": "Module 4b",
+    "title": "Module 4b Reading Analysis — Remedies from Nature",
+    "status": "Active Analysis",
+    "badgeClass": "badge-band5"
+  },
+  {
     "url": "module-5-reading.html",
     "dataTitle": "Module 5 Reading",
     "skill": "reading",
@@ -217,6 +235,24 @@ window.EXPERT_5_MODULES = [
     "badge": "Module 5",
     "title": "Module 5 Reading",
     "status": "Exercise"
+  },
+  {
+    "url": "module-5a-reading-explanations.html",
+    "dataTitle": "Module 5a Reading Analysis & Explanations — A Different Way to See the World",
+    "skill": "reading",
+    "badge": "Module 5a",
+    "title": "Module 5a Reading Analysis — A Different Way to See the World",
+    "status": "Active Analysis",
+    "badgeClass": "badge-band5"
+  },
+  {
+    "url": "module-5b-reading-explanations.html",
+    "dataTitle": "Module 5b Reading Analysis & Explanations — The Problem of Visual Pollution",
+    "skill": "reading",
+    "badge": "Module 5b",
+    "title": "Module 5b Reading Analysis — The Problem of Visual Pollution",
+    "status": "Active Analysis",
+    "badgeClass": "badge-band5"
   },
   {
     "url": "module-6-reading.html",

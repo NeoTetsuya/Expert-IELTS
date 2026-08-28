@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Fitness — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --app-font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: var(--app-font-size);
+            overflow-x: hidden;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 2.15;
+            color: #334155;
+        }
+        .reading-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.25rem;
+        }
+        .reading-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .paragraph-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
+            color: #2563eb;
+            background-color: #dbeafe;
+            border: 1px solid #bfdbfe;
+            text-indent: 0;
+            vertical-align: middle;
+        }
+
+        /* Highlight Targets & Interactive States */
+        .ans-target {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            position: relative;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            text-indent: 0;
+        }
+
+        /* Question target color themes */
+        .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
+        .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
+        .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
+        .ans-target-q4 { background-color: #fbcfe8; border-bottom: 2px solid #db2777; color: #9d174d; }
+        .ans-target-q5 { background-color: #ddd6fe; border-bottom: 2px solid #7c3aed; color: #5b21b6; }
+
+        .q-badge {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72em;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: baseline;
+            line-height: 1.2;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-indent: 0;
+            user-select: none;
+        }
+
+        .ans-target:hover, .ans-target.active-target {
+            outline: 3px solid #2563eb;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);
+            filter: brightness(0.96);
+            z-index: 20;
+        }
+
+        /* Floating Evidence Popover */
+        .explanation-popover {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            width: 320px;
+            background-color: #0f172a;
+            color: #f8fafc;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+            transition: all 0.25s ease;
+            pointer-events: none;
+            line-height: 1.5;
+            font-weight: normal;
+        }
+        .explanation-popover::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+        }
+        .ans-target:hover .explanation-popover, .ans-target.active-target .explanation-popover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* SVG Overlay Canvas */
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        .tab-btn.active {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        @keyframes arrowFlow {
+            from { stroke-dashoffset: 26; }
+            to { stroke-dashoffset: 0; }
+        }
+        .animated-arrow-line {
+            animation: arrowFlow 1s linear infinite;
+        }
+
+        .lang-btn.active {
+            background-color: #0f172a;
+            color: white;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col bg-slate-100">
+
+    <!-- Header Bar -->
+    <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-heart-pulse text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-slate-800">Monitoring Fitness</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Health Vocab Suite</p>
+            </div>
+        </div>
+
+        <!-- Controls: Language Switcher, Font Resize & Arrows Toggle -->
+        <div class="flex items-center space-x-3 flex-wrap gap-y-2">
+            <!-- Language Switcher -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" id="lang-switcher">
+                <button class="lang-btn active px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="en">EN</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="vi">VIE</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="dual">Parallel (EN/VIE)</button>
+            </div>
+
+            <!-- Font Resizer -->
+            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button id="btn-dec-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Giảm cỡ chữ">A-</button>
+                <button id="btn-inc-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Tăng cỡ chữ">A+</button>
+            </div>
+
+            <!-- Toggle Arrow Canvas -->
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-600 text-white border border-blue-600 font-medium text-xs hover:bg-blue-700 transition-colors shadow-xs">
+                <i class="fa-solid fa-route"></i>
+                <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
+        <div class="flex space-x-2 min-w-max" id="nav-tabs">
+            <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Matching Sentence Endings)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Health & Fitness Tech Vocab Suite
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
+                <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="flex-1 overflow-hidden relative" id="main-wrapper">
+        <svg id="svg-canvas"></svg>
+
+        <!-- TAB 1: Passage & Question Analysis -->
+        <div id="tab-analysis-content" class="h-full grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
+            <!-- Left Pane: Passage View -->
+            <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-3 py-1 rounded-md border border-blue-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — Monitoring Fitness
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
+                    </div>
+
+                    <div id="passage-container" class="reading-text text-base leading-relaxed text-slate-700 space-y-4">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Pane: Questions & Explanations -->
+            <section id="right-pane" class="lg:col-span-6 bg-slate-50 overflow-y-auto p-6 lg:p-10">
+                <div class="max-w-2xl mx-auto space-y-6" id="explanations-list">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: Vocabulary Suite -->
+        <div id="tab-vocabulary-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-blue-600"></i> Essential IELTS Reading Vocabulary — Health Tech & Sports Psychology
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">High-yield terminology for physiological monitoring, metabolism, and behavioral habit tracking.</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <div class="relative flex-1 md:w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <option value="all">Tất cả từ loại</option>
+                            <option value="noun">Danh từ (Nouns)</option>
+                            <option value="verb">Động từ (Verbs)</option>
+                            <option value="adjective">Tính từ (Adjectives)</option>
+                            <option value="health">Sức khỏe & Thể thao</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="vocab-cards-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Vocab Flashcards & Practice Quiz -->
+        <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="flex justify-center space-x-3">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-blue-600 text-white shadow-sm transition-all">
+                        <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
+                    </button>
+                    <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-circle-question mr-2"></i> Quick Quiz Mode
+                    </button>
+                </div>
+
+                <!-- Flashcard View -->
+                <div id="flashcard-view" class="flex flex-col items-center space-y-6">
+                    <p class="text-xs text-slate-500 font-semibold">Nhấp vào thẻ để lật xem định nghĩa và giải thích tiếng Việt</p>
+                    
+                    <div class="w-full max-w-md h-72 perspective-1000 cursor-pointer" id="flashcard-wrapper">
+                        <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
+                            <!-- Front -->
+                            <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">Category</span>
+                                <div>
+                                    <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
+                                    <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
+                                </div>
+                                <span class="text-xs font-bold text-blue-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-blue-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <div>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-blue-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="btn-fc-prev" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span id="fc-counter" class="text-xs font-bold text-slate-600 px-4 py-2 bg-white rounded-xl border border-slate-200">1 / 8</span>
+                        <button id="btn-fc-next" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz View -->
+                <div id="quiz-view" class="hidden space-y-6">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6" id="quiz-box">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passageData = [
+            {
+                pNum: '1',
+                en: `Do fitness apps really work? Are they helpful? Or do they drown out the conversation people should be having with their bodies?`,
+                vi: `Liệu các ứng dụng tập thể dục có thực sự hiệu quả không? Chúng có hữu ích không? Hay chúng đang làm lu mờ cuộc trò chuyện trực tiếp mà mọi người nên có với chính cơ thể của mình?`
+            },
+            {
+                pNum: '2',
+                en: `Technology has become an important aspect of life for people who want to get and stay fit. They use apps on their smartphone or other devices, for example, to count the number of steps they take every day, to measure their heart rate, to record their sleep patterns and to work out how many calories they consume.`,
+                vi: `Công nghệ đã trở thành một khía cạnh quan trọng trong cuộc sống đối với những người muốn rèn luyện và duy trì vóc dáng thon gọn, khỏe mạnh. Ví dụ, họ sử dụng các ứng dụng trên điện thoại thông minh hoặc các thiết bị khác để đếm số bước chân mỗi ngày, đo nhịp tim, ghi lại chu kỳ giấc ngủ và tính toán lượng calo họ tiêu thụ.`
+            },
+            {
+                pNum: '3',
+                en: `<span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Sports scientists recognise that deciding to use a fitness tracker or app is good because it means a person is curious about health and keen to improve their habits<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Option D)</strong>Scientists approve of using apps because it shows a desire to develop better fitness practices ('keen to improve their habits').</span></span>. If the attractive design of a device or app encourages an interest in keeping fit, its impact is clearly positive. After all, many people have reported that fitness devices have motivated them to get off the sofa and go for a walk after dinner.`,
+                vi: `<span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Các nhà khoa học thể thao công nhận rằng việc quyết định sử dụng thiết bị theo dõi hoặc ứng dụng tập thể dục là điều tốt, bởi vì nó cho thấy người đó tò mò về sức khỏe và tha thiết muốn cải thiện thói quen của mình<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Option D)</strong>Các chuyên gia tán thành vì nó cho thấy người dùng muốn phát triển các thói quen tập luyện tốt hơn ('keen to improve their habits').</span></span>. Nếu thiết kế bắt mắt của một thiết bị hoặc ứng dụng kích thích sự quan tâm đến việc giữ dáng, thì tác động của nó rõ ràng là tích cực. Rốt cuộc, nhiều người đã chia sẻ rằng các thiết bị thể dục đã thúc đẩy họ rời khỏi ghế sofa và đi dạo sau bữa tối.`
+            },
+            {
+                pNum: '4',
+                en: `<span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>Unfortunately, however, many of those after-dinner walkers have added that when their devices broke and they no longer knew how many steps they had taken, there seemed little point in heading out for that walk<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Option F)</strong>When devices break, users feel there is little point walking, so they lose the motivation to be active.</span></span>. Consequently, sports scientists agree that people need to be aware of the fact that apps alone are not enough.`,
+                vi: `<span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>Tuy nhiên, thật không may, nhiều người đi dạo sau bữa tối đã nói thêm rằng khi thiết bị của họ bị hỏng và họ không còn biết mình đã đi được bao nhiêu bước, họ cảm thấy dường như chẳng còn lý do hay ý nghĩa gì để bước ra ngoài đi dạo nữa<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Option F)</strong>Khi thiết bị hỏng, họ mất đi động lực vận động ('there seemed little point in heading out' -> lose motivation).</span></span>. Do đó, các nhà khoa học thể thao đồng thuận rằng mọi người cần nhận thức được thực tế là chỉ riêng các ứng dụng thôi là chưa đủ.`
+            },
+            {
+                pNum: '5',
+                en: `One of the problems with fitness trackers is that they usually measure very limited pieces of information – steps taken, movements when asleep or heart rate, for example – and this does not give a clear overall picture of a person’s health. They may record that someone worked out for two hours on a rowing machine, but not that they then spent the rest of the day eating pizza and watching DVDs. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>In other words, fitness apps can help people to deceive themselves about how healthy their lifestyle is<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Option A)</strong>Relying too much on apps is risky because apps can give an unrealistic impression of one's true fitness level ('deceive themselves').</span></span>.`,
+                vi: `Một trong những vấn đề với thiết bị theo dõi thể dục là chúng thường chỉ đo lường lượng thông tin rất hạn chế – ví dụ như số bước chân, chuyển động khi ngủ hoặc nhịp tim – và điều này không mang lại một bức tranh tổng thể rõ ràng về sức khỏe của một người. Chúng có thể ghi lại rằng ai đó đã tập luyện hai giờ trên máy chèo thuyền, nhưng không ghi nhận rằng sau đó họ đã dành phần còn lại trong ngày để ăn pizza và xem phim. <span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Nói cách khác, các ứng dụng thể dục có thể khiến mọi người tự lừa dối chính mình về mức độ lành mạnh trong lối sống của họ<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Option A)</strong>Quá phụ thuộc vào app có thể mang lại ảo tưởng/cái nhìn phi thực tế về mức độ thể chất thực tế ('give an unrealistic impression').</span></span>.`
+            },
+            {
+                pNum: '6',
+                en: `<span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>What sports psychologists recommend users of electronic fitness devices to do is raise their awareness of how their body looks<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Option C)</strong>Psychologists recommend that people interested in fitness should pay more attention to their physical appearance.</span></span>. No one actually needs an app to tell them that they have had a bad night’s sleep; the bags under their eyes can do that just as well. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>And if people want to lose weight, they may find it more effective to take a regular look at themselves in the mirror<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Option E)</strong>Writing a fitness diary and looking in the mirror is especially helpful when someone wants to lose weight.</span></span> rather than try to motivate themselves to diet by checking everything they eat against a calorie counting app. Unfortunately, tracking the calories is also ineffective because the body metabolises calories from sugar differently than those from fat.`,
+                vi: `<span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Điều mà các nhà tâm lý học thể thao khuyên người dùng các thiết bị thể dục điện tử nên làm là nâng cao nhận thức về diện mạo và vóc dáng cơ thể mình<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Option C)</strong>Các chuyên gia khuyên người tập nên chú ý nhiều hơn đến diện mạo/vóc dáng cơ thể ('pay more attention to appearance').</span></span>. Thực tế chẳng ai cần một ứng dụng để nói rằng họ vừa có một đêm mất ngủ; bọng mắt thâm quầng dưới mắt hoàn toàn có thể báo hiệu điều đó rõ ràng. <span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>Và nếu mọi người muốn giảm cân, họ có thể thấy hiệu quả hơn nhiều khi thường xuyên nhìn mình trong gương<span class="explanation-popover"><strong class="text-blue-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Option E)</strong>Viết nhật ký thể dục và lắng nghe cơ thể đặc biệt hữu ích khi ai đó muốn giảm cân ('someone wants to lose weight').</span></span> thay vì cố gắng thúc đẩy bản thân ăn kiêng bằng cách kiểm tra mọi thứ mình ăn qua ứng dụng đếm calo. Thật không may, việc đếm calo cũng không hiệu quả vì cơ thể chuyển hóa calo từ đường khác hoàn toàn so với calo từ chất béo.`
+            },
+            {
+                pNum: '7',
+                en: `Keeping a fitness diary is also useful. In it, people should record what they ate and what their mood was two or three hours later. Tracking calories in a food app after eating a large tub of ice cream is not going to solve anyone’s problems. Reflecting on how bad they felt after eating it will. Keeping a fitness diary helps people to eat well and exercise not for the sake of meeting the app’s artificial targets, but because exercise makes everyone feel, look and be better.`,
+                vi: `Việc ghi nhật ký tập luyện cũng rất hữu ích. Trong đó, mọi người nên ghi lại những gì mình đã ăn và tâm trạng của mình hai hoặc ba giờ sau đó. Đếm calo trong ứng dụng ăn uống sau khi ăn cả một hộp kem lớn sẽ không giải quyết được vấn đề của ai cả. Việc suy ngẫm về cảm giác tồi tệ sau khi ăn nó mới là điều mang lại thay đổi. Ghi nhật ký tập luyện giúp mọi người ăn uống lành mạnh và tập thể dục không phải để đạt được những mục tiêu nhân tạo của ứng dụng, mà bởi vì tập thể dục giúp mọi người cảm thấy, trông thấy và sống tốt hơn.`
+            }
+        ];
+
+        const optionsList = [
+            { key: 'A', text: 'they can give an unrealistic impression of a person’s level of fitness.' },
+            { key: 'B', text: 'people become very attached to their electronic devices.' },
+            { key: 'C', text: 'anyone interested in becoming fitter should pay more attention to their appearance.' },
+            { key: 'D', text: 'it shows that the user wishes to develop better fitness practices.' },
+            { key: 'E', text: 'someone wants to lose weight.' },
+            { key: 'F', text: 'they lose the motivation to be active.' },
+            { key: 'G', text: 'they won’t help you achieve your goals.' }
+        ];
+
+        const questionsData = [
+            {
+                id: 'q1',
+                num: '1',
+                type: 'Matching Sentence Endings',
+                ansKey: 'D',
+                ansTitle: 'it shows that the user wishes to develop better fitness practices.',
+                badgeColor: 'bg-yellow-600',
+                prompt: 'Sports scientists approve of the decision to use fitness apps because …',
+                explEn: 'Paragraph 3 states that scientists recognise using a tracker is good because "it means a person is curious about health and keen to improve their habits" (matches developing better fitness practices).',
+                explVi: 'Đoạn 3 chỉ ra rằng việc sử dụng thiết bị theo dõi là tốt vì nó cho thấy người đó "tò mò về sức khỏe và tha thiết muốn cải thiện thói quen" -> Tương đương với việc muốn phát triển các thói quen tập luyện tốt hơn (Option D).',
+                synonyms: [
+                    { q: 'keen to improve their habits', p: 'wishes to develop better fitness practices' },
+                    { q: 'deciding to use a fitness tracker is good', p: 'approve of the decision to use fitness apps' }
+                ]
+            },
+            {
+                id: 'q2',
+                num: '2',
+                type: 'Matching Sentence Endings',
+                ansKey: 'F',
+                ansTitle: 'they lose the motivation to be active.',
+                badgeColor: 'bg-sky-600',
+                prompt: 'People have reported that when their fitness apps stop working …',
+                explEn: 'Paragraph 4 reveals that when devices broke, walkers felt "there seemed little point in heading out for that walk", meaning they lost their internal drive to remain active.',
+                explVi: 'Đoạn 4 nêu rõ khi thiết bị bị hỏng ("devices broke"), người dùng cảm thấy "chẳng còn lý do gì để bước ra ngoài đi dạo nữa", tức là họ đánh mất động lực vận động (Option F).',
+                synonyms: [
+                    { q: 'devices broke / stop working', p: 'when apps stop working' },
+                    { q: 'there seemed little point in heading out', p: 'lose the motivation to be active' }
+                ]
+            },
+            {
+                id: 'q3',
+                num: '3',
+                type: 'Matching Sentence Endings',
+                ansKey: 'A',
+                ansTitle: 'they can give an unrealistic impression of a person’s level of fitness.',
+                badgeColor: 'bg-emerald-600',
+                prompt: 'It is not sensible to rely too much on fitness apps because …',
+                explEn: 'Paragraph 5 explains that trackers measure limited metrics, causing users to "deceive themselves about how healthy their lifestyle is" (giving a distorted/unrealistic perception).',
+                explVi: 'Đoạn 5 giải thích ứng dụng chỉ đo các chỉ số hạn chế, khiến người dùng "tự lừa dối chính mình về mức độ lành mạnh trong lối sống", tạo ra cái nhìn phi thực tế về mức độ thể chất thực sự (Option A).',
+                synonyms: [
+                    { q: 'help people to deceive themselves', p: 'give an unrealistic impression' },
+                    { q: 'not give a clear overall picture', p: 'rely too much on fitness apps' }
+                ]
+            },
+            {
+                id: 'q4',
+                num: '4',
+                type: 'Matching Sentence Endings',
+                ansKey: 'C',
+                ansTitle: 'anyone interested in becoming fitter should pay more attention to their appearance.',
+                badgeColor: 'bg-pink-600',
+                prompt: 'Sports psychologists recommend that …',
+                explEn: 'Paragraph 6 mentions that sports psychologists advise users to "raise their awareness of how their body looks" and check the mirror rather than solely trusting app data.',
+                explVi: 'Đoạn 6 nêu các chuyên gia tâm lý thể thao khuyên người tập nên "nâng cao nhận thức về diện mạo/vóc dáng cơ thể mình" (nhìn vào gương, quan sát bọng mắt) -> Chú ý nhiều hơn đến diện mạo (Option C).',
+                synonyms: [
+                    { q: 'raise awareness of how body looks', p: 'pay more attention to their appearance' },
+                    { q: 'look in the mirror', p: 'attention to appearance' }
+                ]
+            },
+            {
+                id: 'q5',
+                num: '5',
+                type: 'Matching Sentence Endings',
+                ansKey: 'E',
+                ansTitle: 'someone wants to lose weight.',
+                badgeColor: 'bg-purple-600',
+                prompt: 'Writing a fitness diary is helpful when …',
+                explEn: 'Paragraphs 6 and 7 link observing the body and keeping a reflective food/mood diary to the specific goal of losing weight ("if people want to lose weight, they may find it more effective...").',
+                explVi: 'Đoạn 6 & 7 liên kết việc quan sát cơ thể và ghi nhật ký cảm xúc sau ăn với mục tiêu cụ thể là giảm cân ("if people want to lose weight") (Option E).',
+                synonyms: [
+                    { q: 'if people want to lose weight', p: 'someone wants to lose weight' },
+                    { q: 'keeping a fitness diary', p: 'writing a fitness diary' }
+                ]
+            }
+        ];
+
+        const vocabList = [
+            {
+                word: 'metabolise',
+                phonetic: '/məˈtæb.əl.aɪz/',
+                vi: 'Chuyển hóa (thức ăn / năng lượng)',
+                enDef: 'To process, digest, and convert food or chemical substances into energy and cellular matter in the body.',
+                type: 'verb',
+                category: 'health',
+                context: 'The body metabolises calories from sugar differently than those from fat.',
+                collocation: 'metabolise fat / basal metabolic rate'
+            },
+            {
+                word: 'fitness tracker',
+                phonetic: '/ˈfɪt.nəs ˌtræk.ər/',
+                vi: 'Thiết bị theo dõi sức khỏe / thể thao',
+                enDef: 'An electronic wearable device or application that monitors physiological fitness indicators.',
+                type: 'noun',
+                category: 'health',
+                context: 'Sports scientists recognise that deciding to use a fitness tracker is good.',
+                collocation: 'wearable fitness tracker / sync with tracker'
+            },
+            {
+                word: 'unrealistic impression',
+                phonetic: '/ˌʌn.rɪəˈlɪs.tɪk ɪmˈpreʃ.ən/',
+                vi: 'Ấn tượng phi thực tế / Ảo tưởng sai lệch',
+                enDef: 'A perception or feeling about a situation that does not match real facts.',
+                type: 'noun',
+                category: 'health',
+                context: 'They can give an unrealistic impression of a person’s level of fitness.',
+                collocation: 'create an unrealistic impression / false sense of security'
+            },
+            {
+                word: 'artificial targets',
+                phonetic: '/ˌɑː.tɪˈfɪʃ.əl ˈtɑː.ɡɪts/',
+                vi: 'Mục tiêu nhân tạo / Chỉ số máy móc',
+                enDef: 'Goals generated mechanically or programmatically that do not reflect genuine physiological requirements.',
+                type: 'noun',
+                category: 'health',
+                context: 'Exercise not for the sake of meeting the app’s artificial targets.',
+                collocation: 'set artificial targets / arbitrary benchmarks'
+            },
+            {
+                word: 'deceive',
+                phonetic: '/dɪˈsiːv/',
+                vi: 'Lừa dối / Đánh lừa',
+                enDef: 'To cause someone to believe something that is not true, typically in order to gain a personal advantage or comfort.',
+                type: 'verb',
+                category: 'verb',
+                context: 'Fitness apps can help people to deceive themselves about how healthy their lifestyle is.',
+                collocation: 'self-deception / deceive oneself'
+            },
+            {
+                word: 'calorie counting',
+                phonetic: '/ˈkæl.ər.i ˌkaʊn.tɪŋ/',
+                vi: 'Đếm lượng calo tiêu thụ',
+                enDef: 'The practice of tracking the energetic value of all food consumed in order to lose weight.',
+                type: 'noun',
+                category: 'health',
+                context: 'Diet by checking everything they eat against a calorie counting app.',
+                collocation: 'strict calorie counting / calorie deficit'
+            },
+            {
+                word: 'sleep pattern',
+                phonetic: '/sliːp ˈpæt.ən/',
+                vi: 'Chu kỳ / Nhịp điệu giấc ngủ',
+                enDef: 'The circadian rhythm and behavioral cycle of sleep and wakefulness.',
+                type: 'noun',
+                category: 'health',
+                context: 'Used to record their sleep patterns and work out calorie consumption.',
+                collocation: 'disrupted sleep pattern / track sleep patterns'
+            },
+            {
+                word: 'heart rate',
+                phonetic: '/ˈhɑːt ˌreɪt/',
+                vi: 'Nhịp tim',
+                enDef: 'The speed of the heartbeat measured by the number of contractions of the heart per minute.',
+                type: 'noun',
+                category: 'health',
+                context: 'Devices count steps and measure their heart rate continuously.',
+                collocation: 'elevated heart rate / resting heart rate'
+            }
+        ];
+    </script>
+
+    <script>
+        const app = {
+            currentLang: 'en',
+            fontSize: 16,
+            showArrows: true,
+            activeTab: 'analysis',
+            fcIndex: 0,
+            fcFlipped: false,
+            arrowAnimFrame: null,
+
+            init() {
+                this.bindEvents();
+                this.renderPassage();
+                this.renderExplanations();
+                this.bindTargetEvents();
+                this.renderVocabGrid();
+                this.setupFlashcard();
+                this.setupQuiz();
+            },
+
+            bindEvents() {
+                // Language Switcher
+                document.querySelectorAll('#lang-switcher .lang-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#lang-switcher .lang-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.currentLang = e.currentTarget.dataset.lang;
+                        this.renderPassage();
+                        this.renderExplanations();
+                        this.bindTargetEvents();
+                        setTimeout(() => this.drawConnections(), 60);
+                    });
+                });
+
+                // Font Resizing
+                document.getElementById('btn-inc-font').addEventListener('click', () => {
+                    if (this.fontSize < 24) {
+                        this.fontSize += 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+                document.getElementById('btn-dec-font').addEventListener('click', () => {
+                    if (this.fontSize > 13) {
+                        this.fontSize -= 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+
+                // Arrow Toggle
+                document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
+                    this.showArrows = !this.showArrows;
+                    e.currentTarget.classList.toggle('bg-blue-600');
+                    e.currentTarget.classList.toggle('bg-slate-300');
+                    e.currentTarget.classList.toggle('text-slate-700');
+                    if (!this.showArrows) {
+                        this.clearCanvas();
+                    } else {
+                        this.drawConnections();
+                    }
+                });
+
+                // Scroll synchronization
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+                if (leftPane) leftPane.addEventListener('scroll', () => this.drawConnections());
+                if (rightPane) rightPane.addEventListener('scroll', () => this.drawConnections());
+
+                // Navigation Tabs
+                document.querySelectorAll('#nav-tabs .tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#nav-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        const tab = e.currentTarget.dataset.tab;
+                        this.activeTab = tab;
+
+                        document.getElementById('tab-analysis-content').classList.toggle('hidden', tab !== 'analysis');
+                        document.getElementById('tab-vocabulary-content').classList.toggle('hidden', tab !== 'vocabulary');
+                        document.getElementById('tab-flashcards-content').classList.toggle('hidden', tab !== 'flashcards');
+
+                        if (tab !== 'analysis') this.clearCanvas();
+                        else setTimeout(() => this.drawConnections(), 100);
+                    });
+                });
+
+                // Vocab Search & Filter
+                document.getElementById('vocab-search').addEventListener('input', () => this.filterVocab());
+                document.getElementById('vocab-filter').addEventListener('change', () => this.filterVocab());
+
+                // Flashcard Flip & Nav
+                document.getElementById('flashcard-wrapper').addEventListener('click', () => {
+                    this.fcFlipped = !this.fcFlipped;
+                    document.getElementById('flashcard-inner').classList.toggle('rotate-y-180', this.fcFlipped);
+                });
+                document.getElementById('btn-fc-prev').addEventListener('click', () => {
+                    if (this.fcIndex > 0) {
+                        this.fcIndex--;
+                        this.updateFlashcard();
+                    }
+                });
+                document.getElementById('btn-fc-next').addEventListener('click', () => {
+                    if (this.fcIndex < vocabList.length - 1) {
+                        this.fcIndex++;
+                        this.updateFlashcard();
+                    }
+                });
+
+                // Flashcards vs Quiz Mode Switcher
+                document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-blue-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-blue-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('flashcard-view').classList.remove('hidden');
+                    document.getElementById('quiz-view').classList.add('hidden');
+                });
+                document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-blue-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-blue-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('quiz-view').classList.remove('hidden');
+                    document.getElementById('flashcard-view').classList.add('hidden');
+                });
+
+                window.addEventListener('resize', () => this.drawConnections());
+            },
+
+            renderPassage() {
+                const container = document.getElementById('passage-container');
+                let html = `
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">Monitoring Fitness</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Investigating the psychological and physiological impact of fitness tracking apps.</p>
+                `;
+
+                passageData.forEach(p => {
+                    if (this.currentLang === 'en') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.en}</p>`;
+                    } else if (this.currentLang === 'vi') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.vi}</p>`;
+                    } else if (this.currentLang === 'dual') {
+                        html += `
+                            <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                                <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
+                                    <strong class="text-xs font-bold text-blue-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    ${p.en}
+                                </div>
+                                <div class="text-slate-600 text-sm leading-relaxed pt-1">
+                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
+                                    ${p.vi}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                container.innerHTML = html;
+            },
+
+            renderExplanations() {
+                const container = document.getElementById('explanations-list');
+                let html = `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+                        <div class="flex items-center space-x-2 text-blue-700 font-bold text-xs uppercase tracking-wide mb-1">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>Matching Sentence Endings Rationale Guide</span>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-slate-900">Monitoring Fitness — Phân Tích Câu 1–5</h2>
+                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                    </div>
+
+                    <!-- Options Reference Box -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                        <h4 class="text-xs font-bold text-blue-900 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-list mr-1.5 text-blue-600"></i> Danh Sách Lựa Chọn Nối Vế (Options A–G)
+                        </h4>
+                        <div class="grid grid-cols-1 gap-2 text-xs text-slate-700">
+                            ${optionsList.map(opt => `
+                                <div class="flex items-start space-x-2 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="bg-blue-100 text-blue-800 font-extrabold px-2 py-0.5 rounded text-xs shrink-0">${opt.key}</span>
+                                    <span class="font-medium text-slate-800 leading-relaxed">${opt.text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                questionsData.forEach(q => {
+                    html += `
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-blue-400" id="q-card-${q.id}">
+                            <div class="flex items-start justify-between">
+                                <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
+                                    Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <button class="jump-btn bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs px-2.5 py-1 rounded-md border border-blue-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                        <i class="fa-solid fa-location-dot"></i> Xem bài đọc
+                                    </button>
+                                    <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
+                                        Nối với: ${q.ansKey}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-slate-800 leading-relaxed">${q.prompt}</p>
+                                <p class="text-xs font-semibold text-emerald-700 bg-emerald-50/80 p-2.5 rounded-lg border border-emerald-200 mt-2">
+                                    <i class="fa-solid fa-arrow-right-long mr-1"></i> <strong>Vế hoàn chỉnh:</strong> ${q.ansKey}. ${q.ansTitle}
+                                </p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
+                                <div class="flex items-center text-blue-700 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-circle-check mr-1.5"></i>
+                                    <span>Giải thích chi tiết (Rationale):</span>
+                                </div>
+                                <p class="leading-relaxed font-medium text-slate-800">${this.currentLang === 'vi' ? q.explVi : q.explEn}</p>
+                            </div>
+
+                            ${q.synonyms ? `
+                                <div class="pt-2 border-t border-slate-100">
+                                    <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-blue-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                    </h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-blue-50/70 text-blue-900 font-semibold border-b border-blue-100">
+                                                    <th class="p-2">Từ khóa trong Câu hỏi / Nối vế</th>
+                                                    <th class="p-2">Từ tương đương trong Bài đọc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                                ${q.synonyms.map(s => `
+                                                    <tr>
+                                                        <td class="p-2 font-medium text-slate-700">${s.p}</td>
+                                                        <td class="p-2 font-semibold text-blue-700">${s.q}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            },
+
+            bindTargetEvents() {
+                const targets = document.querySelectorAll('.ans-target');
+                const qCards = document.querySelectorAll('.q-card');
+                const jumpBtns = document.querySelectorAll('.jump-btn');
+
+                const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-blue-600', 'bg-blue-50/40', 'border-blue-400'));
+
+                    if (targetEl) {
+                        targetEl.classList.add('active-target');
+                        if (scrollLeft) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+
+                    if (cardEl) {
+                        cardEl.classList.add('ring-2', 'ring-blue-600', 'bg-blue-50/40', 'border-blue-400');
+                        if (scrollRight) {
+                            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+
+                    this.startSmoothTracking();
+                };
+
+                const deactivateAll = () => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-blue-600', 'bg-blue-50/40', 'border-blue-400'));
+                    this.clearCanvas();
+                };
+
+                targets.forEach(target => {
+                    const qId = target.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+
+                    target.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    target.addEventListener('mouseleave', deactivateAll);
+                    target.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        activatePair(target, qCard, false, true);
+                    });
+                });
+
+                qCards.forEach(qCard => {
+                    const qId = qCard.id.replace('q-card-', '');
+                    const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+
+                    qCard.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    qCard.addEventListener('mouseleave', deactivateAll);
+                    qCard.addEventListener('click', (e) => {
+                        if (e.target.closest('.jump-btn')) return;
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+
+                jumpBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const qId = btn.dataset.q;
+                        const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+                        const qCard = document.getElementById(`q-card-${qId}`);
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+            },
+
+            startSmoothTracking() {
+                if (this.arrowAnimFrame) cancelAnimationFrame(this.arrowAnimFrame);
+                const startTime = performance.now();
+                const duration = 800;
+
+                const step = (now) => {
+                    this.drawConnections();
+                    if (now - startTime < duration) {
+                        this.arrowAnimFrame = requestAnimationFrame(step);
+                    }
+                };
+                this.arrowAnimFrame = requestAnimationFrame(step);
+            },
+
+            drawConnections() {
+                const activeTarget = document.querySelector('.ans-target.active-target');
+                if (activeTarget && this.showArrows) {
+                    const qId = activeTarget.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+                    if (qCard) {
+                        this.drawArrow(activeTarget, qCard);
+                        return;
+                    }
+                }
+                this.clearCanvas();
+            },
+
+            drawArrow(fromEl, toEl) {
+                if (!fromEl || !toEl || window.innerWidth < 1024 || !this.showArrows) {
+                    this.clearCanvas();
+                    return;
+                }
+                
+                const svg = document.getElementById('svg-canvas');
+                const wrapper = document.getElementById('main-wrapper');
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+
+                if (!svg || !wrapper || !leftPane || !rightPane) return;
+
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const leftPaneRect = leftPane.getBoundingClientRect();
+                const rightPaneRect = rightPane.getBoundingClientRect();
+
+                const clientRects = fromEl.getClientRects();
+                let fromRect = fromEl.getBoundingClientRect();
+                if (clientRects.length > 0) {
+                    fromRect = clientRects[clientRects.length - 1];
+                }
+                const toRect = toEl.getBoundingClientRect();
+
+                const isFromVisible = (fromRect.bottom >= leftPaneRect.top && fromRect.top <= leftPaneRect.bottom);
+                const isToVisible = (toRect.bottom >= rightPaneRect.top && toRect.top <= rightPaneRect.bottom);
+
+                if (!isFromVisible || !isToVisible) {
+                    this.clearCanvas();
+                    return;
+                }
+
+                const x1 = Math.min(fromRect.right - wrapperRect.left, leftPaneRect.right - wrapperRect.left - 8);
+                const y1 = fromRect.top + (fromRect.height / 2) - wrapperRect.top;
+                
+                const x2 = toRect.left - wrapperRect.left;
+                const y2 = toRect.top + Math.min(36, toRect.height / 2) - wrapperRect.top;
+
+                const dx = Math.max(30, (x2 - x1) * 0.45);
+                const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+                svg.innerHTML = `
+                    <defs>
+                        <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#2563eb" />
+                            <stop offset="100%" stop-color="#60a5fa" />
+                        </linearGradient>
+                        <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#2563eb" flood-opacity="0.4"/>
+                        </filter>
+                        <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#60a5fa" />
+                        </marker>
+                    </defs>
+                    <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#2563eb" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#60a5fa" />
+                `;
+            },
+
+            clearCanvas() {
+                const svg = document.getElementById('svg-canvas');
+                if (svg) svg.innerHTML = '';
+            },
+
+            renderVocabGrid() {
+                this.filterVocab();
+            },
+
+            filterVocab() {
+                const search = document.getElementById('vocab-search').value.toLowerCase();
+                const filter = document.getElementById('vocab-filter').value;
+                const grid = document.getElementById('vocab-cards-grid');
+
+                const filtered = vocabList.filter(item => {
+                    const matchSearch = item.word.toLowerCase().includes(search) || item.vi.toLowerCase().includes(search);
+                    const matchFilter = filter === 'all' || item.category === filter || item.type === filter;
+                    return matchSearch && matchFilter;
+                });
+
+                let html = '';
+                filtered.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-blue-400 transition-all space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-blue-600 transition-colors" title="Nghe phát âm">
+                                        <i class="fa-solid fa-volume-high text-sm"></i>
+                                    </button>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
+                                <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
+                                <p class="text-sm font-bold text-blue-700 bg-blue-50/50 p-2 rounded-lg border border-blue-100 mb-3">${item.vi}</p>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-slate-400">Context trong bài đọc:</span>
+                                    <p class="text-slate-600 italic">"${item.context}"</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-blue-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-blue-900">${item.collocation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html || `<p class="text-sm text-slate-500 col-span-full text-center py-8">Không tìm thấy từ vựng phù hợp với bộ lọc.</p>`;
+            },
+
+            speakWord(word) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(word);
+                    u.lang = 'en-GB';
+                    u.rate = 0.9;
+                    window.speechSynthesis.speak(u);
+                }
+            },
+
+            setupFlashcard() {
+                this.updateFlashcard();
+            },
+
+            updateFlashcard() {
+                const item = vocabList[this.fcIndex];
+                this.fcFlipped = false;
+                document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+                document.getElementById('fc-category').textContent = `${item.type.toUpperCase()} • ${item.category.toUpperCase()}`;
+                document.getElementById('fc-word').textContent = item.word;
+                document.getElementById('fc-phonetic').textContent = item.phonetic;
+                document.getElementById('fc-meaning').textContent = item.vi;
+                document.getElementById('fc-context').textContent = `"${item.context}"`;
+                document.getElementById('fc-counter').textContent = `${this.fcIndex + 1} / ${vocabList.length}`;
+            },
+
+            setupQuiz() {
+                const quizBox = document.getElementById('quiz-box');
+                const sampleQuestions = [
+                    {
+                        q: "Which term refers to 'the physiological process of converting food substances into cellular energy'?",
+                        options: ["Sleep pattern", "Metabolise", "Heart rate", "Fitness tracker"],
+                        ans: 1,
+                        expl: "Metabolise (động từ) = Chuyển hóa thức ăn/chất dinh dưỡng thành năng lượng cho cơ thể."
+                    },
+                    {
+                        q: "What does 'unrealistic impression' mean in the passage context?",
+                        options: [
+                            "An accurate scientific body measurement",
+                            "A false or distorted belief about one's true health/fitness status",
+                            "A high heart rate recorded on a rowing machine",
+                            "A broken wearable device"
+                        ],
+                        ans: 1,
+                        expl: "Unrealistic impression = Ảo tưởng/nhận định không đúng với thực tế về mức độ thể chất."
+                    },
+                    {
+                        q: "Why is keeping a 'fitness diary' recommended over passive calorie counting apps?",
+                        options: [
+                            "It counts steps automatically while asleep",
+                            "It connects emotional mood and reflections after eating with long-term habits",
+                            "It allows eating unlimited junk food",
+                            "It guarantees immediate weight loss"
+                        ],
+                        ans: 1,
+                        expl: "Ghi nhật ký thể dục kết hợp cảm xúc giúp người tập tự suy ngẫm và xây dựng thói quen tự giác, thay vì chạy theo các chỉ số máy móc."
+                    }
+                ];
+
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-blue-600"></i> Monitoring Fitness Vocab Challenge</h3>`;
+                sampleQuestions.forEach((q, idx) => {
+                    html += `
+                        <div class="space-y-3 pt-2" id="quiz-q-${idx}">
+                            <p class="text-sm font-bold text-slate-800">${idx + 1}. ${q.q}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${q.options.map((opt, oIdx) => `
+                                    <button onclick="app.checkQuiz(${idx}, ${oIdx}, ${q.ans})" class="quiz-opt-btn text-left p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+                                        ${String.fromCharCode(65 + oIdx)}. ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="quiz-feedback hidden text-xs p-3 rounded-xl"></div>
+                        </div>
+                    `;
+                });
+
+                quizBox.innerHTML = html;
+            },
+
+            checkQuiz(qIdx, selected, correct) {
+                const qDiv = document.getElementById(`quiz-q-${qIdx}`);
+                const btns = qDiv.querySelectorAll('.quiz-opt-btn');
+                const feedback = qDiv.querySelector('.quiz-feedback');
+
+                btns.forEach((btn, idx) => {
+                    btn.disabled = true;
+                    if (idx === correct) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-xs";
+                    } else if (idx === selected) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-red-400 bg-red-50 text-red-900 font-bold text-xs";
+                    }
+                });
+
+                feedback.classList.remove('hidden');
+                if (selected === correct) {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 font-bold border border-emerald-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Chính xác! Tuyệt vời.`;
+                } else {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-red-100 text-red-900 font-bold border border-red-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chính xác. Đáp án đúng là ${String.fromCharCode(65 + correct)}.`;
+                }
+            }
+        };
+
+        window.onload = () => app.init();
+    </script>
+</body>
+</html>

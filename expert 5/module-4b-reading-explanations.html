@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remedies from Nature — IELTS Reading Analysis, Translation & Vocabulary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --app-font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-size: var(--app-font-size);
+            overflow-x: hidden;
+        }
+        .reading-text {
+            font-family: 'Merriweather', serif;
+            line-height: 2.15;
+            color: #334155;
+        }
+        .reading-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.25rem;
+        }
+        .reading-text p:first-of-type {
+            text-indent: 0;
+        }
+
+        .paragraph-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
+            color: #047857;
+            background-color: #d1fae5;
+            border: 1px solid #a7f3d0;
+            text-indent: 0;
+            vertical-align: middle;
+        }
+
+        /* Highlight Targets & Interactive States */
+        .ans-target {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            position: relative;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            text-indent: 0;
+        }
+
+        /* Question target color themes */
+        .ans-target-q1 { background-color: #fef08a; border-bottom: 2px solid #eab308; color: #854d0e; }
+        .ans-target-q2 { background-color: #bae6fd; border-bottom: 2px solid #0284c7; color: #075985; }
+        .ans-target-q3 { background-color: #bbf7d0; border-bottom: 2px solid #16a34a; color: #166534; }
+        .ans-target-q4 { background-color: #fbcfe8; border-bottom: 2px solid #db2777; color: #9d174d; }
+        .ans-target-q5 { background-color: #ddd6fe; border-bottom: 2px solid #7c3aed; color: #5b21b6; }
+        .ans-target-q6 { background-color: #fed7aa; border-bottom: 2px solid #ea580c; color: #9a3412; }
+
+        .q-badge {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72em;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+            vertical-align: baseline;
+            line-height: 1.2;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-indent: 0;
+            user-select: none;
+        }
+
+        .ans-target:hover, .ans-target.active-target {
+            outline: 3px solid #059669;
+            box-shadow: 0 0 15px rgba(5, 150, 105, 0.4);
+            filter: brightness(0.96);
+            z-index: 20;
+        }
+
+        /* Floating Evidence Popover */
+        .explanation-popover {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            width: 320px;
+            background-color: #0f172a;
+            color: #f8fafc;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+            transition: all 0.25s ease;
+            pointer-events: none;
+            line-height: 1.5;
+            font-weight: normal;
+        }
+        .explanation-popover::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+        }
+        .ans-target:hover .explanation-popover, .ans-target.active-target .explanation-popover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* SVG Overlay Canvas */
+        #svg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 7px; height: 7px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        .tab-btn.active {
+            background-color: #059669;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+        }
+
+        @keyframes arrowFlow {
+            from { stroke-dashoffset: 26; }
+            to { stroke-dashoffset: 0; }
+        }
+        .animated-arrow-line {
+            animation: arrowFlow 1s linear infinite;
+        }
+
+        .lang-btn.active {
+            background-color: #0f172a;
+            color: white;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col bg-slate-100">
+
+    <!-- Header Bar -->
+    <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center shadow-xs shrink-0 gap-3 z-40">
+        <div class="flex items-center space-x-3">
+            <div class="bg-emerald-600 text-white p-2.5 rounded-xl shadow-sm">
+                <i class="fa-solid fa-leaf text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-slate-800">Remedies from Nature</h1>
+                <p class="text-xs text-slate-500 font-medium">IELTS Academic Reading Analysis, Dual-Language Translation & Pharmacology Vocabulary</p>
+            </div>
+        </div>
+
+        <!-- Controls: Language Switcher, Font Resize & Arrows Toggle -->
+        <div class="flex items-center space-x-3 flex-wrap gap-y-2">
+            <!-- Language Switcher -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" id="lang-switcher">
+                <button class="lang-btn active px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="en">EN</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="vi">VIE</button>
+                <button class="lang-btn px-3 py-1 rounded-md text-xs font-bold transition-all" data-lang="dual">Parallel (EN/VIE)</button>
+            </div>
+
+            <!-- Font Resizer -->
+            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button id="btn-dec-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Giảm cỡ chữ">A-</button>
+                <button id="btn-inc-font" class="w-7 h-7 flex items-center justify-center rounded bg-white shadow-xs hover:bg-slate-50 font-bold text-xs text-slate-700" title="Tăng cỡ chữ">A+</button>
+            </div>
+
+            <!-- Toggle Arrow Canvas -->
+            <button id="btn-toggle-arrows" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white border border-emerald-600 font-medium text-xs hover:bg-emerald-700 transition-colors shadow-xs">
+                <i class="fa-solid fa-route"></i>
+                <span class="hidden sm:inline">Mũi tên chỉ dẫn</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-slate-200 px-6 py-2 overflow-x-auto shrink-0 shadow-xs">
+        <div class="flex space-x-2 min-w-max" id="nav-tabs">
+            <button class="tab-btn active px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="analysis">
+                <i class="fa-solid fa-book-open mr-1.5"></i> 1. Passage & Question Analysis (Matching Sentence Endings)
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="vocabulary">
+                <i class="fa-solid fa-spell-check mr-1.5"></i> 2. Pharmacology & Biodiversity Vocab Suite
+            </button>
+            <button class="tab-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold border border-slate-200 text-slate-600 bg-white hover:bg-slate-50 transition-all" data-tab="flashcards">
+                <i class="fa-solid fa-brain mr-1.5"></i> 3. Vocab Flashcards & Practice Quiz
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="flex-1 overflow-hidden relative" id="main-wrapper">
+        <svg id="svg-canvas"></svg>
+
+        <!-- TAB 1: Passage & Question Analysis -->
+        <div id="tab-analysis-content" class="h-full grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden">
+            <!-- Left Pane: Passage View -->
+            <section id="left-pane" class="lg:col-span-6 bg-white overflow-y-auto p-6 lg:p-10 border-r border-slate-200 relative">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1 rounded-md border border-emerald-200">
+                            <i class="fa-solid fa-book-open mr-1.5"></i> Reading Passage — Remedies from Nature
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium"><i class="fa-solid fa-mouse-pointer mr-1"></i> Rê chuột/Click đoạn tô màu</span>
+                    </div>
+
+                    <div id="passage-container" class="reading-text text-base leading-relaxed text-slate-700 space-y-4">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Pane: Questions & Explanations -->
+            <section id="right-pane" class="lg:col-span-6 bg-slate-50 overflow-y-auto p-6 lg:p-10">
+                <div class="max-w-2xl mx-auto space-y-6" id="explanations-list">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 2: Vocabulary Suite -->
+        <div id="tab-vocabulary-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-6xl mx-auto space-y-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-emerald-600"></i> Essential IELTS Reading Vocabulary — Biodiversity & Natural Medicines
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">High-yield academic terminology for pharmaceuticals, natural derivatives, rainforest ecology, and medical history.</p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <div class="relative flex-1 md:w-64">
+                            <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="vocab-search" placeholder="Tra từ hoặc nghĩa tiếng Việt..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                        </div>
+                        <select id="vocab-filter" class="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                            <option value="all">Tất cả từ loại</option>
+                            <option value="noun">Danh từ (Nouns)</option>
+                            <option value="verb">Động từ (Verbs)</option>
+                            <option value="adjective">Tính từ (Adjectives)</option>
+                            <option value="medical">Y Dược & Sinh Thái</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="vocab-cards-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Vocab Flashcards & Practice Quiz -->
+        <div id="tab-flashcards-content" class="h-full bg-slate-50 overflow-y-auto p-6 lg:p-10 hidden">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <div class="flex justify-center space-x-3">
+                    <button id="btn-mode-flashcard" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-emerald-600 text-white shadow-sm transition-all">
+                        <i class="fa-solid fa-clone mr-2"></i> Interactive Flashcards
+                    </button>
+                    <button id="btn-mode-quiz" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all">
+                        <i class="fa-solid fa-circle-question mr-2"></i> Quick Quiz Mode
+                    </button>
+                </div>
+
+                <!-- Flashcard View -->
+                <div id="flashcard-view" class="flex flex-col items-center space-y-6">
+                    <p class="text-xs text-slate-500 font-semibold">Nhấp vào thẻ để lật xem định nghĩa và giải thích tiếng Việt</p>
+                    
+                    <div class="w-full max-w-md h-72 perspective-1000 cursor-pointer" id="flashcard-wrapper">
+                        <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d transition-transform">
+                            <!-- Front -->
+                            <div class="absolute w-full h-full bg-white rounded-3xl border border-slate-200 shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden">
+                                <span id="fc-category" class="text-[10px] uppercase font-extrabold tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Category</span>
+                                <div>
+                                    <h3 id="fc-word" class="text-3xl font-black text-slate-900 mb-2">Word</h3>
+                                    <p id="fc-phonetic" class="text-sm font-mono text-slate-500">/phonetic/</p>
+                                </div>
+                                <span class="text-xs font-bold text-emerald-600 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật thẻ để xem nghĩa</span>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute w-full h-full bg-slate-900 text-white rounded-3xl shadow-md p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                                <span class="text-[10px] uppercase font-extrabold tracking-widest text-emerald-400 bg-slate-800 px-3 py-1 rounded-full">Vietnamese Meaning</span>
+                                <div>
+                                    <h4 id="fc-meaning" class="text-2xl font-bold text-emerald-400 mb-3">Nghĩa tiếng Việt</h4>
+                                    <p id="fc-context" class="text-xs text-slate-300 italic leading-relaxed">"Context sentence..."</p>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400 flex items-center gap-1"><i class="fa-solid fa-rotate mr-1"></i> Lật lại</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="btn-fc-prev" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <span id="fc-counter" class="text-xs font-bold text-slate-600 px-4 py-2 bg-white rounded-xl border border-slate-200">1 / 8</span>
+                        <button id="btn-fc-next" class="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 flex items-center justify-center font-bold text-base shadow-xs transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz View -->
+                <div id="quiz-view" class="hidden space-y-6">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6" id="quiz-box">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passageData = [
+            {
+                pNum: '1',
+                en: `In all the discussions about saving the world’s biodiversity from extinction, people often forget one point: the world’s species provide people with a large number of life-saving medicines.`,
+                vi: `Trong tất cả các cuộc thảo luận về việc cứu đa dạng sinh học của thế giới khỏi nguy cơ tuyệt chủng, mọi người thường quên mất một điểm mấu chốt: các loài sinh vật trên thế giới cung cấp cho con người một lượng lớn các loại thuốc cứu sống sinh mạng.`
+            },
+            {
+                pNum: '2',
+                en: `<span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Animal and plant species have given people important medicines such as quinine and aspirin, as well as many cancer and HIV-fighting drugs. People have used plants and animals as sources of medicine for thousands of years. For example, medicinal plants that people used over 60,000 years ago were found in an Iraqi cave site. A fur strap found on the arm of a 5,000 year-old Ice Man from the Alps contained a type of fungus which is able to kill bacteria<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q1 Evidence (Option E)</strong>It is many thousands of years since people discovered how powerful natural substances can be (medicines used 60,000 years ago and antibacterial fungus 5,000 years ago).</span></span>.`,
+                vi: `<span class="ans-target ans-target-q1" data-q="q1"><span class="q-badge bg-yellow-600">Q1</span>Các loài động vật và thực vật đã mang lại cho con người nhiều loại thuốc quan trọng như quinine và aspirin, cũng như nhiều loại thuốc chống ung thư và HIV. Con người đã sử dụng thực vật và động vật làm nguồn dược liệu từ hàng ngàn năm trước. Ví dụ, các loại cây thuốc mà con người sử dụng hơn 60.000 năm trước đã được tìm thấy tại một hang động ở Iraq. Một chiếc quai lông thú quấn trên cánh tay của 'Người Băng' 5.000 năm tuổi từ dãy Alps chứa một loại nấm có khả năng tiêu diệt vi khuẩn<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 1 (Option E)</strong>Đã từ hàng ngàn năm trước kể từ khi con người phát hiện ra sức mạnh của các dược chất tự nhiên (cây thuốc 60.000 năm trước, nấm diệt khuẩn 5.000 năm trước).</span></span>.`
+            },
+            {
+                pNum: '3',
+                en: `<span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>Most people are amazed to discover that our dependence on nature for health has not reduced. Over the past quarter century, more than half of all the products that drug companies have developed actually use, or copy, substances from the natural world<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q2 Evidence (Option I)</strong>People are very surprised (amazed) to learn that modern medicine still makes so much use of nature (over half of developed drugs use/copy natural substances).</span></span>. Moreover, the World Health Organization estimates that in many developing countries, 80 percent of the population relies on traditional medicines from natural sources.`,
+                vi: `<span class="ans-target ans-target-q2" data-q="q2"><span class="q-badge bg-sky-600">Q2</span>Hầu hết mọi người đều vô cùng kinh ngạc khi phát hiện ra rằng sự phụ thuộc của chúng ta vào tự nhiên đối với sức khỏe không hề suy giảm. Trong suốt một phần tư thế kỷ qua, hơn một nửa tổng số sản phẩm mà các công ty dược phẩm phát triển thực sự sử dụng, hoặc sao chép, các chất từ thế giới tự nhiên<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 2 (Option I)</strong>Mọi người rất ngạc nhiên khi biết rằng y học hiện đại vẫn tận dụng tự nhiên rất nhiều (hơn 50% dược phẩm sao chép từ tự nhiên).</span></span>. Hơn nữa, Tổ chức Y tế Thế giới ước tính rằng ở nhiều nước đang phát triển, 80% dân số phụ thuộc vào các bài thuốc cổ truyền từ nguồn tự nhiên.`
+            },
+            {
+                pNum: '4',
+                en: `<span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>However, scientists generally believe that researchers have fully examined less than one percent of all species in order to discover their possible uses in medical treatments. They believe that nature still holds many valuable cures for research to discover<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q3 Evidence (Option G)</strong>Scientists estimate that many possible medicines from the natural world are still unknown (less than 1% examined).</span></span>. In particular, they point to the importance of tropical rainforests as a potential source of new medicines. Although rainforests cover only six percent of the earth’s land surface, they contain over half of its biodiversity.`,
+                vi: `<span class="ans-target ans-target-q3" data-q="q3"><span class="q-badge bg-emerald-600">Q3</span>Tuy nhiên, các nhà khoa học nhìn chung tin rằng các nhà nghiên cứu mới chỉ kiểm tra đầy đủ chưa đến một phần trăm tổng số các loài để khám phá công dụng khả thi của chúng trong điều trị y tế. Họ tin rằng thiên nhiên vẫn còn lưu giữ nhiều phương thuốc quý giá đang chờ nghiên cứu khám phá<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 3 (Option G)</strong>Các nhà khoa học ước tính vô số bài thuốc tiềm năng từ tự nhiên vẫn chưa được biết đến (mới nghiên cứu chưa tới 1%).</span></span>. Đặc biệt, họ nhấn mạnh tầm quan trọng của các khu rừng mưa nhiệt đới như một nguồn cung cấp thuốc mới đầy tiềm năng. Mặc dù rừng mưa chỉ bao phủ 6% bề mặt đất liền của trái đất, nhưng chúng chứa tới hơn một nửa sự đa dạng sinh học của hành tinh.`
+            },
+            {
+                pNum: '5',
+                en: `Unfortunately, the ecosystems that provide some of the world’s most important drugs, such as rainforests and coral reefs, are also the ecosystems that are most at risk today. There are concerns that warming temperatures mean that few coral reefs will remain by the end of the century. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Meanwhile, agriculture and various major development projects are making the world’s rainforests vanish at an alarming rate – the world is losing more than 320 km2 every day. The inevitable result is that many species with important medicinal powers will become extinct<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q4 Evidence (Option A)</strong>Destroying ecosystems means many potential cures will disappear forever (medicinal species will become extinct).</span></span>.`,
+                vi: `Thật không may, các hệ sinh thái cung cấp một số loại thuốc quan trọng nhất thế giới, chẳng hạn như rừng mưa nhiệt đới và rạn san hô, cũng là những hệ sinh thái có nguy cơ bị đe dọa cao nhất hiện nay. Người ta lo ngại rằng nhiệt độ ấm lên đồng nghĩa với việc sẽ còn rất ít rạn san hô tồn tại vào cuối thế kỷ này. <span class="ans-target ans-target-q4" data-q="q4"><span class="q-badge bg-pink-600">Q4</span>Trong khi đó, nông nghiệp và các dự án phát triển quy mô lớn khác nhau đang khiến các khu rừng mưa trên thế giới biến mất với tốc độ đáng báo động – thế giới đang mất hơn 320 km2 mỗi ngày. Kết quả tất yếu là nhiều loài mang đặc tính chữa bệnh quan trọng sẽ bị tuyệt chủng<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 4 (Option A)</strong>Phá hủy các hệ sinh thái đồng nghĩa với việc nhiều phương thuốc chữa bệnh tiềm năng sẽ biến mất vĩnh viễn (các loài dược liệu tuyệt chủng).</span></span>.`
+            },
+            {
+                pNum: '6',
+                en: `<span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>Another problem is that most of nature’s medicines do not come from big and beautiful mammals, such as tigers and elephants. Instead, they come from the least popular of the world’s ecosystems: plants, fungi and invertebrates. Some particularly valuable species are often either poisonous or so small that we cannot see them without a microscope. This makes campaigning for their preservation much more difficult<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q5 Evidence (Option B)</strong>What is making the problem worse is that some of the most medically valuable species do not seem very attractive (they are fungi, poisonous, or microscopic invertebrates).</span></span>.`,
+                vi: `<span class="ans-target ans-target-q5" data-q="q5"><span class="q-badge bg-purple-600">Q5</span>Một vấn đề khác là phần lớn các bài thuốc tự nhiên không đến từ các loài thú lớn và đẹp đẽ như hổ và voi. Thay vào đó, chúng đến từ những thành phần ít được ưa chuộng nhất trong các hệ sinh thái thế giới: thực vật, nấm và động vật không xương sống. Một số loài đặc biệt có giá trị thường có độc hoặc nhỏ đến mức chúng ta không thể nhìn thấy nếu không có kính hiển vi. Điều này khiến việc vận động bảo tồn chúng trở nên khó khăn hơn rất nhiều<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 5 (Option B)</strong>Điều làm vấn đề tồi tệ hơn là một số loài có giá trị y học cao nhất lại không hề đẹp đẽ hay hấp dẫn (là nấm, loài có độc hoặc siêu nhỏ).</span></span>.`
+            },
+            {
+                pNum: '7',
+                en: `<span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>An additional problem is the fact that medical schools teach their students very little about the discovery of new treatments. Few young doctors, for example, know that the blood pressure medicine captopril, one of the best-selling drugs of all time, comes from the poison of a Brazilian snake<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Q6 Evidence (Option D)</strong>The writer thinks the situation will improve if medical students learn more about the development of treatments.</span></span>. Antibiotics, most of which come from nature, are a miracle drug but doctors use far too many of them. This is partly because they do not realise the dangers involved or how closely connected these drugs are with the natural world.`,
+                vi: `<span class="ans-target ans-target-q6" data-q="q6"><span class="q-badge bg-orange-600">Q6</span>Một vấn đề nữa là thực tế các trường y dạy cho sinh viên của họ rất ít về sự khám phá các phương pháp điều trị mới. Chẳng hạn, rất ít bác sĩ trẻ biết rằng thuốc điều hòa huyết áp captopril, một trong những loại thuốc bán chạy nhất mọi thời đại, có nguồn gốc từ nọc độc của một loài rắn Brazil<span class="explanation-popover"><strong class="text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check"></i> Vị trí Đáp án Câu 6 (Option D)</strong>Tác giả nghĩ tình hình sẽ cải thiện nếu sinh viên y khoa được học nhiều hơn về sự phát triển các phương pháp điều trị từ tự nhiên.</span></span>. Kháng sinh, phần lớn có nguồn gốc từ tự nhiên, là loại thuốc kỳ diệu nhưng các bác sĩ lại lạm dụng quá nhiều. Điều này một phần là do họ không nhận ra những nguy cơ liên quan hoặc mức độ gắn bó chặt chẽ giữa các loại thuốc này với thế giới tự nhiên.`
+            },
+            {
+                pNum: '8',
+                en: `Nature and medicine are closely connected. We must protect nature. If we don’t, we not only risk losing many plant and animal species but we are also risking our own health.`,
+                vi: `Thiên nhiên và y học gắn kết chặt chẽ với nhau. Chúng ta phải bảo vệ thiên nhiên. Nếu không, chúng ta không chỉ có nguy cơ mất đi nhiều loài động thực vật mà còn đang đe dọa chính sức khỏe của bản thân mình.`
+            }
+        ];
+
+        const optionsList = [
+            { key: 'A', text: 'many potential cures will disappear forever.' },
+            { key: 'B', text: 'some of the most medically valuable species do not seem very attractive.' },
+            { key: 'C', text: 'natural medicines can be more effective than modern drugs.' },
+            { key: 'D', text: 'medical students learn more about the development of treatments.' },
+            { key: 'E', text: 'people discovered how powerful natural substances can be.' },
+            { key: 'F', text: 'researching new treatments takes considerable time.' },
+            { key: 'G', text: 'many possible medicines from the natural world are still unknown.' },
+            { key: 'H', text: 'medical knowledge is not growing quickly enough to fight new diseases.' },
+            { key: 'I', text: 'modern medicine still makes so much use of nature.' }
+        ];
+
+        const questionsData = [
+            {
+                id: 'q1',
+                num: '1',
+                type: 'Matching Sentence Endings',
+                ansKey: 'E',
+                ansTitle: 'people discovered how powerful natural substances can be.',
+                badgeColor: 'bg-yellow-600',
+                prompt: 'It is many thousands of years since …',
+                explEn: 'Paragraph 2 highlights ancient evidence of healing substances (medicinal plants used over 60,000 years ago in Iraq, and a bacterial-killing fungus used by the 5,000-year-old Ice Man).',
+                explVi: 'Đoạn 2 nêu rõ các bằng chứng khảo cổ học về việc con người dùng thảo dược hơn 60.000 năm trước và nấm diệt khuẩn 5.000 năm trước -> Con người đã phát hiện sức mạnh của dược chất tự nhiên từ hàng ngàn năm trước (Option E).',
+                synonyms: [
+                    { q: 'It is many thousands of years since', p: 'for thousands of years / over 60,000 years ago / 5,000 year-old' },
+                    { q: 'discovered how powerful natural substances can be', p: 'medicinal plants / fungus able to kill bacteria / important medicines' }
+                ]
+            },
+            {
+                id: 'q2',
+                num: '2',
+                type: 'Matching Sentence Endings',
+                ansKey: 'I',
+                ansTitle: 'modern medicine still makes so much use of nature.',
+                badgeColor: 'bg-sky-600',
+                prompt: 'People are often very surprised to learn that …',
+                explEn: 'Paragraph 3 notes people are "amazed to discover" that over half of modern pharmaceutical products developed in the past 25 years still use or copy substances from nature.',
+                explVi: 'Đoạn 3 nhấn mạnh mọi người "rất kinh ngạc khi phát hiện" (amazed to discover) rằng hơn một nửa số thuốc tân dược phát triển trong 25 năm qua vẫn sử dụng hoặc sao chép hợp chất từ tự nhiên (Option I).',
+                synonyms: [
+                    { q: 'very surprised to learn', p: 'amazed to discover' },
+                    { q: 'modern medicine still makes so much use of nature', p: 'more than half of all products drug companies developed use or copy substances from the natural world' }
+                ]
+            },
+            {
+                id: 'q3',
+                num: '3',
+                type: 'Matching Sentence Endings',
+                ansKey: 'G',
+                ansTitle: 'many possible medicines from the natural world are still unknown.',
+                badgeColor: 'bg-emerald-600',
+                prompt: 'Scientists estimate that …',
+                explEn: 'Paragraph 4 explains researchers have examined less than 1% of all species, meaning a huge number of potential natural cures remain undiscovered.',
+                explVi: 'Đoạn 4 nêu các nhà khoa học ước tính mới chỉ kiểm tra chưa đến 1% các loài, nghĩa là còn vô số loại thuốc tiềm năng từ tự nhiên chưa được biết đến (Option G).',
+                synonyms: [
+                    { q: 'Scientists estimate', p: 'scientists generally believe' },
+                    { q: 'many possible medicines from nature are still unknown', p: 'fully examined less than 1% / nature still holds many valuable cures for research to discover' }
+                ]
+            },
+            {
+                id: 'q4',
+                num: '4',
+                type: 'Matching Sentence Endings',
+                ansKey: 'A',
+                ansTitle: 'many potential cures will disappear forever.',
+                badgeColor: 'bg-pink-600',
+                prompt: 'Destroying different ecosystems means that …',
+                explEn: 'Paragraph 5 states rapid deforestation (losing >320 km2 daily) inevitably causes "many species with important medicinal powers" to become extinct.',
+                explVi: 'Đoạn 5 cảnh báo việc phá hủy rừng mưa và rạn san hô dẫn đến kết quả tất yếu là nhiều loài có năng lực chữa bệnh sẽ tuyệt chủng vĩnh viễn (Option A).',
+                synonyms: [
+                    { q: 'Destroying different ecosystems', p: 'rainforests vanish at alarming rate / losing 320 km2 every day' },
+                    { q: 'many potential cures will disappear forever', p: 'species with important medicinal powers will become extinct' }
+                ]
+            },
+            {
+                id: 'q5',
+                num: '5',
+                type: 'Matching Sentence Endings',
+                ansKey: 'B',
+                ansTitle: 'some of the most medically valuable species do not seem very attractive.',
+                badgeColor: 'bg-purple-600',
+                prompt: 'What is making the problem worse is the fact that …',
+                explEn: 'Paragraph 6 notes natural medicines come from fungi, invertebrates, poisonous, or microscopic creatures rather than charismatic mammals, making public conservation campaigns difficult.',
+                explVi: 'Đoạn 6 chỉ ra yếu tố làm vấn đề khó khăn hơn (Another problem / makes campaigning much more difficult) là các loài dược liệu quý lại không phải thú lớn đẹp đẽ mà là nấm, sinh vật có độc hoặc siêu nhỏ (Option B).',
+                synonyms: [
+                    { q: 'making the problem worse', p: 'Another problem / makes campaigning much more difficult' },
+                    { q: 'valuable species do not seem very attractive', p: 'do not come from big and beautiful mammals / least popular / poisonous or microscopic' }
+                ]
+            },
+            {
+                id: 'q6',
+                num: '6',
+                type: 'Matching Sentence Endings',
+                ansKey: 'D',
+                ansTitle: 'medical students learn more about the development of treatments.',
+                badgeColor: 'bg-orange-600',
+                prompt: 'The writer thinks the situation will improve if …',
+                explEn: 'Paragraph 7 laments that medical schools teach students very little about how medicines originate from nature (e.g. captopril from snake venom), implying education reform would reduce antibiotic overuse and promote conservation.',
+                explVi: 'Đoạn 7 chỉ ra các trường y hiện dạy quá ít về nguồn gốc khám phá thuốc từ tự nhiên; tác giả hàm ý tình hình sẽ cải thiện nếu sinh viên y khoa được học nhiều hơn về sự phát triển các phương pháp điều trị (Option D).',
+                synonyms: [
+                    { q: 'situation will improve if', p: 'An additional problem is the fact that medical schools teach very little' },
+                    { q: 'medical students learn more about development of treatments', p: 'teach students about discovery of new treatments / know drugs come from nature' }
+                ]
+            }
+        ];
+
+        const vocabList = [
+            {
+                word: 'biodiversity',
+                phonetic: '/ˌbaɪ.əʊ.daɪˈvɜː.sə.ti/',
+                vi: 'Đa dạng sinh học',
+                enDef: 'The variety of plant and animal life in the world or in a particular habitat.',
+                type: 'noun',
+                category: 'medical',
+                context: 'In all discussions about saving the world’s biodiversity from extinction...',
+                collocation: 'preserve biodiversity / loss of biodiversity'
+            },
+            {
+                word: 'medicinal powers',
+                phonetic: '/məˈdɪs.ɪ.nəl ˈpaʊ.əz/',
+                vi: 'Đặc tính / Dược tính chữa bệnh',
+                enDef: 'The healing, therapeutic, or pharmacological properties possessed by natural substances.',
+                type: 'noun',
+                category: 'medical',
+                context: 'The inevitable result is that many species with important medicinal powers will become extinct.',
+                collocation: 'potent medicinal powers / medicinal herbs'
+            },
+            {
+                word: 'invertebrates',
+                phonetic: '/ɪnˈvɜː.tɪ.brəts/',
+                vi: 'Động vật không xương sống',
+                enDef: 'Animals that do not possess or develop a vertebral column (backbone), such as insects, worms, and molluscs.',
+                type: 'noun',
+                category: 'medical',
+                context: 'They come from the least popular of ecosystems: plants, fungi and invertebrates.',
+                collocation: 'marine invertebrates / terrestrial invertebrates'
+            },
+            {
+                word: 'fungus (pl. fungi)',
+                phonetic: '/ˈfʌŋ.ɡəs/',
+                vi: 'Nấm / Giới nấm',
+                enDef: 'A group of spore-producing organisms including yeasts, moulds, and mushrooms that feed on organic matter.',
+                type: 'noun',
+                category: 'medical',
+                context: 'Contained a type of fungus which is able to kill bacteria.',
+                collocation: 'fungal extract / antibacterial fungus'
+            },
+            {
+                word: 'captopril',
+                phonetic: '/ˈkæp.tə.prɪl/',
+                vi: 'Thuốc hạ huyết áp Captopril (từ nọc rắn)',
+                enDef: 'An ACE-inhibitor medication used to treat hypertension and heart failure, originally developed from the venom of a Brazilian viper.',
+                type: 'noun',
+                category: 'medical',
+                context: 'The blood pressure medicine captopril comes from the poison of a Brazilian snake.',
+                collocation: 'synthetic captopril / snake venom peptide'
+            },
+            {
+                word: 'vanish at an alarming rate',
+                phonetic: '/ˈvæn.ɪʃ æt ən əˈlɑː.mɪŋ reɪt/',
+                vi: 'Biến mất với tốc độ đáng báo động',
+                enDef: 'To disappear or cease to exist extremely rapidly in a way that causes great concern.',
+                type: 'verb',
+                category: 'verb',
+                context: 'Major development projects are making rainforests vanish at an alarming rate.',
+                collocation: 'species vanishing / alarming rate of destruction'
+            },
+            {
+                word: 'antibiotics',
+                phonetic: '/ˌæn.ti.baɪˈɒt.ɪks/',
+                vi: 'Thuốc kháng sinh',
+                enDef: 'Medicines that fight bacterial infections in people and animals by killing bacteria or arresting their growth.',
+                type: 'noun',
+                category: 'medical',
+                context: 'Antibiotics, most of which come from nature, are a miracle drug.',
+                collocation: 'antibiotic resistance / prescribe antibiotics'
+            },
+            {
+                word: 'preservation',
+                phonetic: '/ˌprez.əˈveɪ.ʃən/',
+                vi: 'Sự bảo tồn / Gìn giữ',
+                enDef: 'The act of keeping something in its original state or protecting it from harm, destruction, or decay.',
+                type: 'noun',
+                category: 'medical',
+                context: 'This makes campaigning for their preservation much more difficult.',
+                collocation: 'habitat preservation / wildlife preservation campaign'
+            }
+        ];
+    </script>
+
+    <script>
+        const app = {
+            currentLang: 'en',
+            fontSize: 16,
+            showArrows: true,
+            activeTab: 'analysis',
+            fcIndex: 0,
+            fcFlipped: false,
+            arrowAnimFrame: null,
+
+            init() {
+                this.bindEvents();
+                this.renderPassage();
+                this.renderExplanations();
+                this.bindTargetEvents();
+                this.renderVocabGrid();
+                this.setupFlashcard();
+                this.setupQuiz();
+            },
+
+            bindEvents() {
+                // Language Switcher
+                document.querySelectorAll('#lang-switcher .lang-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#lang-switcher .lang-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        this.currentLang = e.currentTarget.dataset.lang;
+                        this.renderPassage();
+                        this.renderExplanations();
+                        this.bindTargetEvents();
+                        setTimeout(() => this.drawConnections(), 60);
+                    });
+                });
+
+                // Font Resizing
+                document.getElementById('btn-inc-font').addEventListener('click', () => {
+                    if (this.fontSize < 24) {
+                        this.fontSize += 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+                document.getElementById('btn-dec-font').addEventListener('click', () => {
+                    if (this.fontSize > 13) {
+                        this.fontSize -= 1;
+                        document.documentElement.style.setProperty('--app-font-size', `${this.fontSize}px`);
+                        this.drawConnections();
+                    }
+                });
+
+                // Arrow Toggle
+                document.getElementById('btn-toggle-arrows').addEventListener('click', (e) => {
+                    this.showArrows = !this.showArrows;
+                    e.currentTarget.classList.toggle('bg-emerald-600');
+                    e.currentTarget.classList.toggle('bg-slate-300');
+                    e.currentTarget.classList.toggle('text-slate-700');
+                    if (!this.showArrows) {
+                        this.clearCanvas();
+                    } else {
+                        this.drawConnections();
+                    }
+                });
+
+                // Scroll synchronization
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+                if (leftPane) leftPane.addEventListener('scroll', () => this.drawConnections());
+                if (rightPane) rightPane.addEventListener('scroll', () => this.drawConnections());
+
+                // Navigation Tabs
+                document.querySelectorAll('#nav-tabs .tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('#nav-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        const tab = e.currentTarget.dataset.tab;
+                        this.activeTab = tab;
+
+                        document.getElementById('tab-analysis-content').classList.toggle('hidden', tab !== 'analysis');
+                        document.getElementById('tab-vocabulary-content').classList.toggle('hidden', tab !== 'vocabulary');
+                        document.getElementById('tab-flashcards-content').classList.toggle('hidden', tab !== 'flashcards');
+
+                        if (tab !== 'analysis') this.clearCanvas();
+                        else setTimeout(() => this.drawConnections(), 100);
+                    });
+                });
+
+                // Vocab Search & Filter
+                document.getElementById('vocab-search').addEventListener('input', () => this.filterVocab());
+                document.getElementById('vocab-filter').addEventListener('change', () => this.filterVocab());
+
+                // Flashcard Flip & Nav
+                document.getElementById('flashcard-wrapper').addEventListener('click', () => {
+                    this.fcFlipped = !this.fcFlipped;
+                    document.getElementById('flashcard-inner').classList.toggle('rotate-y-180', this.fcFlipped);
+                });
+                document.getElementById('btn-fc-prev').addEventListener('click', () => {
+                    if (this.fcIndex > 0) {
+                        this.fcIndex--;
+                        this.updateFlashcard();
+                    }
+                });
+                document.getElementById('btn-fc-next').addEventListener('click', () => {
+                    if (this.fcIndex < vocabList.length - 1) {
+                        this.fcIndex++;
+                        this.updateFlashcard();
+                    }
+                });
+
+                // Flashcards vs Quiz Mode Switcher
+                document.getElementById('btn-mode-flashcard').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-emerald-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('bg-emerald-600', 'bg-white');
+                    document.getElementById('btn-mode-quiz').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('flashcard-view').classList.remove('hidden');
+                    document.getElementById('quiz-view').classList.add('hidden');
+                });
+                document.getElementById('btn-mode-quiz').addEventListener('click', (e) => {
+                    e.target.classList.replace('bg-white', 'bg-emerald-600');
+                    e.target.classList.replace('text-slate-700', 'text-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('bg-emerald-600', 'bg-white');
+                    document.getElementById('btn-mode-flashcard').classList.replace('text-white', 'text-slate-700');
+                    document.getElementById('quiz-view').classList.remove('hidden');
+                    document.getElementById('flashcard-view').classList.add('hidden');
+                });
+
+                window.addEventListener('resize', () => this.drawConnections());
+            },
+
+            renderPassage() {
+                const container = document.getElementById('passage-container');
+                let html = `
+                    <h2 class="text-2xl font-black text-slate-900 mb-2 text-center leading-tight tracking-tight">Remedies from Nature</h2>
+                    <p class="text-xs text-center text-slate-500 italic mb-6">Exploring biodiversity as the foundation of modern and historical pharmacopeia.</p>
+                `;
+
+                passageData.forEach(p => {
+                    if (this.currentLang === 'en') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.en}</p>`;
+                    } else if (this.currentLang === 'vi') {
+                        html += `<p><span class="paragraph-label">${p.pNum}</span>${p.vi}</p>`;
+                    } else if (this.currentLang === 'dual') {
+                        html += `
+                            <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
+                                <div class="text-slate-800 text-sm leading-relaxed border-b border-slate-200 pb-3">
+                                    <strong class="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">ENGLISH [Paragraph ${p.pNum}]</strong>
+                                    ${p.en}
+                                </div>
+                                <div class="text-slate-600 text-sm leading-relaxed pt-1">
+                                    <strong class="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">TIẾNG VIỆT</strong>
+                                    ${p.vi}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                container.innerHTML = html;
+            },
+
+            renderExplanations() {
+                const container = document.getElementById('explanations-list');
+                let html = `
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+                        <div class="flex items-center space-x-2 text-emerald-700 font-bold text-xs uppercase tracking-wide mb-1">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>Matching Sentence Endings Rationale Guide</span>
+                        </div>
+                        <h2 class="text-xl font-extrabold text-slate-900">Remedies from Nature — Phân Tích Câu 1–6</h2>
+                        <p class="text-xs text-slate-500 mt-1">Click "Xem bài đọc" hoặc rê chuột vào từng thẻ câu hỏi để tự động cuộn và làm nổi bật câu văn chứa đáp án tương ứng.</p>
+                    </div>
+
+                    <!-- Options Reference Box -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider mb-2 flex items-center">
+                            <i class="fa-solid fa-list mr-1.5 text-emerald-600"></i> Danh Sách Lựa Chọn Nối Vế (Options A–I)
+                        </h4>
+                        <div class="grid grid-cols-1 gap-2 text-xs text-slate-700">
+                            ${optionsList.map(opt => `
+                                <div class="flex items-start space-x-2 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="bg-emerald-100 text-emerald-800 font-extrabold px-2 py-0.5 rounded text-xs shrink-0">${opt.key}</span>
+                                    <span class="font-medium text-slate-800 leading-relaxed">${opt.text}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                questionsData.forEach(q => {
+                    html += `
+                        <div class="q-card bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4 transition-all hover:border-emerald-400" id="q-card-${q.id}">
+                            <div class="flex items-start justify-between">
+                                <span class="bg-slate-100 text-slate-800 font-extrabold text-xs px-3 py-1 rounded-md border border-slate-200">
+                                    Câu ${q.num} <span class="text-[10px] font-semibold text-slate-500">(${q.type})</span>
+                                </span>
+                                <div class="flex items-center space-x-2">
+                                    <button class="jump-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-xs px-2.5 py-1 rounded-md border border-emerald-200 transition-colors flex items-center gap-1 cursor-pointer" data-q="${q.id}">
+                                        <i class="fa-solid fa-location-dot"></i> Xem bài đọc
+                                    </button>
+                                    <span class="${q.badgeColor} text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-xs">
+                                        Nối với: ${q.ansKey}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="text-sm font-bold text-slate-800 leading-relaxed">${q.prompt}</p>
+                                <p class="text-xs font-semibold text-emerald-700 bg-emerald-50/80 p-2.5 rounded-lg border border-emerald-200 mt-2">
+                                    <i class="fa-solid fa-arrow-right-long mr-1"></i> <strong>Vế hoàn chỉnh:</strong> ${q.ansKey}. ${q.ansTitle}
+                                </p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-700 space-y-2">
+                                <div class="flex items-center text-emerald-700 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-circle-check mr-1.5"></i>
+                                    <span>Giải thích chi tiết (Rationale):</span>
+                                </div>
+                                <p class="leading-relaxed font-medium text-slate-800">${this.currentLang === 'vi' ? q.explVi : q.explEn}</p>
+                            </div>
+
+                            ${q.synonyms ? `
+                                <div class="pt-2 border-t border-slate-100">
+                                    <h5 class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                                        <i class="fa-solid fa-arrows-rotate mr-1.5 text-emerald-600"></i> Bảng Đối Chiếu Từ Đồng Nghĩa (Paraphrase)
+                                    </h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-xs text-left border-collapse">
+                                            <thead>
+                                                <tr class="bg-emerald-50/70 text-emerald-900 font-semibold border-b border-emerald-100">
+                                                    <th class="p-2">Từ khóa trong Câu hỏi / Nối vế</th>
+                                                    <th class="p-2">Từ tương đương trong Bài đọc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-100 text-slate-600">
+                                                ${q.synonyms.map(s => `
+                                                    <tr>
+                                                        <td class="p-2 font-medium text-slate-700">${s.q}</td>
+                                                        <td class="p-2 font-semibold text-emerald-700">${s.p}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            },
+
+            bindTargetEvents() {
+                const targets = document.querySelectorAll('.ans-target');
+                const qCards = document.querySelectorAll('.q-card');
+                const jumpBtns = document.querySelectorAll('.jump-btn');
+
+                const activatePair = (targetEl, cardEl, scrollLeft = false, scrollRight = false) => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50/40', 'border-emerald-400'));
+
+                    if (targetEl) {
+                        targetEl.classList.add('active-target');
+                        if (scrollLeft) {
+                            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+
+                    if (cardEl) {
+                        cardEl.classList.add('ring-2', 'ring-emerald-600', 'bg-emerald-50/40', 'border-emerald-400');
+                        if (scrollRight) {
+                            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+
+                    this.startSmoothTracking();
+                };
+
+                const deactivateAll = () => {
+                    document.querySelectorAll('.ans-target').forEach(t => t.classList.remove('active-target'));
+                    document.querySelectorAll('.q-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-600', 'bg-emerald-50/40', 'border-emerald-400'));
+                    this.clearCanvas();
+                };
+
+                targets.forEach(target => {
+                    const qId = target.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+
+                    target.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    target.addEventListener('mouseleave', deactivateAll);
+                    target.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        activatePair(target, qCard, false, true);
+                    });
+                });
+
+                qCards.forEach(qCard => {
+                    const qId = qCard.id.replace('q-card-', '');
+                    const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+
+                    qCard.addEventListener('mouseenter', () => activatePair(target, qCard, false, false));
+                    qCard.addEventListener('mouseleave', deactivateAll);
+                    qCard.addEventListener('click', (e) => {
+                        if (e.target.closest('.jump-btn')) return;
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+
+                jumpBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const qId = btn.dataset.q;
+                        const target = document.querySelector(`.ans-target[data-q="${qId}"]`);
+                        const qCard = document.getElementById(`q-card-${qId}`);
+                        activatePair(target, qCard, true, false);
+                    });
+                });
+            },
+
+            startSmoothTracking() {
+                if (this.arrowAnimFrame) cancelAnimationFrame(this.arrowAnimFrame);
+                const startTime = performance.now();
+                const duration = 800;
+
+                const step = (now) => {
+                    this.drawConnections();
+                    if (now - startTime < duration) {
+                        this.arrowAnimFrame = requestAnimationFrame(step);
+                    }
+                };
+                this.arrowAnimFrame = requestAnimationFrame(step);
+            },
+
+            drawConnections() {
+                const activeTarget = document.querySelector('.ans-target.active-target');
+                if (activeTarget && this.showArrows) {
+                    const qId = activeTarget.dataset.q;
+                    const qCard = document.getElementById(`q-card-${qId}`);
+                    if (qCard) {
+                        this.drawArrow(activeTarget, qCard);
+                        return;
+                    }
+                }
+                this.clearCanvas();
+            },
+
+            drawArrow(fromEl, toEl) {
+                if (!fromEl || !toEl || window.innerWidth < 1024 || !this.showArrows) {
+                    this.clearCanvas();
+                    return;
+                }
+                
+                const svg = document.getElementById('svg-canvas');
+                const wrapper = document.getElementById('main-wrapper');
+                const leftPane = document.getElementById('left-pane');
+                const rightPane = document.getElementById('right-pane');
+
+                if (!svg || !wrapper || !leftPane || !rightPane) return;
+
+                const wrapperRect = wrapper.getBoundingClientRect();
+                const leftPaneRect = leftPane.getBoundingClientRect();
+                const rightPaneRect = rightPane.getBoundingClientRect();
+
+                const clientRects = fromEl.getClientRects();
+                let fromRect = fromEl.getBoundingClientRect();
+                if (clientRects.length > 0) {
+                    fromRect = clientRects[clientRects.length - 1];
+                }
+                const toRect = toEl.getBoundingClientRect();
+
+                const isFromVisible = (fromRect.bottom >= leftPaneRect.top && fromRect.top <= leftPaneRect.bottom);
+                const isToVisible = (toRect.bottom >= rightPaneRect.top && toRect.top <= rightPaneRect.bottom);
+
+                if (!isFromVisible || !isToVisible) {
+                    this.clearCanvas();
+                    return;
+                }
+
+                const x1 = Math.min(fromRect.right - wrapperRect.left, leftPaneRect.right - wrapperRect.left - 8);
+                const y1 = fromRect.top + (fromRect.height / 2) - wrapperRect.top;
+                
+                const x2 = toRect.left - wrapperRect.left;
+                const y2 = toRect.top + Math.min(36, toRect.height / 2) - wrapperRect.top;
+
+                const dx = Math.max(30, (x2 - x1) * 0.45);
+                const pathData = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+
+                svg.innerHTML = `
+                    <defs>
+                        <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#059669" />
+                            <stop offset="100%" stop-color="#34d399" />
+                        </linearGradient>
+                        <filter id="arrowGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#059669" flood-opacity="0.4"/>
+                        </filter>
+                        <marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                            <polygon points="0 0, 9 3.5, 0 7" fill="#34d399" />
+                        </marker>
+                    </defs>
+                    <path d="${pathData}" fill="none" stroke="url(#arrowGrad)" stroke-width="3" stroke-dasharray="7,4" class="animated-arrow-line" marker-end="url(#arrowhead)" filter="url(#arrowGlowFilter)"/>
+                    <circle cx="${x1}" cy="${y1}" r="4" fill="#059669" />
+                    <circle cx="${x2}" cy="${y2}" r="4" fill="#34d399" />
+                `;
+            },
+
+            clearCanvas() {
+                const svg = document.getElementById('svg-canvas');
+                if (svg) svg.innerHTML = '';
+            },
+
+            renderVocabGrid() {
+                this.filterVocab();
+            },
+
+            filterVocab() {
+                const search = document.getElementById('vocab-search').value.toLowerCase();
+                const filter = document.getElementById('vocab-filter').value;
+                const grid = document.getElementById('vocab-cards-grid');
+
+                const filtered = vocabList.filter(item => {
+                    const matchSearch = item.word.toLowerCase().includes(search) || item.vi.toLowerCase().includes(search);
+                    const matchFilter = filter === 'all' || item.category === filter || item.type === filter;
+                    return matchSearch && matchFilter;
+                });
+
+                let html = '';
+                filtered.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col justify-between hover:border-emerald-400 transition-all space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">${item.type}</span>
+                                    <button onclick="app.speakWord('${item.word}')" class="text-slate-400 hover:text-emerald-600 transition-colors" title="Nghe phát âm">
+                                        <i class="fa-solid fa-volume-high text-sm"></i>
+                                    </button>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900 capitalize">${item.word}</h3>
+                                <p class="text-xs font-mono text-slate-500 mb-2">${item.phonetic}</p>
+                                <p class="text-sm font-bold text-emerald-700 bg-emerald-50/50 p-2 rounded-lg border border-emerald-100 mb-3">${item.vi}</p>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-3">${item.enDef}</p>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-slate-400">Context trong bài đọc:</span>
+                                    <p class="text-slate-600 italic">"${item.context}"</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-slate-700 block text-[10px] uppercase tracking-wider text-emerald-700">Collocation thường gặp:</span>
+                                    <p class="font-semibold text-emerald-900">${item.collocation}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                grid.innerHTML = html || `<p class="text-sm text-slate-500 col-span-full text-center py-8">Không tìm thấy từ vựng phù hợp với bộ lọc.</p>`;
+            },
+
+            speakWord(word) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(word);
+                    u.lang = 'en-GB';
+                    u.rate = 0.9;
+                    window.speechSynthesis.speak(u);
+                }
+            },
+
+            setupFlashcard() {
+                this.updateFlashcard();
+            },
+
+            updateFlashcard() {
+                const item = vocabList[this.fcIndex];
+                this.fcFlipped = false;
+                document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+
+                document.getElementById('fc-category').textContent = `${item.type.toUpperCase()} • ${item.category.toUpperCase()}`;
+                document.getElementById('fc-word').textContent = item.word;
+                document.getElementById('fc-phonetic').textContent = item.phonetic;
+                document.getElementById('fc-meaning').textContent = item.vi;
+                document.getElementById('fc-context').textContent = `"${item.context}"`;
+                document.getElementById('fc-counter').textContent = `${this.fcIndex + 1} / ${vocabList.length}`;
+            },
+
+            setupQuiz() {
+                const quizBox = document.getElementById('quiz-box');
+                const sampleQuestions = [
+                    {
+                        q: "Which term refers to 'the variety of plant and animal life in a particular habitat or the world'?",
+                        options: ["Antibiotics", "Biodiversity", "Invertebrates", "Preservation"],
+                        ans: 1,
+                        expl: "Biodiversity (Đa dạng sinh học) = Sự phong phú về chủng loài sinh vật trong một hệ sinh thái."
+                    },
+                    {
+                        q: "Where does the best-selling blood pressure medication 'captopril' originate from?",
+                        options: [
+                            "An ancient Iraqi cave fungus",
+                            "The poison / venom of a Brazilian snake",
+                            "A rare tropical orchid",
+                            "The fur of the Alpine Ice Man"
+                        ],
+                        ans: 1,
+                        expl: "Captopril là thuốc hạ huyết áp được phát triển dựa trên cấu trúc nọc độc của một loài rắn Brazil."
+                    },
+                    {
+                        q: "Why is campaigning for the preservation of medically valuable species often difficult?",
+                        options: [
+                            "They are exclusively found in zoos",
+                            "They are often microscopic, poisonous, or less charismatic (fungi, invertebrates)",
+                            "They are overly expensive to photograph",
+                            "They are completely synthetic chemicals"
+                        ],
+                        ans: 1,
+                        expl: "Nhiều loài dược liệu quý là nấm, sinh vật không xương sống có độc hoặc siêu nhỏ, không bắt mắt như các loài thú lớn nên khó kêu gọi bảo tồn hơn."
+                    }
+                ];
+
+                let html = `<h3 class="text-xl font-extrabold text-slate-900 border-b pb-3 border-slate-100 flex items-center gap-2"><i class="fa-solid fa-vial text-emerald-600"></i> Remedies from Nature Vocab Challenge</h3>`;
+                sampleQuestions.forEach((q, idx) => {
+                    html += `
+                        <div class="space-y-3 pt-2" id="quiz-q-${idx}">
+                            <p class="text-sm font-bold text-slate-800">${idx + 1}. ${q.q}</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${q.options.map((opt, oIdx) => `
+                                    <button onclick="app.checkQuiz(${idx}, ${oIdx}, ${q.ans})" class="quiz-opt-btn text-left p-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all">
+                                        ${String.fromCharCode(65 + oIdx)}. ${opt}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div class="quiz-feedback hidden text-xs p-3 rounded-xl"></div>
+                        </div>
+                    `;
+                });
+
+                quizBox.innerHTML = html;
+            },
+
+            checkQuiz(qIdx, selected, correct) {
+                const qDiv = document.getElementById(`quiz-q-${qIdx}`);
+                const btns = qDiv.querySelectorAll('.quiz-opt-btn');
+                const feedback = qDiv.querySelector('.quiz-feedback');
+
+                btns.forEach((btn, idx) => {
+                    btn.disabled = true;
+                    if (idx === correct) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 font-bold text-xs";
+                    } else if (idx === selected) {
+                        btn.className = "quiz-opt-btn text-left p-3 rounded-xl border-2 border-red-400 bg-red-50 text-red-900 font-bold text-xs";
+                    }
+                });
+
+                feedback.classList.remove('hidden');
+                if (selected === correct) {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-emerald-100 text-emerald-900 font-bold border border-emerald-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Chính xác! Tuyệt vời.`;
+                } else {
+                    feedback.className = "quiz-feedback text-xs p-3 rounded-xl bg-red-100 text-red-900 font-bold border border-red-200";
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chính xác. Đáp án đúng là ${String.fromCharCode(65 + correct)}.`;
+                }
+            }
+        };
+
+        window.onload = () => app.init();
+    </script>
+</body>
+</html>
