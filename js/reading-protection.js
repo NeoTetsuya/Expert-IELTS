@@ -1,18 +1,26 @@
 /**
- * Expert for IELTS — Reading Explanations Password Protection Engine
+ * Expert for IELTS — Content Password Protection Engine
  * 
- * Provides client-side access control for Reading Explanations & Analysis modules.
+ * Provides client-side access control for Reading Explanations & Writing Model Answers.
  * Individual passwords per module + Master Teacher override password.
  */
 
 (function () {
   'use strict';
 
+  // Ensure FontAwesome icons are available
+  if (!document.querySelector('link[href*="font-awesome"]') && !document.querySelector('link[href*="fontawesome"]')) {
+    const faLink = document.createElement('link');
+    faLink.rel = 'stylesheet';
+    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+    document.head.appendChild(faLink);
+  }
+
   // =========================================================================
   // 1. PASSWORD REGISTRY (Editable by teacher / Auto-synced by scripts)
   // =========================================================================
   window.EXPERT_READING_PASSWORDS = window.EXPERT_READING_PASSWORDS || {
-    // Master password that unlocks ANY reading explanation module
+    // Master password that unlocks ANY protected module
     masterPassword: "neo-teacher-access",
 
     // Passwords organized by course folder
@@ -23,7 +31,17 @@
         "module-5a-reading-explanations.html": "exp5-r5a",
         "module-5b-reading-explanations.html": "exp5-r5b",
         "module-6a-reading-explanations.html": "exp5-r6a",
-        "module-6b-reading-explanations.html": "exp5-r6b"
+        "module-6b-reading-explanations.html": "exp5-r6b",
+        "module-1-writing-sample.html": "exp5-w1",
+        "module-2-writing-sample.html": "exp5-w2",
+        "module-3-writing-sample.html": "exp5-w3",
+        "module-4-writing-sample.html": "exp5-w4",
+        "module-5-writing-sample.html": "exp5-w5",
+        "module-6-writing-sample.html": "exp5-w6",
+        "module-7-writing-sample.html": "exp5-w7",
+        "module-8-writing-sample.html": "exp5-w8",
+        "module-9-writing-sample.html": "exp5-w9",
+        "module-10-writing-sample.html": "exp5-w10"
       },
       "expert 6": {
         "module-1a-reading-explanations.html": "exp6-r1a",
@@ -52,7 +70,8 @@
       else if (seg === 'expert 7.5' || seg === 'expert-75' || seg === 'expert 75') levelFolder = 'expert 7.5';
     }
 
-    return { levelFolder, filename };
+    const isWriting = filename.toLowerCase().includes('writing') || filename.toLowerCase().includes('sample');
+    return { levelFolder, filename, isWriting };
   }
 
   function getRequiredPassword(levelFolder, filename) {
@@ -72,11 +91,13 @@
       }
     }
 
-    // Default fallback generated from filename (e.g. module-1a-reading-explanations.html -> exp6-r1a)
+    // Default fallback generated from filename
     const match = filename.match(/module-?([0-9]+[a-z]?)/i);
     if (match) {
       const lvlPrefix = levelFolder.replace(/[^0-9]/g, '');
-      return `exp${lvlPrefix}-r${match[1].toLowerCase()}`;
+      const isWriting = filename.toLowerCase().includes('writing') || filename.toLowerCase().includes('sample');
+      const prefixLetter = isWriting ? 'w' : 'r';
+      return `exp${lvlPrefix}-${prefixLetter}${match[1].toLowerCase()}`;
     }
 
     return "neo-reading-access";
@@ -205,15 +226,20 @@
   // 4. UI INITIALIZATION & INTERACTION
   // =========================================================================
   function initLockSystem() {
-    const { levelFolder, filename } = getCurrentPageInfo();
-    const pageTitle = document.title ? document.title.split('—')[0].trim() : 'Reading Explanations';
+    const { levelFolder, filename, isWriting } = getCurrentPageInfo();
+    const pageTitle = document.title ? document.title.split('—')[0].trim() : (isWriting ? 'Writing Model Answer' : 'Reading Explanations');
     const isUnlocked = isAlreadyUnlocked(levelFolder, filename);
+
+    const lockBadgeLabel = isWriting ? `${levelFolder.toUpperCase()} WRITING MODEL LOCK` : `${levelFolder.toUpperCase()} ACCESS LOCK`;
+    const lockDesc = isWriting 
+      ? 'Tài liệu bài mẫu (Model Answer) & chú thích chi tiết được bảo mật để phục vụ buổi học trên lớp. Vui lòng nhập mật mã từ giáo viên.'
+      : 'Tài liệu phân tích & giải thích chi tiết được bảo mật để phục vụ buổi học trên lớp. Vui lòng nhập mật mã từ giáo viên.';
 
     // Build Floating Relock Button
     const relockFab = document.createElement('button');
     relockFab.id = 'reading-relock-fab';
-    relockFab.title = 'Khóa lại tài liệu giải thích';
-    relockFab.innerHTML = '<i class="fa-solid fa-lock text-sky-400"></i> <span>Khóa tài liệu</span>';
+    relockFab.title = isWriting ? 'Khóa lại bài viết mẫu' : 'Khóa lại tài liệu giải thích';
+    relockFab.innerHTML = `<i class="fa-solid fa-lock text-sky-400"></i> <span>${isWriting ? 'Khóa bài mẫu' : 'Khóa tài liệu'}</span>`;
     relockFab.style.display = isUnlocked ? 'flex' : 'none';
     relockFab.onclick = () => {
       setUnlockedState(levelFolder, filename, false);
@@ -230,8 +256,6 @@
       document.body.classList.add('reading-locked');
     }
 
-    const levelBadgeText = levelFolder.toUpperCase();
-
     modal.innerHTML = `
       <div class="relative w-full max-w-md bg-slate-900/95 text-slate-100 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
         <div class="lock-card-glow"></div>
@@ -242,11 +266,11 @@
             <i id="lock-icon" class="fa-solid fa-lock text-2xl text-white transition-transform duration-300"></i>
           </div>
           <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold uppercase tracking-wider mb-2">
-            <i class="fa-solid fa-shield-halved text-[10px]"></i> ${levelBadgeText} ACCESS LOCK
+            <i class="fa-solid fa-shield-halved text-[10px]"></i> ${lockBadgeLabel}
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">${pageTitle}</h2>
           <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-            Tài liệu phân tích & giải thích chi tiết được bảo mật để phục vụ buổi học trên lớp. Vui lòng nhập mật mã từ giáo viên.
+            ${lockDesc}
           </p>
         </div>
 

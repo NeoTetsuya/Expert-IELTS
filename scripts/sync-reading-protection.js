@@ -24,23 +24,30 @@ const TARGET_DIRECTORIES = [
 
 const isCheckOnly = process.argv.includes('--check-only');
 
-function isReadingExplanationFile(filename) {
+function isProtectedFile(filename) {
   if (!filename.endsWith('.html')) return false;
   if (filename === 'index.html') return false;
   const lower = filename.toLowerCase();
-  return lower.includes('reading-explanation') || lower.includes('reading_explanation') || lower.includes('reading-explanations');
+  return lower.includes('reading-explanation') ||
+    lower.includes('reading_explanation') ||
+    lower.includes('reading-explanations') ||
+    lower.includes('writing-sample') ||
+    lower.includes('writing_sample') ||
+    lower.includes('sample-writing');
 }
 
 function generateDefaultPassword(folder, filename) {
   const lvlPrefix = folder.replace(/[^0-9]/g, '');
   const match = filename.match(/module-?([0-9]+[a-z]?)/i);
-  const modPart = match ? `r${match[1].toLowerCase()}` : 'reading';
+  const isWriting = filename.toLowerCase().includes('writing') || filename.toLowerCase().includes('sample');
+  const typeLetter = isWriting ? 'w' : 'r';
+  const modPart = match ? `${typeLetter}${match[1].toLowerCase()}` : (isWriting ? 'writing' : 'reading');
   return `exp${lvlPrefix}-${modPart}`;
 }
 
 function run() {
   console.log('================================================================');
-  console.log('🔒 Expert for IELTS — Reading Protection & Password Sync Engine');
+  console.log('🔒 Expert for IELTS — Content Protection & Password Sync Engine');
   console.log('================================================================\n');
 
   if (isCheckOnly) {
@@ -78,7 +85,7 @@ function run() {
       if (!file.endsWith('.html')) return;
       totalScanned++;
 
-      if (!isReadingExplanationFile(file)) return;
+      if (!isProtectedFile(file)) return;
       totalExplanations++;
 
       const filePath = path.join(dirFullPath, file);
@@ -97,7 +104,7 @@ function run() {
   });
 
   console.log(`📁 Scanned ${totalScanned} HTML files across course levels.`);
-  console.log(`📖 Found ${totalExplanations} Reading Explanation modules.\n`);
+  console.log(`🔒 Found ${totalExplanations} protected modules (Reading Explanations & Writing Model Answers).\n`);
 
   if (!isCheckOnly && explanationFiles.length > 0) {
     fs.mkdirSync(backupDir, { recursive: true });
