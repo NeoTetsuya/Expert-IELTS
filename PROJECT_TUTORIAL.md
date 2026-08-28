@@ -31,6 +31,7 @@ neo-expert-ielts/
 ├── css/
 │   └── styles.css                       # Global design system, badges, & layout styles
 ├── js/
+│   ├── theme-toggle.js                  # Light/Dark mode state manager & UI switcher
 │   ├── mobile.js                        # Responsive mobile UI engine (tabs, back-to-top, vh fix)
 │   ├── image-viewer.js                  # Pan, drag, pinch-to-zoom, and lightbox modal engine
 │   ├── render-materials.js              # Dynamically renders cards into skill folders
