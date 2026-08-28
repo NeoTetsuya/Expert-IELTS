@@ -12,8 +12,7 @@
     "check:protection": "node scripts/sync-reading-protection.js --check-only",
     "sync:protection": "node scripts/sync-reading-protection.js",
     "apply:protection": "node scripts/sync-reading-protection.js",
-    "apply:progress": "node scripts/apply-study-progress.js",
-    "apply:universal": "node scripts/apply-universal-scripts.js"
+    "apply:progress": "node scripts/apply-study-progress.js"
   },
   "keywords": [
     "ielts",

@@ -255,34 +255,15 @@
   }
 
   // =========================================================================
-  // 3. LESSON PAGE FLOATING TRACKER
+  // 3. LESSON PAGE BACKGROUND TRACKER (No DOM injection)
   // =========================================================================
   function initLessonPageTracker(levelKey, filename) {
-    // Record current module
-    const h1 = document.querySelector('h1');
-    const titleText = h1 ? h1.textContent.trim() : document.title;
-    recordLastVisited(levelKey, { url: filename, title: titleText });
-
-    // Floating completion badge
-    const isDone = isModuleCompleted(levelKey, filename);
-    const fab = document.createElement('button');
-    fab.id = 'lesson-complete-fab';
-    fab.className = `lesson-complete-fab ${isDone ? 'is-completed' : ''}`;
-    fab.title = isDone ? 'Click to mark as incomplete' : 'Click to mark this lesson as completed';
-    fab.innerHTML = `<span class="fab-check">✓</span> <span class="fab-text">${isDone ? 'Completed' : 'Mark Complete'}</span>`;
-
-    fab.addEventListener('click', () => {
-      const nowDone = toggleModuleCompleted(levelKey, filename);
-      fab.classList.toggle('is-completed', nowDone);
-      fab.querySelector('.fab-text').textContent = nowDone ? 'Completed' : 'Mark Complete';
-      fab.title = nowDone ? 'Click to mark as incomplete' : 'Click to mark this lesson as completed';
-
-      // Brief toast animation
-      fab.classList.add('fab-pulse');
-      setTimeout(() => fab.classList.remove('fab-pulse'), 400);
-    });
-
-    document.body.appendChild(fab);
+    // Quietly record current module in background for Resume CTA on dashboard
+    try {
+      const h1 = document.querySelector('h1');
+      const titleText = h1 ? h1.textContent.trim() : document.title;
+      recordLastVisited(levelKey, { url: filename, title: titleText });
+    } catch (e) {}
   }
 
   // =========================================================================
