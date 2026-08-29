@@ -4,56 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IELTS Writing Task 2: Pre-Writing Outline Portal</title>
-
-  <!-- Embedded Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
-
+  <title>IELTS Writing Task 2: Body Paragraph Outlining</title>
   <style>
     :root {
-      --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --primary-light: #eef2ff;
-      --primary-border: #c7d2fe;
-
-      --slate-50: #f8fafc;
-      --slate-100: #f1f5f9;
-      --slate-200: #e2e8f0;
-      --slate-300: #cbd5e1;
-      --slate-400: #94a3b8;
-      --slate-500: #64748b;
-      --slate-600: #475569;
-      --slate-700: #334155;
-      --slate-800: #1e293b;
-      --slate-900: #0f172a;
-
-      --emerald-50: #ecfdf5;
-      --emerald-100: #d1fae5;
-      --emerald-500: #10b981;
-      --emerald-700: #047857;
-      --emerald-800: #065f46;
-      --emerald-900: #064e3b;
-
-      --amber-50: #fffbeb;
-      --amber-200: #fde68a;
-      --amber-800: #92400e;
-
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --radius-xl: 20px;
-
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-      --shadow-glow: 0 10px 25px -5px rgba(79, 70, 229, 0.25);
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --focus-ring: rgba(37, 99, 235, 0.15);
+      --accent-bg: #f0fdf4;
+      --accent-border: #bbf7d0;
+      --accent-text: #166534;
     }
 
     * {
@@ -63,15 +27,11 @@
     }
 
     body {
-      font-family: var(--font-body);
-      background-color: #f8fafc;
-      background-image:
-        radial-gradient(circle at 100% 0%, #e0e7ff 0%, transparent 28%),
-        radial-gradient(circle at 0% 100%, #f1f5f9 0%, transparent 35%);
-      color: var(--slate-800);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
       line-height: 1.5;
-      padding: 2.5rem 1rem 4rem;
-      min-height: 100vh;
+      padding: 2rem 1rem;
     }
 
     .container {
@@ -79,169 +39,60 @@
       margin: 0 auto;
     }
 
-    /* Header Styling */
-    .portal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--slate-200);
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, var(--primary), #6366f1);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.28);
-    }
-
-    .brand-title {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--slate-900);
-      letter-spacing: -0.02em;
-    }
-
-    .brand-sub {
-      font-size: 0.8rem;
-      color: var(--slate-500);
-      font-weight: 500;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.35rem 0.75rem;
-      border-radius: 9999px;
-      background: var(--emerald-50);
-      color: var(--emerald-700);
-      border: 1px solid var(--emerald-100);
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--emerald-500);
-    }
-
-    /* Cards */
     .card {
-      background: #ffffff;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--slate-200);
-      box-shadow: var(--shadow-sm);
-      padding: 1.75rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    header {
       margin-bottom: 1.5rem;
-      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.25rem;
     }
 
-    .card:focus-within {
-      border-color: #cbd5e1;
-      box-shadow: var(--shadow-md);
-    }
-
-    .prompt-card {
-      background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
-      border: 1px solid #e0e7ff;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .prompt-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--primary);
-    }
-
-    .prompt-tag {
-      display: inline-block;
-      font-size: 0.7rem;
+    h1 {
+      font-size: 1.5rem;
       font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .prompt-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .prompt-box strong {
+      color: #1e40af;
+      display: block;
+      margin-bottom: 0.25rem;
       text-transform: uppercase;
+      font-size: 0.8rem;
       letter-spacing: 0.05em;
-      color: var(--primary);
-      background: var(--primary-light);
-      padding: 0.25rem 0.6rem;
-      border-radius: var(--radius-sm);
-      margin-bottom: 0.75rem;
     }
 
-    .prompt-text {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--slate-900);
-      line-height: 1.45;
-      margin-bottom: 1rem;
-    }
-
-    .tips-box {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      color: var(--slate-600);
-      background: var(--slate-50);
-      padding: 0.65rem 0.85rem;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--slate-200);
-    }
-
-    .tip-chip {
-      background: #fff;
-      padding: 0.2rem 0.55rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--slate-200);
-      font-weight: 500;
-    }
-
-    /* Form Elements */
     .section-title {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--slate-900);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 1.75rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--slate-100);
-    }
-
-    .section-number {
-      width: 22px;
-      height: 22px;
-      background: var(--primary-light);
-      color: var(--primary);
-      border-radius: 50%;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
     }
 
     .grid-2 {
@@ -250,312 +101,89 @@
       gap: 1rem;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
       .grid-2 {
         grid-template-columns: 1fr;
       }
     }
 
-    .form-group {
+    .field-group {
       margin-bottom: 1.25rem;
     }
 
-    .form-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-main);
       margin-bottom: 0.35rem;
     }
 
-    label {
+    .hint {
       font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--slate-600);
-    }
-
-    .req {
-      color: #ef4444;
-      margin-left: 2px;
-    }
-
-    .helper-text {
-      font-size: 0.75rem;
-      color: var(--slate-400);
-      font-weight: 500;
-    }
-
-    .word-count {
-      font-size: 0.72rem;
-      color: var(--slate-400);
-      font-weight: 600;
-      font-feature-settings: "tnum";
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
     }
 
     input[type="text"],
     input[type="email"],
     textarea {
       width: 100%;
-      padding: 0.7rem 0.85rem;
-      font-size: 0.9rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.95rem;
       font-family: inherit;
-      color: var(--slate-800);
-      background-color: var(--slate-50);
-      border: 1px solid var(--slate-300);
-      border-radius: var(--radius-md);
-      transition: all 0.15s ease;
-      outline: none;
+      color: var(--text-main);
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    input[type="text"]:focus,
-    input[type="email"]:focus,
+    input:focus,
     textarea:focus {
-      background-color: #ffffff;
+      outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+      box-shadow: 0 0 0 3px var(--focus-ring);
     }
 
     textarea {
       resize: vertical;
-      min-height: 72px;
+      min-height: 70px;
     }
 
-    /* Stance Selection Pills */
-    .pills-group {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 600px) {
-      .pills-group {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .pill-label {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.65rem 0.85rem;
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-md);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--slate-700);
-      transition: all 0.15s ease;
-      text-transform: none;
-      letter-spacing: normal;
-    }
-
-    .pill-label:hover {
-      background: var(--slate-100);
-    }
-
-    .pill-label input[type="radio"] {
-      accent-color: var(--primary);
-    }
-
-    .pill-label.active {
-      background: var(--primary-light);
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    /* Checklist */
-    .checklist-container {
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-md);
-      padding: 0.85rem 1rem;
-      margin-top: 1rem;
-    }
-
-    .check-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-      color: var(--slate-700);
-      font-weight: 500;
-      margin-bottom: 0.4rem;
-      cursor: pointer;
-    }
-
-    .check-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .check-item input[type="checkbox"] {
-      accent-color: var(--primary);
-      width: 15px;
-      height: 15px;
-    }
-
-    /* Buttons & Submit */
-    .submit-btn {
+    .btn-submit {
       width: 100%;
-      padding: 0.95rem 1.5rem;
-      font-family: var(--font-display);
+      padding: 0.85rem;
       font-size: 1rem;
-      font-weight: 700;
-      color: #ffffff;
-      background: var(--primary);
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      box-shadow: var(--shadow-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      transition: all 0.15s ease;
-    }
-
-    .submit-btn:hover:not(:disabled) {
-      background: var(--primary-hover);
-      transform: translateY(-1px);
-    }
-
-    .submit-btn:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .submit-btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn-spinner {
-      width: 18px;
-      height: 18px;
-      border: 2.5px solid rgba(255, 255, 255, 0.3);
-      border-top-color: #ffffff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      display: none;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Success & Notification Modals/Banners */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.45);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      z-index: 50;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-    }
-
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      border-radius: var(--radius-xl);
-      max-width: 520px;
-      width: 100%;
-      padding: 2rem;
-      box-shadow: var(--shadow-lg);
-      text-align: center;
-      transform: scale(0.95);
-      transition: transform 0.2s ease;
-    }
-
-    .modal-overlay.open .modal-card {
-      transform: scale(1);
-    }
-
-    .success-icon-wrap {
-      width: 56px;
-      height: 56px;
-      background: var(--emerald-100);
-      color: var(--emerald-700);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      margin: 0 auto 1.25rem;
-    }
-
-    .modal-title {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--slate-900);
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-desc {
-      font-size: 0.9rem;
-      color: var(--slate-600);
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-    }
-
-    .feedback-notice-box {
-      background: var(--emerald-50);
-      border: 1px solid var(--emerald-100);
-      border-radius: var(--radius-md);
-      padding: 0.85rem 1rem;
-      font-size: 0.8rem;
-      color: var(--emerald-900);
-      text-align: left;
-      margin-bottom: 1.5rem;
-      line-height: 1.45;
-    }
-
-    .modal-btn {
-      width: 100%;
-      padding: 0.75rem;
-      background: var(--slate-900);
-      color: #fff;
       font-weight: 600;
+      color: #ffffff;
+      background-color: var(--primary);
       border: none;
-      border-radius: var(--radius-md);
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 0.9rem;
+      margin-top: 1.5rem;
+      transition: background-color 0.15s ease;
     }
 
-    .modal-btn:hover {
-      background: var(--slate-800);
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
     }
 
-    .draft-badge {
-      font-size: 0.72rem;
-      color: var(--slate-500);
-      text-align: right;
-      margin-top: 0.4rem;
+    .btn-submit:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
     }
 
-    .footer-note {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--slate-400);
-      margin-top: 2rem;
+    .feedback-alert {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 8px;
+      background-color: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-text);
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -563,405 +191,144 @@
 <body>
 
   <div class="container">
+    <div class="card">
+      <header>
+        <h1>Pre-Writing Outline Submission</h1>
+        <p class="subtitle">Submit your body paragraph plan for feedback before drafting your essay.</p>
+      </header>
 
-    <!-- Top Navigation / Header -->
-    <header class="portal-header">
-      <div class="brand-group">
-        <div class="brand-icon">✍️</div>
-        <div>
-          <h1 class="brand-title">IELTS Writing Task 2</h1>
-          <p class="brand-sub">Pre-Writing Structural Outline Portal</p>
-        </div>
+      <div class="prompt-box">
+        <strong>Writing Task 2 Prompt</strong>
+        Both men and women care more about their appearance today than they did in the past. To what extent do you agree
+        or disagree with this statement?
       </div>
-      <div class="status-badge">
-        <span class="status-dot"></span>
-        Instructor Review Active
-      </div>
-    </header>
 
-    <!-- Task Prompt Banner -->
-    <section class="card prompt-card">
-      <span class="prompt-tag">Writing Task 2 Prompt</span>
-      <h2 class="prompt-text">
-        &ldquo;Both men and women care more about their appearance today than they did in the past. To what extent do
-        you agree or disagree with this statement?&rdquo;
-      </h2>
-      <div class="tips-box">
-        <span style="font-weight: 700; color: var(--slate-700);">Scoring Focus:</span>
-        <span class="tip-chip">1. Cover both genders</span>
-        <span class="tip-chip">2. Contrast past vs. present</span>
-        <span class="tip-chip">3. Provide concrete evidence</span>
-      </div>
-    </section>
-
-    <form id="outlineForm">
-
-      <!-- Section 1: Student Profile -->
-      <section class="card">
-        <div class="section-title">
-          <span class="section-number">1</span>
-          Student Information
-        </div>
+      <form id="outlineForm">
         <div class="grid-2">
-          <div class="form-group">
-            <div class="label-row">
-              <label for="studentName">Full Name <span class="req">*</span></label>
-            </div>
-            <input type="text" id="studentName" name="studentName" required placeholder="e.g., Alex Johnson"
-              autocomplete="name">
+          <div class="field-group">
+            <label for="studentName">Full Name *</label>
+            <input type="text" id="studentName" name="studentName" placeholder="e.g., Alex Johnson" required>
           </div>
-          <div class="form-group">
-            <div class="label-row">
-              <label for="studentEmail">Email Address <span class="req">*</span></label>
-              <span class="helper-text">(Feedback destination)</span>
-            </div>
-            <input type="email" id="studentEmail" name="studentEmail" required
-              placeholder="e.g., alex.johnson@example.com" autocomplete="email">
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 2: Thesis & Stance -->
-      <section class="card">
-        <div class="section-title">
-          <span class="section-number">2</span>
-          Essay Stance & Core Thesis
-        </div>
-
-        <div class="form-group">
-          <div class="label-row">
-            <label>Select Overall Stance <span class="req">*</span></label>
-          </div>
-          <div class="pills-group" id="stanceGroup">
-            <label class="pill-label active">
-              <input type="radio" name="stance_choice" value="Totally Agree" checked
-                onchange="handleStanceChange(this.value)">
-              Totally Agree
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="stance_choice" value="Partially Agree"
-                onchange="handleStanceChange(this.value)">
-              Partially Agree
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="stance_choice" value="Totally Disagree"
-                onchange="handleStanceChange(this.value)">
-              Totally Disagree
-            </label>
+          <div class="field-group">
+            <label for="studentEmail">Email Address (for feedback) *</label>
+            <input type="email" id="studentEmail" name="studentEmail" placeholder="alex@example.com" required>
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="label-row">
-            <label for="stance">Complete Thesis Statement <span class="req">*</span></label>
-            <span class="word-count" id="thesisCount">0 words</span>
+        <div class="field-group">
+          <label for="stance">Overall Stance / Thesis Statement *</label>
+          <div class="hint">State whether you agree, disagree, or partially agree, and summarize your two main reasons.
           </div>
-          <textarea id="stance" name="stance" rows="2" required
-            placeholder="Clearly express your point of view and mention your two primary arguments..."
-            oninput="handleWordCount(this, 'thesisCount'); autoSaveDraft();"></textarea>
-          <div class="helper-text" style="margin-top: 0.35rem;">
-            💡 Tip: Band 7+ requires presenting a clear position throughout the response.
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 3: Body Paragraph 1 -->
-      <section class="card">
-        <div class="section-title">
-          <span class="section-number">3</span>
-          Body Paragraph 1: Digital Media & Social Comparison
+          <input type="text" id="stance" name="stance"
+            placeholder="e.g., I completely agree because social media amplifies visual standards and the modern workplace places greater value on professional grooming."
+            required>
         </div>
 
-        <div class="form-group">
-          <div class="label-row">
-            <label for="b1_ts">Topic Sentence (Main Claim) <span class="req">*</span></label>
-            <span class="word-count" id="b1TsCount">0 words</span>
-          </div>
-          <input type="text" id="b1_ts" name="b1_ts" required
-            placeholder="e.g., The pervasive influence of social media platforms has heightened body consciousness for both men and women."
-            oninput="handleWordCount(this, 'b1TsCount'); autoSaveDraft();">
+        <div class="section-title">Body Paragraph 1</div>
+        <div class="field-group">
+          <label for="b1_ts">Topic Sentence *</label>
+          <div class="hint">What is the central claim of this paragraph?</div>
+          <input type="text" id="b1_ts" name="b1_ts"
+            placeholder="e.g., The ubiquity of image-centric digital platforms has dramatically heightened aesthetic awareness for both genders."
+            required>
+        </div>
+        <div class="field-group">
+          <label for="b1_idea">Explanation / Extension *</label>
+          <div class="hint">Why or how does this happen? Explain the reasoning.</div>
+          <textarea id="b1_idea" name="b1_idea"
+            placeholder="e.g., Platforms like Instagram and TikTok expose individuals to constant curated imagery, creating subtle social pressure to match these standardized visual benchmarks."
+            required></textarea>
+        </div>
+        <div class="field-group">
+          <label for="b1_ex">Concrete Example *</label>
+          <div class="hint">Provide a specific trend, data point, or real-world illustration.</div>
+          <input type="text" id="b1_ex" name="b1_ex"
+            placeholder="e.g., The exponential growth of the male skincare and cosmetic market, alongside photo-retouching apps."
+            required>
         </div>
 
-        <div class="form-group">
-          <div class="label-row">
-            <label for="b1_idea">Explanation & Extension <span class="req">*</span></label>
-            <span class="word-count" id="b1IdeaCount">0 words</span>
-          </div>
-          <textarea id="b1_idea" name="b1_idea" rows="2" required
-            placeholder="Explain why: Daily exposure to curated, filtered content leads to continuous subconscious social comparison that older generations did not experience."
-            oninput="handleWordCount(this, 'b1IdeaCount'); autoSaveDraft();"></textarea>
+        <div class="section-title">Body Paragraph 2</div>
+        <div class="field-group">
+          <label for="b2_ts">Topic Sentence *</label>
+          <div class="hint">What is the central claim of this paragraph?</div>
+          <input type="text" id="b2_ts" name="b2_ts"
+            placeholder="e.g., Furthermore, contemporary professional environments and shifting cultural standards increasingly reward polished personal presentation."
+            required>
+        </div>
+        <div class="field-group">
+          <label for="b2_idea">Explanation / Extension *</label>
+          <div class="hint">Why or how does this happen? Explain the reasoning.</div>
+          <textarea id="b2_idea" name="b2_idea"
+            placeholder="e.g., In modern service and corporate economies, grooming and fitness are frequently perceived as markers of self-discipline, reducing the historical stigma around male cosmetic care."
+            required></textarea>
+        </div>
+        <div class="field-group">
+          <label for="b2_ex">Concrete Example *</label>
+          <div class="hint">Provide a specific trend, data point, or real-world illustration.</div>
+          <input type="text" id="b2_ex" name="b2_ex"
+            placeholder="e.g., Increasing numbers of working professionals investing in aesthetic dental treatments, tailored corporate attire, and gym memberships."
+            required>
         </div>
 
-        <div class="form-group">
-          <div class="label-row">
-            <label for="b1_ex">Concrete Real-World Evidence / Example <span class="req">*</span></label>
-          </div>
-          <input type="text" id="b1_ex" name="b1_ex" required
-            placeholder="e.g., High usage of photo-filtering apps and the surge of male grooming tutorials on TikTok and Instagram."
-            oninput="autoSaveDraft();">
-        </div>
-      </section>
+        <button type="submit" id="submitBtn" class="btn-submit">Submit Outline for Teacher Review</button>
+      </form>
 
-      <!-- Section 4: Body Paragraph 2 -->
-      <section class="card">
-        <div class="section-title">
-          <span class="section-number">4</span>
-          Body Paragraph 2: Professional & Cultural Standards
-        </div>
-
-        <div class="form-group">
-          <div class="label-row">
-            <label for="b2_ts">Topic Sentence (Main Claim) <span class="req">*</span></label>
-            <span class="word-count" id="b2TsCount">0 words</span>
-          </div>
-          <input type="text" id="b2_ts" name="b2_ts" required
-            placeholder="e.g., Modern workplace dynamics and shifting cultural norms now link aesthetic presentation to professionalism and self-discipline."
-            oninput="handleWordCount(this, 'b2TsCount'); autoSaveDraft();">
-        </div>
-
-        <div class="form-group">
-          <div class="label-row">
-            <label for="b2_idea">Explanation & Extension <span class="req">*</span></label>
-            <span class="word-count" id="b2IdeaCount">0 words</span>
-          </div>
-          <textarea id="b2_idea" name="b2_idea" rows="2" required
-            placeholder="Explain why: In service-driven economies, personal branding matters, and male cosmetic care has shed its past societal taboos."
-            oninput="handleWordCount(this, 'b2IdeaCount'); autoSaveDraft();"></textarea>
-        </div>
-
-        <div class="form-group">
-          <div class="label-row">
-            <label for="b2_ex">Concrete Real-World Evidence / Example <span class="req">*</span></label>
-          </div>
-          <input type="text" id="b2_ex" name="b2_ex" required
-            placeholder="e.g., Rapid rise in cosmetic dental procedures, gym memberships, and specialized men's skincare clinics."
-            oninput="autoSaveDraft();">
-        </div>
-      </section>
-
-      <!-- Section 5: Pre-Submission Checklist -->
-      <section class="card">
-        <div class="section-title">
-          <span class="section-number">5</span>
-          Pre-Submission Quality Check
-        </div>
-        <div class="checklist-container">
-          <label class="check-item">
-            <input type="checkbox" id="chk1" required>
-            <span>I have directly addressed both men and women in my outline.</span>
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="chk2" required>
-            <span>My points contrast current habits with past generations.</span>
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="chk3" required>
-            <span>My examples are specific and realistic (avoiding vague generalities).</span>
-          </label>
-        </div>
-      </section>
-
-      <!-- Submission Button & Status -->
-      <div style="margin-top: 1.5rem;">
-        <button type="submit" class="submit-btn" id="submitBtn">
-          <span class="btn-spinner" id="spinner"></span>
-          <span id="btnText">Submit Outline for Teacher Review</span>
-        </button>
-        <div class="draft-badge" id="draftStatus">Draft automatically saved in browser</div>
+      <div id="feedbackAlert" class="feedback-alert">
+        <strong>Outline submitted successfully!</strong><br>
+        Your outline has been sent. Your teacher will review your topic sentences and examples, and feedback will be
+        delivered directly to your email before you begin drafting.
       </div>
-    </form>
-
-    <footer class="footer-note">
-      IELTS Academic & General Training Task 2 &bull; Pre-Writing Scaffold System
-    </footer>
-  </div>
-
-  <div class="modal-overlay" id="successModal">
-    <div class="modal-card">
-      <div class="success-icon-wrap">✓</div>
-      <h3 class="modal-title">Outline Submitted!</h3>
-      <p class="modal-desc">
-        Your essay plan has been sent to your teacher's grading spreadsheet.
-      </p>
-      <div class="feedback-notice-box">
-        <strong>📬 Next Step:</strong><br>
-        Your instructor will review your arguments and email written feedback to <span id="confirmedEmail"
-          style="font-weight: 700;"></span>. Please review the notes before writing your draft.
-      </div>
-      <button class="modal-btn" onclick="closeModal()">Close & Start New Outline</button>
     </div>
   </div>
 
   <script>
-    // Confirmed Web App URL
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHusBbEANkhGvRylgku42hjNN1_H3CBdLTp2DQiMaL8lKyGijr-7xJ79fDFsx2k1NM/exec";
 
-    // Thesis Starter Templates
-    const STANCE_TEMPLATES = {
-      "Totally Agree": "I completely agree that both men and women care significantly more about their physical appearance today than in the past because ",
-      "Partially Agree": "I partially agree with this view; while modern media intensifies aesthetic pressure on both genders today, historical generations also prioritized appearance because ",
-      "Totally Disagree": "I disagree that people today care more about their appearance than in the past because "
-    };
+    // Auto-save form progress to localStorage
+    const form = document.getElementById('outlineForm');
+    const inputs = form.querySelectorAll('input, textarea');
 
-    // Word counter utility
-    function handleWordCount(textarea, targetId) {
-      const text = textarea.value.trim();
-      const count = text ? text.split(/\s+/).length : 0;
-      const countEl = document.getElementById(targetId);
-      if (countEl) {
-        countEl.textContent = `${count} word${count === 1 ? '' : 's'}`;
-      }
-    }
+    inputs.forEach(input => {
+      const savedVal = localStorage.getItem('outline_' + input.name);
+      if (savedVal) input.value = savedVal;
 
-    // Stance selection handler
-    function handleStanceChange(stanceValue) {
-      // Update UI active state on pill labels
-      document.querySelectorAll('.pill-label').forEach(label => {
-        const radio = label.querySelector('input');
-        if (radio && radio.value === stanceValue) {
-          label.classList.add('active');
-        } else {
-          label.classList.remove('active');
-        }
+      input.addEventListener('input', () => {
+        localStorage.setItem('outline_' + input.name, input.value);
       });
+    });
 
-      const stanceTextarea = document.getElementById('stance');
-      const current = stanceTextarea.value.trim();
-
-      // Only autofill if empty or matching a template starter
-      const isTemplateLike = Object.values(STANCE_TEMPLATES).some(t => current.startsWith(t.slice(0, 25)) || current === "");
-      if (isTemplateLike) {
-        stanceTextarea.value = STANCE_TEMPLATES[stanceValue] || "";
-        handleWordCount(stanceTextarea, 'thesisCount');
-      }
-      autoSaveDraft();
-    }
-
-    // LocalStorage Draft Management
-    const DRAFT_KEY = "ielts_task2_outline_draft";
-
-    function autoSaveDraft() {
-      const formData = {
-        studentName: document.getElementById('studentName').value,
-        studentEmail: document.getElementById('studentEmail').value,
-        stanceChoice: document.querySelector('input[name="stance_choice"]:checked')?.value || "Totally Agree",
-        stance: document.getElementById('stance').value,
-        b1_ts: document.getElementById('b1_ts').value,
-        b1_idea: document.getElementById('b1_idea').value,
-        b1_ex: document.getElementById('b1_ex').value,
-        b2_ts: document.getElementById('b2_ts').value,
-        b2_idea: document.getElementById('b2_idea').value,
-        b2_ex: document.getElementById('b2_ex').value
-      };
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(formData));
-
-      const draftStatus = document.getElementById('draftStatus');
-      if (draftStatus) {
-        draftStatus.textContent = "Draft autosaved at " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      }
-    }
-
-    function loadDraft() {
-      const saved = localStorage.getItem(DRAFT_KEY);
-      if (!saved) {
-        handleStanceChange("Totally Agree");
-        return;
-      }
-      try {
-        const data = JSON.parse(saved);
-        if (data.studentName) document.getElementById('studentName').value = data.studentName;
-        if (data.studentEmail) document.getElementById('studentEmail').value = data.studentEmail;
-
-        if (data.stanceChoice) {
-          const radio = document.querySelector(`input[name="stance_choice"][value="${data.stanceChoice}"]`);
-          if (radio) {
-            radio.checked = true;
-            document.querySelectorAll('.pill-label').forEach(label => {
-              label.classList.toggle('active', label.querySelector('input')?.value === data.stanceChoice);
-            });
-          }
-        }
-
-        if (data.stance) document.getElementById('stance').value = data.stance;
-        if (data.b1_ts) document.getElementById('b1_ts').value = data.b1_ts;
-        if (data.b1_idea) document.getElementById('b1_idea').value = data.b1_idea;
-        if (data.b1_ex) document.getElementById('b1_ex').value = data.b1_ex;
-        if (data.b2_ts) document.getElementById('b2_ts').value = data.b2_ts;
-        if (data.b2_idea) document.getElementById('b2_idea').value = data.b2_idea;
-        if (data.b2_ex) document.getElementById('b2_ex').value = data.b2_ex;
-
-        // Refresh word counters
-        handleWordCount(document.getElementById('stance'), 'thesisCount');
-        handleWordCount(document.getElementById('b1_ts'), 'b1TsCount');
-        handleWordCount(document.getElementById('b1_idea'), 'b1IdeaCount');
-        handleWordCount(document.getElementById('b2_ts'), 'b2TsCount');
-        handleWordCount(document.getElementById('b2_idea'), 'b2IdeaCount');
-      } catch (e) {
-        handleStanceChange("Totally Agree");
-      }
-    }
-
-    // Modal Controls
-    function openModal(email) {
-      document.getElementById('confirmedEmail').textContent = email;
-      document.getElementById('successModal').classList.add('open');
-    }
-
-    function closeModal() {
-      document.getElementById('successModal').classList.remove('open');
-      document.getElementById('outlineForm').reset();
-      localStorage.removeItem(DRAFT_KEY);
-      handleStanceChange("Totally Agree");
-    }
-
-    // Form Submission with `no-cors` mode
-    document.getElementById('outlineForm').addEventListener('submit', function (e) {
+    // Form submission handler
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       const btn = document.getElementById('submitBtn');
-      const btnText = document.getElementById('btnText');
-      const spinner = document.getElementById('spinner');
-      const email = document.getElementById('studentEmail').value;
+      const alertBox = document.getElementById('feedbackAlert');
 
-      // Loading state
       btn.disabled = true;
-      btnText.textContent = "Transmitting Outline...";
-      spinner.style.display = "inline-block";
+      btn.innerText = "Submitting Outline...";
 
-      const formData = new FormData(this);
+      const formData = new FormData(form);
 
-      // mode: 'no-cors' allows submission from any origin without CORS blocking
       fetch(SCRIPT_URL, {
         method: "POST",
         body: formData,
         mode: "no-cors"
       })
         .then(() => {
-          // Reset button state
           btn.disabled = false;
-          btnText.textContent = "Submit Outline for Teacher Review";
-          spinner.style.display = "none";
+          btn.innerText = "Submit Outline for Teacher Review";
+          alertBox.style.display = "block";
+          alertBox.scrollIntoView({ behavior: 'smooth' });
 
-          // Show confirmation modal
-          openModal(email);
+          // Clear local storage and reset form
+          inputs.forEach(input => localStorage.removeItem('outline_' + input.name));
+          form.reset();
         })
         .catch(err => {
           btn.disabled = false;
-          btnText.textContent = "Submit Outline for Teacher Review";
-          spinner.style.display = "none";
-
-          // Fallback for network interruption
-          openModal(email);
+          btn.innerText = "Submit Outline for Teacher Review";
+          alert("Submission failed. Please check your internet connection and try again.");
         });
     });
-
-    // Auto-save listeners on all form inputs
-    document.querySelectorAll('#outlineForm input, #outlineForm textarea').forEach(el => {
-      el.addEventListener('input', autoSaveDraft);
-    });
-
-    // Initialize on page load
-    window.addEventListener('DOMContentLoaded', loadDraft);
   </script>
 </body>
 
