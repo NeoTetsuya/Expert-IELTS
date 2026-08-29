@@ -462,6 +462,15 @@ window.EXPERT_6_MODULES = [
     "status": "Exercise"
   },
   {
+    "url": "module-2-writing-outline-submission.html",
+    "dataTitle": "Module 2 Writing — Pre-Writing Outline Portal",
+    "skill": "writing",
+    "badge": "Module 2",
+    "title": "Module 2 Writing — Pre-Writing Outline Portal",
+    "status": "Active Exercise",
+    "badgeClass": "badge-band6"
+  },
+  {
     "url": "module-3-writing.html",
     "dataTitle": "Module 3 Writing",
     "skill": "writing",
