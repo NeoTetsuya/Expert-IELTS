@@ -444,6 +444,15 @@ window.EXPERT_6_MODULES = [
     "status": "Active Exercise"
   },
   {
+    "url": "module-1a-writing-7.30 pm.html",
+    "dataTitle": "Module 1a Writing — Writing 7.30 Pm",
+    "skill": "writing",
+    "badge": "Module 1a",
+    "title": "Module 1a Writing — Writing 7.30 Pm",
+    "status": "Active Exercise",
+    "badgeClass": "badge-band6"
+  },
+  {
     "url": "module-1b-writing.html",
     "dataTitle": "Module 1b Writing — Writing",
     "skill": "writing",
