@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 9: Task 2 Problem-Solution Essay - Aging Population Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-softening {
+            background-color: #fae8ff;
+            color: #86198f;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid #d946ef;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-softening:hover {
+            background-color: #f5d0fe;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                9
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 9</h1>
+                <p class="text-xs text-slate-500">Problem-Solution Essay (Aging Population &amp; Falling Birth Rates) • Target Band 6 Study Guide</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Problem &amp; Solution Framing, Thesis Roadmap &amp; Linkers
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-purple-100 border border-purple-400 rounded"></span>
+            <strong>Purple:</strong> Softening Language &amp; Hedging (Band 6 Academic Tone)
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Demographics, Taxation &amp; Pension Collocations
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 9</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Problem-solution essay</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>The problem:</strong> This is what you have to write about in the essay.</p>
+                    <p>• Identify the <strong>problems caused by demographic aging</strong> and propose <strong>realistic, evaluated solutions</strong>.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Task Prompt Box -->
+        <section class="mb-8 bg-sky-50/50 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider flex items-center gap-2">
+                    <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                    IELTS Writing Prompt
+                </h3>
+                <span class="text-xs font-semibold text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded-full">
+                    ⏱️ Spend about 40 minutes on this task
+                </span>
+            </div>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-sky-200 font-semibold text-slate-900 shadow-sm space-y-1.5">
+                    <p class="italic text-slate-800">
+                        "In many countries, the number of elderly people has increased significantly while the number of children has decreased.
+                    </p>
+                    <p class="italic text-sky-950 font-normal">
+                        <span class="font-bold text-sky-800">[Part 1: Problems]</span> What problems does this cause? <span class="font-bold text-sky-800">[Part 2: Solutions]</span> What solutions could help reduce these problems?"
+                    </p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">268 words • Model Answer calibrated for Band 6 Target</span>
+        </div>
+        <!-- 3-Column Layout: Left Annotations, Model Essay, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Suggesting a Solution Early -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Solution-Driven Topic Sentence
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Start your first main body paragraph</strong> by suggesting a solution to the problem.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>"One issue is that people are choosing to have smaller families, and encouraging parents to have bigger families may help to change this."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Softening Language / Hedging -->
+                <div id="note-left-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Softening Recommendations
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Use language to soften recommendations</strong> instead of making absolute claims.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>"may help to change this", "Another potential solution may be to...", "can have a positive impact", "tends to be unpopular".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Concluding Synthesis & Recommendation -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Conclusion &amp; Recommendation
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">End with a conclusion</strong> that summarises the key points of the essay and makes a recommendation.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>"Change is needed both in terms of encouraging a higher birth rate and changing the nature of retirement, and no one solution can address the problems."</em>
+                    </div>
+                </div>
+
+            </div>
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner space-y-4">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION (CAUSES, EFFECTS & THESIS) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Demographic Causes, Economic Impact &amp; Thesis)</span>
+                    <p>
+                        <span id="target-intro-causes" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('Improvements in standards of living and healthcare', 'Demographic driver collocation', 'Explains the twin causes of modern longevity and demographic shifting.')">Improvements in standards of living and healthcare</span> 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('mean that [cause A], and [cause B]', 'Causal explanation frame', 'Directly explains why people live longer while birth rates decline.')">mean that people live longer, and families have fewer children these days</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This has led to [result], which has created [problem]', 'Compound cause-and-effect relative frame', 'Establishes clear macro-economic consequences of an aging populace.')">This has led to a rise in the average age of the population, which has created some economic problems</span>. 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('Older people often do not pay taxes, and may receive a pension from the government', 'Public finance collocation', 'Explains the fiscal imbalance between shrinking tax revenue and rising state pensions.')">Older people often do not pay taxes, and may receive a pension from the government</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This essay will suggest that [thesis roadmap]', 'Band 6 problem-solution thesis formula', 'Directly promises a multifaceted policy response in advance.')">This essay will suggest that multiple solutions are needed to reverse these trends</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (SOLUTION 1: FINANCIAL INCENTIVES FOR FAMILIES & EVALUATION) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (Solution 1: Birth Subsidies &amp; Evaluated Pros/Cons)</span>
+                    <p>
+                        <span id="target-body1-solution" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('One issue is that [problem], and [action] may help to [result]', 'Solution-focused topic sentence frame', 'Opens with a solution-oriented topic sentence targeted directly at birth rates.')">One issue is that people are choosing to have smaller families, and</span> 
+                            <span id="target-soften-1" class="hl-connector" data-note="note-left-2">
+                                <span class="hl-band6-softening" onclick="showWordDetail('encouraging parents to have bigger families may help to change this', 'Softened recommendation with modal may', 'Uses modal hedging may help to rather than dogmatic claims.')">encouraging parents to have bigger families may help to change this</span>.
+                            </span>
+                        </span> 
+                        <span id="target-solution1-eval" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('In some countries, the government offers money to help with the cost of raising a child', 'Childcare subsidy collocation', 'Concrete policy example: state child benefit and family tax allowances.')">In some countries, the government offers money to help with the cost of raising a child</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('These children later [sequence: grow up, work and pay tax]', 'Long-term demographic benefit chain', 'Explains the long-term tax base replenishment mechanism.')">These children later grow up, work and pay tax</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('However, [issue] is a complex issue and depends on many factors', 'Adversative limitation frame', 'Shows balanced evaluation acknowledging sociological barriers.')">However, family size is a complex issue and depends on many factors</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This solution has had [level of success] so far', 'Pragmatic outcome assessment', 'Realistic Band 6 appraisal of government pronatalist policies.')">This solution has had limited success so far</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (SOLUTION 2: DELAYING RETIREMENT & WORKFORCE EXPERTISE) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (Solution 2: Raising Retirement Age &amp; Experienced Labor)</span>
+                    <p>
+                        <span id="target-soften-2" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band6-softening" onclick="showWordDetail('Another potential solution may be to [action]', 'Hedging solution opener frame', 'Academic softening combining potential solution with modal may be.')">Another potential solution may be to encourage older people to retire later</span>.
+                        </span> 
+                        <span class="hl-band6-vocab" onclick="showWordDetail('Sixty-year-olds today generally enjoy good health', 'Demographic health collocation', 'Justifies working longer based on improved elder health.')">Sixty-year-olds today generally enjoy good health</span>, 
+                        and 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('they can expect to [life expectancy projection]', 'Actuarial forecast frame', 'Highlights decades of active post-sixty lifespan.')">they can expect to live another twenty or thirty years in many countries</span>. 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('Delaying retirement by [time] can have a positive impact, as [reasons]', 'Policy impact structure with causal justification', 'Highlights ongoing tax contributions and valuable professional knowledge.')">Delaying retirement by just five years can have a positive impact, as they will still be paying taxes, and often have a lot of expertise</span>. 
+                        <span class="hl-band6-softening" onclick="showWordDetail('However, this solution tends to be unpopular with [group]', 'Softened sociological drawback (tends to be)', 'Uses hedging tend to be to describe public resistance to pension age rises.')">However, this solution tends to be unpopular with people in their late fifties</span>.
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: CONCLUSION (FISCAL SUMMARY & MULTI-PRONGED RECOMMENDATION) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Conclusion (Fiscal Summary &amp; Multi-Pronged Recommendation)</span>
+                    <p>
+                        <span id="target-conclusion" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('In conclusion, [demographic trend] results in [economic effects]', 'Summary problem restatement frame', 'Concise synthesis of increased healthcare/pension costs vs reduced tax base.')">In conclusion, a higher number of older people in society results in higher spending and lower taxes for governments</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Change is needed both in terms of [A] and [B], and [verdict]', 'Dual recommendation synthesis frame', 'Delivers a mature policy verdict requiring simultaneous solutions.')">Change is needed both in terms of encouraging a higher birth rate and changing the nature of retirement, and no one solution can address the problems</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('It is certainly an issue that [stakeholders] are concerned about and it will [impact]', 'Final urgency signoff frame', 'Leaves a memorable, compelling closing statement.')">It is certainly an issue that all developed countries today are concerned about and it will affect us all</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Explain causes and effects in intro -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Introductory Scope
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Explain the causes and effects</strong> in the introduction before introducing the thesis roadmap.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"Improvements in standards of living... mean that people live longer, and families have fewer children... This has led to a rise in the average age..."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Evaluate Pros & Cons of Solution 1 -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Solution Evaluation
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Show that you understand the advantages and disadvantages</strong> of the first solution.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>Pro: children grow up and pay tax. Con: family size depends on complex factors and money grants have had limited success.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Demographic Collocations -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Demographic Precision
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Use precise economic &amp; demographic terms:</strong> <em>birth rate, state pensions, standards of living, life expectancy, delay retirement.</em>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 9 • Task 2: Problem-solution essay</span>
+            <span class="font-bold text-slate-600 text-sm">200</span>
+        </div>
+
+    </main>
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-900">
+                        Band 6 Problem-Solution Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        Another potential solution may be to...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Demonstrates clear problem-solution progression, appropriate academic softening/hedging, and realistic policy evaluation without dogmatic claims.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "Another potential solution may be to encourage older people to retire later."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 6 Problem-Solution Toolkit (Module 9)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Demographic Problem-Solution Essay Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction (Causes, Effects &amp; Thesis):</strong>
+                        <p class="text-slate-700 mt-0.5">Improvements in [living conditions/healthcare] mean that [people live longer], and [families have fewer children]. This has led to [demographic shift], which has created [macro-economic difficulties: pensions/tax base]. This essay will suggest that multiple solutions are needed to reverse these trends.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Solution 1: Birth Subsidies + Evaluation):</strong>
+                        <p class="text-slate-700 mt-0.5">One issue is that [fertility rate decline], and encouraging [parents to have more children] may help to change this. In some countries, [governments provide financial grants/child benefits]. These children later [grow up and contribute taxes]. However, [family size is complex], and this solution has had [limited success].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Solution 2: Delayed Retirement + Softened Evaluation):</strong>
+                        <p class="text-slate-700 mt-0.5">Another potential solution may be to [encourage later retirement]. Older citizens generally [enjoy better health] and can expect to [live longer]. Delaying retirement by [a few years] can have a positive impact as they [continue paying taxes and offer expertise]. However, this tends to be [unpopular with workers].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Conclusion:</strong>
+                        <p class="text-slate-700 mt-0.5">In conclusion, [demographic aging] results in higher spending and lower tax revenues. Change is needed both in terms of [raising birth rates] and [reforming retirement], and no single measure can solve the issue.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Demographics, Public Finance &amp; Hedging Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">standards of living</span>
+                        <span class="text-slate-500">quality of life</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">average age of the population</span>
+                        <span class="text-slate-500">median demographic age</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">receive a pension</span>
+                        <span class="text-slate-500">draw retirement income</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">cost of raising a child</span>
+                        <span class="text-slate-500">childcare &amp; schooling expenses</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">delay retirement</span>
+                        <span class="text-slate-500">postpone pension age</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">higher spending and lower taxes</span>
+                        <span class="text-slate-500">fiscal budget deficit</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">may help to / tends to be</span>
+                        <span class="text-slate-500">softening modal devices</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-body1-solution', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-soften-2', side: 'left', color: '#c026d3' },
+                { note: 'note-left-3', target: 'target-conclusion', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-intro-causes', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-solution1-eval', side: 'right', color: '#7c3aed' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in essay context: Using "${title}" establishes clear problem-solution progression, softened recommendations, and accurate demographic vocabulary for Band 6 Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `Improvements in standards of living and healthcare mean that people live longer, and families have fewer children these days. This has led to a rise in the average age of the population, which has created some economic problems. Older people often do not pay taxes, and may receive a pension from the government. This essay will suggest that multiple solutions are needed to reverse these trends. One issue is that people are choosing to have smaller families, and encouraging parents to have bigger families may help to change this. In some countries, the government offers money to help with the cost of raising a child. These children later grow up, work and pay tax. However, family size is a complex issue and depends on many factors. This solution has had limited success so far. Another potential solution may be to encourage older people to retire later. Sixty-year-olds today generally enjoy good health, and they can expect to live another twenty or thirty years in many countries. Delaying retirement by just five years can have a positive impact, as they will still be paying taxes, and often have a lot of expertise. However, this solution tends to be unpopular with people in their late fifties. In conclusion, a higher number of older people in society results in higher spending and lower taxes for governments. Change is needed both in terms of encouraging a higher birth rate and changing the nature of retirement, and no one solution can address the problems. It is certainly an issue that all developed countries today are concerned about and it will affect us all.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

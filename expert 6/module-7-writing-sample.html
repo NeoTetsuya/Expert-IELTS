@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Task 2 Cause and Effect Essay - International Television & National Identity Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#d97706',
+                            headerDark: '#b45309',
+                            accent: '#d97706',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                7
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 7</h1>
+                <p class="text-xs text-slate-500">Cause and Effect Essay (International Media &amp; National Identity) • Interactive Study Guide for Target Band 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Band 6 Cause &amp; Effect Framing, Thesis &amp; Cohesive Linkers
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Broadcasting, Globalization &amp; Cultural Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#b45309" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-amber-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-amber-600 uppercase">Module 7</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Cause and effect essay</h2>
+            </div>
+            <div class="bg-amber-50 border-l-4 border-amber-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-amber-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>The trend:</strong> This is what you must write about.</p>
+                    <p>• Identify the <strong>causes of international media dominance</strong> and its <strong>effects on national identity</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-8 bg-amber-50/50 border-l-4 border-amber-500 rounded-r-lg p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-bold text-sm text-amber-900 uppercase tracking-wider flex items-center gap-2">
+                    <span class="px-2 py-0.5 bg-amber-600 text-white rounded text-xs">Task</span>
+                    IELTS Writing Prompt
+                </h3>
+                <span class="text-xs font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">
+                    ⏱️ Spend about 40 minutes on this task
+                </span>
+            </div>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-amber-200 font-semibold text-slate-900 shadow-sm space-y-1.5">
+                    <p class="italic text-slate-800">
+                        "An increasing number of people are choosing to watch international television shows and films. Less nationally produced entertainment is being made each year.
+                    </p>
+                    <p class="italic text-amber-950 font-normal">
+                        <span class="font-bold text-amber-800">[Part 1: Causes]</span> What do you think is causing this trend and <span class="font-bold text-amber-800">[Part 2: Effects]</span> what are the potential effects for national identity?"
+                    </p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-amber-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">262 words • Model Answer calibrated for Band 6 Target</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Essay, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Address Part 1 (Causes) -->
+                <div id="note-left-1" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Part 1: Causes Focus
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Address the first part of the question</strong> (what is causing the trend) in one paragraph.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700 font-sans">
+                        💡 <em>"The main reason why national television companies buy more and more shows internationally is cost."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Language of Cause and Effect -->
+                <div id="note-left-2" class="bg-orange-50 border-2 border-orange-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-orange-400">
+                    <div class="flex items-center gap-1.5 text-orange-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-orange-600"></span>
+                        Cause &amp; Effect Language
+                    </div>
+                    <p class="text-orange-950 font-medium leading-relaxed">
+                        <strong class="text-orange-700">Use the language of cause and effect</strong> throughout your response.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-orange-200/70 text-[11px] text-orange-700">
+                        ⭐ <em>"This leads to even more international content...", "because once the TV programmes have been paid for...", "Because of high sales..."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Address Part 2 (Effects) -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Part 2: Effects Focus
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Address the second part of the question</strong> (potential effects on national identity) in a new paragraph.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>"The impact of this is mixed... there is a need for locally produced talent and variety..."</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION & THESIS -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Background Context &amp; Explicit Thesis Statement)</span>
+                    <p>
+                        <span id="target-intro-context">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('In the early days of television', 'Historical context opener', 'Establishes a past baseline to contrast against modern globalised media.')">In the early days of television</span>, 
+                            most of the programmes that appeared on our screens 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('were made locally', 'Production origin collocation', 'Locally produced content representing domestic culture.')">were made locally</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Since the arrival of [X], there has been [Y]', 'Technological milestone frame', 'Chronological transition explaining the modern explosion of media options.')">Since the arrival of cable television and the internet, there has been more choice</span>, 
+                            and 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('internationally successful shows', 'Commercial media collocation', 'Global television franchises exported to multi-country audiences.')">internationally successful shows</span>, 
+                            such as <em>The Big Bang Theory</em>, 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('are enjoyed all around the world', 'Passive global consumption phrase', 'Highlights ubiquitous worldwide consumption.')">are enjoyed all around the world</span>. 
+                            <span id="target-intro-thesis" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('This essay will argue that [A], and suggests that [B]', 'Band 6 explicit thesis formula', 'Clearly states the primary cause (financial) and evaluative stance (concern) in advance.')">This essay will argue that this is because of financial reasons, and suggests that we should be concerned</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (CAUSES: COST, BUNDLE PACKAGES & CHEAP IMPORTS) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (Causes: Economics, Blockbuster Bundling &amp; Production Costs)</span>
+                    <p>
+                        <span id="target-body1-causes" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The main reason why [Entity] [action] is [X]', 'Direct causal topic sentence frame', 'Opens the causes paragraph with complete clarity for Band 6 Task Response.')">The main reason why national television companies buy more and more shows internationally is cost</span>. 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('American TV companies often insist on selling their products in packages', 'Commercial distribution collocation', 'Licensing practice of bundling low-tier shows with major hits.')">American TV companies often insist on selling their products in packages</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('When [condition], they often have to [consequence]', 'Conditional causal explanation', 'Explains the market mechanism forcing local broadcasters to acquire extra foreign shows.')">When a local company wants to buy the current blockbuster, they often have to buy several poorer quality shows with it</span>. 
+                            <span id="target-cause-effect-lang" class="hl-connector" data-note="note-left-2">
+                                <span id="target-reasons-explanation" class="hl-connector" data-note="note-right-2">
+                                    <span class="hl-band6-phrase" onclick="showWordDetail('This leads to [result], because once [clause], it makes sense to [action]', 'Compound causal linker with rational justification', 'High-value Band 6 cohesion showing multi-step causal reasoning.')">This leads to even more international content on our screens, because once the TV programmes have been paid for, it makes sense to show them</span>. 
+                                    <span class="hl-band6-phrase" onclick="showWordDetail('It is also much cheaper to [A] than to [B]', 'Comparative cost advantage structure', 'Emphasizes the core economic disparity between buying imports and funding local production.')">It is also much cheaper to buy ready-made television shows than to produce them</span>.
+                                </span>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (EFFECTS: HIGH BUDGET QUALITY VS. LOCAL IDENTITY & DIVERSITY) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (Effects: Production Quality vs. Cultural Identity &amp; Subsidies)</span>
+                    <p>
+                        <span id="target-body2-effects" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The impact of this is [adj].', 'Direct effect topic sentence frame', 'Introduces a balanced evaluation of positive and negative cultural consequences.')">The impact of this is mixed</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Because of [X], [Group] have [Y] and can afford [Z]', 'Causal capability structure', 'Explains why massive international revenues enable superior production value.')">Because of high sales, a lot of American television shows have large budgets</span>, 
+                            and can afford 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('top-quality writers, actors and special effects', 'Production quality collocation', 'High-calibre creative and technical personnel.')">top-quality writers, actors and special effects</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('However, there is a need for [X], and only [Entity] can produce that', 'Adversative necessity frame', 'Emphasizes why local cultural expression cannot be replaced by imports.')">However, there is a need for locally produced talent and variety, and only local television companies can produce that</span>. 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('Some countries have started to support their local film and television industries', 'Cultural policy collocation', 'State grants, quotas, and subsidies protecting domestic media.')">Some countries have started to support their local film and television industries</span>, 
+                            and 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('it is not uncommon now to see [phenomenon]', 'Litotes / Sophisticated hedging frame', 'Double negative construction denoting growing frequency.')">it is not uncommon now to see</span> 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('specialised products, such as Scandinavian thrillers, or beautiful Iranian films', 'Cultural exemplification collocation', 'Specific international niche cinema gaining global recognition.')">specialised products, such as Scandinavian thrillers, or beautiful Iranian films</span>, 
+                            in other countries.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: CONCLUSION (GLOBALISATION SYNTHESIS & NURTURING LOCAL TALENT) -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Conclusion (Globalisation Synthesis &amp; National Identity Preservation)</span>
+                    <p>
+                        <span id="target-conclusion">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('In conclusion, [topic] is just part of a much larger process of [X]', 'Broad contextual synthesis frame', 'Connects television consumption to overarching global socio-economic trends.')">In conclusion, the internationalisation of television and film is just part of a much larger process of globalisation</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('We need to find ways to [action] within this [context] if we are going to [goal]', 'Imperative conditional conclusion frame', 'Delivers a mature, balanced final recommendation for cultural preservation.')">We need to find ways to build local and national talent within this new world order if we are going to enjoy all the talent around the globe</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Thesis Statement in Introduction -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Thesis Statement Placement
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">End your introduction with a thesis statement.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"This essay will argue that this is because of financial reasons, and suggests that we should be concerned."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Explanation & Reasons for Main Points -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Elaboration &amp; Logic
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Make sure you give an explanation and reasons</strong> for your main points.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>Explains how bundled TV packages and lower acquisition costs logically lead to saturated foreign programming.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Balanced Perspective on Globalisation -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Cultural Balance
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Balance both sides of the effect:</strong> acknowledge high Hollywood production values while arguing for the vital necessity of local identity support.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 7 • Task 2: Cause and effect essay</span>
+            <span class="font-bold text-slate-600 text-sm">198</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-amber-100 text-amber-900">
+                        Band 6 Cause &amp; Effect Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        This leads to even more international content...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Demonstrates clear causal progression and explanatory linking words ("leads to", "because once") rather than listing isolated, unsupported claims.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "The main reason why national television companies buy more and more shows internationally is cost."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-amber-600 rounded-full"></span>
+                Band 6 Cause &amp; Effect Toolkit (Module 7)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-amber-700 mb-2">1. Cause &amp; Effect Essay Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Introduction &amp; Thesis:</strong>
+                        <p class="text-slate-700 mt-0.5">In the early days of [medium/industry], most [products] were made locally. Since the arrival of [technological change], there has been more choice, and [international items] are enjoyed worldwide. This essay will argue that this is because of [core cause], and suggests that we should [stance/concern].</p>
+                    </div>
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Body 1 (Part 1: Causes &amp; Explanations):</strong>
+                        <p class="text-slate-700 mt-0.5">The main reason why [entities] [trend action] is [Cause 1: cost/convenience]. [Commercial factor / practice]. When [situation], they often have to [consequence]. This leads to even more [result], because once [condition], it makes sense to [action]. It is also much cheaper to [A] than to [B].</p>
+                    </div>
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Body 2 (Part 2: Effects on National Identity &amp; Culture):</strong>
+                        <p class="text-slate-700 mt-0.5">The impact of this is [mixed/significant]. Because of [factor], [international producers] have large budgets and can afford [high quality elements]. However, there is a need for locally produced [talent and cultural identity], and only local companies can produce that. Some countries have started to [supportive policy].</p>
+                    </div>
+                    <div class="p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                        <strong class="text-amber-900 block font-semibold">Conclusion:</strong>
+                        <p class="text-slate-700 mt-0.5">In conclusion, the [trend] is just part of a much larger process of globalisation. We need to find ways to build local and national [identity/talent] within this new world order if we are going to [overarching goal].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Media, Culture &amp; Cause-Effect Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">made locally / locally produced</span>
+                        <span class="text-slate-500">domestic production</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">internationally successful shows</span>
+                        <span class="text-slate-500">global hit series</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">sell in packages</span>
+                        <span class="text-slate-500">bundle distribution</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">ready-made television shows</span>
+                        <span class="text-slate-500">pre-packaged imports</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">top-quality writers and actors</span>
+                        <span class="text-slate-500">high-calibre creative talent</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">support local film industries</span>
+                        <span class="text-slate-500">subsidise domestic cinema</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">process of globalisation</span>
+                        <span class="text-slate-500">global cultural integration</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">new world order</span>
+                        <span class="text-slate-500">interconnected global era</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-body1-causes', side: 'left', color: '#d97706' },
+                { note: 'note-left-2', target: 'target-cause-effect-lang', side: 'left', color: '#ea580c' },
+                { note: 'note-left-3', target: 'target-body2-effects', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-intro-thesis', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-reasons-explanation', side: 'right', color: '#7c3aed' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in essay context: Using "${title}" establishes clear cause-and-effect progression, explicit thesis placement, and cultural media vocabulary for Band 6 Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `In the early days of television, most of the programmes that appeared on our screens were made locally. Since the arrival of cable television and the internet, there has been more choice, and internationally successful shows, such as The Big Bang Theory, are enjoyed all around the world. This essay will argue that this is because of financial reasons, and suggests that we should be concerned. The main reason why national television companies buy more and more shows internationally is cost. American TV companies often insist on selling their products in packages. When a local company wants to buy the current blockbuster, they often have to buy several poorer quality shows with it. This leads to even more international content on our screens, because once the TV programmes have been paid for, it makes sense to show them. It is also much cheaper to buy ready-made television shows than to produce them. The impact of this is mixed. Because of high sales, a lot of American television shows have large budgets, and can afford top-quality writers, actors and special effects. However, there is a need for locally produced talent and variety, and only local television companies can produce that. Some countries have started to support their local film and television industries, and it is not uncommon now to see specialised products, such as Scandinavian thrillers, or beautiful Iranian films, in other countries. In conclusion, the internationalisation of television and film is just part of a much larger process of globalisation. We need to find ways to build local and national talent within this new world order if we are going to enjoy all the talent around the globe.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

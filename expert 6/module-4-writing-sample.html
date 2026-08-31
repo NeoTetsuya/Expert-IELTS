@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: Task 2 Opinion Essay - Technology &amp; Relationships Model Answer &amp; Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                4
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 4</h1>
+                <p class="text-xs text-slate-500">Opinion Essay (Technology &amp; Relationships: Discuss Both Views) • Interactive Study Guide for Target Band 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Band 6 Discussion Framing, Exemplification &amp; Cohesive Connectors
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Technology, Social Media &amp; Interpersonal Communication Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 4</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Opinion essay</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Opinion 1 &amp; Opinion 2:</strong> You must give reasons for both statements and then give your opinion.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="mb-8 bg-sky-50/50 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-sky-200 font-semibold text-slate-900 shadow-sm space-y-1.5">
+                    <p class="italic text-slate-800">"Technology has changed the way people communicate today.</p>
+                    <p class="italic text-sky-950 font-normal"><span class="font-bold text-sky-800">[Opinion 1]</span> Some people believe this is making our relationships stronger while <span class="font-bold text-sky-800">[Opinion 2]</span> others believe it is harming them.</p>
+                    <p class="italic text-sky-900 font-bold">Discuss both points of view and give your own opinion."</p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">261 words • Model Answer calibrated for Band 6 Target</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Intro -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Introduction Paraphrase
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Do NOT copy the information in the test task. Paraphrase it.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>Replaces prompt words with "developed at a very fast rate", "communicate regularly using smart technology and social networking sites".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Topic Sentences for Body Paragraphs -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Topic Sentence
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Start paragraphs with a topic sentence</strong> to introduce the main point.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>"Technology allows us to maintain closer connections to our friends and family."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Introduce Opposing Viewpoint -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Opposing Viewpoint
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Start a new paragraph to introduce the opposing viewpoint.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>"On the other hand, technology can also stop us from giving our full attention to the people we are with."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 4: Give Opinion in Conclusion -->
+                <div id="note-left-4" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Conclusion Strategy
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Give your opinion in the conclusion,</strong> summarising the reasons.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>"In my opinion, technology offers us fantastic opportunities... However... I therefore believe..."</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Background, Two Views &amp; Essay Scope)</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('Technology has developed at a very fast rate in recent years', 'Background context sentence', 'High-frequency academic opener replacing technology has changed.')">Technology has developed at a very fast rate in recent years</span>. 
+                            We are now able to 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('communicate regularly with our friends and family', 'Communication collocation', 'Natural phrasing for staying in touch with personal circles.')">communicate regularly with our friends and family</span> 
+                            using 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('smart technology and social networking sites', 'Topic collocation', 'Specific technological communication mediums.')">smart technology and social networking sites</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('While some people feel [X], others believe [Y]', 'Balanced discussion thesis frame', 'Standard Band 6 complex sentence contrasting both prompt opinions.')">While some people feel this can strengthen our relationships, others believe it has a more negative impact</span>. 
+                            <span id="target-intro-scope" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('This essay will discuss both these opinions', 'Discussion roadmap sentence', 'Direct, error-free formula satisfying Task Response by outlining the essay plan.')">This essay will discuss both these opinions</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (VIEW 1 - STRENGTHENING CONNECTIONS) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (View 1: Maintaining Closer Connections)</span>
+                    <p>
+                        <span id="target-body1-topic" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('[Subject] allows us to [verb]...', 'Clear topic sentence frame', 'Directly introduces the positive argument of closer interpersonal contact.')">Technology allows us to</span> 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('maintain closer connections to our friends and family', 'High-value collocation', 'Keeping strong personal and emotional ties over distance.')">maintain closer connections to our friends and family</span>.
+                        </span> 
+                        <span id="target-body1-examples" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('For instance, ...', 'Exemplification signpost', 'Standard cohesive linker to illustrate the main point with real-world scenarios.')">For instance</span>, 
+                            we can 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('send each other messages', 'Action collocation', 'Instant messaging and digital chatting.')">send each other messages</span>, 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('make each other laugh', 'Emotional connection phrase', 'Maintaining humour and emotional intimacy online.')">make each other laugh</span> 
+                            and 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('be there for each other in difficult times', 'Supportive relationship idiom', 'Offering emotional support during crises.')">be there for each other in difficult times</span>, 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('even if we cannot physically be there', 'Concession conditional clause', 'Contrasts virtual presence with physical distance.')">even if we cannot physically be there</span>. 
+                            We no longer need to 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('lose touch with old school friends or family members', 'Idiomatic relationship collocation', 'To cease communication with acquaintances or relatives.')">lose touch with old school friends or family members</span> 
+                            if we 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('move away', 'Relocation phrasal verb', 'To relocate to a different city or country.')">move away</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The use of [X] enables us to [verb]...', 'Functional causative frame', 'Highlights how social media facilitates ongoing life sharing.')">The use of social media enables us to continue to share our lives</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (VIEW 2 - DISTRACTION & WEAKENING BONDS) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (View 2: In-Person Distraction &amp; Weaker Bonds)</span>
+                    <p>
+                        <span id="target-body2-opposing" class="hl-connector" data-note="note-left-3">
+                            <span id="target-connector-ontheotherhand" class="hl-connector" data-note="note-right-3">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('On the other hand, ...', 'Paragraph contrast transition', 'Essential Band 6 linker signalling the shift to the counter-perspective.')">On the other hand</span>, 
+                                technology can also 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('stop us from giving our full attention to the people we are with', 'Attention & presence collocation', 'Preventing genuine in-person attentiveness.')">stop us from giving our full attention to the people we are with</span>.
+                            </span>
+                        </span> 
+                        Many of us 
+                        <span class="hl-band6-vocab" onclick="showWordDetail('check our messages regularly', 'Behavioral collocation', 'Habitual phone-checking behavior.')">check our messages regularly</span> 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('so we do not miss out on [noun]', 'Purpose / Fear of missing out frame', 'Explains the compulsive psychological motive behind phone checks.')">so we do not miss out on a piece of news</span>. 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('The result is that [clause]', 'Cause & effect signposting frame', 'Clearly links phone distraction to diminished active listening.')">The result is that</span> 
+                        we 
+                        <span class="hl-band6-vocab" onclick="showWordDetail('stop listening to our friends or family in the same room as us', 'Situational conflict collocation', 'Ignoring physically present people.')">stop listening to our friends or family in the same room as us</span> 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('because we are reading something else', 'Causal explanation clause', 'Identifies the direct cause of social disconnect.')">because we are reading something else</span>. 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('When [condition], [result A] and [result B]', 'Compound result conditional frame', 'Explains the gradual erosion of relationship depth.')">When we ignore those people, our connections with them might become weaker and our relationships could suffer</span>.
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: CONCLUSION (WRITER'S BALANCED OPINION & ADVICE) -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Conclusion (Writer's Opinion, Balanced Synthesis &amp; Recommendation)</span>
+                    <p>
+                        <span id="target-conclusion" class="hl-connector" data-note="note-left-4">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('In my opinion,', 'Personal stance marker', 'Clear academic signpost presenting the writer\'s balanced judgment.')">In my opinion</span>, 
+                            technology 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('offers us fantastic opportunities for building relationships', 'Evaluative positive collocation', 'Acknowledging the powerful benefits of digital connectivity.')">offers us fantastic opportunities for building relationships</span> 
+                            with the people we love 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('because we [verb]...', 'Justification clause', 'Re-summarises the maintenance of connections.')">because we maintain our connections</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('However, [limitation] which means [consequence]', 'Balancing concession structure', 'Notes the negative extreme of overuse.')">However, some people use it too much which means they do not spend enough time building face-to-face relationships</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('I therefore believe we should [action]', 'Definitive recommendation frame', 'Concludes with a pragmatic, clear personal recommendation.')">I therefore believe we should put our technology away when we are talking to our friends or family</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: State what essay will say -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Essay Scope &amp; Outline
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">State what the essay will say.</strong> Make sure it answers the test task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"This essay will discuss both these opinions." &mdash; Clear, direct roadmap for a 'Discuss Both Views' task.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Explain with details and examples -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Detail &amp; Relevance
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Explain the main point in more detail and give examples where possible.</strong> Make sure all information is relevant.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>"For instance, we can send each other messages, make each other laugh and be there for each other in difficult times..."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Use connectors to link ideas -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Cohesion &amp; Connectors
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Use connectors to link ideas</strong> smoothly throughout your paragraphs.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-rose-200/70 text-[11px] text-rose-700">
+                        ⭐ <em>"While...", "For instance", "On the other hand", "The result is that", "However", "I therefore believe".</em>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 4 • Task 2: Opinion essay</span>
+            <span class="font-bold text-slate-600 text-sm">195</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-800">
+                        Band 6 Discussion Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        On the other hand, technology can also stop us from...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Presents a clear shift to the second required perspective in a Discussion essay, demonstrating paragraph-level cohesion and varied transition markers.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "While some people feel this can strengthen our relationships, others believe it has a more negative impact."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 6 Discussion Toolkit (Module 4)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Band 6 Discussion &amp; Opinion Essay Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction:</strong>
+                        <p class="text-slate-700 mt-0.5">[Topic background]. We are now able to [paraphrase activity]. While some people feel [View 1], others believe [View 2]. This essay will discuss both these opinions.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (View 1 - Positive / Strengthen):</strong>
+                        <p class="text-slate-700 mt-0.5">[Topic sentence: Technology allows closer connections]. For instance, [examples: messages, laughter, emotional support]. We no longer need to lose touch when we move away. The use of [technology] enables us to share our lives.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (View 2 - Negative / Harm):</strong>
+                        <p class="text-slate-700 mt-0.5">On the other hand, [Topic sentence: stops us from giving full attention in person]. Many check messages so they do not miss out. The result is that we stop listening to people in the room. When we ignore them, connections become weaker.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Conclusion &amp; Personal Stance:</strong>
+                        <p class="text-slate-700 mt-0.5">In my opinion, [restate positive potential]. However, [acknowledge overuse drawback]. I therefore believe [practical balanced recommendation].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Technology, Media &amp; Relationship Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">develop at a very fast rate</span>
+                        <span class="text-slate-500">rapid technological progress</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">smart technology</span>
+                        <span class="text-slate-500">smartphones &amp; digital devices</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">maintain closer connections</span>
+                        <span class="text-slate-500">keep strong personal bonds</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">lose touch with</span>
+                        <span class="text-slate-500">cease communicating with</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">give full attention to</span>
+                        <span class="text-slate-500">focus attentively on someone</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">miss out on</span>
+                        <span class="text-slate-500">fail to experience / learn</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">face-to-face relationships</span>
+                        <span class="text-slate-500">in-person real-life contact</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">put technology away</span>
+                        <span class="text-slate-500">set aside mobile devices</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-body1-topic', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-body2-opposing', side: 'left', color: '#059669' },
+                { note: 'note-left-4', target: 'target-conclusion', side: 'left', color: '#7c3aed' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-intro-scope', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-body1-examples', side: 'right', color: '#7c3aed' },
+                { note: 'note-right-3', target: 'target-connector-ontheotherhand', side: 'right', color: '#e11d48' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in essay context: Using "${title}" establishes a clear Band 6 discussion progression, cohesion between contrasting viewpoints, and topic-specific vocabulary in Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `Technology has developed at a very fast rate in recent years. We are now able to communicate regularly with our friends and family using smart technology and social networking sites. While some people feel this can strengthen our relationships, others believe it has a more negative impact. This essay will discuss both these opinions. Technology allows us to maintain closer connections to our friends and family. For instance, we can send each other messages, make each other laugh and be there for each other in difficult times, even if we cannot physically be there. We no longer need to lose touch with old school friends or family members if we move away. The use of social media enables us to continue to share our lives. On the other hand, technology can also stop us from giving our full attention to the people we are with. Many of us check our messages regularly so we do not miss out on a piece of news. The result is that we stop listening to our friends or family in the same room as us because we are reading something else. When we ignore those people, our connections with them might become weaker and our relationships could suffer. In my opinion, technology offers us fantastic opportunities for building relationships with the people we love because we maintain our connections. However, some people use it too much which means they do not spend enough time building face-to-face relationships. I therefore believe we should put our technology away when we are talking to our friends or family.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

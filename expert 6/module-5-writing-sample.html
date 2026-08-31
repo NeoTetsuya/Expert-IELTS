@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Task 2 Compare and Contrast Essay - Driverless Cars Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                5
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 5</h1>
+                <p class="text-xs text-slate-500">Compare &amp; Contrast Essay (Driverless Cars) • Interactive Study Guide for Target Band 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Band 6 Compare &amp; Contrast Framing, Addition &amp; Logical Connectors
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Automotive Technology, Navigation &amp; Safety Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 5</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Compare and contrast essay</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Compare and contrast</strong> the use of driverless cars with the use of cars today.</p>
+                    <p>• <strong>Say if driverless cars will be positive or negative.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-8 bg-sky-50/50 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">Write about the following topic:</p>
+                <div class="bg-white p-3.5 rounded border border-sky-200 font-semibold text-slate-900 shadow-sm space-y-1.5">
+                    <p class="italic text-slate-800">"Soon it is likely we will use driverless cars to move around.</p>
+                    <p class="italic text-sky-950 font-normal"><span class="font-bold text-sky-800">[Question 1]</span> How similar or different will this be to how we travel today? <span class="font-bold text-sky-800">[Question 2]</span> Do you think it will be a positive or negative development?"</p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">267 words • Model Answer calibrated for Band 6 Target</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Topic Sentences -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Topic Sentences
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Start each paragraph with a topic sentence</strong> to state the main idea clearly.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>"Travelling in a driverless car will be very different from travelling in one controlled by a driver."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Question Addressing (Structure) -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Task Fulfillment
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Each paragraph deals with one question</strong> in the test task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>Para 2 answers Question 1 (Differences) • Para 3 answers Question 2 (Positive evaluation).</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Language of Comparison -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Language of Comparison
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Use the connectors of comparison</strong> and the language of comparison.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>"very different from", "While this is true of [X], the majority are not...", "more interconnected than".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 4: Conclusion -->
+                <div id="note-left-4" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Conclusion Strategy
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">End with a conclusion</strong> that summarises the key points of the essay.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>"To sum up, driverless cars will be more interconnected than cars today... This should result in..."</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction (Background Context &amp; Dual Thesis Roadmap)</span>
+                    <p>
+                        <span id="target-intro-context" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('Currently several companies are trialling driverless cars on the roads', 'Present continuous context sentence', 'High-frequency academic opener setting the real-world commercial background.')">Currently several companies are trialling driverless cars on the roads</span>. 
+                            These include 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('technology companies and car manufacturers', 'Industry categorization', 'Specific corporate sectors driving autonomous vehicle research.')">technology companies and car manufacturers</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('As a result, [clause]', 'Cause-and-effect transition', 'Connects current testing to inevitable widespread adoption.')">As a result, people will soon travel around in driverless cars</span>. 
+                            <span id="target-intro-thesis" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('This essay will argue that [A] will be significantly different from [B] but that this change will be largely positive', 'Two-part thesis statement', 'Directly answers both prompt questions in a unified Band 6 thesis statement.')">This essay will argue that future car travel will be significantly different from now but that this change will be largely positive</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (QUESTION 1 - COMPARISONS & DIFFERENCES) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (Question 1: Differences &mdash; Input &amp; Satellite Interconnection)</span>
+                    <p>
+                        <span id="target-body1-topic" class="hl-connector" data-note="note-left-1">
+                            <span id="target-body1-q1" class="hl-connector" data-note="note-left-2">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('Travelling in [A] will be very different from travelling in [B]...', 'Direct comparative topic sentence', 'Clearly establishes the focus on technological and operational differences.')">Travelling in a driverless car will be very different from travelling in one controlled by a driver</span>.
+                            </span>
+                        </span> 
+                        <span id="target-comparison-lang" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Firstly, ... Secondly, ...', 'Sequential enumeration signposts', 'Organizes multiple contrasting features in logical order.')">Firstly</span>, 
+                            the 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('motorist will simply say or type in a destination', 'User interaction phrase', 'Describes speech and keyboard navigation inputs replacing physical steering.')">motorist will simply say or type in a destination</span> 
+                            and the car will travel there. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Secondly, ...', 'Secondary point marker', 'Introduces the second major technical distinction.')">Secondly</span>, 
+                            the car will be 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('connected to satellite technology', 'Technical collocation', 'GPS and orbital communications linking the vehicle.')">connected to satellite technology</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('While this is true of [Group A], the majority are not [condition]', 'Complex concession comparative frame', 'Contrasts modern partial tech with ubiquitous future automation.')">While this is true of some cars today, the majority are not connected in this way</span>. 
+                            The satellite technology will ensure that 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('vehicles and traffic signals all speak to each other', 'Metaphorical communication collocation', 'V2X (Vehicle-to-Everything) automated smart infrastructure communication.')">vehicles and traffic signals all speak to each other</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (QUESTION 2 - POSITIVE EVALUATION: PRODUCTIVITY & SAFETY) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (Question 2: Positive Development &mdash; Productivity &amp; Accident Reduction)</span>
+                    <p>
+                        <span id="target-body2-topic" class="hl-connector" data-note="note-left-1">
+                            <span id="target-body2-q2" class="hl-connector" data-note="note-left-2">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('The changes described should be a positive development.', 'Evaluative topic sentence', 'Directly targets the second prompt question regarding positive vs. negative impact.')">The changes described should be a positive development</span>.
+                            </span>
+                        </span> 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('One reason is that [clause]', 'Reason framing signpost', 'Introduces the first justification: freeing up driver time.')">One reason is that</span> 
+                        drivers will 
+                        <span class="hl-band6-vocab" onclick="showWordDetail('no longer have to pay attention at all times', 'Attentional burden collocation', 'Eliminating continuous cognitive strain while driving.')">no longer have to pay attention at all times</span>. 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('Instead, they will be able to [verbs]', 'Alternative capability frame', 'Contrasts passive steering with productive work.')">Instead, they will be able to</span> 
+                        <span class="hl-band6-vocab" onclick="showWordDetail('do work, check emails or make phone calls safely', 'Multitasking activities collocation', 'Safe in-transit productivity.')">do work, check emails or make phone calls safely</span>. 
+                        <span class="hl-band6-phrase" onclick="showWordDetail('This will mean a more [adj] and less [adj] journey.', 'Result & evaluation structure', 'Summarizes the traveler experience.')">This will mean a more productive and less boring journey</span>. 
+                        <span id="target-addition-connectors" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('In addition, there will be [result] because [reason]', 'Addition cohesive structure with causal justification', 'Connects personal convenience to overarching road safety benefits.')">In addition, there will be fewer accidents because</span> 
+                            safety will be 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('controlled by the car and will not rely on the skills of the driver', 'Automated safety collocation', 'Shifting liability and reaction from human error to computer algorithms.')">controlled by the car and will not rely on the skills of the driver</span>. 
+                            The car will be able to 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('make faster decisions to avoid hitting other vehicles or objects', 'Collision avoidance collocation', 'Split-second computational reflexes reducing crash risks.')">make faster decisions to avoid hitting other vehicles or objects</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 4: CONCLUSION (SYNTHESIS & PRUDENT TESTING RECOMMENDATION) -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 4: Conclusion (Key Point Synthesis &amp; Prudent Safety Verification)</span>
+                    <p>
+                        <span id="target-conclusion" class="hl-connector" data-note="note-left-4">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('To sum up, [clause]', 'Standard concluding transition', 'Signals the final summary and synthesis of comparative points.')">To sum up</span>, 
+                            driverless cars will be 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('more interconnected than cars today', 'Comparative adjective collocation', 'Synthesizes the technological connectivity distinction.')">more interconnected than cars today</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This should result in a [adj] and [adj] journey for the driver.', 'Predictive consequence frame', 'Recaps the primary user benefits.')">This should result in a safer and more relaxed journey for the driver</span>. 
+                            <span id="target-future-testing" class="hl-connector" data-note="note-right-3">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('However, this technology is still in its early days and...', 'Balanced caveat concession', 'Acknowledges the emerging, untested nature of autonomous systems.')">However, this technology is still in its early days and we do not yet know exactly how successful it will be</span>. 
+                                <span class="hl-band6-phrase" onclick="showWordDetail('It is important that [entities] [action] to ensure [goal]', 'Imperative recommendation frame', 'Concludes with a mature, pragmatic safety requirement.')">It is important that manufacturers fully test the technology to ensure the development is a positive one</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Thesis & Stance Roadmap -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Dual Thesis Roadmap
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Outline both answers in your thesis.</strong> State clearly that travel will be significantly different AND largely positive.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"This essay will argue that future car travel will be significantly different from now but that this change will be largely positive."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Addition Connectors -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Addition Connectors
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Use addition connectors to build strong arguments</strong> (e.g. <em>"In addition..."</em>).
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>Connects convenience (doing work/making calls) to road safety (avoiding human error).</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Balanced Conclusion & Condition -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Balanced Outlook
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Add a realistic concluding condition</strong> acknowledging that emerging technology requires comprehensive safety testing.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-rose-200/70 text-[11px] text-rose-700">
+                        ✏️ <em>"However, this technology is still in its early days... It is important that manufacturers fully test..."</em>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 5 • Task 2: Compare and contrast essay</span>
+            <span class="font-bold text-slate-600 text-sm">196</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-800">
+                        Band 6 Compare &amp; Contrast Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        Travelling in a driverless car will be very different from...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Presents a clear topic sentence that introduces a structured contrast between manual and automated driving, answering the first part of the prompt directly.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "While this is true of some cars today, the majority are not connected in this way."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 6 Compare &amp; Contrast Toolkit (Module 5)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Two-Part Compare &amp; Contrast Essay Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction:</strong>
+                        <p class="text-slate-700 mt-0.5">Currently [companies/governments] are trialling [new technology]. As a result, [future change will occur]. This essay will argue that [future state] will be significantly different from now but that this change will be largely positive.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Question 1 - Similarities &amp; Differences):</strong>
+                        <p class="text-slate-700 mt-0.5">[Topic sentence: Travelling in X will be very different from Y]. Firstly, [Difference 1: automated input instead of physical steering]. Secondly, [Difference 2: satellite connectivity]. While this is true of some [current items], the majority are not connected in this way.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Question 2 - Positive Evaluation):</strong>
+                        <p class="text-slate-700 mt-0.5">[Topic sentence: The changes described should be a positive development]. One reason is that [Benefit 1: drivers no longer need to pay constant attention, enabling safe work/calls]. In addition, [Benefit 2: fewer accidents because safety is managed computationally].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Conclusion &amp; Caveat:</strong>
+                        <p class="text-slate-700 mt-0.5">To sum up, [restate core differences and benefits]. However, [acknowledge early testing stage]. It is important that [stakeholders] fully test the technology to ensure the development is a positive one.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Technology, Navigation &amp; Automotive Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">trial driverless cars</span>
+                        <span class="text-slate-500">test autonomous vehicles</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">significantly different from</span>
+                        <span class="text-slate-500">substantially distinct from</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">largely positive</span>
+                        <span class="text-slate-500">mostly beneficial</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">type in a destination</span>
+                        <span class="text-slate-500">enter route coordinates</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">connected to satellite technology</span>
+                        <span class="text-slate-500">GPS &amp; network linked</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">pay attention at all times</span>
+                        <span class="text-slate-500">maintain constant focus</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">make faster decisions</span>
+                        <span class="text-slate-500">quicker computational reflex</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">in its early days</span>
+                        <span class="text-slate-500">at an initial developmental stage</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">fully test the technology</span>
+                        <span class="text-slate-500">conduct rigorous validation</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-body1-topic', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-body1-q1', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-comparison-lang', side: 'left', color: '#059669' },
+                { note: 'note-left-4', target: 'target-conclusion', side: 'left', color: '#7c3aed' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-intro-thesis', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-addition-connectors', side: 'right', color: '#7c3aed' },
+                { note: 'note-right-3', target: 'target-future-testing', side: 'right', color: '#e11d48' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in essay context: Using "${title}" establishes clear compare-and-contrast progression, balanced addition connectors, and accurate automotive technology vocabulary in Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `Currently several companies are trialling driverless cars on the roads. These include technology companies and car manufacturers. As a result, people will soon travel around in driverless cars. This essay will argue that future car travel will be significantly different from now but that this change will be largely positive. Travelling in a driverless car will be very different from travelling in one controlled by a driver. Firstly, the motorist will simply say or type in a destination and the car will travel there. Secondly, the car will be connected to satellite technology. While this is true of some cars today, the majority are not connected in this way. The satellite technology will ensure that vehicles and traffic signals all speak to each other. The changes described should be a positive development. One reason is that drivers will no longer have to pay attention at all times. Instead, they will be able to do work, check emails or make phone calls safely. This will mean a more productive and less boring journey. In addition, there will be fewer accidents because safety will be controlled by the car and will not rely on the skills of the driver. The car will be able to make faster decisions to avoid hitting other vehicles or objects. To sum up, driverless cars will be more interconnected than cars today. This should result in a safer and more relaxed journey for the driver. However, this technology is still in its early days and we do not yet know exactly how successful it will be. It is important that manufacturers fully test the technology to ensure the development is a positive one.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

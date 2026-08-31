@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 6: Task 1 Describe Changes - Road Layout & Bicycle Growth Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                6
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 1 • Module 6</h1>
+                <p class="text-xs text-slate-500">Describe Changes Over Time (Road Design &amp; Bicycle Commuting) • Interactive Study Guide for Target Band 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-700 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Band 6 Trend Framing, Tense Sequencing &amp; Cohesive Linkers
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Urban Planning, Bicycle Commuting &amp; Road Design Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 6</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 1: Describe changes over time</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Read the test task carefully</strong> as it explains what the graph and diagram show.</p>
+                    <p>• <strong>Prepare to write about the main features</strong>, not every detail.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-sky-50/50 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Task 1 Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The graph and diagram below give information on changes to road design in a U.S. city in 2010.</p>
+                <div class="bg-white p-3 rounded border border-sky-200 text-slate-900 shadow-sm font-sans text-xs sm:text-sm">
+                    <p class="font-semibold text-slate-800">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                    <p class="text-slate-500 italic mt-0.5">Write at least 150 words.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISUAL CHARTS SECTION (Recreated exactly from original textbook graphics) -->
+        <section class="mb-8 p-3 sm:p-5 bg-white rounded-2xl border border-slate-300 shadow-sm relative overflow-hidden">
+            <div class="w-full flex justify-center">
+                <!-- Unified Responsive SVG containing Road Cross-Sections and Line Graph -->
+                <svg viewBox="0 0 960 410" class="w-full max-w-5xl h-auto font-sans select-none overflow-visible">
+                    <defs>
+                        <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#94a3b8"/>
+                            <stop offset="100%" stop-color="#64748b"/>
+                        </linearGradient>
+                        <linearGradient id="barrierGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#475569"/>
+                            <stop offset="50%" stop-color="#1e293b"/>
+                            <stop offset="100%" stop-color="#334155"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- ======================================================= -->
+                    <!-- LEFT SIDE: ROAD LAYOUT CROSS-SECTIONS (Existing vs Proposed) -->
+                    <!-- ======================================================= -->
+
+                    <!-- 1. EXISTING ROAD LAYOUT -->
+                    <g transform="translate(10, 10)">
+                        <text x="210" y="16" font-size="14.5" font-weight="bold" fill="#0f172a" text-anchor="middle">
+                            Existing road layout
+                        </text>
+
+                        <!-- Raised sidewalk / Retaining wall (x: 50 to 95) -->
+                        <rect x="50" y="70" width="45" height="70" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+                        <!-- Pedestrian on sidewalk -->
+                        <circle cx="65" cy="52" r="3.5" fill="#0284c7"/>
+                        <line x1="65" y1="56" x2="65" y2="64" stroke="#0284c7" stroke-width="2"/>
+                        <line x1="65" y1="64" x2="62" y2="70" stroke="#0284c7" stroke-width="1.5"/>
+                        <line x1="65" y1="64" x2="68" y2="70" stroke="#0284c7" stroke-width="1.5"/>
+                        
+                        <!-- Tree on sidewalk -->
+                        <rect x="83" y="60" width="4" height="10" fill="#78350f"/>
+                        <path d="M 85 35 C 75 35 72 45 75 52 C 75 60 95 60 95 52 C 98 45 95 35 85 35 Z" fill="#15803d" stroke="#166534" stroke-width="1"/>
+                        <circle cx="81" cy="46" r="5" fill="#16a34a"/>
+                        <circle cx="89" cy="44" r="6" fill="#16a34a"/>
+
+                        <!-- Road Surface (x: 95 to 370, y: 75 to 140) -->
+                        <rect x="95" y="75" width="275" height="65" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/>
+                        <!-- Right barrier wall -->
+                        <rect x="370" y="70" width="14" height="70" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+
+                        <!-- Lane Markings (White dashed lines) -->
+                        <line x1="270" y1="75" x2="270" y2="140" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="8,6"/>
+                        <line x1="320" y1="75" x2="320" y2="140" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="8,6"/>
+                        <line x1="368" y1="75" x2="368" y2="140" stroke="#ffffff" stroke-width="2"/>
+
+                        <!-- VEHICLES IN EXISTING LAYOUT -->
+                        <!-- Large Yellow Truck on wide left lane (x: ~165) -->
+                        <g transform="translate(170, 36)">
+                            <rect x="0" y="10" width="34" height="28" rx="2" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/>
+                            <rect x="4" y="14" width="26" height="12" rx="1" fill="#38bdf8" stroke="#0284c7" stroke-width="0.8"/>
+                            <rect x="2" y="29" width="30" height="7" fill="#334155"/>
+                            <circle cx="6" cy="38" r="3.5" fill="#0f172a"/>
+                            <circle cx="28" cy="38" r="3.5" fill="#0f172a"/>
+                        </g>
+
+                        <!-- Red Car on middle lane (x: ~280) -->
+                        <g transform="translate(283, 50)">
+                            <path d="M 4 10 L 8 4 L 20 4 L 24 10 Z" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
+                            <rect x="1" y="10" width="26" height="10" rx="2" fill="#dc2626" stroke="#991b1b" stroke-width="1"/>
+                            <rect x="6" y="5" width="16" height="5" fill="#bae6fd"/>
+                            <circle cx="5" cy="20" r="3" fill="#0f172a"/>
+                            <circle cx="23" cy="20" r="3" fill="#0f172a"/>
+                        </g>
+
+                        <!-- Blue Car on right lane (x: ~330) -->
+                        <g transform="translate(330, 50)">
+                            <path d="M 4 10 L 8 4 L 20 4 L 24 10 Z" fill="#0284c7" stroke="#0369a1" stroke-width="1"/>
+                            <rect x="1" y="10" width="26" height="10" rx="2" fill="#0369a1" stroke="#075985" stroke-width="1"/>
+                            <rect x="6" y="5" width="16" height="5" fill="#bae6fd"/>
+                            <circle cx="5" cy="20" r="3" fill="#0f172a"/>
+                            <circle cx="23" cy="20" r="3" fill="#0f172a"/>
+                        </g>
+                    </g>
+
+                    <!-- 2. PROPOSED ROAD LAYOUT -->
+                    <g transform="translate(10, 205)">
+                        <text x="210" y="16" font-size="14.5" font-weight="bold" fill="#0f172a" text-anchor="middle">
+                            Proposed road layout
+                        </text>
+
+                        <!-- Raised sidewalk (x: 50 to 95) -->
+                        <rect x="50" y="70" width="45" height="70" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+                        <circle cx="65" cy="52" r="3.5" fill="#0284c7"/>
+                        <line x1="65" y1="56" x2="65" y2="64" stroke="#0284c7" stroke-width="2"/>
+                        <line x1="65" y1="64" x2="62" y2="70" stroke="#0284c7" stroke-width="1.5"/>
+                        <line x1="65" y1="64" x2="68" y2="70" stroke="#0284c7" stroke-width="1.5"/>
+                        
+                        <rect x="83" y="60" width="4" height="10" fill="#78350f"/>
+                        <path d="M 85 35 C 75 35 72 45 75 52 C 75 60 95 60 95 52 C 98 45 95 35 85 35 Z" fill="#15803d" stroke="#166534" stroke-width="1"/>
+                        <circle cx="81" cy="46" r="5" fill="#16a34a"/>
+                        <circle cx="89" cy="44" r="6" fill="#16a34a"/>
+
+                        <!-- Bike Lane Surface (x: 95 to 138) -->
+                        <rect x="95" y="75" width="43" height="65" fill="#64748b" stroke="#475569" stroke-width="1.2"/>
+                        <!-- Orange dashed cycle lane separator -->
+                        <line x1="116" y1="75" x2="116" y2="140" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+                        <!-- Painted bike road symbols -->
+                        <g transform="translate(100, 115) scale(0.65)" stroke="#ffffff" fill="none" stroke-width="1.5">
+                            <circle cx="6" cy="12" r="4"/>
+                            <circle cx="18" cy="12" r="4"/>
+                            <path d="M 6 12 L 11 6 L 14 12 L 18 12 M 11 6 L 10 4 M 14 6 L 11 6"/>
+                        </g>
+                        <g transform="translate(120, 120) scale(0.65)" stroke="#ffffff" fill="none" stroke-width="1.5">
+                            <circle cx="6" cy="12" r="4"/>
+                            <circle cx="18" cy="12" r="4"/>
+                            <path d="M 6 12 L 11 6 L 14 12 L 18 12 M 11 6 L 10 4 M 14 6 L 11 6"/>
+                        </g>
+
+                        <!-- Cyclists on path -->
+                        <g transform="translate(104, 50)">
+                            <circle cx="5" cy="4" r="2.5" fill="#dc2626"/>
+                            <line x1="5" y1="6.5" x2="5" y2="13" stroke="#dc2626" stroke-width="1.5"/>
+                            <circle cx="2" cy="18" r="2.5" fill="#0f172a"/>
+                            <circle cx="8" cy="18" r="2.5" fill="#0f172a"/>
+                        </g>
+                        <g transform="translate(124, 50)">
+                            <circle cx="5" cy="4" r="2.5" fill="#1e40af"/>
+                            <line x1="5" y1="6.5" x2="5" y2="13" stroke="#1e40af" stroke-width="1.5"/>
+                            <circle cx="2" cy="18" r="2.5" fill="#0f172a"/>
+                            <circle cx="8" cy="18" r="2.5" fill="#0f172a"/>
+                        </g>
+
+                        <!-- Safety Barrier (x: 138 to 150) -->
+                        <rect x="139" y="58" width="10" height="82" rx="3" fill="url(#barrierGrad)" stroke="#0f172a" stroke-width="1.2"/>
+                        <!-- Text label rotated along barrier -->
+                        <text x="-98" y="146" font-size="9" font-weight="bold" fill="#ffffff" transform="rotate(-90)" text-anchor="middle">
+                            Barrier
+                        </text>
+
+                        <!-- 4 Narrower Vehicle Lanes (x: 150 to 370) -->
+                        <rect x="150" y="75" width="220" height="65" fill="#94a3b8" stroke="#475569" stroke-width="1.2"/>
+                        <!-- Lane dividers (3 white dashed lines) -->
+                        <!-- Total width 220 / 4 = 55px each -> x = 205, 260, 315 -->
+                        <line x1="205" y1="75" x2="205" y2="140" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,5"/>
+                        <line x1="260" y1="75" x2="260" y2="140" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,5"/>
+                        <line x1="315" y1="75" x2="315" y2="140" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,5"/>
+                        <!-- Right boundary wall -->
+                        <rect x="370" y="70" width="14" height="70" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+                        <line x1="368" y1="75" x2="368" y2="140" stroke="#ffffff" stroke-width="2"/>
+
+                        <!-- VEHICLES IN PROPOSED LAYOUT -->
+                        <!-- Lane 1 (nearest to barrier): Small Grey Car (Large vehicles banned!) -->
+                        <g transform="translate(162, 53)">
+                            <path d="M 4 8 L 7 3 L 19 3 L 22 8 Z" fill="#64748b" stroke="#334155" stroke-width="0.8"/>
+                            <rect x="1" y="8" width="24" height="9" rx="1.5" fill="#475569" stroke="#1e293b" stroke-width="0.8"/>
+                            <rect x="5" y="4" width="15" height="4" fill="#e2e8f0"/>
+                            <circle cx="4.5" cy="17" r="2.5" fill="#0f172a"/>
+                            <circle cx="21.5" cy="17" r="2.5" fill="#0f172a"/>
+                        </g>
+
+                        <!-- Lane 2: Large Yellow Truck in central lane -->
+                        <g transform="translate(217, 36)">
+                            <rect x="0" y="10" width="34" height="28" rx="2" fill="#f59e0b" stroke="#b45309" stroke-width="1.2"/>
+                            <rect x="4" y="14" width="26" height="12" rx="1" fill="#38bdf8" stroke="#0284c7" stroke-width="0.8"/>
+                            <rect x="2" y="29" width="30" height="7" fill="#334155"/>
+                            <circle cx="6" cy="38" r="3.5" fill="#0f172a"/>
+                            <circle cx="28" cy="38" r="3.5" fill="#0f172a"/>
+                        </g>
+
+                        <!-- Lane 3: Red Car -->
+                        <g transform="translate(274, 52)">
+                            <path d="M 4 9 L 7 4 L 19 4 L 22 9 Z" fill="#ef4444" stroke="#991b1b" stroke-width="0.8"/>
+                            <rect x="1" y="9" width="24" height="9" rx="1.5" fill="#dc2626" stroke="#991b1b" stroke-width="0.8"/>
+                            <rect x="5" y="5" width="15" height="4" fill="#bae6fd"/>
+                            <circle cx="4.5" cy="18" r="2.5" fill="#0f172a"/>
+                            <circle cx="21.5" cy="18" r="2.5" fill="#0f172a"/>
+                        </g>
+
+                        <!-- Lane 4: Blue Car -->
+                        <g transform="translate(328, 52)">
+                            <path d="M 4 9 L 7 4 L 19 4 L 22 9 Z" fill="#0284c7" stroke="#0369a1" stroke-width="0.8"/>
+                            <rect x="1" y="9" width="24" height="9" rx="1.5" fill="#0369a1" stroke="#075985" stroke-width="0.8"/>
+                            <rect x="5" y="5" width="15" height="4" fill="#bae6fd"/>
+                            <circle cx="4.5" cy="18" r="2.5" fill="#0f172a"/>
+                            <circle cx="21.5" cy="18" r="2.5" fill="#0f172a"/>
+                        </g>
+                    </g>
+
+
+                    <!-- ======================================================= -->
+                    <!-- RIGHT SIDE: LINE GRAPH (US bicycle commuting growth)    -->
+                    <!-- ======================================================= -->
+
+                    <!-- Chart Title -->
+                    <text x="700" y="24" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">
+                        US bicycle commuting growth, 2000-2010
+                    </text>
+
+                    <!-- Chart Background (Cream / Parchment #fdf6e2) -->
+                    <!-- Left: 490, Top: 52, Width: 430, Height: 280 (Baseline y = 332) -->
+                    <rect x="490" y="52" width="430" height="280" fill="#fdf6e2" stroke="#d5ccb6" stroke-width="1.2" />
+
+                    <!-- Horizontal Gridlines (every 0.2% -> 280 / 8 = 35px per 0.2%) -->
+                    <!-- 1.6%: y=52 -->
+                    <!-- 1.4%: y=87 -->
+                    <!-- 1.2%: y=122 -->
+                    <!-- 1.0%: y=157 -->
+                    <!-- 0.8%: y=192 -->
+                    <!-- 0.6%: y=227 -->
+                    <!-- 0.4%: y=262 -->
+                    <!-- 0.2%: y=297 -->
+                    <!-- 0%:   y=332 -->
+                    <line x1="490" y1="52" x2="920" y2="52" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="87" x2="920" y2="87" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="122" x2="920" y2="122" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="157" x2="920" y2="157" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="192" x2="920" y2="192" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="227" x2="920" y2="227" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="262" x2="920" y2="262" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="297" x2="920" y2="297" stroke="#c4bc9f" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="490" y1="332" x2="920" y2="332" stroke="#8c8266" stroke-width="1.2" />
+
+                    <!-- Y-Axis Vertical Line -->
+                    <line x1="490" y1="52" x2="490" y2="332" stroke="#8c8266" stroke-width="1.2" />
+
+                    <!-- Y-Axis Labels -->
+                    <text x="482" y="56" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">1.6%</text>
+                    <text x="482" y="91" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">1.4%</text>
+                    <text x="482" y="126" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">1.2%</text>
+                    <text x="482" y="161" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">1.0%</text>
+                    <text x="482" y="196" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">0.8%</text>
+                    <text x="482" y="231" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">0.6%</text>
+                    <text x="482" y="266" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">0.4%</text>
+                    <text x="482" y="301" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">0.2%</text>
+                    <text x="482" y="336" font-size="12" font-weight="normal" fill="#1e293b" text-anchor="end">0</text>
+
+                    <!-- Y-Axis Rotated Title -->
+                    <text x="-192" y="420" font-size="12.5" font-weight="normal" fill="#0f172a" transform="rotate(-90)" text-anchor="middle">
+                        % of frequent bike commuters
+                    </text>
+
+                    <!-- X-Axis Labels (2000, 2005, 2010) -->
+                    <!-- 3 points: x = 490 (2000), x = 690 (2005), x = 890 (2010) -->
+                    <text x="490" y="354" font-size="12.5" font-weight="normal" fill="#0f172a" text-anchor="middle">2000</text>
+                    <text x="690" y="354" font-size="12.5" font-weight="normal" fill="#0f172a" text-anchor="middle">2005</text>
+                    <text x="890" y="354" font-size="12.5" font-weight="normal" fill="#0f172a" text-anchor="middle">2010</text>
+
+                    <!-- CURVE 1: Bicycle friendly cities (Light Green #65a30d / #84cc16) -->
+                    <!-- 2000: 0.8% (y=192), 2005: ~0.97% (y=162), 2010: 1.4% (y=87) -->
+                    <path d="M 490 192 L 690 162 L 890 87" fill="none" stroke="#65a30d" stroke-width="3" stroke-linecap="round" />
+                    <!-- Point markers -->
+                    <circle cx="490" cy="192" r="4.5" fill="#65a30d" stroke="#ffffff" stroke-width="1.5" />
+                    <circle cx="690" cy="162" r="4.5" fill="#65a30d" stroke="#ffffff" stroke-width="1.5" />
+                    <circle cx="890" cy="87" r="4.5" fill="#65a30d" stroke="#ffffff" stroke-width="1.5" />
+
+                    <!-- CURVE 2: US average (Dark Navy Blue #0369a1) -->
+                    <!-- 2000: ~0.37% (y=267), 2005: ~0.40% (y=262), 2010: ~0.57% (y=232) -->
+                    <path d="M 490 267 L 690 262 L 890 232" fill="none" stroke="#0369a1" stroke-width="3" stroke-linecap="round" />
+                    <!-- Point markers -->
+                    <circle cx="490" cy="267" r="4.5" fill="#0369a1" stroke="#ffffff" stroke-width="1.5" />
+                    <circle cx="690" cy="262" r="4.5" fill="#0369a1" stroke="#ffffff" stroke-width="1.5" />
+                    <circle cx="890" cy="232" r="4.5" fill="#0369a1" stroke="#ffffff" stroke-width="1.5" />
+
+                    <!-- Legend inside chart (Top-Left) -->
+                    <g transform="translate(510, 68)">
+                        <!-- Green line & label -->
+                        <line x1="0" y1="6" x2="22" y2="6" stroke="#65a30d" stroke-width="3" />
+                        <circle cx="11" cy="6" r="3.5" fill="#65a30d" />
+                        <text x="28" y="10" font-size="13" font-weight="normal" fill="#0f172a">Bicycle friendly cities</text>
+
+                        <!-- Blue line & label -->
+                        <line x1="0" y1="28" x2="22" y2="28" stroke="#0369a1" stroke-width="3" />
+                        <circle cx="11" cy="28" r="3.5" fill="#0369a1" />
+                        <text x="28" y="32" font-size="13" font-weight="normal" fill="#0f172a">US average</text>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Visual summary insight cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                <div class="bg-sky-50 border border-sky-300 p-2.5 rounded-lg text-xs text-sky-950 flex items-start gap-2 shadow-sm">
+                    <span class="text-sky-600 font-bold">🚲</span>
+                    <div>
+                        <strong>Infrastructure Redesign:</strong> 2 wider lanes converted into 4 narrower lanes + 2 protected cycle tracks with a concrete barrier. Heavy trucks are restricted from the curb-adjacent lane.
+                    </div>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-300 p-2.5 rounded-lg text-xs text-emerald-950 flex items-start gap-2 shadow-sm">
+                    <span class="text-emerald-600 font-bold">📈</span>
+                    <div>
+                        <strong>Commuter Growth:</strong> Bicycle-friendly cities saw frequent bike commuting surge from 0.8% to 1.4%, far outpacing the modest US national average rise from ~0.4% to ~0.5%.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">178 words • Model Answer calibrated for Band 6 Target</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Intro -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Introduction Strategy
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Start by saying what the diagram and graph show</strong> but paraphrase the test task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>"The diagram and line graph give an overview of changes to approaches to travelling by bicycle."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Verbs & Adverbs of Change -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Trend &amp; Stability Language
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Use verbs and adverbs to describe change or stability.</strong>
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>"remained quite stable", "increased slightly", "rose from 0.8% to 1.4%".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Tense Switching (Present/Future vs Past) -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Grammar: Tense Control
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Use the correct tenses.</strong> The diagram looks at the present and the future (<em>"will mainly involve", "will not be allowed"</em>). The graph looks at the past (<em>"remained", "chose", "rose"</em>).
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION & GENERAL OVERVIEW -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction &amp; Overall Purpose Overview</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The diagram and line graph give an overview of...', 'Dual-source opener frame', 'Standard, error-free academic formula for introducing a process/diagram combined with a line graph.')">The diagram and line graph give an overview of</span> 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('changes to approaches to travelling by bicycle', 'Topic paraphrase collocation', 'Natural academic paraphrase for road design modifications and cycling trends.')">changes to approaches to travelling by bicycle</span>. 
+                            <span id="target-overview-features" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('The diagram illustrates plans to [actions]...', 'Diagram purpose overview frame', 'Crystal-clear overview sentence identifying the main infrastructure purpose.')">The diagram illustrates plans to</span> 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('separate large vehicles and cyclists', 'Urban design collocation', 'Spatial physical segregation of heavy traffic from vulnerable road users.')">separate large vehicles and cyclists</span>, 
+                                to 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('make the roads more attractive for cyclists', 'Policy goal collocation', 'Improving bicycle infrastructure appeal and perceived safety.')">make the roads more attractive for cyclists</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: LINE GRAPH (PAST TRENDS 2000-2010) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Line Graph Features (Past Trends: US Average vs. Bike-Friendly Cities)</span>
+                    <p>
+                        <span id="target-past-tenses" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The line graph shows that, overall, ...', 'Graph signpost & trend opener', 'Clearly shifts the focus to historical statistics from the line graph.')">The line graph shows that, overall</span>, 
+                            the 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('number of people cycling to work in the USA', 'Demographic subject phrase', 'Precise phrasing for commuter bicycle mode share.')">number of people cycling to work in the USA</span> 
+                            <span id="target-change-verbs" class="hl-connector" data-note="note-left-2">
+                                <span class="hl-band6-vocab" onclick="showWordDetail('remained quite stable from [Year] to [Year]', 'Stability trend collocation', 'Standard Task 1 expression describing minimal statistical movement.')">remained quite stable from 2000 to 2005</span>, 
+                                but 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('increased slightly by [Year]', 'Trend adverbial collocation', 'Modest upward growth.')">increased slightly by 2010</span>, 
+                                <span id="target-graph-data" class="hl-connector" data-note="note-right-2">
+                                    <span class="hl-band6-phrase" onclick="showWordDetail('when [X]% of people chose to [verb]', 'Relative data clause', 'Integrates exact figure cleanly into the trend description.')">when 0.5% of people chose to cycle regularly to work</span>.
+                                </span>
+                            </span> 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('However, in [Category], ...', 'Contrast transition', 'Draws a direct contrast between the national baseline and progressive cities.')">However</span>, 
+                            in 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('cities with a bicycle-friendly policy', 'Urban policy collocation', 'Municipalities promoting active cycling infrastructure.')">cities with a bicycle-friendly policy</span>, 
+                            the 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('percentage of people who chose bicycle transport', 'Mode share noun phrase', 'Varied lexical phrasing for cycling commuters.')">percentage of people who chose bicycle transport</span> 
+                            <span id="target-graph-data-2" class="hl-connector" data-note="note-right-2">
+                                <span class="hl-band6-vocab" onclick="showWordDetail('rose from [X]% to [Y]% by the end of the period', 'Growth endpoint collocation', 'Precise numerical range over the ten-year period.')">rose from 0.8% to 1.4% by the end of the period</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: DIAGRAM (PRESENT & PROPOSED FUTURE ROAD REDESIGN) -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Diagram Features (Lanes, Barrier &amp; Vehicle Restrictions)</span>
+                    <p>
+                        <span id="target-future-tenses" class="hl-connector" data-note="note-left-3">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('The planned changes to the bridge approach road', 'Project noun phrase', 'Specific physical roadway section being restructured.')">The planned changes to the bridge approach road</span> 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('mainly involve [verb-ing] from [X] to [Y]', 'Structural transformation frame', 'Summarizes the expansion from 2 wide lanes to 4 traffic lanes.')">mainly involve increasing the number of traffic lanes from two to four</span>. 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('Larger vehicles will not be allowed to travel in the lane nearest to the cyclists', 'Regulatory restriction sentence', 'Describes the heavy vehicle restriction on the outer lane.')">Larger vehicles will not be allowed to travel in the lane nearest to the cyclists</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('By [verb-ing], they will be able to...', 'Prepositional causative construction', 'Explains how lane narrowing creates spatial capacity for cycling tracks.')">By decreasing the size of the lanes, they will be able to make space to</span> 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('add two new cycle lanes, with a barrier to separate cyclists and other motor traffic', 'Infrastructure feature collocation', 'Key physical features: dual bike tracks and protective concrete median.')">add two new cycle lanes, with a barrier to separate cyclists and other motor traffic</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This should make [noun] more [adj] for both [A] and [B]', 'Evaluative conclusion frame', 'Concludes with the intended overall benefit for both cyclists and pedestrians.')">This should make the road more attractive for both cyclists and people travelling by foot</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Overview & Irrelevant Information Filter -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Overview &amp; Relevance
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Give an overview of the main features.</strong>
+                    </p>
+                    <p class="text-indigo-950 font-medium leading-relaxed mt-1">
+                        <strong class="text-indigo-700">Do NOT include irrelevant information:</strong> for example, decorative drawings like the man and tree are not important. Focus on lanes, barrier, and vehicle restrictions.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"The diagram illustrates plans to separate large vehicles and cyclists, to make the roads more attractive for cyclists."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Data & Numbers Support -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Data &amp; Figures Precision
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Use data and numbers to support your ideas.</strong> Quote exact key percentages (0.5%, 0.8%, 1.4%) and lane counts (two to four).
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>"when 0.5% of people chose to cycle regularly to work", "rose from 0.8% to 1.4% by the end of the period."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Punctuation & Complex Syntax -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Punctuation &amp; Linking
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Use correct punctuation</strong> to construct accurate compound and complex sentences (e.g. commas after introductory clauses like <em>"By decreasing the size of the lanes,"</em> and before <em>"with a barrier to separate..."</em>).
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 6 • Task 1: Describe changes over time</span>
+            <span class="font-bold text-slate-600 text-sm">197</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-800">
+                        Band 6 Task 1 Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        By decreasing the size of the lanes, they will be able to...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Demonstrates accurate grammatical control of future passive intentions and causative participle clauses while seamlessly handling diagram descriptions.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "The line graph shows that, overall, the number of people cycling to work in the USA remained quite stable from 2000 to 2005, but increased slightly by 2010."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 6 Changes Over Time Toolkit (Module 6)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Mixed Graph &amp; Diagram Report Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction &amp; Dual Overview:</strong>
+                        <p class="text-slate-700 mt-0.5">The diagram and line graph give an overview of [topic]. The diagram illustrates plans to [key planned change in infrastructure] to [intended outcome].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Line Graph - Past Trends &amp; Comparisons):</strong>
+                        <p class="text-slate-700 mt-0.5">The line graph shows that, overall, [Variable A: national average] remained quite stable from [Year] to [Year], but increased slightly by [Year], when [X]% of people [action]. However, in [Variable B: policy cities], the percentage rose from [X]% to [Y]% by the end of the period.</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Diagram - Road Layout &amp; Planned Restructuring):</strong>
+                        <p class="text-slate-700 mt-0.5">The planned changes to [infrastructure] mainly involve [increasing/decreasing lanes from X to Y]. Larger vehicles will not be allowed to [restriction]. By [decreasing lane sizes], they will be able to make space to [add cycle tracks and barrier]. This should make the road more attractive for both [User Group 1] and [User Group 2].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Urban Planning, Commuting &amp; Trend Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">travelling by bicycle</span>
+                        <span class="text-slate-500">bicycle commuting</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">separate large vehicles and cyclists</span>
+                        <span class="text-slate-500">physical traffic segregation</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">remained quite stable</span>
+                        <span class="text-slate-500">stayed steady / flat</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">bicycle-friendly policy</span>
+                        <span class="text-slate-500">cycling promotion initiatives</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">bridge approach road</span>
+                        <span class="text-slate-500">connecting access thoroughfare</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">traffic lanes</span>
+                        <span class="text-slate-500">carriageway tracks</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">barrier to separate</span>
+                        <span class="text-slate-500">protective median curb</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">travelling by foot</span>
+                        <span class="text-slate-500">pedestrians walking</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-change-verbs', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-past-tenses', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-overview-features', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-graph-data', side: 'right', color: '#7c3aed' },
+                { note: 'note-right-3', target: 'target-future-tenses', side: 'right', color: '#e11d48' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in report context: Using "${title}" demonstrates proper temporal tense control, cohesive transition, and accurate urban planning vocabulary for Band 6 Task 1.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The diagram and line graph give an overview of changes to approaches to travelling by bicycle. The diagram illustrates plans to separate large vehicles and cyclists, to make the roads more attractive for cyclists. The line graph shows that, overall, the number of people cycling to work in the USA remained quite stable from 2000 to 2005, but increased slightly by 2010, when 0.5% of people chose to cycle regularly to work. However, in cities with a bicycle-friendly policy, the percentage of people who chose bicycle transport rose from 0.8% to 1.4% by the end of the period. The planned changes to the bridge approach road mainly involve increasing the number of traffic lanes from two to four. Larger vehicles will not be allowed to travel in the lane nearest to the cyclists. By decreasing the size of the lanes, they will be able to make space to add two new cycle lanes, with a barrier to separate cyclists and other motor traffic. This should make the road more attractive for both cyclists and people travelling by foot.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

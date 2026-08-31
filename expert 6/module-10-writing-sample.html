@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 10: Describe a Map - Westerby City Library Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-passive {
+            background-color: #fae8ff;
+            color: #86198f;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid #d946ef;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-passive:hover {
+            background-color: #f5d0fe;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                10
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 2 • Module 10</h1>
+                <p class="text-xs text-slate-500">Describe a Map (Westerby City Library 1984 vs. Today) • Target Band 6 Study Guide</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-800 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Map Toolkit
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Comparative Map Framing &amp; Spatial Signposting
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-purple-100 border border-purple-400 rounded"></span>
+            <strong>Purple:</strong> Passive Voice of Transformation (Band 6 Grammatical Range)
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Cardinal Directions &amp; Library Facilities Collocations
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 10</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 2: Describe a map</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Read the test task carefully</strong> as it explains what the diagrams show. Make sure you look carefully at the date of each one.</p>
+                    <p>• <strong>Understand what the diagrams show</strong> and plan to write about the key features.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-sky-50/40 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider flex items-center gap-2">
+                    <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                    IELTS Task 1/2 Prompt
+                </h3>
+                <span class="text-xs font-semibold text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded-full">
+                    ⏱️ Spend about 20 minutes on this task
+                </span>
+            </div>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The maps show the Westerby city library in 1984 and 2014.</p>
+                <div class="bg-white p-3.5 rounded border border-sky-200 font-medium text-slate-800 shadow-sm">
+                    <p class="italic">
+                        "Summarise the information by selecting and reporting the main features and make comparisons where relevant."
+                    </p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Write at least 150 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- LIBRARY MAPS / FLOORPLANS SECTION (1984 vs. Today) -->
+        <section class="mb-8 p-4 sm:p-6 bg-slate-50 border-2 border-slate-200 rounded-2xl shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-4">
+                <h3 class="font-bold text-sm text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-sky-600 rounded-full"></span>
+                    Floorplan Comparison: Westerby City Library Layout
+                </h3>
+                <span class="text-xs text-slate-500 font-medium">1984 vs. Today (2014)</span>
+            </div>
+
+            <!-- Dual Floorplans Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                
+                <!-- 1984 FLOORPLAN -->
+                <div class="bg-white p-4 rounded-xl border border-slate-300 shadow-sm flex flex-col items-center justify-between">
+                    <h4 class="font-bold text-base text-slate-900 mb-3 tracking-wide self-start pl-2">1984</h4>
+                    
+                    <svg viewBox="0 0 390 380" class="w-full h-auto max-w-sm font-sans select-none bg-white">
+                        <!-- Outer wall of 1984 building (Thick outline with SW protruding wing) -->
+                        <!-- Footprint: NW corner (90,10) -> NE corner (370,10) -> SE corner (370,360) -> S wall to (90,360) -> S wall of wing to (10,360) -> W wall of wing to (10,270) -> N wall of wing to (90,270) -> W wall to (90,10) -->
+                        <path d="M 90,10 L 370,10 L 370,360 L 90,360 L 10,360 L 10,270 L 90,270 Z" fill="none" stroke="#000000" stroke-width="3" stroke-linejoin="miter"/>
+
+                        <!-- Top Left: Librarian's desk -->
+                        <rect x="90" y="10" width="85" height="65" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="132" y="38" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle">Librarian's</text>
+                        <text x="132" y="54" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle">desk</text>
+
+                        <!-- Top Entrance -->
+                        <rect x="175" y="10" width="65" height="25" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="207" y="27" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">ENTRANCE</text>
+
+                        <!-- Top Right: Children's book area -->
+                        <rect x="240" y="10" width="80" height="65" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="280" y="38" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle">Children's</text>
+                        <text x="280" y="54" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle">book area</text>
+
+                        <!-- West Wall: Newspapers magazines (Vertical box) -->
+                        <rect x="98" y="115" width="42" height="115" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="119" y="172" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 119 172)">Newspapers</text>
+                        <text x="131" y="172" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 131 172)">magazines</text>
+
+                        <!-- West Wall: Copier box -->
+                        <rect x="98" y="238" width="50" height="24" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="123" y="254" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">Copier</text>
+
+                        <!-- Center: 3 Rectangular Study Areas -->
+                        <g stroke="#000000" stroke-width="1.8" fill="#ffffff">
+                            <rect x="185" y="110" width="22" height="160"/>
+                            <rect x="220" y="110" width="22" height="160"/>
+                            <rect x="255" y="110" width="22" height="160"/>
+                        </g>
+                        <text x="196" y="190" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 196 190)">Study area</text>
+                        <text x="231" y="190" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 231 190)">Study area</text>
+                        <text x="266" y="190" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 266 190)">Study area</text>
+
+                        <!-- East Wall: Fiction book shelves -->
+                        <rect x="320" y="10" width="50" height="315" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="345" y="170" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 345 170)">Fiction book shelves</text>
+
+                        <!-- South Wall: Non-fiction book shelves -->
+                        <rect x="90" y="325" width="280" height="35" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="205" y="347" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="middle">Non-fiction book shelves</text>
+
+                        <!-- SW Wing: Community meeting room -->
+                        <text x="50" y="303" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">Community</text>
+                        <text x="50" y="318" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">meeting</text>
+                        <text x="50" y="333" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">room</text>
+
+                        <!-- Door opening & angled door slash -->
+                        <line x1="90" y1="325" x2="68" y2="295" stroke="#000000" stroke-width="1.8"/>
+                    </svg>
+                    <p class="text-[11px] text-slate-500 mt-2 text-center">Original 1984 single-block library with separate fiction/non-fiction shelving</p>
+                </div>
+
+                <!-- TODAY FLOORPLAN -->
+                <div class="bg-white p-4 rounded-xl border border-slate-300 shadow-sm flex flex-col items-center justify-between">
+                    <h4 class="font-bold text-base text-slate-900 mb-3 tracking-wide self-start pl-2">Today</h4>
+                    
+                    <svg viewBox="0 0 390 380" class="w-full h-auto max-w-sm font-sans select-none bg-white">
+                        <!-- Outer wall of Today building (Full rectangle with thick border) -->
+                        <rect x="10" y="10" width="365" height="350" fill="none" stroke="#000000" stroke-width="3"/>
+
+                        <!-- WEST BUILDING EXTENSION (Column Width ~ 90) -->
+                        <!-- NW: Children's book area -->
+                        <rect x="10" y="10" width="90" height="90" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="35" y="32" font-size="10" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 35 32)">Building</text>
+                        <text x="49" y="32" font-size="10" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 49 32)">extension:</text>
+                        <text x="63" y="32" font-size="10" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 63 32)">Children's</text>
+                        <text x="77" y="32" font-size="10" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 77 32)">book area</text>
+
+                        <!-- W: Fiction and non-fiction books -->
+                        <rect x="10" y="100" width="90" height="170" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="45" y="185" font-size="10.5" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 45 185)">Building extension:</text>
+                        <text x="62" y="185" font-size="10" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 62 185)">Fiction and non-fiction</text>
+                        <text x="76" y="185" font-size="10" font-weight="bold" fill="#000000" text-anchor="middle" transform="rotate(-90 76 185)">books</text>
+
+                        <!-- SW: Community meeting room -->
+                        <rect x="10" y="270" width="90" height="90" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="55" y="303" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">Community</text>
+                        <text x="55" y="318" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">meeting</text>
+                        <text x="55" y="333" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">room</text>
+                        <!-- Door slash -->
+                        <line x1="100" y1="325" x2="118" y2="295" stroke="#000000" stroke-width="1.8"/>
+
+                        <!-- NORTH WALL COMPARTMENTS -->
+                        <!-- Book drop off -->
+                        <rect x="100" y="10" width="50" height="55" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="125" y="32" font-size="10" font-weight="normal" fill="#000000" text-anchor="middle">Book</text>
+                        <text x="125" y="47" font-size="10" font-weight="normal" fill="#000000" text-anchor="middle">drop off</text>
+
+                        <!-- ENTRANCE -->
+                        <rect x="150" y="10" width="65" height="25" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="182" y="27" font-size="10" font-weight="normal" fill="#000000" text-anchor="middle">ENTRANCE</text>
+
+                        <!-- Self service book checkout -->
+                        <rect x="215" y="10" width="60" height="55" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="245" y="24" font-size="9" font-weight="normal" fill="#000000" text-anchor="middle">Self service</text>
+                        <text x="245" y="37" font-size="9" font-weight="normal" fill="#000000" text-anchor="middle">book</text>
+                        <text x="245" y="50" font-size="9" font-weight="normal" fill="#000000" text-anchor="middle">checkout</text>
+
+                        <!-- Information desk/Technical support -->
+                        <rect x="275" y="10" width="100" height="55" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="325" y="26" font-size="9" font-weight="normal" fill="#000000" text-anchor="middle">Information</text>
+                        <text x="325" y="39" font-size="9" font-weight="normal" fill="#000000" text-anchor="middle">desk/Technical</text>
+                        <text x="325" y="52" font-size="9" font-weight="normal" fill="#000000" text-anchor="middle">support</text>
+
+                        <!-- CENTER: 4 Circular Study Tables (2x2 Grid) -->
+                        <g fill="#ffffff" stroke="#000000" stroke-width="1.8">
+                            <circle cx="180" cy="130" r="19"/>
+                            <circle cx="235" cy="130" r="19"/>
+                            <circle cx="180" cy="200" r="19"/>
+                            <circle cx="235" cy="200" r="19"/>
+                        </g>
+                        <text x="207" y="165" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle">Study area</text>
+
+                        <!-- EAST WALL: DVDs and CDs -->
+                        <rect x="335" y="65" width="40" height="175" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="355" y="152" font-size="11" font-weight="normal" fill="#000000" text-anchor="middle" transform="rotate(-90 355 152)">DVDs and CDs</text>
+
+                        <!-- SOUTH-EAST: Multimedia centre -->
+                        <rect x="130" y="240" width="245" height="120" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
+                        <text x="252" y="280" font-size="11.5" font-weight="normal" fill="#000000" text-anchor="middle">Multimedia centre</text>
+                        <text x="252" y="300" font-size="10.5" font-weight="normal" fill="#000000" text-anchor="middle">(PCs, tablets, printer, copier)</text>
+                    </svg>
+                    <p class="text-[11px] text-slate-500 mt-2 text-center">Modernized layout featuring western extension and digitized multimedia facilities</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">178 words • Band 6 Model Answer</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Essay, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Intro -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Paraphrase Prompt
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Start by introducing the topic of the diagram</strong> but paraphrase the test task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>"The two maps show how the city library in Westerby has changed since 1984."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Comparative Structure -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Comparative Synthesis
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Describe the maps in more detail</strong>, comparing features of both maps rather than speaking about one map and then the other.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>"If we look more closely at the map, we can see that there were separate shelves... but today they are located together in the extension."</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner space-y-4">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION & OVERVIEW -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction &amp; Overall Structural Modernisation Overview</span>
+                    <p>
+                        <span id="target-intro" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The two maps show how [location] has changed since [year]', 'Dual-map introduction frame', 'Standard Band 6 paraphrase establishing the subject, location, and historical timeframe.')">The two maps show how the city library in Westerby has changed since 1984</span>. 
+                            <span id="target-overview" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band6-phrase" onclick="showWordDetail('Overall the maps tell us that [general development]', 'Map overview signpost frame', 'Crystal-clear Band 6 overview sentence describing the main transformation.')">Overall the maps tell us that</span> 
+                                the library 
+                                <span class="hl-band6-passive" onclick="showWordDetail('has been extended to the west', 'Present perfect passive extension frame', 'Accurately describes structural expansion with passive voice and cardinal direction.')">has been extended to the west</span>. 
+                                <span class="hl-band6-passive" onclick="showWordDetail('It has also been modernised with [feature]', 'Present perfect passive modernisation frame', 'Captures the technology shift across the entire facility.')">It has also been modernised with technology being an important feature</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (BOOK COLLECTIONS & EXTENSION RELOCATION) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (Books Consolidation, Media Center &amp; Children's Area)</span>
+                    <p>
+                        <span id="target-comparative-body" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('If we look more closely at the map, we can see that...', 'Detailed analytical transition frame', 'Standard formula to shift into specific comparative paragraph features.')">If we look more closely at the map, we can see that</span> 
+                            there were 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('separate shelves for fiction and non-fiction books in the south and east', 'Historical spatial layout collocation', 'Precise description of 1984 layout with compass directions.')">separate shelves for fiction and non-fiction books in the south and east of the library in 1984</span> 
+                            but today 
+                            <span class="hl-band6-passive" onclick="showWordDetail('they are located together in the extension', 'Relocation passive construction', 'Highlights the consolidation of adult collections into the western extension.')">they are located together in the extension</span>. 
+                            <span id="target-passive-verbs" class="hl-connector" data-note="note-right-2">
+                                <span class="hl-band6-vocab" onclick="showWordDetail('The non-fiction bookshelves to the south', 'Spatial location noun phrase', 'Specifies exact southern wall section in 1984.')">The non-fiction bookshelves to the south</span> 
+                                <span class="hl-band6-passive" onclick="showWordDetail('have been replaced by the multi-media centre', 'Replacement passive construction', 'Essential Band 6 transformation formula.')">have been replaced by the multi-media centre</span> 
+                                and 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('the fiction bookshelves to the east are now full of DVDs and CDs', 'Repurposing clause', 'Describes new digital media taking over previous book shelving.')">the fiction bookshelves to the east are now full of DVDs and CDs</span>. 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('The children\'s book area still exists today but, like the adult books, ...', 'Continuity & comparison phrase', 'Notes continuity alongside relocation.')">The children's book area still exists today but, like the adult books</span>, 
+                                <span class="hl-band6-passive" onclick="showWordDetail('it has also been moved to the extension', 'Movement passive voice', 'Confirms children\'s books moving to the NW extension.')">it has also been moved to the extension</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (SERVICE DESKS, STUDY AREA & COMMUNITY ROOM) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (Service Desks, Central Study Tables &amp; Unchanged Room)</span>
+                    <p>
+                        <span id="target-location-language" class="hl-connector" data-note="note-right-3">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('The librarian\'s desk that existed in 1984 does not exist today', 'Removal relative clause structure', 'Contrasts past traditional desk with current self-service system.')">The librarian's desk that existed in 1984 does not exist today</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Instead, visitors get help from [service] to the [direction]', 'Alternative replacement frame with cardinal direction', 'Specifies new information/tech support desk in the north-east.')">Instead, visitors get help from an information desk to the north east of the library</span>. 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('The study area remains in the centre of the main room but is laid out in a different way', 'Central spatial persistence and redesign phrase', 'Notes rectangular to circular table reconfiguration.')">The study area remains in the centre of the main room but is laid out in a different way</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('In fact, only [item] is in the same location on both maps', 'Unique exception highlight frame', 'Powerful Band 6 synthesis highlighting the single untouched facility.')">In fact, only the community meeting room is in the same location on both maps</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Overview Feature -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Overall Map Summary
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Give an overview of the diagram.</strong> What is the main thing you learn?
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"Overall the maps tell us that the library has been extended to the west. It has also been modernised with technology being an important feature."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Tense & Passive Voice Range -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Verbs &amp; Passive Voice
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Use a range of verbs in the correct tense</strong> (check the dates on the map).
+                    </p>
+                    <p class="text-purple-950 font-medium leading-relaxed mt-1">
+                        <strong class="text-purple-700">Use the passive voice</strong> as it is unlikely you know who changed each item: <em>"has been extended", "have been replaced by", "has also been moved to"</em>.
+                    </p>
+                </div>
+
+                <!-- Right Note 3: Language of Location -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Language of Location
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Use language of location</strong> to describe where things are on the map: <em>"to the west", "in the south and east", "in the extension", "to the north east", "in the centre of the main room"</em>.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 10 • Task 2: Describe a map</span>
+            <span class="font-bold text-slate-600 text-sm">201</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-900">
+                        Band 6 Map Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        have been replaced by the multi-media centre
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Demonstrates accurate passive verb control for physical transformations, precise spatial referencing, and feature-by-feature comparative synthesis rather than isolated listing.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "The non-fiction bookshelves to the south have been replaced by the multi-media centre."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 6 Map Toolkit (Module 10)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Comparative Map Report Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction &amp; Core Overview:</strong>
+                        <p class="text-slate-700 mt-0.5">The two maps show how [facility/area] in [town] has changed since [year]. Overall, the maps tell us that [facility] has been [extended/expanded in direction], while also being [modernised/digitised with key new features].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Major Relocations &amp; Replacements):</strong>
+                        <p class="text-slate-700 mt-0.5">If we look more closely at the map, we can see that there were [original facilities] in the [compass directions] in [past year], but today they are [relocated/located together in new wing]. The [original feature] to the [direction] has been replaced by [new feature], while [other area] is now full of [new purpose]. [Item B] still exists, but has also been moved to [location].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Service Changes, Layouts &amp; Unchanged Elements):</strong>
+                        <p class="text-slate-700 mt-0.5">The [past facility] that existed in [past year] does not exist today; instead, visitors [receive services from new desk] to the [direction]. The [central area] remains in the centre but is laid out in a different way. In fact, only [single feature] is in the same location on both maps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Spatial Locations, Transformations &amp; Passive Voice</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">extended to the west</span>
+                        <span class="text-slate-500">western building addition</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">located together in the extension</span>
+                        <span class="text-slate-500">consolidated in new wing</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">have been replaced by</span>
+                        <span class="text-slate-500">superseded by / converted into</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">has also been moved to</span>
+                        <span class="text-slate-500">relocated / transferred</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">to the north east of</span>
+                        <span class="text-slate-500">in the northeast corner</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">in the centre of the main room</span>
+                        <span class="text-slate-500">centrally positioned</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">laid out in a different way</span>
+                        <span class="text-slate-500">reconfigured table arrangement</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">in the same location on both maps</span>
+                        <span class="text-slate-500">remained unchanged</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing dynamic paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-comparative-body', side: 'left', color: '#d97706' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-overview', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-passive-verbs', side: 'right', color: '#7c3aed' },
+                { note: 'note-right-3', target: 'target-location-language', side: 'right', color: '#e11d48' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in map context: Using "${title}" establishes proper spatial orientation, passive voice accuracy, and comparative synthesis for Band 6 Task 2.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The two maps show how the city library in Westerby has changed since 1984. Overall the maps tell us that the library has been extended to the west. It has also been modernised with technology being an important feature. If we look more closely at the map, we can see that there were separate shelves for fiction and non-fiction books in the south and east of the library in 1984 but today they are located together in the extension. The non-fiction bookshelves to the south have been replaced by the multi-media centre and the fiction bookshelves to the east are now full of DVDs and CDs. The children's book area still exists today but, like the adult books, it has also been moved to the extension. The librarian's desk that existed in 1984 does not exist today. Instead, visitors get help from an information desk to the north east of the library. The study area remains in the centre of the main room but is laid out in a different way. In fact, only the community meeting room is in the same location on both maps.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

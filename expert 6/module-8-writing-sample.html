@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Task 1 Describe a Process - How Waterfalls Form (Model Answer & Annotations)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#0284c7',
+                            headerDark: '#0369a1',
+                            accent: '#0284c7',
+                            bg: '#f8fafc',
+                            paper: '#ffffff',
+                            line: '#e2e8f0',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band6-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        .hl-band6-passive {
+            background-color: #fae8ff;
+            color: #86198f;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid #d946ef;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band6-passive:hover {
+            background-color: #f5d0fe;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                8
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 1 • Module 8</h1>
+                <p class="text-xs text-slate-500">Describe a Process (How Waterfalls Form) • Target Band 6 Interactive Study Guide</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-sky-50 text-sky-800 border border-sky-200 hover:bg-sky-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Process Toolkit
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Sequencers &amp; Stage Linkers (Band 6 Cohesion)
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-purple-100 border border-purple-400 rounded"></span>
+            <strong>Purple:</strong> Process Passive Voice Structures (Grammatical Range)
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Geological &amp; Erosion Collocations (Lexical Resource)
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#7c3aed" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- TOP BAR: Module Banner -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-sky-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-sky-600 uppercase">Module 8</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 1: Describe a process</h2>
+            </div>
+            <div class="bg-sky-50 border-l-4 border-sky-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-sky-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-sky-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Read the test task carefully</strong> as it explains what the diagram shows.</p>
+                    <p>• <strong>Understand what the diagram shows</strong> and plan to write about the key features.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-sky-50/40 border-l-4 border-sky-500 rounded-r-lg p-4 sm:p-5">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-bold text-sm text-sky-900 uppercase tracking-wider flex items-center gap-2">
+                    <span class="px-2 py-0.5 bg-sky-600 text-white rounded text-xs">Task</span>
+                    IELTS Task 1 Prompt
+                </h3>
+                <span class="text-xs font-semibold text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded-full">
+                    ⏱️ Spend about 20 minutes on this task
+                </span>
+            </div>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The diagram below gives information on how waterfalls form.</p>
+                <div class="bg-white p-3.5 rounded border border-sky-200 font-medium text-slate-800 shadow-sm">
+                    <p class="italic">
+                        "Summarise the information by selecting and reporting the main features, and make comparisons where relevant."
+                    </p>
+                </div>
+                <p class="text-xs text-slate-600 font-sans italic pt-1">
+                    Write at least 150 words.
+                </p>
+            </div>
+        </section>
+
+        <!-- GEOLOGICAL PROCESS DIAGRAM: HOW WATERFALLS FORM (3 PANELS) -->
+        <section class="mb-8 bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 sm:p-6 shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-4">
+                <h3 class="font-bold text-sm text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-sky-600 rounded-full"></span>
+                    Geological Diagram: Stages of Waterfall Formation
+                </h3>
+                <span class="text-xs text-slate-500 font-medium">3 Chronological Stages</span>
+            </div>
+
+            <!-- 3 Panels Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- STAGE 1 PANEL -->
+                <div class="bg-[#bfdbfe]/30 border border-sky-200 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                    <div class="bg-sky-100 px-3 py-1.5 border-b border-sky-200 flex justify-between items-center text-xs font-bold text-sky-900">
+                        <span>Stage 1: Initial Flow</span>
+                        <span class="text-[10px] text-sky-700 bg-sky-200/70 px-1.5 py-0.5 rounded">Horizontal</span>
+                    </div>
+                    <div class="p-2 flex-1 flex items-center justify-center bg-[#cbe3f7]">
+                        <svg viewBox="0 0 280 220" class="w-full h-auto max-h-[190px]">
+                            <!-- Sky background -->
+                            <rect width="280" height="220" fill="#cbe3f7"/>
+                            
+                            <!-- Soft Rock Layer (Sandy tan with stipples) -->
+                            <path d="M 0,80 L 190,80 L 280,80 L 280,220 L 0,220 Z" fill="#bfa58a"/>
+                            <!-- Texture dots -->
+                            <g fill="#8f775f" opacity="0.4">
+                                <circle cx="20" cy="120" r="1.5"/><circle cx="50" cy="140" r="1.2"/><circle cx="90" cy="130" r="1.5"/>
+                                <circle cx="140" cy="110" r="1.2"/><circle cx="210" cy="130" r="1.5"/><circle cx="250" cy="160" r="1.2"/>
+                                <circle cx="40" cy="180" r="1.5"/><circle cx="120" cy="190" r="1.5"/><circle cx="180" cy="170" r="1.2"/>
+                            </g>
+
+                            <!-- Hard Rock Layer (Dark Brown Wedge) -->
+                            <path d="M 0,80 L 190,80 L 0,165 Z" fill="#544336"/>
+
+                            <!-- River Water (Blue horizontal band) -->
+                            <rect x="0" y="55" width="280" height="25" fill="#0284c7"/>
+                            
+                            <!-- Flow Arrow -->
+                            <line x1="100" y1="67" x2="180" y2="67" stroke="#082f49" stroke-width="3" stroke-linecap="round"/>
+                            <polygon points="180,62 195,67 180,72" fill="#082f49"/>
+
+                            <!-- Labels -->
+                            <text x="140" y="42" fill="#082f49" font-family="Inter, sans-serif" font-weight="bold" font-size="14" text-anchor="middle">River</text>
+                            <text x="55" y="125" fill="#ffffff" font-family="Inter, sans-serif" font-weight="bold" font-size="13">Hard rock</text>
+                            <text x="140" y="155" fill="#38291f" font-family="Inter, sans-serif" font-weight="bold" font-size="14">Soft rock</text>
+                        </svg>
+                    </div>
+                    <div class="p-2 bg-white text-[11px] text-slate-600 border-t border-slate-100 leading-snug">
+                        Water flows horizontally over a resilient layer of hard rock situated over softer underlying rock.
+                    </div>
+                </div>
+
+                <!-- STAGE 2 PANEL -->
+                <div class="bg-[#bfdbfe]/30 border border-sky-200 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                    <div class="bg-sky-100 px-3 py-1.5 border-b border-sky-200 flex justify-between items-center text-xs font-bold text-sky-900">
+                        <span>Stage 2: Differential Erosion</span>
+                        <span class="text-[10px] text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">Slope Forms</span>
+                    </div>
+                    <div class="p-2 flex-1 flex items-center justify-center bg-[#cbe3f7]">
+                        <svg viewBox="0 0 280 220" class="w-full h-auto max-h-[190px]">
+                            <!-- Sky background -->
+                            <rect width="280" height="220" fill="#cbe3f7"/>
+                            
+                            <!-- Soft Rock Layer with eroded curve step -->
+                            <path d="M 0,80 L 160,80 L 180,125 Q 205,145 280,145 L 280,220 L 0,220 Z" fill="#bfa58a"/>
+                            <g fill="#8f775f" opacity="0.4">
+                                <circle cx="30" cy="140" r="1.5"/><circle cx="90" cy="150" r="1.2"/><circle cx="150" cy="170" r="1.5"/>
+                                <circle cx="220" cy="180" r="1.5"/><circle cx="250" cy="190" r="1.2"/>
+                            </g>
+
+                            <!-- Hard Rock Layer (Dark Brown Wedge) -->
+                            <path d="M 0,80 L 160,80 L 0,165 Z" fill="#544336"/>
+
+                            <!-- River Water flowing and cascading down slope -->
+                            <path d="M 0,55 L 155,55 Q 175,70 178,110 L 183,110 Q 200,125 280,125 L 280,145 Q 205,145 180,125 L 160,80 L 0,80 Z" fill="#0284c7"/>
+                            
+                            <!-- Downward stream line accents -->
+                            <path d="M 160,60 Q 170,80 176,112" stroke="#38bdf8" stroke-width="2" fill="none"/>
+                            <path d="M 166,60 Q 175,85 180,118" stroke="#38bdf8" stroke-width="2" fill="none"/>
+
+                            <!-- Flow Arrow -->
+                            <line x1="90" y1="67" x2="140" y2="67" stroke="#082f49" stroke-width="3" stroke-linecap="round"/>
+                            <polygon points="140,62 153,67 140,72" fill="#082f49"/>
+
+                            <!-- Labels -->
+                            <text x="110" y="42" fill="#082f49" font-family="Inter, sans-serif" font-weight="bold" font-size="14" text-anchor="middle">River</text>
+                            <text x="235" y="40" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="12" text-anchor="middle">Soft rock</text>
+                            <text x="235" y="55" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="12" text-anchor="middle">erosion</text>
+                            
+                            <!-- Pointer dot to eroded notch -->
+                            <circle cx="178" cy="118" r="3" fill="#0f172a"/>
+                            <path d="M 235,62 Q 220,105 183,118" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+
+                            <text x="50" y="125" fill="#ffffff" font-family="Inter, sans-serif" font-weight="bold" font-size="13">Hard rock</text>
+                            <text x="115" y="165" fill="#38291f" font-family="Inter, sans-serif" font-weight="bold" font-size="14">Soft rock</text>
+                        </svg>
+                    </div>
+                    <div class="p-2 bg-white text-[11px] text-slate-600 border-t border-slate-100 leading-snug">
+                        Soft rock erodes at a faster rate, developing a distinct cliff face and causing water to plunge downward.
+                    </div>
+                </div>
+
+                <!-- STAGE 3 PANEL -->
+                <div class="bg-[#bfdbfe]/30 border border-sky-200 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                    <div class="bg-sky-100 px-3 py-1.5 border-b border-sky-200 flex justify-between items-center text-xs font-bold text-sky-900">
+                        <span>Stage 3: Overhang Collapse & Gorge</span>
+                        <span class="text-[10px] text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded">Waterfall & Plunge Pool</span>
+                    </div>
+                    <div class="p-2 flex-1 flex items-center justify-center bg-[#cbe3f7]">
+                        <svg viewBox="0 0 280 220" class="w-full h-auto max-h-[190px]">
+                            <!-- Sky background -->
+                            <rect width="280" height="220" fill="#cbe3f7"/>
+                            
+                            <!-- Soft Rock Layer with deep hollowed undercut (gorge notch) and plunge pool hollow -->
+                            <path d="M 0,80 L 135,80 Q 115,115 110,140 Q 110,195 145,195 Q 185,195 280,165 L 280,220 L 0,220 Z" fill="#bfa58a"/>
+                            <g fill="#8f775f" opacity="0.4">
+                                <circle cx="30" cy="140" r="1.5"/><circle cx="70" cy="160" r="1.2"/><circle cx="230" cy="190" r="1.5"/>
+                            </g>
+
+                            <!-- Hard Rock Overhang Layer -->
+                            <path d="M 0,80 L 135,80 L 135,95 L 0,165 Z" fill="#544336"/>
+
+                            <!-- Dashed Collapsed Hard Rock Outline (Point 1) -->
+                            <path d="M 135,80 L 160,80 Q 170,95 155,105 L 135,95 Z" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="3,3"/>
+
+                            <!-- Plunge Pool Water -->
+                            <path d="M 110,165 Q 110,195 145,195 Q 185,195 280,165 L 280,145 Q 175,175 130,175 Q 115,175 110,165 Z" fill="#0284c7"/>
+                            
+                            <!-- Vertical Waterfall Stream -->
+                            <path d="M 130,55 L 135,55 L 142,175 L 128,175 Z" fill="#0284c7"/>
+                            <path d="M 133,60 L 133,172" stroke="#38bdf8" stroke-width="2"/>
+                            <path d="M 137,60 L 137,172" stroke="#bae6fd" stroke-width="1.5"/>
+
+                            <!-- Upstream river water -->
+                            <rect x="0" y="55" width="135" height="25" fill="#0284c7"/>
+
+                            <!-- Splash bubbles in plunge pool -->
+                            <circle cx="130" cy="172" r="2" fill="#ffffff" opacity="0.8"/>
+                            <circle cx="137" cy="170" r="2.5" fill="#ffffff" opacity="0.9"/>
+                            <circle cx="145" cy="174" r="2" fill="#ffffff" opacity="0.7"/>
+
+                            <!-- Fallen Rock Boulders at bottom of pool (Point 3) -->
+                            <ellipse cx="125" cy="188" rx="4.5" ry="3" fill="#3e3026"/>
+                            <ellipse cx="136" cy="190" rx="6" ry="3.5" fill="#544336"/>
+                            <ellipse cx="148" cy="191" rx="4" ry="2.5" fill="#3e3026"/>
+
+                            <!-- 1 Hard rock collapses pointer -->
+                            <text x="180" y="32" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="11" text-anchor="middle">1 Hard rock collapses</text>
+                            <path d="M 170,36 L 150,80" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+                            <circle cx="150" cy="80" r="2" fill="#0f172a"/>
+
+                            <!-- 2 Gorge appears pointer (Pointing to hollowed undercut) -->
+                            <text x="235" y="75" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="11">2 Gorge</text>
+                            <text x="235" y="88" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="11">appears</text>
+                            <path d="M 230,85 L 115,130" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+                            <circle cx="115" cy="130" r="2" fill="#0f172a"/>
+
+                            <!-- 3 Fallen rocks cause erosion pointer -->
+                            <text x="240" y="125" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="10.5">3 Fallen rocks</text>
+                            <text x="240" y="137" fill="#0f172a" font-family="Inter, sans-serif" font-weight="bold" font-size="10.5">cause erosion</text>
+                            <path d="M 235,135 L 145,188" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+                            <circle cx="145" cy="188" r="2" fill="#0f172a"/>
+
+                            <!-- Other base labels -->
+                            <text x="50" y="42" fill="#082f49" font-family="Inter, sans-serif" font-weight="bold" font-size="14">River</text>
+                            <text x="40" y="125" fill="#ffffff" font-family="Inter, sans-serif" font-weight="bold" font-size="13">Hard rock</text>
+                            <text x="25" y="195" fill="#38291f" font-family="Inter, sans-serif" font-weight="bold" font-size="13">Soft rock</text>
+                        </svg>
+                    </div>
+                    <div class="p-2 bg-white text-[11px] text-slate-600 border-t border-slate-100 leading-snug">
+                        Unsupported hard rock collapses into plunge pool; swirling fallen debris deepens the pool and retreats upstream to form a gorge.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">168 words • Calibrated for Target Band 6</span>
+        </div>
+
+        <!-- 3-Column Layout: Left Annotations, Model Essay, Right Annotations -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Intro -->
+                <div id="note-left-1" class="bg-sky-50 border-2 border-sky-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-sky-400">
+                    <div class="flex items-center gap-1.5 text-sky-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                        Paraphrase Prompt
+                    </div>
+                    <p class="text-sky-950 font-medium leading-relaxed">
+                        <strong class="text-sky-700">Start by introducing the topic of the diagram</strong> but paraphrase the test task.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-sky-200/70 text-[11px] text-sky-700 font-sans">
+                        💡 <em>"The diagram shows the process of waterfall formation over a long period of time..."</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Sequencers for Chronology -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Sequencers &amp; Stage Linkers
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Use sequencers where appropriate</strong> to organise your ideas clearly through time.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>"At first...", "Over time...", "This continues until...", "eventually", "In the final stage..."</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner space-y-4">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION & OVERVIEW -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction &amp; Overall Process Principle</span>
+                    <p>
+                        <span id="target-intro" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('The diagram shows the process of [topic] over a [timeframe]', 'Paraphrased introduction frame', 'Accurately introduces the natural process and establishes the geological timescale.')">The diagram shows the process of waterfall formation over a long period of time</span>. 
+                            <span id="target-overview" class="hl-connector" data-note="note-right-1">
+                                <span class="hl-band6-passive" onclick="showWordDetail('The waterfall is formed when [condition]', 'Process definition in passive voice', 'Essential Band 6 passive verb formulation explaining how the phenomenon originates.')">The waterfall is formed</span> 
+                                <span class="hl-band6-phrase" onclick="showWordDetail('when water flows over [X] which sits over [Y]', 'Spatial relationship relative clause', 'Uses defining relative clause to contrast hard rock sitting over soft rock.')">when water flows over hard rock which sits over soft rock</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: BODY 1 (EARLY EROSION, CLIFF STEEPENING & COLLAPSE) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Body 1 (Horizontal Flow to Overhang Collapse)</span>
+                    <p>
+                        <span id="target-sequencers" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band6-phrase" onclick="showWordDetail('At first, [clause]', 'Initial stage sequencer', 'Opens the sequential chain of events at the starting condition.')">At first, the water flows across the rock horizontally</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('Over time, [subject] [verb] and [consequence]', 'Temporal progression sequencer', 'Denotes continuous geological change and cumulative erosion.')">Over time, the soft rock erodes</span> 
+                            and 
+                            <span class="hl-band6-passive" onclick="showWordDetail('a cliff is formed which causes [result]', 'Passive result frame with relative clause', 'Describes landform creation using passive voice and causal linkage.')">a cliff is formed which causes the water to move downhill</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This continues until [condition] creates [result]', 'Continuative temporal linker', 'Shows ongoing erosion reaching a tipping threshold.')">This continues until the erosion creates a much steeper cliff</span>. 
+                            <span id="target-active-verbs" class="hl-connector" data-note="note-right-2">
+                                <span class="hl-band6-vocab" onclick="showWordDetail('The hard rock at the end of the cliff eventually falls', 'Action & result collocation', 'Explains the collapse of unsupported overhang.')">The hard rock at the end of the cliff eventually falls</span> 
+                                <span class="hl-band6-phrase" onclick="showWordDetail('because there is nothing to hold it and it drops into [place]', 'Causal justification frame', 'Explains the physical reason why rock collapses under gravity.')">because there is nothing to hold it and it drops into the pool below</span>. 
+                                <span class="hl-band6-phrase" onclick="showWordDetail('The water no longer [action]. Instead it [new action]', 'Contrastive state-change frame', 'Contrasts horizontal flow with vertical plunge.')">The water no longer flows across the rock. Instead it drops over the cliff and falls straight down into the pool</span>. 
+                                <span class="hl-band6-vocab" onclick="showWordDetail('The remaining water flows out of the pool and the river continues downstream', 'River continuation collocation', 'Completes the hydrological flow path.')">The remaining water flows out of the pool and the river continues downstream</span>.
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: BODY 2 (HYDRAULIC ACTION, POOL EXPANSION & GORGE FORMATION) -->
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Body 2 (Plunge Pool Deepening &amp; Upstream Gorge Formation)</span>
+                    <p>
+                        <span id="target-passive-verbs" class="hl-connector" data-note="note-right-3">
+                            <span class="hl-band6-vocab" onclick="showWordDetail('The rocks that fell from the edge of the cliff into the pool', 'Relative clause noun phrase', 'Specifies the collapsed debris acting as abrasive tools.')">The rocks that fell from the edge of the cliff into the pool</span> 
+                            <span class="hl-band6-vocab" onclick="showWordDetail('move around with the force of the water', 'Hydraulic action collocation', 'Describes abrasive grinding in the plunge pool.')">move around with the force of the water</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('This results in [noun] and causes [object] to become [adj]', 'Dual causal outcome structure', 'High-value Band 6 cohesion linking debris friction to pool enlargement.')">This results in more erosion and causes the pool to become bigger</span>. 
+                            <span class="hl-band6-phrase" onclick="showWordDetail('In the final stage of the process, [clause]', 'Terminal stage sequencer', 'Clear signpost concluding the cyclical landform progression.')">In the final stage of the process</span>, 
+                            <span class="hl-band6-passive" onclick="showWordDetail('a gorge is formed', 'Terminal passive construction', 'States the ultimate canyon/gorge creation as the waterfall retreats.')">a gorge is formed</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Overview Feature -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Overall Process Summary
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Give an overview of the diagram.</strong> What is the main principle you learn from the stages?
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700 font-sans">
+                        💡 <em>"The waterfall is formed when water flows over hard rock which sits over soft rock."</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Active Physical Verbs -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        Dynamic Process Verbs
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Use a variety of verbs where possible</strong> to describe movement, erosion, and changes in direction.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>"flows", "erodes", "falls", "drops", "creates", "move around", "results in", "continues"</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Passive Voice for Natural Processes -->
+                <div id="note-right-3" class="bg-fuchsia-50 border-2 border-fuchsia-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-fuchsia-400">
+                    <div class="flex items-center gap-1.5 text-fuchsia-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-fuchsia-600"></span>
+                        Passive Voice Accuracy
+                    </div>
+                    <p class="text-fuchsia-950 font-medium leading-relaxed">
+                        <strong class="text-fuchsia-700">Use the passive form where appropriate</strong> to describe what is formed, shaped, or created.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-fuchsia-200/70 text-[11px] text-fuchsia-700">
+                        💡 <em>"is formed", "a cliff is formed", "a gorge is formed"</em>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 8 • Task 1: Describe a process</span>
+            <span class="font-bold text-slate-600 text-sm">199</span>
+        </div>
+
+    </main>
+
+    <!-- MODAL FOR DETAILED WORD / PHRASE EXPLANATION -->
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-sky-100 text-sky-900">
+                        Band 6 Process Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        At first, the water flows across...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this achieves Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Demonstrates sequential cohesion, appropriate passive/active verb switching, and natural process tracking without mechanical bullet listing.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "The diagram shows the process of waterfall formation over a long period of time."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BAND 6 TOOLKIT DRAWER -->
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-sky-600 rounded-full"></span>
+                Band 6 Process Toolkit (Module 8)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-sky-700 mb-2">1. Natural Process Essay Skeleton</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Introduction &amp; Core Overview:</strong>
+                        <p class="text-slate-700 mt-0.5">The diagram shows the process of [process noun phrase] over [timescale]. [Phenomenon] is formed when [material A] acts on [material B], causing [fundamental change].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 1 (Initial Flow &amp; Early Erosion):</strong>
+                        <p class="text-slate-700 mt-0.5">At first, [element] flows across [surface] [direction]. Over time, [weaker layer] erodes and [new feature] is formed, which causes [movement]. This continues until [erosion effect] creates [steeper formation]. The [top layer] eventually falls because [reason] and drops into [receptacle].</p>
+                    </div>
+                    <div class="p-2.5 bg-sky-50 rounded-lg border border-sky-200">
+                        <strong class="text-sky-900 block font-semibold">Body 2 (Deepening, Expansion &amp; Final Stage):</strong>
+                        <p class="text-slate-700 mt-0.5">The [debris/rocks] that fell into [pool] move around with [force of nature]. This results in [secondary erosion] and causes [pool/channel] to become [larger/deeper]. In the final stage of the process, [terminal structure] is formed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Process Sequencers &amp; Geological Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">waterfall formation</span>
+                        <span class="text-slate-500">geological development</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">hard rock / soft rock</span>
+                        <span class="text-slate-500">resilient vs. softer stratum</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">erodes / erosion</span>
+                        <span class="text-slate-500">wears away / abrasion</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">steep cliff / overhang</span>
+                        <span class="text-slate-500">vertical rock face</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">plunge pool</span>
+                        <span class="text-slate-500">pool at waterfall base</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">gorge is formed</span>
+                        <span class="text-slate-500">steep canyon created upstream</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">force of the water</span>
+                        <span class="text-slate-500">hydraulic power / swirling</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let showArrows = true;
+
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing dynamic paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro', side: 'left', color: '#0284c7' },
+                { note: 'note-left-2', target: 'target-sequencers', side: 'left', color: '#d97706' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-overview', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-active-verbs', side: 'right', color: '#7c3aed' },
+                { note: 'note-right-3', target: 'target-passive-verbs', side: 'right', color: '#c026d3' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in process context: Using "${title}" provides clear chronological sequencing, accurate passive voice, and natural geological vocabulary for Band 6 Task 1.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The diagram shows the process of waterfall formation over a long period of time. The waterfall is formed when water flows over hard rock which sits over soft rock. At first, the water flows across the rock horizontally. Over time, the soft rock erodes and a cliff is formed which causes the water to move downhill. This continues until the erosion creates a much steeper cliff. The hard rock at the end of the cliff eventually falls because there is nothing to hold it and it drops into the pool below. The water no longer flows across the rock. Instead it drops over the cliff and falls straight down into the pool. The remaining water flows out of the pool and the river continues downstream. The rocks that fell from the edge of the cliff into the pool move around with the force of the water. This results in more erosion and causes the pool to become bigger. In the final stage of the process, a gorge is formed.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-GB';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

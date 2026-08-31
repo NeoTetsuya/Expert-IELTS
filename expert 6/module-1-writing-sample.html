@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Task 1 Describe a Chart - Fast Food Wages Model Answer & Annotations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Crimson Pro"', 'serif'],
+                        hand: ['Kalam', 'cursive'],
+                    },
+                    colors: {
+                        book: {
+                            header: '#ea580c',
+                            headerDark: '#c2410c',
+                            accent: '#f97316',
+                            bg: '#fcfbf7',
+                            paper: '#ffffff',
+                            line: '#e5e0d8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Highlighting styles */
+        .hl-connector {
+            background-color: #fef08a;
+            border-bottom: 2px solid #ca8a04;
+            padding: 1px 4px;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .hl-connector:hover {
+            background-color: #fde047;
+            box-shadow: 0 0 0 2px #ca8a04;
+        }
+        
+        .hl-band5-phrase {
+            background-color: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed #3b82f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-phrase:hover {
+            background-color: #bfdbfe;
+            transform: translateY(-1px);
+        }
+
+        .hl-band5-vocab {
+            background-color: #dcfce7;
+            color: #166534;
+            font-weight: 600;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border-bottom: 2px solid #22c55e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline;
+        }
+        .hl-band5-vocab:hover {
+            background-color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        /* SVG overlay container */
+        #connector-svg {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+        }
+
+        .svg-arrow-path {
+            fill: none;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 4;
+            animation: dash 30s linear infinite;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen py-6 px-3 sm:px-6 md:px-10 flex flex-col items-center">
+
+    <header class="max-w-6xl w-full mb-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-orange-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                1
+            </div>
+            <div>
+                <h1 class="font-bold text-lg text-slate-900 leading-tight">IELTS Writing Task 1 • Module 1</h1>
+                <p class="text-xs text-slate-500">Describe a Chart (Fast Food Wages 2010–2012) • Interactive Study Guide for Target Band 6</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+            <button id="toggle-arrows-btn" onclick="toggleConnectors()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-orange-50 text-orange-700 border border-orange-200 hover:bg-orange-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                <span id="arrow-btn-text">Hide Arrows</span>
+            </button>
+            <button onclick="toggleVocabDrawer()" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Band 6 Study Cards
+            </button>
+            <button onclick="speakEssay()" id="speak-btn" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audio-text">Listen Model</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Highlight Color Key -->
+    <div class="max-w-6xl w-full mb-3 px-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
+        <span class="font-bold text-slate-800 uppercase tracking-wider text-[11px]">Highlight Key:</span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-blue-100 border border-blue-400 rounded"></span>
+            <strong>Blue:</strong> Band 6 Cohesive Framing &amp; Comparison Structures
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-emerald-100 border border-emerald-400 rounded"></span>
+            <strong>Green:</strong> Wages, Age Cohorts &amp; Proportion Collocations
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 bg-yellow-200 border border-yellow-500 rounded"></span>
+            <strong>Yellow:</strong> Textbook Annotated Anchors
+        </span>
+    </div>
+
+    <!-- MAIN TEXTBOOK PAGE -->
+    <main id="book-page" class="relative max-w-6xl w-full bg-white shadow-2xl rounded-2xl border border-slate-300 p-4 sm:p-8 md:p-10 overflow-hidden">
+        
+        <!-- SVG Canvas for Dynamic Connector Arrows -->
+        <svg id="connector-svg">
+            <defs>
+                <marker id="arrow-left" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#ea580c" />
+                </marker>
+                <marker id="arrow-right" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5" />
+                </marker>
+            </defs>
+        </svg>
+
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-orange-600 pb-3 mb-6 gap-3">
+            <div>
+                <span class="text-xs font-black tracking-widest text-orange-600 uppercase">Module 1</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Task 1: Describe a chart</h2>
+            </div>
+            <div class="bg-orange-50 border-l-4 border-orange-600 rounded-r-lg p-3 max-w-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-orange-900 font-bold text-xs uppercase tracking-wide">
+                    <svg class="w-4 h-4 text-orange-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Expert writing
+                </div>
+                <div class="text-xs text-slate-700 mt-1 font-medium leading-relaxed space-y-1">
+                    <p>• <strong>Pay attention to the labels</strong> so that you know what you need to compare.</p>
+                    <p>• <strong>Look at the general trends</strong>, such as the most common wage, as well as slight differences in the age groups.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Prompt Box -->
+        <section class="mb-6 bg-orange-50/50 border-l-4 border-orange-500 rounded-r-lg p-4 sm:p-5">
+            <h3 class="font-bold text-sm text-orange-900 uppercase tracking-wider mb-2 flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-orange-600 text-white rounded text-xs">Task</span>
+                IELTS Writing Task 1 Prompt
+            </h3>
+            <div class="space-y-2 text-slate-800 text-sm sm:text-base font-serif leading-relaxed">
+                <p class="font-sans text-xs font-semibold text-slate-600">The table below shows the wages of fast food workers between 2010 and 2012.</p>
+                <div class="bg-white p-3 rounded border border-orange-200 text-slate-900 shadow-sm font-sans text-xs sm:text-sm">
+                    <p class="font-semibold text-slate-800">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                    <p class="text-slate-500 italic mt-0.5">Write at least 150 words.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8 p-4 sm:p-6 bg-amber-50/40 rounded-2xl border border-amber-200 shadow-sm relative">
+            <div class="flex items-center justify-between mb-3 border-b border-amber-200 pb-2">
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base font-serif italic text-center w-full">
+                    Percentage of fast food workers on different pay rates 2010–2012
+                </h4>
+            </div>
+            
+            <div class="overflow-x-auto bg-white rounded-xl border border-slate-300 shadow-sm p-4">
+                <table class="w-full text-xs sm:text-sm text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold border-b-2 border-slate-300">
+                            <th class="py-2.5 px-4 text-slate-900">Pay rate / Hourly wage</th>
+                            <th class="py-2.5 px-4 text-center bg-orange-50/50 text-orange-950 font-extrabold border-l border-slate-200">
+                                Age 16–19 (%)
+                            </th>
+                            <th class="py-2.5 px-4 text-center bg-blue-50/50 text-blue-950 font-extrabold border-l border-slate-200">
+                                Age 20+ (%)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 font-sans">
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-2.5 px-4 text-slate-800 font-medium">$7.25 or less (Minimum wage)</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-orange-900 font-bold">13.2</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-slate-800 font-semibold">11.1</td>
+                        </tr>
+                        <tr class="hover:bg-amber-50/60 transition bg-amber-50/30 font-semibold">
+                            <td class="py-2.5 px-4 text-slate-900 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> $7.26 – $10.09 (Majority rate)
+                            </td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-amber-900 font-black text-sm bg-amber-100/50">70.4</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-amber-900 font-black text-sm bg-amber-100/50">68.0</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-2.5 px-4 text-slate-800 font-medium">$10.10 – $11.99</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-slate-700">8.7</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-blue-900 font-bold">10.5</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition">
+                            <td class="py-2.5 px-4 text-slate-800 font-medium">$12.00 or more (Highest tier)</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-rose-800 font-bold">7.8</td>
+                            <td class="py-2.5 px-4 text-center border-l border-slate-200 text-blue-900 font-bold">10.4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table insights banner -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                <div class="bg-amber-50 border border-amber-300 p-2.5 rounded-lg text-xs text-amber-950 flex items-start gap-2 shadow-sm">
+                    <span class="text-amber-600 font-bold">💡</span>
+                    <div>
+                        <strong>Dominant Wage Bracket:</strong> Around 70% of both age brackets earned between $7.26 and $10.09/hour.
+                    </div>
+                </div>
+                <div class="bg-blue-50 border border-blue-300 p-2.5 rounded-lg text-xs text-blue-950 flex items-start gap-2 shadow-sm">
+                    <span class="text-blue-600 font-bold">🔍</span>
+                    <div>
+                        <strong>Overall Age Disparity:</strong> Under 20s had higher representation at the lowest rate, while over 20s were more represented above $10/hour.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-6">
+            <h3 class="font-bold text-lg text-slate-800 flex items-center gap-2">
+                <span class="w-3 h-3 bg-orange-600 rounded-full inline-block"></span>
+                Model answer &amp; Method Annotations
+            </h3>
+            <span class="text-xs text-slate-500">168 words • Model Answer calibrated for Band 6 Target</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            
+            <!-- LEFT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Left Note 1: Paraphrase Intro -->
+                <div id="note-left-1" class="bg-orange-50 border-2 border-orange-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-orange-400">
+                    <div class="flex items-center gap-1.5 text-orange-900 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-orange-600"></span>
+                        Introduction Paraphrase
+                    </div>
+                    <p class="text-orange-950 font-medium leading-relaxed">
+                        <strong class="text-orange-700">Avoid using words from the original sentence</strong> in your introduction.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-orange-200/70 text-[11px] text-orange-700 font-sans">
+                        💡 <em>Replaces: "wages of fast food workers" with "earnings of people employed in the fast food industry in the United States".</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 2: Avoid Mechanical Repetition -->
+                <div id="note-left-2" class="bg-amber-50 border-2 border-amber-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-amber-400">
+                    <div class="flex items-center gap-1.5 text-amber-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                        Idea Grouping
+                    </div>
+                    <p class="text-amber-950 font-medium leading-relaxed">
+                        <strong class="text-amber-700">Avoid 'mechanical repetition'</strong> by organising ideas into main points.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-amber-200/70 text-[11px] text-amber-700">
+                        ⭐ <em>Groups data into general sub-$10 workers, middle majority rates, and high-income extremes.</em>
+                    </div>
+                </div>
+
+                <!-- Left Note 3: Use Specific Figures -->
+                <div id="note-left-3" class="bg-emerald-50 border-2 border-emerald-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-emerald-400">
+                    <div class="flex items-center gap-1.5 text-emerald-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                        Data &amp; Figures Precision
+                    </div>
+                    <p class="text-emerald-950 font-medium leading-relaxed">
+                        <strong class="text-emerald-700">Use specific numbers from the chart</strong> to illustrate your points.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-emerald-200/70 text-[11px] text-emerald-700">
+                        💡 <em>Quotes: "13.2% and 11.1% respectively" and "70.4 percent of under 20s and 68 percent of over 20s".</em>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTER COLUMN: Model Essay Text with Highlights -->
+            <div class="lg:col-span-6 bg-slate-50/40 border-2 border-slate-300 rounded-2xl p-5 sm:p-7 font-serif text-slate-800 leading-relaxed text-base sm:text-[17px] shadow-inner">
+                
+                <!-- PARAGRAPH 1: INTRODUCTION & OVERVIEW -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 1: Introduction &amp; General Trend Overview</span>
+                    <p>
+                        <span id="target-intro-paraphrase" class="hl-connector" data-note="note-left-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The table shows [paraphrase]...', 'Table Opener Frame', 'Standard, clear academic formula to introduce a data table.')">The table shows</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('the earnings of people employed in the fast food industry', 'Topic paraphrase collocation', 'Natural, high-scoring paraphrase for wages of fast food workers.')">the earnings of people employed in the fast food industry</span> 
+                            in the United States.
+                        </span> 
+                        <span id="target-overview" class="hl-connector" data-note="note-right-1">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('We can see from the data that, in general, ...', 'Overview Signposting Frame', 'High-scoring, clear formula to present the general trend for Task 1.')">We can see from the data that, in general</span>, 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('people under the age of 20 earn less than those over the age of 20', 'Comparative general trend sentence', 'Summarizes the core comparative relationship between the two cohorts.')">people under the age of 20 earn less than those over the age of 20</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 2: MAIN BODY (DOMINANT RATES, LOW-END AND HIGH-END COMPARISONS) -->
+                <div class="mb-5 p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 2: Main Body Features (Dominant Brackets &amp; Group Comparison)</span>
+                    <p>
+                        <span id="target-main-body" class="hl-connector" data-note="note-left-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('The majority of people [verb-ing] in both [categories]...', 'Majority quantifier frame', 'Accurate way to summarize large combined proportions above 50%.')">The majority of people working in these restaurants in both age groups</span> 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('earn below $10 an hour', 'Earnings category phrase', 'Aggregates the two lowest wage brackets effectively.')">earn below $10 an hour</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('In both [categories], [X] was the most common [metric]', 'Superlative frequency frame', 'Highlights the dominant modal category across the data.')">In both age groups, $7.26-$10.09 was the most common rate of pay</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('However, the numbers for [Group A] were slightly higher than [Group B]...', 'Contrast comparative structure', 'Expresses subtle numeric differences cleanly.')">However, the numbers for those earning the lowest wage was slightly higher for the 16-19 age group than the 20+ age group</span>, 
+                            <span id="target-specific-figures" class="hl-connector" data-note="note-left-3">
+                                <span class="hl-band5-phrase" onclick="showWordDetail('at [X]% and [Y]% respectively', 'Precision reporting phrase', 'Essential Task 1 adverbial linker for ordered figures.')">at 13.2% and 11.1% respectively</span>.
+                            </span> 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('However, the average for both groups is somewhere around...', 'Approximation data frame', 'Describes median or central distribution without complex math.')">However, the average for both groups is somewhere around $7.26 and $10.09</span>, 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('with [X]% of [Group A] and [Y]% of [Group B] in this group', 'Participial data clause', 'Provides detailed supporting statistics concisely.')">with 70.4 percent of under 20s and 68 percent of over 20s in this group</span>. 
+                            <span class="hl-band5-phrase" onclick="showWordDetail('Only a very small number of people in both [categories] were able to...', 'Minority extreme frame', 'Highlights the lowest numerical frequency bracket at the top of the table.')">Only a very small number of people in both age groups were able to earn over $12.00 an hour</span>.
+                        </span>
+                    </p>
+                </div>
+
+                <!-- PARAGRAPH 3: FINAL SUMMARY SENTENCE -->
+                <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm relative group">
+                    <span class="text-[10px] font-sans font-bold uppercase text-slate-400 block mb-1">Paragraph 3: Final Summary Sentence</span>
+                    <p>
+                        <span id="target-final-summary" class="hl-connector" data-note="note-right-2">
+                            <span class="hl-band5-phrase" onclick="showWordDetail('So, ...', 'Informal/Natural concluding connector', 'A concise Band 5 linking word to summarize the main finding.')">So</span>, 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('wages for teenagers in the fast food industry', 'Target population noun phrase', 'Clear reference to the younger age cohort.')">wages for teenagers in the fast food industry</span> 
+                            were 
+                            <span class="hl-band5-vocab" onclick="showWordDetail('generally lower than for older workers', 'Comparative summary collocation', 'Final synthesized comparative conclusion.')">generally lower than for older workers</span>.
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: Annotation Cards (Method & Structure notes) -->
+            <div class="lg:col-span-3 flex flex-col justify-between space-y-6">
+                
+                <!-- Right Note 1: Overview Sentence -->
+                <div id="note-right-1" class="bg-indigo-50 border-2 border-indigo-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-indigo-400">
+                    <div class="flex items-center gap-1.5 text-indigo-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                        Overview Requirement
+                    </div>
+                    <p class="text-indigo-950 font-medium leading-relaxed">
+                        <strong class="text-indigo-700">Write an overview sentence</strong>, summarising the results.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-indigo-200/70 text-[11px] text-indigo-700">
+                        ⚠️ <em>Band 6 Criteria: Requires a clear overview presenting the main trends, differences, or stages.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 2: Paragraph Structure -->
+                <div id="note-right-2" class="bg-purple-50 border-2 border-purple-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-purple-400">
+                    <div class="flex items-center gap-1.5 text-purple-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                        3-Stage Paragraphing
+                    </div>
+                    <p class="text-purple-950 font-medium leading-relaxed">
+                        <strong class="text-purple-700">Write in paragraphs:</strong> an introduction, the main points, and a final summary sentence.
+                    </p>
+                    <div class="mt-2 pt-2 border-t border-purple-200/70 text-[11px] text-purple-700">
+                        ⭐ <em>Para 1: Intro &amp; Overview<br>Para 2: Main features &amp; data<br>Para 3: Final takeaway summary.</em>
+                    </div>
+                </div>
+
+                <!-- Right Note 3: Data Integrity -->
+                <div id="note-right-3" class="bg-rose-50 border-2 border-rose-300 rounded-xl p-3.5 shadow-sm text-xs relative transition duration-200 hover:shadow-md hover:border-rose-400">
+                    <div class="flex items-center gap-1.5 text-rose-800 font-bold uppercase tracking-wider text-[11px] mb-1">
+                        <span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                        Key Comparison Check
+                    </div>
+                    <p class="text-rose-950 font-medium leading-relaxed">
+                        <strong class="text-rose-700">Verify your comparisons:</strong> check that you compared both the majorities (around 70%) and the extremes ($7.25 vs. $12.00+).
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Page Number & Module Footer -->
+        <div class="mt-8 pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+            <span>Module 1 • Task 1: Describe a chart</span>
+            <span class="font-bold text-slate-600 text-sm">192</span>
+        </div>
+
+    </main>
+
+    <div id="vocab-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 transform scale-95 transition-transform duration-300" id="vocab-modal-card">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="modal-type-badge" class="px-2 py-0.5 text-[11px] font-bold rounded uppercase tracking-wider bg-orange-100 text-orange-800">
+                        Task 1 Formula
+                    </span>
+                    <h3 id="modal-word-title" class="text-xl font-bold text-slate-900 mt-1 font-serif">
+                        We can see from the data that, in general, ...
+                    </h3>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                    <span class="font-bold text-xs text-slate-500 uppercase block mb-1">Why this helps you achieve Band 6:</span>
+                    <p id="modal-explanation" class="text-slate-800 leading-relaxed font-sans">
+                        Gives your Task 1 response an immediate, crystal-clear overview sentence to satisfy the Band 6 requirement in Task Achievement.
+                    </p>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <span class="font-bold text-xs text-emerald-800 uppercase block mb-1">Band 6 Standard Pattern Example:</span>
+                    <p id="modal-example" class="font-serif italic text-emerald-950">
+                        "We can see from the data that, in general, people under the age of 20 earn less than those over the age of 20."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold">
+                    Got it, close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="vocab-drawer" class="fixed right-0 top-0 bottom-0 max-w-md w-full bg-white shadow-2xl z-40 border-l border-slate-300 p-6 overflow-y-auto transform translate-x-full transition-transform duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+            <h3 class="font-bold text-lg text-slate-900 flex items-center gap-2">
+                <span class="w-3 h-3 bg-orange-600 rounded-full"></span>
+                Band 6 Table &amp; Wages Toolkit (Module 1)
+            </h3>
+            <button onclick="toggleVocabDrawer()" class="text-slate-400 hover:text-slate-700 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <!-- Section 1: Template Structure -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-orange-700 mb-2">1. Table Report Skeleton (Demographic / Pay Rates)</h4>
+                <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-orange-50 rounded-lg border border-orange-200">
+                        <strong class="text-orange-900 block font-semibold">Introduction &amp; Overview:</strong>
+                        <p class="text-slate-700 mt-0.5">The table shows [paraphrase prompt topic] in [Location]. We can see from the data that, in general, [Group A] [earns less / is lower than] [Group B].</p>
+                    </div>
+                    <div class="p-2.5 bg-orange-50 rounded-lg border border-orange-200">
+                        <strong class="text-orange-900 block font-semibold">Main Body (Majorities, Common Rates &amp; Extremes):</strong>
+                        <p class="text-slate-700 mt-0.5">The majority of people in both age groups [earn below $X]. In both groups, [Bracket] was the most common rate of pay. However, the numbers for [extreme] were slightly higher for [Group A] than [Group B], at [X]% and [Y]% respectively. The average for both is around [Bracket], with [X]% and [Y]%. Only a small number earned over [Highest threshold].</p>
+                    </div>
+                    <div class="p-2.5 bg-orange-50 rounded-lg border border-orange-200">
+                        <strong class="text-orange-900 block font-semibold">Final Summary:</strong>
+                        <p class="text-slate-700 mt-0.5">So, [Metric] for [Group A] was generally lower than for [Group B].</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Vocabulary Table -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-wider text-emerald-700 mb-2">2. Wage, Comparison &amp; Demographic Collocations</h4>
+                <ul class="divide-y divide-slate-100 text-xs text-slate-700 bg-slate-50 rounded-lg border border-slate-200 p-2">
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">employed in the fast food industry</span>
+                        <span class="text-slate-500">working in restaurants</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">earnings / rate of pay</span>
+                        <span class="text-slate-500">wages / hourly pay</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">the majority of people</span>
+                        <span class="text-slate-500">most employees (&gt; 50%)</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">the most common rate</span>
+                        <span class="text-slate-500">highest frequency bracket</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">slightly higher than</span>
+                        <span class="text-slate-500">marginally greater</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">respectively</span>
+                        <span class="text-slate-500">in the same order mentioned</span>
+                    </li>
+                    <li class="py-1.5 flex justify-between">
+                        <span class="font-semibold text-emerald-900">only a very small number</span>
+                        <span class="text-slate-500">tiny minority</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let showArrows = true;
+
+        // Function to draw dynamic curved lines with arrowheads
+        function drawArrows() {
+            const svg = document.getElementById('connector-svg');
+            const bookPage = document.getElementById('book-page');
+            
+            // Clear existing paths
+            while (svg.firstChild) {
+                if (svg.firstChild.id === 'arrow-left' || svg.firstChild.id === 'arrow-right' || svg.firstChild.tagName === 'defs') {
+                    break;
+                }
+                svg.removeChild(svg.firstChild);
+            }
+
+            // Only draw arrows on medium to large screens (>= 1024px)
+            if (window.innerWidth < 1024 || !showArrows) {
+                return;
+            }
+
+            const pageRect = bookPage.getBoundingClientRect();
+
+            // Pairs of (Note ID -> Target ID, direction, color)
+            const connections = [
+                // Left Annotations
+                { note: 'note-left-1', target: 'target-intro-paraphrase', side: 'left', color: '#ea580c' },
+                { note: 'note-left-2', target: 'target-main-body', side: 'left', color: '#d97706' },
+                { note: 'note-left-3', target: 'target-specific-figures', side: 'left', color: '#059669' },
+                
+                // Right Annotations
+                { note: 'note-right-1', target: 'target-overview', side: 'right', color: '#4f46e5' },
+                { note: 'note-right-2', target: 'target-final-summary', side: 'right', color: '#7c3aed' }
+            ];
+
+            connections.forEach((conn) => {
+                const noteEl = document.getElementById(conn.note);
+                const targetEl = document.getElementById(conn.target);
+
+                if (!noteEl || !targetEl) return;
+
+                const noteRect = noteEl.getBoundingClientRect();
+                const targetRect = targetEl.getBoundingClientRect();
+
+                let startX, startY, endX, endY, cp1X, cp1Y, cp2X, cp2Y;
+
+                if (conn.side === 'left') {
+                    // From right edge of left note to left edge of target span
+                    startX = noteRect.right - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.left - pageRect.left - 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (endX - startX) * 0.5;
+                    cp1X = startX + dx;
+                    cp1Y = startY;
+                    cp2X = endX - dx;
+                    cp2Y = endY;
+                } else {
+                    // From left edge of right note to right edge of target span
+                    startX = noteRect.left - pageRect.left;
+                    startY = noteRect.top + (noteRect.height / 2) - pageRect.top;
+                    endX = targetRect.right - pageRect.left + 6;
+                    endY = targetRect.top + (targetRect.height / 2) - pageRect.top;
+
+                    const dx = (startX - endX) * 0.5;
+                    cp1X = startX - dx;
+                    cp1Y = startY;
+                    cp2X = endX + dx;
+                    cp2Y = endY;
+                }
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const d = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', conn.color);
+                path.setAttribute('class', 'svg-arrow-path');
+                path.setAttribute('marker-end', conn.side === 'left' ? 'url(#arrow-left)' : 'url(#arrow-right)');
+
+                svg.appendChild(path);
+            });
+        }
+
+        // Toggle connector arrows
+        function toggleConnectors() {
+            showArrows = !showArrows;
+            const btnText = document.getElementById('arrow-btn-text');
+            btnText.textContent = showArrows ? 'Hide Arrows' : 'Show Arrows';
+            drawArrows();
+        }
+
+        // Modal for word & phrase details
+        function showWordDetail(title, type, explanation) {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            
+            document.getElementById('modal-word-title').textContent = title;
+            document.getElementById('modal-type-badge').textContent = type;
+            document.getElementById('modal-explanation').textContent = explanation;
+            
+            const exampleText = `Example in report context: Using "${title}" provides structured data grouping, accurate demographic comparison, and lexical variation in IELTS Writing Task 1.`;
+            document.getElementById('modal-example').textContent = exampleText;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                card.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('vocab-modal');
+            const card = document.getElementById('vocab-modal-card');
+            modal.classList.add('opacity-0');
+            card.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Toggle Vocab Drawer
+        function toggleVocabDrawer() {
+            const drawer = document.getElementById('vocab-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Speech synthesis for model report
+        let isSpeaking = false;
+        function speakEssay() {
+            if (!('speechSynthesis' in window)) {
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+                return;
+            }
+
+            const essayText = `The table shows the earnings of people employed in the fast food industry in the United States. We can see from the data that, in general, people under the age of 20 earn less than those over the age of 20. The majority of people working in these restaurants in both age groups earn below ten dollars an hour. In both age groups, seven dollars twenty-six to ten dollars and nine cents was the most common rate of pay. However, the numbers for those earning the lowest wage was slightly higher for the 16 to 19 age group than the 20 plus age group, at 13.2% and 11.1% respectively. However, the average for both groups is somewhere around seven dollars twenty-six and ten dollars and nine cents, with 70.4 percent of under 20s and 68 percent of over 20s in this group. Only a very small number of people in both age groups were able to earn over twelve dollars an hour. So, wages for teenagers in the fast food industry were generally lower than for older workers.`;
+
+            const utterance = new SpeechSynthesisUtterance(essayText);
+            utterance.rate = 0.92;
+            utterance.lang = 'en-US';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                document.getElementById('audio-text').textContent = 'Stop Audio';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('audio-text').textContent = 'Listen Model';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Event Listeners for responsive drawing
+        window.addEventListener('load', () => {
+            drawArrows();
+        });
+
+        window.addEventListener('resize', () => {
+            drawArrows();
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
