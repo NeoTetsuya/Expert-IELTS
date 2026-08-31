@@ -1,95 +1,1196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expert for IELTS — Comprehensive Online Preparation</title>
-  <meta name="description"
-    content="Master the IELTS exam with Expert for IELTS. Targeted prep courses for Band 5.0, Band 6.0, and Band 7.5 with auto-sorted modules and practice materials.">
-  <link rel="stylesheet" href="./css/styles.css">
-    <script src="./js/theme-toggle.js"></script>
-    <script src="./js/mobile.js" defer></script>
-    <script src="./js/image-viewer.js" defer></script>
-    <script src="./js/study-progress.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert for IELTS &bull; Comprehensive Online Preparation</title>
+    <meta name="description" content="Master the IELTS exam with Expert for IELTS. Targeted preparation courses for Band 5.0, Band 6.0, and Band 7.5 with auto-sorted modules and practice materials.">
+    <meta name="keywords" content="Expert IELTS, IELTS Band 5, IELTS Band 6, IELTS Band 7.5, Academic IELTS Preparation, IELTS Practice">
+
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:title" content="Expert for IELTS &bull; Comprehensive Online Preparation">
+    <meta property="og:description" content="Targeted practice, comprehensive skill-building, and expert guidance for every band score.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Geist & Geist Mono strictly per design system -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Strict Landing Page Palette: Dark Neutral Base */
+            --bg-body: #181818;
+            --bg-surface: #1F1F1F;
+            --bg-elevated: #272727;
+            --bg-pill: rgba(39, 39, 39, 0.85);
+            --border-subtle: #313131;
+            --border-hover: #4a4a4a;
+            
+            --text-main: #FFFFFF;
+            --text-muted: #9B9B9B;
+            --text-faint: #666666;
+            
+            --brand-primary: #38BDF8;
+            --brand-primary-hover: #0284C7;
+            --brand-primary-text: #000000;
+            
+            --accent-band5: #34D399;
+            --accent-band6: #38BDF8;
+            --accent-band75: #FBBF24;
+            
+            --font-main: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-code: 'Geist Mono', monospace;
+            
+            --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+            --transition-smooth: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+            --transition-fast: all 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+            
+            --hero-grad-start: #FFFFFF;
+            --hero-grad-end: #9B9B9B;
+        }
+
+        :root[data-theme="light"] {
+            --bg-body: #FFFFFF;
+            --bg-surface: #F8FAFC;
+            --bg-elevated: #F1F5F9;
+            --bg-pill: rgba(255, 255, 255, 0.9);
+            --border-subtle: #E2E8F0;
+            --border-hover: #CBD5E1;
+            
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --text-faint: #94A3B8;
+            
+            --brand-primary: #0284C7;
+            --brand-primary-hover: #0369A1;
+            --brand-primary-text: #FFFFFF;
+            
+            --hero-grad-start: #000000;
+            --hero-grad-end: #666666;
+        }
+
+        /* Base Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            font-size: 16px;
+            line-height: 24px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.4s var(--ease-fluid), color 0.4s var(--ease-fluid);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-wrap: balance;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        p, span, li, a {
+            text-wrap: pretty;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button:focus-visible, a:focus-visible {
+            outline: 2px solid var(--brand-primary);
+            outline-offset: 2px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 16px;
+            background: var(--brand-primary);
+            color: var(--brand-primary-text);
+            padding: 8px 12px;
+            border-radius: 8px;
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 600;
+            transition: top 0.2s var(--ease-fluid);
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+
+        /* ==========================================================================
+           B7. FLUID ISLAND NAVIGATION
+           ========================================================================== */
+        .nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            padding: 16px 24px 8px 24px;
+            pointer-events: none;
+        }
+
+        .nav-island {
+            pointer-events: auto;
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--bg-pill);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 9999px;
+            padding: 8px 16px 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-fast);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon-box {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--brand-primary);
+            color: var(--brand-primary-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-code);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .brand-text {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+        }
+
+        .brand-text span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-item {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 9999px;
+            transition: var(--transition-fast);
+        }
+
+        .nav-item:hover {
+            color: var(--text-main);
+            background: var(--bg-elevated);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-elevated);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 9999px;
+            border: 1px solid var(--border-subtle);
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-theme-toggle:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero-section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 64px 24px 48px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 9999px;
+            padding: 4px 12px;
+            font-family: var(--font-code);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero-tag-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: var(--brand-primary);
+        }
+
+        .hero-title {
+            font-size: 48px;
+            line-height: 52px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            max-width: 680px;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, var(--hero-grad-start) 0%, var(--hero-grad-end) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            line-height: 28px;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin-bottom: 32px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--brand-primary);
+            color: var(--brand-primary-text);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-primary-hover);
+            color: #FFFFFF;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--bg-surface);
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+
+        /* Proof Stats Strip */
+        .proof-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+            width: 100%;
+            max-width: 680px;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .proof-num {
+            font-family: var(--font-code);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .proof-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           B11. MANDATORY TAGLINE REVEAL SECTION
+           ========================================================================== */
+        .tagline-section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tagline-label {
+            font-family: var(--font-code);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--brand-primary);
+            margin-bottom: 20px;
+        }
+
+        .tagline-text {
+            font-size: 36px;
+            line-height: 48px;
+            font-weight: 600;
+            max-width: 680px;
+            letter-spacing: -0.02em;
+        }
+
+        .reveal-word {
+            display: inline-block;
+            color: var(--text-main);
+            opacity: 0.25;
+            transition: opacity 0.6s cubic-bezier(0.32, 0.72, 0, 1), transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(2px);
+        }
+
+        .reveal-word.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           3-TIER BAND LEVEL GATEWAY CARDS
+           ========================================================================== */
+        .levels-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 24px 64px 24px;
+            width: 100%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 48px auto;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-code);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--brand-primary);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            line-height: 36px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            line-height: 24px;
+            color: var(--text-muted);
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .level-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 24px;
+            transition: var(--transition-fast);
+        }
+
+        .level-card:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-top-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .level-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .badge-band {
+            font-family: var(--font-code);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .badge-band5 { color: var(--accent-band5); }
+        .badge-band6 { color: var(--accent-band6); }
+        .badge-band75 { color: var(--accent-band75); }
+
+        .module-count-tag {
+            font-family: var(--font-code);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .level-card-title {
+            font-size: 24px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+
+        .level-card-desc {
+            font-size: 14px;
+            line-height: 22px;
+            color: var(--text-muted);
+        }
+
+        .skills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-chip {
+            font-size: 12px;
+            font-family: var(--font-code);
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .btn-launch-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--brand-primary);
+            color: var(--brand-primary-text);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .btn-launch-level:hover {
+            background: var(--brand-primary-hover);
+            color: #FFFFFF;
+        }
+
+        .btn-launch-level:active {
+            transform: scale(0.98);
+        }
+
+        /* ==========================================================================
+           CURRICULUM PILLARS & FEATURES
+           ========================================================================== */
+        .section-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 48px 24px 64px 24px;
+            width: 100%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: var(--transition-fast);
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-primary);
+        }
+
+        .feature-title {
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 600;
+        }
+
+        .feature-body {
+            font-size: 14px;
+            line-height: 20px;
+            color: var(--text-muted);
+        }
+
+        /* How it works 3 Steps */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .step-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .step-num {
+            font-family: var(--font-code);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-primary);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-body {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 20px;
+        }
+
+        /* ==========================================================================
+           FAQ SECTION
+           ========================================================================== */
+        .faq-list {
+            max-width: 680px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition-fast);
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .faq-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            transition: transform 0.3s var(--ease-fluid);
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            font-size: 14px;
+            line-height: 22px;
+            color: var(--text-muted);
+            transition: max-height 0.4s var(--ease-fluid), padding 0.4s var(--ease-fluid);
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding: 0 20px 16px 20px;
+        }
+
+        /* Final CTA */
+        .final-cta-section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 48px 24px 80px 24px;
+            width: 100%;
+        }
+
+        .final-cta-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 48px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            padding: 48px 24px 32px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .footer-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 32px;
+                line-height: 38px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .levels-grid {
+                grid-template-columns: 1fr;
+            }
+            .proof-strip {
+                gap: 16px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container">
-    <header class="hero">
-      <div class="hero-badge badge-band6">
-        <span>✨</span> Expert IELTS Preparation
-      </div>
-      <h1>Expert for IELTS</h1>
-      <p>Targeted practice, comprehensive skill-building, and expert guidance for every band level score. Choose your
-        target level to start mastering IELTS.</p>
+    <!-- Skip to content for keyboard accessibility per B10 -->
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
 
-      <div class="stats-row">
-        <div class="stat-chip">
-          <span>📚</span> <strong>3 Course Levels</strong> (Band 5.0 - 7.5)
+    <!-- B7. Fluid Island Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav-island" aria-label="Main Navigation">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon-box">E</div>
+                <div class="brand-text">Expert <span>for IELTS</span></div>
+            </a>
+
+            <div class="nav-links">
+                <a href="#levels" class="nav-item">Course levels</a>
+                <a href="#features" class="nav-item">Pillars</a>
+                <a href="#howItWorks" class="nav-item">How it works</a>
+                <a href="#faq" class="nav-item">FAQ</a>
+                <a href="https://neotetsuya.github.io/Landing-Page/" class="nav-item" style="color:var(--brand-primary);">&larr; Mastery Hub</a>
+            </div>
+
+            <div class="header-actions">
+                <button id="theme-toggle-btn" class="btn-theme-toggle" onclick="toggleTheme()" title="Toggle dark/light theme">
+                    <span id="themeToggleText">Light mode</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Above the fold Hero Section -->
+    <header class="hero-section">
+        <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            Structured IELTS Band Mastery System
         </div>
-        <div class="stat-chip">
-          <span>⚡</span> <strong>Interactive Modules</strong> Reading, Writing &amp; Grammar
+
+        <h1 class="hero-title">
+            Targeted preparation for every IELTS band level
+        </h1>
+
+        <p class="hero-sub">
+            Master academic English with comprehensive skill folders, grounded reading passages, automated cloze evaluation, and full exam tracking across Band 5.0 to 7.5+.
+        </p>
+
+        <div class="hero-cta-group">
+            <a href="#levels" class="btn-primary">
+                Select your band level
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a href="https://neotetsuya.github.io/Expert-IELTS-lessons/" class="btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+                Teacher lesson decks
+            </a>
         </div>
-        <div class="stat-chip">
-          <span>🌐</span> <strong>Neo Online Classroom</strong>
+
+        <div class="proof-strip">
+            <div class="proof-item">
+                <span class="proof-num">3</span>
+                <span class="proof-label">Band levels</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-num">160+</span>
+                <span class="proof-label">Curriculum modules</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-num">4</span>
+                <span class="proof-label">Core skill tracks</span>
+            </div>
+            <div class="proof-item">
+                <span class="proof-num">100%</span>
+                <span class="proof-label">Progress tracked</span>
+            </div>
         </div>
-      </div>
     </header>
 
-    <main>
-      <div class="levels-grid">
-        <!-- Band 5.0 Card -->
-        <a class="level-card card-band5" href="./expert 5/index.html" id="card-expert-5">
-          <div class="card-header">
-            <span class="hero-badge badge-band5">Band 5.0</span>
-            <span class="stat-chip" style="padding:0.25rem 0.6rem; font-size:0.75rem;">55+ Modules</span>
-          </div>
-          <h2 class="card-title">Expert 5</h2>
-          <p class="card-desc">Foundational course designed for learners building essential vocabulary, core grammar
-            structures, and exam familiarity.</p>
-          <div class="card-footer">
-            <span>Explore Skill Folders</span>
-            <span class="action-arrow">Start Course &rarr;</span>
-          </div>
-        </a>
+    <!-- B11. Mandatory Tagline Reveal Section -->
+    <section class="tagline-section" id="taglineReveal" aria-label="Course Philosophy">
+        <div class="tagline-label">Precision curriculum</div>
+        <p class="tagline-text" id="revealParagraph">
+            Achieve your target IELTS band through structured modules engineered to transform grammar, vocabulary, and exam strategy.
+        </p>
+    </section>
 
-        <!-- Band 6.0 Card -->
-        <a class="level-card card-band6" href="./expert 6/index.html" id="card-expert-6">
-          <div class="card-header">
-            <span class="hero-badge badge-band6">Band 6.0</span>
-            <span class="stat-chip" style="padding:0.25rem 0.6rem; font-size:0.75rem;">55+ Modules</span>
-          </div>
-          <h2 class="card-title">Expert 6</h2>
-          <p class="card-desc">Intermediate course focused on enhancing fluency, coherence, and structural accuracy
-            across all four skills.</p>
-          <div class="card-footer">
-            <span>Explore Skill Folders</span>
-            <span class="action-arrow">Start Course &rarr;</span>
-          </div>
-        </a>
+    <!-- 3-Tier Course Gateway Cards Section -->
+    <main class="levels-section" id="levels">
+        <div class="section-header" id="mainContent">
+            <div class="section-subtitle">Choose your pathway</div>
+            <h2 class="section-title">Course level suites</h2>
+            <p class="section-desc">Select the course tailored to your current proficiency and target exam band score.</p>
+        </div>
 
-        <!-- Band 7.5 Card -->
-        <a class="level-card card-band75" href="./expert 7.5/index.html" id="card-expert-75">
-          <div class="card-header">
-            <span class="hero-badge badge-band75">Band 7.5</span>
-            <span class="stat-chip" style="padding:0.25rem 0.6rem; font-size:0.75rem;">50+ Modules</span>
-          </div>
-          <h2 class="card-title">Expert 7.5</h2>
-          <p class="card-desc">Advanced masterclass for high-achieving candidates seeking top band scores with refined
-            exam strategy and precision.</p>
-          <div class="card-footer">
-            <span>Explore Skill Folders</span>
-            <span class="action-arrow">Start Course &rarr;</span>
-          </div>
-        </a>
-      </div>
+        <div class="levels-grid">
+
+            <!-- Band 5.0 Card -->
+            <article class="level-card" id="card-expert-5">
+                <div class="card-top-content">
+                    <div class="level-card-header">
+                        <span class="badge-band badge-band5">Band 5.0 – 6.0</span>
+                        <span class="module-count-tag">55+ Modules</span>
+                    </div>
+                    <h3 class="level-card-title">Expert 5</h3>
+                    <p class="level-card-desc">
+                        Foundational course designed for learners building core grammar structures, high utility vocabulary, sentence completion, and essential exam familiarity.
+                    </p>
+                    <div class="skills-row">
+                        <span class="skill-chip">Grammar Foundations</span>
+                        <span class="skill-chip">Reading Passages</span>
+                        <span class="skill-chip">Core Lexicon</span>
+                        <span class="skill-chip">Writing Task 1</span>
+                    </div>
+                </div>
+                <a href="./expert 5/index.html" class="btn-launch-level">
+                    Start Expert 5 Course
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </article>
+
+            <!-- Band 6.0 Card -->
+            <article class="level-card" id="card-expert-6">
+                <div class="card-top-content">
+                    <div class="level-card-header">
+                        <span class="badge-band badge-band6">Band 6.0 – 7.0</span>
+                        <span class="module-count-tag">55+ Modules</span>
+                    </div>
+                    <h3 class="level-card-title">Expert 6</h3>
+                    <p class="level-card-desc">
+                        Intermediate course focused on enhancing fluency, cohesive devices, academic precision, complex sentence structures, and multi skill exam tasks.
+                    </p>
+                    <div class="skills-row">
+                        <span class="skill-chip">Cohesive Devices</span>
+                        <span class="skill-chip">Academic Reading</span>
+                        <span class="skill-chip">Essay Models</span>
+                        <span class="skill-chip">Task 2 Structures</span>
+                    </div>
+                </div>
+                <a href="./expert 6/index.html" class="btn-launch-level">
+                    Start Expert 6 Course
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </article>
+
+            <!-- Band 7.5 Card -->
+            <article class="level-card" id="card-expert-75">
+                <div class="card-top-content">
+                    <div class="level-card-header">
+                        <span class="badge-band badge-band75">Band 7.5+ High Score</span>
+                        <span class="module-count-tag">50+ Modules</span>
+                    </div>
+                    <h3 class="level-card-title">Expert 7.5</h3>
+                    <p class="level-card-desc">
+                        Advanced masterclass for high achieving candidates seeking top band scores with sophisticated collocation mastery, nuance, and speed strategies.
+                    </p>
+                    <div class="skills-row">
+                        <span class="skill-chip">Advanced Lexicon</span>
+                        <span class="skill-chip">Complex Analysis</span>
+                        <span class="skill-chip">Band 8+ Writing</span>
+                        <span class="skill-chip">Nuanced Speaking</span>
+                    </div>
+                </div>
+                <a href="./expert 7.5/index.html" class="btn-launch-level">
+                    Start Expert 7.5 Course
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </article>
+
+        </div>
     </main>
 
-    <footer>
-      <p>&copy; 2026 Expert for IELTS. All rights reserved.</p>
-    </footer>
-  </div>
-</body>
+    <!-- Curriculum Pillars & Features Section -->
+    <section class="section-container" id="features">
+        <div class="section-header">
+            <div class="section-subtitle">Comprehensive system</div>
+            <h2 class="section-title">Core curriculum pillars</h2>
+            <p class="section-desc">Every course folder provides balanced coverage across critical exam dimensions.</p>
+        </div>
 
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <h3 class="feature-title">Grounded reading analysis</h3>
+                <p class="feature-body">Side by side authentic passages with instant paragraph evidence highlighting and question mapping.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 class="feature-title">Automated evaluations</h3>
+                <p class="feature-body">Instant cloze validation and multi choice checking provide immediate feedback without manual grading delays.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <h3 class="feature-title">Task 1 &amp; 2 essay models</h3>
+                <p class="feature-body">Full band annotated model essays highlighting cohesive devices, topic sentences, and band 9 vocabulary.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3 class="feature-title">Local progress tracking</h3>
+                <p class="feature-body">Track completed exercises, unit scores, and mastery percentage directly in your browser session.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section-container" id="howItWorks">
+        <div class="section-header">
+            <div class="section-subtitle">Study methodology</div>
+            <h2 class="section-title">How to prepare effectively</h2>
+            <p class="section-desc">A structured three step process to achieve tangible band improvement.</p>
+        </div>
+
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-num">Step 01</span>
+                <h3 class="step-title">Select your band level</h3>
+                <p class="step-body">Start with Expert 5 if building foundational fluency, or Expert 6 and 7.5 for advanced academic precision.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">Step 02</span>
+                <h3 class="step-title">Work through skill folders</h3>
+                <p class="step-body">Complete reading passages, grammar cloze exercises, and writing task models organized by unit topics.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-num">Step 03</span>
+                <h3 class="step-title">Evaluate &amp; track progress</h3>
+                <p class="step-body">Review automated feedback, bookmark difficult questions, and track module completion over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-container" id="faq">
+        <div class="section-header">
+            <div class="section-subtitle">Common questions</div>
+            <h2 class="section-title">Frequently asked questions</h2>
+            <p class="section-desc">Clear answers to help you navigate and maximize your IELTS preparation.</p>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Which course level should I begin with?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    If your current score is around Band 4.5 to 5.5, start with Expert 5. Learners aiming for Band 6.5 to 7.0 should choose Expert 6, while high band test takers should proceed directly to Expert 7.5.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How does the course connect to Expert IELTS Lessons?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    This portal contains student self study materials and modules. The Lessons repository provides 16:9 interactive presentation slide decks designed for classroom instruction.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Is my study progress saved automatically?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    Yes. Exercise completion and quiz attempts are saved locally in your browser so you can track your journey without creating an account.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I access these materials offline?
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    All core scripts, styles, and lesson content are stored locally within the repository files and run smoothly even when offline.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="final-cta-card">
+            <h2 style="font-size:30px; font-weight:700;">Ready to achieve your target IELTS band?</h2>
+            <p style="font-size:16px; color:var(--text-muted); max-width:540px;">Select your course level to begin comprehensive IELTS preparation today.</p>
+            <a href="#levels" class="btn-primary">
+                Select your band level
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-bottom-row">
+                <div>&copy; 2026 Expert for IELTS &bull; Comprehensive Online Preparation. All rights reserved.</div>
+                <div style="display:flex; gap:16px;">
+                    <a href="#levels">Course levels</a>
+                    <a href="#features">Features</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="https://neotetsuya.github.io/Landing-Page/">Mastery Hub</a>
+                    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to top &uarr;</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts: Tagline Scroll Reveal & Theme Management -->
+    <script>
+        // Tagline Word-by-Word Scroll Reveal per B11
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealParagraph = document.getElementById('revealParagraph');
+            if (revealParagraph) {
+                const text = revealParagraph.textContent.trim();
+                const words = text.split(/\s+/);
+                revealParagraph.innerHTML = words.map(w => `<span class="reveal-word">${w}</span> `).join('');
+                const wordSpans = revealParagraph.querySelectorAll('.reveal-word');
+
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                wordSpans.forEach((span, idx) => {
+                                    setTimeout(() => span.classList.add('active'), idx * 40);
+                                });
+                            }
+                        });
+                    }, { threshold: 0.3 });
+                    observer.observe(revealParagraph);
+                } else {
+                    wordSpans.forEach(s => s.classList.add('active'));
+                }
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // Theme Switcher Sync with theme-toggle.js
+        function toggleTheme() {
+            if (window.themeToggle && typeof window.themeToggle === 'function') {
+                window.themeToggle();
+            } else {
+                const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                const next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                const label = document.getElementById('themeToggleText');
+                if (label) label.textContent = next === 'dark' ? 'Light mode' : 'Dark mode';
+                try { localStorage.setItem('expert_ielts_theme', next); } catch(e){}
+            }
+        }
+
+        (function initThemeLabel() {
+            try {
+                const saved = localStorage.getItem('expert_ielts_theme');
+                if (saved) {
+                    document.documentElement.setAttribute('data-theme', saved);
+                    const label = document.getElementById('themeToggleText');
+                    if (label) label.textContent = saved === 'dark' ? 'Light mode' : 'Dark mode';
+                }
+            } catch(e){}
+        })();
+    </script>
+
+    <!-- Support Scripts -->
+    <script src="./js/theme-toggle.js"></script>
+    <script src="./js/study-progress.js" defer></script>
+</body>
 </html>
