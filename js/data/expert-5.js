@@ -435,6 +435,15 @@ window.EXPERT_5_MODULES = [
     "status": "Active Model Answer"
   },
   {
+    "url": "module-5-writing-Fri 5.30 pm.html",
+    "dataTitle": "Module 5 Writing — Writing Fri 5.30 Pm",
+    "skill": "writing",
+    "badge": "Module 5",
+    "title": "Module 5 Writing — Writing Fri 5.30 Pm",
+    "status": "Active Exercise",
+    "badgeClass": "badge-band5"
+  },
+  {
     "url": "module-6-writing.html",
     "dataTitle": "Module 6 Writing",
     "skill": "writing",
@@ -465,10 +474,10 @@ window.EXPERT_5_MODULES = [
     "url": "module-7-writing-Sat 8am.html",
     "dataTitle": "Module 7 Writing — Task 1",
     "skill": "writing",
+    "badgeClass": "badge-band5",
     "badge": "Module 7",
     "title": "Module 7 Writing — Task 1",
-    "status": "Active Exercise",
-    "badgeClass": "badge-band5"
+    "status": "Active Exercise"
   },
   {
     "url": "module-7-writing-sample.html",
