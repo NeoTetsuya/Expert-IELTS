@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review 9 - English Self-Study Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .tab-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+    }
+    .feedback-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+    .feedback-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+          R9
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Review 9</h1>
+            <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">Module Test 9</span>
+          </div>
+          <p class="text-xs text-slate-500">Media, Technology, Phrasal Verbs, Tenses &amp; Determiners</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
+        <div class="text-right">
+          <div class="text-xs text-slate-500 font-medium">Overall Progress</div>
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+              <div id="global-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="global-score-text" class="text-xs font-bold text-slate-700">0 / 46</span>
+          </div>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Reset All
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <div class="mb-8 border-b border-slate-200 overflow-x-auto">
+      <nav class="flex space-x-2 pb-3 min-w-max" aria-label="Exercise Tabs">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+          <span>Ex 1: Phrasal Verbs (Media &amp; Tech)</span>
+          <span id="badge-1" class="text-[11px] px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">0/9</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 2: Media &amp; Tech Definitions</span>
+          <span id="badge-2" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/7</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 3: Past Simple vs Present Perfect</span>
+          <span id="badge-3" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 4: Media Comparison Essay</span>
+          <span id="badge-4" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(5)" id="tab-btn-5" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 5: Error Correction (Determiners)</span>
+          <span id="badge-5" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab 1: Exercise 1 -->
+    <div id="tab-content-1" class="tab-panel transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 1 • Vocabulary &amp; Phrasal Verbs</div>
+            <h2 class="text-xl font-bold text-slate-900">Media &amp; Technology Phrasal Verbs</h2>
+            <p class="text-sm text-slate-600 mt-1">Replace the underlined verbs/phrases in the student's responses with the correct form of the phrasal verbs in the box.</p>
+          </div>
+          <div>
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Phrasal Verb Bank</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">back up</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">come on</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">come out</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">flick through</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">go into</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">look up</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">pop up</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">print out</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">set up</span>
+          </div>
+        </div>
+
+        <div class="space-y-6 mt-6">
+          <!-- Conversation 1 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q1</span>
+              Where do you usually get the news from?
+            </h3>
+            
+            I get most news from social media because you can see a story as soon as it 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">1. <span class="underline decoration-indigo-400">appears</span> &rarr;</span>
+              <input type="text" id="ex1_1" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>. 
+            I sometimes listen to the radio news if it 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">2. <span class="underline decoration-indigo-400">starts</span> &rarr;</span>
+              <input type="text" id="ex1_2" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            when I'm in the car. I don't usually read newspapers although sometimes I 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">3. <span class="underline decoration-indigo-400">quickly read</span> &rarr;</span>
+              <input type="text" id="ex1_3" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            them at the weekend. I suppose newspaper articles do 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">4. <span class="underline decoration-indigo-400">describe</span> &rarr;</span>
+              <input type="text" id="ex1_4" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            more detail but I don't have time to read them.
+          </div>
+
+          <!-- Conversation 2 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q2</span>
+              Have you ever taken a course to improve your computer skills?
+            </h3>
+            
+            No, but I often ask my sister to help me with something because she's a computer expert. For example, I got a new laptop recently and she showed me how to 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">5. <span class="underline decoration-indigo-400">make it ready to use</span> &rarr;</span>
+              <input type="text" id="ex1_5" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>; 
+            she also did something to stop those annoying adverts from 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">6. <span class="underline decoration-indigo-400">appearing</span> &rarr;</span>
+              <input type="text" id="ex1_6" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            on my screen all the time. She's always telling me to 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">7. <span class="underline decoration-indigo-400">make copies of</span> &rarr;</span>
+              <input type="text" id="ex1_7" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            my files but I always forget!
+          </div>
+
+          <!-- Conversation 3 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q3</span>
+              What device do you use for browsing the internet?
+            </h3>
+            
+            I use my smartphone for most things - it's useful if I want to 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">8. <span class="underline decoration-indigo-400">search for something quickly</span> &rarr;</span>
+              <input type="text" id="ex1_8" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-44 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            when I'm out. When I'm at home, I usually use my laptop but if I want to read an article on the internet, I usually 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">9. <span class="underline decoration-indigo-400">make a copy of it on paper</span> &rarr;</span>
+              <input type="text" id="ex1_9" placeholder="phrasal verb..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-40 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            because I find it difficult to read on a screen.
+          </div>
+        </div>
+
+        <div id="ex1-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Exercise 2 -->
+    <div id="tab-content-2" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 2 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Media &amp; Technology Definitions</h2>
+            <p class="text-sm text-slate-600 mt-1">Read the definitions and complete the words. The first letter of each word is given.</p>
+          </div>
+          <div>
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">1.</span>a webpage where a person writes regularly about topics that interest them or recent events:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">b</span>
+              <input type="text" id="ex2_1" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">2.</span>the title of a newspaper article, printed in large letters at the top:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">h</span>
+              <input type="text" id="ex2_2" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">3.</span>newspapers and magazines:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">p</span>
+              <input type="text" id="ex2_3" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">4.</span>a small device or tool that does something useful:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">g</span>
+              <input type="text" id="ex2_4" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">5.</span>the sets of programs that tell a computer how to do a particular job:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">s</span>
+              <input type="text" id="ex2_5" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">6.</span>a special sign that is used to show an emotion, especially in text messages and on the internet:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">e</span>
+              <input type="text" id="ex2_6" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between md:col-span-2">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">7.</span>a newspaper with small pages, a lot of photographs and not much serious news:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">t</span>
+              <input type="text" id="ex2_7" placeholder="Type letters..." class="ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex2_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex2-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Exercise 3 -->
+    <div id="tab-content-3" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 3 • Grammar</div>
+            <h2 class="text-xl font-bold text-slate-900">Trends in News: Past Simple &amp; Present Perfect</h2>
+            <p class="text-sm text-slate-600 mt-1">Choose the correct options in italics to complete the paragraph from a student's summary.</p>
+          </div>
+          <div>
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          Over the last ten years, the number of people using social media to access news 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <select id="ex3_1" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="increased">increased</option>
+              <option value="has increased">has increased</option>
+            </select>
+          </span>
+          steadily, with significantly more people using this method now compared to a decade 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <select id="ex3_2" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="yet">yet</option>
+              <option value="ago">ago</option>
+            </select>
+          </span>. 
+          However, 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <select id="ex3_3" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="for">for</option>
+              <option value="since">since</option>
+            </select>
+          </span>
+          2006 the two different age groups have shown slight differences. In 2012 there 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <select id="ex3_4" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="was">was</option>
+              <option value="has been">has been</option>
+            </select>
+          </span>
+          a small fall in the number of people under 40 using social media to access their news. 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <select id="ex3_5" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="For">For</option>
+              <option value="Since">Since</option>
+            </select>
+          </span>
+          the last four years, numbers in this age group have remained steady. In comparison, the number of over 40s who use social media to access news 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <select id="ex3_6" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="rose">rose</option>
+              <option value="has risen">has risen</option>
+            </select>
+          </span>
+          considerably each year until 2014. 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <select id="ex3_7" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="For">For</option>
+              <option value="Since">Since</option>
+            </select>
+          </span>
+          then, although figures in this age group 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <select id="ex3_8" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="continued">continued</option>
+              <option value="have continued">have continued</option>
+            </select>
+          </span>
+          to grow, it 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9</span>
+            <select id="ex3_9" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="was">was</option>
+              <option value="has been">has been</option>
+            </select>
+          </span>
+          at a much slower pace; the older age group has not 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10</span>
+            <select id="ex3_10" class="ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="yet">yet</option>
+              <option value="already">already</option>
+            </select>
+          </span>
+          reached the level of the younger one.
+        </div>
+
+        <div id="ex3-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Exercise 4 -->
+    <div id="tab-content-4" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 4 • Essay Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Traditional vs. Social Media for News</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the paragraph from a student's essay with the words in the box.</p>
+          </div>
+          <div>
+            <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">app</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">comment</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">digital age</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">effective</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">follow</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">informative</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">journalism</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">media</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">press</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">update</span>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          <div class="p-3.5 bg-indigo-100/50 rounded-xl text-xs font-bold uppercase tracking-wide text-indigo-900 mb-4 border border-indigo-200/50">
+            Essay Prompt: Compare the advantages and disadvantages of traditional media and social media for communicating news.
+          </div>
+
+          Although we live in the 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <input type="text" id="ex4_1" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>, 
+          I believe all forms of mass 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <input type="text" id="ex4_2" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          have their advantages and disadvantages. One obvious advantage of social media is that it can 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <input type="text" id="ex4_3" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          the news continuously and this means people can use a(n) 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <input type="text" id="ex4_4" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          on their phone or tablet to 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <input type="text" id="ex4_5" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          a news story as it happens; they can't do this with traditional media. I also think social media is more 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <input type="text" id="ex4_6" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          at involving people in the news because it allows them to 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <input type="text" id="ex4_7" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          on news stories and give their opinion. On the other hand, the traditional 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <input type="text" id="ex4_8" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          is usually more detailed and 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9</span>
+            <input type="text" id="ex4_9" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          than social media, and you are more likely to find serious 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10</span>
+            <input type="text" id="ex4_10" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in a newspaper article.
+        </div>
+
+        <div id="ex4-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Exercise 5 -->
+    <div id="tab-content-5" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 5 • Grammar &amp; Error Correction</div>
+            <h2 class="text-xl font-bold text-slate-900">Determiners, Pronouns &amp; Quantifiers</h2>
+            <p class="text-sm text-slate-600 mt-1">Eight of the sentences contain a mistake. Two are already correct. Select whether each sentence is Correct or contains a Mistake, and type the correct word/phrase for those with mistakes.</p>
+          </div>
+          <div>
+            <button onclick="checkEx5()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">1.</span>
+              Not everybody are able to use a computer confidently.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_1" onchange="toggleCorrectionField(1)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_1" placeholder="Type correction (e.g., is / are -> is)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">2.</span>
+              Neither printer are working today.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_2" onchange="toggleCorrectionField(2)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_2" placeholder="Type correction (e.g., is / are -> is)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">3.</span>
+              I read lots of articles about this subject but only a number of them were useful.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_3" onchange="toggleCorrectionField(3)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_3" placeholder="Type correction (e.g., a few / some)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">4.</span>
+              Is there everything I can do to stop these pop-up adverts?
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_4" onchange="toggleCorrectionField(4)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_4" placeholder="Type correction (e.g., anything / everything -> anything)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">5.</span>
+              Both Sandra and I buy a newspaper but she rarely reads her.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_5" onchange="toggleCorrectionField(5)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_5" placeholder="Type correction (e.g., hers / her -> hers)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">6.</span>
+              Each of these two apps has the same function.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_6" onchange="toggleCorrectionField(6)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_6" placeholder="Leave blank if correct or type correction..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">7.</span>
+              Unfortunately, I have none paper, so I can't print this out.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_7" onchange="toggleCorrectionField(7)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_7" placeholder="Type correction (e.g., no / no paper)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">8.</span>
+              That tabloid is famous for it's unbelievable stories.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_8" onchange="toggleCorrectionField(8)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_8" placeholder="Type correction (e.g., its / it's -> its)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 9 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">9.</span>
+              Every friend of mine have a smartphone.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_9" onchange="toggleCorrectionField(9)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_9" placeholder="Type correction (e.g., has / have -> has)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_9" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 10 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">10.</span>
+              Both of my parents are journalists and work for the local newspaper.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <select id="ex5_status_10" onchange="toggleCorrectionField(10)" class="ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700">
+                <option value="">Status...</option>
+                <option value="correct">Sentence is Correct</option>
+                <option value="mistake">Contains Mistake</option>
+              </select>
+              <input type="text" id="ex5_corr_10" placeholder="Leave blank if correct or type correction..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_10" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex5-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>English Language Learning • Review Module 9 Practice</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const tabScores = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    };
+
+    const maxScores = {
+      1: 9,  // 9 phrasal verbs
+      2: 7,  // 7 definitions
+      3: 10, // 10 past simple / present perfect selections
+      4: 10, // 10 essay cloze words
+      5: 10  // 10 determiners & pronouns error corrections
+    };
+
+    function switchTab(tabNum) {
+      for (let i = 1; i <= 5; i++) {
+        const panel = document.getElementById(`tab-content-${i}`);
+        const btn = document.getElementById(`tab-btn-${i}`);
+        if (panel && btn) {
+          panel.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+
+      const targetPanel = document.getElementById(`tab-content-${tabNum}`);
+      const targetBtn = document.getElementById(`tab-btn-${tabNum}`);
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.remove('hidden');
+        targetBtn.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      }
+    }
+
+    function cleanStr(str) {
+      if (!str) return '';
+      return str.trim()
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.,!?]/g, '');
+    }
+
+    function updateHeaderStats() {
+      let total = 0;
+      let grandMax = 0;
+      for (let i = 1; i <= 5; i++) {
+        total += tabScores[i];
+        grandMax += maxScores[i];
+        const badge = document.getElementById(`badge-${i}`);
+        if (badge) {
+          badge.textContent = `${tabScores[i]}/${maxScores[i]}`;
+          if (tabScores[i] === maxScores[i]) {
+            badge.className = 'text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full';
+          }
+        }
+      }
+      const pct = Math.round((total / grandMax) * 100);
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('global-score-text').textContent = `${total} / ${grandMax} (${pct}%)`;
+    }
+
+    function highlightMissingInput(el) {
+      if (!el) return;
+      el.classList.add('ring-2', 'ring-amber-500', 'border-amber-500');
+      const clearRing = () => {
+        el.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+        el.removeEventListener('input', clearRing);
+        el.removeEventListener('change', clearRing);
+      };
+      el.addEventListener('input', clearRing);
+      el.addEventListener('change', clearRing);
+    }
+
+    let toastTimer = null;
+    function showIncompleteWarning(exName, completed, total) {
+      let toast = document.getElementById('incomplete-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'incomplete-toast';
+        toast.className = 'fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-0 opacity-100 border border-slate-700 text-sm';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div>
+          <p class="font-semibold text-xs text-amber-300 uppercase tracking-wide">Self-Study Check: ${exName}</p>
+          <p class="text-xs text-slate-200 mt-0.5">Please complete all items (${completed}/${total} answered) before checking.</p>
+        </div>
+      `;
+      toast.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }
+
+    // ================= EXERCISE 1 =================
+    const ex1Answers = {
+      ex1_1: ["comes out", "come out"],
+      ex1_2: ["comes on", "come on"],
+      ex1_3: ["flick through", "flick through them"],
+      ex1_4: ["go into"],
+      ex1_5: ["set it up", "set up"],
+      ex1_6: ["popping up", "pop up"],
+      ex1_7: ["back up", "back up my files", "back them up"],
+      ex1_8: ["look something up", "look up something", "look up"],
+      ex1_9: ["print it out", "print out"]
+    };
+
+    function checkEx1() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 9; i++) {
+        const inp = document.getElementById(`ex1_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 1", 9 - emptyCount, 9);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 9; i++) {
+        const key = `ex1_${i}`;
+        const inp = document.getElementById(key);
+        const userVal = cleanStr(inp.value);
+        const valid = ex1Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          inp.className = 'ex1-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          inp.className = 'ex1-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[1] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex1-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 9 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 9. ${
+        score === 9 
+          ? 'Outstanding! All phrasal verbs replaced with exact forms!' 
+          : 'Check phrasal verbs: 1 comes out, 2 comes on, 3 flick through, 4 go into, 5 set it up, 6 popping up, 7 back up, 8 look something up, 9 print it out.'
+      }`;
+    }
+
+    // ================= EXERCISE 2 =================
+    const ex2Answers = {
+      1: { valid: ["log", "blog"], expected: "blog" },
+      2: { valid: ["eadline", "headline"], expected: "headline" },
+      3: { valid: ["ress", "press"], expected: "press" },
+      4: { valid: ["adget", "gadget"], expected: "gadget" },
+      5: { valid: ["oftware", "software"], expected: "software" },
+      6: { valid: ["moji", "emoji", "moticon", "emoticon"], expected: "emoji / emoticon" },
+      7: { valid: ["abloid", "tabloid"], expected: "tabloid" }
+    };
+
+    function checkEx2() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 7; i++) {
+        const inp = document.getElementById(`ex2_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 2", 7 - emptyCount, 7);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 7; i++) {
+        const inp = document.getElementById(`ex2_${i}`);
+        const hint = document.getElementById(`hint-ex2_${i}`);
+        const userVal = cleanStr(inp.value);
+        const item = ex2Answers[i];
+        const isOk = item.valid.some(v => cleanStr(v) === userVal);
+
+        if (isOk) {
+          score++;
+          inp.className = 'ex2-input flex-1 px-3 py-1.5 border rounded-lg text-sm text-slate-800 font-sans font-normal feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          inp.className = 'ex2-input flex-1 px-3 py-1.5 border rounded-lg text-sm text-slate-800 font-sans font-normal feedback-incorrect';
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct word: ${item.expected}`;
+        }
+      }
+
+      tabScores[2] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex2-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 7 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 7. ${
+        score === 7 
+          ? 'Brilliant! All media and technology terms identified accurately!' 
+          : 'Review any terms highlighted in red and check their spelling.'
+      }`;
+    }
+
+    // ================= EXERCISE 3 =================
+    const ex3Answers = {
+      ex3_1: "has increased",
+      ex3_2: "ago",
+      ex3_3: "since",
+      ex3_4: "was",
+      ex3_5: "For",
+      ex3_6: "rose",
+      ex3_7: "Since",
+      ex3_8: "have continued",
+      ex3_9: "has been",
+      ex3_10: "yet"
+    };
+
+    function checkEx3() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const sel = document.getElementById(`ex3_${i}`);
+        if (!sel.value) {
+          emptyCount++;
+          highlightMissingInput(sel);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 3", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex3_${i}`;
+        const sel = document.getElementById(key);
+        if (sel.value.toLowerCase() === ex3Answers[key].toLowerCase()) {
+          score++;
+          sel.className = 'ex3-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          sel.className = 'ex3-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[3] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex3-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Superb! Perfect control of Past Simple vs. Present Perfect and time markers!' 
+          : 'Remember: use past simple for finished time periods (In 2012 there was, rose until 2014) and present perfect with since/for up to now (has increased, have continued, has not yet reached).'
+      }`;
+    }
+
+    // ================= EXERCISE 4 =================
+    const ex4Answers = {
+      ex4_1: ["digital age"],
+      ex4_2: ["media"],
+      ex4_3: ["update"],
+      ex4_4: ["app"],
+      ex4_5: ["follow"],
+      ex4_6: ["effective"],
+      ex4_7: ["comment"],
+      ex4_8: ["press"],
+      ex4_9: ["informative"],
+      ex4_10: ["journalism"]
+    };
+
+    function checkEx4() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const inp = document.getElementById(`ex4_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 4", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex4_${i}`;
+        const inp = document.getElementById(key);
+        const userVal = cleanStr(inp.value);
+        const valid = ex4Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          inp.className = 'ex4-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          inp.className = 'ex4-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[4] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex4-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Outstanding! The entire media comparison essay cloze is completed accurately!' 
+          : 'Review any red blanks and check against the word bank above.'
+      }`;
+    }
+
+    // ================= EXERCISE 5 =================
+    const ex5Answers = {
+      1: {
+        status: "mistake",
+        corrections: ["is", "is able", "are -> is"],
+        explanation: "'Everybody' is singular: 'Not everybody is able to use a computer confidently.'"
+      },
+      2: {
+        status: "mistake",
+        corrections: ["is", "is working", "are -> is"],
+        explanation: "'Neither' + singular noun takes a singular verb: 'Neither printer is working today.'"
+      },
+      3: {
+        status: "mistake",
+        corrections: ["a few", "some", "a small number", "a number of -> a few"],
+        explanation: "Use 'only a few' (or 'some' / 'a small number') for a limited quantity: 'only a few of them were useful.'"
+      },
+      4: {
+        status: "mistake",
+        corrections: ["anything", "everything -> anything"],
+        explanation: "Use 'anything' in questions: 'Is there anything I can do to stop these pop-up adverts?'"
+      },
+      5: {
+        status: "mistake",
+        corrections: ["hers", "her -> hers"],
+        explanation: "Use the possessive pronoun 'hers': '...she rarely reads hers.'"
+      },
+      6: {
+        status: "correct",
+        corrections: [""],
+        explanation: "Sentence is already correct ('Each of these two apps has the same function.')."
+      },
+      7: {
+        status: "mistake",
+        corrections: ["no", "no paper", "none -> no"],
+        explanation: "Use 'no' before a noun: 'Unfortunately, I have no paper...'"
+      },
+      8: {
+        status: "mistake",
+        corrections: ["its", "it's -> its"],
+        explanation: "'Its' is the possessive determiner (without an apostrophe): '...famous for its unbelievable stories.'"
+      },
+      9: {
+        status: "mistake",
+        corrections: ["has", "has a smartphone", "have -> has"],
+        explanation: "'Every friend of mine' is singular: 'Every friend of mine has a smartphone.'"
+      },
+      10: {
+        status: "correct",
+        corrections: [""],
+        explanation: "Sentence is already correct ('Both of my parents are journalists and work...')."
+      }
+    };
+
+    function toggleCorrectionField(num) {
+      const status = document.getElementById(`ex5_status_${num}`).value;
+      const corrInput = document.getElementById(`ex5_corr_${num}`);
+      if (status === 'correct') {
+        corrInput.placeholder = 'Sentence is marked as correct (no correction needed)';
+        corrInput.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+      } else {
+        corrInput.placeholder = 'Type correction...';
+      }
+    }
+
+    function checkEx5() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const stSel = document.getElementById(`ex5_status_${i}`);
+        const corrInp = document.getElementById(`ex5_corr_${i}`);
+        if (!stSel.value) {
+          emptyCount++;
+          highlightMissingInput(stSel);
+        } else if (stSel.value === 'mistake' && !corrInp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(corrInp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 5", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const stSel = document.getElementById(`ex5_status_${i}`);
+        const corrInp = document.getElementById(`ex5_corr_${i}`);
+        const hint = document.getElementById(`hint-ex5_${i}`);
+
+        const expected = ex5Answers[i];
+        const statusOk = stSel.value === expected.status;
+        let corrOk = false;
+
+        if (expected.status === 'correct') {
+          corrOk = true;
+        } else {
+          const userVal = cleanStr(corrInp.value);
+          corrOk = expected.corrections.some(c => cleanStr(c) === userVal);
+        }
+
+        if (statusOk && corrOk) {
+          score++;
+          stSel.className = 'ex5-status text-xs px-3 py-1.5 rounded-lg font-semibold feedback-correct';
+          corrInp.className = 'ex5-input flex-1 px-3 py-1.5 border rounded-lg text-sm feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          stSel.className = `ex5-status text-xs px-3 py-1.5 rounded-lg font-semibold ${statusOk ? 'feedback-correct' : 'feedback-incorrect'}`;
+          corrInp.className = `ex5-input flex-1 px-3 py-1.5 border rounded-lg text-sm ${corrOk ? 'feedback-correct' : 'feedback-incorrect'}`;
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = expected.explanation;
+        }
+      }
+
+      tabScores[5] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex5-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Perfect! All determiners, pronouns and quantifier mistakes identified and corrected!' 
+          : 'Review any errors highlighted in red and check singular/plural agreement rules.'
+      }`;
+    }
+
+    // ================= RESET ALL =================
+    function resetAllExercises() {
+      // Inputs
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = '';
+        input.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (input.classList.contains('ex1-input')) {
+          input.className = 'ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex2-input')) {
+          input.className = 'ex2-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex4-input')) {
+          input.className = 'ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex5-input')) {
+          input.className = 'ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+          input.placeholder = 'Type correction...';
+        }
+      });
+
+      // Selects
+      document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (select.classList.contains('ex3-select')) {
+          select.className = 'ex3-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        } else if (select.classList.contains('ex5-status')) {
+          select.className = 'ex5-status text-xs px-3 py-1.5 bg-white border border-slate-300 rounded-lg font-semibold text-slate-700';
+        }
+      });
+
+      // Hints & banners
+      document.querySelectorAll('[id^="hint-"]').forEach(hint => {
+        hint.classList.add('hidden');
+        hint.textContent = '';
+      });
+
+      document.querySelectorAll('[id$="-result-banner"]').forEach(banner => {
+        banner.classList.add('hidden');
+      });
+
+      for (let k in tabScores) tabScores[k] = 0;
+      updateHeaderStats();
+      switchTab(1);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderStats();
+    });
+  </script>
+</body>
+</html>

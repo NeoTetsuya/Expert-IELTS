@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review 5 - English Self-Study Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .tab-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+    }
+    .feedback-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+    .feedback-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+          R5
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Review 5</h1>
+            <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">Module Test 5</span>
+          </div>
+          <p class="text-xs text-slate-500">Travel, Environment, Verb Patterns &amp; Prepositions</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
+        <div class="text-right">
+          <div class="text-xs text-slate-500 font-medium">Overall Progress</div>
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+              <div id="global-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="global-score-text" class="text-xs font-bold text-slate-700">0 / 50</span>
+          </div>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Reset All
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <div class="mb-8 border-b border-slate-200 overflow-x-auto">
+      <nav class="flex space-x-2 pb-3 min-w-max" aria-label="Exercise Tabs">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+          <span>Ex 1: Travel Types &amp; Tourism</span>
+          <span id="badge-1" class="text-[11px] px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">0/5</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 2: Prepositions in Travel</span>
+          <span id="badge-2" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 3: Climate &amp; Environment</span>
+          <span id="badge-3" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 4: Verb Patterns &amp; Weather</span>
+          <span id="badge-4" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(5)" id="tab-btn-5" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 5: Prepositions (Place &amp; Time)</span>
+          <span id="badge-5" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/15</span>
+        </button>
+      </nav>
+    </div>
+
+    <div id="tab-content-1" class="tab-panel transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 1 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Travel, Accommodation &amp; Holidays</h2>
+            <p class="text-sm text-slate-600 mt-1">Read the descriptions and complete the words. The first letter of each word is given.</p>
+          </div>
+          <div>
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">1.</span>a journey or holiday by ship, visiting different places:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">c</span>
+              <input type="text" id="ex1_1" placeholder="Type letters..." class="ex1-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex1_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">2.</span>cheap accommodation, often for young people or students:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">h</span>
+              <input type="text" id="ex1_2" placeholder="Type letters..." class="ex1-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex1_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">3.</span>a type of holiday where the travel company organises everything:</p>
+            <div class="flex items-center gap-1.5 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">p</span>
+              <input type="text" id="ex1_3" placeholder="Type letters..." class="ex1-input w-36 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span class="text-slate-700 font-semibold">holiday</span>
+            </div>
+            <div id="hint-ex1_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">4.</span>you stay in this when you go camping:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">t</span>
+              <input type="text" id="ex1_4" placeholder="Type letters..." class="ex1-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex1_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between md:col-span-2">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">5.</span>visiting interesting places as a tourist:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">s</span>
+              <input type="text" id="ex1_5" placeholder="Type letters..." class="ex1-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex1_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex1-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <div id="tab-content-2" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 2 • Prepositions</div>
+            <h2 class="text-xl font-bold text-slate-900">Prepositions in Travel Responses</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the student's responses with the prepositions from the box.</p>
+          </div>
+          <div>
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Preposition Box</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">around (x3)</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">by</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">off</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">on (x2)</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">out</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">to</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">with</span>
+          </div>
+        </div>
+
+        <div class="space-y-6 mt-6">
+          <!-- Response 1 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q1</span>
+              Do you often travel abroad?
+            </h3>
+            
+            Not very often because I don't like flying - especially when the plane takes 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">1</span>
+              <input type="text" id="ex2_1" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>. 
+            I sometimes travel to Thailand because I can get 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">2</span>
+              <input type="text" id="ex2_2" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            Bangkok 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">3</span>
+              <input type="text" id="ex2_3" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            train. Last year I had to go there 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">4</span>
+              <input type="text" id="ex2_4" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            business but I also had time to look 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">5</span>
+              <input type="text" id="ex2_5" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            the city.
+          </div>
+
+          <!-- Response 2 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q2</span>
+              What would you recommend a visitor to your country should do?
+            </h3>
+            
+            My country gets lots of visitors from all 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">6</span>
+              <input type="text" id="ex2_6" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            the world. It's well-known for its food and so I would recommend that they eat 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">7</span>
+              <input type="text" id="ex2_7" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            as much as they can and try the local food. The main cities are very busy and public transport is always crowded 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">8</span>
+              <input type="text" id="ex2_8" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            people, so the best way to get 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">9</span>
+              <input type="text" id="ex2_9" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            is probably 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">10</span>
+              <input type="text" id="ex2_10" placeholder="preposition" class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            foot.
+          </div>
+        </div>
+
+        <div id="ex2-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <div id="tab-content-3" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 3 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Environmental Problems Essay Cloze</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the paragraph from a student's essay on environmental problems with the words in the box.</p>
+          </div>
+          <div>
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">air</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">extreme</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">floods</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">fuels</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">global</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">heavy</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">polar</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">pollution</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">temperatures</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">toxic</span>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          The number of 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <input type="text" id="ex3_1" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          weather events in many countries is increasing every year. For example, some regions are experiencing far more 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <input type="text" id="ex3_2" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          rain than in the past, leading to 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <input type="text" id="ex3_3" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in many areas. Average 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <input type="text" id="ex3_4" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          are also changing, with warmer winters and hotter summers. This 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <input type="text" id="ex3_5" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          warming is causing the 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <input type="text" id="ex3_6" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          ice caps to melt, which is having a harmful effect on people and wildlife in some regions. Many cities have very poor 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <input type="text" id="ex3_7" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          quality caused by the burning of fossil 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <input type="text" id="ex3_8" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          from the increasing number of cars on the roads and industrial air 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9</span>
+            <input type="text" id="ex3_9" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>. 
+          Factories also produce a great deal of poisonous chemicals and other 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10</span>
+            <input type="text" id="ex3_10" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          waste which can seriously affect health.
+        </div>
+
+        <div id="ex3-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <div id="tab-content-4" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 4 • Grammar &amp; Verb Patterns</div>
+            <h2 class="text-xl font-bold text-slate-900">Weather &amp; Mood: Gerunds &amp; Infinitives</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the student's response with the correct form of the verbs in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          <div class="p-3.5 bg-indigo-100/50 rounded-xl text-xs font-bold uppercase tracking-wide text-indigo-900 mb-4 border border-indigo-200/50">
+            Speaking Prompt: Describe the weather in your country, your favourite season, and how the weather affects your mood.
+          </div>
+
+          In my country we generally have very hot summers, but you can usually expect 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1 (have)</span>
+            <input type="text" id="ex4_1" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          quite a bit of rain during the summer too. It can 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2 (be)</span>
+            <input type="text" id="ex4_2" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          quite cold in winter but it doesn't get cold enough 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3 (snow)</span>
+            <input type="text" id="ex4_3" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>, 
+          except in the mountains. Actually, instead of 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4 (get)</span>
+            <input type="text" id="ex4_4" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          snow, we usually have very heavy rain at this time of year. That's why I don't like winter - it makes me 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5 (feel)</span>
+            <input type="text" id="ex4_5" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          depressed, especially when it gets dark so early too. I prefer 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6 (stay)</span>
+            <input type="text" id="ex4_6" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          inside when it's like that. I always look forward to summer 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7 (come)</span>
+            <input type="text" id="ex4_7" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>. 
+          When it gets hotter, I enjoy 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8 (go)</span>
+            <input type="text" id="ex4_8" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          to the beach near my home. I love the summer - 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9 (spend)</span>
+            <input type="text" id="ex4_9" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          time outdoors is my favourite thing and when it's hot and the sun is shining, it's easy 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10 (forget)</span>
+            <input type="text" id="ex4_10" placeholder="Type verb..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          the winter!
+        </div>
+
+        <div id="ex4-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <div id="tab-content-5" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 5 • Grammar &amp; Prepositions</div>
+            <h2 class="text-xl font-bold text-slate-900">Prepositions of Place &amp; Time</h2>
+            <p class="text-sm text-slate-600 mt-1">Choose the correct options in italics to complete each sentence.</p>
+          </div>
+          <div>
+            <button onclick="checkEx5()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">1.</span>
+              As we drove 
+              <select id="ex5_1a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="through">through</option>
+                <option value="between">between</option>
+              </select>
+              the city, we noticed that there was a lot of rubbish 
+              <select id="ex5_1b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              every street corner.
+            </p>
+            <div id="hint-ex5_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">2.</span>
+              They usually collect our rubbish 
+              <select id="ex5_2a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              Monday morning but this week they did it 
+              <select id="ex5_2b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              the afternoon.
+            </p>
+            <div id="hint-ex5_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">3.</span>
+              You can tell how polluted the city is from the clouds of black smoke rising 
+              <select id="ex5_3a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="above">above</option>
+                <option value="under">under</option>
+              </select>
+              the trees and all the rubbish 
+              <select id="ex5_3b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              the river.
+            </p>
+            <div id="hint-ex5_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">4.</span>
+              <select id="ex5_4a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="At">At</option>
+                <option value="In">In</option>
+              </select>
+              the past people were less concerned about environmental issues but 
+              <select id="ex5_4b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              recent years they are taking more notice.
+            </p>
+            <div id="hint-ex5_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">5.</span>
+              In the desert, temperatures are very high 
+              <select id="ex5_5a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="at">at</option>
+                <option value="in">in</option>
+              </select>
+              midday but they fall very quickly 
+              <select id="ex5_5b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="at">at</option>
+                <option value="in">in</option>
+              </select>
+              the evening.
+            </p>
+            <div id="hint-ex5_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">6.</span>
+              We get a lot of noise from the train station which is 
+              <select id="ex5_6a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="at">at</option>
+                <option value="on">on</option>
+              </select>
+              the end of the road and the bus station which is 
+              <select id="ex5_6b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="next to">next to</option>
+                <option value="between">between</option>
+              </select>
+              it.
+            </p>
+            <div id="hint-ex5_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-loose text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">7.</span>
+              We rarely go on holiday 
+              <select id="ex5_7a" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              autumn, but last year we went on a six-day cruise 
+              <select id="ex5_7b" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="on">on</option>
+                <option value="at">at</option>
+              </select>
+              my birthday, which is 
+              <select id="ex5_7c" class="ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Choose...</option>
+                <option value="in">in</option>
+                <option value="on">on</option>
+              </select>
+              October.
+            </p>
+            <div id="hint-ex5_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex5-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>English Language Learning • Review Module 5 Practice</p>
+  </footer>
+
+  <script>
+    const tabScores = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    };
+
+    const maxScores = {
+      1: 5,  // 5 travel definitions
+      2: 10, // 10 prepositions
+      3: 10, // 10 environmental words
+      4: 10, // 10 verb pattern blanks
+      5: 15  // 15 preposition selections across 7 sentences
+    };
+
+    function switchTab(tabNum) {
+      for (let i = 1; i <= 5; i++) {
+        const panel = document.getElementById(`tab-content-${i}`);
+        const btn = document.getElementById(`tab-btn-${i}`);
+        if (panel && btn) {
+          panel.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+
+      const targetPanel = document.getElementById(`tab-content-${tabNum}`);
+      const targetBtn = document.getElementById(`tab-btn-${tabNum}`);
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.remove('hidden');
+        targetBtn.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      }
+    }
+
+    function cleanStr(str) {
+      if (!str) return '';
+      return str.trim()
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.,!?]/g, '');
+    }
+
+    function updateHeaderStats() {
+      let total = 0;
+      let grandMax = 0;
+      for (let i = 1; i <= 5; i++) {
+        total += tabScores[i];
+        grandMax += maxScores[i];
+        const badge = document.getElementById(`badge-${i}`);
+        if (badge) {
+          badge.textContent = `${tabScores[i]}/${maxScores[i]}`;
+          if (tabScores[i] === maxScores[i]) {
+            badge.className = 'text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full';
+          }
+        }
+      }
+      const pct = Math.round((total / grandMax) * 100);
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('global-score-text').textContent = `${total} / ${grandMax} (${pct}%)`;
+    }
+
+    function highlightMissingInput(el) {
+      if (!el) return;
+      el.classList.add('ring-2', 'ring-amber-500', 'border-amber-500');
+      const clearRing = () => {
+        el.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+        el.removeEventListener('input', clearRing);
+        el.removeEventListener('change', clearRing);
+      };
+      el.addEventListener('input', clearRing);
+      el.addEventListener('change', clearRing);
+    }
+
+    let toastTimer = null;
+    function showIncompleteWarning(exName, completed, total) {
+      let toast = document.getElementById('incomplete-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'incomplete-toast';
+        toast.className = 'fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-0 opacity-100 border border-slate-700 text-sm';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div>
+          <p class="font-semibold text-xs text-amber-300 uppercase tracking-wide">Self-Study Check: ${exName}</p>
+          <p class="text-xs text-slate-200 mt-0.5">Please fill in all blanks (${completed}/${total} answered) before checking.</p>
+        </div>
+      `;
+      toast.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }
+
+    // ================= EXERCISE 1 =================
+    const ex1Answers = {
+      1: { val: ["ruise", "cruise"], expected: "cruise" },
+      2: { val: ["ostel", "hostel"], expected: "hostel" },
+      3: { val: ["ackage", "package"], expected: "package" },
+      4: { val: ["ent", "tent"], expected: "tent" },
+      5: { val: ["ightseeing", "sightseeing"], expected: "sightseeing" }
+    };
+
+    function checkEx1() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 5; i++) {
+        const input = document.getElementById(`ex1_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 1", 5 - emptyCount, 5);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 5; i++) {
+        const input = document.getElementById(`ex1_${i}`);
+        const hint = document.getElementById(`hint-ex1_${i}`);
+        const userVal = cleanStr(input.value);
+        const correct = ex1Answers[i].val.some(v => cleanStr(v) === userVal);
+
+        if (correct) {
+          score++;
+          input.className = 'ex1-input flex-1 px-3 py-1.5 border rounded-lg text-sm feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          input.className = 'ex1-input flex-1 px-3 py-1.5 border rounded-lg text-sm feedback-incorrect';
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct: ${ex1Answers[i].expected}`;
+        }
+      }
+
+      tabScores[1] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex1-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 5 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 5. ${score === 5 ? 'Outstanding! All travel words identified accurately!' : 'Review any items highlighted in red and check their spelling.'}`;
+    }
+
+    // ================= EXERCISE 2 =================
+    const ex2Answers = {
+      ex2_1: ["off"],
+      ex2_2: ["to"],
+      ex2_3: ["by"],
+      ex2_4: ["on"],
+      ex2_5: ["around", "round"],
+      ex2_6: ["around", "over"],
+      ex2_7: ["out"],
+      ex2_8: ["with"],
+      ex2_9: ["around", "round"],
+      ex2_10: ["on"]
+    };
+
+    function checkEx2() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const input = document.getElementById(`ex2_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 2", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex2_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex2Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex2-input px-2.5 py-1 border rounded-lg text-sm w-24 text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex2-input px-2.5 py-1 border rounded-lg text-sm w-24 text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[2] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex2-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Excellent! All travel prepositions placed correctly!' 
+          : 'Check common collocations: takes off, by train, on business, look around, all around the world, eat out, crowded with, get around, on foot.'
+      }`;
+    }
+
+    // ================= EXERCISE 3 =================
+    const ex3Answers = {
+      ex3_1: ["extreme"],
+      ex3_2: ["heavy"],
+      ex3_3: ["floods"],
+      ex3_4: ["temperatures"],
+      ex3_5: ["global"],
+      ex3_6: ["polar"],
+      ex3_7: ["air"],
+      ex3_8: ["fuels"],
+      ex3_9: ["pollution"],
+      ex3_10: ["toxic"]
+    };
+
+    function checkEx3() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const input = document.getElementById(`ex3_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 3", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex3_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex3Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex3-input px-2.5 py-1 border rounded-lg text-sm w-32 text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex3-input px-2.5 py-1 border rounded-lg text-sm w-32 text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[3] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex3-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${score === 10 ? 'Superb! All environmental terms filled accurately!' : 'Review any red blanks and verify against the word bank.'}`;
+    }
+
+    // ================= EXERCISE 4 =================
+    const ex4Answers = {
+      ex4_1: ["to have"],
+      ex4_2: ["be"],
+      ex4_3: ["to snow"],
+      ex4_4: ["getting"],
+      ex4_5: ["feel"],
+      ex4_6: ["to stay", "staying"],
+      ex4_7: ["coming"],
+      ex4_8: ["going"],
+      ex4_9: ["spending"],
+      ex4_10: ["to forget"]
+    };
+
+    function checkEx4() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const input = document.getElementById(`ex4_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 4", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex4_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex4Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex4-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex4-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[4] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex4-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Brilliant! All gerunds, infinitives, and bare infinitives are correct!' 
+          : 'Remember patterns: expect to (inf), can (bare inf), enough to (inf), instead of (gerund), makes me (bare inf), enjoy (gerund), gerund as subject (Spending).'
+      }`;
+    }
+
+    // ================= EXERCISE 5 =================
+    const ex5Answers = {
+      ex5_1a: "through",
+      ex5_1b: "on",
+      ex5_2a: "on",
+      ex5_2b: "in",
+      ex5_3a: "above",
+      ex5_3b: "in",
+      ex5_4a: "In",
+      ex5_4b: "in",
+      ex5_5a: "at",
+      ex5_5b: "in",
+      ex5_6a: "at",
+      ex5_6b: "next to",
+      ex5_7a: "in",
+      ex5_7b: "on",
+      ex5_7c: "in"
+    };
+
+    const ex5Hints = {
+      1: "through the city / on every street corner",
+      2: "on Monday morning / in the afternoon",
+      3: "above the trees / in the river",
+      4: "In the past / in recent years",
+      5: "at midday / in the evening",
+      6: "at the end of the road / next to it",
+      7: "in autumn / on my birthday / in October"
+    };
+
+    function checkEx5() {
+      const keys = Object.keys(ex5Answers);
+      let emptyCount = 0;
+      keys.forEach(k => {
+        const sel = document.getElementById(k);
+        if (!sel.value) {
+          emptyCount++;
+          highlightMissingInput(sel);
+        }
+      });
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 5", 15 - emptyCount, 15);
+        return;
+      }
+
+      let score = 0;
+      keys.forEach(k => {
+        const sel = document.getElementById(k);
+        if (sel.value.toLowerCase() === ex5Answers[k].toLowerCase()) {
+          score++;
+          sel.className = 'ex5-select px-2.5 py-1 text-sm rounded-lg font-medium mx-1 feedback-correct';
+        } else {
+          sel.className = 'ex5-select px-2.5 py-1 text-sm rounded-lg font-medium mx-1 feedback-incorrect';
+        }
+      });
+
+      // Show hints per sentence if mistakes exist
+      for (let s = 1; s <= 7; s++) {
+        const hint = document.getElementById(`hint-ex5_${s}`);
+        const sentenceKeys = keys.filter(k => k.startsWith(`ex5_${s}`));
+        const sentenceOk = sentenceKeys.every(k => document.getElementById(k).value.toLowerCase() === ex5Answers[k].toLowerCase());
+        if (sentenceOk) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct choices: ${ex5Hints[s]}`;
+        }
+      }
+
+      tabScores[5] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex5-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 15 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 15. ${score === 15 ? 'Outstanding! All prepositions of place and time are exact!' : 'Review any red selections and check the sentence hints.'}`;
+    }
+
+    // ================= RESET ALL =================
+    function resetAllExercises() {
+      // Inputs
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = '';
+        input.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (input.classList.contains('ex1-input')) {
+          input.className = 'ex1-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex2-input')) {
+          input.className = 'ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-24 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex3-input')) {
+          input.className = 'ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex4-input')) {
+          input.className = 'ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        }
+      });
+
+      // Selects
+      document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        select.className = 'ex5-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1';
+      });
+
+      // Hints & banners
+      document.querySelectorAll('[id^="hint-"]').forEach(hint => {
+        hint.classList.add('hidden');
+        hint.textContent = '';
+      });
+
+      document.querySelectorAll('[id$="-result-banner"]').forEach(banner => {
+        banner.classList.add('hidden');
+      });
+
+      for (let k in tabScores) tabScores[k] = 0;
+      updateHeaderStats();
+      switchTab(1);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderStats();
+    });
+  </script>
+</body>
+</html>

@@ -523,5 +523,95 @@ window.EXPERT_5_MODULES = [
     "badge": "Module 10",
     "title": "Module 10 Writing — Task 2 Opinion Essay (Model Answer &amp; Annotations)",
     "status": "Active Model Answer"
+  },
+  {
+    "url": "review-m1.html",
+    "dataTitle": "Module 1 Review — University Places, Present Simple & Modal Can",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 1",
+    "title": "Module 1 Review — University Places, Present Simple &amp; Modal Can",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m2.html",
+    "dataTitle": "Module 2 Review — Relationships, Comparisons, Time & Celebrations",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 2",
+    "title": "Module 2 Review — Relationships, Comparisons, Time &amp; Celebrations",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m3.html",
+    "dataTitle": "Module 3 Review — Work, Careers, Modals & Present Tenses",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 3",
+    "title": "Module 3 Review — Work, Careers, Modals &amp; Present Tenses",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m4.html",
+    "dataTitle": "Module 4 Review — Health, Quantifiers, Past Tenses & Wildlife Protection",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 4",
+    "title": "Module 4 Review — Health, Quantifiers, Past Tenses &amp; Wildlife Protection",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m5.html",
+    "dataTitle": "Module 5 Review — Travel, Environment, Verb Patterns & Prepositions",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 5",
+    "title": "Module 5 Review — Travel, Environment, Verb Patterns &amp; Prepositions",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m6.html",
+    "dataTitle": "Module 6 Review — Food, Diet, Shopping, Be Going To & Future Forms (Will / Be Going To)",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 6",
+    "title": "Module 6 Review — Food, Diet, Shopping, Be Going To &amp; Future Forms (Will / Be Going To)",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m7.html",
+    "dataTitle": "Module 7 Review — Crime, Community Facilities, Rural vs Urban Life & Conditionals",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 7",
+    "title": "Module 7 Review — Crime, Community Facilities, Rural vs Urban Life &amp; Conditionals",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m8.html",
+    "dataTitle": "Module 8 Review — Sports & Fitness, Present Perfect, Equipment, Articles & Compound Nouns",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 8",
+    "title": "Module 8 Review — Sports &amp; Fitness, Present Perfect, Equipment, Articles &amp; Compound Nouns",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m9.html",
+    "dataTitle": "Module 9 Review — Media, Technology, Phrasal Verbs, Tenses & Determiners",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 9",
+    "title": "Module 9 Review — Media, Technology, Phrasal Verbs, Tenses &amp; Determiners",
+    "status": "Active Review"
+  },
+  {
+    "url": "review-m10.html",
+    "dataTitle": "Module 10 Review — Relative Clauses, Communication, Modals (Ability, Possibility, Permission, Requests) & Culture",
+    "skill": "review",
+    "badgeClass": "badge-band5",
+    "badge": "Review 10",
+    "title": "Module 10 Review — Relative Clauses, Communication, Modals (Ability, Possibility, Permission, Requests) &amp; Culture",
+    "status": "Active Review"
   }
 ];

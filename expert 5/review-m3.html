@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review 3 - English Self-Study Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .tab-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+    }
+    .feedback-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+    .feedback-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+          R3
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Review 3</h1>
+            <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">Module Test 3</span>
+          </div>
+          <p class="text-xs text-slate-500">Work, Careers, Modals &amp; Present Tenses</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
+        <div class="text-right">
+          <div class="text-xs text-slate-500 font-medium">Overall Progress</div>
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+              <div id="global-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="global-score-text" class="text-xs font-bold text-slate-700">0 / 50</span>
+          </div>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Reset All
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <!-- Tab Controls Navigation -->
+    <div class="mb-8 border-b border-slate-200 overflow-x-auto">
+      <nav class="flex space-x-2 pb-3 min-w-max" aria-label="Exercise Tabs">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+          <span>Ex 1: Essay Cloze (Job Satisfaction)</span>
+          <span id="badge-1" class="text-[11px] px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">0/8</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 2: Matching &amp; Modal Verbs</span>
+          <span id="badge-2" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/16</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 3: Present Simple vs Continuous</span>
+          <span id="badge-3" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/16</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 4: Job Interview Vocabulary</span>
+          <span id="badge-4" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab 1: Exercise 1 -->
+    <div id="tab-content-1" class="tab-panel transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 1 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Paragraph Completion: Job Satisfaction</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the paragraph from a student's essay with the words in the box. There are three extra words you do not need to use.</p>
+          </div>
+          <div>
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank (3 extra words)</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">career</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">conditions</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">employment</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">living</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">opportunities</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">promotion</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">repetitive</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">rewarding</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">salary</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">satisfaction</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">voluntary</span>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          <div class="p-3.5 bg-indigo-100/50 rounded-xl text-xs font-bold uppercase tracking-wide text-indigo-900 mb-4 border border-indigo-200/50">
+            Essay Prompt: "You can only enjoy your job if you earn a lot of money. Do you agree or disagree?"
+          </div>
+
+          There are many jobs that give you job 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <input type="text" id="ex1_1" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          but which are not very well-paid. For example, a 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <input type="text" id="ex1_2" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          which involves looking after people like nursing is probably very 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <input type="text" id="ex1_3" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          but does not have a high 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <input type="text" id="ex1_4" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          compared to other jobs. People who do 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <input type="text" id="ex1_5" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          work do not get paid at all but usually enjoy what they do. In my opinion, people who make their 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <input type="text" id="ex1_6" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          doing challenging jobs probably enjoy these more than people who do boring and 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <input type="text" id="ex1_7" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          work. People are also more likely to enjoy their jobs if they have 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <input type="text" id="ex1_8" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          to do further training, learn new skills and improve themselves.
+        </div>
+
+        <div id="ex1-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Exercise 2 -->
+    <div id="tab-content-2" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 2 • Grammar &amp; Modals</div>
+            <h2 class="text-xl font-bold text-slate-900">Sentence Matching &amp; Modal Choice</h2>
+            <p class="text-sm text-slate-600 mt-1">Match the sentence beginnings (1–8) with the endings (A–H). Then choose the correct modal verb in italics.</p>
+          </div>
+          <div>
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Endings Reference Box -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Sentence Endings (A–H)</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-700">
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">A</span> so I often <em>have to / must</em> travel overseas.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">B</span> because we <em>mustn't / don't have to</em> wear a uniform.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">C</span> so I <em>need to / should</em> sleep during the day.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">D</span> so you <em>should / have to</em> always check it carefully before you click 'Send'.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">E</span> because we <em>mustn't / don't have to</em> eat at our desks.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">F</span> so you <em>should / don't have to</em> think about applying for it.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">G</span> so I <em>mustn't / don't need to</em> worry about looking for a job.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">H</span> and he <em>has to / should</em> write a long report every week.</div>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6" id="ex2-list">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">1.</span>
+                I wear what I like to work ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_1" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_1" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="mustn't">mustn't</option>
+                  <option value="don't have to">don't have to</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">2.</span>
+                When I finish my apprenticeship, I start full-time work ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_2" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_2" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="mustn't">mustn't</option>
+                  <option value="don't need to">don't need to</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">3.</span>
+                I always have my lunch in the cafeteria ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_3" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_3" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="mustn't">mustn't</option>
+                  <option value="don't have to">don't have to</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">4.</span>
+                You have all the necessary qualifications for that job ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_4" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_4" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="should">should</option>
+                  <option value="don't have to">don't have to</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">5.</span>
+                His job involves a lot of paperwork ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_5" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_5" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="has to">has to</option>
+                  <option value="should">should</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">6.</span>
+                It's easy to make mistakes in an email ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_6" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_6" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="should">should</option>
+                  <option value="have to">have to</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">7.</span>
+                I'm working nights at the moment ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_7" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_7" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="need to">need to</option>
+                  <option value="should">should</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">8.</span>
+                I do a lot of business with international customers ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_8" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select letter...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option>
+                  <option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Modal:</span>
+                <select id="ex2_modal_8" class="ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Choose modal...</option>
+                  <option value="have to">have to</option>
+                  <option value="must">must</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex2_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex2-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Exercise 3 -->
+    <div id="tab-content-3" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 3 • Grammar</div>
+            <h2 class="text-xl font-bold text-slate-900">Present Simple or Present Continuous</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the sentences with the present simple or present continuous form of the verbs in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6" id="ex3-list">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">1.</span>
+              I 
+              <input type="text" id="ex3_1a" placeholder="not like" class="ex3-input inline-block w-28 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              my job because I 
+              <input type="text" id="ex3_1b" placeholder="have to" class="ex3-input inline-block w-28 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              work at weekends.
+            </p>
+            <div id="hint-ex3_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">2.</span>
+              I 
+              <input type="text" id="ex3_2a" placeholder="live" class="ex3-input inline-block w-28 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              with my parents at the moment because I 
+              <input type="text" id="ex3_2b" placeholder="look for" class="ex3-input inline-block w-36 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              my first job.
+            </p>
+            <div id="hint-ex3_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">3.</span>
+              My brother 
+              <input type="text" id="ex3_3a" placeholder="have" class="ex3-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              good qualifications but he 
+              <input type="text" id="ex3_3b" placeholder="find" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              it difficult to get a good job at the moment.
+            </p>
+            <div id="hint-ex3_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">4.</span>
+              I 
+              <input type="text" id="ex3_4a" placeholder="work" class="ex3-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              near my home, so I 
+              <input type="text" id="ex3_4b" placeholder="walk" class="ex3-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              to work every day.
+            </p>
+            <div id="hint-ex3_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">5.</span>
+              She 
+              <input type="text" id="ex3_5a" placeholder="work" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              in a different office this week, so she 
+              <input type="text" id="ex3_5b" placeholder="stay" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              with her cousin in London.
+            </p>
+            <div id="hint-ex3_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">6.</span>
+              I 
+              <input type="text" id="ex3_6a" placeholder="know" class="ex3-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              he's not in his office at the moment because he 
+              <input type="text" id="ex3_6b" placeholder="meet" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              a customer.
+            </p>
+            <div id="hint-ex3_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">7.</span>
+              I 
+              <input type="text" id="ex3_7a" placeholder="study" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              medicine because I 
+              <input type="text" id="ex3_7b" placeholder="want" class="ex3-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              a job that is rewarding and well-paid.
+            </p>
+            <div id="hint-ex3_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">8.</span>
+              My job 
+              <input type="text" id="ex3_8a" placeholder="become" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              harder because we 
+              <input type="text" id="ex3_8b" placeholder="get" class="ex3-input inline-block w-32 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              a lot more customers.
+            </p>
+            <div id="hint-ex3_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex3-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Exercise 4 -->
+    <div id="tab-content-4" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 4 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Job Interview Terminology</h2>
+            <p class="text-sm text-slate-600 mt-1">Replace the underlined words/phrases in the student's responses with the words/phrases in the box. There are two extra words you do not need to use.</p>
+          </div>
+          <div>
+            <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank (2 extra words)</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">applicant</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">application</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">bonus</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">employee</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">employer</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">experience</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">interviewer</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">overtime</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">pay rise</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">promotion</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">shift work</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">working conditions</span>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-6">
+          <!-- Response Part 1 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm">How can you prepare for a job interview?</h3>
+            
+            It's important that you prepare well for an interview as you won't be the only 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">1. <span class="underline decoration-indigo-400">candidate</span> &rarr;</span>
+              <input type="text" id="ex4_1" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            for the job. You should find out everything you can about the 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">2. <span class="underline decoration-indigo-400">company</span> &rarr;</span>
+              <input type="text" id="ex4_2" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            before you go. You should also look at the 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">3. <span class="underline decoration-indigo-400">form you completed</span> &rarr;</span>
+              <input type="text" id="ex4_3" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            carefully because the 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">4. <span class="underline decoration-indigo-400">person asking questions</span> &rarr;</span>
+              <input type="text" id="ex4_4" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            will probably ask you about this. You can also practise talking about your skills and 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">5. <span class="underline decoration-indigo-400">practical knowledge</span> &rarr;</span>
+              <input type="text" id="ex4_5" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            and why you want the job.
+          </div>
+
+          <!-- Response Part 2 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm">What are some of the important things a candidate should find out before accepting a job?</h3>
+            
+            First of all, you need to find out about the hours of work if the job is full or part-time or if you have to do 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">6. <span class="underline decoration-indigo-400">days and nights</span> &rarr;</span>
+              <input type="text" id="ex4_6" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>. 
+            You can also ask if you can do 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">7. <span class="underline decoration-indigo-400">extra hours</span> &rarr;</span>
+              <input type="text" id="ex4_7" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>. 
+            It's important to find out about the 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">8. <span class="underline decoration-indigo-400">environment in which you work</span> &rarr;</span>
+              <input type="text" id="ex4_8" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-44 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            and also what opportunities there are for training and 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">9. <span class="underline decoration-indigo-400">moving to a more important position</span> &rarr;</span>
+              <input type="text" id="ex4_9" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>. 
+            Finally, you can ask about money and whether there is a pension or 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-semibold text-slate-500">10. <span class="underline decoration-indigo-400">extra money scheme</span> &rarr;</span>
+              <input type="text" id="ex4_10" placeholder="Type word..." class="ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>.
+          </div>
+        </div>
+
+        <div id="ex4-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>English Language Learning • Review Module 3 Practice</p>
+  </footer>
+
+  <script>
+    const tabScores = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0
+    };
+
+    const maxScores = {
+      1: 8,
+      2: 16, // 8 matches + 8 modal selections
+      3: 16, // 8 sentences x 2 blanks
+      4: 10
+    };
+
+    function switchTab(tabNum) {
+      for (let i = 1; i <= 4; i++) {
+        const panel = document.getElementById(`tab-content-${i}`);
+        const btn = document.getElementById(`tab-btn-${i}`);
+        if (panel && btn) {
+          panel.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+
+      const targetPanel = document.getElementById(`tab-content-${tabNum}`);
+      const targetBtn = document.getElementById(`tab-btn-${tabNum}`);
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.remove('hidden');
+        targetBtn.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      }
+    }
+
+    function cleanStr(str) {
+      if (!str) return '';
+      return str.trim()
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.,!?]/g, '');
+    }
+
+    function updateHeaderStats() {
+      let total = 0;
+      let grandMax = 0;
+      for (let i = 1; i <= 4; i++) {
+        total += tabScores[i];
+        grandMax += maxScores[i];
+        const badge = document.getElementById(`badge-${i}`);
+        if (badge) {
+          badge.textContent = `${tabScores[i]}/${maxScores[i]}`;
+          if (tabScores[i] === maxScores[i]) {
+            badge.className = 'text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full';
+          }
+        }
+      }
+      const pct = Math.round((total / grandMax) * 100);
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('global-score-text').textContent = `${total} / ${grandMax} (${pct}%)`;
+    }
+
+    function highlightMissingInput(el) {
+      if (!el) return;
+      el.classList.add('ring-2', 'ring-amber-500', 'border-amber-500');
+      const clearRing = () => {
+        el.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+        el.removeEventListener('input', clearRing);
+        el.removeEventListener('change', clearRing);
+      };
+      el.addEventListener('input', clearRing);
+      el.addEventListener('change', clearRing);
+    }
+
+    let toastTimer = null;
+    function showIncompleteWarning(exName, completed, total) {
+      let toast = document.getElementById('incomplete-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'incomplete-toast';
+        toast.className = 'fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-0 opacity-100 border border-slate-700 text-sm';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div>
+          <p class="font-semibold text-xs text-amber-300 uppercase tracking-wide">Self-Study Check: ${exName}</p>
+          <p class="text-xs text-slate-200 mt-0.5">Please fill in all blanks (${completed}/${total} answered) before checking.</p>
+        </div>
+      `;
+      toast.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }
+
+    const ex1Answers = {
+      ex1_1: ["satisfaction"],
+      ex1_2: ["career"],
+      ex1_3: ["rewarding"],
+      ex1_4: ["salary"],
+      ex1_5: ["voluntary"],
+      ex1_6: ["living"],
+      ex1_7: ["repetitive"],
+      ex1_8: ["opportunities"]
+    };
+
+    function checkEx1() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const input = document.getElementById(`ex1_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 1", 8 - emptyCount, 8);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const key = `ex1_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex1Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex1-input px-2.5 py-1 border rounded-lg text-sm w-32 text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex1-input px-2.5 py-1 border rounded-lg text-sm w-32 text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[1] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex1-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 8 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 8. ${score === 8 ? 'Outstanding! All vocabulary words placed correctly!' : 'Review any items highlighted in red and check the word bank.'}`;
+    }
+
+    const ex2Answers = {
+      1: { match: "B", modal: "don't have to", text: "because we don't have to wear a uniform" },
+      2: { match: "G", modal: "don't need to", text: "so I don't need to worry about looking for a job" },
+      3: { match: "E", modal: "mustn't", text: "because we mustn't eat at our desks" },
+      4: { match: "F", modal: "should", text: "so you should think about applying for it" },
+      5: { match: "H", modal: "has to", text: "and he has to write a long report every week" },
+      6: { match: "D", modal: "should", text: "so you should always check it carefully before you click 'Send'" },
+      7: { match: "C", modal: "need to", text: "so I need to sleep during the day" },
+      8: { match: "A", modal: "have to", text: "so I often have to travel overseas" }
+    };
+
+    function checkEx2() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const matchSel = document.getElementById(`ex2_match_${i}`);
+        const modalSel = document.getElementById(`ex2_modal_${i}`);
+        if (!matchSel.value) {
+          emptyCount++;
+          highlightMissingInput(matchSel);
+        }
+        if (!modalSel.value) {
+          emptyCount++;
+          highlightMissingInput(modalSel);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 2", 16 - emptyCount, 16);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const matchSel = document.getElementById(`ex2_match_${i}`);
+        const modalSel = document.getElementById(`ex2_modal_${i}`);
+        const hint = document.getElementById(`hint-ex2_${i}`);
+
+        const matchOk = matchSel.value === ex2Answers[i].match;
+        const modalOk = modalSel.value === ex2Answers[i].modal;
+
+        if (matchOk) {
+          score++;
+          matchSel.className = 'ex2-match-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          matchSel.className = 'ex2-match-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+
+        if (modalOk) {
+          score++;
+          modalSel.className = 'ex2-modal-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          modalSel.className = 'ex2-modal-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+
+        if (matchOk && modalOk) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Expected: Ending [${ex2Answers[i].match}] with modal "${ex2Answers[i].modal}" (${ex2Answers[i].text})`;
+        }
+      }
+
+      tabScores[2] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex2-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 16 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 16. ${score === 16 ? 'Excellent! All sentence endings and modal verbs are spot on!' : 'Review any errors highlighted in red and check the hints.'}`;
+    }
+
+    const ex3Answers = {
+      1: {
+        a: ["don't like", "do not like"],
+        b: ["have to"],
+        expected: "don't like / have to"
+      },
+      2: {
+        a: ["'m living", "am living", "live"],
+        b: ["'m looking for", "am looking for", "'m looking", "am looking"],
+        expected: "am living (or 'm living) / am looking for (or 'm looking for)"
+      },
+      3: {
+        a: ["has"],
+        b: ["is finding", "'s finding", "finds"],
+        expected: "has / is finding"
+      },
+      4: {
+        a: ["work"],
+        b: ["walk"],
+        expected: "work / walk"
+      },
+      5: {
+        a: ["is working", "'s working"],
+        b: ["is staying", "'s staying"],
+        expected: "is working / is staying"
+      },
+      6: {
+        a: ["know"],
+        b: ["is meeting", "'s meeting"],
+        expected: "know / is meeting"
+      },
+      7: {
+        a: ["'m studying", "am studying", "study"],
+        b: ["want"],
+        expected: "am studying (or 'm studying) / want"
+      },
+      8: {
+        a: ["is becoming", "'s becoming", "becomes"],
+        b: ["are getting", "'re getting"],
+        expected: "is becoming / are getting"
+      }
+    };
+
+    function checkEx3() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const inputA = document.getElementById(`ex3_${i}a`);
+        const inputB = document.getElementById(`ex3_${i}b`);
+        if (!inputA.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inputA);
+        }
+        if (!inputB.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inputB);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 3", 16 - emptyCount, 16);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const inputA = document.getElementById(`ex3_${i}a`);
+        const inputB = document.getElementById(`ex3_${i}b`);
+        const hint = document.getElementById(`hint-ex3_${i}`);
+
+        const valA = cleanStr(inputA.value);
+        const valB = cleanStr(inputB.value);
+
+        const okA = ex3Answers[i].a.some(ans => cleanStr(ans) === valA);
+        const okB = ex3Answers[i].b.some(ans => cleanStr(ans) === valB);
+
+        if (okA) {
+          score++;
+          inputA.className = inputA.className.replace(/feedback-(correct|incorrect)/g, '') + ' feedback-correct';
+        } else {
+          inputA.className = inputA.className.replace(/feedback-(correct|incorrect)/g, '') + ' feedback-incorrect';
+        }
+
+        if (okB) {
+          score++;
+          inputB.className = inputB.className.replace(/feedback-(correct|incorrect)/g, '') + ' feedback-correct';
+        } else {
+          inputB.className = inputB.className.replace(/feedback-(correct|incorrect)/g, '') + ' feedback-incorrect';
+        }
+
+        if (okA && okB) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct forms: ${ex3Answers[i].expected}`;
+        }
+      }
+
+      tabScores[3] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex3-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 16 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 16. ${score === 16 ? 'Superb! All present tense aspects are accurate!' : 'Check state verbs (like, know, want) and temporary actions (this week, at the moment).'}`;
+    }
+
+    const ex4Answers = {
+      ex4_1: ["applicant"],
+      ex4_2: ["employer"],
+      ex4_3: ["application"],
+      ex4_4: ["interviewer"],
+      ex4_5: ["experience"],
+      ex4_6: ["shift work"],
+      ex4_7: ["overtime"],
+      ex4_8: ["working conditions"],
+      ex4_9: ["promotion"],
+      ex4_10: ["bonus"]
+    };
+
+    function checkEx4() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const input = document.getElementById(`ex4_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 4", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex4_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex4Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex4-input px-2.5 py-1 border rounded-lg text-sm w-36 text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex4-input px-2.5 py-1 border rounded-lg text-sm w-36 text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[4] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex4-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${score === 10 ? 'Brilliant! All interview terms and definitions matched perfectly!' : 'Review any highlighted items and consult the word bank.'}`;
+    }
+
+    function resetAllExercises() {
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = '';
+        input.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (input.classList.contains('ex1-input')) {
+          input.className = 'ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex3-input')) {
+          input.className = 'ex3-input inline-block w-28 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1';
+        } else if (input.classList.contains('ex4-input')) {
+          input.className = 'ex4-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        }
+      });
+
+      document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (select.classList.contains('ex2-match-select')) {
+          select.className = 'ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        } else if (select.classList.contains('ex2-modal-select')) {
+          select.className = 'ex2-modal-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        }
+      });
+
+      document.querySelectorAll('[id^="hint-"]').forEach(hint => {
+        hint.classList.add('hidden');
+        hint.textContent = '';
+      });
+
+      document.querySelectorAll('[id$="-result-banner"]').forEach(banner => {
+        banner.classList.add('hidden');
+      });
+
+      for (let k in tabScores) tabScores[k] = 0;
+      updateHeaderStats();
+      switchTab(1);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderStats();
+    });
+  </script>
+</body>
+</html>

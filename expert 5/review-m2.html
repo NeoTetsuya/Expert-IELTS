@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review 2 - English Self-Study Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .tab-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+    }
+    .feedback-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+    .feedback-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+          R2
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Review 2</h1>
+            <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">Module Test 2</span>
+          </div>
+          <p class="text-xs text-slate-500">Relationships, Comparisons, Time &amp; Celebrations</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
+        <div class="text-right">
+          <div class="text-xs text-slate-500 font-medium">Overall Progress</div>
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+              <div id="global-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="global-score-text" class="text-xs font-bold text-slate-700">0 / 52</span>
+          </div>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Reset All
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <!-- Tab Controls Navigation -->
+    <div class="mb-8 border-b border-slate-200 overflow-x-auto">
+      <nav class="flex space-x-2 pb-3 min-w-max" aria-label="Exercise Tabs">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+          <span>Ex 1: Relationships &amp; Phrasal Verbs</span>
+          <span id="badge-1" class="text-[11px] px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">0/16</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 2: Comparison Modifiers</span>
+          <span id="badge-2" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/6</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 3: Sentence Rewriting</span>
+          <span id="badge-3" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/6</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 4: Time Expressions</span>
+          <span id="badge-4" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/8</span>
+        </button>
+        <button onclick="switchTab(5)" id="tab-btn-5" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 5: Adverbs &amp; Adjectives</span>
+          <span id="badge-5" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/6</span>
+        </button>
+        <button onclick="switchTab(6)" id="tab-btn-6" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 6: Celebrations &amp; Festivals</span>
+          <span id="badge-6" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab 1: Exercise 1 -->
+    <div id="tab-content-1" class="tab-panel transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 1 • Vocabulary &amp; Phrasal Verbs</div>
+            <h2 class="text-xl font-bold text-slate-900">Relationships &amp; Phrasal Prepositions</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the sentences with the words from the box, then choose the correct option in italics.</p>
+          </div>
+          <div>
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word bank for Ex 1 -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Preposition Word Bank</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">after (x2)</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">in (x2)</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">out</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">up</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">with (x2)</span>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6" id="ex1-list">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">1.</span>
+              It's easy to lose touch 
+              <input type="text" id="ex1_prep_1" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              your old 
+              <select id="ex1_choice_1" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="classmates">classmates</option>
+                <option value="colleagues">colleagues</option>
+              </select>
+              after you leave school.
+            </p>
+            <div id="hint-ex1_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">2.</span>
+              I often look 
+              <input type="text" id="ex1_prep_2" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              my sister's son - his name is Jamie and he's my favourite 
+              <select id="ex1_choice_2" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="nephew">nephew</option>
+                <option value="cousin">cousin</option>
+              </select>.
+            </p>
+            <div id="hint-ex1_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">3.</span>
+              It can be difficult if you don't get on well 
+              <input type="text" id="ex1_prep_3" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              your 
+              <select id="ex1_choice_3" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="neighbours">neighbours</option>
+                <option value="acquaintances">acquaintances</option>
+              </select>
+              as you see them every day.
+            </p>
+            <div id="hint-ex1_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">4.</span>
+              If you fall 
+              <input type="text" id="ex1_prep_4" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              with your 
+              <select id="ex1_choice_4" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="housemates">housemates</option>
+                <option value="co-workers">co-workers</option>
+              </select>,
+              it can make it very difficult to continue living together.
+            </p>
+            <div id="hint-ex1_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">5.</span>
+              My father had to bring me 
+              <input type="text" id="ex1_prep_5" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              on his own until he married my 
+              <select id="ex1_choice_5" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="mother-in-law">mother-in-law</option>
+                <option value="stepmother">stepmother</option>
+              </select>.
+            </p>
+            <div id="hint-ex1_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">6.</span>
+              I take 
+              <input type="text" id="ex1_prep_6" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              my 
+              <select id="ex1_choice_6" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="father-in-law">father-in-law</option>
+                <option value="grandfather">grandfather</option>
+              </select>
+              - we have the same character and we look the same too!
+            </p>
+            <div id="hint-ex1_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">7.</span>
+              I want to keep 
+              <input type="text" id="ex1_prep_7" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              touch with some of my 
+              <select id="ex1_choice_7" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="roommates">roommates</option>
+                <option value="co-workers">co-workers</option>
+              </select>
+              when I leave my job.
+            </p>
+            <div id="hint-ex1_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm leading-relaxed text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">8.</span>
+              I don't have much 
+              <input type="text" id="ex1_prep_8" placeholder="preposition" class="ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1">
+              common with my 
+              <select id="ex1_choice_8" class="ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1">
+                <option value="">Select option...</option>
+                <option value="neighbours">neighbours</option>
+                <option value="colleagues">colleagues</option>
+              </select>,
+              apart from working together.
+            </p>
+            <div id="hint-ex1_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex1-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Exercise 2 -->
+    <div id="tab-content-2" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 2 • Grammar</div>
+            <h2 class="text-xl font-bold text-slate-900">Comparison &amp; Degree Modifiers</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the sentences with words from the box. (There are two extra words you do not need).</p>
+          </div>
+          <div>
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word bank for Ex 2 -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank (Two words will not be used)</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">better</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">fewer</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">greater</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">less</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">more</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">most</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">much</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">worse</span>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6" id="ex2-list">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">1.</span>
+              My brother is the 
+              <input type="text" id="ex2_1" placeholder="Type word..." class="ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              confident member of the family; the rest of us are very shy.
+            </p>
+            <div id="hint-ex2_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">2.</span>
+              I'd like to spend 
+              <input type="text" id="ex2_2" placeholder="Type word..." class="ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              time with my grandparents. I only see them twice a year.
+            </p>
+            <div id="hint-ex2_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">3.</span>
+              My sister's exam results are 
+              <input type="text" id="ex2_3" placeholder="Type word..." class="ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              than mine because she works harder than I do.
+            </p>
+            <div id="hint-ex2_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">4.</span>
+              There are 
+              <input type="text" id="ex2_4" placeholder="Type word..." class="ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              families living in our road now; all the children have grown up and moved away.
+            </p>
+            <div id="hint-ex2_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">5.</span>
+              A 
+              <input type="text" id="ex2_5" placeholder="Type word..." class="ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              number of people live alone now than 20 years ago.
+            </p>
+            <div id="hint-ex2_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">6.</span>
+              Rajesh is a much 
+              <input type="text" id="ex2_6" placeholder="Type word..." class="ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              driver than I am; he seems to have an accident every week!
+            </p>
+            <div id="hint-ex2_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex2-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Exercise 3 -->
+    <div id="tab-content-3" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 3 • Grammar</div>
+            <h2 class="text-xl font-bold text-slate-900">Comparative &amp; Superlative Transformations</h2>
+            <p class="text-sm text-slate-600 mt-1">Rewrite the sentences using the words in brackets. Do not change the word in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-5 mt-6" id="ex3-list">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex justify-between items-center text-sm font-medium text-slate-700 mb-2">
+              <div><span class="font-bold text-slate-900 mr-1.5">1.</span>Marcos is shorter than his sister.</div>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-md font-mono">(tall)</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap text-sm font-medium text-slate-800">
+              <span>Marco</span>
+              <input type="text" id="ex3_1" placeholder="complete the sentence..." class="ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span>his sister.</span>
+            </div>
+            <div id="hint-ex3_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex justify-between items-center text-sm font-medium text-slate-700 mb-2">
+              <div><span class="font-bold text-slate-900 mr-1.5">2.</span>Girls aren't as noisy as boys.</div>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-md font-mono">(than)</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap text-sm font-medium text-slate-800">
+              <span>Boys</span>
+              <input type="text" id="ex3_2" placeholder="complete the sentence..." class="ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span>girls.</span>
+            </div>
+            <div id="hint-ex3_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex justify-between items-center text-sm font-medium text-slate-700 mb-2">
+              <div><span class="font-bold text-slate-900 mr-1.5">3.</span>Big families are not as popular these days.</div>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-md font-mono">(popular)</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap text-sm font-medium text-slate-800">
+              <span>Big families are</span>
+              <input type="text" id="ex3_3" placeholder="complete the sentence..." class="ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span>these days.</span>
+            </div>
+            <div id="hint-ex3_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex justify-between items-center text-sm font-medium text-slate-700 mb-2">
+              <div><span class="font-bold text-slate-900 mr-1.5">4.</span>My old tutor was not as friendly as my new one.</div>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-md font-mono">(than)</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap text-sm font-medium text-slate-800">
+              <span>My new tutor</span>
+              <input type="text" id="ex3_4" placeholder="complete the sentence..." class="ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span>my old one.</span>
+            </div>
+            <div id="hint-ex3_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex justify-between items-center text-sm font-medium text-slate-700 mb-2">
+              <div><span class="font-bold text-slate-900 mr-1.5">5.</span>No one in my family is as intelligent as my sister.</div>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-md font-mono">(the)</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap text-sm font-medium text-slate-800">
+              <span>My sister</span>
+              <input type="text" id="ex3_5" placeholder="complete the sentence..." class="ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span>person in my family.</span>
+            </div>
+            <div id="hint-ex3_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex justify-between items-center text-sm font-medium text-slate-700 mb-2">
+              <div><span class="font-bold text-slate-900 mr-1.5">6.</span>Our new house is smaller than our old one.</div>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-md font-mono">(not)</span>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap text-sm font-medium text-slate-800">
+              <span>Our new house is</span>
+              <input type="text" id="ex3_6" placeholder="complete the sentence..." class="ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span>our old one.</span>
+            </div>
+            <div id="hint-ex3_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex3-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Exercise 4 -->
+    <div id="tab-content-4" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 4 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Time Words &amp; Frequency Phrases</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the time words or phrases in the sentences. The first letter of each word is provided.</p>
+          </div>
+          <div>
+            <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6" id="ex4-list">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">1.</span>
+              I see my grandparents three 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">t<input type="text" id="ex4_1a" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              a 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">w<input type="text" id="ex4_1b" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>,
+              on Tuesday, Friday and Sunday.
+            </p>
+            <div id="hint-ex4_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">2.</span>
+              I go on holiday 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">t<input type="text" id="ex4_2a" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              a 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">y<input type="text" id="ex4_2b" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              - once in June and once in December.
+            </p>
+            <div id="hint-ex4_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">3.</span>
+              My family all get together 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">o<input type="text" id="ex4_3" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              a month - we have a big family celebration every three or four weeks.
+            </p>
+            <div id="hint-ex4_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">4.</span>
+              My mother rings me several 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">t<input type="text" id="ex4_4a" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              a 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">d<input type="text" id="ex4_4b" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              - once in the morning and two or three times in the evening!
+            </p>
+            <div id="hint-ex4_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">5.</span>
+              I rarely see my cousins - we live in different countries, so we 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">h<input type="text" id="ex4_5" placeholder="..." class="ex4-input w-24 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              ever get together.
+            </p>
+            <div id="hint-ex4_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">6.</span>
+              I meet my old classmates from time to time; we're all very busy, so we can only see each other 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">o<input type="text" id="ex4_6a" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              in a 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">w<input type="text" id="ex4_6b" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>.
+            </p>
+            <div id="hint-ex4_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">7.</span>
+              I visit my parents 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">e<input type="text" id="ex4_7a" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">w<input type="text" id="ex4_7b" placeholder="..." class="ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              for a meal - every Friday night, in fact.
+            </p>
+            <div id="hint-ex4_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 leading-relaxed">
+              <span class="font-bold text-slate-900 mr-2">8.</span>
+              My best friend and I see each other 
+              <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">d<input type="text" id="ex4_8" placeholder="..." class="ex4-input w-24 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></span>
+              - we usually have a coffee together every morning before work.
+            </p>
+            <div id="hint-ex4_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex4-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Exercise 5 -->
+    <div id="tab-content-5" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 5 • Grammar &amp; Word Forms</div>
+            <h2 class="text-xl font-bold text-slate-900">Forming Adverbs &amp; Adjectives</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the sentences with the correct form of the adjectives in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx5()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6" id="ex5-list">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">1.</span>
+              We can travel to other countries very 
+              <input type="text" id="ex5_1" placeholder="form of 'easy'" class="ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              nowadays. <span class="text-xs font-semibold text-slate-500">(easy)</span>
+            </p>
+            <div id="hint-ex5_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">2.</span>
+              The world population is increasing 
+              <input type="text" id="ex5_2" placeholder="form of 'rapid'" class="ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              . <span class="text-xs font-semibold text-slate-500">(rapid)</span>
+            </p>
+            <div id="hint-ex5_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">3.</span>
+              This year prices are rising 
+              <input type="text" id="ex5_3" placeholder="form of 'steady'" class="ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              . <span class="text-xs font-semibold text-slate-500">(steady)</span>
+            </p>
+            <div id="hint-ex5_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">4.</span>
+              Sadly, some people don't get on 
+              <input type="text" id="ex5_4" placeholder="form of 'good'" class="ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              with their family. <span class="text-xs font-semibold text-slate-500">(good)</span>
+            </p>
+            <div id="hint-ex5_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">5.</span>
+              It's difficult to complete this exercise 
+              <input type="text" id="ex5_5" placeholder="form of 'correct'" class="ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              . <span class="text-xs font-semibold text-slate-500">(correct)</span>
+            </p>
+            <div id="hint-ex5_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800">
+              <span class="font-bold text-slate-900 mr-2">6.</span>
+              I don't feel very 
+              <input type="text" id="ex5_6" placeholder="form of 'strong'" class="ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5">
+              about this subject. <span class="text-xs font-semibold text-slate-500">(strong)</span>
+            </p>
+            <div id="hint-ex5_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex5-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 6: Exercise 6 -->
+    <div id="tab-content-6" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 6 • Vocabulary &amp; Context</div>
+            <h2 class="text-xl font-bold text-slate-900">Important Celebrations: Diwali</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the student's response with the words in the box.</p>
+          </div>
+          <div>
+            <button onclick="checkEx6()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word bank for Ex 6 -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">celebrate</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">culture</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">days off</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">decorate</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">dress up</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">fireworks</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">gifts</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">invite</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">public holiday</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">takes place</span>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          <h3 class="font-bold text-indigo-950 mb-3 text-sm">Can you tell me about an important celebration in your country?</h3>
+          
+          A popular celebration in my country is Diwali - it's an important part of my 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <input type="text" id="ex6_1" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          and many Indian people 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <input type="text" id="ex6_2" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          it all around the world. It 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <input type="text" id="ex6_3" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in October or November and because it's a 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <input type="text" id="ex6_4" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          here, many places close and we have several 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <input type="text" id="ex6_5" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          work or school. One of the things we do is clean the house and 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <input type="text" id="ex6_6" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          it with lots of lights. We 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <input type="text" id="ex6_7" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in our best clothes and 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <input type="text" id="ex6_8" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          all our family to be with us. Everyone gives each other special 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9</span>
+            <input type="text" id="ex6_9" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          and sweets. My favourite part is when we go outside in the evening and watch the 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10</span>
+            <input type="text" id="ex6_10" placeholder="Type word..." class="ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in the sky.
+        </div>
+
+        <div id="ex6-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>English Language Learning • Review Module 2 Practice</p>
+  </footer>
+
+  <script>
+    const tabScores = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0
+    };
+
+    const maxScores = {
+      1: 16, // 8 prepositions + 8 word choices
+      2: 6,
+      3: 6,
+      4: 8,
+      5: 6,
+      6: 10
+    };
+
+    function switchTab(tabNum) {
+      for (let i = 1; i <= 6; i++) {
+        const panel = document.getElementById(`tab-content-${i}`);
+        const btn = document.getElementById(`tab-btn-${i}`);
+        if (panel && btn) {
+          panel.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+
+      const targetPanel = document.getElementById(`tab-content-${tabNum}`);
+      const targetBtn = document.getElementById(`tab-btn-${tabNum}`);
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.remove('hidden');
+        targetBtn.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      }
+    }
+
+    function cleanStr(str) {
+      if (!str) return '';
+      return str.trim()
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.,!?]/g, '');
+    }
+
+    function updateHeaderStats() {
+      let total = 0;
+      let grandMax = 0;
+      for (let i = 1; i <= 6; i++) {
+        total += tabScores[i];
+        grandMax += maxScores[i];
+        const badge = document.getElementById(`badge-${i}`);
+        if (badge) {
+          badge.textContent = `${tabScores[i]}/${maxScores[i]}`;
+          if (tabScores[i] === maxScores[i]) {
+            badge.className = 'text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full';
+          }
+        }
+      }
+      const pct = Math.round((total / grandMax) * 100);
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('global-score-text').textContent = `${total} / ${grandMax} (${pct}%)`;
+    }
+
+    function highlightMissingInput(el) {
+      if (!el) return;
+      el.classList.add('ring-2', 'ring-amber-500', 'border-amber-500');
+      const clearRing = () => {
+        el.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+        el.removeEventListener('input', clearRing);
+        el.removeEventListener('change', clearRing);
+      };
+      el.addEventListener('input', clearRing);
+      el.addEventListener('change', clearRing);
+    }
+
+    let toastTimer = null;
+    function showIncompleteWarning(exName, completed, total) {
+      let toast = document.getElementById('incomplete-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'incomplete-toast';
+        toast.className = 'fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-0 opacity-100 border border-slate-700 text-sm';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div>
+          <p class="font-semibold text-xs text-amber-300 uppercase tracking-wide">Self-Study Check: ${exName}</p>
+          <p class="text-xs text-slate-200 mt-0.5">Please fill in all blanks (${completed}/${total} answered) before checking.</p>
+        </div>
+      `;
+      toast.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }
+
+    const ex1Answers = {
+      1: { prep: ["with"], choice: "classmates", explanation: "lose touch with ... classmates after leaving school" },
+      2: { prep: ["after"], choice: "nephew", explanation: "look after ... sister's son is your nephew" },
+      3: { prep: ["with"], choice: "neighbours", explanation: "get on well with ... neighbours (you see them every day at home)" },
+      4: { prep: ["out"], choice: "housemates", explanation: "fall out with ... housemates (living together)" },
+      5: { prep: ["up"], choice: "stepmother", explanation: "bring up ... married stepmother" },
+      6: { prep: ["after"], choice: "grandfather", explanation: "take after ... grandfather (family resemblance/character)" },
+      7: { prep: ["in"], choice: "co-workers", explanation: "keep in touch with ... co-workers (leaving job)" },
+      8: { prep: ["in"], choice: "colleagues", explanation: "have much in common with ... colleagues (working together)" }
+    };
+
+    function checkEx1() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const prepInput = document.getElementById(`ex1_prep_${i}`);
+        const choiceSelect = document.getElementById(`ex1_choice_${i}`);
+        if (!prepInput.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(prepInput);
+        }
+        if (!choiceSelect.value) {
+          emptyCount++;
+          highlightMissingInput(choiceSelect);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 1", 16 - emptyCount, 16);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const prepInput = document.getElementById(`ex1_prep_${i}`);
+        const choiceSelect = document.getElementById(`ex1_choice_${i}`);
+        const hint = document.getElementById(`hint-ex1_${i}`);
+        
+        const userPrep = cleanStr(prepInput.value);
+        const correctPrep = ex1Answers[i].prep.includes(userPrep);
+        const correctChoice = choiceSelect.value === ex1Answers[i].choice;
+
+        if (correctPrep) {
+          score++;
+          prepInput.className = 'ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm rounded-lg text-center font-medium mx-1 feedback-correct';
+        } else {
+          prepInput.className = 'ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm rounded-lg text-center font-medium mx-1 feedback-incorrect';
+        }
+
+        if (correctChoice) {
+          score++;
+          choiceSelect.className = 'ex1-choice-select inline-block px-2.5 py-1 text-sm rounded-lg font-medium mx-1 feedback-correct';
+        } else {
+          choiceSelect.className = 'ex1-choice-select inline-block px-2.5 py-1 text-sm rounded-lg font-medium mx-1 feedback-incorrect';
+        }
+
+        if (correctPrep && correctChoice) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Expected: "${ex1Answers[i].prep[0]}" + "${ex1Answers[i].choice}" (${ex1Answers[i].explanation})`;
+        }
+      }
+
+      tabScores[1] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex1-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 16 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 16. ${score === 16 ? 'Excellent! All phrasal prepositions and relationship words are correct!' : 'Review any items highlighted in red and check the hints.'}`;
+    }
+
+    const ex2Answers = {
+      ex2_1: ["most"],
+      ex2_2: ["more"],
+      ex2_3: ["better"],
+      ex2_4: ["fewer"],
+      ex2_5: ["greater"],
+      ex2_6: ["worse"]
+    };
+
+    function checkEx2() {
+      let emptyCount = 0;
+      for (let key in ex2Answers) {
+        const input = document.getElementById(key);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 2", 6 - emptyCount, 6);
+        return;
+      }
+
+      let score = 0;
+      for (let key in ex2Answers) {
+        const input = document.getElementById(key);
+        const hint = document.getElementById(`hint-${key}`);
+        const userVal = cleanStr(input.value);
+
+        if (ex2Answers[key].includes(userVal)) {
+          score++;
+          input.className = 'ex2-input inline-block w-32 px-3 py-1.5 text-sm rounded-lg text-center font-medium mx-1.5 feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          input.className = 'ex2-input inline-block w-32 px-3 py-1.5 text-sm rounded-lg text-center font-medium mx-1.5 feedback-incorrect';
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct word: ${ex2Answers[key][0]}`;
+        }
+      }
+
+      tabScores[2] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex2-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 6 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 6. ${score === 6 ? 'Spot on! All comparison modifiers used accurately!' : 'Review any errors highlighted in red and try again.'}`;
+    }
+
+    const ex3Answers = {
+      ex3_1: [
+        "is not as tall as",
+        "isn't as tall as"
+      ],
+      ex3_2: [
+        "are noisier than"
+      ],
+      ex3_3: [
+        "less popular"
+      ],
+      ex3_4: [
+        "is friendlier than",
+        "is more friendly than"
+      ],
+      ex3_5: [
+        "is the most intelligent"
+      ],
+      ex3_6: [
+        "not as big as",
+        "isn't as big as",
+        "not as large as",
+        "isn't as large as"
+      ]
+    };
+
+    const ex3Hints = {
+      ex3_1: "is not as tall as / isn't as tall as",
+      ex3_2: "are noisier than",
+      ex3_3: "less popular",
+      ex3_4: "is friendlier than / is more friendly than",
+      ex3_5: "is the most intelligent",
+      ex3_6: "not as big as / isn't as big as"
+    };
+
+    function checkEx3() {
+      let emptyCount = 0;
+      for (let key in ex3Answers) {
+        const input = document.getElementById(key);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 3", 6 - emptyCount, 6);
+        return;
+      }
+
+      let score = 0;
+      for (let key in ex3Answers) {
+        const input = document.getElementById(key);
+        const hint = document.getElementById(`hint-${key}`);
+        const userVal = cleanStr(input.value);
+
+        const isMatch = ex3Answers[key].some(ans => cleanStr(ans) === userVal);
+
+        if (isMatch) {
+          score++;
+          input.className = 'ex3-input flex-1 min-w-[200px] px-3.5 py-2 border rounded-lg text-sm feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          input.className = 'ex3-input flex-1 min-w-[200px] px-3.5 py-2 border rounded-lg text-sm feedback-incorrect';
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct phrase: "${ex3Hints[key]}"`;
+        }
+      }
+
+      tabScores[3] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex3-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 6 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 6. ${score === 6 ? 'Superb! All comparative sentence rewrites are accurate!' : 'Check any highlighted sentences and notice spelling or comparative forms.'}`;
+    }
+
+    const ex4Answers = {
+      1: { a: ["imes", "times"], b: ["eek", "week"], expected: "three times a week" },
+      2: { a: ["wice", "twice"], b: ["ear", "year"], expected: "twice a year" },
+      3: { val: ["nce", "once"], expected: "once a month" },
+      4: { a: ["imes", "times"], b: ["ay", "day"], expected: "several times a day" },
+      5: { val: ["ardly", "hardly"], expected: "hardly ever" },
+      6: { a: ["nce", "once"], b: ["hile", "while"], expected: "once in a while" },
+      7: { a: ["very", "every"], b: ["eek", "week"], expected: "every week" },
+      8: { val: ["aily", "daily"], expected: "daily" }
+    };
+
+    function checkEx4() {
+      const fieldIds = [
+        'ex4_1a', 'ex4_1b',
+        'ex4_2a', 'ex4_2b',
+        'ex4_3',
+        'ex4_4a', 'ex4_4b',
+        'ex4_5',
+        'ex4_6a', 'ex4_6b',
+        'ex4_7a', 'ex4_7b',
+        'ex4_8'
+      ];
+
+      let emptyCount = 0;
+      fieldIds.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      });
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 4", 8 - Math.ceil(emptyCount / 2), 8);
+        return;
+      }
+
+      let score = 0;
+
+      // Item 1
+      const q1a = cleanStr(document.getElementById('ex4_1a').value);
+      const q1b = cleanStr(document.getElementById('ex4_1b').value);
+      const q1ok = ex4Answers[1].a.includes(q1a) && ex4Answers[1].b.includes(q1b);
+      document.getElementById('ex4_1a').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[1].a.includes(q1a) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      document.getElementById('ex4_1b').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[1].b.includes(q1b) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q1ok) { score++; document.getElementById('hint-ex4_1').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_1').classList.remove('hidden'); document.getElementById('hint-ex4_1').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_1').textContent = `Correct: ${ex4Answers[1].expected}`; }
+
+      // Item 2
+      const q2a = cleanStr(document.getElementById('ex4_2a').value);
+      const q2b = cleanStr(document.getElementById('ex4_2b').value);
+      const q2ok = ex4Answers[2].a.includes(q2a) && ex4Answers[2].b.includes(q2b);
+      document.getElementById('ex4_2a').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[2].a.includes(q2a) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      document.getElementById('ex4_2b').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[2].b.includes(q2b) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q2ok) { score++; document.getElementById('hint-ex4_2').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_2').classList.remove('hidden'); document.getElementById('hint-ex4_2').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_2').textContent = `Correct: ${ex4Answers[2].expected}`; }
+
+      // Item 3
+      const q3 = cleanStr(document.getElementById('ex4_3').value);
+      const q3ok = ex4Answers[3].val.includes(q3);
+      document.getElementById('ex4_3').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${q3ok ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q3ok) { score++; document.getElementById('hint-ex4_3').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_3').classList.remove('hidden'); document.getElementById('hint-ex4_3').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_3').textContent = `Correct: ${ex4Answers[3].expected}`; }
+
+      // Item 4
+      const q4a = cleanStr(document.getElementById('ex4_4a').value);
+      const q4b = cleanStr(document.getElementById('ex4_4b').value);
+      const q4ok = ex4Answers[4].a.includes(q4a) && ex4Answers[4].b.includes(q4b);
+      document.getElementById('ex4_4a').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[4].a.includes(q4a) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      document.getElementById('ex4_4b').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[4].b.includes(q4b) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q4ok) { score++; document.getElementById('hint-ex4_4').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_4').classList.remove('hidden'); document.getElementById('hint-ex4_4').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_4').textContent = `Correct: ${ex4Answers[4].expected}`; }
+
+      // Item 5
+      const q5 = cleanStr(document.getElementById('ex4_5').value);
+      const q5ok = ex4Answers[5].val.includes(q5);
+      document.getElementById('ex4_5').className = `ex4-input w-24 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${q5ok ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q5ok) { score++; document.getElementById('hint-ex4_5').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_5').classList.remove('hidden'); document.getElementById('hint-ex4_5').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_5').textContent = `Correct: ${ex4Answers[5].expected}`; }
+
+      // Item 6
+      const q6a = cleanStr(document.getElementById('ex4_6a').value);
+      const q6b = cleanStr(document.getElementById('ex4_6b').value);
+      const q6ok = ex4Answers[6].a.includes(q6a) && ex4Answers[6].b.includes(q6b);
+      document.getElementById('ex4_6a').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[6].a.includes(q6a) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      document.getElementById('ex4_6b').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[6].b.includes(q6b) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q6ok) { score++; document.getElementById('hint-ex4_6').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_6').classList.remove('hidden'); document.getElementById('hint-ex4_6').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_6').textContent = `Correct: ${ex4Answers[6].expected}`; }
+
+      // Item 7
+      const q7a = cleanStr(document.getElementById('ex4_7a').value);
+      const q7b = cleanStr(document.getElementById('ex4_7b').value);
+      const q7ok = ex4Answers[7].a.includes(q7a) && ex4Answers[7].b.includes(q7b);
+      document.getElementById('ex4_7a').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[7].a.includes(q7a) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      document.getElementById('ex4_7b').className = `ex4-input w-20 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${ex4Answers[7].b.includes(q7b) ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q7ok) { score++; document.getElementById('hint-ex4_7').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_7').classList.remove('hidden'); document.getElementById('hint-ex4_7').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_7').textContent = `Correct: ${ex4Answers[7].expected}`; }
+
+      // Item 8
+      const q8 = cleanStr(document.getElementById('ex4_8').value);
+      const q8ok = ex4Answers[8].val.includes(q8);
+      document.getElementById('ex4_8').className = `ex4-input w-24 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 ${q8ok ? 'feedback-correct' : 'feedback-incorrect'}`;
+      if (q8ok) { score++; document.getElementById('hint-ex4_8').classList.add('hidden'); }
+      else { document.getElementById('hint-ex4_8').classList.remove('hidden'); document.getElementById('hint-ex4_8').className = 'text-xs text-rose-600 mt-1.5 font-medium'; document.getElementById('hint-ex4_8').textContent = `Correct: ${ex4Answers[8].expected}`; }
+
+      tabScores[4] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex4-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 8 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 8. ${score === 8 ? 'Great job! All time frequency phrases are completed!' : 'Review any errors highlighted above and practice frequency expressions.'}`;
+    }
+
+    const ex5Answers = {
+      ex5_1: ["easily"],
+      ex5_2: ["rapidly"],
+      ex5_3: ["steadily"],
+      ex5_4: ["well"],
+      ex5_5: ["correctly"],
+      ex5_6: ["strongly", "strong"]
+    };
+
+    function checkEx5() {
+      let emptyCount = 0;
+      for (let key in ex5Answers) {
+        const input = document.getElementById(key);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 5", 6 - emptyCount, 6);
+        return;
+      }
+
+      let score = 0;
+      for (let key in ex5Answers) {
+        const input = document.getElementById(key);
+        const hint = document.getElementById(`hint-${key}`);
+        const userVal = cleanStr(input.value);
+
+        if (ex5Answers[key].includes(userVal)) {
+          score++;
+          input.className = 'ex5-input inline-block w-36 px-3 py-1.5 text-sm rounded-lg text-center font-medium mx-1.5 feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          input.className = 'ex5-input inline-block w-36 px-3 py-1.5 text-sm rounded-lg text-center font-medium mx-1.5 feedback-incorrect';
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct form: ${ex5Answers[key][0]}`;
+        }
+      }
+
+      tabScores[5] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex5-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 6 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 6. ${score === 6 ? 'Perfect! All adverb and adjective transformations are correct!' : 'Remember: adverbs usually modify verbs (e.g. travel easily, rising steadily, get on well).'}`;
+    }
+
+    const ex6Answers = {
+      ex6_1: ["culture"],
+      ex6_2: ["celebrate"],
+      ex6_3: ["takes place"],
+      ex6_4: ["public holiday"],
+      ex6_5: ["days off"],
+      ex6_6: ["decorate"],
+      ex6_7: ["dress up"],
+      ex6_8: ["invite"],
+      ex6_9: ["gifts"],
+      ex6_10: ["fireworks"]
+    };
+
+    function checkEx6() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const input = document.getElementById(`ex6_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 6", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex6_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex6Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex6-input px-2.5 py-1 border rounded-lg text-sm w-36 text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex6-input px-2.5 py-1 border rounded-lg text-sm w-36 text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[6] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex6-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${score === 10 ? 'Outstanding! The entire festival passage is completed accurately!' : 'Review any red blanks and check the festival word bank.'}`;
+    }
+
+    function resetAllExercises() {
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = '';
+        input.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (input.classList.contains('ex1-prep-input')) {
+          input.className = 'ex1-prep-input inline-block w-24 px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1';
+        } else if (input.classList.contains('ex2-input')) {
+          input.className = 'ex2-input inline-block w-32 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5';
+        } else if (input.classList.contains('ex3-input')) {
+          input.className = 'ex3-input flex-1 min-w-[200px] px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex4-input')) {
+          input.className = 'ex4-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex5-input')) {
+          input.className = 'ex5-input inline-block w-36 px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none mx-1.5';
+        } else if (input.classList.contains('ex6-input')) {
+          input.className = 'ex6-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        }
+      });
+
+      document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        select.className = 'ex1-choice-select inline-block px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700 mx-1';
+      });
+
+      document.querySelectorAll('[id^="hint-"]').forEach(hint => {
+        hint.classList.add('hidden');
+        hint.textContent = '';
+      });
+
+      document.querySelectorAll('[id$="-result-banner"]').forEach(banner => {
+        banner.classList.add('hidden');
+      });
+
+      for (let k in tabScores) tabScores[k] = 0;
+      updateHeaderStats();
+      switchTab(1);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderStats();
+    });
+  </script>
+</body>
+</html>

@@ -110,7 +110,8 @@
     const bySkill = {
       grammar: { total: 0, completed: 0, percent: 0 },
       reading: { total: 0, completed: 0, percent: 0 },
-      writing: { total: 0, completed: 0, percent: 0 }
+      writing: { total: 0, completed: 0, percent: 0 },
+      review: { total: 0, completed: 0, percent: 0 }
     };
 
     dataset.forEach(item => {
@@ -177,6 +178,13 @@
       `;
     }
 
+    const reviewPillHtml = (stats.bySkill.review && stats.bySkill.review.total > 0) ? `
+          <div class="skill-progress-pill skill-pill-review">
+            <span class="pill-dot"></span>
+            <span>Review: <strong>${stats.bySkill.review.completed}/${stats.bySkill.review.total}</strong> (${stats.bySkill.review.percent}%)</span>
+          </div>
+    ` : '';
+
     widget.innerHTML = `
       <div class="progress-card-inner">
         <div class="progress-header">
@@ -204,6 +212,7 @@
             <span class="pill-dot"></span>
             <span>Writing: <strong>${stats.bySkill.writing.completed}/${stats.bySkill.writing.total}</strong> (${stats.bySkill.writing.percent}%)</span>
           </div>
+          ${reviewPillHtml}
         </div>
 
         ${resumeHtml}

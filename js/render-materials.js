@@ -14,6 +14,8 @@
         return '📖 Reading';
       case 'writing':
         return '✍️ Writing';
+      case 'review':
+        return '⭐ Review';
       default:
         return '📚 ' + (skill ? skill.charAt(0).toUpperCase() + skill.slice(1) : 'Module');
     }
@@ -83,13 +85,22 @@
       }
     });
 
-    // Update folder count badges
+    // Update folder count badges and toggle empty folder visibility
     folders.forEach(folder => {
       const skill = (folder.getAttribute('data-folder-skill') || '').toLowerCase();
       const count = folderCounts[skill] || 0;
       const countBadge = folder.querySelector('.folder-count-badge');
       if (countBadge) {
         countBadge.textContent = `${count} ${count === 1 ? 'Module' : 'Modules'}`;
+      }
+
+      const filterBtn = document.querySelector(`.skill-filter-btn[data-skill="${skill}"]`);
+      if (count === 0) {
+        folder.style.display = 'none';
+        if (filterBtn) filterBtn.style.display = 'none';
+      } else {
+        folder.style.display = '';
+        if (filterBtn) filterBtn.style.display = '';
       }
     });
 

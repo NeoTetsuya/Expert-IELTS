@@ -438,10 +438,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-1-writing-sample.html",
     "dataTitle": "Module 1 Writing — Task 1 Describe a Chart - Fast Food Wages Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 1",
     "title": "Module 1 Writing — Task 1 Describe a Chart - Fast Food Wages Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-1a-writing.html",
@@ -492,10 +492,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-2-writing-sample.html",
     "dataTitle": "Module 2 Writing — Task 2 Opinion Essay - Free Museums Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 2",
     "title": "Module 2 Writing — Task 2 Opinion Essay - Free Museums Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-3-writing.html",
@@ -510,10 +510,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-3-writing-sample.html",
     "dataTitle": "Module 3 Writing — Task 1 Describe a Chart - Water Availability & Use Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 3",
     "title": "Module 3 Writing — Task 1 Describe a Chart - Water Availability &amp; Use Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-4-writing.html",
@@ -528,10 +528,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-4-writing-sample.html",
     "dataTitle": "Module 4 Writing — Task 2 Opinion Essay - Technology & Relationships Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 4",
     "title": "Module 4 Writing — Task 2 Opinion Essay - Technology &amp; Relationships Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-5-writing.html",
@@ -546,10 +546,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-5-writing-sample.html",
     "dataTitle": "Module 5 Writing — Task 2 Compare and Contrast Essay - Driverless Cars Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 5",
     "title": "Module 5 Writing — Task 2 Compare and Contrast Essay - Driverless Cars Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-6-writing.html",
@@ -564,10 +564,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-6-writing-sample.html",
     "dataTitle": "Module 6 Writing — Task 1 Describe Changes - Road Layout & Bicycle Growth Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 6",
     "title": "Module 6 Writing — Task 1 Describe Changes - Road Layout &amp; Bicycle Growth Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-7-writing.html",
@@ -582,10 +582,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-7-writing-sample.html",
     "dataTitle": "Module 7 Writing — Task 2 Cause and Effect Essay - International Television & National Identity Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 7",
     "title": "Module 7 Writing — Task 2 Cause and Effect Essay - International Television &amp; National Identity Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-8-writing.html",
@@ -600,10 +600,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-8-writing-sample.html",
     "dataTitle": "Module 8 Writing — Task 1 Describe a Process - How Waterfalls Form (Model Answer & Annotations) Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 8",
     "title": "Module 8 Writing — Task 1 Describe a Process - How Waterfalls Form (Model Answer &amp; Annotations) (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-9-writing.html",
@@ -618,10 +618,10 @@ window.EXPERT_6_MODULES = [
     "url": "module-9-writing-sample.html",
     "dataTitle": "Module 9 Writing — Task 2 Problem-Solution Essay - Aging Population Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 9",
     "title": "Module 9 Writing — Task 2 Problem-Solution Essay - Aging Population Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   },
   {
     "url": "module-10-writing.html",
@@ -636,9 +636,9 @@ window.EXPERT_6_MODULES = [
     "url": "module-10-writing-sample.html",
     "dataTitle": "Module 10 Writing — Describe a Map - Westerby City Library Model Answer & Annotations Model Answer & Annotations",
     "skill": "writing",
+    "badgeClass": "badge-band6",
     "badge": "Module 10",
     "title": "Module 10 Writing — Describe a Map - Westerby City Library Model Answer &amp; Annotations (Model Answer &amp; Annotations)",
-    "status": "Active Model Answer",
-    "badgeClass": "badge-band6"
+    "status": "Active Model Answer"
   }
 ];

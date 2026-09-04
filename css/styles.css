@@ -778,6 +778,7 @@ header.hero {
 .tag-grammar { color: #A78BFA; background: rgba(167, 139, 250, 0.15); }
 .tag-listening { color: #34D399; background: rgba(52, 211, 153, 0.15); }
 .tag-speaking { color: #FBBF24; background: rgba(251, 191, 36, 0.15); }
+.tag-review { color: #F59E0B; background: rgba(245, 158, 11, 0.15); }
 
 .status-badge-active {
   color: #34D399;
@@ -901,7 +902,7 @@ footer {
   .skill-filters {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     gap: 0.35rem;
   }
 
@@ -1089,6 +1090,7 @@ footer {
 .skill-pill-grammar .pill-dot { background: #6366f1; }
 .skill-pill-reading .pill-dot { background: #0284c7; }
 .skill-pill-writing .pill-dot { background: #f59e0b; }
+.skill-pill-review .pill-dot { background: #f59e0b; }
 
 /* Resume Learning Bar */
 .resume-learning-bar {

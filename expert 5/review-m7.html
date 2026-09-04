@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review 7 - English Self-Study Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .tab-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+    }
+    .feedback-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+    .feedback-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+          R7
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Review 7</h1>
+            <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">Module Test 7</span>
+          </div>
+          <p class="text-xs text-slate-500">Crime, Community Facilities, Rural vs Urban Life &amp; Conditionals</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
+        <div class="text-right">
+          <div class="text-xs text-slate-500 font-medium">Overall Progress</div>
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+              <div id="global-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="global-score-text" class="text-xs font-bold text-slate-700">0 / 48</span>
+          </div>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Reset All
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <div class="mb-8 border-b border-slate-200 overflow-x-auto">
+      <nav class="flex space-x-2 pb-3 min-w-max" aria-label="Exercise Tabs">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+          <span>Ex 1: Crime Verbs &amp; Types</span>
+          <span id="badge-1" class="text-[11px] px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 2: Town &amp; Community Facilities</span>
+          <span id="badge-2" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/8</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 3: Rural vs. Urban Essay</span>
+          <span id="badge-3" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/8</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 4: Conditionals Matching</span>
+          <span id="badge-4" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/14</span>
+        </button>
+        <button onclick="switchTab(5)" id="tab-btn-5" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 5: Error Correction</span>
+          <span id="badge-5" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/8</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab 1: Exercise 1 -->
+    <div id="tab-content-1" class="tab-panel transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 1a &amp; 1b • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Crime Verbs in Past Simple &amp; Crime Identification</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the past simple verbs (first letter given). Then select which crime each sentence describes.</p>
+          </div>
+          <div>
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1 leading-relaxed">
+                <span class="font-bold text-slate-900 mr-1.5">1.</span>
+                They stopped him leaving the store and 
+                <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">
+                  a<input type="text" id="ex1_verb_1" placeholder="..." class="ex1-verb-input w-24 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                him of taking £500 worth of goods.
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-slate-500">Crime described:</span>
+                <select id="ex1_crime_1" class="ex1-crime-select px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select crime...</option>
+                  <option value="shoplifting">shoplifting</option>
+                  <option value="burglary">burglary</option>
+                  <option value="mugging">mugging</option>
+                  <option value="theft">theft / car theft</option>
+                  <option value="robbery">robbery</option>
+                  <option value="vandalism">vandalism</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex1_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1 leading-relaxed">
+                <span class="font-bold text-slate-900 mr-1.5">2.</span>
+                The judge 
+                <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">
+                  s<input type="text" id="ex1_verb_2" placeholder="..." class="ex1-verb-input w-28 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                him to prison for stealing from a number of houses in the local area.
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-slate-500">Crime described:</span>
+                <select id="ex1_crime_2" class="ex1-crime-select px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select crime...</option>
+                  <option value="shoplifting">shoplifting</option>
+                  <option value="burglary">burglary</option>
+                  <option value="mugging">mugging</option>
+                  <option value="theft">theft / car theft</option>
+                  <option value="robbery">robbery</option>
+                  <option value="vandalism">vandalism</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex1_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1 leading-relaxed">
+                <span class="font-bold text-slate-900 mr-1.5">3.</span>
+                A number of attacks on local residents 
+                <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">
+                  t<input type="text" id="ex1_verb_3" placeholder="..." class="ex1-verb-input w-20 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                place in the streets this year, with the criminals taking money and mobile phones.
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-slate-500">Crime described:</span>
+                <select id="ex1_crime_3" class="ex1-crime-select px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select crime...</option>
+                  <option value="shoplifting">shoplifting</option>
+                  <option value="burglary">burglary</option>
+                  <option value="mugging">mugging</option>
+                  <option value="theft">theft / car theft</option>
+                  <option value="robbery">robbery</option>
+                  <option value="vandalism">vandalism</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex1_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1 leading-relaxed">
+                <span class="font-bold text-slate-900 mr-1.5">4.</span>
+                Yesterday the police 
+                <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">
+                  c<input type="text" id="ex1_verb_4" placeholder="..." class="ex1-verb-input w-24 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                the man who stole my car.
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-slate-500">Crime described:</span>
+                <select id="ex1_crime_4" class="ex1-crime-select px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select crime...</option>
+                  <option value="shoplifting">shoplifting</option>
+                  <option value="burglary">burglary</option>
+                  <option value="mugging">mugging</option>
+                  <option value="theft">theft / car theft</option>
+                  <option value="robbery">robbery</option>
+                  <option value="vandalism">vandalism</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex1_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1 leading-relaxed">
+                <span class="font-bold text-slate-900 mr-1.5">5.</span>
+                The men 
+                <span class="inline-flex items-center mx-1 font-mono font-bold text-indigo-700">
+                  c<input type="text" id="ex1_verb_5" placeholder="..." class="ex1-verb-input w-28 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                a number of crimes in the area, including stealing money from banks and post offices.
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold text-slate-500">Crime described:</span>
+                <select id="ex1_crime_5" class="ex1-crime-select px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select crime...</option>
+                  <option value="shoplifting">shoplifting</option>
+                  <option value="burglary">burglary</option>
+                  <option value="mugging">mugging</option>
+                  <option value="theft">theft / car theft</option>
+                  <option value="robbery">robbery</option>
+                  <option value="vandalism">vandalism</option>
+                </select>
+              </div>
+            </div>
+            <div id="hint-ex1_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex1-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Exercise 2 -->
+    <div id="tab-content-2" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 2 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Town Facilities &amp; Public Spaces</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the student's responses with the words in the box.</p>
+          </div>
+          <div>
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">community</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">concert</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">health</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">leisure</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">public (x2)</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">retirement</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">town</span>
+          </div>
+        </div>
+
+        <div class="space-y-6 mt-6">
+          <!-- Question 1 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q1</span>
+              What facilities does your town have?
+            </h3>
+            
+            We have the usual 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">1</span>
+              <input type="text" id="ex2_1" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            buildings like schools and hospitals. In the main square we have the 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">2</span>
+              <input type="text" id="ex2_2" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            hall - it's where they have government offices and you can get married there too. Next to it is a beautiful 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">3</span>
+              <input type="text" id="ex2_3" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            hall but I don't often get to go inside because tickets are so expensive. We also have a big modern 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">4</span>
+              <input type="text" id="ex2_4" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            centre, which opened last year - my mum's a doctor and she works there.
+          </div>
+
+          <!-- Question 2 -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q2</span>
+              Is your town a good place for young people?
+            </h3>
+            
+            Actually, there are probably more old people living in my town - we have lots of 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">5</span>
+              <input type="text" id="ex2_5" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            homes. But I suppose it is quite good for young people. We have a lot of 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">6</span>
+              <input type="text" id="ex2_6" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            spaces like parks where young people can meet, and there is also a new 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">7</span>
+              <input type="text" id="ex2_7" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            centre which is great if you like sport. I think there are also youth groups and clubs that meet at the 
+            <span class="inline-flex flex-col mx-1">
+              <span class="text-xs font-bold text-slate-500">8</span>
+              <input type="text" id="ex2_8" placeholder="Type word..." class="ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </span>
+            centre but I have never used them.
+          </div>
+        </div>
+
+        <div id="ex2-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Exercise 3 -->
+    <div id="tab-content-3" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 3 • Essay Cloze</div>
+            <h2 class="text-xl font-bold text-slate-900">Rural vs. Urban Living</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the text with the words in the box. There are two extra words you do not need to use.</p>
+          </div>
+          <div>
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank (Two extra words will not be used)</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">care</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">council</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">crowded</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">involvement</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">leisure</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">lifestyle</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">public</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">residents</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">rural</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">urban</span>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          People who live in a town or city probably have access to more facilities than those who live in a(n) 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <input type="text" id="ex3_1" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          community. These include not only shops, but also public buildings like schools and health 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <input type="text" id="ex3_2" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          facilities. Many people living in 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <input type="text" id="ex3_3" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          communities find it difficult to imagine what it is like to live in a small village with limited facilities. Even if there is a shop in the village, it probably only sells essential items, so 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <input type="text" id="ex3_4" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          have to travel to do most of their shopping. Unless they have their own car, they have to rely on 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <input type="text" id="ex3_5" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          transport and they may also have to travel some distance to see a doctor. However, a rural 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <input type="text" id="ex3_6" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          does have some advantages; a village is less 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <input type="text" id="ex3_7" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          and noisy and generally safer than a city. In addition, there is often a greater sense of 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <input type="text" id="ex3_8" placeholder="Type word..." class="ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in the local community.
+        </div>
+
+        <div id="ex3-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Exercise 4 -->
+    <div id="tab-content-4" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 4 • Grammar &amp; Conditionals</div>
+            <h2 class="text-xl font-bold text-slate-900">Matching Sentence Halves &amp; Conditional Verb Forms</h2>
+            <p class="text-sm text-slate-600 mt-1">Match the sentence beginnings (1–7) with the endings (A–G). Then complete each ending with the correct form of the verbs in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Endings Reference Box -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Sentence Endings (A–G)</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-700">
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">A</span> the community centre <em>(close)</em>.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">B</span> if you <em>(live)</em> in a small rural community.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">C</span> when there <em>(be)</em> many older people living there.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">D</span> young people <em>(not want)</em> to stay there.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">E</span> she <em>(travel)</em> 15 km to the nearest doctor.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">F</span> unless the council <em>(spend)</em> more money on them.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">G</span> it <em>(be)</em> important to report it to the police.</div>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">1.</span>
+                Transport services won't improve ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_1" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (spend):</span>
+                <input type="text" id="ex4_verb_1" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">2.</span>
+                You are more likely to know your neighbours ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_2" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (live):</span>
+                <input type="text" id="ex4_verb_2" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">3.</span>
+                When my grandmother is ill, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_3" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (travel):</span>
+                <input type="text" id="ex4_verb_3" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-44 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">4.</span>
+                Unless more people use it, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_4" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (close):</span>
+                <input type="text" id="ex4_verb_4" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">5.</span>
+                If you witness a crime, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_5" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (be):</span>
+                <input type="text" id="ex4_verb_5" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">6.</span>
+                If a town doesn't have good facilities, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_6" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (not want):</span>
+                <input type="text" id="ex4_verb_6" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">7.</span>
+                A community needs good health care facilities ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex4_match_7" class="ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb (be):</span>
+                <input type="text" id="ex4_verb_7" placeholder="verb form..." class="ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex4_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex4-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Exercise 5 -->
+    <div id="tab-content-5" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 5 • Error Correction</div>
+            <h2 class="text-xl font-bold text-slate-900">Grammar Mistakes in Conditionals &amp; Time Clauses</h2>
+            <p class="text-sm text-slate-600 mt-1">Find and correct one mistake in each sentence. Type the wrong word/phrase and its replacement.</p>
+          </div>
+          <div>
+            <button onclick="checkEx5()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">1.</span>
+              I will feel safe in my town even when I'm at home alone.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_1" placeholder="Type correction (e.g. feel / will feel -> feel)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">2.</span>
+              I don't stay here unless I can find a good job.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_2" placeholder="Type correction (e.g. won't stay / will not stay)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">3.</span>
+              If the council closes the community centre, I am very angry.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_3" placeholder="Type correction (e.g. will be / 'll be)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">4.</span>
+              Our community works best unless all the residents work together.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_4" placeholder="Type correction (e.g. if / when)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">5.</span>
+              My neighbours always help me if I will need them.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_5" placeholder="Type correction (e.g. need)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">6.</span>
+              Crime will increase unless there is more facilities for young people.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_6" placeholder="Type correction (e.g. are)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">7.</span>
+              When you live in a city, you usually will have access to good public facilities.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_7" placeholder="Type correction (e.g. have)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <p class="text-sm font-medium text-slate-800 mb-2">
+              <span class="font-bold text-slate-900 mr-1.5">8.</span>
+              If I'll manage to get a better job, I'll rent a bigger flat in the centre.
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">Correction (replace wrong word):</span>
+              <input type="text" id="ex5_corr_8" placeholder="Type correction (e.g. manage)..." class="ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex5_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex5-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>English Language Learning • Review Module 7 Practice</p>
+  </footer>
+
+  <script>
+    const tabScores = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    };
+
+    const maxScores = {
+      1: 10, // 5 verbs + 5 crimes
+      2: 8,  // 8 facility words
+      3: 8,  // 8 rural/urban cloze words
+      4: 14, // 7 matches + 7 verb forms
+      5: 8   // 8 conditional error corrections
+    };
+
+    function switchTab(tabNum) {
+      for (let i = 1; i <= 5; i++) {
+        const panel = document.getElementById(`tab-content-${i}`);
+        const btn = document.getElementById(`tab-btn-${i}`);
+        if (panel && btn) {
+          panel.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+
+      const targetPanel = document.getElementById(`tab-content-${tabNum}`);
+      const targetBtn = document.getElementById(`tab-btn-${tabNum}`);
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.remove('hidden');
+        targetBtn.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      }
+    }
+
+    function cleanStr(str) {
+      if (!str) return '';
+      return str.trim()
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.,!?]/g, '');
+    }
+
+    function updateHeaderStats() {
+      let total = 0;
+      let grandMax = 0;
+      for (let i = 1; i <= 5; i++) {
+        total += tabScores[i];
+        grandMax += maxScores[i];
+        const badge = document.getElementById(`badge-${i}`);
+        if (badge) {
+          badge.textContent = `${tabScores[i]}/${maxScores[i]}`;
+          if (tabScores[i] === maxScores[i]) {
+            badge.className = 'text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full';
+          }
+        }
+      }
+      const pct = Math.round((total / grandMax) * 100);
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('global-score-text').textContent = `${total} / ${grandMax} (${pct}%)`;
+    }
+
+    function highlightMissingInput(el) {
+      if (!el) return;
+      el.classList.add('ring-2', 'ring-amber-500', 'border-amber-500');
+      const clearRing = () => {
+        el.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+        el.removeEventListener('input', clearRing);
+        el.removeEventListener('change', clearRing);
+      };
+      el.addEventListener('input', clearRing);
+      el.addEventListener('change', clearRing);
+    }
+
+    let toastTimer = null;
+    function showIncompleteWarning(exName, completed, total) {
+      let toast = document.getElementById('incomplete-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'incomplete-toast';
+        toast.className = 'fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-0 opacity-100 border border-slate-700 text-sm';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div>
+          <p class="font-semibold text-xs text-amber-300 uppercase tracking-wide">Self-Study Check: ${exName}</p>
+          <p class="text-xs text-slate-200 mt-0.5">Please complete all items (${completed}/${total} answered) before checking.</p>
+        </div>
+      `;
+      toast.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }
+
+    // ================= EXERCISE 1 =================
+    const ex1Answers = {
+      1: {
+        verb: ["ccused", "accused"],
+        crime: "shoplifting",
+        expectedVerb: "accused",
+        explanation: "1: accused (of taking £500 worth of goods) describes shoplifting."
+      },
+      2: {
+        verb: ["entenced", "sentenced"],
+        crime: "burglary",
+        expectedVerb: "sentenced",
+        explanation: "2: sentenced (to prison for stealing from houses) describes burglary."
+      },
+      3: {
+        verb: ["ook", "took"],
+        crime: "mugging",
+        expectedVerb: "took (took place)",
+        explanation: "3: took (attacks on residents taking phones/money) describes mugging."
+      },
+      4: {
+        verb: ["aught", "caught"],
+        crime: "theft",
+        expectedVerb: "caught",
+        explanation: "4: caught (the man who stole my car) describes car theft / theft."
+      },
+      5: {
+        verb: ["ommitted", "committed"],
+        crime: "robbery",
+        expectedVerb: "committed",
+        explanation: "5: committed (stealing money from banks and post offices) describes robbery."
+      }
+    };
+
+    function checkEx1() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 5; i++) {
+        const vInp = document.getElementById(`ex1_verb_${i}`);
+        const cSel = document.getElementById(`ex1_crime_${i}`);
+        if (!vInp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(vInp);
+        }
+        if (!cSel.value) {
+          emptyCount++;
+          highlightMissingInput(cSel);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 1", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 5; i++) {
+        const vInp = document.getElementById(`ex1_verb_${i}`);
+        const cSel = document.getElementById(`ex1_crime_${i}`);
+        const hint = document.getElementById(`hint-ex1_${i}`);
+        const item = ex1Answers[i];
+
+        const userVerb = cleanStr(vInp.value);
+        const verbOk = item.verb.includes(userVerb);
+        const crimeOk = cSel.value === item.crime;
+
+        if (verbOk) {
+          score++;
+          vInp.className = 'ex1-verb-input w-28 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center feedback-correct';
+        } else {
+          vInp.className = 'ex1-verb-input w-28 px-2 py-1 border rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center feedback-incorrect';
+        }
+
+        if (crimeOk) {
+          score++;
+          cSel.className = 'ex1-crime-select px-3 py-1.5 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          cSel.className = 'ex1-crime-select px-3 py-1.5 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+
+        if (verbOk && crimeOk) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = item.explanation;
+        }
+      }
+
+      tabScores[1] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex1-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Outstanding! All past simple verbs and crime categories identified accurately!' 
+          : 'Review any errors highlighted in red and check the hints.'
+      }`;
+    }
+
+    // ================= EXERCISE 2 =================
+    const ex2Answers = {
+      ex2_1: ["public"],
+      ex2_2: ["town"],
+      ex2_3: ["concert"],
+      ex2_4: ["health"],
+      ex2_5: ["retirement"],
+      ex2_6: ["public"],
+      ex2_7: ["leisure"],
+      ex2_8: ["community"]
+    };
+
+    function checkEx2() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const inp = document.getElementById(`ex2_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 2", 8 - emptyCount, 8);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const key = `ex2_${i}`;
+        const inp = document.getElementById(key);
+        const userVal = cleanStr(inp.value);
+        const valid = ex2Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          inp.className = 'ex2-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          inp.className = 'ex2-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[2] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex2-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 8 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 8. ${
+        score === 8 
+          ? 'Superb! All town and community facilities identified accurately!' 
+          : 'Check collocations: public buildings, town hall, concert hall, health centre, retirement homes, public spaces, leisure centre, community centre.'
+      }`;
+    }
+
+    // ================= EXERCISE 3 =================
+    const ex3Answers = {
+      ex3_1: ["rural"],
+      ex3_2: ["care"],
+      ex3_3: ["urban"],
+      ex3_4: ["residents"],
+      ex3_5: ["public"],
+      ex3_6: ["lifestyle"],
+      ex3_7: ["crowded"],
+      ex3_8: ["involvement"]
+    };
+
+    function checkEx3() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const inp = document.getElementById(`ex3_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 3", 8 - emptyCount, 8);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const key = `ex3_${i}`;
+        const inp = document.getElementById(key);
+        const userVal = cleanStr(inp.value);
+        const valid = ex3Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          inp.className = 'ex3-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          inp.className = 'ex3-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[3] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex3-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 8 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 8. ${
+        score === 8 
+          ? 'Brilliant! The rural vs. urban essay cloze is completed accurately!' 
+          : 'Review any red blanks and verify against the word bank (remember: two words are extra).'
+      }`;
+    }
+
+    // ================= EXERCISE 4 =================
+    const ex4Data = {
+      1: {
+        match: "F",
+        verbs: ["spends", "will spend"],
+        explanation: "1 matches F: 'unless the council spends more money on them'"
+      },
+      2: {
+        match: "B",
+        verbs: ["live"],
+        explanation: "2 matches B: 'if you live in a small rural community'"
+      },
+      3: {
+        match: "E",
+        verbs: ["travels", "has to travel", "will travel"],
+        explanation: "3 matches E: 'she travels / has to travel 15 km to the nearest doctor'"
+      },
+      4: {
+        match: "A",
+        verbs: ["will close", "'ll close", "is going to close", "closes"],
+        explanation: "4 matches A: 'the community centre will close'"
+      },
+      5: {
+        match: "G",
+        verbs: ["is", "will be"],
+        explanation: "5 matches G: 'it is important to report it to the police'"
+      },
+      6: {
+        match: "D",
+        verbs: ["will not want", "won't want", "don't want", "do not want"],
+        explanation: "6 matches D: 'young people won't want to stay there'"
+      },
+      7: {
+        match: "C",
+        verbs: ["are"],
+        explanation: "7 matches C: 'when there are many older people living there'"
+      }
+    };
+
+    function checkEx4() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 7; i++) {
+        const mSel = document.getElementById(`ex4_match_${i}`);
+        const vInp = document.getElementById(`ex4_verb_${i}`);
+        if (!mSel.value) {
+          emptyCount++;
+          highlightMissingInput(mSel);
+        }
+        if (!vInp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(vInp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 4", 14 - emptyCount, 14);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 7; i++) {
+        const mSel = document.getElementById(`ex4_match_${i}`);
+        const vInp = document.getElementById(`ex4_verb_${i}`);
+        const hint = document.getElementById(`hint-ex4_${i}`);
+        const item = ex4Data[i];
+
+        const matchOk = mSel.value === item.match;
+        const userVerb = cleanStr(vInp.value);
+        const verbOk = item.verbs.some(v => cleanStr(v) === userVerb);
+
+        if (matchOk) {
+          score++;
+          mSel.className = 'ex4-match-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          mSel.className = 'ex4-match-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+
+        if (verbOk) {
+          score++;
+          vInp.className = 'ex4-verb-input px-3 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          vInp.className = 'ex4-verb-input px-3 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+
+        if (matchOk && verbOk) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = item.explanation;
+        }
+      }
+
+      tabScores[4] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex4-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 14 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 14. ${
+        score === 14 
+          ? 'Excellent! All conditional sentence halves matched and verb forms constructed correctly!' 
+          : 'Review any errors highlighted in red and check the conditional structures.'
+      }`;
+    }
+
+    // ================= EXERCISE 5 =================
+    const ex5Answers = {
+      1: {
+        valid: ["feel", "i feel", "will feel -> feel", "feel safe"],
+        explanation: "Use present simple for general truths / zero conditional: 'I feel safe in my town even when...'"
+      },
+      2: {
+        valid: ["won't stay", "will not stay", "don't stay -> won't stay", "i won't stay", "i will not stay"],
+        explanation: "First conditional main clause needs future: 'I won't stay / will not stay here unless...'"
+      },
+      3: {
+        valid: ["will be", "'ll be", "am -> will be", "i will be", "i'll be"],
+        explanation: "First conditional result clause: '...I will be / I'll be very angry.'"
+      },
+      4: {
+        valid: ["if", "when", "unless -> if", "unless -> when"],
+        explanation: "'Unless' means 'if not'. Change 'unless' to 'if' or 'when': 'Our community works best if all the residents work together.'"
+      },
+      5: {
+        valid: ["need", "will need -> need", "i need"],
+        explanation: "In conditional / time clauses with if, use present simple: '...if I need them.'"
+      },
+      6: {
+        valid: ["are", "there are", "is -> are"],
+        explanation: "'facilities' is plural, so use 'are': '...unless there are more facilities for young people.'"
+      },
+      7: {
+        valid: ["have", "will have -> have", "usually have", "you usually have"],
+        explanation: "Zero conditional / general fact with when: '...you usually have access to good public facilities.'"
+      },
+      8: {
+        valid: ["manage", "i manage", "if i manage", "i'll manage -> manage", "'ll manage -> manage"],
+        explanation: "In the if-clause, use present simple: 'If I manage to get a better job...'"
+      }
+    };
+
+    function checkEx5() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 8; i++) {
+        const inp = document.getElementById(`ex5_corr_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 5", 8 - emptyCount, 8);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const inp = document.getElementById(`ex5_corr_${i}`);
+        const hint = document.getElementById(`hint-ex5_${i}`);
+        const userVal = cleanStr(inp.value);
+        const item = ex5Answers[i];
+
+        const isOk = item.valid.some(ans => cleanStr(ans) === userVal);
+
+        if (isOk) {
+          score++;
+          inp.className = 'ex5-input flex-1 px-3 py-1.5 border rounded-lg text-sm feedback-correct';
+          hint.classList.add('hidden');
+        } else {
+          inp.className = 'ex5-input flex-1 px-3 py-1.5 border rounded-lg text-sm feedback-incorrect';
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correction: ${item.explanation}`;
+        }
+      }
+
+      tabScores[5] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex5-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 8 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 8. ${
+        score === 8 
+          ? 'Outstanding! All grammar mistakes in conditionals identified and corrected!' 
+          : 'Review any items highlighted in red and check zero/first conditional rules.'
+      }`;
+    }
+
+    // ================= RESET ALL =================
+    function resetAllExercises() {
+      // Inputs
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = '';
+        input.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (input.classList.contains('ex1-verb-input')) {
+          input.className = 'ex1-verb-input w-24 px-2 py-1 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal ml-0.5 text-center focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex2-input')) {
+          input.className = 'ex2-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex3-input')) {
+          input.className = 'ex3-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex4-verb-input')) {
+          input.className = 'ex4-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex5-input')) {
+          input.className = 'ex5-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        }
+      });
+
+      // Selects
+      document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (select.classList.contains('ex1-crime-select')) {
+          select.className = 'ex1-crime-select px-3 py-1.5 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        } else if (select.classList.contains('ex4-match-select')) {
+          select.className = 'ex4-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        }
+      });
+
+      // Hints & banners
+      document.querySelectorAll('[id^="hint-"]').forEach(hint => {
+        hint.classList.add('hidden');
+        hint.textContent = '';
+      });
+
+      document.querySelectorAll('[id$="-result-banner"]').forEach(banner => {
+        banner.classList.add('hidden');
+      });
+
+      for (let k in tabScores) tabScores[k] = 0;
+      updateHeaderStats();
+      switchTab(1);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderStats();
+    });
+  </script>
+</body>
+</html>

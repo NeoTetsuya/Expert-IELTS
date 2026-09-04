@@ -33,7 +33,7 @@ if (fs.existsSync(rootIndexPath)) {
     const count5 = results['expert 5'].total;
     const badgeText5 = count5 >= 30 ? `${Math.floor(count5 / 5) * 5}+ Modules` : `${count5} Modules`;
     rootHtml = rootHtml.replace(
-      /(<a class="level-card card-band5"[\s\S]*?<span class="stat-chip"[^>]*>)([^<]*)(<\/span>)/i,
+      /(<article[^>]*id="card-expert-5"[\s\S]*?<span class="module-count-tag">)([^<]*)(<\/span>)/i,
       `$1${badgeText5}$3`
     );
   }
@@ -43,7 +43,7 @@ if (fs.existsSync(rootIndexPath)) {
     const count6 = results['expert 6'].total;
     const badgeText6 = count6 >= 30 ? `${Math.floor(count6 / 5) * 5}+ Modules` : `${count6} Modules`;
     rootHtml = rootHtml.replace(
-      /(<a class="level-card card-band6"[\s\S]*?<span class="stat-chip"[^>]*>)([^<]*)(<\/span>)/i,
+      /(<article[^>]*id="card-expert-6"[\s\S]*?<span class="module-count-tag">)([^<]*)(<\/span>)/i,
       `$1${badgeText6}$3`
     );
   }
@@ -53,7 +53,7 @@ if (fs.existsSync(rootIndexPath)) {
     const count75 = results['expert 7.5'].total;
     const badgeText75 = count75 >= 30 ? `${Math.floor(count75 / 5) * 5}+ Modules` : `${count75} Modules`;
     rootHtml = rootHtml.replace(
-      /(<a class="level-card card-band75"[\s\S]*?<span class="stat-chip"[^>]*>)([^<]*)(<\/span>)/i,
+      /(<article[^>]*id="card-expert-75"[\s\S]*?<span class="module-count-tag">)([^<]*)(<\/span>)/i,
       `$1${badgeText75}$3`
     );
   }

@@ -83,7 +83,9 @@ function parseHtmlMetadata(filePath, filename) {
   const lowerTitle = rawTitle.toLowerCase();
   const lowerH1 = rawH1.toLowerCase();
 
-  if (lowerFile.includes('grammar') || lowerFile.startsWith('module_') || lowerFile.includes('tenses') || lowerFile.includes('verbs') || lowerFile.includes('clause') || lowerFile.includes('passive') || lowerFile.includes('conditional') || lowerFile.includes('adverb') || lowerFile.includes('nouns') || lowerFile.includes('irregular_verbs')) {
+  if (lowerFile.includes('review') || lowerTitle.includes('unit review') || lowerTitle.includes('module review') || lowerH1.includes('review')) {
+    skill = 'review';
+  } else if (lowerFile.includes('grammar') || lowerFile.startsWith('module_') || lowerFile.includes('tenses') || lowerFile.includes('verbs') || lowerFile.includes('clause') || lowerFile.includes('passive') || lowerFile.includes('conditional') || lowerFile.includes('adverb') || lowerFile.includes('nouns') || lowerFile.includes('irregular_verbs')) {
     skill = 'grammar';
   } else if (lowerFile.includes('writing') || lowerTitle.includes('writing') || lowerH1.includes('writing')) {
     skill = 'writing';
@@ -91,10 +93,14 @@ function parseHtmlMetadata(filePath, filename) {
     skill = 'reading';
   }
 
-  // Determine module badge (e.g. Module 1a, Module 10, Reference)
+  // Determine module badge (e.g. Module 1a, Module 10, Review 1, Reference)
   let badge = 'Module';
   const modMatch = filename.match(/module[_-]?(\d+[ab]?|\d+)/i) || rawTitle.match(/Module\s*(\d+[ab]?|\d+)/i);
-  if (modMatch) {
+  const reviewMatch = filename.match(/review[-_]?m?(\d+)/i) || rawTitle.match(/Review\s*(\d+)/i) || rawH1.match(/Review\s*(\d+)/i);
+
+  if (skill === 'review' && reviewMatch) {
+    badge = `Review ${reviewMatch[1]}`;
+  } else if (modMatch) {
     badge = `Module ${modMatch[1].toLowerCase().replace(/^0+/, '')}`;
   } else if (lowerFile.includes('irregular_verbs') || lowerFile.includes('guide') || lowerFile.includes('reference')) {
     badge = 'Reference';
@@ -105,7 +111,9 @@ function parseHtmlMetadata(filePath, filename) {
   const isWritingSample = lowerFile.includes('writing-sample') || lowerTitle.includes('model answer') || lowerFile.includes('sample');
 
   let status = 'Active Exercise';
-  if (isExplanation) {
+  if (skill === 'review') {
+    status = 'Active Review';
+  } else if (isExplanation) {
     status = 'Active Analysis';
   } else if (isWritingSample) {
     status = 'Active Model Answer';
@@ -117,7 +125,17 @@ function parseHtmlMetadata(filePath, filename) {
 
   // Extract topic from title or h1
   let topic = '';
-  if (isExplanation && rawTitle.includes('—')) {
+  if (skill === 'review') {
+    const subMatch = content.match(/<p[^>]*class="[^"]*text-slate-500[^"]*"[^>]*>([\s\S]*?)<\/p>/i);
+    let sub = subMatch ? subMatch[1].replace(/<[^>]*>/g, '').trim() : '';
+    if (sub && !sub.toLowerCase().includes('progress') && !sub.toLowerCase().includes('practice platform')) {
+      topic = sub;
+    } else if (reviewMatch && reviewMatch[1] === '1') {
+      topic = 'University Places, Present Simple & Modal Can';
+    } else {
+      topic = 'Progress Practice & Assessment';
+    }
+  } else if (isExplanation && rawTitle.includes('—')) {
     topic = rawTitle.split('—')[0].trim();
   } else if (isWritingSample) {
     let cleanT = rawTitle.replace(/^Module\s*\d+[ab]?\s*[:—\-]?\s*/i, '').trim();
@@ -146,6 +164,7 @@ function parseHtmlMetadata(filePath, filename) {
   if (!topic || topic.includes('${TASK_CONFIG') || topic.length < 2) {
     topic = filename
       .replace(/^module[_-]\d+[ab]?[_-]/i, '')
+      .replace(/^review[_-]m?\d+[_-]?/i, '')
       .replace(/\.html$/i, '')
       .replace(/[_-]/g, ' ')
       .replace(/\b\w/g, c => c.toUpperCase());
@@ -157,7 +176,11 @@ function parseHtmlMetadata(filePath, filename) {
 
   const skillName = skill.charAt(0).toUpperCase() + skill.slice(1);
 
-  if (rawTitle.toLowerCase().includes('grammar & vocabulary reference')) {
+  if (skill === 'review') {
+    const modNum = reviewMatch ? reviewMatch[1] : '';
+    displayTitle = modNum ? `Module ${modNum} Review — ${topic}` : `${badge} — ${topic}`;
+    dataTitle = modNum ? `Module ${modNum} Review — ${topic}` : `${badge} — ${topic}`;
+  } else if (rawTitle.toLowerCase().includes('grammar & vocabulary reference')) {
     displayTitle = `${badge} Grammar &amp; Vocabulary Reference`;
     dataTitle = `${badge} Grammar & Vocabulary Reference`;
   } else if (badge === 'Reference') {
@@ -197,7 +220,7 @@ function parseHtmlMetadata(filePath, filename) {
  * Natural sort helper for module files
  */
 function sortModules(a, b) {
-  const skillOrder = { grammar: 1, reading: 2, writing: 3 };
+  const skillOrder = { grammar: 1, reading: 2, writing: 3, review: 4 };
   const aSkill = skillOrder[a.skill] || 99;
   const bSkill = skillOrder[b.skill] || 99;
 
@@ -333,7 +356,7 @@ function updateLevel(levelKey, options = {}) {
   console.log(`✅ Saved dataset: ${config.dataFile} (${updatedDataset.length} total entries)`);
 
   // Count by skill
-  const counts = { grammar: 0, reading: 0, writing: 0 };
+  const counts = { grammar: 0, reading: 0, writing: 0, review: 0 };
   updatedDataset.forEach(item => {
     const s = (item.skill || '').toLowerCase();
     if (counts[s] !== undefined) {
@@ -363,6 +386,12 @@ function updateLevel(levelKey, options = {}) {
       `$1${counts.writing} ${counts.writing === 1 ? 'Module' : 'Modules'}$3`
     );
 
+    // Update review count
+    indexHtml = indexHtml.replace(
+      /(<div class="skill-folder[^>]*data-folder-skill="review"[\s\S]*?<span class="folder-count-badge">)([^<]*)(<\/span>)/i,
+      `$1${counts.review} ${counts.review === 1 ? 'Module' : 'Modules'}$3`
+    );
+
     fs.writeFileSync(indexFilePath, indexHtml, 'utf-8');
     console.log(`✅ Updated folder badges in: ${config.indexFile}`);
   }
@@ -372,6 +401,7 @@ function updateLevel(levelKey, options = {}) {
   console.log(`   📝 Grammar: ${counts.grammar} modules`);
   console.log(`   📖 Reading: ${counts.reading} modules`);
   console.log(`   ✍️ Writing: ${counts.writing} modules`);
+  console.log(`   ⭐ Review:  ${counts.review} modules`);
 
   if (newItems.length > 0) {
     console.log(`\n✨ Detected & Added ${newItems.length} New File(s):`);

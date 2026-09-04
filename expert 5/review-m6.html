@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Review 6 - English Self-Study Practice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .tab-btn.active {
+      background-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -2px rgba(79, 70, 229, 0.1);
+    }
+    .feedback-correct {
+      border-color: #10b981 !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+    }
+    .feedback-incorrect {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+          R6
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-bold text-slate-900 tracking-tight">Review 6</h1>
+            <span class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2 py-0.5 rounded-full">Module Test 6 • Review Test 3</span>
+          </div>
+          <p class="text-xs text-slate-500">Food, Diet, Shopping, Be Going To &amp; Future Forms (Will / Be Going To)</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
+        <div class="text-right">
+          <div class="text-xs text-slate-500 font-medium">Overall Progress</div>
+          <div class="flex items-center gap-2">
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 overflow-hidden">
+              <div id="global-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="global-score-text" class="text-xs font-bold text-slate-700">0 / 52</span>
+          </div>
+        </div>
+        <button onclick="resetAllExercises()" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Reset All
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+    <div class="mb-8 border-b border-slate-200 overflow-x-auto">
+      <nav class="flex space-x-2 pb-3 min-w-max" aria-label="Exercise Tabs">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn active px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2">
+          <span>Ex 1: Diet &amp; Health Vocabulary</span>
+          <span id="badge-1" class="text-[11px] px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 2: Matching &amp; Be Going To</span>
+          <span id="badge-2" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/12</span>
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 3: Retail &amp; Shopping Words</span>
+          <span id="badge-3" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/8</span>
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 4: Shopping Collocations</span>
+          <span id="badge-4" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/10</span>
+        </button>
+        <button onclick="switchTab(5)" id="tab-btn-5" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center gap-2">
+          <span>Ex 5: Will vs. Be Going To</span>
+          <span id="badge-5" class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full">0/12</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab 1: Exercise 1 -->
+    <div id="tab-content-1" class="tab-panel transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 1 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Diet, Health &amp; Nutrition Passage</h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the text with the words in the box. There are two extra words you do not need to use.</p>
+          </div>
+          <div>
+            <button onclick="checkEx1()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Word Bank (Two extra words will not be used)</div>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">bitter</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">calories</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">carbohydrate</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">dairy</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">fattening</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">fresh</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">ingredients</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">minerals</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">nutritious</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">processed</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">ready-made</span>
+            <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 text-indigo-900 shadow-xs">weight</span>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          Studies show that there is a clear link between a country's diet and the health of its population. In many western countries, people eat a lot of fast or 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <input type="text" id="ex1_1" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          food for convenience. However, such food is not very 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <input type="text" id="ex1_2" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          and does not have enough of the necessary vitamins and 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <input type="text" id="ex1_3" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          we need to stay healthy. On the contrary, junk food is often full of salt and sugar, and contains far too many 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <input type="text" id="ex1_4" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>, 
+          which can lead to people putting on 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <input type="text" id="ex1_5" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          and suffering health problems. In contrast, people are generally healthier and live longer in countries like Greece and Spain, where there is a diet high in 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <input type="text" id="ex1_6" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-28 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          fruit and vegetables and where they usually have home-cooked food rather than buying 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <input type="text" id="ex1_7" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          meals from the supermarket. Although many people think that food like rice and pasta is 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <input type="text" id="ex1_8" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>, 
+          the Japanese, who live longer than any other country, eat this type of 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9</span>
+            <input type="text" id="ex1_9" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          every day. And although some people find Indian food too spicy, chillies and ginger and some of the other 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10</span>
+            <input type="text" id="ex1_10" placeholder="Type word..." class="ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </span>
+          in Indian dishes can protect against certain diseases.
+        </div>
+
+        <div id="ex1-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Exercise 2 -->
+    <div id="tab-content-2" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 2 • Grammar &amp; Matching</div>
+            <h2 class="text-xl font-bold text-slate-900">Sentence Matching &amp; Future with 'be going to'</h2>
+            <p class="text-sm text-slate-600 mt-1">Match the sentence beginnings (1–6) with the endings (A–F). Then complete the sentences with the correct form of <em>be going to</em> and the verbs in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx2()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <!-- Endings Reference Box -->
+        <div class="mt-6 p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
+          <div class="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">Sentence Endings (A–F)</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-700">
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">A</span> so I <em>[be going to + make]</em> a vegetarian dish for them.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">B</span> so my flatmate <em>[be going to + help]</em> me prepare the meal.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">C</span> so we <em>[be going to + not eat]</em> there.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">D</span> so they <em>[be going to + go]</em> on a diet.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">E</span> so I <em>[be going to + put on]</em> weight.</div>
+            <div class="p-2 bg-white rounded-lg border border-indigo-100 shadow-xs"><span class="font-bold text-indigo-700 mr-1.5">F</span> so she <em>[be going to + not have]</em> dessert.</div>
+          </div>
+        </div>
+
+        <div class="space-y-4 mt-6">
+          <!-- Item 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">1.</span>
+                The reviews of the new Chinese restaurant are not very good, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_1" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb form (not eat):</span>
+                <input type="text" id="ex2_verb_1" placeholder="form of be going to..." class="ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex2_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">2.</span>
+                I'm eating too much junk food at the moment, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_2" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb form (put on):</span>
+                <input type="text" id="ex2_verb_2" placeholder="form of be going to..." class="ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex2_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">3.</span>
+                They don't eat meat, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_3" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb form (make):</span>
+                <input type="text" id="ex2_verb_3" placeholder="form of be going to..." class="ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex2_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">4.</span>
+                Jenna's trying to lose weight, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_4" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb form (not have):</span>
+                <input type="text" id="ex2_verb_4" placeholder="form of be going to..." class="ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex2_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">5.</span>
+                They're worried about their health, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_5" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb form (go):</span>
+                <input type="text" id="ex2_verb_5" placeholder="form of be going to..." class="ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex2_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 text-sm">
+              <div class="font-medium text-slate-800 flex-1">
+                <span class="font-bold text-slate-900 mr-2">6.</span>
+                I'm not a very good cook, ...
+              </div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs font-semibold text-slate-500">Ending:</span>
+                <select id="ex2_match_6" class="ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+                  <option value="">Select...</option>
+                  <option value="A">A</option><option value="B">B</option><option value="C">C</option>
+                  <option value="D">D</option><option value="E">E</option><option value="F">F</option>
+                </select>
+                <span class="text-xs font-semibold text-slate-500 ml-2">Verb form (help):</span>
+                <input type="text" id="ex2_verb_6" placeholder="form of be going to..." class="ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              </div>
+            </div>
+            <div id="hint-ex2_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex2-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Exercise 3 -->
+    <div id="tab-content-3" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 3 • Vocabulary</div>
+            <h2 class="text-xl font-bold text-slate-900">Retail &amp; Shopping Words</h2>
+            <p class="text-sm text-slate-600 mt-1">Read the descriptions and complete the words. The first letter of each word is given.</p>
+          </div>
+          <div>
+            <button onclick="checkEx3()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <!-- 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">1.</span>you need this to return an item to a shop:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">r</span>
+              <input type="text" id="ex3_1" placeholder="Type letters..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_1" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">2.</span>this person serves you in a shop:</p>
+            <div class="flex items-center gap-2 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">s</span>
+              <input type="text" id="ex3_2a" placeholder="Type..." class="ex3-input w-28 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span class="font-mono font-bold text-indigo-700 text-base">a</span>
+              <input type="text" id="ex3_2b" placeholder="Type..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_2" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">3.</span>a large shop where you can buy almost anything:</p>
+            <div class="flex items-center gap-2 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">d</span>
+              <input type="text" id="ex3_3a" placeholder="Type..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <span class="font-mono font-bold text-indigo-700 text-base">s</span>
+              <input type="text" id="ex3_3b" placeholder="Type..." class="ex3-input w-28 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_3" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">4.</span>where you go to buy flowers and plants:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">f</span>
+              <input type="text" id="ex3_4" placeholder="Type letters..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_4" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">5.</span>you can buy newspapers and magazines here:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">n</span>
+              <input type="text" id="ex3_5" placeholder="Type letters..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_5" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">6.</span>where you try on clothes in a shop:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">f</span>
+              <input type="text" id="ex3_6" placeholder="Type letters..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_6" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">7.</span>you ask for this at the end of a meal in a restaurant:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">b</span>
+              <input type="text" id="ex3_7" placeholder="Type letters..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_7" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+
+          <!-- 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+            <p class="text-sm text-slate-700 mb-3"><span class="font-bold text-slate-900 mr-1.5">8.</span>where you go to buy medicines:</p>
+            <div class="flex items-center gap-1 text-sm font-medium">
+              <span class="font-mono font-bold text-indigo-700 text-base">c</span>
+              <input type="text" id="ex3_8" placeholder="Type letters..." class="ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div id="hint-ex3_8" class="text-xs text-slate-500 mt-1.5 hidden font-medium"></div>
+          </div>
+        </div>
+
+        <div id="ex3-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Exercise 4 -->
+    <div id="tab-content-4" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 4 • Collocations &amp; Speaking Prompt</div>
+            <h2 class="text-xl font-bold text-slate-900">Visiting a Shop: Collocations in Context</h2>
+            <p class="text-sm text-slate-600 mt-1">Choose the correct options in italics to complete the student's response.</p>
+          </div>
+          <div>
+            <button onclick="checkEx4()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+          <div class="p-3.5 bg-indigo-100/50 rounded-xl text-xs font-bold uppercase tracking-wide text-indigo-900 mb-4 border border-indigo-200/50">
+            Speaking Prompt: Describe a shop you often go to. You should say what it sells, how often you go there, and explain what you like about it.
+          </div>
+
+          A shop I often go to in my town is the bookshop. I don't often shop 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">1</span>
+            <select id="ex4_1" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="on">on</option>
+              <option value="at">at</option>
+            </select>
+          </span>
+          the high street as I do most of my shopping online but I really like this shop, so I go there a lot - probably every month. They have a good range of books and if something is not 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">2</span>
+            <select id="ex4_2" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="on">on</option>
+              <option value="in">in</option>
+            </select>
+          </span>
+          stock, they can order it for you. It's not very cheap and I can't always 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">3</span>
+            <select id="ex4_3" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="afford">afford</option>
+              <option value="pay">pay</option>
+            </select>
+          </span>
+          to buy anything, so sometimes I just 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">4</span>
+            <select id="ex4_4" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="browse">browse</option>
+              <option value="serve">serve</option>
+            </select>
+          </span>
+          and see what new books there are. You can't really buy anything 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">5</span>
+            <select id="ex4_5" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="at">at</option>
+              <option value="on">on</option>
+            </select>
+          </span>
+          a discount like you can online, but occasionally they have new books 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">6</span>
+            <select id="ex4_6" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="on">on</option>
+              <option value="in">in</option>
+            </select>
+          </span>
+          special offer and they have a large section of cheap 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">7</span>
+            <select id="ex4_7" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="antique">antique</option>
+              <option value="second-hand">second-hand</option>
+            </select>
+          </span>
+          books. One of the things I like about this shop is that they give very good service to all their 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">8</span>
+            <select id="ex4_8" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="assistants">assistants</option>
+              <option value="customers">customers</option>
+            </select>
+          </span>
+          and you can always take something 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">9</span>
+            <select id="ex4_9" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="back">back</option>
+              <option value="up">up</option>
+            </select>
+          </span>
+          if you change your mind, which is more difficult to do if you 
+          <span class="inline-flex flex-col mx-1">
+            <span class="text-xs font-bold text-slate-500">10</span>
+            <select id="ex4_10" class="ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700">
+              <option value="">Choose...</option>
+              <option value="order">order</option>
+              <option value="offer">offer</option>
+            </select>
+          </span>
+          online.
+        </div>
+
+        <div id="ex4-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Exercise 5 -->
+    <div id="tab-content-5" class="tab-panel hidden transition-opacity duration-200">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Exercise 5 • Grammar &amp; Speaking Prompts</div>
+            <h2 class="text-xl font-bold text-slate-900">Future Forms: <em>will</em> or <em>be going to</em></h2>
+            <p class="text-sm text-slate-600 mt-1">Complete the responses with the correct form of <em>will</em> or <em>be going to</em> and the verbs in brackets.</p>
+          </div>
+          <div>
+            <button onclick="checkEx5()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-xs transition-colors">Check Answers</button>
+          </div>
+        </div>
+
+        <div class="space-y-6 mt-6">
+          <!-- Section 1: Plans for tonight -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q1</span>
+              What are your plans for tonight?
+            </h3>
+            
+            <div class="space-y-3">
+              <p>
+                <span class="font-bold text-indigo-900 mr-1.5">A.</span>
+                I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">1 (finish)</span>
+                  <input type="text" id="ex5_1" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                my essay first and then my flatmate 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">2 (cook)</span>
+                  <input type="text" id="ex5_2" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                my favourite meal for me.
+              </p>
+              
+              <p>
+                <span class="font-bold text-indigo-900 mr-1.5">B.</span>
+                My brother 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">3 (take)</span>
+                  <input type="text" id="ex5_3" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                me to the cinema and afterwards we 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">4 (probably / go)</span>
+                  <input type="text" id="ex5_4" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-44 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                for something to eat.
+              </p>
+
+              <p>
+                <span class="font-bold text-indigo-900 mr-1.5">C.</span>
+                I'm feeling very tired, so I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">5 (have)</span>
+                  <input type="text" id="ex5_5" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                something to eat and then I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">6 (go)</span>
+                  <input type="text" id="ex5_6" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                to bed.
+              </p>
+            </div>
+          </div>
+
+          <!-- Section 2: Plans for the future -->
+          <div class="bg-slate-50/70 p-5 sm:p-6 rounded-2xl border border-slate-200 leading-loose text-slate-700 text-base">
+            <h3 class="font-bold text-indigo-950 mb-3 text-sm flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-indigo-200 text-indigo-800 inline-flex items-center justify-center text-xs">Q2</span>
+              What are your plans for the future?
+            </h3>
+            
+            <div class="space-y-3">
+              <p>
+                <span class="font-bold text-indigo-900 mr-1.5">A.</span>
+                I'm not sure at the moment. I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">7 (take)</span>
+                  <input type="text" id="ex5_7" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                my exams in December and then I think I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">8 (take)</span>
+                  <input type="text" id="ex5_8" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                a holiday before I decide what to do next.
+              </p>
+
+              <p>
+                <span class="font-bold text-indigo-900 mr-1.5">B.</span>
+                I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">9 (start)</span>
+                  <input type="text" id="ex5_9" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                looking for a job. There aren't many jobs in my field, so it 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">10 (not be)</span>
+                  <input type="text" id="ex5_10" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                easy.
+              </p>
+
+              <p>
+                <span class="font-bold text-indigo-900 mr-1.5">C.</span>
+                I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">11 (visit)</span>
+                  <input type="text" id="ex5_11" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                my sister in France; she invited me to stay for the summer. I hope I 
+                <span class="inline-flex flex-col mx-1">
+                  <span class="text-xs font-bold text-slate-500">12 (be able to)</span>
+                  <input type="text" id="ex5_12" placeholder="Type verb..." class="ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </span>
+                travel around a bit and see some of the country.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="ex5-result-banner" class="mt-6 p-4 rounded-xl hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+    <p>English Language Learning • Review Module 6 Practice</p>
+  </footer>
+
+  <script>
+    const tabScores = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    };
+
+    const maxScores = {
+      1: 10, // 10 diet/health cloze words
+      2: 12, // 6 matches + 6 be going to forms
+      3: 8,  // 8 retail & shop definitions
+      4: 10, // 10 shopping collocations
+      5: 12  // 12 future forms (will / be going to)
+    };
+
+    function switchTab(tabNum) {
+      for (let i = 1; i <= 5; i++) {
+        const panel = document.getElementById(`tab-content-${i}`);
+        const btn = document.getElementById(`tab-btn-${i}`);
+        if (panel && btn) {
+          panel.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+        }
+      }
+
+      const targetPanel = document.getElementById(`tab-content-${tabNum}`);
+      const targetBtn = document.getElementById(`tab-btn-${tabNum}`);
+      if (targetPanel && targetBtn) {
+        targetPanel.classList.remove('hidden');
+        targetBtn.classList.add('active');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      }
+    }
+
+    function cleanStr(str) {
+      if (!str) return '';
+      return str.trim()
+        .toLowerCase()
+        .replace(/’/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.,!?]/g, '');
+    }
+
+    function updateHeaderStats() {
+      let total = 0;
+      let grandMax = 0;
+      for (let i = 1; i <= 5; i++) {
+        total += tabScores[i];
+        grandMax += maxScores[i];
+        const badge = document.getElementById(`badge-${i}`);
+        if (badge) {
+          badge.textContent = `${tabScores[i]}/${maxScores[i]}`;
+          if (tabScores[i] === maxScores[i]) {
+            badge.className = 'text-[11px] px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full';
+          }
+        }
+      }
+      const pct = Math.round((total / grandMax) * 100);
+      document.getElementById('global-progress-bar').style.width = `${pct}%`;
+      document.getElementById('global-score-text').textContent = `${total} / ${grandMax} (${pct}%)`;
+    }
+
+    function highlightMissingInput(el) {
+      if (!el) return;
+      el.classList.add('ring-2', 'ring-amber-500', 'border-amber-500');
+      const clearRing = () => {
+        el.classList.remove('ring-2', 'ring-amber-500', 'border-amber-500');
+        el.removeEventListener('input', clearRing);
+        el.removeEventListener('change', clearRing);
+      };
+      el.addEventListener('input', clearRing);
+      el.addEventListener('change', clearRing);
+    }
+
+    let toastTimer = null;
+    function showIncompleteWarning(exName, completed, total) {
+      let toast = document.getElementById('incomplete-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'incomplete-toast';
+        toast.className = 'fixed bottom-6 right-6 max-w-sm bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 transition-all duration-300 transform translate-y-0 opacity-100 border border-slate-700 text-sm';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0"></span>
+        <div>
+          <p class="font-semibold text-xs text-amber-300 uppercase tracking-wide">Self-Study Check: ${exName}</p>
+          <p class="text-xs text-slate-200 mt-0.5">Please complete all items (${completed}/${total} answered) before checking.</p>
+        </div>
+      `;
+      toast.classList.remove('hidden', 'opacity-0', 'translate-y-4');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+      }, 3500);
+    }
+
+    // ================= EXERCISE 1 =================
+    const ex1Answers = {
+      ex1_1: ["processed"],
+      ex1_2: ["nutritious"],
+      ex1_3: ["minerals"],
+      ex1_4: ["calories"],
+      ex1_5: ["weight"],
+      ex1_6: ["fresh"],
+      ex1_7: ["ready-made", "readymade"],
+      ex1_8: ["fattening"],
+      ex1_9: ["carbohydrate", "carbohydrates"],
+      ex1_10: ["ingredients"]
+    };
+
+    function checkEx1() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const input = document.getElementById(`ex1_${i}`);
+        if (!input.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(input);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 1", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex1_${i}`;
+        const input = document.getElementById(key);
+        const userVal = cleanStr(input.value);
+        const valid = ex1Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          input.className = 'ex1-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          input.className = 'ex1-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[1] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex1-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Outstanding! All diet and health vocabulary words placed accurately!' 
+          : 'Review any red blanks and verify with the word bank (remember: two words are extra).'
+      }`;
+    }
+
+    // ================= EXERCISE 2 =================
+    const ex2Data = {
+      1: {
+        match: "C",
+        verbs: ["are not going to eat", "aren't going to eat", "'re not going to eat"],
+        explanation: "1 matches C: 'so we are not going to eat / aren't going to eat there'"
+      },
+      2: {
+        match: "E",
+        verbs: ["am going to put on", "'m going to put on"],
+        explanation: "2 matches E: 'so I am going to put on / 'm going to put on weight'"
+      },
+      3: {
+        match: "A",
+        verbs: ["am going to make", "'m going to make"],
+        explanation: "3 matches A: 'so I am going to make / 'm going to make a vegetarian dish for them'"
+      },
+      4: {
+        match: "F",
+        verbs: ["is not going to have", "isn't going to have", "'s not going to have"],
+        explanation: "4 matches F: 'so she is not going to have / isn't going to have dessert'"
+      },
+      5: {
+        match: "D",
+        verbs: ["are going to go", "'re going to go"],
+        explanation: "5 matches D: 'so they are going to go / 're going to go on a diet'"
+      },
+      6: {
+        match: "B",
+        verbs: ["is going to help", "'s going to help"],
+        explanation: "6 matches B: 'so my flatmate is going to help / 's going to help me prepare the meal'"
+      }
+    };
+
+    function checkEx2() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 6; i++) {
+        const matchSel = document.getElementById(`ex2_match_${i}`);
+        const verbInp = document.getElementById(`ex2_verb_${i}`);
+        if (!matchSel.value) {
+          emptyCount++;
+          highlightMissingInput(matchSel);
+        }
+        if (!verbInp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(verbInp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 2", 12 - emptyCount, 12);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 6; i++) {
+        const matchSel = document.getElementById(`ex2_match_${i}`);
+        const verbInp = document.getElementById(`ex2_verb_${i}`);
+        const hint = document.getElementById(`hint-ex2_${i}`);
+        const expected = ex2Data[i];
+
+        const matchOk = matchSel.value === expected.match;
+        const userVerb = cleanStr(verbInp.value);
+        const verbOk = expected.verbs.some(v => cleanStr(v) === userVerb);
+
+        if (matchOk) {
+          score++;
+          matchSel.className = 'ex2-match-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          matchSel.className = 'ex2-match-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+
+        if (verbOk) {
+          score++;
+          verbInp.className = 'ex2-verb-input px-3 py-1 border rounded-lg text-sm w-48 text-center font-medium feedback-correct';
+        } else {
+          verbInp.className = 'ex2-verb-input px-3 py-1 border rounded-lg text-sm w-48 text-center font-medium feedback-incorrect';
+        }
+
+        if (matchOk && verbOk) {
+          hint.classList.add('hidden');
+        } else {
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = expected.explanation;
+        }
+      }
+
+      tabScores[2] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex2-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 12 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 12. ${
+        score === 12 
+          ? 'Brilliant! All sentence endings matched and be going to forms constructed correctly!' 
+          : 'Review any errors highlighted in red and check the hints.'
+      }`;
+    }
+
+    // ================= EXERCISE 3 =================
+    const ex3Answers = {
+      1: {
+        inputs: ['ex3_1'],
+        check: (vals) => ["eceipt", "receipt"].includes(vals[0]),
+        expected: "receipt"
+      },
+      2: {
+        inputs: ['ex3_2a', 'ex3_2b'],
+        check: (vals) => (["hop", "shop"].includes(vals[0])) && (["ssistant", "assistant"].includes(vals[1])),
+        expected: "shop assistant"
+      },
+      3: {
+        inputs: ['ex3_3a', 'ex3_3b'],
+        check: (vals) => (["epartment", "department"].includes(vals[0])) && (["tore", "store"].includes(vals[1])),
+        expected: "department store"
+      },
+      4: {
+        inputs: ['ex3_4'],
+        check: (vals) => ["lorist", "florist", "lorist's", "florist's", "lorists", "florists"].includes(vals[0]),
+        expected: "florist / florist's"
+      },
+      5: {
+        inputs: ['ex3_5'],
+        check: (vals) => ["ewsagent", "newsagent", "ewsagent's", "newsagent's", "ewsagents", "newsagents", "ewsstand", "newsstand"].includes(vals[0]),
+        expected: "newsagent / newsagent's"
+      },
+      6: {
+        inputs: ['ex3_6'],
+        check: (vals) => ["itting room", "fitting room", "itting-room", "fitting-room"].includes(vals[0]),
+        expected: "fitting room"
+      },
+      7: {
+        inputs: ['ex3_7'],
+        check: (vals) => ["ill", "bill"].includes(vals[0]),
+        expected: "bill"
+      },
+      8: {
+        inputs: ['ex3_8'],
+        check: (vals) => ["hemist", "chemist", "hemist's", "chemist's", "hemists", "chemists"].includes(vals[0]),
+        expected: "chemist / chemist's"
+      }
+    };
+
+    function checkEx3() {
+      const allInputIds = [
+        'ex3_1',
+        'ex3_2a', 'ex3_2b',
+        'ex3_3a', 'ex3_3b',
+        'ex3_4',
+        'ex3_5',
+        'ex3_6',
+        'ex3_7',
+        'ex3_8'
+      ];
+
+      let emptyCount = 0;
+      allInputIds.forEach(id => {
+        const inp = document.getElementById(id);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      });
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 3", 8 - Math.ceil(emptyCount / 1.5), 8);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 8; i++) {
+        const item = ex3Answers[i];
+        const vals = item.inputs.map(id => cleanStr(document.getElementById(id).value));
+        const hint = document.getElementById(`hint-ex3_${i}`);
+        const isCorrect = item.check(vals);
+
+        if (isCorrect) {
+          score++;
+          item.inputs.forEach(id => {
+            const el = document.getElementById(id);
+            el.className = el.className.replace(/feedback-(correct|incorrect)/g, '') + ' feedback-correct';
+          });
+          hint.classList.add('hidden');
+        } else {
+          item.inputs.forEach(id => {
+            const el = document.getElementById(id);
+            el.className = el.className.replace(/feedback-(correct|incorrect)/g, '') + ' feedback-incorrect';
+          });
+          hint.classList.remove('hidden');
+          hint.className = 'text-xs text-rose-600 mt-1.5 font-medium';
+          hint.textContent = `Correct: ${item.expected}`;
+        }
+      }
+
+      tabScores[3] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex3-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 8 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 8. ${score === 8 ? 'Excellent! All retail and shopping terms identified accurately!' : 'Review any items highlighted in red and check spelling.'}`;
+    }
+
+    // ================= EXERCISE 4 =================
+    const ex4Answers = {
+      ex4_1: "on",
+      ex4_2: "in",
+      ex4_3: "afford",
+      ex4_4: "browse",
+      ex4_5: "at",
+      ex4_6: "on",
+      ex4_7: "second-hand",
+      ex4_8: "customers",
+      ex4_9: "back",
+      ex4_10: "order"
+    };
+
+    function checkEx4() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 10; i++) {
+        const sel = document.getElementById(`ex4_${i}`);
+        if (!sel.value) {
+          emptyCount++;
+          highlightMissingInput(sel);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 4", 10 - emptyCount, 10);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const key = `ex4_${i}`;
+        const sel = document.getElementById(key);
+        if (sel.value === ex4Answers[key]) {
+          score++;
+          sel.className = 'ex4-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-correct';
+        } else {
+          sel.className = 'ex4-select px-2.5 py-1 text-sm rounded-lg font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[4] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex4-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 10 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 10. ${
+        score === 10 
+          ? 'Superb! All shopping collocations selected accurately!' 
+          : 'Review common retail collocations: on the high street, in stock, afford to buy, browse, at a discount, on special offer, second-hand, customers, take back, order online.'
+      }`;
+    }
+
+    // ================= EXERCISE 5 =================
+    const ex5Answers = {
+      ex5_1: ["am going to finish", "'m going to finish"],
+      ex5_2: ["is going to cook", "'s going to cook"],
+      ex5_3: ["is going to take", "'s going to take"],
+      ex5_4: ["will probably go", "'ll probably go", "are probably going to go", "'re probably going to go"],
+      ex5_5: ["am going to have", "'m going to have", "will have", "'ll have"],
+      ex5_6: ["am going to go", "'m going to go", "will go", "'ll go"],
+      ex5_7: ["am taking", "'m taking", "am going to take", "'m going to take"],
+      ex5_8: ["will take", "'ll take"],
+      ex5_9: ["am going to start", "'m going to start"],
+      ex5_10: ["will not be", "won't be", "is not going to be", "isn't going to be", "'s not going to be"],
+      ex5_11: ["am going to visit", "'m going to visit"],
+      ex5_12: ["will be able to", "'ll be able to"]
+    };
+
+    function checkEx5() {
+      let emptyCount = 0;
+      for (let i = 1; i <= 12; i++) {
+        const inp = document.getElementById(`ex5_${i}`);
+        if (!inp.value.trim()) {
+          emptyCount++;
+          highlightMissingInput(inp);
+        }
+      }
+
+      if (emptyCount > 0) {
+        showIncompleteWarning("Exercise 5", 12 - emptyCount, 12);
+        return;
+      }
+
+      let score = 0;
+      for (let i = 1; i <= 12; i++) {
+        const key = `ex5_${i}`;
+        const inp = document.getElementById(key);
+        const userVal = cleanStr(inp.value);
+        const valid = ex5Answers[key].map(cleanStr);
+
+        if (valid.includes(userVal)) {
+          score++;
+          inp.className = 'ex5-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-correct';
+        } else {
+          inp.className = 'ex5-input px-2.5 py-1 border rounded-lg text-sm text-center font-medium feedback-incorrect';
+        }
+      }
+
+      tabScores[5] = score;
+      updateHeaderStats();
+
+      const banner = document.getElementById('ex5-result-banner');
+      banner.classList.remove('hidden');
+      banner.className = `mt-6 p-4 rounded-xl text-sm font-semibold border ${
+        score === 12 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`;
+      banner.innerHTML = `Score: ${score} / 12. ${
+        score === 12 
+          ? 'Outstanding! Perfect mastery of will vs. be going to for intentions, predictions, and plans!' 
+          : 'Remember: use "be going to" for intentions/decisions already made, and "will" for predictions, opinions with "I think", or expressions with "I hope / probably".'
+      }`;
+    }
+
+    // ================= RESET ALL =================
+    function resetAllExercises() {
+      // Inputs
+      document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.value = '';
+        input.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (input.classList.contains('ex1-input')) {
+          input.className = 'ex1-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-32 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex2-verb-input')) {
+          input.className = 'ex2-verb-input px-3 py-1 bg-white border border-slate-300 rounded-lg text-sm w-48 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex3-input')) {
+          input.className = 'ex3-input flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-800 font-sans font-normal focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        } else if (input.classList.contains('ex5-input')) {
+          input.className = 'ex5-input px-2.5 py-1 bg-white border border-slate-300 rounded-lg text-sm w-36 text-center font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none';
+        }
+      });
+
+      // Selects
+      document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+        select.classList.remove('feedback-correct', 'feedback-incorrect', 'ring-2', 'ring-amber-500', 'border-amber-500');
+        if (select.classList.contains('ex2-match-select')) {
+          select.className = 'ex2-match-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        } else if (select.classList.contains('ex4-select')) {
+          select.className = 'ex4-select px-2.5 py-1 text-sm bg-white border border-slate-300 rounded-lg font-medium text-slate-700';
+        }
+      });
+
+      // Hints & banners
+      document.querySelectorAll('[id^="hint-"]').forEach(hint => {
+        hint.classList.add('hidden');
+        hint.textContent = '';
+      });
+
+      document.querySelectorAll('[id$="-result-banner"]').forEach(banner => {
+        banner.classList.add('hidden');
+      });
+
+      for (let k in tabScores) tabScores[k] = 0;
+      updateHeaderStats();
+      switchTab(1);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateHeaderStats();
+    });
+  </script>
+</body>
+</html>
