@@ -438,10 +438,10 @@ window.EXPERT_5_MODULES = [
     "url": "module-5-writing-Fri 5.30 pm.html",
     "dataTitle": "Module 5 Writing — Writing Fri 5.30 Pm",
     "skill": "writing",
+    "badgeClass": "badge-band5",
     "badge": "Module 5",
     "title": "Module 5 Writing — Writing Fri 5.30 Pm",
-    "status": "Active Exercise",
-    "badgeClass": "badge-band5"
+    "status": "Active Exercise"
   },
   {
     "url": "module-6-writing.html",
