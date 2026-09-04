@@ -462,6 +462,15 @@ window.EXPERT_5_MODULES = [
     "status": "Exercise"
   },
   {
+    "url": "module-7-writing-Sat 8am.html",
+    "dataTitle": "Module 7 Writing — Task 1",
+    "skill": "writing",
+    "badge": "Module 7",
+    "title": "Module 7 Writing — Task 1",
+    "status": "Active Exercise",
+    "badgeClass": "badge-band5"
+  },
+  {
     "url": "module-7-writing-sample.html",
     "dataTitle": "Module 7 Writing — Task 1 Describe a Table Model Answer & Annotations",
     "skill": "writing",

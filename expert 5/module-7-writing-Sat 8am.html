@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Task 1 Builder & Simulator</title>
+    
+    <!-- Tailwind CSS for modern layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js and DataLabels Plugin for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    
+    <!-- Google Fonts for authentic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --app-font-size: 16px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f8fafc;
+            color: #334155;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-header {
+            flex-shrink: 0;
+        }
+        .content-panes {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+            height: calc(100vh - 70px); 
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 1.5rem 2rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #ffffff;
+            border-right: 1px solid #e2e8f0;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Drag Splitter */
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        /* Typography */
+        .prompt-instructions {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+        .prompt-text {
+            font-family: 'Merriweather', serif;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 2rem;
+            background-color: #f1f5f9;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        /* Textarea Styling */
+        .writing-area {
+            flex-grow: 1;
+            width: 100%;
+            resize: none;
+            border: 2px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            font-family: 'Merriweather', serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #0f172a;
+            transition: all 0.2s;
+            background-color: #ffffff;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+        }
+        .writing-area:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Authentic IELTS Table Design System */
+        .ielts-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1rem 0;
+            background: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        /* Theme 1: Authentic Cambridge IELTS Paper Style */
+        .ielts-table-classic {
+            border-collapse: collapse;
+            width: auto;
+            min-width: min(100%, 650px);
+            margin: 0;
+            font-size: 0.9375rem;
+            color: #111827;
+            border: 2px solid #1e293b;
+            table-layout: auto;
+        }
+        .ielts-table-classic th,
+        .ielts-table-classic td {
+            border: 1px solid #1e293b;
+            padding: 0.65rem 0.85rem;
+            line-height: 1.4;
+        }
+        .ielts-table-classic th {
+            background-color: #e2e8f0;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .ielts-table-classic .th-group {
+            background-color: #f1f5f9;
+            font-weight: 700;
+        }
+        .ielts-table-classic .col-shaded {
+            background-color: #f1f5f9;
+        }
+        .ielts-table-classic tfoot td {
+            background-color: #f8fafc;
+            font-weight: 600;
+            border-top: 2px solid #1e293b;
+        }
+
+        /* Theme 2: Modern Editorial Clean */
+        .ielts-table-modern {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .ielts-table-modern th,
+        .ielts-table-modern td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+        }
+        .ielts-table-modern th:last-child,
+        .ielts-table-modern td:last-child {
+            border-right: none;
+        }
+        .ielts-table-modern tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .ielts-table-modern th {
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: #334155;
+        }
+        .ielts-table-modern tbody tr:nth-child(even) {
+            background-color: #fbfcfe;
+        }
+        .ielts-table-modern tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+        .ielts-table-modern tfoot td {
+            background-color: #f8fafc;
+            font-weight: 600;
+            border-top: 2px solid #cbd5e1;
+        }
+
+        /* Data Container */
+        .data-container {
+            position: relative;
+            width: 100%;
+            margin-top: 1rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Word Count Status */
+        .word-count-badge {
+            transition: all 0.3s ease;
+        }
+        .word-count-insufficient {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+        .word-count-sufficient {
+            background-color: #dcfce3;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .data-container {
+                min-height: 280px;
+            }
+            .builder-controls {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="app-header bg-white border-b border-slate-200 px-4 sm:px-6 py-3 flex justify-between items-center shadow-sm z-20">
+    <div class="flex items-center space-x-3">
+        <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+        </div>
+        <div>
+            <h1 class="text-lg sm:text-xl font-bold text-slate-800 tracking-tight" id="header-title">IELTS Writing Task 1</h1>
+        </div>
+    </div>
+
+    <div class="flex items-center space-x-4 sm:space-x-6">
+        <div class="flex items-center space-x-2 builder-controls">
+            <button id="open-builder-btn" class="flex items-center bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-colors shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                ⚙️ Task Builder
+            </button>
+        </div>
+
+        <div class="flex items-center border-l border-slate-300 pl-4 sm:pl-6">
+            <input type="text" id="student-name" class="border border-slate-300 rounded-lg px-3 py-1.5 text-sm w-36 sm:w-48 focus:outline-none focus:ring-2 focus:ring-blue-400 font-medium text-slate-700 placeholder-slate-400" placeholder="Enter full name">
+        </div>
+    </div>
+</header>
+
+<main id="content-panes" class="content-panes">
+    <!-- Left Pane: Prompt & Data Visualization -->
+    <div id="left-pane" class="pane">
+        <div class="max-w-4xl mx-auto">
+            <p id="prompt-instructions" class="prompt-instructions"></p>
+            <div id="prompt-text" class="prompt-text">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div id="data-container" class="data-container">
+                <!-- Dynamic figures/tables injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Drag Splitter -->
+    <div id="splitter" class="splitter relative">
+        <div class="w-1 h-8 sm:w-8 sm:h-1 bg-slate-400 rounded-full opacity-50 flex items-center justify-center">
+            <svg class="w-4 h-4 text-slate-600 transform sm:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg>
+        </div>
+    </div>
+
+    <!-- Right Pane: Writing Canvas & Word Counter -->
+    <div id="right-pane" class="pane relative flex flex-col">
+        <textarea id="essay-input" class="writing-area" placeholder="Start writing your report here..."></textarea>
+        
+        <div class="mt-4 flex flex-col sm:flex-row items-center justify-between bg-white p-3 sm:p-4 rounded-lg border border-slate-200 shadow-sm">
+            <div id="word-count-container" class="word-count-badge word-count-insufficient px-4 py-2 rounded-full font-bold text-sm mb-3 sm:mb-0 shadow-sm flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                Word Count: <span id="word-count-number" class="ml-1 text-base">0</span><span class="text-xs ml-1 opacity-75">/ 150</span>
+            </div>
+            
+            <button id="submit-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg transition-colors shadow-md inline-flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg>
+                <span>Submit Report</span>
+            </button>
+        </div>
+    </div>
+</main>
+
+<div id="custom-modal" class="fixed inset-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity opacity-0">
+    <div class="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md transform transition-transform scale-95" id="custom-modal-content">
+        <div class="flex items-center mb-4 pb-4 border-b border-slate-100">
+            <div id="modal-icon" class="w-10 h-10 rounded-full flex items-center justify-center mr-3"></div>
+            <h3 id="modal-title" class="text-xl font-bold text-slate-800"></h3>
+        </div>
+        <p id="modal-message" class="text-slate-600 mb-6 leading-relaxed text-sm sm:text-base"></p>
+        <div class="flex justify-end space-x-3">
+            <button id="modal-cancel-btn" class="hidden px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">Cancel</button>
+            <button id="modal-close-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-sm">Got it</button>
+        </div>
+    </div>
+</div>
+
+<div id="builder-modal" class="fixed inset-0 bg-slate-900 bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 hidden z-[100] transition-opacity opacity-0">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col transform transition-transform scale-95" id="builder-modal-content">
+        
+        <div class="flex justify-between items-center px-6 py-4 border-b border-slate-200 bg-slate-50 rounded-t-xl shrink-0">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">⚙️</span>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">IELTS Task Configurator</h2>
+                    <p class="text-xs text-slate-500">Configure graphs, charts, and multi-tier authentic IELTS tables</p>
+                </div>
+            </div>
+            <button id="close-builder-btn" class="text-slate-400 hover:text-slate-700 transition-colors p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-grow space-y-6">
+            <!-- Preset Selector for Authentic IELTS Samples -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-800 flex items-center">
+                            <span class="mr-1.5">⚡</span> Quick Load Official IELTS Table Presets
+                        </h4>
+                        <p class="text-xs text-slate-600">Instantly populate authentic Cambridge IELTS table tasks</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="preset-btn bg-white hover:bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs px-3 py-1.5 rounded-md font-semibold transition-all shadow-sm" data-preset="cultural">
+                            🏛️ Cultural Venues
+                        </button>
+                        <button type="button" class="preset-btn bg-white hover:bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs px-3 py-1.5 rounded-md font-semibold transition-all shadow-sm" data-preset="burglary">
+                            🏠 Burglary Stolen Items
+                        </button>
+                        <button type="button" class="preset-btn bg-white hover:bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs px-3 py-1.5 rounded-md font-semibold transition-all shadow-sm" data-preset="thefts">
+                            📊 Helby vs UK Thefts
+                        </button>
+                        <button type="button" class="preset-btn bg-white hover:bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs px-3 py-1.5 rounded-md font-semibold transition-all shadow-sm" data-preset="traffic">
+                            🚗 Traffic Offences
+                        </button>
+                        <button type="button" class="preset-btn bg-white hover:bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs px-3 py-1.5 rounded-md font-semibold transition-all shadow-sm" data-preset="health">
+                            🏥 Health Facilities
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Metadata -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Task Title</label>
+                    <input type="text" id="b-title" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-medium">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Writing Prompt (HTML allowed for linebreaks & formatting)</label>
+                    <textarea id="b-prompt" rows="3" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono"></textarea>
+                </div>
+            </div>
+
+            <!-- Figure Management Area -->
+            <div class="border border-slate-200 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                <div class="flex bg-slate-100 border-b border-slate-200 shrink-0">
+                    <button id="tab-visual" class="px-5 py-2.5 text-sm font-bold text-indigo-700 border-b-2 border-indigo-600 bg-white focus:outline-none transition-colors">🎨 Visual Data Editor</button>
+                    <button id="tab-json" class="px-5 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-50 focus:outline-none transition-colors">{} Advanced JSON</button>
+                </div>
+
+                <div id="panel-visual" class="p-5 bg-white flex-grow">
+                    <!-- Figure Selector Tabs -->
+                    <div class="flex items-center mb-5 pb-3 border-b border-slate-200 overflow-x-auto" id="v-figure-tabs"></div>
+
+                    <div class="mb-5 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <div>
+                            <label class="block text-sm font-bold text-indigo-900 mb-0.5">Chart / Figure Type</label>
+                            <p class="text-xs text-slate-500">Choose between multi-tier data tables or visual charts</p>
+                        </div>
+                        <select id="b-type" class="w-full sm:w-64 border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none bg-white font-semibold text-slate-800 shadow-sm">
+                            <option value="table">📋 IELTS Data Table (Multi-Tier)</option>
+                            <option value="bar">📊 Bar Chart</option>
+                            <option value="line">📈 Line Graph</option>
+                            <option value="pie">🥧 Pie Chart (Side-by-side datasets)</option>
+                            <option value="doughnut">🍩 Doughnut Chart</option>
+                        </select>
+                    </div>
+
+                    <!-- Enhanced Table Builder Controls -->
+                    <div id="visual-builder-table" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Table Title (Main Caption)</label>
+                                <input type="text" id="v-table-title" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-semibold text-slate-800" placeholder="e.g. Attendance at cultural venues in Australia in 2005 and 2010 (%)">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Visual Theme</label>
+                                <select id="v-table-style" class="w-full border border-slate-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none bg-white font-medium">
+                                    <option value="ielts-classic">Cambridge IELTS Exam (Crisp Dark Grid)</option>
+                                    <option value="ielts-modern">Modern Clean (Soft Indigo)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Header Layout Mode -->
+                        <div class="bg-indigo-50/50 border border-indigo-100 rounded-xl p-4 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-bold text-indigo-950">Table Header Configuration</h4>
+                                    <p class="text-xs text-indigo-700">Support single-level or Cambridge-style two-tier grouped headers (e.g. 2005 & 2010 spanning Men & Women)</p>
+                                </div>
+                                <div class="flex items-center space-x-3 text-xs font-semibold text-slate-700">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="radio" name="table-header-type" value="single" id="tbl-hdr-single" class="text-indigo-600 focus:ring-indigo-400">
+                                        <span class="ml-1.5">Single Row Header</span>
+                                    </label>
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="radio" name="table-header-type" value="two-tier" id="tbl-hdr-two" class="text-indigo-600 focus:ring-indigo-400" checked>
+                                        <span class="ml-1.5">Two-Tier Grouped Header</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Single Tier Inputs -->
+                            <div id="tbl-single-tier-box" class="hidden">
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Column Headers (Comma-separated)</label>
+                                <input type="text" id="v-table-headers-single" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono" placeholder="Venues, 2005, 2010">
+                            </div>
+
+                            <!-- Two-Tier Inputs -->
+                            <div id="tbl-two-tier-box" class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="text-xs font-semibold text-slate-700">Top Header Group (Categories / Years with Colspans)</label>
+                                        <span class="text-[11px] text-indigo-600 font-mono">Format: Title:Colspan (e.g. :1, 2005:2, 2010:2)</span>
+                                    </div>
+                                    <input type="text" id="v-table-top-headers" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono" placeholder=":1, 2005:2, 2010:2">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="text-xs font-semibold text-slate-700">Sub-Headers (Lower Row)</label>
+                                        <span class="text-[11px] text-indigo-600 font-mono">Comma-separated</span>
+                                    </div>
+                                    <input type="text" id="v-table-sub-headers" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono" placeholder="Venues, Men, Women, Men, Women">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Rows and Excel Paste Helper -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Table Data Rows</label>
+                                    <p class="text-xs text-slate-500">One row per line. Separate cells with commas, pipes (<code class="bg-slate-200 px-1 rounded">|</code>), or paste from Excel (tabs). Commas in numbers like <code class="bg-slate-200 px-1 rounded">34,801</code> are automatically protected!</p>
+                                </div>
+                                <button type="button" id="btn-clean-table-data" class="text-xs text-indigo-600 hover:text-indigo-800 font-semibold px-2 py-1 rounded bg-indigo-50 border border-indigo-200">✨ Tidy to Pipe Delimiters</button>
+                            </div>
+                            <textarea id="v-table-rows" rows="7" class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono leading-relaxed bg-slate-50 text-slate-800" placeholder="Art galleries | 23 | 29 | 20 | 25&#10;Museums | 24 | 27 | 22 | 24&#10;Libraries | 26 | 41 | 27 | 41"></textarea>
+                        </div>
+
+                        <!-- Optional Footers / Summary Rows -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-200 pt-3">
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Summary / Footer Row (Optional)</label>
+                                <p class="text-xs text-slate-500 mb-2">Used for totals spanning columns. Format: <code class="bg-slate-200 px-1 rounded">Text [colspan] | Text [colspan]</code> (e.g. <i>Total burglaries: 75,000 [2] | Total burglaries: 37,500 [2]</i>)</p>
+                                <input type="text" id="v-table-footer" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono" placeholder="Total number: 75,000 [2] | Total number: 37,500 [2]">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Shaded Columns (Optional)</label>
+                                <p class="text-xs text-slate-500 mb-2">1-based column numbers to shade grey (e.g. 4, 5 for UK averages)</p>
+                                <input type="text" id="v-table-shaded-cols" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono" placeholder="e.g. 4, 5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Chart Builder Section -->
+                    <div id="visual-builder-chart" class="hidden space-y-4">
+                        <div class="mb-4">
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Chart Title (Optional)</label>
+                            <input type="text" id="v-chart-title" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="Displayed directly above this chart">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">X-Axis Labels / Pie Categories</label>
+                                <p class="text-xs text-slate-500 mb-1.5">Comma separated (e.g. 1990, 2000, 2010)</p>
+                                <input type="text" id="v-chart-labels" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">Y-Axis Title (Optional)</label>
+                                <p class="text-xs text-slate-500 mb-1.5">e.g. Number of Students (Thousands)</p>
+                                <input type="text" id="v-chart-ytitle" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">Data Prefix (Optional)</label>
+                                <input type="text" id="v-chart-prefix" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="e.g. $ or £">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">Data Suffix (Optional)</label>
+                                <input type="text" id="v-chart-suffix" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="e.g. %">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="block text-sm font-semibold text-slate-700">Datasets</label>
+                                <button type="button" id="v-add-dataset-btn" class="text-xs bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 px-3 py-1 rounded font-bold transition-colors shadow-sm">+ Add Dataset</button>
+                            </div>
+                            <div id="v-datasets-container" class="space-y-3"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="panel-json" class="p-5 bg-slate-50 hidden flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-sm font-semibold text-slate-700">Raw JSON Structure (Figures Array)</label>
+                        <button type="button" id="format-json-btn" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 px-2.5 py-1 rounded transition-colors font-medium">Format JSON</button>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-3">Supports full nested header structures, custom styling, and multi-figure configurations.</p>
+                    <textarea id="b-data-json" rows="12" class="w-full border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none font-mono bg-slate-900 text-emerald-400 leading-relaxed"></textarea>
+                    <div id="json-error-msg" class="text-red-500 text-xs font-bold mt-1.5 hidden">Invalid JSON format! Figures must be an array of objects.</div>
+                </div>
+            </div>
+
+            <!-- Google Forms Integration -->
+            <div class="border-t border-slate-200 pt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-3">
+                    <h3 class="text-sm font-bold text-slate-800 mb-0.5">Google Forms Integration (Optional)</h3>
+                    <p class="text-xs text-slate-500">Paste your pre-filled link to automatically submit student writing to your Google Form spreadsheet.</p>
+                </div>
+                <div class="md:col-span-3">
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Base Form URL</label>
+                    <input type="text" id="b-form-url" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="Paste full pre-filled link here...">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Name Entry ID</label>
+                    <input type="text" id="b-entry-name" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="entry.123456789">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Essay Entry ID</label>
+                    <input type="text" id="b-entry-essay" class="w-full border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="entry.987654321">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="p-4 border-t border-slate-200 bg-slate-50 rounded-b-xl flex flex-wrap justify-between items-center gap-3 shrink-0">
+            <button id="export-html-btn" class="flex items-center bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                Export Standalone HTML
+            </button>
+            <div class="flex space-x-3 ml-auto">
+                <button id="cancel-builder-btn" class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 rounded-lg font-medium transition-colors shadow-sm text-sm">Cancel</button>
+                <button id="save-builder-btn" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors shadow-md text-sm">Apply & Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /**
+     * Default Configuration: Cultural venues in Australia (authentic IELTS test)
+     */
+    let TASK_CONFIG = {
+        title: "IELTS Writing Task 1 - Cultural Venues in Australia",
+        instructions: "You should spend about 20 minutes on this task.",
+        prompt: "The table below shows the percentage of men and women who attended various cultural venues in Australia in 2005 and 2010.<br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+        figures: [
+            {
+                type: "table",
+                title: "Attendance at cultural venues in Australia in 2005 and 2010 (%)",
+                style: "ielts-classic",
+                topHeaders: [
+                    { text: "", colspan: 1 },
+                    { text: "2005", colspan: 2 },
+                    { text: "2010", colspan: 2 }
+                ],
+                subHeaders: ["Venues", "Men", "Women", "Men", "Women"],
+                rows: [
+                    ["Art galleries", "23", "29", "20", "25"],
+                    ["Museums", "24", "27", "22", "24"],
+                    ["Libraries", "26", "41", "27", "41"],
+                    ["Concert halls", "29", "32", "25", "26"],
+                    ["Cinemas", "64", "70", "63", "68"]
+                ]
+            }
+        ],
+        googleFormUrl: "", 
+        formEntryNameId: "entry.123456789", 
+        formEntryEssayId: "entry.987654321" 
+    };
+
+    /**
+     * Official IELTS Exam Presets
+     */
+    const IELTS_PRESETS = {
+        cultural: {
+            title: "IELTS Writing Task 1 - Cultural Venues in Australia",
+            instructions: "You should spend about 20 minutes on this task.",
+            prompt: "The table below shows the percentage of men and women who attended various cultural venues in Australia in 2005 and 2010.<br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+            figures: [
+                {
+                    type: "table",
+                    title: "Attendance at cultural venues in Australia in 2005 and 2010 (%)",
+                    style: "ielts-classic",
+                    topHeaders: [
+                        { text: "", colspan: 1 },
+                        { text: "2005", colspan: 2 },
+                        { text: "2010", colspan: 2 }
+                    ],
+                    subHeaders: ["Venues", "Men", "Women", "Men", "Women"],
+                    rows: [
+                        ["Art galleries", "23", "29", "20", "25"],
+                        ["Museums", "24", "27", "22", "24"],
+                        ["Libraries", "26", "41", "27", "41"],
+                        ["Concert halls", "29", "32", "25", "26"],
+                        ["Cinemas", "64", "70", "63", "68"]
+                    ]
+                }
+            ]
+        },
+        burglary: {
+            title: "IELTS Writing Task 1 - Home Burglaries in New South Wales",
+            instructions: "You should spend about 20 minutes on this task.",
+            prompt: "The table below shows items reported as stolen in home burglaries in New South Wales in 2001 and 2010.<br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+            figures: [
+                {
+                    type: "table",
+                    title: "Items reported as stolen in home burglaries in New South Wales in 2001 and 2010",
+                    style: "ielts-classic",
+                    topHeaders: [
+                        { text: "2001", colspan: 2 },
+                        { text: "2010", colspan: 2 }
+                    ],
+                    subHeaders: ["Stolen items", "%", "Stolen items", "%"],
+                    rows: [
+                        ["Cash", "22", "Cash", "31"],
+                        ["Jewellery", "21", "Laptop computers", "26"],
+                        ["Videos/DVD players", "19", "Cameras", "24"],
+                        ["Watches", "13", "Jewellery", "15"],
+                        ["Cameras", "13", "Mobile phones", "14"],
+                        ["Mobile phones", "12", "Identity cards", "11"],
+                        ["Televisions", "11", "Televisions", "10"],
+                        ["Identity cards", "11", "Watches", "10"]
+                    ],
+                    footers: [
+                        { text: "Total number of reported domestic burglaries: 75,000", colspan: 2 },
+                        { text: "Total number of reported domestic burglaries: 37,500", colspan: 2 }
+                    ]
+                }
+            ]
+        },
+        thefts: {
+            title: "IELTS Writing Task 1 - Thefts in Helby Region vs UK Averages",
+            instructions: "You should spend about 20 minutes on this task.",
+            prompt: "The table below gives information on thefts in Helby region of the UK in 2014 and 2015, compared to UK averages.<br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+            figures: [
+                {
+                    type: "table",
+                    title: "Thefts in Helby region of UK, compared to UK averages",
+                    style: "ielts-classic",
+                    topHeaders: [
+                        { text: "", colspan: 1 },
+                        { text: "Helby<br>2014", colspan: 1 },
+                        { text: "Helby<br>2015", colspan: 1 },
+                        { text: "UK<br>average<br>of types<br>of theft<br>2014", colspan: 1, shaded: true },
+                        { text: "UK<br>average<br>of types<br>of theft<br>2015", colspan: 1, shaded: true }
+                    ],
+                    subHeaders: [],
+                    shadedColumns: [4, 5],
+                    rows: [
+                        ["Total number of thefts:", "34,801", "33,133", "", ""],
+                        ["Of which:", "", "", "", ""],
+                        ["Domestic burglary", "31%", "26%", "40%", "35%"],
+                        ["Car theft", "26%", "33%", "30%", "31%"],
+                        ["Bicycle theft", "9%", "7%", "4%", "9%"],
+                        ["Shoplifting", "34%", "33%", "26%", "25%"]
+                    ]
+                }
+            ]
+        },
+        traffic: {
+            title: "IELTS Writing Task 1 - Traffic Offences in Helby",
+            instructions: "You should spend about 20 minutes on this task.",
+            prompt: "The table below shows traffic offences recorded in urban and rural areas of Helby in 2015.<br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+            figures: [
+                {
+                    type: "table",
+                    title: "Traffic offences in Helby, 2015",
+                    style: "ielts-classic",
+                    topHeaders: [],
+                    subHeaders: ["", "Urban areas", "Rural areas"],
+                    shadedColumns: [2, 3],
+                    rows: [
+                        ["Driving without a licence", "150 (35.4%)", "100 (33.33%)"],
+                        ["Speeding", "1 (0.2%)", "0"],
+                        ["Dangerous driving", "74 (17.4%)", "50 (16.66%)"],
+                        ["Illegal parking", "200 (47%)", "150 (50%)"]
+                    ]
+                }
+            ]
+        },
+        health: {
+            title: "IELTS Writing Task 1 - Health Centre Facilities in Helby",
+            instructions: "You should spend about 20 minutes on this task.",
+            prompt: "The table below shows the percentage of the adult population satisfied with aspects of the facilities in the local health centre in Helby, UK.<br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.",
+            figures: [
+                {
+                    type: "table",
+                    title: "Adult population satisfied with aspects of the facilities in the local health centre – Helby, UK",
+                    style: "ielts-classic",
+                    topHeaders: [],
+                    subHeaders: ["", "Parking", "Maps and signs", "Automatic doors", "Lifts", "Waiting areas", "Vending machines"],
+                    shadedColumns: [2, 3, 4, 5, 6, 7],
+                    rows: [
+                        ["Male", "47%", "66%", "60%", "58%", "75%", "89%"],
+                        ["Female", "45%", "33%", "66%", "85%", "74%", "61%"]
+                    ]
+                }
+            ]
+        }
+    };
+
+    /**
+     * Smart cell parser: splits on pipe '|', tab '\t', or comma ','
+     * WITHOUT breaking thousands separators inside numbers like '34,801' or '75,000'
+     */
+    function parseRowCells(rowStr) {
+        if (!rowStr || !rowStr.trim()) return [];
+        if (rowStr.includes('|')) {
+            return rowStr.split('|').map(s => s.trim());
+        }
+        if (rowStr.includes('\t')) {
+            return rowStr.split('\t').map(s => s.trim());
+        }
+        // Match commas that are NOT thousands separators (i.e. not followed by 3 digits and then end/comma/space)
+        return rowStr.split(/,(?!\d{3}(?:[,\s]|$))/).map(s => s.trim());
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Load saved builder configuration
+        const savedConfig = localStorage.getItem('ielts_builder_config');
+        if (savedConfig) {
+            try {
+                TASK_CONFIG = JSON.parse(savedConfig);
+            } catch (e) {
+                console.error("Failed to parse saved config", e);
+            }
+        }
+
+        // Global Chart Defaults
+        Chart.defaults.font.family = 'Inter, sans-serif';
+        Chart.defaults.color = '#475569';
+        Chart.register(ChartDataLabels);
+        Chart.defaults.plugins.datalabels = {
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            borderColor: 'rgba(203, 213, 225, 0.8)',
+            borderWidth: 1,
+            borderRadius: 4,
+            color: '#1e293b',
+            font: { weight: 'bold', size: 10 },
+            padding: { top: 3, bottom: 3, left: 5, right: 5 },
+            formatter: (value) => (typeof value === 'number' ? value.toLocaleString() : value)
+        };
+
+        const app = {
+            promptInstructions: document.getElementById('prompt-instructions'),
+            promptText: document.getElementById('prompt-text'),
+            headerTitle: document.getElementById('header-title'),
+            dataContainer: document.getElementById('data-container'),
+            essayInput: document.getElementById('essay-input'),
+            wordCountNumber: document.getElementById('word-count-number'),
+            wordCountContainer: document.getElementById('word-count-container'),
+            submitBtn: document.getElementById('submit-btn'),
+            studentName: document.getElementById('student-name'),
+            splitter: document.getElementById('splitter'),
+            contentPanes: document.getElementById('content-panes'),
+            
+            modal: document.getElementById('custom-modal'),
+            modalContent: document.getElementById('custom-modal-content'),
+            modalTitle: document.getElementById('modal-title'),
+            modalMessage: document.getElementById('modal-message'),
+            modalIcon: document.getElementById('modal-icon'),
+            modalCloseBtn: document.getElementById('modal-close-btn'),
+            modalCancelBtn: document.getElementById('modal-cancel-btn'),
+
+            modalConfirmCallback: null,
+            activeCharts: [],
+
+            init() {
+                this.loadConfig();
+                const saveKey = this.getSaveKey();
+
+                this.studentName.value = localStorage.getItem('ielts_student_name') || '';
+                this.essayInput.value = localStorage.getItem(saveKey) || '';
+
+                this.renderVisualization();
+                this.setupEventListeners(saveKey);
+                this.initSplitter();
+                this.updateWordCount();
+                
+                builder.init(this);
+            },
+
+            getSaveKey() {
+                return 'ielts_essay_' + (TASK_CONFIG.title ? TASK_CONFIG.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() : 'default');
+            },
+
+            loadConfig() {
+                document.title = TASK_CONFIG.title || "IELTS Writing Task 1";
+                this.headerTitle.textContent = TASK_CONFIG.title || "IELTS Writing Task 1";
+                this.promptInstructions.innerHTML = TASK_CONFIG.instructions || "You should spend about 20 minutes on this task.";
+                this.promptText.innerHTML = TASK_CONFIG.prompt || "";
+            },
+
+            renderVisualization() {
+                this.dataContainer.innerHTML = ''; 
+                
+                if (this.activeCharts && this.activeCharts.length > 0) {
+                    this.activeCharts.forEach(c => c.destroy());
+                }
+                this.activeCharts = [];
+
+                if (!TASK_CONFIG.figures || !Array.isArray(TASK_CONFIG.figures)) {
+                    TASK_CONFIG.figures = [];
+                }
+
+                const PIE_COLORS = ['#3b82f6', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4', '#f43f5e', '#84cc16', '#a855f7', '#14b8a6'];
+
+                TASK_CONFIG.figures.forEach((fig) => {
+                    const figContainer = document.createElement('div');
+                    figContainer.className = 'w-full mb-8 pb-6 border-b border-slate-100 last:border-0 last:mb-0 last:pb-0';
+                    
+                    if (fig.type === 'table') {
+                        // ENHANCED TABLE RENDERING
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'ielts-table-wrapper';
+                        
+                        const tableClass = fig.style === 'ielts-modern' ? 'ielts-table-modern' : 'ielts-table-classic';
+                        
+                        let tableHTML = '';
+                        if (fig.title) {
+                            tableHTML += `<div class="font-bold text-slate-900 text-base sm:text-lg mb-3 tracking-tight leading-snug">${fig.title}</div>`;
+                        }
+
+                        tableHTML += `<div class="overflow-x-auto w-full"><table class="${tableClass}">`;
+                        
+                        // Render Thead (Supports Two-Tier or Single-Tier)
+                        const hasTopHeaders = fig.topHeaders && fig.topHeaders.length > 0;
+                        const hasSubHeaders = (fig.subHeaders && fig.subHeaders.length > 0) || (fig.labels && fig.labels.length > 0);
+                        const shadedCols = (fig.shadedColumns || []).map(Number);
+                        
+                        if (hasTopHeaders || hasSubHeaders) {
+                            tableHTML += `<thead>`;
+                            
+                            // Top Tier (Grouped Headers with colspans)
+                            if (hasTopHeaders) {
+                                tableHTML += `<tr class="th-group">`;
+                                let colOffset = 1;
+                                fig.topHeaders.forEach(th => {
+                                    const colspan = th.colspan || 1;
+                                    const isShaded = th.shaded || shadedCols.includes(colOffset);
+                                    const shadeClass = isShaded ? 'col-shaded bg-slate-200' : '';
+                                    tableHTML += `<th colspan="${colspan}" class="text-center font-bold text-slate-900 ${shadeClass}">${th.text || '&nbsp;'}</th>`;
+                                    colOffset += colspan;
+                                });
+                                tableHTML += `</tr>`;
+                            }
+
+                            // Sub Headers
+                            const subHeaders = (fig.subHeaders && fig.subHeaders.length > 0) ? fig.subHeaders : (fig.labels || []);
+                            if (subHeaders.length > 0) {
+                                tableHTML += `<tr>`;
+                                subHeaders.forEach((sh, idx) => {
+                                    const colNum = idx + 1;
+                                    const isShaded = shadedCols.includes(colNum);
+                                    const shadeClass = isShaded ? 'col-shaded bg-slate-200' : '';
+                                    const align = idx === 0 ? 'text-left' : 'text-center';
+                                    tableHTML += `<th class="${align} font-bold text-slate-800 ${shadeClass}">${sh || '&nbsp;'}</th>`;
+                                });
+                                tableHTML += `</tr>`;
+                            }
+                            
+                            tableHTML += `</thead>`;
+                        }
+
+                        // Render Body Rows
+                        tableHTML += `<tbody>`;
+                        if (fig.rows && fig.rows.length > 0) {
+                            fig.rows.forEach(row => {
+                                tableHTML += `<tr>`;
+                                (Array.isArray(row) ? row : []).forEach((cell, cellIdx) => {
+                                    const colNum = cellIdx + 1;
+                                    const isShaded = shadedCols.includes(colNum);
+                                    const shadeClass = isShaded ? 'col-shaded bg-slate-100' : '';
+                                    const isFirst = cellIdx === 0;
+                                    const align = isFirst ? 'text-left font-semibold text-slate-900' : 'text-center text-slate-800 font-medium';
+                                    const cellStr = cell !== undefined && cell !== null ? String(cell) : '';
+                                    const formattedCell = cellStr.replace(/\n/g, '<br>') || '&nbsp;';
+                                    tableHTML += `<td class="${align} ${shadeClass}">${formattedCell}</td>`;
+                                });
+                                tableHTML += `</tr>`;
+                            });
+                        }
+                        tableHTML += `</tbody>`;
+
+                        // Render Footers / Summary rows (e.g. Total counts)
+                        if (fig.footers && fig.footers.length > 0) {
+                            tableHTML += `<tfoot><tr>`;
+                            fig.footers.forEach(foot => {
+                                const colspan = foot.colspan || 1;
+                                tableHTML += `<td colspan="${colspan}" class="text-left text-slate-800 font-semibold p-2.5 bg-slate-50">${foot.text}</td>`;
+                            });
+                            tableHTML += `</tr></tfoot>`;
+                        }
+
+                        tableHTML += `</table></div>`;
+                        wrapper.innerHTML = tableHTML;
+                        figContainer.appendChild(wrapper);
+                        
+                    } else if (fig.type === 'pie' || fig.type === 'doughnut') {
+                        // Pie / Doughnut rendering
+                        if (fig.title) {
+                            const titleEl = document.createElement('h3');
+                            titleEl.className = 'text-center font-bold text-lg mb-4 text-slate-800';
+                            titleEl.textContent = fig.title;
+                            figContainer.appendChild(titleEl);
+                        }
+                        
+                        const legendContainer = document.createElement('div');
+                        legendContainer.className = 'flex flex-wrap justify-center gap-x-5 gap-y-2 mb-6 max-w-4xl mx-auto';
+                        (fig.labels || []).forEach((label, i) => {
+                            const color = PIE_COLORS[i % PIE_COLORS.length];
+                            legendContainer.innerHTML += `<div class="flex items-center"><span class="w-3 h-3 inline-block mr-2 rounded-sm" style="background-color:${color}"></span><span class="text-sm text-slate-700 font-medium">${label}</span></div>`;
+                        });
+                        figContainer.appendChild(legendContainer);
+
+                        const datasets = fig.datasets || [];
+                        const gridCols = Math.min(Math.max(datasets.length, 1), 3);
+                        const gridContainer = document.createElement('div');
+                        gridContainer.className = `grid grid-cols-1 md:grid-cols-${gridCols} gap-8 w-full`;
+                        
+                        datasets.forEach(ds => {
+                            const col = document.createElement('div');
+                            col.className = 'flex flex-col items-center';
+                            
+                            if (ds.label) {
+                                const sub = document.createElement('h4');
+                                sub.className = 'font-semibold mb-3 text-center text-slate-700';
+                                sub.textContent = ds.label;
+                                col.appendChild(sub);
+                            }
+
+                            const canvasWrapper = document.createElement('div');
+                            canvasWrapper.className = 'w-full max-w-[320px] relative h-[240px]';
+                            const canvas = document.createElement('canvas');
+                            canvasWrapper.appendChild(canvas);
+                            col.appendChild(canvasWrapper);
+                            gridContainer.appendChild(col);
+
+                            const chartOpts = {
+                                responsive: true, 
+                                maintainAspectRatio: false,
+                                plugins: { 
+                                    legend: { display: false },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: (context) => {
+                                                let label = context.dataset.label || context.label || '';
+                                                if (label) label += ': ';
+                                                label += (fig.prefix || '') + (typeof context.raw === 'number' ? context.raw.toLocaleString() : context.raw) + (fig.suffix || '');
+                                                return label;
+                                            }
+                                        }
+                                    },
+                                    datalabels: {
+                                        formatter: (value) => (fig.prefix || '') + (typeof value === 'number' ? value.toLocaleString() : value) + (fig.suffix || '')
+                                    }
+                                },
+                                scales: { x: { display: false }, y: { display: false } }
+                            };
+
+                            this.activeCharts.push(new Chart(canvas, {
+                                type: fig.type,
+                                data: {
+                                    labels: fig.labels,
+                                    datasets: [{ data: ds.data, backgroundColor: PIE_COLORS, borderColor: '#ffffff', borderWidth: 2 }]
+                                },
+                                options: chartOpts
+                            }));
+                        });
+                        figContainer.appendChild(gridContainer);
+                        
+                    } else {
+                        // Standard Bar or Line Graph
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'w-full h-[380px] relative';
+                        const canvas = document.createElement('canvas');
+                        wrapper.appendChild(canvas);
+                        figContainer.appendChild(wrapper);
+
+                        const chartOpts = {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { 
+                                legend: { position: 'bottom' },
+                                title: { 
+                                    display: !!fig.title, 
+                                    text: fig.title, 
+                                    font: { size: 16, family: 'Inter', weight: 'bold' }, 
+                                    color: '#1e293b', 
+                                    padding: { bottom: 18 } 
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: (context) => {
+                                            let label = context.dataset.label || '';
+                                            if (label) label += ': ';
+                                            label += (fig.prefix || '') + (typeof context.raw === 'number' ? context.raw.toLocaleString() : context.raw) + (fig.suffix || '');
+                                            return label;
+                                        }
+                                    }
+                                },
+                                datalabels: {
+                                    formatter: (value) => (fig.prefix || '') + (typeof value === 'number' ? value.toLocaleString() : value) + (fig.suffix || '')
+                                }
+                            },
+                            scales: {
+                                y: { 
+                                    beginAtZero: true, 
+                                    title: { display: !!fig.yAxisTitle, text: fig.yAxisTitle, font: { weight: 'bold' } },
+                                    ticks: {
+                                        callback: (value) => (fig.prefix || '') + (typeof value === 'number' ? value.toLocaleString() : value) + (fig.suffix || '')
+                                    }
+                                }
+                            }
+                        };
+                        
+                        const formattedDatasets = (fig.datasets || []).map(ds => ({
+                            ...ds,
+                            backgroundColor: ds.color || ds.backgroundColor,
+                            borderColor: ds.color || ds.borderColor,
+                            borderWidth: ds.borderWidth || 1
+                        }));
+
+                        this.activeCharts.push(new Chart(canvas, {
+                            type: fig.type,
+                            data: { labels: fig.labels, datasets: formattedDatasets },
+                            options: chartOpts
+                        }));
+                    }
+                    
+                    this.dataContainer.appendChild(figContainer);
+                });
+            },
+
+            setupEventListeners(saveKey) {
+                this.essayInput.addEventListener('input', () => {
+                    this.updateWordCount();
+                    localStorage.setItem(saveKey, this.essayInput.value);
+                });
+                
+                this.studentName.addEventListener('input', () => {
+                    localStorage.setItem('ielts_student_name', this.studentName.value);
+                });
+                
+                window.addEventListener('beforeunload', (e) => {
+                    if (this.essayInput.value.trim().length > 0) {
+                        e.preventDefault();
+                        e.returnValue = '';
+                    }
+                });
+
+                this.submitBtn.addEventListener('click', () => this.handleSubmit());
+                
+                this.modalCloseBtn.addEventListener('click', () => {
+                    this.closeModal();
+                    if (this.modalConfirmCallback) {
+                        this.modalConfirmCallback();
+                        this.modalConfirmCallback = null;
+                    }
+                });
+
+                this.modalCancelBtn.addEventListener('click', () => {
+                    this.closeModal();
+                    this.modalConfirmCallback = null;
+                });
+            },
+
+            updateWordCount() {
+                const text = this.essayInput.value.trim();
+                const words = text === '' ? 0 : text.split(/\s+/).length;
+                this.wordCountNumber.textContent = words;
+
+                if (words >= 150) {
+                    this.wordCountContainer.classList.remove('word-count-insufficient');
+                    this.wordCountContainer.classList.add('word-count-sufficient');
+                } else {
+                    this.wordCountContainer.classList.remove('word-count-sufficient');
+                    this.wordCountContainer.classList.add('word-count-insufficient');
+                }
+            },
+
+            handleSubmit() {
+                const name = this.studentName.value.trim();
+                const essay = this.essayInput.value.trim();
+                const words = essay === '' ? 0 : essay.split(/\s+/).length;
+
+                if (!name) {
+                    this.showModal('Missing Information', 'Please enter your full name in the top right corner before submitting.', 'error');
+                    this.studentName.focus();
+                    return;
+                }
+
+                if (words < 50) {
+                    this.showModal('Report too short', 'Your report is very short. Are you sure you want to submit it?', 'warning', true, () => {
+                        this.processSubmission(name, essay);
+                    });
+                    return;
+                }
+
+                this.processSubmission(name, essay);
+            },
+
+            processSubmission(name, essay) {
+                if (!TASK_CONFIG.googleFormUrl) {
+                    this.showModal('Submission Setup Required', 'The Google Form URL is not configured. Go to Task Builder to configure it.', 'info');
+                    return;
+                }
+
+                const baseUrl = TASK_CONFIG.googleFormUrl;
+                const separator = baseUrl.includes('?') ? '&' : '?';
+                const finalUrl = `${baseUrl}${separator}${TASK_CONFIG.formEntryNameId}=${encodeURIComponent(name)}&${TASK_CONFIG.formEntryEssayId}=${encodeURIComponent(essay)}`;
+                const saveKey = this.getSaveKey();
+
+                this.showModal('Ready to Submit', `If your form didn't open automatically, click the link below to open your pre-filled form in a new tab.<br><br><a href="${finalUrl}" target="_blank" class="inline-block mt-3 bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold hover:bg-blue-100 transition-colors border border-blue-200" onclick="localStorage.removeItem('${saveKey}'); document.getElementById('modal-close-btn').click();">👉 Open Google Form</a>`, 'success');
+                
+                try {
+                    let win = window.open(finalUrl, '_blank');
+                    if (win) {
+                        localStorage.removeItem(saveKey);
+                    }
+                } catch (e) {}
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                    this.splitter.classList.add('bg-slate-400');
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = this.contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    
+                    if (newLeftWidth > 300 && newLeftWidth < containerRect.width - 300) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        this.contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                        this.splitter.classList.remove('bg-slate-400');
+                        if (this.activeCharts && this.activeCharts.length > 0) {
+                            this.activeCharts.forEach(c => c.resize());
+                        }
+                    }
+                });
+            },
+
+            showModal(title, message, type = 'info', showCancel = false, confirmCallback = null) {
+                this.modalTitle.textContent = title;
+                this.modalMessage.innerHTML = message;
+                this.modalConfirmCallback = confirmCallback;
+                
+                this.modalIcon.className = 'w-10 h-10 rounded-full flex items-center justify-center mr-3 ';
+                this.modalCloseBtn.className = 'px-4 py-2 text-white rounded-lg font-medium transition-colors shadow-sm ';
+                
+                let svgIcon = '';
+                if (type === 'error') {
+                    this.modalIcon.classList.add('bg-red-100', 'text-red-600');
+                    this.modalCloseBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+                    svgIcon = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
+                } else if (type === 'warning') {
+                    this.modalIcon.classList.add('bg-amber-100', 'text-amber-600');
+                    this.modalCloseBtn.classList.add('bg-amber-600', 'hover:bg-amber-700');
+                    svgIcon = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+                } else if (type === 'success') {
+                    this.modalIcon.classList.add('bg-green-100', 'text-green-600');
+                    this.modalCloseBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                    svgIcon = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+                } else {
+                    this.modalIcon.classList.add('bg-blue-100', 'text-blue-600');
+                    this.modalCloseBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                    svgIcon = `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+                }
+                this.modalIcon.innerHTML = svgIcon;
+
+                if (showCancel) {
+                    this.modalCancelBtn.classList.remove('hidden');
+                    this.modalCloseBtn.textContent = 'Continue';
+                } else {
+                    this.modalCancelBtn.classList.add('hidden');
+                    this.modalCloseBtn.textContent = 'Got it';
+                }
+
+                this.modal.classList.remove('hidden');
+                setTimeout(() => {
+                    this.modal.classList.remove('opacity-0');
+                    this.modalContent.classList.remove('scale-95');
+                    this.modalContent.classList.add('scale-100');
+                }, 10);
+            },
+
+            closeModal() {
+                this.modal.classList.add('opacity-0');
+                this.modalContent.classList.remove('scale-100');
+                this.modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    this.modal.classList.add('hidden');
+                }, 200);
+            }
+        };
+
+        const builder = {
+            modal: document.getElementById('builder-modal'),
+            modalContent: document.getElementById('builder-modal-content'),
+            appRef: null,
+            activeTab: 'visual',
+            
+            builderFigures: [],
+            activeFigureIndex: 0,
+
+            // Fields
+            fTitle: document.getElementById('b-title'),
+            fPrompt: document.getElementById('b-prompt'),
+            fFormUrl: document.getElementById('b-form-url'),
+            fEntryName: document.getElementById('b-entry-name'),
+            fEntryEssay: document.getElementById('b-entry-essay'),
+            
+            tabVisual: document.getElementById('tab-visual'),
+            tabJson: document.getElementById('tab-json'),
+            panelVisual: document.getElementById('panel-visual'),
+            panelJson: document.getElementById('panel-json'),
+            vFigureTabs: document.getElementById('v-figure-tabs'),
+            
+            fDataJson: document.getElementById('b-data-json'),
+            errorMsg: document.getElementById('json-error-msg'),
+            fType: document.getElementById('b-type'),
+            
+            // Visual Table fields
+            vbTable: document.getElementById('visual-builder-table'),
+            vTableTitle: document.getElementById('v-table-title'),
+            vTableStyle: document.getElementById('v-table-style'),
+            tblHdrSingle: document.getElementById('tbl-hdr-single'),
+            tblHdrTwo: document.getElementById('tbl-hdr-two'),
+            tblSingleTierBox: document.getElementById('tbl-single-tier-box'),
+            tblTwoTierBox: document.getElementById('tbl-two-tier-box'),
+            vTableHeadersSingle: document.getElementById('v-table-headers-single'),
+            vTableTopHeaders: document.getElementById('v-table-top-headers'),
+            vTableSubHeaders: document.getElementById('v-table-sub-headers'),
+            vTableRows: document.getElementById('v-table-rows'),
+            vTableFooter: document.getElementById('v-table-footer'),
+            vTableShadedCols: document.getElementById('v-table-shaded-cols'),
+            btnCleanTableData: document.getElementById('btn-clean-table-data'),
+
+            // Visual Chart fields
+            vbChart: document.getElementById('visual-builder-chart'),
+            vChartTitle: document.getElementById('v-chart-title'),
+            vChartLabels: document.getElementById('v-chart-labels'),
+            vChartYTitle: document.getElementById('v-chart-ytitle'),
+            vChartPrefix: document.getElementById('v-chart-prefix'),
+            vChartSuffix: document.getElementById('v-chart-suffix'),
+            vDatasetsContainer: document.getElementById('v-datasets-container'),
+            vAddDatasetBtn: document.getElementById('v-add-dataset-btn'),
+
+            init(appReference) {
+                this.appRef = appReference;
+                
+                document.getElementById('open-builder-btn').addEventListener('click', () => this.openModal());
+                document.getElementById('close-builder-btn').addEventListener('click', () => this.closeModal());
+                document.getElementById('cancel-builder-btn').addEventListener('click', () => this.closeModal());
+                document.getElementById('save-builder-btn').addEventListener('click', () => this.saveConfig());
+                document.getElementById('format-json-btn').addEventListener('click', () => this.formatJson());
+                document.getElementById('export-html-btn').addEventListener('click', () => this.exportHTML());
+                
+                // Presets handler
+                document.querySelectorAll('.preset-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const presetKey = e.currentTarget.dataset.preset;
+                        if (IELTS_PRESETS[presetKey]) {
+                            this.loadPreset(IELTS_PRESETS[presetKey]);
+                        }
+                    });
+                });
+
+                // Auto parse Google form URL
+                this.fFormUrl.addEventListener('input', (e) => {
+                    const urlStr = e.target.value.trim();
+                    if (!urlStr.includes('entry.')) return; 
+                    try {
+                        const urlObj = new URL(urlStr);
+                        const params = new URLSearchParams(urlObj.search);
+                        let baseUrl = urlObj.origin + urlObj.pathname;
+                        baseUrl += params.has('usp') ? '?usp=' + params.get('usp') : '?usp=pp_url';
+                        
+                        const entryIds = [];
+                        for (const [key] of params.entries()) {
+                            if (key.startsWith('entry.')) entryIds.push(key);
+                        }
+                        if (entryIds.length > 0) {
+                            e.target.value = baseUrl; 
+                            if (entryIds.length >= 1) this.fEntryName.value = entryIds[0];
+                            if (entryIds.length >= 2) this.fEntryEssay.value = entryIds[1];
+                            this.fFormUrl.classList.add('bg-green-50', 'border-green-400');
+                            setTimeout(() => this.fFormUrl.classList.remove('bg-green-50', 'border-green-400'), 1500);
+                        }
+                    } catch(err) {
+                        console.error("URL parse error", err);
+                    }
+                });
+
+                // Tabs
+                this.tabVisual.addEventListener('click', () => this.switchTab('visual'));
+                this.tabJson.addEventListener('click', () => this.switchTab('json'));
+
+                // Dataset logic
+                this.vAddDatasetBtn.addEventListener('click', () => this.addDatasetRow());
+
+                // Figure type change
+                this.fType.addEventListener('change', () => {
+                    this.builderFigures[this.activeFigureIndex].type = this.fType.value;
+                    this.renderVisualEditor();
+                });
+
+                // Header type radio change
+                this.tblHdrSingle.addEventListener('change', () => this.toggleTableHeaderType());
+                this.tblHdrTwo.addEventListener('change', () => this.toggleTableHeaderType());
+
+                // Clean Excel / TSV / CSV data button: tidies into readable pipe-separated rows
+                this.btnCleanTableData.addEventListener('click', () => {
+                    let lines = this.vTableRows.value.split('\n');
+                    let tidied = lines.map(line => {
+                        let cells = parseRowCells(line);
+                        return cells.join(' | ');
+                    });
+                    this.vTableRows.value = tidied.join('\n');
+                });
+            },
+
+            loadPreset(preset) {
+                this.fTitle.value = preset.title;
+                this.fPrompt.value = preset.prompt;
+                this.builderFigures = JSON.parse(JSON.stringify(preset.figures));
+                this.activeFigureIndex = 0;
+                this.fDataJson.value = JSON.stringify(this.builderFigures, null, 4);
+                this.renderFigureTabs();
+                this.renderVisualEditor();
+            },
+
+            openModal() {
+                this.fTitle.value = TASK_CONFIG.title || '';
+                this.fPrompt.value = TASK_CONFIG.prompt || '';
+                this.fFormUrl.value = TASK_CONFIG.googleFormUrl || '';
+                this.fEntryName.value = TASK_CONFIG.formEntryNameId || '';
+                this.fEntryEssay.value = TASK_CONFIG.formEntryEssayId || '';
+
+                this.builderFigures = JSON.parse(JSON.stringify(TASK_CONFIG.figures || []));
+                if (this.builderFigures.length === 0) {
+                    this.builderFigures.push({ type: 'table', title: 'New Table', style: 'ielts-classic', topHeaders: [], subHeaders: ['Item', '2000', '2010'], rows: [['Sample A', '10', '20']] });
+                }
+                
+                this.activeFigureIndex = 0;
+                this.fDataJson.value = JSON.stringify(this.builderFigures, null, 4);
+                this.errorMsg.classList.add('hidden');
+
+                this.renderFigureTabs();
+                this.renderVisualEditor();
+
+                this.modal.classList.remove('hidden');
+                setTimeout(() => {
+                    this.modal.classList.remove('opacity-0');
+                    this.modalContent.classList.remove('scale-95');
+                    this.modalContent.classList.add('scale-100');
+                }, 10);
+            },
+
+            renderFigureTabs() {
+                this.vFigureTabs.innerHTML = '';
+                
+                this.builderFigures.forEach((fig, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = `px-4 py-1.5 text-xs sm:text-sm font-bold rounded-full whitespace-nowrap transition-colors ${index === this.activeFigureIndex ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-200 text-slate-600 hover:bg-slate-300'}`;
+                    const typeIcon = fig.type === 'table' ? '📋 Table' : (fig.type === 'pie' || fig.type === 'doughnut' ? '🥧 Pie' : '📊 Chart');
+                    btn.textContent = `${typeIcon} ${index + 1}`;
+                    btn.onclick = () => {
+                        this.syncVisualToJson();
+                        this.activeFigureIndex = index;
+                        this.renderFigureTabs();
+                        this.renderVisualEditor();
+                    };
+                    
+                    const tabContainer = document.createElement('div');
+                    tabContainer.className = 'flex items-center space-x-1 shrink-0';
+                    tabContainer.appendChild(btn);
+
+                    if (this.builderFigures.length > 1) {
+                        const delBtn = document.createElement('button');
+                        delBtn.className = 'text-red-400 hover:text-red-600 p-1';
+                        delBtn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+                        delBtn.onclick = () => {
+                            this.builderFigures.splice(index, 1);
+                            if (this.activeFigureIndex >= this.builderFigures.length) this.activeFigureIndex = this.builderFigures.length - 1;
+                            this.fDataJson.value = JSON.stringify(this.builderFigures, null, 4);
+                            this.renderFigureTabs();
+                            this.renderVisualEditor();
+                        };
+                        tabContainer.appendChild(delBtn);
+                    }
+                    this.vFigureTabs.appendChild(tabContainer);
+                });
+
+                const addBtn = document.createElement('button');
+                addBtn.className = 'px-3 py-1.5 text-xs sm:text-sm font-bold rounded-full border border-dashed border-slate-400 text-slate-500 hover:bg-slate-50 hover:text-slate-700 whitespace-nowrap shrink-0 ml-2';
+                addBtn.textContent = '+ Add Figure';
+                addBtn.onclick = () => {
+                    this.syncVisualToJson();
+                    this.builderFigures.push({
+                        type: 'table',
+                        title: 'New Table',
+                        style: 'ielts-classic',
+                        topHeaders: [],
+                        subHeaders: ['Item', 'Category 1', 'Category 2'],
+                        rows: [['Sample A', '10', '20']]
+                    });
+                    this.activeFigureIndex = this.builderFigures.length - 1;
+                    this.fDataJson.value = JSON.stringify(this.builderFigures, null, 4);
+                    this.renderFigureTabs();
+                    this.renderVisualEditor();
+                };
+                this.vFigureTabs.appendChild(addBtn);
+            },
+
+            switchTab(tabName) {
+                this.activeTab = tabName;
+                if (tabName === 'visual') {
+                    if (this.syncJsonToVisual()) {
+                        this.tabVisual.className = "px-5 py-2.5 text-sm font-bold text-indigo-700 border-b-2 border-indigo-600 bg-white focus:outline-none transition-colors";
+                        this.tabJson.className = "px-5 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-50 focus:outline-none transition-colors";
+                        this.panelVisual.classList.remove('hidden');
+                        this.panelJson.classList.add('hidden');
+                    }
+                } else {
+                    this.syncVisualToJson();
+                    this.formatJson();
+                    this.tabJson.className = "px-5 py-2.5 text-sm font-bold text-indigo-700 border-b-2 border-indigo-600 bg-white focus:outline-none transition-colors";
+                    this.tabVisual.className = "px-5 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-50 focus:outline-none transition-colors";
+                    this.panelJson.classList.remove('hidden');
+                    this.panelVisual.classList.add('hidden');
+                }
+            },
+
+            toggleTableHeaderType() {
+                if (this.tblHdrSingle.checked) {
+                    this.tblSingleTierBox.classList.remove('hidden');
+                    this.tblTwoTierBox.classList.add('hidden');
+                } else {
+                    this.tblSingleTierBox.classList.add('hidden');
+                    this.tblTwoTierBox.classList.remove('hidden');
+                }
+            },
+
+            renderVisualEditor() {
+                const currentFig = this.builderFigures[this.activeFigureIndex];
+                if (!currentFig) return;
+                
+                this.fType.value = currentFig.type || 'table';
+                const isTable = currentFig.type === 'table';
+                
+                if (isTable) {
+                    this.vbChart.classList.add('hidden');
+                    this.vbTable.classList.remove('hidden');
+                    
+                    this.vTableTitle.value = currentFig.title || "";
+                    this.vTableStyle.value = currentFig.style || "ielts-classic";
+
+                    const hasTopHeaders = currentFig.topHeaders && currentFig.topHeaders.length > 0;
+                    if (hasTopHeaders) {
+                        this.tblHdrTwo.checked = true;
+                        this.tblHdrSingle.checked = false;
+                        // Format top headers as Title:Colspan
+                        this.vTableTopHeaders.value = currentFig.topHeaders.map(th => `${th.text}:${th.colspan || 1}`).join(', ');
+                        this.vTableSubHeaders.value = (currentFig.subHeaders || currentFig.labels || []).join(', ');
+                    } else {
+                        this.tblHdrSingle.checked = true;
+                        this.tblHdrTwo.checked = false;
+                        this.vTableHeadersSingle.value = (currentFig.subHeaders || currentFig.labels || []).join(', ');
+                        this.vTableTopHeaders.value = '';
+                        this.vTableSubHeaders.value = (currentFig.subHeaders || currentFig.labels || []).join(', ');
+                    }
+                    this.toggleTableHeaderType();
+                    
+                    // Render rows (formatted with clear ' | ' delimiters)
+                    const rows = currentFig.rows || [];
+                    this.vTableRows.value = rows.map(r => Array.isArray(r) ? r.join(' | ') : r).join('\n');
+
+                    // Render footers with clean bracket syntax [colspan]
+                    if (currentFig.footers && currentFig.footers.length > 0) {
+                        this.vTableFooter.value = currentFig.footers.map(f => `${f.text} [${f.colspan || 1}]`).join(' | ');
+                    } else {
+                        this.vTableFooter.value = '';
+                    }
+
+                    // Render shaded columns
+                    this.vTableShadedCols.value = (currentFig.shadedColumns || []).join(', ');
+
+                } else {
+                    this.vbTable.classList.add('hidden');
+                    this.vbChart.classList.remove('hidden');
+                    
+                    this.vChartTitle.value = currentFig.title || "";
+                    this.vChartLabels.value = (currentFig.labels || []).join(', ');
+                    this.vChartYTitle.value = currentFig.yAxisTitle || "";
+                    this.vChartPrefix.value = currentFig.prefix || "";
+                    this.vChartSuffix.value = currentFig.suffix || "";
+
+                    this.vDatasetsContainer.innerHTML = '';
+                    if (currentFig.datasets && Array.isArray(currentFig.datasets)) {
+                        currentFig.datasets.forEach(ds => {
+                            this.addDatasetRow(ds.label, ds.color || ds.backgroundColor, ds.data);
+                        });
+                    }
+                    if (this.vDatasetsContainer.children.length === 0) {
+                        this.addDatasetRow();
+                    }
+                }
+            },
+
+            addDatasetRow(label = '', color = '#3b82f6', dataArray = []) {
+                const row = document.createElement('div');
+                row.className = "dataset-row bg-slate-50 p-3 border border-slate-200 rounded-lg flex flex-col gap-3 shadow-sm";
+                
+                let hexColor = color;
+                if (typeof hexColor !== 'string') {
+                    hexColor = (Array.isArray(hexColor) && typeof hexColor[0] === 'string') ? hexColor[0] : '#3b82f6';
+                }
+                if (hexColor && typeof hexColor === 'string' && hexColor.startsWith('rgb')) {
+                    hexColor = '#3b82f6'; 
+                }
+
+                row.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <input type="text" class="ds-label font-semibold text-sm bg-transparent border-b border-slate-300 focus:outline-none focus:border-indigo-500 w-1/2" placeholder="Dataset Name (e.g. 1990)" value="${label}">
+                        <div class="flex items-center space-x-3">
+                            <input type="color" class="ds-color w-8 h-8 rounded cursor-pointer border border-slate-300 shadow-sm" value="${hexColor}">
+                            <button class="ds-remove text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-1.5 rounded transition-colors" title="Remove Dataset">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" class="ds-data w-full text-sm border border-slate-300 rounded p-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none" placeholder="Data values (comma separated) e.g. 10, 20, 30" value="${dataArray.join(', ')}">
+                    </div>
+                `;
+
+                row.querySelector('.ds-remove').addEventListener('click', () => row.remove());
+                this.vDatasetsContainer.appendChild(row);
+            },
+
+            syncVisualToJson() {
+                const currentFig = this.builderFigures[this.activeFigureIndex];
+                if (!currentFig) return;
+                
+                const isTable = currentFig.type === 'table';
+
+                if (isTable) {
+                    currentFig.title = this.vTableTitle.value.trim();
+                    currentFig.style = this.vTableStyle.value;
+                    
+                    if (this.tblHdrTwo.checked) {
+                        // Parse Top Headers
+                        const topStr = this.vTableTopHeaders.value.trim();
+                        currentFig.topHeaders = [];
+                        if (topStr) {
+                            topStr.split(',').forEach(item => {
+                                const parts = item.trim().split(':');
+                                const text = parts[0] ? parts[0].trim() : '';
+                                const colspan = parts[1] ? parseInt(parts[1].trim(), 10) : 1;
+                                currentFig.topHeaders.push({ text: text, colspan: isNaN(colspan) ? 1 : colspan });
+                            });
+                        }
+                        const subStr = this.vTableSubHeaders.value.trim();
+                        currentFig.subHeaders = subStr ? subStr.split(',').map(s => s.trim()) : [];
+                    } else {
+                        currentFig.topHeaders = [];
+                        const singleStr = this.vTableHeadersSingle.value.trim();
+                        currentFig.subHeaders = singleStr ? singleStr.split(',').map(s => s.trim()) : [];
+                    }
+
+                    // Parse Data rows safely with comma/pipe/tab protector
+                    const rowsText = this.vTableRows.value.trim();
+                    if (rowsText) {
+                        currentFig.rows = rowsText.split('\n').map(rowStr => parseRowCells(rowStr));
+                    } else {
+                        currentFig.rows = [];
+                    }
+
+                    // Parse Footers safely without breaking numbers like 75,000
+                    const footText = this.vTableFooter.value.trim();
+                    if (footText) {
+                        currentFig.footers = [];
+                        const footItems = footText.includes('|') ? footText.split('|') : footText.split(';');
+                        footItems.forEach(item => {
+                            let text = item.trim();
+                            let colspan = 1;
+                            
+                            // Check for bracket syntax like [2] or [colspan=2]
+                            const bracketMatch = text.match(/^(.*?)\s*\[(?:colspan=)?(\d+)\]\s*$/i);
+                            if (bracketMatch) {
+                                text = bracketMatch[1].trim();
+                                colspan = parseInt(bracketMatch[2], 10);
+                            } else {
+                                // Match trailing small number only if <= 20 to prevent swallowing numbers like 75,000
+                                const colonMatch = text.match(/^(.*?)\s*::?\s*([1-9]|1[0-9]|20)\s*$/);
+                                if (colonMatch) {
+                                    text = colonMatch[1].trim();
+                                    colspan = parseInt(colonMatch[2], 10);
+                                }
+                            }
+
+                            if (text) {
+                                currentFig.footers.push({ text: text, colspan: isNaN(colspan) ? 1 : colspan });
+                            }
+                        });
+                    } else {
+                        delete currentFig.footers;
+                    }
+
+                    // Parse shaded columns
+                    const shadedStr = this.vTableShadedCols.value.trim();
+                    if (shadedStr) {
+                        currentFig.shadedColumns = shadedStr.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n));
+                    } else {
+                        delete currentFig.shadedColumns;
+                    }
+
+                } else {
+                    currentFig.title = this.vChartTitle.value.trim();
+                    currentFig.yAxisTitle = this.vChartYTitle.value.trim();
+                    currentFig.prefix = this.vChartPrefix.value.trim();
+                    currentFig.suffix = this.vChartSuffix.value.trim();
+                    currentFig.labels = this.vChartLabels.value.split(',').map(s => s.trim()).filter(s => s);
+                    currentFig.datasets = [];
+                    
+                    const dsRows = this.vDatasetsContainer.querySelectorAll('.dataset-row');
+                    dsRows.forEach(row => {
+                        const label = row.querySelector('.ds-label').value.trim();
+                        const color = row.querySelector('.ds-color').value;
+                        const dataStr = row.querySelector('.ds-data').value;
+                        
+                        const dataArr = dataStr.split(',').map(s => {
+                            let clean = s.replace(/[^0-9.-]/g, '');
+                            let num = parseFloat(clean);
+                            return isNaN(num) ? 0 : num;
+                        });
+
+                        currentFig.datasets.push({
+                            label: label || 'Dataset',
+                            data: dataArr,
+                            color: color
+                        });
+                    });
+                }
+
+                this.fDataJson.value = JSON.stringify(this.builderFigures, null, 4);
+            },
+
+            syncJsonToVisual() {
+                try {
+                    this.builderFigures = JSON.parse(this.fDataJson.value);
+                    if (!Array.isArray(this.builderFigures)) throw new Error("Must be an array");
+                    if (this.activeFigureIndex >= this.builderFigures.length) this.activeFigureIndex = 0;
+                    
+                    this.errorMsg.classList.add('hidden');
+                    this.fDataJson.classList.remove('border-red-500');
+                    this.renderFigureTabs();
+                    this.renderVisualEditor();
+                    return true;
+                } catch (e) {
+                    this.errorMsg.classList.remove('hidden');
+                    this.fDataJson.classList.add('border-red-500');
+                    return false;
+                }
+            },
+
+            formatJson() {
+                try {
+                    const obj = JSON.parse(this.fDataJson.value);
+                    this.fDataJson.value = JSON.stringify(obj, null, 4);
+                    this.errorMsg.classList.add('hidden');
+                    this.fDataJson.classList.remove('border-red-500');
+                } catch (e) {
+                    this.errorMsg.classList.remove('hidden');
+                    this.fDataJson.classList.add('border-red-500');
+                }
+            },
+
+            saveConfig() {
+                if (this.activeTab === 'visual') {
+                    this.syncVisualToJson();
+                }
+
+                let parsedData;
+                try {
+                    parsedData = JSON.parse(this.fDataJson.value);
+                    if (!Array.isArray(parsedData)) throw new Error("Must be an array");
+                } catch (e) {
+                    this.switchTab('json');
+                    this.errorMsg.classList.remove('hidden');
+                    this.fDataJson.classList.add('border-red-500');
+                    return; 
+                }
+
+                TASK_CONFIG.title = this.fTitle.value;
+                TASK_CONFIG.prompt = this.fPrompt.value;
+                TASK_CONFIG.googleFormUrl = this.fFormUrl.value;
+                TASK_CONFIG.formEntryNameId = this.fEntryName.value;
+                TASK_CONFIG.formEntryEssayId = this.fEntryEssay.value;
+                TASK_CONFIG.figures = parsedData;
+
+                localStorage.setItem('ielts_builder_config', JSON.stringify(TASK_CONFIG));
+
+                this.appRef.loadConfig();
+                this.appRef.renderVisualization();
+                this.closeModal();
+            },
+
+            closeModal() {
+                this.modal.classList.add('opacity-0');
+                this.modalContent.classList.remove('scale-100');
+                this.modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    this.modal.classList.add('hidden');
+                }, 200);
+            },
+
+            exportHTML() {
+                if (this.activeTab === 'visual') {
+                    this.syncVisualToJson();
+                }
+
+                // Cleanly serialize the active configuration directly into the document
+                const configString = JSON.stringify(TASK_CONFIG, null, 4);
+                let htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+                
+                // Ensure the saved config is set in the exported standalone file
+                htmlContent = htmlContent.replace(/let TASK_CONFIG = \{[\s\S]*?\};\n\n\s*\/\*\*/, `let TASK_CONFIG = ${configString};\n\n    /**`);
+
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = (TASK_CONFIG.title ? TASK_CONFIG.title.replace(/[^a-z0-9]/gi, '_') : 'IELTS_Task') + '.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        };
+
+        // Initialize Builder System
+        app.init();
+    });
+</script>
+
+</body>
+</html>
