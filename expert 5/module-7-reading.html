@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Academic Simulator - Letchworth Garden City</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --app-font-size: 17px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            overscroll-behavior: none;
+            background-color: #f3f4f6;
+        }
+        .ielts-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+        }
+        .content-panes {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr;
+            overflow: hidden;
+        }
+        .pane {
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            font-size: var(--app-font-size);
+            scroll-behavior: smooth;
+        }
+        #left-pane {
+            background-color: #fdfdfd;
+        }
+        #right-pane {
+            background-color: #f8fafc;
+        }
+        .splitter {
+            background-color: #cbd5e1;
+            cursor: col-resize;
+            z-index: 10;
+            transition: background-color 0.2s;
+        }
+        .splitter:hover, .splitter:active {
+            background-color: #94a3b8;
+        }
+        
+        /* Typography Improvements */
+        .reading-passage {
+            font-family: 'Merriweather', serif;
+            line-height: 1.9;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reading-passage p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem; 
+        }
+        .reading-passage h3 {
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.55em;
+            text-align: center;
+            text-indent: 0;
+            line-height: 1.3;
+        }
+        .reading-passage .subtitle {
+            font-family: 'Inter', sans-serif;
+            color: #475569;
+            font-weight: 500;
+            font-size: 1.05em;
+            text-align: center;
+            text-indent: 0;
+            margin-bottom: 2rem;
+        }
+
+        /* Question Styles */
+        .flowchart-step {
+            position: relative;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0.5rem;
+            padding: 1.15rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.2s ease;
+        }
+        .flowchart-step:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+        }
+        .year-tag {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 700;
+            font-size: 0.85em;
+            padding: 0.2rem 0.65rem;
+            border-radius: 9999px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #bfdbfe;
+            font-family: 'Inter', sans-serif;
+        }
+        .text-input {
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            text-align: center;
+            background-color: #f8fafc;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Choice item */
+        .choice-option {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .choice-option:hover {
+            background-color: #f1f5f9;
+            border-color: #94a3b8;
+        }
+        .choice-option.selected {
+            background-color: #eff6ff;
+            border-color: #3b82f6;
+        }
+
+        /* Vocabulary Styles */
+        .vocab-word {
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px dotted #93c5fd;
+            transition: all 0.2s ease-in-out;
+            padding: 0 2px;
+        }
+        .vocab-word:hover {
+            background-color: #dbeafe;
+            border-bottom-style: solid;
+            border-radius: 2px;
+        }
+
+        /* Glossaries */
+        .glossary-box {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 1rem 1.25rem;
+            margin-top: 2rem;
+            font-size: 0.88em;
+            color: #475569;
+            font-family: 'Inter', sans-serif;
+        }
+        .glossary-box dt {
+            font-weight: 700;
+            color: #1e293b;
+            display: inline;
+        }
+        .glossary-box dd {
+            display: inline;
+            margin-left: 0.25rem;
+            margin-right: 1rem;
+        }
+
+        /* UI Elements */
+        .highlight-tooltip {
+            position: absolute;
+            background-color: #1e293b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 100;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        mark {
+            background-color: #fef08a;
+            border-radius: 3px;
+            padding: 2px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        mark:hover {
+            background-color: #fca5a5;
+            color: #7f1d1d;
+        }
+        mark:hover::after {
+            content: ' ×';
+            font-weight: bold;
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+
+        /* Progress Tracker Styles */
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .progress-item.answered {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .progress-item:hover:not(.answered) {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        @media (max-width: 768px) {
+            .content-panes {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 5px 1fr;
+            }
+            .splitter {
+                cursor: row-resize;
+            }
+            .pane {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="test-container" class="ielts-container">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex justify-between items-center z-20 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+            </div>
+            <h1 class="text-lg sm:text-xl font-bold text-gray-800">IELTS Simulator <span class="text-blue-600 font-medium hidden md:inline">| Module 7: Urban Planning</span></h1>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-5">
+            <!-- Student Name -->
+            <div class="flex items-center space-x-2 border-r border-gray-200 pr-3 sm:pr-4">
+                <span class="text-sm text-gray-500 font-medium hidden sm:inline">Name:</span>
+                <input type="text" id="student-name" class="border border-gray-300 rounded px-2 py-1 text-sm w-28 sm:w-44 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Your Name">
+            </div>
+            
+            <!-- Clear Highlights Button -->
+            <button id="clear-highlights-btn" class="hidden sm:flex items-center justify-center px-3 py-1.5 rounded bg-amber-50 hover:bg-amber-100 text-amber-700 transition-colors focus:outline-none border border-amber-200 text-sm font-medium" title="Clear Highlights">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                Clear
+            </button>
+
+            <!-- Font controls -->
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-50 p-1 rounded-lg border border-gray-200">
+                <button id="decrease-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Decrease Font Size">A-</button>
+                <button id="increase-font-btn" class="w-8 h-8 flex items-center justify-center rounded bg-white shadow-sm hover:bg-gray-100 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold" title="Increase Font Size">A+</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="content-panes" class="content-panes">
+        <!-- Left Pane: Passages -->
+        <div id="left-pane" class="pane">
+            <div class="reading-passage">
+                <h3>Letchworth Garden City</h3>
+                <p class="subtitle">The development of the world's first garden city</p>
+                
+                <p>The idea of a 'garden city' was first proposed by Ebenezer Howard in the late 1800s. He wanted to build new towns that would be totally different from English cities of that time, where <span class="vocab-word" data-word="overcrowding">overcrowding</span>, dirt, unemployment and poverty were very common. Howard had a dream of cities where the residents would live in <span class="vocab-word" data-word="harmony">harmony</span> with nature. He wanted to give ordinary people a better place to live.</p>
+                
+                <p>In 1902, Howard wrote a book that was very popular and important in promoting the idea of garden cities. The book, <em>Garden Cities of To-Morrow</em>, set out his ideas for what the new communities should look like. Each area of the city needed to be carefully planned. For example, areas of housing needed to be of a similar size to <span class="vocab-word" data-word="industrial">industrial</span> zones, but in a different place. Importantly, Howard wanted countryside with areas of trees and fields right around the city. This was to prevent the city from spreading and becoming too big. The term <span class="vocab-word" data-word="greenbelt">greenbelt</span> was used for this area of countryside, and when the city grew in size and reached this point, Howard suggested a new garden city should be built nearby.</p>
+                
+                <p>A <span class="vocab-word" data-word="competition">competition</span> was announced in 1903 which would allow architects to develop the best design for a city that matched Howard's dreams. In September of that year, Barry Parker and Raymond Unwin were appointed as architects and the First Garden City company was established. The organisation bought a large area of land about 50 kilometres north of London and the building of Letchworth soon began.</p>
+                
+                <p>In 1905, First Garden City held a show called The Cheap Cottages <span class="vocab-word" data-word="exhibition">Exhibition</span>. The purpose of this exhibition was for designers to try to create housing that was cheaper to build and to show it to the thousands of visitors who came to see the displays. Ideas that were new at that time were for homes to have front and back gardens, for buildings to come pre-made and easy to put together, and for structures to be made from new materials that were cheaper to use, such as concrete instead of bricks.</p>
+                
+                <p>Howard's plans for Letchworth made good use of circular patterns. This meant that he didn't want a confused mix of roads and streets going in all directions and leading to different areas. He wanted to create a pattern in Letchworth where a few main roads led into the centre of the city, and several minor roads circled around the centre. As a result of this, in 1909 Letchworth became the birthplace of the first <span class="vocab-word" data-word="roundabout">roundabout</span> &ndash; the best design to allow several roads to meet and form a circle, allowing drivers to easily change direction.</p>
+
+                <p>The new city soon attracted businesses. One of the most important manufacturers to arrive in Letchworth was the clothing company Spirella. They began building a large factory in 1912 close to the middle of town. Because it was built to look like a large country house, it managed to blend in* with the other buildings around it.</p>
+                
+                <p>In 1913, Ebenezer Howard founded the Garden Cities and Town Planning Association. His goal in doing this was to provide a way for town-planners and people concerned about the environment to meet together and share their <span class="vocab-word" data-word="knowledge">knowledge</span>. He believed this was the way forward for a better way of life for all people.</p>
+
+                <p>Since Letchworth was first built, several housing estates* have been added on to it. One of them is called Jackmans Estate. It was built with its own schools, shops, library and community centre. The plan of the estate was impressive and it is still considered to be a good example of urban design. One success of the plan was to separate <span class="vocab-word" data-word="pedestrians">pedestrians</span>* from motor traffic, so most homes were built so that they opened onto pedestrian squares, gardens and playgrounds. However, in some cases the actual housing itself varied in quality. Because different construction methods were tried for the first time when Jackmans Estate was built, it became clear that some of these methods were not as good as more traditional methods. Furthermore, over time, people's way of life changed and although the small street of shops at Jackmans Estate does very well, it has lost the local primary school and library.</p>
+                
+                <!-- Glossary Box -->
+                <div class="glossary-box">
+                    <div class="font-bold text-gray-700 mb-1 uppercase tracking-wider text-xs">Glossary</div>
+                    <dl class="space-y-1">
+                        <div><dt>* blend in:</dt><dd>if something blends in with objects, it is similar to them and you do not notice it</dd></div>
+                        <div><dt>* housing estate:</dt><dd>a large number of houses built together in a planned way</dd></div>
+                        <div><dt>* pedestrian:</dt><dd>someone who is walking, especially along a street or other place used by cars</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <!-- Splitter -->
+        <div id="splitter" class="splitter relative flex items-center justify-center">
+            <div class="w-1 h-8 bg-gray-400 rounded-full opacity-50"></div>
+        </div>
+
+        <!-- Right Pane: Questions -->
+        <div id="right-pane" class="pane">
+            <div id="questions-section" class="max-w-3xl mx-auto space-y-8">
+                
+                <!-- Flow Chart Completion (Q1 - Q8) -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 1-8</span>
+                        <h4 class="font-bold text-gray-800 text-lg">Flow Chart Completion</h4>
+                    </div>
+                    
+                    <p class="mb-5 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm">
+                        Complete the flow chart below. Choose <strong>NO MORE THAN ONE WORD</strong> from the passage for each answer.
+                    </p>
+
+                    <h5 class="font-extrabold text-gray-800 text-center text-lg mb-6 pb-2 border-b border-gray-200">Letchworth Garden City</h5>
+
+                    <div class="space-y-4" id="ex-flowchart">
+                        
+                        <!-- 1898 -->
+                        <div class="flowchart-step" id="container-q1">
+                            <span class="year-tag">1898</span>
+                            <div class="text-gray-800 leading-relaxed">
+                                Ebenezer Howard wanted to build new cities where people could live closely with 
+                                <strong class="text-blue-600 mr-1">1</strong>
+                                <input type="text" name="q1" class="text-input w-40 mx-1" placeholder="Answer">
+                            </div>
+                        </div>
+
+                        <!-- 1902 -->
+                        <div class="flowchart-step space-y-3" id="container-q2-q3">
+                            <span class="year-tag">1902</span>
+                            <p class="text-gray-800 font-medium">Howard wrote an important book describing the new cities:</p>
+                            
+                            <div class="pl-4 border-l-2 border-blue-200 space-y-3">
+                                <div id="container-q2" class="text-gray-800 leading-relaxed">
+                                    • Residential areas should be separate from 
+                                    <strong class="text-blue-600 mr-1">2</strong>
+                                    <input type="text" name="q2" class="text-input w-36 mx-1" placeholder="Answer"> 
+                                    areas.
+                                </div>
+                                <div id="container-q3" class="text-gray-800 leading-relaxed">
+                                    • Surrounding the cities there should be an area of countryside called a(n) 
+                                    <strong class="text-blue-600 mr-1">3</strong>
+                                    <input type="text" name="q3" class="text-input w-36 mx-1" placeholder="Answer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1903 -->
+                        <div class="flowchart-step" id="container-q4">
+                            <span class="year-tag">1903</span>
+                            <div class="text-gray-800 leading-relaxed">
+                                There was a(n) 
+                                <strong class="text-blue-600 mr-1">4</strong>
+                                <input type="text" name="q4" class="text-input w-36 mx-1" placeholder="Answer"> 
+                                to find the architects who could turn Howard's ideas into a real city. The company First Garden City was formed and building of the new city, Letchworth, started.
+                            </div>
+                        </div>
+
+                        <!-- 1905 -->
+                        <div class="flowchart-step" id="container-q5">
+                            <span class="year-tag">1905</span>
+                            <div class="text-gray-800 leading-relaxed">
+                                The Cheap Cottages Exhibition encouraged designers to develop ways of building less expensive housing. The houses used material like 
+                                <strong class="text-blue-600 mr-1">5</strong>
+                                <input type="text" name="q5" class="text-input w-36 mx-1" placeholder="Answer">
+                            </div>
+                        </div>
+
+                        <!-- 1909 -->
+                        <div class="flowchart-step" id="container-q6">
+                            <span class="year-tag">1909</span>
+                            <div class="text-gray-800 leading-relaxed">
+                                Howard's ideas for the roads and streets in Letchworth led to the design of a(n) 
+                                <strong class="text-blue-600 mr-1">6</strong>
+                                <input type="text" name="q6" class="text-input w-36 mx-1" placeholder="Answer"> 
+                                which was the first one to be built in England.
+                            </div>
+                        </div>
+
+                        <!-- 1912 -->
+                        <div class="flowchart-step" id="container-q7">
+                            <span class="year-tag">1912</span>
+                            <div class="text-gray-800 leading-relaxed">
+                                A new clothing factory was built that was similar in size and design to a(n) 
+                                <strong class="text-blue-600 mr-1">7</strong>
+                                <input type="text" name="q7" class="text-input w-36 mx-1" placeholder="Answer"> 
+                                in the countryside.
+                            </div>
+                        </div>
+
+                        <!-- 1913 -->
+                        <div class="flowchart-step" id="container-q8">
+                            <span class="year-tag">1913</span>
+                            <div class="text-gray-800 leading-relaxed">
+                                Howard started the Garden Cities and Town Planning Association to promote an exchange of 
+                                <strong class="text-blue-600 mr-1">8</strong>
+                                <input type="text" name="q8" class="text-input w-36 mx-1" placeholder="Answer">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Multiple Choice (Choose TWO letters) (Q9 - Q10) -->
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-gray-200" id="container-q9-10">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full mr-3">Questions 9-10</span>
+                        <h4 class="font-bold text-gray-800 text-lg">Multiple Choice (Choose TWO)</h4>
+                    </div>
+
+                    <p class="mb-4 text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 text-sm">
+                        Choose <strong>TWO</strong> letters <strong>A&ndash;E</strong>.<br>
+                        <em>Which of these problems has Jackmans Estate experienced?</em>
+                    </p>
+
+                    <div class="space-y-2.5" id="checkbox-group">
+                        
+                        <label class="choice-option flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer select-none">
+                            <input type="checkbox" name="q9_10" value="A. Some of the houses were not built very well." class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 mr-3">
+                            <span class="text-gray-800"><strong class="text-blue-600 mr-2">A</strong> Some of the houses were not built very well.</span>
+                        </label>
+
+                        <label class="choice-option flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer select-none">
+                            <input type="checkbox" name="q9_10" value="B. The housing areas were not planned well." class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 mr-3">
+                            <span class="text-gray-800"><strong class="text-blue-600 mr-2">B</strong> The housing areas were not planned well.</span>
+                        </label>
+
+                        <label class="choice-option flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer select-none">
+                            <input type="checkbox" name="q9_10" value="C. Some public facilities were closed down." class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 mr-3">
+                            <span class="text-gray-800"><strong class="text-blue-600 mr-2">C</strong> Some public facilities were closed down.</span>
+                        </label>
+
+                        <label class="choice-option flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer select-none">
+                            <input type="checkbox" name="q9_10" value="D. People are not interested in the local shops." class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 mr-3">
+                            <span class="text-gray-800"><strong class="text-blue-600 mr-2">D</strong> People are not interested in the local shops.</span>
+                        </label>
+
+                        <label class="choice-option flex items-center p-3 rounded-lg border border-gray-200 cursor-pointer select-none">
+                            <input type="checkbox" name="q9_10" value="E. It was built too far from other large towns." class="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500 mr-3">
+                            <span class="text-gray-800"><strong class="text-blue-600 mr-2">E</strong> It was built too far from other large towns.</span>
+                        </label>
+
+                    </div>
+                    <div id="selection-warning" class="text-xs text-amber-600 mt-2 font-medium hidden">Please select at most 2 options.</div>
+                </div>
+
+                <!-- Submit Button Area -->
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center pb-8">
+                    <button id="submit-form-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-md transition-colors text-lg shadow-md inline-flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2L15 22L11 13 2 9L22 2z"></path></svg>
+                        <span>Submit to Google Form</span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-2">This will open a pre-filled Google Form in a new tab.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Progress Footer -->
+    <footer class="bg-white border-t border-gray-200 p-3 flex flex-wrap justify-center items-center gap-2 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <span class="text-sm font-bold text-gray-700 mr-2">Progress:</span>
+        <a href="#container-q1" class="progress-item" data-q="q1">1</a>
+        <a href="#container-q2" class="progress-item" data-q="q2">2</a>
+        <a href="#container-q3" class="progress-item" data-q="q3">3</a>
+        <a href="#container-q4" class="progress-item" data-q="q4">4</a>
+        <a href="#container-q5" class="progress-item" data-q="q5">5</a>
+        <a href="#container-q6" class="progress-item" data-q="q6">6</a>
+        <a href="#container-q7" class="progress-item" data-q="q7">7</a>
+        <a href="#container-q8" class="progress-item" data-q="q8">8</a>
+        <a href="#container-q9-10" class="progress-item" data-q="q9">9</a>
+        <a href="#container-q9-10" class="progress-item" data-q="q10">10</a>
+    </footer>
+</div>
+
+<!-- Highlight Tooltip -->
+<div id="highlight-tooltip" class="highlight-tooltip">Highlight Text</div>
+
+<!-- Vocabulary Modal -->
+<div id="vocab-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50 transition-opacity">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative transform transition-all scale-95 opacity-0" id="vocab-modal-content">
+        <button id="close-vocab-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+        <div class="flex items-center mb-6 border-b pb-4">
+            <h3 id="vocab-word" class="text-3xl font-extrabold text-gray-900 capitalize tracking-tight"></h3>
+        </div>
+        <div class="flex items-center mb-5">
+            <button id="play-audio-btn" class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white mr-4 transition-all shadow-sm border border-blue-100" title="Listen to pronunciation">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <p id="vocab-pronunciation-text" class="text-gray-500 font-mono text-lg bg-gray-50 px-3 py-1 rounded-md border border-gray-100"></p>
+        </div>
+        <p id="vocab-meaning" class="text-gray-700 text-lg leading-relaxed"></p>
+    </div>
+</div>
+
+<script>
+    // --- VOCABULARY DATA ---
+    const vocabulary = {
+        'overcrowding': { 
+            meaning: 'The state of having too many people or things packed into a space or area.', 
+            phonetic: '/ˌəʊvəˈkraʊdɪŋ/' 
+        },
+        'harmony': { 
+            meaning: 'A state of peaceful existence, agreement, or congruity with one’s environment.', 
+            phonetic: '/ˈhɑːməni/' 
+        },
+        'industrial': { 
+            meaning: 'Relating to or characterized by industry, manufacturing, or factories.', 
+            phonetic: '/ɪnˈdʌstriəl/' 
+        },
+        'greenbelt': { 
+            meaning: 'An area of open land and countryside around a city on which building is strictly restricted.', 
+            phonetic: '/ˈɡriːnbelt/' 
+        },
+        'competition': { 
+            meaning: 'An event or contest in which people or organizations compete to determine the best design or performance.', 
+            phonetic: '/ˌkɒmpəˈtɪʃn/' 
+        },
+        'exhibition': { 
+            meaning: 'A public display of works of art, industrial products, or trade skills.', 
+            phonetic: '/ˌeksɪˈbɪʃn/' 
+        },
+        'roundabout': { 
+            meaning: 'A road junction at which traffic moves in one direction around a central circular island.', 
+            phonetic: '/ˈraʊndəbaʊt/' 
+        },
+        'knowledge': { 
+            meaning: 'Facts, information, and skills acquired through experience, study, or education.', 
+            phonetic: '/ˈnɒlɪdʒ/' 
+        },
+        'pedestrians': { 
+            meaning: 'People walking rather than travelling in a vehicle.', 
+            phonetic: '/pəˈdestriənz/' 
+        }
+    };
+
+    // --- APPLICATION LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = {
+            currentFontSize: 17,
+
+            // Elements
+            leftPane: document.getElementById('left-pane'),
+            rightPane: document.getElementById('right-pane'),
+            splitter: document.getElementById('splitter'),
+            highlightTooltip: document.getElementById('highlight-tooltip'),
+            vocabModal: document.getElementById('vocab-modal'),
+            vocabModalContent: document.getElementById('vocab-modal-content'),
+            closeVocabModalBtn: document.getElementById('close-vocab-modal'),
+            vocabWordEl: document.getElementById('vocab-word'),
+            vocabMeaningEl: document.getElementById('vocab-meaning'),
+            vocabPronunciationText: document.getElementById('vocab-pronunciation-text'),
+            playAudioBtn: document.getElementById('play-audio-btn'),
+            clearHighlightsBtn: document.getElementById('clear-highlights-btn'),
+
+            init() {
+                this.setupEventListeners();
+                this.initSplitter();
+                this.initHighlighter();
+                this.initProgressTracker();
+                this.initCheckboxes();
+            },
+
+            setupEventListeners() {
+                document.getElementById('increase-font-btn').addEventListener('click', () => this.changeFontSize(1));
+                document.getElementById('decrease-font-btn').addEventListener('click', () => this.changeFontSize(-1));
+
+                if (this.clearHighlightsBtn) {
+                    this.clearHighlightsBtn.addEventListener('click', () => {
+                        const marks = this.leftPane.querySelectorAll('mark');
+                        marks.forEach(mark => {
+                            const text = document.createTextNode(mark.textContent);
+                            mark.replaceWith(text);
+                        });
+                    });
+                }
+
+                this.closeVocabModalBtn.addEventListener('click', () => this.closeModal());
+                this.vocabModal.addEventListener('click', (e) => {
+                    if (e.target === this.vocabModal) this.closeModal();
+                });
+                
+                // Vocab Words Event Delegation
+                this.leftPane.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('vocab-word')) {
+                        const wordKey = e.target.dataset.word;
+                        this.openVocabModal(wordKey);
+                    }
+                    
+                    if (e.target.tagName === 'MARK') {
+                        const textNode = document.createTextNode(e.target.textContent);
+                        e.target.replaceWith(textNode);
+                    }
+                });
+
+                // Google Form Submission
+                document.body.addEventListener('click', (e) => {
+                    const submitBtn = e.target.closest('#submit-form-btn');
+                    if (submitBtn) {
+                        this.submitToGoogleForm();
+                    }
+                });
+                
+                // Pronunciation TTS
+                this.playAudioBtn.addEventListener('click', () => {
+                    const word = this.vocabWordEl.textContent;
+                    if (!word) return;
+                    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                   
+                    this.playAudioBtn.classList.remove('text-blue-600', 'bg-blue-50');
+                    this.playAudioBtn.classList.add('bg-green-500', 'text-white');
+                   
+                    if ('speechSynthesis' in window) {
+                        const utterance = new SpeechSynthesisUtterance(word);
+                        utterance.lang = 'en-GB'; 
+                        utterance.rate = 0.9; 
+                        utterance.onend = () => this.resetAudioBtn();
+                        utterance.onerror = () => this.resetAudioBtn();
+                        window.speechSynthesis.speak(utterance);
+                    } else {
+                        alert("Sorry, your browser doesn't support text-to-speech audio.");
+                        setTimeout(() => this.resetAudioBtn(), 500);
+                    }
+                });
+            },
+
+            initCheckboxes() {
+                const checkboxes = document.querySelectorAll('input[name="q9_10"]');
+                const warning = document.getElementById('selection-warning');
+
+                checkboxes.forEach(cb => {
+                    cb.addEventListener('change', (e) => {
+                        const checkedCount = document.querySelectorAll('input[name="q9_10"]:checked').length;
+                        
+                        // Enforce max 2 selections
+                        if (checkedCount > 2) {
+                            e.target.checked = false;
+                            if (warning) {
+                                warning.classList.remove('hidden');
+                                setTimeout(() => warning.classList.add('hidden'), 2500);
+                            }
+                        }
+
+                        // Toggle highlight class on parent label
+                        checkboxes.forEach(box => {
+                            const parentLabel = box.closest('.choice-option');
+                            if (box.checked) {
+                                parentLabel.classList.add('selected');
+                            } else {
+                                parentLabel.classList.remove('selected');
+                            }
+                        });
+
+                        this.updateCheckboxesProgress();
+                    });
+                });
+            },
+
+            updateCheckboxesProgress() {
+                const checked = document.querySelectorAll('input[name="q9_10"]:checked').length;
+                const p9 = document.querySelector('.progress-item[data-q="q9"]');
+                const p10 = document.querySelector('.progress-item[data-q="q10"]');
+
+                if (checked >= 1) {
+                    p9.classList.add('answered');
+                } else {
+                    p9.classList.remove('answered');
+                }
+
+                if (checked >= 2) {
+                    p10.classList.add('answered');
+                } else {
+                    p10.classList.remove('answered');
+                }
+            },
+
+            initProgressTracker() {
+                const textInputs = document.querySelectorAll('.text-input');
+
+                const updateTextProgress = () => {
+                    for (let i = 1; i <= 8; i++) {
+                        const input = document.querySelector(`[name="q${i}"]`);
+                        const prog = document.querySelector(`.progress-item[data-q="q${i}"]`);
+                        if (input && prog) {
+                            if (input.value.trim() !== '') {
+                                prog.classList.add('answered');
+                            } else {
+                                prog.classList.remove('answered');
+                            }
+                        }
+                    }
+                };
+
+                textInputs.forEach(input => {
+                    input.addEventListener('input', updateTextProgress);
+                    input.addEventListener('change', updateTextProgress);
+                });
+
+                updateTextProgress();
+                this.updateCheckboxesProgress();
+            },
+
+            initHighlighter() {
+                document.body.addEventListener('mouseup', (e) => {
+                    const selection = window.getSelection();
+                    const selectedText = selection.toString().trim();
+
+                    if (selectedText.length > 0) {
+                        const range = selection.getRangeAt(0);
+                        if (!this.leftPane.contains(range.commonAncestorContainer) && !this.rightPane.contains(range.commonAncestorContainer)) {
+                            this.highlightTooltip.style.display = 'none';
+                            return;
+                        }
+
+                        this.highlightTooltip.style.left = `${e.pageX - 30}px`;
+                        this.highlightTooltip.style.top = `${e.pageY - 40}px`;
+                        this.highlightTooltip.style.display = 'block';
+
+                        this.highlightTooltip.onclick = () => {
+                            const container = range.commonAncestorContainer;
+                            if (container.nodeType === 3) { 
+                                if (range.startContainer.parentElement !== range.endContainer.parentElement) {
+                                    this.highlightTooltip.style.display = 'none';
+                                    return;
+                                }
+                            }
+                            
+                            const mark = document.createElement('mark');
+                            try {
+                                range.surroundContents(mark);
+                            } catch (ex) {} 
+                            finally {
+                                selection.removeAllRanges();
+                                this.highlightTooltip.style.display = 'none';
+                            }
+                        };
+                    } else {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+
+                document.body.addEventListener('mousedown', (e) => {
+                    if (e.target !== this.highlightTooltip && window.getSelection().toString().length === 0) {
+                        this.highlightTooltip.style.display = 'none';
+                    }
+                });
+            },
+
+            resetAudioBtn() {
+                this.playAudioBtn.classList.add('text-blue-600', 'bg-blue-50');
+                this.playAudioBtn.classList.remove('bg-green-500', 'text-white');
+            },
+            
+            changeFontSize(delta) {
+                this.currentFontSize += delta;
+                if (this.currentFontSize < 14) this.currentFontSize = 14;
+                if (this.currentFontSize > 26) this.currentFontSize = 26;
+                document.documentElement.style.setProperty('--app-font-size', `${this.currentFontSize}px`);
+            },
+
+            openVocabModal(wordKey) {
+                const data = vocabulary[wordKey];
+                if (data) {
+                    this.vocabWordEl.textContent = wordKey;
+                    this.vocabMeaningEl.textContent = data.meaning;
+                    this.vocabPronunciationText.textContent = data.phonetic || '';
+                    this.vocabModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        this.vocabModalContent.classList.remove('scale-95', 'opacity-0');
+                        this.vocabModalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            },
+
+            closeModal() {
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                this.vocabModalContent.classList.remove('scale-100', 'opacity-100');
+                this.vocabModalContent.classList.add('scale-95', 'opacity-0');
+                this.resetAudioBtn();
+                setTimeout(() => this.vocabModal.classList.add('hidden'), 200);
+            },
+            
+            submitToGoogleForm() {
+                const nameInput = document.getElementById('student-name');
+                const name = nameInput ? nameInput.value.trim() : '';
+
+                const params = new URLSearchParams();
+                params.append('usp', 'pp_url');
+                
+                // Student Name field
+                if (name) {
+                    params.append('entry.280729453', name);
+                }
+
+                // Flow Chart Questions (Q1 - Q8)
+                const textEntries = {
+                    'q1': 'entry.841416421',
+                    'q2': 'entry.34524779',
+                    'q3': 'entry.2064831505',
+                    'q4': 'entry.335342043',
+                    'q5': 'entry.1747907218',
+                    'q6': 'entry.1996454600',
+                    'q7': 'entry.676060949',
+                    'q8': 'entry.174846463'
+                };
+
+                for (const [qId, entryId] of Object.entries(textEntries)) {
+                    const el = document.querySelector(`[name="${qId}"]`);
+                    if (el && el.value.trim() !== '') {
+                        params.append(entryId, el.value.trim());
+                    }
+                }
+
+                // Questions 9-10 (Checkboxes sharing entry.789604132)
+                const checkedBoxes = document.querySelectorAll('input[name="q9_10"]:checked');
+                checkedBoxes.forEach(box => {
+                    params.append('entry.789604132', box.value);
+                });
+
+                // Google Form base URL
+                const formId = '1FAIpQLScEM4ggkgf9BHaDW9qBCgdjgwpKwUc_K3GhnN4qWTigeJD2Lw';
+                const url = `https://docs.google.com/forms/d/e/${formId}/viewform?${params.toString()}`;
+                
+                window.open(url, '_blank');
+            },
+
+            initSplitter() {
+                let isDragging = false;
+                const contentPanes = document.getElementById('content-panes');
+
+                this.splitter.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    document.body.style.cursor = 'col-resize';
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    if (window.innerWidth <= 768) return; 
+                    
+                    const containerRect = contentPanes.getBoundingClientRect();
+                    const newLeftWidth = e.clientX - containerRect.left;
+                    if (newLeftWidth > 200 && newLeftWidth < containerRect.width - 200) {
+                        const newLeftPercent = (newLeftWidth / containerRect.width) * 100;
+                        contentPanes.style.gridTemplateColumns = `${newLeftPercent}% 5px 1fr`;
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        document.body.style.cursor = 'default';
+                    }
+                });
+            }
+        };
+
+        app.init();
+    });
+</script>
+
+</body>
+</html>
